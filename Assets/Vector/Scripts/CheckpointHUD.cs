@@ -22,8 +22,8 @@ namespace VectorGame
             Box(new Rect(0,0,w,h),new Color(.006f,.018f,.028f,.73f));
             var deck=game.Deck;if(selectedItem!=null&&!deck.Items.Contains(selectedItem))selectedItem=null;
             float full=w-40,rewardW=(full-44)/3,sequenceY=h-143,sequenceW=(w-302-40)/5;
-            Rect stats=new Rect(20,256,266,h-414),center=new Rect(302,256,(w-334)*.5f,h-414);
-            Rect storage=new Rect(center.xMax+16,256,w-center.xMax-36,h-414);
+            Rect stats=new Rect(20,276,266,h-434),center=new Rect(302,276,(w-334)*.5f,h-434);
+            Rect storage=new Rect(center.xMax+16,276,w-center.xMax-36,h-434);
             Rect inventoryRect=new Rect(storage.x+13,storage.y+40,storage.width-26,storage.height-67);
             const int columns=6;float cellW=(inventoryRect.width-5*6-15)/6,cellH=Mathf.Min(cellW,(inventoryRect.height-18)/4);
             var inventory=deck.Inventory.OrderBy(i=>i.def.kind).ThenBy(i=>i.def.name).ThenBy(i=>i.rank).ToArray();int rows=Mathf.Max(4,Mathf.CeilToInt(inventory.Length/6f));
@@ -34,7 +34,7 @@ namespace VectorGame
             {inventoryScroll.y=Mathf.Clamp(inventoryScroll.y+Mathf.Sign(Event.current.delta.y),0,Mathf.Max(0,rows-4));Event.current.Use();}
             int firstStored=(int)inventoryScroll.y*columns;
             dropRegions.Clear();
-            for(int i=0;i<3;i++)if(!deck.RewardClaimed)dropRegions.Add(new DropRegion{rect=new Rect(32+i*(rewardW+10),104,rewardW,128),offer=i});
+            for(int i=0;i<3;i++)if(!deck.RewardClaimed)dropRegions.Add(new DropRegion{rect=new Rect(32+i*(rewardW+10),104,rewardW,148),offer=i});
             for(int i=0;i<5;i++)dropRegions.Add(new DropRegion{rect=new Rect(30+i*(sequenceW+10),sequenceY,sequenceW,91),place=PlaceKind.Sequence,index=i,item=deck.Slots[i]});
             dropRegions.Add(new DropRegion{rect=mounts[0],place=PlaceKind.Helmet,item=deck.Armor[0]});
             dropRegions.Add(new DropRegion{rect=mounts[1],place=PlaceKind.Armor,item=deck.Armor[1]});
@@ -56,11 +56,11 @@ namespace VectorGame
             Label(new Rect(520,30,230,22),"COMBAT PAUSED",15,Accent,true);
             Label(new Rect(251,56,w-285,18),"AUTO-FUSE: 3 identical items + SAME RARITY. Equipped + stored count. Augments do not fuse.",11,muted);
             Label(new Rect(w-290,31,250,25),(deck.RewardClaimed?"CHOICE CLAIMED":"CHOOSE 1 OF 3")+(game.OpeningDraft?" / "+(game.OpeningPicks+1)+" OF 2":""),16,deck.RewardClaimed?Accent:white,true,TextAnchor.UpperRight);
-            Panel(new Rect(20,86,w-40,158));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Augment?"AUGMENTS / CHOOSE MODULE, THEN HIGHLIGHTED HOST":deck.Draft.ToString().ToUpperInvariant()+" REWARDS",11,Accent,true);
+            Panel(new Rect(20,86,w-40,178));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Augment?"AUGMENTS / CHOOSE MODULE, THEN HIGHLIGHTED HOST":deck.Draft.ToString().ToUpperInvariant()+" REWARDS",11,Accent,true);
             Label(new Rect(600,86,w-630,17),"NEXT: "+game.EncounterPreview,10,muted,false,TextAnchor.UpperRight);
             for(int i=0;i<3;i++)
             {
-                var offer=deck.Offers[i];Rect r=new Rect(32+i*(rewardW+10),104,rewardW,128);bool selected=deck.Selected==i;Color color=offer.def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);
+                var offer=deck.Offers[i];Rect r=new Rect(32+i*(rewardW+10),104,rewardW,148);bool selected=deck.Selected==i;Color color=offer.def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);
                 Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,color,10,selected?3:1.5f);
                 Plate(new Rect(r.x+10,r.y+10,86,86),new Color(.02f,.06f,.09f),line,7);
                 ActionGlyph(new Rect(r.x+13,r.y+13,80,80),offer.def,TypeColor(offer.def.kind));
@@ -69,7 +69,8 @@ namespace VectorGame
                 Label(new Rect(r.x+107,r.y+32,r.width-117,24),offer.Name,17,white,true);
                 Label(new Rect(r.x+107,r.y+60,r.width-117,17),(offer.def.kind==ItemKind.Augment?"HOST-SCALED":ItemRarity.Names[offer.rank].ToUpperInvariant())+" / "+(offer.def.kind==ItemKind.Augment?"NO FUSION":ItemStats(offer.def,offer.rank)),10,color,true);
                 DrawSynergyChips(new Rect(r.x+107,r.y+81,r.width-117,18),offer.def);
-                Label(new Rect(r.x+12,r.y+108,r.width-24,15),deck.RewardClaimed?(selected?(deck.Receipt.Contains("FUSED:")?"CLAIMED / FUSION COMPLETE":"CLAIMED / ADDED TO YOUR ITEMS"):"PASSED / NOT ADDED"):FusionSummary(offer.def,offer.rank,offer.copies),10,!deck.RewardClaimed&&offer.rank<5&&offer.def.kind!=ItemKind.Augment&&deck.Copies(offer.def,offer.rank)+offer.copies>=3?Accent:color,true);
+                EffectLine(new Rect(r.x+12,r.y+104,r.width-24,18),new LoadoutItem(offer.def,offer.rank),12);
+                Label(new Rect(r.x+12,r.y+128,r.width-24,15),deck.RewardClaimed?(selected?(deck.Receipt.Contains("FUSED:")?"CLAIMED / FUSION COMPLETE":"CLAIMED / ADDED TO YOUR ITEMS"):"PASSED / NOT ADDED"):FusionSummary(offer.def,offer.rank,offer.copies),10,!deck.RewardClaimed&&offer.rank<5&&offer.def.kind!=ItemKind.Augment&&deck.Copies(offer.def,offer.rank)+offer.copies>=3?Accent:color,true);
                 ItemTooltip(r,new LoadoutItem(offer.def,offer.rank),offer);
             }
             CharacterStats(stats);
@@ -83,7 +84,7 @@ namespace VectorGame
             EquipmentMount(mounts[0],deck.Armor[0],ItemKind.Helmet,"HELMET");
             EquipmentMount(mounts[1],deck.Armor[1],ItemKind.Armor,"ARMOR");
             EquipmentMount(mounts[4],deck.Armor[2],ItemKind.Boots,"BOOTS");
-            for(int i=0;i<2;i++)EquipmentMount(mounts[2+i],deck.Weapons[i]??deck.Fists,ItemKind.Weapon,"WEAPON "+(i+1));
+            for(int i=0;i<2;i++)EquipmentMount(mounts[2+i],deck.Weapons[i],ItemKind.Weapon,"WEAPON "+(i+1));
             if(deck.TwoHanded)Label(new Rect(center.x+112,center.yMax-28,center.width-224,22),"2H / BOTH MOUNTS",11,Gold,true,TextAnchor.MiddleCenter);
             ItemPanel(rigRect,deck.Rig,false,"No rig equipped","UTILITY RIG",ItemKind.Rig);
             Panel(storage);Label(new Rect(storage.x+16,storage.y+12,storage.width-32,21),"STORAGE",16,white,true);
@@ -105,7 +106,7 @@ namespace VectorGame
                 if(i<4)Stroke(new Vector2(r.xMax,r.center.y),new Vector2(r.xMax+10,r.center.y),deck.PairAfter(i)>=0?Gold:line,2);
             }
             GroupOutline(30,sequenceY,sequenceW,10,91);
-            ItemPanel(ultRect,deck.Ultimate,false,"No ultimate equipped","ULTIMATE / "+game.UltimateCooldown+"s / "+(game.UltimateAutomatic?"AUTO":"MANUAL"),ItemKind.Ultimate);
+            ItemPanel(ultRect,deck.Ultimate,false,deck.UltimatesUnlocked?"No ultimate equipped":"Choose after wave 3",deck.Ultimate==null?"ULTIMATE / "+(deck.UltimatesUnlocked?"EMPTY":"CHECKPOINT 3"):"ULTIMATE / "+game.UltimateCooldown+"s / "+(game.UltimateAutomatic?"AUTO":"MANUAL"),ItemKind.Ultimate);
             GUI.enabled=!deck.RewardClaimed&&deck.Rerolls>0;
             if(Button(new Rect(20,h-34,151,25),"REROLL "+deck.Rerolls+" [ TAB ]")){game.Reroll();ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(Button(new Rect(180,h-34,210,25),"EDIT AFTER PICK: "+(editAfterPick?"ON":"OFF"),editAfterPick))editAfterPick=!editAfterPick;
@@ -128,9 +129,9 @@ namespace VectorGame
             Segments(new Rect(r.x+16,r.y+88,r.width-32,10),game.Health/game.MaxHealth,Accent,12);
             string[] names={"DIRECT DAMAGE","DAMAGE RESIST","ACTION SPEED","BARRIER"};
             string[] values={"+"+((d.Damage-1)*100).ToString("0.#")+"%",((1-d.DamageTaken)*100).ToString("0.#")+"%","+"+((d.Speed-1)*100).ToString("0.#")+"%",game.BarrierAmount.ToString("0")};
-            for(int i=0;i<4;i++){float y=r.y+113+i*26;Label(new Rect(r.x+16,y,r.width-90,20),names[i],12,muted,true);Label(new Rect(r.x+16,y,r.width-32,20),values[i],15,white,true,TextAnchor.UpperRight);Stroke(new Vector2(r.x+16,y+23),new Vector2(r.xMax-16,y+23),new Color(line.r,line.g,line.b,.35f),1);}
+            for(int i=0;i<4;i++){float y=r.y+108+i*23;Label(new Rect(r.x+16,y,r.width-90,20),names[i],12,muted,true);Label(new Rect(r.x+16,y,r.width-32,20),values[i],15,white,true,TextAnchor.UpperRight);Stroke(new Vector2(r.x+16,y+21),new Vector2(r.xMax-16,y+21),new Color(line.r,line.g,line.b,.35f),1);}
             string passive=d.StaggerBonus>0?"EXPOSE +"+d.StaggerBonus.ToString("0.#")+" vs stagger. Hover gear.":d.Armor.Any(a=>a!=null)?"Hover equipped gear for passive details.":"Armor slots grant stats and passive effects.";
-            Label(new Rect(r.x+16,r.y+222,r.width-32,18),passive,10,Accent);
+            Label(new Rect(r.x+16,r.y+204,r.width-32,18),passive,10,Accent);
         }
         void ConnectMount(Rect slot,Vector2 target)
         {
@@ -141,9 +142,8 @@ namespace VectorGame
         {
             Panel(r);Label(new Rect(r.x+8,r.y+5,r.width-32,13),label,9,muted,true);
             if(item!=null)Label(new Rect(r.xMax-21,r.y+4,15,14),ItemRarity.Names[item.rank].Substring(0,1),10,RarityColor(item.rank),true,TextAnchor.MiddleCenter);
-            ItemDefinition icon=item?.def??(LoadoutCatalog.IsArmor(kind)?LoadoutCatalog.Armor[LoadoutCatalog.ArmorIndex(kind)]:null);
-            ActionGlyph(new Rect(r.center.x-20,r.y+22,40,40),icon,item==null?muted:TypeColor(kind));
-            Label(new Rect(r.x+6,r.y+63,r.width-12,19),item?.def.name??"Empty",10,item==null?muted:white,true,TextAnchor.MiddleCenter);
+            if(item!=null)ActionGlyph(new Rect(r.center.x-20,r.y+22,40,40),item.def,TypeColor(kind));
+            Label(new Rect(r.x+6,r.y+63,r.width-12,19),item?.def.name??(kind==ItemKind.Weapon?"Empty / fists":"Empty"),10,item==null?muted:white,true,TextAnchor.MiddleCenter);
             if(item!=null){Outline(new Rect(r.x+6,r.y+20,r.width-12,42),RarityColor(item.rank),5);ItemTooltip(r,item);}
         }
         string SuggestedDestination(ItemDefinition def)
@@ -161,14 +161,15 @@ namespace VectorGame
             Label(new Rect(r.x+10,r.y+9,r.width-20,15),heading,9,tint,true);
             if(r.height<70)
             {
-                ActionGlyph(new Rect(r.x+10,r.y+26,20,20),shown?.def,muted);
+                if(shown!=null)ActionGlyph(new Rect(r.x+10,r.y+26,20,20),shown.def,muted);
                 Label(new Rect(r.x+38,r.y+28,r.width-48,20),shown?.def.name??name,13,white,true);ItemTooltip(r,item);return;
             }
-            ActionGlyph(new Rect(r.x+10,r.y+30,36,36),shown?.def,muted);
+            if(shown!=null)ActionGlyph(new Rect(r.x+10,r.y+30,36,36),shown.def,muted);
             Label(new Rect(r.x+54,r.y+30,r.width-64,22),shown?.def.name??name,r.width<200?12:14,white,true);
             if(shown!=null)
             {
                 Label(new Rect(r.x+54,r.y+55,r.width-64,16),ItemRarity.Names[shown.rank]+(LoadoutCatalog.IsArmor(shown.def.kind)||shown.def.kind==ItemKind.Rig?" / PASSIVE":" / Kills: "+game.ActionKills(item)),10,RarityColor(shown.rank));
+                EffectLine(new Rect(r.x+10,r.y+74,r.width-20,15),item,10);
                 ItemTooltip(r,item);
             }
         }

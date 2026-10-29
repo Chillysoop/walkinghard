@@ -1,4 +1,4 @@
-param([string]$Player=(Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'),[string]$ReportPrefix='v060',[string[]]$Builds=@(),[switch]$FullRun)
+param([string]$Player=(Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'),[string]$ReportPrefix='v060',[string[]]$Builds=@(),[switch]$FullRun,[int]$HeroHealth=0)
 $ErrorActionPreference='Stop'
 if($Builds.Count -eq 0){
     $Builds=@('pinball','pinball-separated','freight','freight-piledriver','ballet','funnel','funnel-breach','cutcarry','close')
@@ -12,6 +12,7 @@ $reports=foreach($build in $Builds){
     $logPath=Join-Path $PSScriptRoot ('Logs\qa-'+$stem+'.log')
     $args='-batchmode -nographics -vectorQA -seed 1741 -qaBuild '+$build+' -qaOutput "'+$reportPath+'" -logFile "'+$logPath+'"'
     if($FullRun){$args+=' -qaFullRun'}
+    if($HeroHealth -gt 0){$args+=' -qaHealth '+$HeroHealth}
     $process=Start-Process -FilePath $Player -ArgumentList $args -WindowStyle Hidden -PassThru
     if(-not $process.WaitForExit(180000)){$process.Kill();throw "Timed out: $stem"}
     if($process.ExitCode -ne 0){throw "Failed: $stem (exit $($process.ExitCode)); see $logPath"}

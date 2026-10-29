@@ -19,7 +19,7 @@ namespace VectorGame
         {
             var rewards=new List<DraftKind>();if(wave>=8)return rewards.ToArray();
             if(wave==1){rewards.Add(DraftKind.Ability);rewards.Add(DraftKind.Weapon);}
-            else {rewards.Add(DraftKind.Mixed);if(wave==2||wave==4||wave==6)rewards.Add(DraftKind.Equipment);if(wave==3||wave==5)rewards.Add(DraftKind.Augment);}return rewards.ToArray();
+            else {rewards.Add(wave==3?DraftKind.Ultimate:DraftKind.Mixed);if(wave==2||wave==4||wave==6)rewards.Add(DraftKind.Equipment);if(wave==3||wave==5)rewards.Add(DraftKind.Augment);}return rewards.ToArray();
         }
         public static string Formation(int wave)=>new[]{"DENSE PACK · horizon rush with side-door reinforcements","CROSSFIRE · spaced shooters behind a light screen","HEAVY FRONT · enforcers protect a dense pack","FLANKERS · staggered arrivals from both side doors","FUNNEL · heavies advance ahead of ranged support","BREACH · repeated door packs with reinforcements","MIXED PRESSURE · shooters, frontliners and flanking arrivals","WARDEN · boss with supporting packs; strong control window for 2.5s every 8s"}[Mathf.Clamp(wave-1,0,7)];
         public string EncounterPreview=>Formation(OpeningDraft?1:Mathf.Min(8,Wave+1));

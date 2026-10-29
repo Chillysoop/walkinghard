@@ -8,12 +8,19 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         bool modelChecks;
+        bool qaUltimateProgression=true;
+        int qaUltimateDrafts;
         bool qaDelayChecks=true;
         int qaReloadFrames,qaReadyFrames,qaPairWaitFrames;
         bool qaWeaponChecks=true;
         Transform qaRightWeapon,qaLeftWeapon;
         int qaArmedAbilities,qaArmedUltimates,qaLeftAttacks,qaWeaponFrames,qaWeaponAction=-1;
-        void QABeginWeapons(){qaRightWeapon=hero.RightWeapon;qaLeftWeapon=hero.LeftWeapon;}
+        void QABeginWeapons()
+        {
+            qaRightWeapon=hero.RightWeapon;qaLeftWeapon=hero.LeftWeapon;
+            if(qaBuild=="progression")qaUltimateProgression&=Wave<=3?Deck.Ultimate==null&&UltimateCasts==0&&!Deck.UltimatesUnlocked:Deck.Ultimate!=null&&Deck.UltimatesUnlocked&&qaUltimateDrafts==1;
+            if(!simulation)Debug.Log("QA_WAVE "+Wave+" / ultimate="+(Deck.Ultimate?.def.id??"none")+" / casts="+UltimateCasts);
+        }
         void QACheckWeapons()
         {
             for(int slot=0;slot<6;slot++)
@@ -52,6 +59,7 @@ namespace VectorGame
             if(!modelChecks)
             {
                 LoadoutChecks.Run();
+                qaUltimateProgression&=Deck.Ultimate==null&&UltimateRemaining==0&&UltimateCasts==0;
                 var a=new LoadoutItem(LoadoutCatalog.Abilities[0]);var b=new LoadoutItem(LoadoutCatalog.Abilities[0]);
                 itemKills[a]=2;itemKills[b]=3;MergeKillCounts(a,new[]{b});
                 var delayed=KillOwner(b);itemKills[delayed]=KillsFor(delayed)+1;
@@ -87,6 +95,12 @@ namespace VectorGame
                 }
                 SelectOffer(selected);
                 if(Deck.Draft==DraftKind.Augment){var host=Deck.CompatibleHosts(Deck.Offers[selected].def).First();ClaimAugmentToHost(selected,host,false);return;}
+                if(Deck.Draft==DraftKind.Ultimate)
+                {
+                    qaUltimateDrafts++;qaUltimateProgression&=Wave==3&&Deck.Offers.All(o=>o.def.kind==ItemKind.Ultimate);
+                    qaUltimateProgression&=ClaimReward(selected,PlaceKind.Ultimate,0,false)&&UltimateRemaining==UltimateCooldown;
+                    return;
+                }
                 if(qaBuild=="quick")
                 {
                     Deck.SuggestedPlace(Deck.Offers[selected].def,out var place,out int destination);
@@ -101,6 +115,9 @@ namespace VectorGame
             }
             if(!OpeningDraft&&Deck.Draft==DraftKind.Weapon)
             {
+                // These explicit fixtures exercise manual/held-weapon ultimate mechanics
+                // in short runs; ordinary runs unlock their first ultimate after wave 3.
+                if(qaBuild=="manual"||qaBuild=="armed")MoveItem(Deck.Acquire(LoadoutCatalog.Ultimates[0]),PlaceKind.Ultimate);
                 var reward=Deck.Inventory.FirstOrDefault(i=>i.def==Deck.Offers[Deck.Selected].def);
                 if(reward!=null)MoveItem(reward,PlaceKind.Weapon,0);
                 // Named weapon scenarios add explicit fixtures to exercise each family independently of draft luck.
@@ -170,9 +187,9 @@ namespace VectorGame
         }
         void QAManual()
         {
-            if(Wave!=1)return;
+            if(Wave!=2)return;
             if(qaManualPhase==0){UltimateAutomatic=false;qaHeldCasts=AbilityCasts;qaManualPhase=1;}
-            if(qaManualPhase==1&&Elapsed>16)
+            if(qaManualPhase==1&&UltimateRemaining<=0)
             {
                 qaManualChecks&=UltimateCasts==0&&UltimateRemaining<=0&&AbilityCasts>qaHeldCasts;
                 RequestUltimate();qaManualPhase=2;
@@ -181,6 +198,7 @@ namespace VectorGame
         }
         [Serializable] sealed class QAReport
         {
+            public bool ultimateProgression;public int ultimateDrafts;
             public int mechanicAssertions;public ContributionReport[] contributions;public int itemChoices,augmentChoices;public bool delayChecks;public int reloadIndicatorFrames,readyIndicatorFrames,pairWaitIndicatorFrames;
             public bool heldWeaponChecks;public int heldWeaponFrames,armedAbilities,armedUltimates,leftHandAttacks;
             public string result,build,loadout;public int tempestHits,seed,waves,kills,spawned,alive,casts,paired,independentTargets,ultimates,severs,reloads,launches,collisions,cascadeHop,ragdolls,physicsContacts,worldContacts,leftDoors,rightDoors,horizon,visibleSpawns,orderErrors,rerolls,fusions,score,bestCombo,bestMultiplier,creditedKills;
@@ -192,6 +210,8 @@ namespace VectorGame
             reported=true;bool timing=true;for(int i=0;i<ultimateTimes.Count;i++)timing&=ultimateTimes[i]+.02f>=ultimateDeadlines[i];
             int credited=itemKills.Sum(k=>k.Value);
             var report=new QAReport{mechanicAssertions=mechanicAssertions,contributions=ContributionReports(),itemChoices=ItemChoices,augmentChoices=AugmentChoices,result=State.ToString(),build=qaBuild,tempestHits=TempestHits,seed=Seed,loadout=Deck.Loadout,waves=Waves.Count,kills=Kills,spawned=Spawned,alive=enemies.Count,casts=AbilityCasts,paired=PairedCasts,independentTargets=IndependentTargets,ultimates=UltimateCasts,severs=Severs,reloads=Reloads,launches=Launches,collisions=CollisionHits,cascadeHop=MaxCascadeHop,ragdolls=Ragdolls,physicsContacts=PhysicsContacts,worldContacts=WorldContacts,leftDoors=LeftEntries,rightDoors=RightEntries,horizon=HorizonEntries,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,rerolls=Deck.Rerolls,fusions=Deck.Fusions,score=Score.Banked,bestCombo=Score.Best,bestMultiplier=Score.BestMultiplier,creditedKills=credited,elapsed=Elapsed,health=Health,draftChecks=qaDraftChecks,manualChecks=qaManualChecks&&(qaBuild!="manual"||qaManualPhase==3),modelChecks=modelChecks,ultimateTiming=timing,slotCasts=SlotCasts,castTrace=castTrace.ToArray(),weaponHits=WeaponHits,ultimateTimes=ultimateTimes.ToArray(),ultimateDeadlines=ultimateDeadlines.ToArray(),reports=Waves.ToArray()};
+            report.ultimateProgression=qaUltimateProgression&&(tuning.waveCount<4||qaUltimateDrafts==1);
+            report.ultimateDrafts=qaUltimateDrafts;
             bool weapon=qaBuild!="sword"||Severs>0;
             weapon&=qaBuild!="tempest"||TempestHits>0;
             weapon&=qaBuild!="hammer"||WeaponHits[(int)WeaponKind.Hammer]>0;
@@ -208,7 +228,8 @@ namespace VectorGame
             if(qaArmedAbilities>0||qaArmedUltimates>0)weapon&=qaReadyFrames>0;
             weapon&=qaBuild!="reload"||(qaReloadFrames>0&&qaPairWaitFrames>0&&Reloads>0&&WeaponHits[(int)WeaponKind.Pistol]>0);
             weapon&=qaBuild!="armed"||(qaArmedAbilities>0&&qaArmedUltimates>0&&qaLeftAttacks>0&&WeaponHits[(int)WeaponKind.Pistol]>0&&WeaponHits[(int)WeaponKind.Sword]>0);
-            report.passed=State==RunState.Complete&&Waves.Count==tuning.waveCount&&(tuning.waveCount!=8||ItemChoices==13&&AugmentChoices==2)&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&UltimateCasts>0&&Score.Banked>0&&weapon&&corpses.Count==Kills&&report.oldestBody>7&&CorpseShoves>0&&report.walkingIgnoresBodies;
+            bool ultimateCoverage=Deck.Ultimate==null?UltimateCasts==0:UltimateCasts>0;
+            report.passed=State==RunState.Complete&&Waves.Count==tuning.waveCount&&(tuning.waveCount!=8||ItemChoices==13&&AugmentChoices==2)&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&ultimateCoverage&&report.ultimateProgression&&Score.Banked>0&&weapon&&corpses.Count==Kills&&report.oldestBody>7&&CorpseShoves>0&&report.walkingIgnoresBodies;
             string path=string.IsNullOrEmpty(qaPath)?Path.Combine(Application.persistentDataPath,"qa-report.json"):qaPath;
             Directory.CreateDirectory(Path.GetDirectoryName(path));File.WriteAllText(path,JsonUtility.ToJson(report,true));Debug.Log("WALKING_HARD_QA "+JsonUtility.ToJson(report));Application.Quit(report.passed?0:2);
         }
