@@ -10,6 +10,22 @@ namespace VectorGame
         {
             BuildVarietyChecks.Run();
             var deck=new AbilityDeck(1741);
+            Require(deck.Ultimate==null&&!deck.Items.Any(i=>i.def.kind==ItemKind.Ultimate),"runs start without an ultimate");
+            Require(VectorEncounter.RewardsAfter(3).SequenceEqual(new[]{DraftKind.Ultimate,DraftKind.Augment}),"checkpoint three replaces mixed loot with an ultimate choice and retains its augment");
+            Require(!VectorEncounter.RewardsAfter(1).Concat(VectorEncounter.RewardsAfter(2)).Contains(DraftKind.Ultimate),"ultimate draft waits until checkpoint three");
+            for(int seed=0;seed<64;seed++)
+            {
+                var gated=new AbilityDeck(seed);
+                foreach(var kind in new[]{DraftKind.Ability,DraftKind.Weapon,DraftKind.Mixed,DraftKind.Equipment})
+                {
+                    gated.Open(kind,true);Require(gated.Offers.Length==3&&gated.Offers.All(o=>o.def.kind!=ItemKind.Ultimate),"early offers exclude ultimates");
+                    gated.Reroll();Require(gated.Offers.All(o=>o.def.kind!=ItemKind.Ultimate),"early rerolls exclude ultimates");
+                }
+                gated.Open(DraftKind.Ultimate,true);
+                Require(gated.UltimatesUnlocked&&gated.Offers.Length==3&&gated.Offers.All(o=>o.def.kind==ItemKind.Ultimate)&&gated.Offers.Select(o=>o.def.id).Distinct().Count()==3,"three distinct ultimate offers");
+                gated.Reroll();Require(gated.Offers.Length==3&&gated.Offers.All(o=>o.def.kind==ItemKind.Ultimate),"ultimate rerolls stay in the ultimate pool");
+                var chosen=gated.Offers[0];Require(gated.ClaimTo(0,PlaceKind.Ultimate)&&gated.Ultimate.def==chosen.def&&gated.Ultimate.rank==chosen.rank,"ultimate reward equips directly with rolled rarity");
+            }
             Require(deck.Slots.Count(x=>x?.def.kind==ItemKind.Basic)==2,"two permanent basic actions");
             Require(deck.PairAfter(0)==1,"adjacent empty mounts pair fists");
             Require(!deck.Move(deck.Basics[0],PlaceKind.Inventory),"basic cannot disappear into storage");
@@ -46,7 +62,8 @@ namespace VectorGame
             var rareFists=fists.Acquire(LoadoutCatalog.Fists,3);Require(fists.Move(rareFists,PlaceKind.Weapon,0)&&fists.WeaponFor(fists.Basics[0])==rareFists,"rolled fist rarities can be equipped");
             var ranks=new AbilityDeck(3);ranks.Acquire(LoadoutCatalog.Weapons[0],1);ranks.Acquire(LoadoutCatalog.Weapons[0],2);ranks.Acquire(LoadoutCatalog.Weapons[0],2);
             Require(ranks.Fusions==0,"different ranks do not fuse");
-            var ult=ranks.Acquire(LoadoutCatalog.Ultimates[1]);var old=ranks.Ultimate;ranks.Move(ult,PlaceKind.Ultimate);
+            var old=ranks.Acquire(LoadoutCatalog.Ultimates[0]);ranks.Move(old,PlaceKind.Ultimate);
+            var ult=ranks.Acquire(LoadoutCatalog.Ultimates[1]);ranks.Move(ult,PlaceKind.Ultimate);
             Require(ranks.Ultimate==ult&&ranks.Inventory.Contains(old)&&!ranks.Move(ult,PlaceKind.Sequence,4),"ultimate has a separate compatible slot");
             ranks.Open(DraftKind.Ability,true);Require(ranks.Offers.Length==3&&ranks.Offers.Select(o=>o.def.id).Distinct().Count()==3,"three distinct ability offers");
             ranks.Select(0);Require(!ranks.Claim(),"opening ability requires position");ranks.Assign(2);Require(ranks.Claim()&&!ranks.Claim(),"reward can only be claimed once");

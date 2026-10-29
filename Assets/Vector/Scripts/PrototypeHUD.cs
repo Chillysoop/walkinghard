@@ -7,7 +7,8 @@ namespace VectorGame
     {
         public VectorEncounter game;
         readonly Dictionary<string,GUIStyle> styles=new Dictionary<string,GUIStyle>();
-        readonly Color ink=new Color(.018f,.045f,.060f,.94f),line=new Color(.29f,.48f,.57f,.8f),white=new Color(.91f,.97f,1),muted=new Color(.46f,.66f,.77f);
+        Color ink=>new Color(.018f,.045f,.060f,game!=null&&game.State==VectorEncounter.RunState.Running?.66f:.94f);
+        readonly Color line=new Color(.29f,.48f,.57f,.8f),white=new Color(.91f,.97f,1),muted=new Color(.46f,.66f,.77f);
         static readonly Color Accent=new Color(.06f,1,.79f),Gold=new Color(1,.66f,.16f);
         GUIStyle Style(int size,bool bold=false,TextAnchor anchor=TextAnchor.UpperLeft)
         {
@@ -34,7 +35,7 @@ namespace VectorGame
         }
         void OnGUI()
         {
-            if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f),w=Screen.width/scale,h=Screen.height/scale;
+            if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f)*(game.State==VectorEncounter.RunState.Running?.8f:1),w=Screen.width/scale,h=Screen.height/scale;
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
             detailValid=detailItem!=null&&(detailOffer!=null?game.State==VectorEncounter.RunState.Drafting&&System.Array.IndexOf(game.Deck.Offers,detailOffer)>=0:game.Deck.Items.Contains(detailItem));
             detailHovered=detailValid&&detailPanel.Contains(Event.current.mousePosition);
@@ -92,13 +93,18 @@ namespace VectorGame
             string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
             string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
-            UltimatePanel(new Rect(x,138,310,180));
+            UltimatePanel(new Rect(x,138,310,game.Deck.Ultimate==null?76:180));
             if(game.BossFraction>0){Rect boss=new Rect(w/2-170,20,340,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,316,22),"WARDEN / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Gold,true);Segments(new Rect(boss.x+12,boss.y+39,316,8),game.BossFraction,Gold,20);}
             Label(new Rect(20,365,310,45),"BARRIER "+game.BarrierAmount.ToString("0")+" / "+game.ArmedState+"\n"+game.VisiblePayoff,11,Accent,true);
         }
         void UltimatePanel(Rect r)
         {
             var item=game.Deck.Ultimate;Panel(r);Outline(r,new Color(Violet.r,Violet.g,Violet.b,.55f),11);
+            if(item==null)
+            {
+                Label(new Rect(r.x+16,r.y+14,r.width-32,20),game.Deck.UltimatesUnlocked?"ULTIMATE / EMPTY":"ULTIMATE / CHECKPOINT 3",12,muted,true);
+                Label(new Rect(r.x+16,r.y+42,r.width-32,20),game.Deck.UltimatesUnlocked?"Equip an ultimate at a checkpoint.":"Choose one after wave 3.",12,white);return;
+            }
             ActionGlyph(new Rect(r.x+13,r.y+19,40,40),item?.def,Violet);
             Box(new Rect(r.x+43,r.y+46,18,18),ink);TypeIcon(new Rect(r.x+43,r.y+46,18,18),ItemKind.Ultimate,muted);
             Label(new Rect(r.x+65,r.y+14,r.width-80,18),"ULTIMATE / "+ItemRarity.Names[item?.rank??1].ToUpperInvariant(),9,item==null?muted:RarityColor(item.rank),true);
@@ -107,8 +113,7 @@ namespace VectorGame
             string status=delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":item==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED":"READY";
             Label(new Rect(r.x+16,r.y+68,145,23),status,delayed?13:21,delayed?Gold:Violet,true);
             Label(new Rect(r.x+161,r.y+73,133,18),"Kills: "+game.KillsFor(item),12,muted,true,TextAnchor.UpperRight);
-            string description=item==null?"No ultimate equipped.":item.def.id=="redline"?"Refill guns; haste for three turns.":item.def.id=="cyclone"?"Full-circle cut; lethal hits sever.":item.def.id=="tempest"?"Chain lightning; consumes Conductive.":"Launch foes into collision chains.";
-            Label(new Rect(r.x+16,r.y+98,r.width-32,18),description,11,white);
+            EffectLine(new Rect(r.x+16,r.y+98,r.width-32,18),item);
             Label(new Rect(r.x+16,r.y+120,r.width-32,18),CombatStats(item)+" / "+game.UltimateCooldown.ToString("0")+"s CD",10,muted,true);
             Segments(new Rect(r.x+16,r.y+140,r.width-32,4),delayed?delay.Progress:1-game.UltimateRemaining/game.UltimateCooldown,delayed?Gold:Violet,20);
             ItemTooltip(new Rect(r.x,r.y,r.width,146),item);
@@ -119,7 +124,7 @@ namespace VectorGame
         void CombatBar(float w,float h)
         {
             float y=h-151,width=(w-100)/5;
-            Panel(new Rect(16,y-10,w-32,157));
+            Plate(new Rect(16,y-10,w-32,157),new Color(.018f,.045f,.060f,.18f),line,11);
             for(int i=0;i<5;i++)
             {
                 float x=30+i*(width+10);var item=game.Deck.Slots[i];var shown=item?.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
@@ -133,8 +138,9 @@ namespace VectorGame
                 Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"BASIC "+(item.mount+1):"ABILITY"),10,edge,true);
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Gold);}
-                Label(new Rect(x+12,y+57,width-24,34),AttackDescription(item),12,white);
-                Label(new Rect(x+12,y+94,width-24,17),CombatStats(item),11,muted,true);
+                EffectLine(new Rect(x+12,y+57,width-24,18),item,12);
+                if(shown!=null)DrawSynergyChips(new Rect(x+12,y+77,width-24,18),shown.def);
+                Label(new Rect(x+12,y+97,width-24,17),CombatStats(item),11,muted,true);
                 Label(new Rect(x+12,y+115,width-24,17),shown==null?"SKIPPED":"Kills: "+game.ActionKills(item)+"  /  "+ItemRarity.Names[shown.rank],11,shown==null?muted:RarityColor(shown.rank));
                 if(active&&!delayed)Box(new Rect(x+12,y+133,(width-24)*game.ActionProgress,2),Accent);
                 if(shown?.augment!=null){bool shared=item.def.kind==ItemKind.Basic&&item.mount==1&&game.Deck.WeaponFor(game.Deck.Basics[0])==shown;Label(new Rect(x+12,y-18,width-24,17),(shared?"SHARED SOCKET":shown.augment.Name)+(game.BreachArmed(shown)?" · ARMED":""),10,Violet,true);}

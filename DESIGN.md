@@ -12,7 +12,7 @@ Basic 1 uses mount 1; Basic 2 uses mount 2. Empty mounts share one owned starter
 
 A two-handed item occupies both mounts, groups the two basics adjacently, and executes once. Drag either basic to move the locked group. Both attacks cannot carry separate sockets on that one item. Equipping a one-handed replacement stores the two-handed item and frees the other mount. Weapons remain visible in their mounted hands throughout ability and ultimate casts.
 
-Ultimate Auto/Manual remains separate. U toggles; F queues a ready manual ultimate. A queued ultimate waits until the current turn and preparation finish, preserves the next sequence position, and resets its timer on completion. Changing the equipped ultimate at a checkpoint starts a full countdown. Recharge periods are 12 / 16 / 15 / 18 seconds for Singularity / Tempest / Cyclone / Redline.
+Runs start with an empty ultimate mount. Ultimates are excluded from all early item offers and rerolls. Checkpoint three (after wave three) replaces its mixed item reward with a choose-one-of-three ultimate draft using the normal rarity odds, then retains its separate augment draft. Opening this dedicated draft unlocks ultimates in later equipment/discovery offers. Equipping the first ultimate starts its full countdown. Ultimate Auto/Manual remains separate. U toggles; F queues a ready manual ultimate. A queued ultimate waits until the current turn and preparation finish, preserves the next sequence position, and resets its timer on completion. Changing the equipped ultimate at a checkpoint starts a full countdown. Recharge periods are 12 / 16 / 15 / 18 seconds for Singularity / Tempest / Cyclone / Redline.
 
 ## Rewards and checkpoint editing
 
@@ -175,3 +175,10 @@ Three copies of the exact same definition at the same rarity fuse automatically 
 Every definition has stable artwork. Rarity changes the border and written tier, not the artwork; category glyphs have one meaning across all surfaces. Stored cards show their tier initial and matching-copy count. Reward previews include incoming copies, show when they will fuse and retain leftover-copy information in the detail panel. Hover details list other-rarity copies separately, and matching owned copies highlight together. Storage sorts by type, item and rarity without altering ownership or fusion priority.
 
 The optional Icon Key explains item types, rarity progression and labeled synergy symbols. A shared symbol means a shared synergy concept, not a promise that every item creates or consumes it in the same way; the effect description states the actual interaction. No balance, rarity odds, fusion thresholds or augment mechanics change in this presentation update.
+
+
+### Visible effects and combat HUD (0.6.3)
+
+Each pick-three card shows one plain-language effect line below its art/stats and above fusion progress. Both checkpoint and combat sequences show the same concise effect copy; basic cards resolve their equipped weapon or fallback fists, and augmented hosts describe the modified action. Full numerical rules and tradeoffs remain in hover details. Empty equipment mounts show their slot label and empty status without artwork; empty weapon mounts explain that basics use fists.
+
+Combat UI uses 80% of the previous scale with 66%-opaque panels and a lighter sequence backing. Checkpoint, pause and recap scales remain unchanged. An empty ultimate mount shows the checkpoint-three milestone instead of a countdown or usable controls.

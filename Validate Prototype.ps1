@@ -1,4 +1,4 @@
-param([string]$Player = (Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'), [string]$ReportPrefix='v060')
+param([string]$Player = (Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'), [string]$ReportPrefix='v060', [int]$HeroHealth=0)
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path -LiteralPath $Player)) { throw 'Build the Windows player first.' }
 New-Item -ItemType Directory -Path (Join-Path $PSScriptRoot 'QA') -Force | Out-Null
@@ -10,6 +10,7 @@ $reports = foreach ($case in $cases) {
     $logPath = Join-Path $PSScriptRoot ('Logs\qa-' + $stem + '.log')
     if (Test-Path -LiteralPath $reportPath) { Remove-Item -LiteralPath $reportPath }
     $arguments = '-batchmode -nographics -vectorQA -seed ' + $case.Seed + ' -qaBuild ' + $case.Build + ' -qaOutput "' + $reportPath + '" -logFile "' + $logPath + '"'
+    if ($HeroHealth -gt 0) { $arguments += ' -qaHealth ' + $HeroHealth }
     $run = Start-Process -FilePath $Player -ArgumentList $arguments -WindowStyle Hidden -PassThru
     if (-not $run.WaitForExit(180000)) { $run.Kill(); throw ('Encounter timed out: ' + $stem) }
     if ($run.ExitCode -ne 0) { throw ('Encounter check failed: ' + $stem + '. See ' + $logPath) }

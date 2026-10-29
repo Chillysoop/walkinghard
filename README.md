@@ -1,4 +1,6 @@
-# Walking Hard 0.6.2 — Item Art and Clearer Fusion
+# Walking Hard 0.6.3 — Readable Effects and Ultimate Draft
+
+Pick-three cards and both action sequences now include a short effect description. Empty equipment mounts have no placeholder artwork. The combat HUD is 20% smaller with translucent panels. Runs start without an ultimate; after wave three, choose one of three ultimates in place of the normal mixed reward, followed by the existing augment choice. See [0.6.3 verification](QA/v063-verification.md).
 
 All 56 item definitions have distinct artwork, shared across rewards, inventory, equipment and combat. Checkpoints explain automatic same-item, same-rarity fusion, show matching-copy counts and separate other-rarity copies. The Icon Key explains categories, rarities and synergy symbols. Augments remain host-scaled and do not fuse. See [art sources and prompts](https://github.com/Chillysoop/walkinghard/tree/main/Art) and [0.6.2 verification](QA/v062-verification.md).
 
@@ -20,8 +22,8 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Ten abilities, twelve armor pieces, five rigs and four ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
 - Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion, have no separate rarity, and expose their tradeoffs and paired limits.
 - Temporary amber tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
-- Separate ultimates with 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
-- Eight waves with formation previews and a final Warden encounter. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
+- No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
+- Eight waves with formation previews and a final Warden encounter. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
 - Drop a reward directly into a compatible slot to equip and advance; double-click auto-equips. Edit after pick keeps the character sheet open for rearranging until Let's fight.
 - RPG character sheet with live Walker preview, surrounding gear mounts, an icon storage grid, full hover cards and animated before/after fusion feedback.
 - Helmets, armor and boots grant rarity-scaled stats plus effects such as repair motes, reload pulses, barriers, mark setup and next-action haste.
@@ -59,9 +61,9 @@ There is no toggle for the normal sequence. An ultimate never interrupts an acti
 
 Use **Unity 6000.3.27f1** with Windows Build Support. Open Assets/Vector/Scenes/CombatStudy.unity. The project uses URP and procedural geometry, animation and audio; no paid assets are required.
 
-Run Build Windows.ps1, then Validate Prototype.ps1. Fifteen standalone scenarios cover normal drafts, distinct weapon families, paired targets, manual ultimates, exhausted rerolls, rarity/fusion contracts, scoring, attribution, hidden entries and physical outcomes, plus temporary reload/readying bars and paired reload waits, persistent held weapons through casts, mounted-hand effects after reordering, persistent bodies, walking shoves, half/quadruple speed, armor passives and one-step reward progression. Named weapon scenarios use explicit weapon fixtures to exercise every family independently of draft luck. Run Launcher/Test Launcher.ps1 for updater safety checks.
+Run Build Windows.ps1, then `Validate Prototype.ps1 -HeroHealth 5000` for mechanics coverage. The optional QA-only health override lets fixtures reach later systems after removing the starting ultimate; omit it to exercise normal player durability. Fifteen standalone scenarios cover normal drafts, distinct weapon families, paired targets, manual ultimates, exhausted rerolls, rarity/fusion contracts, scoring, attribution, hidden entries and physical outcomes, plus temporary reload/readying bars and paired reload waits, persistent held weapons through casts, mounted-hand effects after reordering, persistent bodies, walking shoves, half/quadruple speed, armor passives and one-step reward progression. Named weapon scenarios use explicit weapon fixtures to exercise every family independently of draft luck. Run Launcher/Test Launcher.ps1 for updater safety checks.
 
-Run `Validate Variety.ps1` for hybrid builds, all sixteen modules, and paired/separated/two-handed comparisons. Each QA process also executes production-effect assertions. Use `-Builds full -FullRun` for the complete eight-wave reward schedule and boss.
+Run `Validate Variety.ps1` for hybrid builds, all sixteen modules, and paired/separated/two-handed comparisons. Each QA process also executes production-effect assertions. Use `-Builds progression -HeroHealth 5000` for a four-wave check of the checkpoint-three ultimate unlock. Use `-Builds full -FullRun -HeroHealth 5000` for the complete eight-wave reward schedule and boss.
 
 For bulk balancing, see [SIMULATIONS.md](SIMULATIONS.md). `Run Simulations.ps1` plays thousands of seeded games in headless Unity workers using real combat and physics. It exports CSV/JSON results, accepts numerical balance files without rebuilding, and supports matched-seed comparisons. No computer-use automation is required.
 

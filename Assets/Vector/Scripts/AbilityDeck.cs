@@ -7,7 +7,7 @@ namespace VectorGame
     public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard }
     public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots, Augment }
     public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle, Shotgun }
-    public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment }
+    public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment, Ultimate }
     public enum PlaceKind { Sequence, Weapon, Rig, Ultimate, Inventory, Helmet, Armor, Boots }
     public sealed class AbilityCard
     {
@@ -61,6 +61,7 @@ namespace VectorGame
         public LoadoutItem[] Armor {get;}=new LoadoutItem[3];
         public LoadoutItem Rig {get;private set;}
         public LoadoutItem Ultimate {get;private set;}
+        public bool UltimatesUnlocked {get;private set;}
         public LoadoutItem Fists {get;}
         public readonly LoadoutItem[] Basics=new LoadoutItem[2];
         public readonly List<LoadoutItem> Items=new List<LoadoutItem>();
@@ -96,7 +97,6 @@ namespace VectorGame
         public AbilityDeck(int seed)
         {
             random=new Random(seed^0x5f3759df);Fists=new LoadoutItem(LoadoutCatalog.Fists);Items.Add(Fists);
-            Ultimate=new LoadoutItem(LoadoutCatalog.Ultimates[0]);Items.Add(Ultimate);
             for(int i=0;i<2;i++){Basics[i]=new LoadoutItem(new ItemDefinition("basic"+i,"Basic "+(i+1),ItemKind.Basic,"Uses Weapon "+(i+1)+". Empty mounts use fists.")){mount=i};Slots[i]=Basics[i];Items.Add(Basics[i]);}
         }
         public bool Has(AbilityId id)=>Slots.Any(s=>s?.def.ability?.id==id);
@@ -112,28 +112,31 @@ namespace VectorGame
             return a?.def.kind==ItemKind.Basic&&b?.def.kind==ItemKind.Basic&&LoadoutCatalog.Family(WeaponFor(a).def.weapon)==LoadoutCatalog.Family(WeaponFor(b).def.weapon)?next:-1;
         }
         public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
-        public void Open(DraftKind kind,bool grantReroll){Draft=kind;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
+        public void Open(DraftKind kind,bool grantReroll){Draft=kind;if(kind==DraftKind.Ultimate)UltimatesUnlocked=true;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
+        bool UnlockedReward(ItemDefinition def)=>def.kind!=ItemKind.Ultimate||UltimatesUnlocked;
         void Shuffle<T>(List<T> list){for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
         void Roll()
         {
             Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
             if(Draft==DraftKind.Ability)
             {foreach(var def in LoadoutCatalog.Abilities)if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            else if(Draft==DraftKind.Ultimate)
+            {choices.AddRange(LoadoutCatalog.Ultimates.Select(d=>new RewardOffer(d)));Shuffle(choices);}
             else if(Draft==DraftKind.Augment)
             {choices.AddRange(AugmentCatalog.Offers(this,random).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Equipment)
-            {var pool=LoadoutCatalog.Equipment.ToList();Shuffle(pool);var empty=Enumerable.Range(0,3).FirstOrDefault(i=>Armor[i]==null);if(Armor[empty]==null){var wanted=pool.First(d=>LoadoutCatalog.ArmorIndex(d.kind)==empty);choices.Add(new RewardOffer(wanted));pool.Remove(wanted);}choices.AddRange(pool.Take(3-choices.Count).Select(d=>new RewardOffer(d)));}
+            {var pool=LoadoutCatalog.Equipment.Where(UnlockedReward).ToList();Shuffle(pool);var empty=Enumerable.Range(0,3).FirstOrDefault(i=>Armor[i]==null);if(Armor[empty]==null){var wanted=pool.First(d=>LoadoutCatalog.ArmorIndex(d.kind)==empty);choices.Add(new RewardOffer(wanted));pool.Remove(wanted);}choices.AddRange(pool.Take(3-choices.Count).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Weapon)
             {foreach(var def in LoadoutCatalog.Weapons)choices.Add(new RewardOffer(def));Shuffle(choices);}
             else
             {
-                var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&i.rank<5).ToList();Shuffle(owned);
+                var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&i.rank<5&&UnlockedReward(i.def)).ToList();Shuffle(owned);
                 if(owned.Count>0){var item=owned[0];choices.Add(new RewardOffer(item.def,2));}
                 else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
                 var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def).ToList();Shuffle(support);
                 var tags=string.Join(" ",Slots.Where(i=>i!=null).Select(i=>(i.def.kind==ItemKind.Basic?WeaponFor(i):i).def.tags));
                 var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
-                var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));
+                var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful&&UnlockedReward(d)).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));
             }
             Offers=choices.Take(3).Select(o=>new RewardOffer(o.def,o.copies,o.def.kind==ItemKind.Augment?1:ItemRarity.Roll(random))).ToArray();
             foreach(var offer in Offers)offer.owned=Copies(offer.def,offer.rank);

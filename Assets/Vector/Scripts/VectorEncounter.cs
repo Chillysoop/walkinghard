@@ -18,8 +18,8 @@ namespace VectorGame
         public bool OpeningDraft=>OpeningPicks<2;
         public bool UltimateAutomatic {get;private set;}=true;
         public bool HoldCheckpointAfterPick {get;set;}
-        public float UltimateCooldown=>Deck?.Ultimate==null?12:LoadoutCatalog.Cooldown(Deck.Ultimate);
-        public float UltimateRemaining {get;private set;}=12f;
+        public float UltimateCooldown=>Deck?.Ultimate==null?0:LoadoutCatalog.Cooldown(Deck.Ultimate);
+        public float UltimateRemaining {get;private set;}
         public bool UltimateQueued=>Deck.Ultimate!=null&&UltimateRemaining<=0&&(UltimateAutomatic||ultimateRequested);
         public int UltimateCasts {get;private set;}
         public int TempestHits {get;private set;}
@@ -141,7 +141,7 @@ namespace VectorGame
                 if(args[i]=="-qaBuild")qaBuild=args[i+1];
                 if(args[i]=="-seed"&&int.TryParse(args[i+1],out int value)){tuning.seed=value;forcedSeed=true;}
             }
-            tuning=Instantiate(tuning);tuning.waveCount=simulation?simulationWaves:qa&&Array.IndexOf(args,"-qaFullRun")<0?3:8;
+            tuning=Instantiate(tuning);tuning.waveCount=simulation?simulationWaves:qa&&Array.IndexOf(args,"-qaFullRun")<0?(qaBuild=="progression"?4:3):8;
             Seed=tuning.seed;Deck=new AbilityDeck(Seed);
             previousSimulation=Physics.simulationMode;Physics.simulationMode=SimulationMode.Script;
             Physics.defaultSolverIterations=12;Physics.defaultSolverVelocityIterations=8;
@@ -159,7 +159,7 @@ namespace VectorGame
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;AimCamera();
             Health=tuning.heroHealth;hero.Pose(0,0,-1,0,0,false,0);Physics.SyncTransforms();
             if(!simulation){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
-            if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}Begin();}
+            if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
@@ -241,7 +241,7 @@ namespace VectorGame
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
         }
         public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
-        public void RequestUltimate(){if(State==RunState.Running&&UltimateRemaining<=0)ultimateRequested=true;}
+        public void RequestUltimate(){if(State==RunState.Running&&Deck.Ultimate!=null&&UltimateRemaining<=0)ultimateRequested=true;}
         public void TogglePause(){if(State==RunState.Running)State=RunState.Paused;else if(State==RunState.Paused)State=RunState.Running;}
         public void ToggleMotion(){ReducedMotion=!ReducedMotion;}
         public void ToggleSound(){fx.muted=!fx.muted;}
@@ -305,7 +305,7 @@ namespace VectorGame
             float restored=Mathf.Min(MaxHealth-Health,Deck.Regeneration*dt);Health+=restored;ArmorHealing+=restored;
             Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
             if(qaBuild=="manual"&&qa)QAManual();
-            if(ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
+            if(Deck.Ultimate!=null&&ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
             heroPhysics.MovePosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1));
             spawnTimer-=dt;
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
