@@ -1,4 +1,4 @@
-param([string]$Tag='v0.3.0',[switch]$SkipBuild)
+param([string]$Tag='v0.3.1',[switch]$SkipBuild)
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -19,7 +19,7 @@ try {
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
-    @{version='0.3.0';commit=$commit;sha256=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant();asset='WalkingHard-Windows.zip'} | ConvertTo-Json | Set-Content -LiteralPath $manifest -Encoding UTF8
+    @{version=$Tag.TrimStart('v');commit=$commit;sha256=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant();asset='WalkingHard-Windows.zip'} | ConvertTo-Json | Set-Content -LiteralPath $manifest -Encoding UTF8
     # Credential Manager supplies the existing GitHub login. Never print or persist its token.
     $credentialText="protocol=https`nhost=github.com`n`n" | & git -c credential.interactive=never credential fill
     if($LASTEXITCODE -ne 0){throw 'GitHub credentials unavailable.'}

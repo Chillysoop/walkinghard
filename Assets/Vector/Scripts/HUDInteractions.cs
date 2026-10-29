@@ -28,6 +28,8 @@ namespace VectorGame
             {
                 if(dragging)
                 {
+                    // A draft card's GUI.Button may own mouse capture. Release it after a drag.
+                    GUIUtility.hotControl=0;
                     for(int i=0;i<3;i++)if(new Rect(x+i*(width+gap),slotsY,width,76).Contains(ev.mousePosition))
                     {if(dragSlot>=0)game.SwapSlots(dragSlot,i);else if(dragOffer>=0&&game.Deck.Slots[i]==null){game.SelectOffer(dragOffer);game.AssignSlot(i);}}
                     ev.Use();
