@@ -93,6 +93,9 @@ namespace VectorGame
             public int id;public FighterRig rig;public FighterPhysics physics;
             public float maxHealth,health,stun,cooldown,attack=-1,deathAge=-1,radius,orbit,phase,react;
             public bool engaged,heavy,delivered,entering,boss,shooter;
+            public bool repositioning;
+            public float pressure,lastDamageTime=-1000,previousDamageTime=-1000;
+            public KillCredit lastPushCredit;
             public Vector3 doorway,cachedPosition;
         }
         sealed class Flight
@@ -173,6 +176,7 @@ namespace VectorGame
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
             CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();
+            RangedSpawned=RangedHits=RearBoundaryKills=EnvironmentalKills=0;RangedDamage=0;
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
             // Replace the kinematic motor between runs: a pending MovePosition target must
@@ -237,6 +241,7 @@ namespace VectorGame
             if(qa)QABeginWeapons();
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
+            waveRangedSpawned=RangedSpawned;waveRangedHits=RangedHits;waveRangedDamage=RangedDamage;
             State=RunState.Running;
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
         }
@@ -315,7 +320,7 @@ namespace VectorGame
                 spawnTimer=Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f);
             }
             long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
-            StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
+            StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
             if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
@@ -329,10 +334,11 @@ namespace VectorGame
             Physics.SyncTransforms();
             if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=EntryLayout.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6));}
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
-            bool boss=Wave==8&&!bossSpawned;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<(Wave%3==2?.3:.15);if(boss)bossSpawned=true;
+            bool boss=Wave==8&&!bossSpawned;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
+            if(shooter)RangedSpawned++;
             if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
             if(!EntryLayout.Concealed(cameraRig,p))VisibleSpawns++;
@@ -346,7 +352,10 @@ namespace VectorGame
                 e.cooldown-=dt;e.stun=Mathf.Max(0,e.stun-dt);e.react=Mathf.Max(0,e.react-dt*3);
                 if(e.stun>0){e.engaged=false;e.attack=-1;}
                 if(e.entering&&Mathf.Abs(p.x)<8.2f)e.entering=false;
-                if(!e.entering&&!e.engaged&&e.stun<=0&&e.cooldown<=0&&distance<(e.shooter?9:3.3f)&&committed<tuning.simultaneousAttackers)
+                UpdateEnemyRepositioning(e);
+                bool canAttack=EnemyCanAttack(e);
+                if(!canAttack&&(e.engaged||e.attack>=0)){if(e.engaged)committed--;e.engaged=false;e.attack=-1;e.delivered=false;e.cooldown=Mathf.Max(e.cooldown,.35f);}
+                if(canAttack&&!e.engaged&&e.stun<=0&&e.cooldown<=0&&distance<(e.shooter?9:3.3f)&&committed<tuning.simultaneousAttackers)
                 {
                     bool opening=true;foreach(var other in enemies)if(other!=e&&other.engaged&&Vector3.Angle(other.cachedPosition-HeroPosition,p-HeroPosition)<34){opening=false;break;}
                     if(opening){e.engaged=true;committed++;}
@@ -354,6 +363,7 @@ namespace VectorGame
                 Vector3 desired;
                 if(e.stun>0)desired=Vector3.zero;
                 else if(e.entering){var toward=e.doorway-p;toward.y=0;desired=toward.normalized*4.5f;}
+                else if(e.repositioning)desired=RepositionVelocity(e);
                 else if(distance>15)desired=inward*9f;
                 else if(e.engaged)desired=inward*Mathf.Clamp((distance-(e.shooter?6.5f:1.3f))*4,-1.2f,tuning.enemySpeed);
                 else if(distance>e.radius+.7f)desired=inward*tuning.enemySpeed;
@@ -369,14 +379,14 @@ namespace VectorGame
                 e.physics.LinearVelocity=new Vector3(flat.x,velocity.y,flat.z);
                 Vector3 facing=e.entering?desired:inward;
                 if(e.stun<=0&&facing.sqrMagnitude>.01f)e.physics.MoveRotation(Quaternion.Slerp(e.rig.Root.rotation,Quaternion.LookRotation(facing),1-Mathf.Exp(-10*dt)));
-                if(e.engaged&&distance<(e.shooter?9:tuning.attackRadius)&&e.attack<0){e.attack=0;e.delivered=false;}
+                if(canAttack&&e.engaged&&distance<(e.shooter?9:tuning.attackRadius)&&e.attack<0){e.attack=0;e.delivered=false;}
                 if(e.attack>=0)
                 {
                     float duration=e.shooter?1.5f:e.heavy?1.25f:.95f;if(e.shooter&&!e.delivered&&e.attack>duration*.2f&&((int)(e.attack*10)!=(int)((e.attack-dt)*10)))fx.Arc(e.physics.Center,HeroPosition+Vector3.up,new Color(1,.4f,.2f));e.attack+=dt;
                     if(!e.delivered&&e.attack>=duration*.53f)
                     {
                         e.delivered=true;
-                        if(e.stun<=0&&Vector3.Distance(e.rig.Root.position,HeroPosition)<(e.shooter?9:tuning.attackRadius+.25f))
+                        if(e.stun<=0&&EnemyCanAttack(e)&&Vector3.Distance(e.rig.Root.position,HeroPosition)<(e.shooter?9:tuning.attackRadius+.25f))
                         {ReceiveDamage(e,tuning.enemyDamage*(e.heavy?1.8f:1));}
                     }
                     if(e.attack>=duration){e.attack=-1;e.engaged=false;e.cooldown=CombatRange(e.shooter?2:.9f,e.shooter?3:1.8f);}
@@ -386,12 +396,12 @@ namespace VectorGame
             }
         }
         [Serializable] public sealed class WaveReport
-        {public int wave,kills,launches,collisions,carried,hitsTaken;public float health;public string choice="";}
+        {public int wave,kills,launches,collisions,carried,hitsTaken,shooters,rangedHits;public float health,rangedDamage;public string choice="";}
         void FinishWave()
         {
             if(simulation)Debug.Log("SIM_WAVE seed="+Seed+" wave="+Wave+" elapsed="+Elapsed+" kills="+Kills+" enemies="+enemies.Count+" hero="+HeroPosition);
             Score.Bank();
-            Waves.Add(new WaveReport{wave=Wave,kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health});
+            Waves.Add(new WaveReport{wave=Wave,kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
             accumulator=0;ActiveSlot=PairSlot=-1;Preparation=0;
             if(Wave>=tuning.waveCount){State=RunState.Complete;return;}
             OpenCheckpoint();

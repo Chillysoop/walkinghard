@@ -2,10 +2,10 @@
 
 ## Fast balance screening
 
-Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. That benchmark used `Build/FastBalance-v2/WalkingHard.exe`; the current player is `Build/Counterguard25-v061-final/WalkingHard.exe`, with Counterguard capacity reduced from 35 to 25. Release 0.6.1 includes Fast mode; older v0.6.0 downloads support Full mode only.
+Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. That benchmark used `Build/FastBalance-v2/WalkingHard.exe`; the current player is `Build/EnemyPressure-v064-final/WalkingHard.exe`, with Counterguard capacity reduced from 35 to 25. The 0.6.4 final matched batch completed in 104.26 seconds; see QA/v064-balance-review.md for the new ultimate progression and enemy changes. Release 0.6.1 and later include Fast mode; older v0.6.0 downloads support Full mode only.
 
 ```powershell
-& '.\Run Simulations.ps1' -Player '.\Build\Counterguard25-v061-final\WalkingHard.exe' `
+& '.\Run Simulations.ps1' -Player '.\Build\EnemyPressure-v064-final\WalkingHard.exe' `
   -Mode Fast -Runs 1000 -Workers 4 -Waves 8 -Seed 12000 `
   -MaxCombatSeconds 600
 ```
@@ -77,3 +77,5 @@ Supported combat values: enemy damage, enemy health, hero health, first spawn in
 The runner copies the balance file into the results directory. Comparisons require complete valid batches with matching inputs, join outcomes by seed and policy, and export per-seed and per-policy deltas. They report losses turned into wins, wins turned into losses, wave/kill/score/health changes and the tested assembly hashes. Changes to later offers caused by the evolving build are part of the policy outcome.
 
 Use these runs to find weak or dominant combinations, then inspect representative seeds in the game. Headless results cannot establish visual readability or whether combat feels satisfying.
+
+Version 0.6.4 reports ranged spawn/hit/damage totals, per-wave ranged pressure, rear-boundary kills and unattributed environmental kills. Kill-accounting validity includes those explicit environmental deaths.

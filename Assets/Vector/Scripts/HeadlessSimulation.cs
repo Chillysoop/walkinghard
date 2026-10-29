@@ -93,17 +93,20 @@ namespace VectorGame
         }
         [Serializable] sealed class SimulationResult
         {
+            public int rangedSpawned,rangedHits,rearBoundaryKills,environmentalKills;public float rangedDamage;
             public string schema="walkinghard-sim-1",version,mode,policy,result,loadout;public int seed,waves,waveReached,kills,spawned,collisions,launches,reloads,score,itemChoices,augmentChoices;public float elapsed,health;public double wallSeconds;public bool valid;public string[] errors;public ContributionReport[] items;public WaveReport[] waveReports;
         }
         void ReportSimulation()
         {
             simulationClock.Stop();Debug.Log("SIM_PROFILE signatures,ai,hero,motion,contacts,bodies="+string.Join(",",simulationProfile.Select(t=>(t*1000.0/System.Diagnostics.Stopwatch.Frequency).ToString("F1"))));Array.Clear(simulationProfile,0,simulationProfile.Length);var errors=new List<string>();
-            if(OrderErrors!=0)errors.Add("sequence order");if(VisibleSpawns!=0)errors.Add("visible spawn");if(Spawned!=Kills+enemies.Count)errors.Add("enemy accounting");if(corpses.Count!=Kills||itemKills.Sum(p=>p.Value)!=Kills)errors.Add("kill identity");if(MaxCascadeHop>2)errors.Add("cascade limit");
+            if(OrderErrors!=0)errors.Add("sequence order");if(VisibleSpawns!=0)errors.Add("visible spawn");if(Spawned!=Kills+enemies.Count)errors.Add("enemy accounting");if(corpses.Count!=Kills||itemKills.Sum(p=>p.Value)+EnvironmentalKills!=Kills)errors.Add("kill identity");if(MaxCascadeHop>2)errors.Add("cascade limit");
             var modules=Deck.Hosts.Where(h=>h.augment!=null).Select(h=>h.augment).ToArray();if(modules.Distinct().Count()!=modules.Length)errors.Add("duplicate module ownership");
             if(State==RunState.Complete&&simulationWaves==8&&(ItemChoices!=13||AugmentChoices!=2))errors.Add("reward totals");
             if(State==RunState.Complete&&simulationWaves==8&&!bossSpawned)errors.Add("final boss never spawned");
             if(State==RunState.Complete&&(Kills==0||AbilityCasts==0))errors.Add("completed without combat");
             var result=new SimulationResult{version=Application.version,mode=FastSimulation?"Fast":"Full",policy=CurrentPolicy,result=simulationTimedOut?"TimedOut":State.ToString(),loadout=Deck.Loadout,seed=Seed,waves=Waves.Count,waveReached=Wave,kills=Kills,spawned=Spawned,collisions=CollisionHits,launches=Launches,reloads=Reloads,score=Score.Banked,itemChoices=ItemChoices,augmentChoices=AugmentChoices,elapsed=Elapsed,health=Health,wallSeconds=simulationClock.Elapsed.TotalSeconds,valid=errors.Count==0,errors=errors.ToArray(),items=ContributionReports(),waveReports=Waves.ToArray()};
+            result.rangedSpawned=RangedSpawned;result.rangedHits=RangedHits;result.rangedDamage=RangedDamage;
+            result.rearBoundaryKills=RearBoundaryKills;result.environmentalKills=EnvironmentalKills;
             File.AppendAllText(simulationOutput,JsonUtility.ToJson(result)+Environment.NewLine);
             Debug.Log("SIMULATION "+(simulationIndex+1)+"/"+simulationRuns+" seed="+Seed+" "+result.result+" valid="+result.valid);
             if(!result.valid){Application.Quit(4);return;}
