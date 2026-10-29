@@ -5,4 +5,4 @@ New-Item -ItemType Directory -Path (Join-Path $PSScriptRoot 'Logs') -Force | Out
 $arguments = '-batchmode -nographics -quit -projectPath "' + $PSScriptRoot + '" -executeMethod VectorGame.Editor.PrototypeBuilder.BuildWindows -buildTarget StandaloneWindows64 -logFile "' + (Join-Path $PSScriptRoot 'Logs\build.log') + '"'
 $buildProcess = Start-Process -FilePath $UnityEditor -ArgumentList $arguments -WindowStyle Hidden -PassThru -Wait
 if ($buildProcess.ExitCode -ne 0) { throw ('Unity build failed. See ' + (Join-Path $PSScriptRoot 'Logs\build.log')) }
-Write-Output (Join-Path $PSScriptRoot 'Build\Windows\Vector.exe')
+Write-Output (Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe')

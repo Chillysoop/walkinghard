@@ -10,13 +10,15 @@ namespace VectorGame
         readonly Transform coatLeft, coatRight;
         readonly Transform intent, leftCuff, rightCuff;
         readonly Renderer intentRenderer;
+        readonly Transform pelvis;
+        public Transform[] PhysicsBones=>new[]{pelvis,Body,Head,leftArm,leftElbow,rightArm,rightElbow,leftThigh,leftKnee,rightThigh,rightKnee};
         readonly bool hero;
         readonly float phase;
         public FighterRig(string name, Transform parent, bool isHero, bool heavy = false)
         {
             hero=isHero;phase=isHero?0:Random.value*6.28f;
             Root=VisualFactory.Node(name,parent,Vector3.zero);
-            var hips=VisualFactory.Node("Pelvis",Root,new Vector3(0,1.02f,0));
+            var hips=VisualFactory.Node("Pelvis",Root,new Vector3(0,1.02f,0));pelvis=hips;
             var cloth=hero?VisualFactory.Hero:heavy?VisualFactory.EnemyHeavy:VisualFactory.Enemy;
             var plates=hero?VisualFactory.Armor:cloth;
             var light=hero?VisualFactory.Glow:VisualFactory.RedGlow;

@@ -42,7 +42,7 @@ namespace VectorGame
         {
             var go = GameObject.CreatePrimitive(shape); go.name = name;
             go.transform.SetParent(parent,false); go.transform.localPosition=local; go.transform.localScale=size;
-            var collider=go.GetComponent<Collider>(); if(collider!=null)Object.Destroy(collider);
+            var collider=go.GetComponent<Collider>(); if(collider!=null){collider.enabled=false;Object.Destroy(collider);}
             var r=go.GetComponent<Renderer>();r.sharedMaterial=material;
             r.shadowCastingMode=ShadowCastingMode.On;r.receiveShadows=true;
             return go.transform;
@@ -58,33 +58,7 @@ namespace VectorGame
             RenderSettings.fog=true;RenderSettings.fogColor=new Color(.10f,.17f,.20f);RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogDensity=.014f;
             var sun=new GameObject("Soft directional key").AddComponent<Light>();sun.transform.SetParent(parent);sun.type=LightType.Directional;sun.transform.rotation=Quaternion.Euler(48,-32,0);sun.color=new Color(.9f,.94f,.88f);sun.intensity=2.2f;sun.shadows=LightShadows.Soft;sun.shadowStrength=.8f;
             var fill=new GameObject("Cool rim").AddComponent<Light>();fill.transform.SetParent(parent);fill.type=LightType.Directional;fill.transform.rotation=Quaternion.Euler(25,155,0);fill.color=new Color(.32f,.63f,.75f);fill.intensity=.65f;
-            Part("Endless concourse",parent,PrimitiveType.Cube,new Vector3(0,-.28f,52),new Vector3(26,.5f,155),Ground);
-            for(int z=-12;z<130;z+=5)
-            {
-                Part("Cross joint",parent,PrimitiveType.Cube,new Vector3(0,-.015f,z),new Vector3(17,.018f,.045f),Black);
-                for(int side=-1;side<=1;side+=2)
-                {
-                    Part("Edge channel",parent,PrimitiveType.Cube,new Vector3(side*8.6f,.03f,z),new Vector3(.11f,.05f,4.85f),Glow);
-                    Part("Raised service walk",parent,PrimitiveType.Cube,new Vector3(side*10.4f,.15f,z),new Vector3(2.7f,.6f,4.94f),Stone);
-                    Part("Kerb",parent,PrimitiveType.Cube,new Vector3(side*9.0f,.19f,z),new Vector3(.17f,.45f,4.9f),Trim);
-                    Part("Floor guide",parent,PrimitiveType.Cube,new Vector3(side*2.9f,.008f,z),new Vector3(.035f,.025f,4.5f),Trim);
-                    if(z%10==3)
-                    {
-                        Part("Ribbed column",parent,PrimitiveType.Cube,new Vector3(side*11.8f,3.6f,z),new Vector3(1.35f,7.5f,1.35f),Stone);
-                        Part("Column recess",parent,PrimitiveType.Cube,new Vector3(side*11.04f,3.1f,z),new Vector3(.08f,4.7f,.7f),Black);
-                        Part("Column light",parent,PrimitiveType.Cube,new Vector3(side*10.98f,3.2f,z),new Vector3(.09f,2.7f,.1f),GoldGlow);
-                        Part("Upper beam",parent,PrimitiveType.Cube,new Vector3(side*9.9f,7.25f,z),new Vector3(3.4f,.3f,.7f),Trim);
-                    }
-                    else if(z%15==8)
-                    {
-                        Part("Service crate",parent,PrimitiveType.Cube,new Vector3(side*10.1f,.9f,z),new Vector3(1.3f,1.0f,1.5f),Trim);
-                        Part("Crate status",parent,PrimitiveType.Cube,new Vector3(side*9.4f,1.0f,z),new Vector3(.03f,.09f,.6f),GoldGlow);
-                    }
-                }
-            }
-            // Low borders frame the route without covering the circling enemies.
-            Part("Left boundary",parent,PrimitiveType.Cube,new Vector3(-12.4f,1.6f,52),new Vector3(.6f,3.5f,155),Stone);
-            Part("Right boundary",parent,PrimitiveType.Cube,new Vector3(12.4f,1.6f,52),new Vector3(.6f,3.5f,155),Stone);
+            EntryLayout.Build(parent);
             var volume=new GameObject("Cinematic grade").AddComponent<Volume>();volume.transform.SetParent(parent);volume.isGlobal=true;volume.profile=ScriptableObject.CreateInstance<VolumeProfile>();
             var bloom=volume.profile.Add<Bloom>();bloom.intensity.Override(.28f);bloom.threshold.Override(1.1f);bloom.scatter.Override(.55f);
             var vignette=volume.profile.Add<Vignette>();vignette.intensity.Override(.23f);vignette.smoothness.Override(.7f);

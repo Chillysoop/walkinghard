@@ -1,72 +1,69 @@
-# VECTOR 0.2 — Human Pinball
+# Walking Hard 0.3 — Drafted Sequences
 
-A playable Unity autobattler study: one martial artist walks forward, the crowd gathers around him, and your choices between waves change his automatic combat. The camera remains behind and above him.
+A Unity autobattler prototype: one fighter walks forward while enemies enter through side doors and the horizon. Draft the actions, choose their order, and turn bodies into physical projectiles. Camera: behind and above the fighter.
 
 ## Play
 
-Run `Build/Windows/Vector.exe`, or use the **VECTOR - Play Prototype** desktop shortcut. Press **Enter** to start. The portable build is `Releases/VECTOR-Prototype-Windows.zip`; extract the entire ZIP before running its executable.
+Download the Windows ZIP from [Releases](https://github.com/Chillysoop/walkinghard/releases/latest), extract the whole archive, and run `WalkingHard.exe`.
 
-This version has **three waves and two upgrade checkpoints**. Each wave has 30 seconds of arrivals and up to 8 seconds of cleanup. Clearing the remaining enemies ends cleanup early; otherwise survivors carry into the next wave. Combat freezes while you draft. Surviving the third wave finishes the run, even if some enemies remain. Actual play time is about two minutes plus drafting and brief impact pauses.
+For an updating desktop shortcut, run `Launcher/Install.cmd` from the extracted ZIP. **Walking Hard (Main)** checks the main branch each time it opens. It downloads a matching published build and verifies its SHA-256. If main is newer than the published build, it builds an isolated copy using installed Git and Unity 6000.3.27f1. No editor is needed for published builds. If an update fails or you are offline, it keeps the last working installation and reports the fallback. It never resets your development checkout.
 
-For the featured path, choose **Flux Bracers** at the first checkpoint, then **Fault Line** at the second:
+The launcher cache and log live under `%LOCALAPPDATA%/WalkingHard`. The first source build can take several minutes. Cloud Unity compilation is not configured; contributors should publish a matching Windows release after merging changes. Without a matching release or an installed editor, the launcher cannot run unreleased source and uses its last working build.
 
-1. **Wave 1:** fists, a three-hit combo, and automatic force push.
-2. **Wave 2 / Flux Bracers:** the finisher launches one body through the crowd, including bodies killed by the strike. Cyan trails show launches.
-3. **Wave 3 / Fault Line:** launched bodies gain gold trails. The first two enemy contacts each deal 26 damage and stagger for one second. Collisions do not create further launches.
+## The current playable slice
 
-You can take alternative upgrades instead. The prototype contains six cards: Flux Bracers, Fault Line, Servo Tuning (+20% combo speed), Dense Knuckles (+25% melee damage), Field Capacitor (20% shorter push cooldown), and Repair Weave (55 immediate healing, capped at maximum integrity). Equipment appears on the hero's wrists. Cards show their effects before installation.
+- Two separate opening pick-one-of-three ability drafts. Place each in a slot, then explicitly install it.
+- Occupied slots execute strictly **1 → 2 → 3 → repeat**. Empty slots skip. Auto Combat is on the main combat screen.
+- The first checkpoint offers the third ability. The second offers a modifier; unused rerolls accumulate.
+- Drag draft cards to empty slots, or drag existing abilities between slots to reorder at a checkpoint. Keyboard card/slot selection remains available.
+- Six abilities: Steel Jab, Breaker, Force Push, Mass Driver, Gravity Well, and Arc Bolt. Labeled effect icons distinguish effects an ability creates from effects it uses.
+- Dynamic enemy capsules collide with the floor, walls, and each other. Defeated enemies become jointed ragdolls. Mass Driver turns living or defeated bodies into projectiles; their first two distinct enemy contacts deal damage. Fault Line strengthens those contacts.
+- Covered side passages and camera-frustum checks hide spawn locations. Enemies move through door openings or run in from the horizon.
 
-Each checkpoint grants one reroll; unused rerolls remain banked. In this guided slice the first card stays on the featured path, while rerolls refresh supporting choices. Skipping Flux Bracers keeps it available at checkpoint two; Fault Line is only offered after you own the bracers. Select a card, inspect it, then explicitly install it to resume combat.
+Three waves each have 30 seconds of arrivals and up to 8 seconds of cleanup. Remaining enemies carry into the next wave. Combat and physics stop for drafting. Surviving wave three completes the run even with enemies remaining. Builds and combat outcomes vary; these are balance hypotheses, not final difficulty.
 
 ## Controls
 
-| Control | Action |
+| Input | Action |
 | --- | --- |
-| Enter | Start / replay; install the selected checkpoint upgrade |
-| 1 / 2 / 3 or click a card | Select a checkpoint offer |
-| Tab or Reroll button | Spend one banked reroll at a checkpoint |
-| Space or Escape | Pause / resume combat |
-| R | Restart the whole run, clearing upgrades and counters |
-| F | Manually trigger a charged force push (test override) |
-| A | Toggle automatic force push |
+| Enter | Begin / install a selected draft |
+| 1 / 2 / 3 | Select draft offer |
+| Q / W / E | Assign the selected ability to an empty slot |
+| Drag a card or ability | Assign to an empty slot / reorder occupied slots |
+| Tab | Spend a banked reroll |
+| A | Toggle Auto Combat on the fight screen |
+| F | Advance the next eligible action in sequence |
+| Space / Escape | Pause or resume |
+| R | New run and draft |
+| T | Repeat the seed |
 | M | Mute |
 | F8 | Save a screenshot |
 
-Normal movement, targeting, punches, and force push are automatic. Automatic push now waits for the current three-hit combo to finish. Pause offers reduced motion, which also disables impact pauses and camera shake. The checkpoint itself pauses combat, including attacks, projectiles, cooldowns, and the timer.
+With Auto Combat off, F advances one action in the same order; it does not select a different slot. Pause includes reduced motion. Physics is not guaranteed bit-for-bit deterministic across machines even when the draft seed matches.
 
-## Combat and feedback
+## Develop
 
-- Continuous crowd steering, separation, circling, and angle-separated attack openings; no grid.
-- Punch contact aligned with extension, target continuity between combo hits, sharper recoil, weight shift, and brief impact pauses.
-- Orange ground markers telegraph enemy attack openings; cyan marks indicate stagger.
-- One directed launch per finisher; heavy bodies travel more slowly.
-- Swept collision detection prevents fast projectiles passing through enemies between simulation steps. Each body can hit a particular enemy only once and at most two enemies total.
-- Live launch/collision counters and a per-wave results table make the installed effects visible. Wave pressure escalates, so the table is observational rather than a controlled performance comparison.
-- Run integrity increased to 230 for this longer test. Baseline damage and crowd pressure remain tunable.
+Clone this repo and add it to Unity Hub. Use **Unity 6000.3.27f1** with Windows Build Support. Open `Assets/Vector/Scenes/CombatStudy.unity`. The project uses URP 17.3.0, procedural geometry, animation, and audio; no paid art packs are required.
 
-## Open and build in Unity
+Run `Build Windows.ps1` to build `Build/Windows/WalkingHard.exe`. The `-UnityEditor` parameter supports a nonstandard editor location. Run `Validate Prototype.ps1` against the resulting player; it exercises five encounter paths, including manual control and exhausted rerolls. Run `Launcher/Test Launcher.ps1` to check installation and failure handling.
 
-Add this folder in Unity Hub and open with **6000.3.27f1**. Open `Assets/Vector/Scenes/CombatStudy.unity` and press Play. The project uses URP 17.3.0 and generates its environment and character rigs at runtime. Edit `Assets/Resources/CombatTuning.asset` for tuning; the supported slice uses three waves.
+| Source | Responsibility |
+| --- | --- |
+| `AbilityDeck.cs` | Ability definitions, draft offers, slot order, modifiers |
+| `VectorEncounter.cs` | Waves, state, movement, concealed entries |
+| `EncounterCombat.cs` | Ability execution, damage, launch/contact rules |
+| `FighterPhysics.cs` | Capsules, bodies, joints, contact forwarding |
+| `EntryLayout.cs` | Floor, walls, covered doors, visibility tests |
+| `PrototypeHUD.cs`, `HUDInteractions.cs` | Drafts, combat HUD, dragging, synergy icons |
+| `EncounterQA.cs` | Standalone simulation assertions and reports |
+| `Assets/Resources/CombatTuning.asset` | Active encounter tuning |
 
-Editor menus: **VECTOR > Generate scene and settings** and **VECTOR > Build Windows prototype**. `Build Windows.ps1` builds without opening the editor UI. This project is outside OneDrive to avoid syncing Unity's generated Library cache. The standalone player does not require Unity.
+Scripts are in `Assets/Vector/Scripts`. The historical Vector folder names are retained for asset stability.
 
-## Scope
+## Design versus implementation
 
-This is a playable mechanics prototype with procedural placeholder models, animation, and audio. It is not the later six-wave / 18-upgrade slice. Lightning, riflemen, shields, bosses, equipment slots, persistent unlocks, and the other archetypes remain future work. No paid or downloaded art assets are required.
+[DESIGN.md](DESIGN.md) records the agreed next direction: two carried weapons including one- and two-handed options; visible switching time; unlimited prototype storage; automatic three-copy, same-rank upgrades through rank III; unarmed starts; weapons at checkpoints; mixed later rewards. Drag-and-drop inventory and shared synergy icons are part of that direction.
 
-## Source map
+**Weapon equipment, stored inventory, fusion, body severing, and multi-hop collision cascades are not in the 0.3 executable.** The interactive workshop demonstrates those loadout rules. The current physical projectile system has two direct damaging contacts per launched body, with capped ragdoll lifetime/count. Models and presentation remain placeholders.
 
-- `Assets/Vector/Scripts/VectorEncounter.cs`: fixed-step encounter, waves, steering, strikes, launches, swept collision contacts, and QA reporting.
-- `Assets/Vector/Scripts/UpgradeDraft.cs`: six card definitions, prerequisites, modifiers, selection, and banked rerolls. Draft randomness is isolated from combat and spawns.
-- `Assets/Vector/Scripts/FighterRig.cs`: articulated characters, procedural poses, telegraphs, and visible bracers.
-- `Assets/Vector/Scripts/PrototypeHUD.cs`: combat display, checkpoint cards, pause, and per-wave results.
-- `Assets/Vector/Scripts/CombatEffects.cs` and `VisualFactory.cs`: trails, impacts, audio, scene geometry, lighting.
-- `Assets/Vector/Editor/PrototypeBuilder.cs`: scene generation and Windows build.
-
-## Verification
-
-Run `Validate Prototype.ps1` after building. It exercises the real standalone executable across five runs: Human Pinball with two seeds, launch without collisions, stat upgrades without launches, and reroll exhaustion. Reports are written to `QA/v02-*.json`; details are in `QA/verification.md`.
-
-The executable supports `-batchmode -nographics -vectorQA -seed 1741 -qaBuild pinball -qaOutput <absolute-path>`. Other test paths are `launch`, `power`, and `reroll`. Tests validate completion, upgrade gating, banked rerolls, duplicate confirmation protection, actor accounting, and actual launch/collision activity. Gameplay uses the same 60 Hz simulation in interactive and headless runs. Visual quality still needs live inspection.
-
-Screenshots: `%USERPROFILE%/AppData/LocalLow/Banjo Gaming/VECTOR - Combat Prototype/Captures`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration and release instructions. The owner-private design workshop is separate from this public repository; personal review history is not included here.

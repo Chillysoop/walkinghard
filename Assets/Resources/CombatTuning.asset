@@ -16,7 +16,7 @@ MonoBehaviour:
   waveArrivals: 30
   cleanupWindow: 8
   walkSpeed: 0.72
-  heroHealth: 230
+  heroHealth: 280
   seed: 1741
   maximumEnemies: 42
   meleeReach: 2.2
@@ -36,6 +36,6 @@ MonoBehaviour:
   simultaneousAttackers: 4
   firstSpawnInterval: 1.25
   finalSpawnInterval: 0.62
-  cameraOffset: {x: 0, y: 8.6, z: -10.2}
-  lookAhead: 4.2
+  cameraOffset: {x: 0, y: 10.5, z: -10.5}
+  lookAhead: 3.5
   cameraFov: 47
