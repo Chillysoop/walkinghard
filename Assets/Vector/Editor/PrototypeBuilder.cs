@@ -27,7 +27,7 @@ namespace VectorGame.Editor
             pipeline.shadowDistance=45;pipeline.msaaSampleCount=4;pipeline.renderScale=1f;pipeline.supportsHDR=true;
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
             QualitySettings.shadows=UnityEngine.ShadowQuality.All;QualitySettings.shadowResolution=UnityEngine.ShadowResolution.High;QualitySettings.vSyncCount=1;
-            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.5.1";
+            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.5.2";
             PlayerSettings.defaultScreenWidth=1280;PlayerSettings.defaultScreenHeight=720;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;PlayerSettings.resizableWindow=true;
             PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
