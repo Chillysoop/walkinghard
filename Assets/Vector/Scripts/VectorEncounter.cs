@@ -172,7 +172,7 @@ namespace VectorGame
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
             heroPhysics.Motor.position=new Vector3(0,.04f,0);heroPhysics.Motor.rotation=Quaternion.identity;
-            hero.Equipment(false,false);hero.SetWeapons(WeaponKind.Fists,false,false);hero.Pose(0,0,-1,0,0,false,0);
+            hero.Equipment(false,false);hero.EquipWeapons(WeaponKind.Fists,WeaponKind.Fists,false);hero.Pose(0,0,-1,0,0,false,0);
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;cameraVelocity=Vector3.zero;AimCamera();Physics.SyncTransforms();
             State=RunState.Drafting;PairSlot=-1;Preparation=0;Deck.Open(DraftKind.Ability,true);
         }
@@ -229,6 +229,8 @@ namespace VectorGame
         }
         void BeginWave()
         {
+            hero.EquipWeapons(Deck.WeaponFor(Deck.Basics[0]).def.weapon,Deck.WeaponFor(Deck.Basics[1]).def.weapon,Deck.TwoHanded);
+            if(qa)QABeginWeapons();
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
             State=RunState.Running;
@@ -307,7 +309,7 @@ namespace VectorGame
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/tuning.waveCount;
                 spawnTimer=Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f);
             }
-            StepEnemies(dt);StepHero(dt);ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);ProcessContacts();
+            StepEnemies(dt);StepHero(dt);if(qa)QACheckWeapons();ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);ProcessContacts();
             StepBodies(dt);fx.Step(dt);UpdateCamera(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);

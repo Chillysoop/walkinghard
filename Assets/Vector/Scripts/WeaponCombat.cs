@@ -7,6 +7,7 @@ namespace VectorGame
     {
         void ResolveBasic(LoadoutItem weapon,AbilityCard card,Enemy target,bool left,bool followup=false)
         {
+            if(qa)qaWeaponChecks&=left==(!Deck.TwoHanded&&currentCredit.item.mount==1);
             if(target==null||target.deathAge>=0||!Reachable(target,card.range+.3f))target=Target(card.range);
             if(target==null)return;
             int rank=weapon.rank;WeaponKind kind=weapon.def.weapon;
