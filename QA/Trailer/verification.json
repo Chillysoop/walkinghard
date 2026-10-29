@@ -1,0 +1,248 @@
+{
+  "duration": "30.000000",
+  "frames": 900,
+  "resolution": "1920x1080",
+  "fps": 30,
+  "audio": "stereo AAC",
+  "bossFrames": 0,
+  "sourceVersion": "0.7.2",
+  "mixPeakBeforeNormalization": 1.1858262967608746,
+  "outputBytes": 15789614,
+  "shots": [
+    {
+      "name": "pinball-hook",
+      "loadout": "1: Gravity Well \u00b7 Rare > 2: Mass Driver \u00b7 Rare > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Force Push \u00b7 Rare",
+      "start": 0,
+      "end": 90,
+      "kills": 18,
+      "collisions": 6,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "greatsword",
+      "loadout": "1: Basic 1 \u00b7 Execution Greatsword \u00b7 Rare > 2: Basic 2 \u00b7 Execution Greatsword \u00b7 Rare > 3: Reaping Cut \u00b7 Rare > 4: Empty > 5: Empty",
+      "start": 90,
+      "end": 150,
+      "kills": 13,
+      "collisions": 0,
+      "severs": 13,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "hammer",
+      "loadout": "1: Basic 1 \u00b7 Impact Hammer \u00b7 Rare > 2: Basic 2 \u00b7 Impact Hammer \u00b7 Rare > 3: Mass Driver \u00b7 Rare > 4: Empty > 5: Empty",
+      "start": 150,
+      "end": 210,
+      "kills": 3,
+      "collisions": 6,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "paired-guns",
+      "loadout": "1: Basic 1 \u00b7 Pulse Pistol \u00b7 Rare > 2: Basic 2 \u00b7 Pulse Pistol \u00b7 Rare > 3: Arc Bolt \u00b7 Rare > 4: Empty > 5: Empty",
+      "start": 210,
+      "end": 270,
+      "kills": 6,
+      "collisions": 0,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "pick-and-order",
+      "loadout": "1: Gravity Well \u00b7 Rare > 2: Mass Driver \u00b7 Rare > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Force Push \u00b7 Rare",
+      "start": 270,
+      "end": 420,
+      "kills": 0,
+      "collisions": 0,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "pinball-payoff",
+      "loadout": "1: Gravity Well \u00b7 Rare > 2: Mass Driver \u00b7 Rare > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Force Push \u00b7 Rare",
+      "start": 420,
+      "end": 540,
+      "kills": 24,
+      "collisions": 12,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "fusion",
+      "loadout": "1: Basic 1 \u00b7 Edge Sword \u00b7 Uncommon > 2: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 3: Arc Bolt \u00b7 Uncommon > 4: Empty > 5: Empty",
+      "start": 540,
+      "end": 660,
+      "kills": 0,
+      "collisions": 0,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 1
+    },
+    {
+      "name": "ultimate-draft",
+      "loadout": "1: Basic 1 \u00b7 Edge Sword \u00b7 Rare > 2: Basic 2 \u00b7 Pulse Pistol \u00b7 Rare > 3: Gravity Well \u00b7 Rare > 4: Arc Bolt \u00b7 Rare > 5: Mass Driver \u00b7 Rare",
+      "start": 660,
+      "end": 705,
+      "kills": 0,
+      "collisions": 0,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    },
+    {
+      "name": "ultimate-payoff",
+      "loadout": "1: Basic 1 \u00b7 Edge Sword \u00b7 Rare > 2: Basic 2 \u00b7 Pulse Pistol \u00b7 Rare > 3: Gravity Well \u00b7 Rare > 4: Arc Bolt \u00b7 Rare > 5: Mass Driver \u00b7 Rare",
+      "start": 705,
+      "end": 810,
+      "kills": 30,
+      "collisions": 3,
+      "severs": 6,
+      "ultimates": 1,
+      "fusions": 0
+    },
+    {
+      "name": "title",
+      "loadout": "1: Gravity Well \u00b7 Rare > 2: Mass Driver \u00b7 Rare > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Force Push \u00b7 Rare",
+      "start": 810,
+      "end": 900,
+      "kills": 20,
+      "collisions": 6,
+      "severs": 0,
+      "ultimates": 0,
+      "fusions": 0
+    }
+  ],
+  "audioEvents": 52,
+  "music": "Original procedural score created for this trailer; no third-party music.",
+  "sha256": "8625a62d8486236db60d27be09a9c3c30525180b4ed3b492e3f9af2170b2de44",
+  "normalPlayChecks": [
+    {
+      "build": "armed",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "armor",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "fast",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "half",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "hammer",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "manual",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "quick",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "reload",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "reroll",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "rifle",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "sequence",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "sequence",
+      "seed": 4319,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "sword",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "tempest",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "build": "twin",
+      "seed": 1741,
+      "result": "Complete",
+      "passed": true,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    }
+  ]
+}
