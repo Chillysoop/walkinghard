@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0d6507c050eff46bf0d0918e13ff04, type: 3}
+  m_Name: CombatTuning
+  m_EditorClassIdentifier: Assembly-CSharp::VectorGame.CombatTuning
+  duration: 60
+  walkSpeed: 0.72
+  heroHealth: 180
+  seed: 1741
+  maximumEnemies: 42
+  meleeReach: 2.2
+  jabDamage: 17
+  crossDamage: 22
+  finisherDamage: 34
+  comboRecovery: 0.25
+  pushCooldown: 6
+  pushRange: 5.1
+  pushDamage: 23
+  pushImpulse: 12
+  pushCrowdThreshold: 4
+  enemyHealth: 40
+  enemySpeed: 2.75
+  enemyDamage: 4
+  attackRadius: 1.65
+  simultaneousAttackers: 4
+  firstSpawnInterval: 1.15
+  finalSpawnInterval: 0.48
+  cameraOffset: {x: 0, y: 8.6, z: -10.2}
+  lookAhead: 4.2
+  cameraFov: 47

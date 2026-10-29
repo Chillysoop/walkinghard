@@ -1,0 +1,17 @@
+{
+    "result": "Complete",
+    "seed": 4319,
+    "elapsed": 60.0,
+    "health": 37.199954986572269,
+    "spawned": 83,
+    "kills": 78,
+    "alive": 5,
+    "peakCrowd": 17,
+    "strikes": 99,
+    "finishers": 18,
+    "pushes": 10,
+    "pushTargets": 87,
+    "hitsTaken": 36,
+    "passed": true,
+    "platform": "WindowsPlayer"
+}
