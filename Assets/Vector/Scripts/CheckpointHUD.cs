@@ -127,7 +127,7 @@ namespace VectorGame
             Label(new Rect(r.x+16,r.y+60,r.width-32,22),"INTEGRITY",12,muted,true);
             Label(new Rect(r.x+16,r.y+58,r.width-32,22),Mathf.CeilToInt(game.Health)+" / "+game.MaxHealth.ToString("0"),18,white,true,TextAnchor.UpperRight);
             Segments(new Rect(r.x+16,r.y+88,r.width-32,10),game.Health/game.MaxHealth,Accent,12);
-            string[] names={"DIRECT DAMAGE","DAMAGE RESIST","ACTION SPEED","BARRIER","LIFESTEAL"};
+            string[] names={"DIRECT DAMAGE","DAMAGE RESIST","ACTION SPEED","BARRIER","GLOBAL LIFESTEAL"};
             string[] values={"+"+((d.Damage-1)*100).ToString("0.#")+"%",((1-d.DamageTaken)*100).ToString("0.#")+"%","+"+((d.Speed-1)*100).ToString("0.#")+"%",game.BarrierAmount.ToString("0"),(game.LifestealRate*100).ToString("0.#")+"%"};
             for(int i=0;i<names.Length;i++){float y=r.y+108+i*18.5f;Label(new Rect(r.x+16,y,r.width-90,20),names[i],12,muted,true);Label(new Rect(r.x+16,y,r.width-32,20),values[i],15,white,true,TextAnchor.UpperRight);Stroke(new Vector2(r.x+16,y+18),new Vector2(r.xMax-16,y+18),new Color(line.r,line.g,line.b,.35f),1);}
             string passive=d.StaggerBonus>0?"EXPOSE +"+d.StaggerBonus.ToString("0.#")+" vs stagger. Hover gear.":d.Armor.Any(a=>a!=null)?"Lifesteal cap: 1% max HP per action.":"Armor slots grant stats and passive effects.";

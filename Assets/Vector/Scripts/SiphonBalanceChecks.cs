@@ -13,6 +13,21 @@ namespace VectorGame
             foreach(int rank in new[]{1,2,3,4,5})
             {
                 ProbeReset();var blade=ProbeHost(LoadoutCatalog.Find("siphonblade"),null,rank);Health=MaxHealth*.6f;
+                MechanicRequire(Deck.Lifesteal==0&&LifestealRate==0,"equipped blade is not global Lifesteal on the character sheet");
+                var otherBlade=Deck.Acquire(blade.def,5);Deck.Move(otherBlade,PlaceKind.Weapon,1);
+                var isolated=ProbeEnemy(0,2,500);float initial=Health;Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Mathf.Abs(Health-initial-10*LoadoutCatalog.SiphonRate(rank))<.002f,"blade damage uses its own rarity, never sums the offhand blade");
+                var unrelated=Deck.Acquire(LoadoutCatalog.Find("ArcBolt"));currentCredit=new KillCredit{item=unrelated,action=++actionSerial};initial=Health;Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Health==initial,"unrelated ability damage against unmarked enemies cannot borrow equipped blade Lifesteal");
+                currentCredit=new KillCredit{item=Deck.Basics[1],weapon=Deck.Fists,action=++actionSerial};Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Health==initial,"an unrelated weapon cannot borrow blade Lifesteal");
+                DrainMark(isolated,blade);currentCredit=new KillCredit{item=unrelated,action=++actionSerial};Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Mathf.Abs(Health-initial-10*LoadoutCatalog.SiphonRate(rank))<.002f,"blade marks still let unrelated abilities drain the marked target");
+                drains.Clear();currentCredit=new KillCredit{item=Deck.Basics[0],weapon=blade,action=++actionSerial,hop=1};initial=Health;Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Mathf.Abs(Health-initial-10*LoadoutCatalog.SiphonRate(rank))<.002f,"delayed collision damage retains its originating blade Lifesteal");
+                currentCredit=new KillCredit{item=Deck.Basics[0],weapon=blade,action=++actionSerial,augment=true};initial=Health;Hurt(isolated,10,Vector3.zero,0);
+                MechanicRequire(Mathf.Abs(Health-initial-10*LoadoutCatalog.SiphonRate(rank))<.002f,"blade augment followups retain their own Lifesteal");
+                currentCredit=new KillCredit{item=Deck.Basics[0],weapon=blade,action=++actionSerial};
                 var victim=ProbeEnemy(0,2,1);float before=Health;Hurt(victim,1000,Vector3.zero,0,true);
                 MechanicRequire(Mathf.Abs(Health-before-LoadoutCatalog.SiphonRate(rank))<.002f,"Lifesteal uses actual health damage, not overkill, at every rarity");
                 before=Health;Hurt(victim,1000,Vector3.zero,0);MechanicRequire(Health==before,"corpses cannot heal");
@@ -30,8 +45,9 @@ namespace VectorGame
 
                 ProbeReset();var armor=Deck.Acquire(LoadoutCatalog.Find("reclaimer"),rank);Deck.Move(armor,PlaceKind.Armor);var enemy=ProbeEnemy(0,2);
                 Health=MaxHealth*.6f;before=Health;Hurt(enemy,10,Vector3.zero,0);float normal=Health-before;
+                MechanicRequire(Mathf.Abs(normal-10*new[]{.03f,.04f,.05f,.06f,.07f}[rank-1])<.002f,"Reclaimer uses its approved independent rarity rates");
                 Health=MaxHealth*.4f;currentCredit.action=++actionSerial;before=Health;Hurt(enemy,10,Vector3.zero,0);
-                MechanicRequire(Mathf.Abs(Health-before-normal*2)<.002f,"Reclaimer doubles only its own Lifesteal below half health");
+                MechanicRequire(Mathf.Abs(Health-before-normal*1.5f)<.002f,"Reclaimer multiplies only its own Lifesteal by 1.5 below half health");
             }
             ProbeReset();var sword=ProbeHost(LoadoutCatalog.Find("siphonblade"));var dying=ProbeEnemy(0,2,1);var neighbor=ProbeEnemy(.8f,2.2f);ResolveBasic(sword,activeCard,dying,false);
             MechanicRequire(drains.ContainsKey(neighbor.id)&&InteractionNotes.ContainsKey("Sever spread Siphon"),"Siphon Blade sever spreads a real mark");
@@ -49,6 +65,16 @@ namespace VectorGame
                 before=Health;Hurt(enemy,10000,Vector3.zero,0);MechanicRequire(Health==before,"Harvest cannot heal beyond its pulse budget");
             }
             ProbeReset();MechanicRequire(drains.Count==0&&!predatorReady&&LifestealHealing==0,"new run clears all Siphon state");
+
+            foreach(int rank in new[]{1,2,3,4,5})
+            {
+                ProbeReset();var gun=ProbeHost(LoadoutCatalog.Find("pistol"));var red=Deck.Acquire(LoadoutCatalog.Find("redline"),rank);Deck.Move(red,PlaceKind.Ultimate);ammunition[gun]=1;ResolveUltimate();
+                MechanicRequire(Ammo(gun)==6&&redlineTurns==6&&LoadoutCatalog.Cooldown(red)==18,"Redline refills and grants six turns without changing recharge");
+                ActiveSlot=5;FinishTurn();MechanicRequire(redlineTurns==6,"the ultimate activation does not consume an accelerated turn");
+                ActiveSlot=0;PairSlot=1;
+                for(int i=6;i>0;i--){float expected=Deck.Speed*(1+.2f*(1+.15f*(rank-1)));MechanicRequire(Mathf.Abs(TurnSpeed(false,gun)-expected)<.001f,"Redline preserves rarity haste on every accelerated turn");FinishTurn();MechanicRequire(redlineTurns==i-1,"a paired sequence action consumes only one Redline charge");}
+                MechanicRequire(Mathf.Abs(TurnSpeed(false,gun)-Deck.Speed)<.001f,"Redline haste ends after exactly six sequence turns");
+            }
 
             ProbeHost(LoadoutCatalog.Fists);var primary=ProbeEnemy(0,2,1000);var secondary=ProbeEnemy(.5f,2,1000);counterBank=20;amplifierBank=18;
             DirectSignatures(primary,1,false);

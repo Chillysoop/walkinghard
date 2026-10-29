@@ -102,6 +102,7 @@ namespace VectorGame
                 if(duelistHits==0)duelistUntil=0;
             }
             if(damage<raw*Deck.DamageTaken)fx.Shield(HeroPosition,(attacker.rig.Root.position-HeroPosition).normalized,true);
+            if(Controlled!=null&&controlledMetrics!=null){controlledMetrics.rawIncoming+=raw;controlledMetrics.damageTaken+=Mathf.Min(Health,damage);controlledMetrics.prevented+=raw-damage;}
             RecordEnemyPressure(attacker,Mathf.Min(Health,damage));Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Play(3);
         }
         float duelistUntil;int duelistHits;bool duelistStaggerReady;

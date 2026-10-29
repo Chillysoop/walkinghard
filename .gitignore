@@ -13,3 +13,4 @@
 *.slnx
 *.user
 *.tmp
+__pycache__/

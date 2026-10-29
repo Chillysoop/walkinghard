@@ -89,3 +89,12 @@ A 32-game legacy control matches all 27 gameplay fields from the prior screening
 
 
 0.6.7 experiments add opt-in `legacyWeaponAugments`, `legacyCounterBurst` and `excludeSiphon` switches to balance JSON. The default player uses the new rules and full catalog. The legacy combination reproduces 0.6.6 for matched controls. Exact inputs are in `QA/Balance/v067`. Item contribution records and CSVs now include actual `healing`, distinct from absorption.
+
+### Controlled slot comparisons (analysis only)
+
+`-simCases <json>` opts into explicit, fixed per-game loadouts and seeds instead of drafting. The case count must equal `-simRuns`. `QA/Balance/controlled-siphon/run.py` generates a matched matrix covering five focal rarities, four build contexts and one-slot substitutions. Each worker receives its own case list. Fixed gear/abilities start equipped; ultimates still enter after checkpoint three with normal cooldowns. No further rewards or augments are selected. These fixtures measure item substitution under stated builds, not ordinary progression difficulty.
+
+`QA/controlled-siphon-review.md` records the earlier v0.6.7 analysis: 3,600 Common-support cases, 480 Rare-support sensitivity cases and 24 Full physics cases, plus the recommendations awaiting approval at that time. `summary.csv`, `games.csv`, `results.json`, exact sensitivity/Full inputs and reproducible analysis scripts live in `QA/Balance/controlled-siphon/`. Full raw JSONL stays in the ignored `QA/Simulations/` directory. Ordinary simulations without `-simCases` use normal drafting. The controlled runner uses authored rules by default; `--balance <json>` explicitly opts into a development override and records it in batch provenance.
+
+
+0.6.8 adds development-only `legacySiphonBlade`, `legacyReclaimer` and `legacyRedline` balance switches. Defaults use the new rules. `QA/Balance/v068/` tests each change independently, reconstructing the complete 4,080-case controlled matrix using verified unchanged baseline cases; it records actual rerun counts separately. Source collection for observed drain and production healing is shared to prevent measurement drift.

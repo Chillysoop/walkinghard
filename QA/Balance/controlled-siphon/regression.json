@@ -1,0 +1,33 @@
+{
+  "games": 32,
+  "fields": [
+    "rangedSpawned",
+    "rangedHits",
+    "rearBoundaryKills",
+    "environmentalKills",
+    "rangedDamage",
+    "schema",
+    "mode",
+    "policy",
+    "result",
+    "loadout",
+    "seed",
+    "waves",
+    "waveReached",
+    "kills",
+    "spawned",
+    "collisions",
+    "launches",
+    "reloads",
+    "score",
+    "itemChoices",
+    "augmentChoices",
+    "elapsed",
+    "health",
+    "valid"
+  ],
+  "differences": [],
+  "baseline": "v067-release-control-32",
+  "candidate": "controlled-siphon-regression-32",
+  "itemAndWaveDetailsMatch": true
+}

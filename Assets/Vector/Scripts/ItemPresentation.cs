@@ -143,7 +143,7 @@ namespace VectorGame
         string ItemStats(ItemDefinition def,int rarity)
         {
             if(def.kind==ItemKind.Augment)return "ONE SOCKET / "+(def.module.family<0?"ABILITY":"WEAPON");
-            if(def.id=="reclaimer")return "+"+(20*ItemRarity.Power[rarity]).ToString("0")+" HP / "+(LoadoutCatalog.SiphonRate(rarity)*100).ToString("0")+"% LIFESTEAL";
+            if(def.id=="reclaimer")return "+"+(20*ItemRarity.Power[rarity]).ToString("0")+" HP / "+(LoadoutCatalog.ReclaimerRate(rarity)*100).ToString("0")+"% LIFESTEAL";
             var item=new LoadoutItem(def,rarity);var card=def.profile!=null||def.ability!=null?LoadoutCatalog.Action(item):null;
             if(card!=null)return (def.kind==ItemKind.Weapon?(def.hands==2?"2H / ":"1H / "):"")+card.damage.ToString("0.#")+" DMG / "+card.duration.ToString("0.00")+"s";
             float p=ItemRarity.Power[rarity];var stats=def.stats;

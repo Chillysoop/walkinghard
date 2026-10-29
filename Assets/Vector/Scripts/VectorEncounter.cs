@@ -308,6 +308,7 @@ namespace VectorGame
         }
         void Step(float dt)
         {
+            if(Controlled!=null&&controlledMetrics!=null){controlledMetrics.missingHealthSeconds+=(MaxHealth-Health)*dt;if(Health<MaxHealth*.5f)controlledMetrics.lowHealthSeconds+=dt;}
             float restored=Mathf.Min(MaxHealth-Health,Deck.Regeneration*dt);Health+=restored;ArmorHealing+=restored;
             Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
             if(qaBuild=="manual"&&qa)QAManual();

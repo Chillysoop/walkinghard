@@ -82,7 +82,7 @@ namespace VectorGame
         public IEnumerable<LoadoutItem> Equipment=>Armor.Where(i=>i!=null).Concat(Rig==null?Enumerable.Empty<LoadoutItem>():new[]{Rig});
         public LoadoutItem Equipped(Signature signature)=>Equipment.FirstOrDefault(i=>i.def.signature==signature);
         public float Stat(Func<GearStats,float> pick)=>Equipment.Sum(i=>pick(i.def.stats)*ItemRarity.Power[i.rank]);
-        public float Lifesteal=>Weapons.Where(w=>w!=null&&w.def.id=="siphonblade").Distinct().Sum(w=>LoadoutCatalog.SiphonRate(w.rank))+Equipment.Where(i=>i.def.signature==Signature.Reclaimer).Sum(i=>LoadoutCatalog.SiphonRate(i.rank));
+        public float Lifesteal=>(BalanceOverrides.LegacySiphonBlade?Weapons.Where(w=>w!=null&&w.def.id=="siphonblade").Distinct().Sum(w=>LoadoutCatalog.SiphonRate(w.rank)):0)+Equipment.Where(i=>i.def.signature==Signature.Reclaimer).Sum(i=>LoadoutCatalog.ReclaimerRate(i.rank));
         public float Speed=>1+Stat(s=>s.speed);
         public float Damage=>1+Stat(s=>s.damage);
         public float MaxHealthBonus=>Stat(s=>s.health);

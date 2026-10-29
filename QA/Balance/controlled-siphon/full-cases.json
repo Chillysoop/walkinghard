@@ -1,0 +1,580 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31000,
+      "id": "sever-weapon-siphonblade-r3-s0"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31000,
+      "id": "sever-weapon-sword-r3-s0"
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31001,
+      "id": "sever-weapon-siphonblade-r3-s1"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31001,
+      "id": "sever-weapon-sword-r3-s1"
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31002,
+      "id": "sever-weapon-siphonblade-r3-s2"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31002,
+      "id": "sever-weapon-sword-r3-s2"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "reclaimer",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31000,
+      "id": "sever-armor-reclaimer-r3-s0"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "plate",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "plate",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31000,
+      "id": "sever-armor-plate-r3-s0"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "reclaimer",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31001,
+      "id": "sever-armor-reclaimer-r3-s1"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "plate",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "plate",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31001,
+      "id": "sever-armor-plate-r3-s1"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "reclaimer",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31002,
+      "id": "sever-armor-reclaimer-r3-s2"
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "plate",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "context": "sever",
+      "category": "armor",
+      "candidate": "plate",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 31002,
+      "id": "sever-armor-plate-r3-s2"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "reclaimer",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32000,
+      "id": "storm-armor-reclaimer-r3-s0"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "grounding",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32000,
+      "id": "storm-armor-grounding-r3-s0"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "reclaimer",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32001,
+      "id": "storm-armor-reclaimer-r3-s1"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "grounding",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32001,
+      "id": "storm-armor-grounding-r3-s1"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "reclaimer",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "reclaimer",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32002,
+      "id": "storm-armor-reclaimer-r3-s2"
+    },
+    {
+      "weapons": [
+        "wraps",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "MassDriver"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "context": "storm",
+      "category": "armor",
+      "candidate": "grounding",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 32002,
+      "id": "storm-armor-grounding-r3-s2"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "harvest",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "harvest",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33000,
+      "id": "gun-ultimate-harvest-r3-s0"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "redline",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33000,
+      "id": "gun-ultimate-redline-r3-s0"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "harvest",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "harvest",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33001,
+      "id": "gun-ultimate-harvest-r3-s1"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "redline",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33001,
+      "id": "gun-ultimate-redline-r3-s1"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "harvest",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "harvest",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33002,
+      "id": "gun-ultimate-harvest-r3-s2"
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "context": "gun",
+      "category": "ultimate",
+      "candidate": "redline",
+      "rank": 3,
+      "baseRank": 1,
+      "healthFraction": 1,
+      "seed": 33002,
+      "id": "gun-ultimate-redline-r3-s2"
+    }
+  ]
+}

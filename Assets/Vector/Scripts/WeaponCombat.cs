@@ -16,7 +16,7 @@ namespace VectorGame
         {
             var ult=Deck.Ultimate;
             if(ult.def.id=="harvest"){ResolveHarvest(ult);return;}
-            if(ult.def.id=="redline"){foreach(var w in new[]{Deck.WeaponFor(Deck.Basics[0]),Deck.WeaponFor(Deck.Basics[1])})Replenish(w);redlineTurns=3;fx.Overdrive(hero.RightHand.position,hero.LeftHand.position);fx.Shape(HeroPosition,Vector3.forward,1.5f,180,Color.magenta,.6f);return;}
+            if(ult.def.id=="redline"){foreach(var w in new[]{Deck.WeaponFor(Deck.Basics[0]),Deck.WeaponFor(Deck.Basics[1])})Replenish(w);redlineTurns=LoadoutCatalog.RedlineTurns;fx.Overdrive(hero.RightHand.position,hero.LeftHand.position);fx.Shape(HeroPosition,Vector3.forward,1.5f,180,Color.magenta,.6f);return;}
             if(ult.def.id=="cyclone"){float range=LoadoutCatalog.Action(ult).range;fx.Sweep(HeroPosition,Vector3.forward,range,180,Color.white,.5f,true);foreach(var e in enemies.ToArray())if(Reachable(e,range)){var outward=e.rig.Root.position-HeroPosition;outward.y=0;Hurt(e,LoadoutCatalog.Action(ult).damage*Deck.Damage,outward.normalized*4*Effect(ult),.4f,true);}return;}
 
             if(Deck.Ultimate.def.id=="tempest")

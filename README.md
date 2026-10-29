@@ -1,4 +1,4 @@
-# Walking Hard 0.6.7 — Siphon and Weapon Augments
+# Walking Hard 0.6.8 — Siphon Balance and Redline
 
 Weapon augments now add effects without slowing or weakening the original weapon. Counterguard's stored burst deals full damage to one target and 25% to up to four others; Amplifier is unchanged. Five new Siphon items add Lifesteal, drain marks, low-health sustain, healing-triggered haste and the Harvest ultimate. The character sheet shows Lifesteal; all new items have distinct art, summaries and rarity-scaled effects. [Balance results](QA/v067-balance-review.md).
 
@@ -87,3 +87,6 @@ For bulk balancing, see [SIMULATIONS.md](SIMULATIONS.md). `Run Simulations.ps1` 
 See [the 0.6.0 verification report](QA/v060-verification.md) for checks, balance observations, native evidence and limitations. Earlier UI checks remain in the repository history.
 
 C# scripts are under Assets/Vector/Scripts. See [DESIGN.md](DESIGN.md) for the current design contract and [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration/release instructions. Historical Vector paths remain for asset stability. Art, balance and long-run progression remain prototype work; this release uses authored cuts rather than arbitrary mesh slicing.
+
+
+0.6.8 narrows Siphon Blade healing to its own damage and marked targets, tunes Reclaimer to 3/4/5/6/7% global Lifesteal (1.5x below half HP), and gives Redline six accelerated turns. Harvest is unchanged. See the [balance results](QA/v068-balance-review.md) and [verification report](QA/v068-verification.md).

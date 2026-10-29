@@ -11,7 +11,7 @@ namespace VectorGame
         readonly Dictionary<int,Drain> drains=new Dictionary<int,Drain>();
         bool predatorReady;
         public float LifestealHealing {get;private set;}
-        public float LifestealRate=>Deck.Lifesteal+(Health<MaxHealth*.5f&&Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor?LoadoutCatalog.SiphonRate(armor.rank):0);
+        public float LifestealRate=>Deck.Lifesteal+(Health<MaxHealth*.5f&&Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor?LoadoutCatalog.ReclaimerRate(armor.rank)*(LoadoutCatalog.ReclaimerLowHealthBoost-1):0);
         public float HarvestHealingLimit(LoadoutItem item)=>MaxHealth*(.08f+.01f*(item.rank-1));
         void ResetSiphon(){drains.Clear();predatorReady=false;LifestealHealing=0;}
         void ArmPredator(){if(Deck.Equipped(Signature.Predator)!=null)predatorReady=true;}
@@ -32,18 +32,23 @@ namespace VectorGame
             if(next==null)return;
             DrainMark(next,blade);fx.Arc(enemy.physics.Center,next.physics.Center,SiphonColor);Note("Sever spread Siphon");
         }
+        Dictionary<LoadoutItem,float> DrainSources(Enemy enemy)
+        {
+            var sources=new Dictionary<LoadoutItem,float>();
+            foreach(var weapon in Deck.Weapons.Where(w=>w?.def.id=="siphonblade"&&(BalanceOverrides.LegacySiphonBlade||w==KillOwner(currentCredit?.weapon))).Distinct())sources[weapon]=LoadoutCatalog.SiphonRate(weapon.rank);
+            if(Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor)sources[armor]=LoadoutCatalog.ReclaimerRate(armor.rank)*(Health<MaxHealth*.5f?LoadoutCatalog.ReclaimerLowHealthBoost:1);
+            if(drains.TryGetValue(enemy.id,out var mark)&&mark.until>Elapsed)sources[mark.owner]=(sources.TryGetValue(mark.owner,out float prior)?prior:0)+mark.rate;
+            bool harvest=Owner?.def.id=="harvest";
+            if(harvest)sources[Owner]=.2f*Effect(Owner);
+            return sources;
+        }
         void ApplyLifesteal(Enemy enemy,float dealt)
         {
             if(currentCredit==null||dealt<=0||Health<=0||Health>=MaxHealth)return;
             // Credit and the healing budget follow the originating action through every
             // paired hit, augment, chain and delayed body impact. Healing is never a hit.
             if(Deck.Weapons[0]?.def.id!="siphonblade"&&Deck.Weapons[1]?.def.id!="siphonblade"&&Deck.Equipped(Signature.Reclaimer)==null&&!(drains.TryGetValue(enemy.id,out var activeMark)&&activeMark.until>Elapsed)&&Owner?.def.id!="harvest")return;
-            var sources=new Dictionary<LoadoutItem,float>();
-            foreach(var weapon in Deck.Weapons.Where(w=>w?.def.id=="siphonblade").Distinct())sources[weapon]=LoadoutCatalog.SiphonRate(weapon.rank);
-            if(Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor)sources[armor]=LoadoutCatalog.SiphonRate(armor.rank)*(Health<MaxHealth*.5f?2:1);
-            if(drains.TryGetValue(enemy.id,out var mark)&&mark.until>Elapsed)sources[mark.owner]=(sources.TryGetValue(mark.owner,out float prior)?prior:0)+mark.rate;
-            bool harvest=Owner?.def.id=="harvest";
-            if(harvest)sources[Owner]=.2f*Effect(Owner);
+            var sources=DrainSources(enemy);bool harvest=Owner?.def.id=="harvest";
             float rate=sources.Values.Sum();if(rate<=0)return;
             var turn=CurrentTurn;float limit=harvest?HarvestHealingLimit(Owner):MaxHealth*.01f;
             float heal=Mathf.Min(dealt*rate,Mathf.Max(0,limit-turn.siphonHealed),MaxHealth-Health);
@@ -69,9 +74,9 @@ namespace VectorGame
             float rate=LoadoutCatalog.SiphonRate(item.rank)*100;
             switch(item.def.id)
             {
-                case "siphonblade":return "+"+rate.ToString("0")+"% global Lifesteal. Cuts mark for another "+rate.ToString("0")+"% for "+(4*Effect(item)).ToString("0.#")+"s; one sever spread per action within "+(3*Effect(item)).ToString("0.#")+"m. "+rules;
+                case "siphonblade":return "+"+rate.ToString("0")+"% Lifesteal from this blade's damage. Cuts mark for another "+rate.ToString("0")+"% for "+(4*Effect(item)).ToString("0.#")+"s; one sever spread per action within "+(3*Effect(item)).ToString("0.#")+"m. "+rules;
                 case "DrainBrand":return (item.HasAugment(AugmentId.Focused)?2:3+(item.rank-1)/2)+" targets, +"+(rate*(item.HasAugment(AugmentId.Focused)?1.4f:1)).ToString("0.#")+"% Lifesteal against marked foes for "+(4*Effect(item)).ToString("0.#")+"s. "+rules;
-                case "reclaimer":return "+"+rate.ToString("0")+"% global Lifesteal; armor contribution doubles to "+(rate*2).ToString("0")+"% below half health. "+rules;
+                case "reclaimer":float armorRate=LoadoutCatalog.ReclaimerRate(item.rank)*100;return "+"+armorRate.ToString("0.#")+"% global Lifesteal; armor contribution rises to "+(armorRate*LoadoutCatalog.ReclaimerLowHealthBoost).ToString("0.#")+"% below half health (1.5x). "+rules;
                 case "predator":return "Actual healing stores +"+(item.def.effect.Power(item.rank)*100).ToString("0.#")+"% speed for the next ability. One charge, no stacking; weapons and ultimates do not consume it.";
                 case "harvest":return "Drain "+(20*Effect(item)).ToString("0")+"% of actual damage; up to "+HarvestHealingLimit(item).ToString("0.#")+" HP ("+(8+item.rank-1)+"% max) per pulse. 16s recharge; no healing from overkill or corpses.";
                 default:return "";
