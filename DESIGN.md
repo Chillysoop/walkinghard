@@ -193,3 +193,23 @@ Primary target selection first considers reachable enemies with at least two dam
 The rear death boundary follows the camera's bottom floor intersection with a further 3m cushion, and is never closer than 8m behind the walker. Only enemies beyond it and fully outside the camera (including airborne heads) die. Entry passages are excluded. Living enemies remain threatening in the rear cushion and walk back into view. Boundary deaths use ordinary ragdolls, scoring and on-kill rules. The latest displacement source owns the kill, including fusion resolution; no artificial damage is added to its contribution. Unattributed environmental deaths are counted separately, never assigned to a random weapon. Each enemy dies only once.
 
 The 1,000-game final screening improved first-three-wave survival from 58.5% to 82.8% against released 0.6.3. Proposed Counterguard duration and Duelist ward changes remain unapplied; see QA/v064-balance-review.md.
+
+
+## Impact identity — implemented in 0.6.5
+
+Every damaging contact has a source, contact point and direction. Living reactions are pose overlays; authored damage, health, cadence, ammo, cooldowns and stun durations are unchanged. Defeated bodies receive localized physical impulses and angular motion. More expressive corpse motion can change Full-mode collisions; this is not a claim that physical balance is identical.
+
+| Family | Physical/presentation response |
+| --- | --- |
+| Kinetic Fists, Steel Jab | Directional torso/head snap, concentrated contact sparks and punch sound. |
+| Edge Sword, Reaping Cut | Diagonal cut trail; lethal hits disconnect the nearest anatomical joint at the contact. |
+| Execution Greatsword, Razor Cyclone | Broad blade plane can detach up to three crossed joints, splitting waist/head/arms/legs into persistent pieces. |
+| Impact Hammer, Breach Hammer, Breaker, body impacts | Torso folds down, knees buckle while alive, lethal bodies tumble with localized torque; debris and a ground impact ring. Existing launch/cascade budgets remain. |
+| Pulse Pistol, Rail Rifle, Compact Scattergun | Shooting-arm recoil, directional impact sparks, localized ragdoll kick following the shot. Existing ricochets, penetration and pellet cones remain. |
+| Conductor Wraps, Arc Bolt, Conductive Brand, Tempest, conductive discharges | Jagged arcs, bounded live limb jitter and short death spasms; no additional stun or damage from the presentation. |
+| Gravity Well, Vector Tether | Body leans into the actual gathering/pull direction. |
+| Force Push, Mass Driver, Singularity | Body snaps with the actual force; existing launches carry bodies into physical cascades. |
+| Counterguard | A visible hexagonal shield appears on creation and flashes when it absorbs a hit. |
+| Redline | Hands/weapons vent orange charge at activation and during its three empowered turns. |
+
+Severing uses the current mannequin's anatomical seams (waist, neck, shoulders, elbows, hips, knees). It is not arbitrary runtime mesh slicing or soft-body crushing. A two-handed blade chooses extra cuts by plane intersection, not random body-part rolls. All pieces retain the original enemy identity, kill credit, corpse lifetime and walking collision rules. Rarity modestly strengthens visual/death reaction intensity. Reduced Motion reduces jitter and suppresses added camera shake/hit stops.

@@ -46,6 +46,7 @@ namespace VectorGame
             if(e.deathAge>=0)return;float r=ControlResistance(e);float effective=seconds*r;
             ContributionFor(Owner).control+=Mathf.Max(0,effective-e.stun);e.stun=Mathf.Max(e.stun,effective);if(effective>0){e.attack=-1;e.engaged=false;}
             RememberDisplacement(e,impulse);e.physics.Impulse(impulse*r);
+            if(!FastSimulation&&impulse.sqrMagnitude>.1f){e.reaction=DescribeImpact(e,impulse,false);e.reactionLeft=.32f;}
         }
         void MarkEnemy(Enemy e,LoadoutItem source,float potency=1)
         {
@@ -58,19 +59,20 @@ namespace VectorGame
         {
             if(!marks.TryGetValue(e.id,out var m)||m.until<=Elapsed||m.consumed==(currentCredit?.action??actionSerial))return false;
             Note((currentCredit?.hop??0)>0?"Body impact consumed Conductive":"Lightning consumed Conductive");m.until=0;m.consumed=currentCredit?.action??actionSerial;ContributionFor(m.owner).assists++;
-            fx.Symbol(e.physics.Center,Color.white,.3f,false);DerivedHit(e,m.power,Vector3.zero,.1f);return true;
+            fx.Symbol(e.physics.Center,Color.white,.3f,false);DerivedHit(e,m.power,Vector3.zero,.1f,false,false,ImpactKind.Electric);return true;
         }
-        void ElectricHit(Enemy e,float damage,float stagger){ConsumeMark(e);Hurt(e,damage,Vector3.zero,stagger);if(Deck.Equipped(Signature.Grounding) is LoadoutItem g&&Once("ground"))AddBarrier(g,Mathf.Min(g.def.effect.Power(g.rank),damage*.2f*Effect(g)),4);}
-        void DerivedHit(Enemy e,float damage,Vector3 impulse,float stagger,bool cut=false,bool aug=false)
+        void ElectricHit(Enemy e,float damage,float stagger){ConsumeMark(e);Hurt(e,damage,Vector3.zero,stagger,false,ImpactKind.Electric);if(Deck.Equipped(Signature.Grounding) is LoadoutItem g&&Once("ground"))AddBarrier(g,Mathf.Min(g.def.effect.Power(g.rank),damage*.2f*Effect(g)),4);}
+        void DerivedHit(Enemy e,float damage,Vector3 impulse,float stagger,bool cut=false,bool aug=false,ImpactKind? reactionKind=null)
         {
             if(CurrentTurn.extra<=0)return;CurrentTurn.extra--;bool previous=currentCredit.derived,wasAug=currentCredit.augment;currentCredit.derived=true;currentCredit.augment=aug;
-            Hurt(e,damage,impulse,stagger,cut);currentCredit.derived=previous;currentCredit.augment=wasAug;
+            Hurt(e,damage,impulse,stagger,cut,reactionKind);currentCredit.derived=previous;currentCredit.augment=wasAug;
         }
         void AddBarrier(LoadoutItem host,float capacity,float duration,bool discharge=false,bool reactive=false)
         {
             capacity=Mathf.Min(capacity,90-BarrierAmount);if(capacity<=0)return;
             barriers.Add(new Barrier{host=host,left=capacity,expires=Elapsed+duration,discharge=discharge,reactive=reactive,credit=currentCredit??new KillCredit{item=host,action=actionSerial}});
             fx.Shape(HeroPosition,Vector3.forward,1.1f,180,Color.cyan,.4f);
+            fx.Shield(HeroPosition,hero.Root.forward,false);
         }
         void EndBarrier(Barrier b)
         {
@@ -94,6 +96,7 @@ namespace VectorGame
                 if(b.left<=0){barriers.Remove(b);EndBarrier(b);}if(damage<=0)break;
             }
             if(duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist) is LoadoutItem d){float prevent=damage*Mathf.Min(.65f,d.def.effect.Power(d.rank));damage-=prevent;ContributionFor(d).absorption+=prevent;duelistUntil=0;var saved=currentCredit;currentCredit=new KillCredit{item=d,action=actionSerial};Control(attacker,.4f*Effect(d),Vector3.zero);currentCredit=saved;}
+            if(damage<raw*Deck.DamageTaken)fx.Shield(HeroPosition,(attacker.rig.Root.position-HeroPosition).normalized,true);
             RecordEnemyPressure(attacker,Mathf.Min(Health,damage));Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Play(3);
         }
         float duelistUntil;
@@ -145,7 +148,7 @@ namespace VectorGame
             if(Deck.Equipped(Signature.Relay) is LoadoutItem relay&&ConsumeMark(target))
             {
                 int cap=1+(relay.rank>=3?1:0)+(relay.rank==5?1:0);
-                foreach(var other in enemies.Where(e=>e!=target&&Vector3.Distance(e.physics.Center,point)<relay.def.effect.Radius(relay.rank)).Take(cap).ToArray()){fx.Arc(point,other.physics.Center,Color.cyan);DerivedHit(other,relay.def.effect.Power(relay.rank),Vector3.zero,.15f);}
+                foreach(var other in enemies.Where(e=>e!=target&&Vector3.Distance(e.physics.Center,point)<relay.def.effect.Radius(relay.rank)).Take(cap).ToArray()){fx.Lightning(point,other.physics.Center,Color.cyan);DerivedHit(other,relay.def.effect.Power(relay.rank),Vector3.zero,.15f,false,false,ImpactKind.Electric);}
             }
         }
         float TurnSpeed(bool ultimate,LoadoutItem host)

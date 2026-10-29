@@ -47,7 +47,7 @@ namespace VectorGame
             if(e.deathAge>=0)return;
             enemies.Remove(e);e.deathAge=0;e.physics.Die(impulse);corpses.Add(e);Kills++;Ragdolls++;
             SetBodyWalkCollision(e,flights.Exists(f=>f.body==e));
-            if(sever){e.physics.Sever();Severs++;fx.Burst(e.physics.Center,VisualFactory.Orange,10,3);}
+            if(sever){e.physics.Sever(e.reaction);Severs++;fx.Burst(e.physics.Center,VisualFactory.Orange,10,3);}
             var owner=currentCredit==null?null:KillOwner(currentCredit.weapon??currentCredit.item);
             if(owner!=null)itemKills[owner]=KillsFor(owner)+1;else EnvironmentalKills++;
             Score.Kill(e.heavy?200:100,currentCredit?.action??-e.id,currentCredit?.hop??0);

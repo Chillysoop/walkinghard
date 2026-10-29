@@ -15,6 +15,7 @@ namespace VectorGame
         void BeginAuthoredTurn(bool ultimate)
         {
             currentCredit=new KillCredit{item=ultimate?Deck.Ultimate:actionItem,weapon=actionWeapon,action=actionSerial};salvageChain=null;
+            if(redlineTurns>0&&actionWeapon!=null)fx.Overdrive(hero.RightHand.position,hero.LeftHand.position);
             turnSpeed=TurnSpeed(ultimate,actionWeapon??(ultimate?Deck.Ultimate:actionItem));nativeDuration=Mathf.Max(activeCard.duration,pairCard?.duration??0)/turnSpeed;
             float extension=Mathf.Max(AugmentCatalog.Extension(actionWeapon??actionItem),Deck.TwoHanded?0:AugmentCatalog.Extension(pairWeapon));
             actionDuration=nativeDuration+extension/turnSpeed;extensionStep=0;backwash.Clear();returnPoints.Clear();reloadTimers.Clear();
@@ -71,7 +72,7 @@ namespace VectorGame
             if(card.id==AbilityId.ArcBolt)
             {
                 var hit=new HashSet<int>();Vector3 from=hero.RightHand.position;int cap=focused?(host.rank>=3?2:1):3+(host.rank>=4?1:0);
-                for(int i=0;i<cap&&target!=null;i++){Vector3 p=target.physics.Center;hit.Add(target.id);fx.Arc(from,p,Color.cyan);ElectricHit(target,damage*(i==0?(focused?1.35f:1):.65f)+(target.stun>0?8*s:0),.18f);from=p;target=enemies.Where(e=>!hit.Contains(e.id)&&Reachable(e,card.range+3)&&Vector3.Distance(e.physics.Center,p)<4.2f).OrderBy(e=>Vector3.Distance(e.physics.Center,p)).FirstOrDefault();}return;
+                for(int i=0;i<cap&&target!=null;i++){Vector3 p=target.physics.Center;hit.Add(target.id);fx.Lightning(from,p,Color.cyan);ElectricHit(target,damage*(i==0?(focused?1.35f:1):.65f)+(target.stun>0?8*s:0),.18f);from=p;target=enemies.Where(e=>!hit.Contains(e.id)&&Reachable(e,card.range+3)&&Vector3.Distance(e.physics.Center,p)<4.2f).OrderBy(e=>Vector3.Distance(e.physics.Center,p)).FirstOrDefault();}return;
             }
             if(card.id==AbilityId.ConductiveBrand)
             {
@@ -81,7 +82,7 @@ namespace VectorGame
             {
                 float arc=card.id==AbilityId.Breaker?(focused?40:100+5*(host.rank-1)):card.id==AbilityId.ReapingCut?(focused?42:70+5*(host.rank-1)):180;
                 float width=1.8f+.1f*(host.rank-1);bool corridor=card.id==AbilityId.VectorTether;
-                if(corridor)fx.Corridor(origin,aim,card.range,width,Color.cyan,.55f);else if(card.id==AbilityId.GravityWell){fx.Shape(origin,Vector3.forward,card.range,180,Color.cyan,.4f);fx.Symbol(point,Color.cyan,.4f,false);}else fx.Shape(origin,aim,card.range,arc,card.id==AbilityId.ReapingCut?Color.white:VisualFactory.Cyan,.4f);
+                if(corridor)fx.Corridor(origin,aim,card.range,width,Color.cyan,.55f);else if(card.id==AbilityId.GravityWell){fx.Shape(origin,Vector3.forward,card.range,180,Color.cyan,.4f);fx.Symbol(point,Color.cyan,.4f,false);}else if(card.id==AbilityId.ReapingCut)fx.Sweep(origin,aim,card.range,arc,Color.white,.3f);else fx.Shape(origin,aim,card.range,arc,VisualFactory.Cyan,.4f);
                 foreach(var e in enemies.ToArray())
                 {
                     if(corridor?!InCorridor(e,origin,aim,card.range,width):!InCone(e,origin,aim,card.range,arc)||!Reachable(e,card.range))continue;
@@ -119,7 +120,7 @@ namespace VectorGame
             if(host.def.weapon==WeaponKind.Sword)
             {
                 float arc=(profile.arc+10*(host.rank-1))*(host.HasAugment(AugmentId.HookedEdge)?.65f:1);bool hooked=false;
-                fx.Sweep(HeroPosition,aim,range,arc,Color.white,.3f);
+                fx.Sweep(HeroPosition,aim,range,arc,Color.white,.3f,false,host.def.hands==2?.34f:.18f);
                 foreach(var e in enemies.Where(e=>InCone(e,HeroPosition,aim,range,arc)&&Reachable(e,range)).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).ToArray())
                 {
                     float d=damage*(profile.style==WeaponStyle.Greatsword&&e.health<e.maxHealth*.5f?1.4f:1);Hurt(e,d,aim*profile.force*s,.4f,true);WeaponHits[1]++;if(e.deathAge>=0&&host.rank>=3&&profile.style==WeaponStyle.Edge&&Once("edge-launch")){Launch(e,null,0,.6f*s);}
