@@ -15,8 +15,8 @@ namespace VectorGame
         }
         public static void Build(Transform parent)
         {
-            Doors.Clear();Solid("Concourse / physical floor",parent,new Vector3(0,-.27f,250),new Vector3(40,.5f,600),VisualFactory.Ground);
-            for(int z=-12;z<550;z+=6)
+            Doors.Clear();Solid("Concourse / physical floor",parent,new Vector3(0,-.27f,150),new Vector3(40,.5f,1000),VisualFactory.Ground);
+            for(int z=-222;z<550;z+=6)
             {
                 VisualFactory.Part("Floor seam",parent,PrimitiveType.Cube,new Vector3(0,-.012f,z),new Vector3(18,.02f,.035f),VisualFactory.Black);
                 for(int side=-1;side<=1;side+=2)
@@ -27,8 +27,8 @@ namespace VectorGame
             }
             for(int side=-1;side<=1;side+=2)
             {
-                float previous=-25;
-                for(int z=9;z<540;z+=18)
+                float previous=-241;
+                for(int z=-207;z<540;z+=18)
                 {
                     float end=z-2;
                     Solid("Concourse wall",parent,new Vector3(side*9.5f,2.3f,(previous+end)*.5f),new Vector3(.7f,4.7f,end-previous),VisualFactory.Stone);
@@ -47,9 +47,9 @@ namespace VectorGame
                 Solid("Far wall",parent,new Vector3(side*9.5f,2.3f,(previous+565)*.5f),new Vector3(.7f,4.7f,565-previous),VisualFactory.Stone);
             }
         }
-        public static Door Ahead(int side,float heroZ)
+        public static Door Ahead(int side,float heroZ,int direction=1)
         {
-            Door best=null;foreach(var door in Doors)if(door.side==side&&door.z>heroZ+3&&(best==null||door.z<best.z))best=door;return best;
+            Door best=null;foreach(var door in Doors)if(door.side==side&&direction*(door.z-heroZ)>3&&(best==null||direction*(door.z-best.z)<0))best=door;return best;
         }
         public static bool Concealed(Camera camera,Vector3 origin)
         {
@@ -63,12 +63,12 @@ namespace VectorGame
             }
             return true;
         }
-        public static Vector3 Horizon(Camera camera,Vector3 hero,float x)
+        public static Vector3 Horizon(Camera camera,Vector3 hero,float x,int direction=1)
         {
-            Vector3 p=hero+new Vector3(x,.05f,32);
+            Vector3 p=hero+new Vector3(x,.05f,32*direction);
             // Explicitly test full character bounds, rather than assuming a fixed spawn distance is hidden.
-            for(int i=0;i<60;i++){if(Concealed(camera,p))return p;p.z+=3;}
-            return hero+Vector3.forward*190+new Vector3(x,.05f,0);
+            for(int i=0;i<60;i++){if(Concealed(camera,p))return p;p.z+=3*direction;}
+            return hero+Vector3.forward*(190*direction)+new Vector3(x,.05f,0);
         }
     }
 }

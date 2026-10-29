@@ -22,6 +22,16 @@ namespace VectorGame
             while(!game.PresentationFixtureReady){game.SetCombatSpeed(4);yield return null;}
             // QADraft configures the held UI fixture on its next frame.
             for(int i=0;i<8;i++)yield return null;
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-finaleReview")>=0)
+            {
+                game.PrepareFinaleReview();yield return CapturePresentation(directory,"26-finale-stop");
+                while(game.RevealAge<1.65f)yield return null;yield return CapturePresentation(directory,"27-finale-turn");
+                while(game.RevealAge<3.8f)yield return null;yield return CapturePresentation(directory,"28-finale-orbit");
+                while(game.State==VectorEncounter.RunState.Revealing)yield return null;yield return CapturePresentation(directory,"29-finale-reveal");
+                while(game.WaveElapsed<20&&game.State==VectorEncounter.RunState.Running)yield return null;yield return CapturePresentation(directory,"30-finale-fight");
+                while(game.WaveElapsed<40&&game.State==VectorEncounter.RunState.Running)yield return null;yield return CapturePresentation(directory,"31-finale-contact");
+                Debug.Log("FINALE_REVIEW_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-routeReview")>=0)
             {
                 game.PrepareRouteReview();yield return CapturePresentation(directory,"21-route-choice");

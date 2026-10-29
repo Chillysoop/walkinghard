@@ -1,4 +1,6 @@
-# Walking Hard 0.7.0 — Branching Encounters
+# Walking Hard 0.7.1 — The Pursuer
+
+The finale now stops the Walker and turns him around. The camera slowly swings behind him to reveal a giant and its approaching army. Hold your ground as enemies pour in from the distance, flow around the giant, and reach your automatic sequence. The boss is staged just before the scene; no follower is simulated during earlier waves. See [verification](QA/v071-verification.md).
 
 After waves 2 and 5, choose **Shield Line** or **Volatile Breach** for the next wave. Shield Line guarantees two equipment options in the existing mixed pick; Volatile Breach guarantees two ability options. The third option stays a wildcard. Reward counts, rarity odds and checkpoint-three ultimate progression are unchanged.
 
@@ -39,7 +41,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion and have no separate rarity. Weapon modules retain native attacks/timing and receive full paired effects. Before/after previews explain the single-socket choice; ability conversions retain explicit tradeoffs.
 - Temporary amber tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
 - No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
-- Eight waves with formation previews and a final Warden encounter. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
+- Eight waves with formation previews and the Pursuer final stand. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
 - Drop a reward directly into a compatible slot to equip and advance; double-click auto-equips. Edit after pick keeps the character sheet open for rearranging until Let's fight.
 - RPG character sheet with live Walker preview, surrounding gear mounts, an icon storage grid, full hover cards and animated before/after fusion feedback.
 - Helmets, armor and boots grant rarity-scaled stats plus effects such as repair motes, reload pulses, barriers, mark setup and next-action haste.

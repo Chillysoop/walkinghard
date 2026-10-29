@@ -33,6 +33,16 @@ namespace VectorGame
             }
         }
         public void ShieldGuard(bool exposed){if(enemyShield!=null)enemyShield.localRotation=Quaternion.Euler(0,0,exposed?70:0);}
+        public void PursuerArmor()
+        {
+            if(lightweight)return;
+            foreach(int side in new[]{-1,1})
+            {
+                VisualFactory.Part("Pursuer shoulder slab",Body,PrimitiveType.Cube,new Vector3(side*.52f,.57f,0),new Vector3(.46f,.32f,.62f),VisualFactory.Stone);
+                VisualFactory.Part("Pursuer shoulder light",Body,PrimitiveType.Cube,new Vector3(side*.52f,.57f,.32f),new Vector3(.32f,.08f,.04f),VisualFactory.RedGlow);
+            }
+            VisualFactory.Part("Pursuer breastplate",Body,PrimitiveType.Cube,new Vector3(0,.32f,.27f),new Vector3(.62f,.57f,.17f),VisualFactory.Trim);
+        }
         WeaponKind displayedRight=WeaponKind.Fists,displayedLeft=WeaponKind.Fists;
         bool twoHanded;
         internal Transform RightWeapon=>weaponRight;

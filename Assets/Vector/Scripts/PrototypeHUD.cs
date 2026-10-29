@@ -42,6 +42,7 @@ namespace VectorGame
             if(detailHovered)detailLastHover=Time.realtimeSinceStartup;
             hoveredItem=detailHovered?detailItem:null;hoveredOffer=detailHovered?detailOffer:null;
             if(game.State==VectorEncounter.RunState.Ready){Intro(w,h);return;}
+            if(game.State==VectorEncounter.RunState.Revealing){FinaleReveal(w,h);return;}
             if(game.State==VectorEncounter.RunState.Drafting)
             {
                 if(game.RoutePending){RouteChoice(w,h);return;}
@@ -88,14 +89,14 @@ namespace VectorGame
             Segments(new Rect(38,343,202,5),game.Score.Remaining/ComboScore.Window,Gold,10);
             float x=w-330;
             Panel(new Rect(x,18,310,108));
-            Label(new Rect(x+20,34,190,23),game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
-            Label(new Rect(x+231,29,61,40),Mathf.CeilToInt(game.WaveRemaining)+"s",31,white,true,TextAnchor.UpperRight);
+            Label(new Rect(x+20,34,190,23),game.FinaleActive?"FINAL STAND":game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
+            Label(new Rect(x+212,29,80,40),game.FinaleActive?Mathf.CeilToInt(game.BossFraction*100)+"%":Mathf.CeilToInt(game.WaveRemaining)+"s",game.FinaleActive?24:31,white,true,TextAnchor.UpperRight);
             Stroke(new Vector2(x+20,64),new Vector2(x+290,64),line,1);
             string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
             string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
             UltimatePanel(new Rect(x,138,310,game.Deck.Ultimate==null?76:180));
-            if(game.BossFraction>0){Rect boss=new Rect(w/2-170,20,340,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,316,22),"WARDEN / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Gold,true);Segments(new Rect(boss.x+12,boss.y+39,316,8),game.BossFraction,Gold,20);}
+            if(game.BossFraction>0){Rect boss=new Rect(w/2-200,20,400,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,376,22),"THE PURSUER / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Gold,true);Segments(new Rect(boss.x+12,boss.y+39,376,8),game.BossFraction,Gold,20);}
             Label(new Rect(20,365,310,45),"BARRIER "+game.BarrierAmount.ToString("0")+" / "+game.ArmedState+"\n"+game.VisiblePayoff,11,Accent,true);
         }
         void UltimatePanel(Rect r)

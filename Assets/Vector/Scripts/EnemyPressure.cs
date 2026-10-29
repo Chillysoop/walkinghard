@@ -27,14 +27,15 @@ namespace VectorGame
         {
             if(e.entering)return;
             var p=e.cachedPosition;float distance=Vector3.Distance(p,HeroPosition);
-            if(!InCombatView(p)&&distance<15||p.z<HeroPosition.z-1.8f)e.repositioning=true;
-            else if(e.repositioning&&InCombatView(p)&&p.z>HeroPosition.z+.4f)e.repositioning=false;
+            float forward=Vector3.Dot(p-HeroPosition,EncounterForward);
+            if(!InCombatView(p)&&distance<15||forward< -1.8f)e.repositioning=true;
+            else if(e.repositioning&&InCombatView(p)&&forward>.4f)e.repositioning=false;
         }
         Vector3 RepositionVelocity(Enemy e)
         {
             // Walk back into view through a forward flank; never warp an actor.
             float side=e.cachedPosition.x>=HeroPosition.x?1:-1;
-            Vector3 goal=HeroPosition+new Vector3(side*(e.shooter?4.2f:1.8f),0,e.shooter?5:2.4f);
+            Vector3 goal=HeroPosition+Vector3.right*side*(e.shooter?4.2f:1.8f)+EncounterForward*(e.shooter?5:2.4f);
             Vector3 direction=goal-e.cachedPosition;direction.y=0;
             return direction.normalized*tuning.enemySpeed;
         }
