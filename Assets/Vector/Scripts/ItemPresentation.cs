@@ -104,7 +104,7 @@ namespace VectorGame
                 case AbilityId.ArcBolt:return (3+(item.rank>=4?1:0))+" targets; consumes Conductive once; stagger adds "+(8*scale).ToString("0.0")+" damage.";
                 case AbilityId.ConductiveBrand:return "Up to five marks; "+(4*scale).ToString("0.0")+"s duration; "+(10*ItemRarity.Power[item.rank]).ToString("0.0")+" conditional discharge damage.";
                 case AbilityId.ReapingCut:return "Weak below "+((.5f+.025f*(item.rank-1))*100).ToString("0")+"% HP: +"+((.4f+.05f*(item.rank-1))*100).ToString("0")+"% damage; lethal hits sever.";
-                case AbilityId.Counterguard:return LoadoutCatalog.CounterguardCapacity(item).ToString("0.#")+" barrier / "+(3.5f*scale).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Total barriers capped at 90.";
+                case AbilityId.Counterguard:return LoadoutCatalog.CounterguardCapacity(item).ToString("0.#")+" barrier / "+LoadoutCatalog.CounterguardDuration(item).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Total barriers capped at 90.";
             }}
             return item.def.tradeoff;
         }
@@ -120,7 +120,7 @@ namespace VectorGame
                 case Signature.Capacitor:return "First direct hit against stagger applies one Conductive mark: "+(4*s).ToString("0.0")+"s duration, "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" damage if later discharged.";
                 case Signature.Reactive:return "Three enemies within 3m grant "+power+" barrier for 3s. Break/expiry repels enemies within 3m. 8s cooldown.";
                 case Signature.Grounding:return "Convert "+(20*s).ToString("0")+"% of a lightning/body hit into barrier, capped at "+power+" once per turn; lasts 4s. Attackers hitting barrier become Conductive.";
-                case Signature.Duelist:return "Reload/sever arms a "+seconds+"s ward: reduce the next hit by "+(Mathf.Min(.65f,e.Power(item.rank))*100).ToString("0")+"% and stagger its attacker for "+(.4f*s).ToString("0.00")+"s.";
+                case Signature.Duelist:return "Reload/sever arms a "+LoadoutCatalog.DuelistWardDuration(item).ToString("0.0")+"s ward for "+LoadoutCatalog.DuelistWardHits(item)+" damaging hits: reduce each by "+(Mathf.Min(.65f,e.Power(item.rank))*100).ToString("0")+"%. Only the first staggers its attacker for "+(.4f*s).ToString("0.00")+"s. Refresh replaces charges; fully blocked hits preserve them.";
                 case Signature.Momentum:return "A launch stores "+(Mathf.Min(.4f,e.Power(item.rank))*100).ToString("0")+"% haste for the next ability, expiring after "+seconds+"s. No stacking.";
                 case Signature.Loader:return "Preparation/reloads are "+(Mathf.Min(.4f,e.Power(item.rank))*100).ToString("0")+"% shorter. Actual refill staggers up to five foes within "+radius+"m for "+seconds+"s, once per turn.";
                 case Signature.Arcstep:return "Two kills in one turn mark up to "+(2+(item.rank-1)/2)+" survivors within "+radius+"m for "+(4*s).ToString("0.0")+"s. Later discharges deal "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" bonus damage.";

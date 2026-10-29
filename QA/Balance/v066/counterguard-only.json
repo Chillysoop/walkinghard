@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "id": "duelist",
+      "wardHits": 1,
+      "wardSeconds": 4,
+      "consumeBlockedWard": true
+    }
+  ]
+}

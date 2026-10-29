@@ -2,10 +2,10 @@
 
 ## Fast balance screening
 
-Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. That benchmark used `Build/FastBalance-v2/WalkingHard.exe`; the current player is `Build/EnemyPressure-v064-final/WalkingHard.exe`, with Counterguard capacity reduced from 35 to 25. The 0.6.4 final matched batch completed in 104.26 seconds; see QA/v064-balance-review.md for the new ultimate progression and enemy changes. Release 0.6.1 and later include Fast mode; older v0.6.0 downloads support Full mode only.
+Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. That benchmark used `Build/FastBalance-v2/WalkingHard.exe`; the current player is `Build/DefenseBalance-v066-final/WalkingHard.exe`, with Counterguard capacity reduced from 35 to 25. The 0.6.4 final matched batch completed in 104.26 seconds; see QA/v064-balance-review.md for the new ultimate progression and enemy changes. Release 0.6.1 and later include Fast mode; older v0.6.0 downloads support Full mode only.
 
 ```powershell
-& '.\Run Simulations.ps1' -Player '.\Build\EnemyPressure-v064-final\WalkingHard.exe' `
+& '.\Run Simulations.ps1' -Player '.\Build\DefenseBalance-v066-final\WalkingHard.exe' `
   -Mode Fast -Runs 1000 -Workers 4 -Waves 8 -Seed 12000 `
   -MaxCombatSeconds 600
 ```
@@ -14,7 +14,7 @@ Fast mode executes the same authored combat, drafting, rarity, fusion, augment, 
 
 This is a screening model, not a calibrated replacement for the game. In the first 32 matched seeds it agreed on the outcome for 23 games; Full won 19 and Fast won 10. Gun, lightning and collision builds were often understated. Do not use a low Fast win rate alone to buff those builds. Rank hypotheses with contributions and comparable cohorts, then verify a small representative set in Full mode. Mode is recorded per game and per batch; the comparison script rejects mixed-mode balance comparisons.
 
-The original, pre-change screening report is `QA/Simulations/fast-mixed-1000-20261029/balance-review.md` locally. The approved Counterguard capacity reduction and its separate 1,000-game retest are recorded in `QA/v061-verification.md`; other recommendations remain unapplied. The recorded throughput is hardware/workload dependent, not a universal two-minute guarantee.
+The original, pre-change screening report is `QA/Simulations/fast-mixed-1000-20261029/balance-review.md` locally. The approved Counterguard capacity reduction and its separate 1,000-game retest are recorded in `QA/v061-verification.md`; subsequent Counterguard-duration and Duelist-ward tuning is recorded in `QA/v066-balance-review.md`. The recorded throughput is hardware/workload dependent, not a universal two-minute guarantee.
 
 ## Full physics validation
 
@@ -79,3 +79,10 @@ The runner copies the balance file into the results directory. Comparisons requi
 Use these runs to find weak or dominant combinations, then inspect representative seeds in the game. Headless results cannot establish visual readability or whether combat feels satisfying.
 
 Version 0.6.4 reports ranged spawn/hit/damage totals, per-wave ranged pressure, rear-boundary kills and unattributed environmental kills. Kill-accounting validity includes those explicit environmental deaths.
+
+
+### Isolated defensive tuning (0.6.6)
+
+`QA/Balance/v066/` contains exact Counterguard-only, Duelist-only, combined, and legacy-control inputs. Counterguard accepts `barrierSeconds` (base seconds before rarity/effect scaling), independent of capacity or action time. Duelist accepts `wardSeconds` (base seconds before rarity scaling), `wardHits` (1-4), and the development-only `consumeBlockedWard` flag to reproduce the old behavior of spending the ward on a fully absorbed hit. Zero/omission keeps authored values; only the corresponding item IDs accept these fields. No override input is loaded in normal play.
+
+A 32-game legacy control matches all 27 gameplay fields from the prior screening baseline. Three matched 1,000-game Fast batches test each recommendation separately and together. The Full comparison uses seeds 12654-12665, selected before running because the prior Fast baseline equipped Duelist in six of those twelve games; it is a targeted mechanism check, not a representative win-rate sample. `QA/Balance/v066/analyze.py` rebuilds the aggregate report from local raw batches. See `QA/v066-balance-review.md` for results and limitations.

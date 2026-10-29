@@ -34,6 +34,9 @@ namespace VectorGame
     {
         public const float CounterguardBarrier=25f;
         public static float CounterguardCapacity(LoadoutItem item)=>CounterguardBarrier*ItemRarity.Power[item.rank]*BalanceOverrides.Barrier(item.def.id);
+        public static float CounterguardDuration(LoadoutItem item)=>BalanceOverrides.BarrierSeconds(item.def.id,2.5f)*EffectScale(item);
+        public static int DuelistWardHits(LoadoutItem item)=>BalanceOverrides.WardHits(item.def.id,2);
+        public static float DuelistWardDuration(LoadoutItem item)=>BalanceOverrides.WardSeconds(item.def.id,item.def.effect.seconds)*(1+.1f*(item.rank-1));
         public static bool IsArmor(ItemKind kind)=>kind==ItemKind.Helmet||kind==ItemKind.Armor||kind==ItemKind.Boots;
         public static int ArmorIndex(ItemKind kind)=>IsArmor(kind)?(int)kind-(int)ItemKind.Helmet:-1;
         public static int Family(WeaponKind kind)=>kind==WeaponKind.Pistol||kind==WeaponKind.Rifle||kind==WeaponKind.Shotgun?3:(int)kind;
@@ -49,7 +52,7 @@ namespace VectorGame
             Gear("capacitor","Capacitor Crown",ItemKind.Helmet,Signature.Capacitor,"A direct hit against stagger applies Conductive, once per turn.","Longer marks and stronger discharges.","stagger mark storm iron","Marks need a later discharge or Relay Coil impact.",new GearStats(damage:.04f),new EffectProfile(10,3,6)),
             Gear("reactive","Reactive Shell",ItemKind.Armor,Signature.Reactive,"Three nearby enemies trigger a barrier. Its break/expiry repels the crowd.","More barrier capacity and repulsion reach.","guard close iron","8s cooldown; repulsion can disrupt a gathered crowd.",new GearStats(health:25),new EffectProfile(18,3,3)),
             Gear("grounding","Grounding Mantle",ItemKind.Armor,Signature.Grounding,"Lightning/body impacts generate a capped barrier; attackers hitting it become Conductive.","More barrier capacity and mark duration.","mark collision storm vector","Requires lightning or body impacts.",new GearStats(resistance:.05f),new EffectProfile(18,3,4)),
-            Gear("duelist","Duelist Jacket",ItemKind.Armor,Signature.Duelist,"A reload or sever arms one brief ward: reduce the next hit and stagger its attacker.","More mitigation and retaliation duration.","reload sever gun blade","Ward expires after 4s; no stacking.",new GearStats(health:20),new EffectProfile(.45f,0,4)),
+            Gear("duelist","Duelist Jacket",ItemKind.Armor,Signature.Duelist,"A reload or sever guards the next two damaging hits; the first also staggers its attacker.","More mitigation, ward duration and first-hit stagger.","reload sever gun blade","Ward lasts 6s at Common. Refresh replaces charges; no stacking.",new GearStats(health:20),new EffectProfile(.45f,0,6)),
             Gear("momentum","Momentum Soles",ItemKind.Boots,Signature.Momentum,"Launching a body accelerates your next non-weapon ability.","Stronger acceleration and longer storage.","launch vector hammer iron","One stored boost; weapons do not consume it.",new GearStats(speed:.03f),new EffectProfile(.18f,0,5)),
             Gear("loader","Loader Greaves",ItemKind.Boots,Signature.Loader,"Shorter preparation/reloads. Replenishing ammo sends a nearby stagger pulse.","Faster preparation and a wider/longer pulse.","reload gun close","Pulse is local; a paired reload triggers it once.",new GearStats(speed:.02f),new EffectProfile(.16f,2.4f,.35f)),
             Gear("arcstep","Arcstep Boots",ItemKind.Boots,Signature.Arcstep,"Two kills from one turn mark nearby survivors Conductive.","More marked targets and wider coverage.","mark storm blade","Requires a multi-kill; once per originating turn.",new GearStats(speed:.03f),new EffectProfile(10,3,6,2))

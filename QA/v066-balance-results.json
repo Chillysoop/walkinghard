@@ -1,0 +1,670 @@
+{
+  "baseline": "v064-rear-boundary-1000",
+  "batches": {
+    "v064-rear-boundary-1000": {
+      "totals": {
+        "games": 1000,
+        "clear3": 828,
+        "wins": 419,
+        "deathsByWave": {
+          "1": 0,
+          "2": 10,
+          "3": 162,
+          "4": 155,
+          "5": 81,
+          "6": 98,
+          "7": 32,
+          "8": 41
+        },
+        "timeouts": 2,
+        "policies": {
+          "balanced": {
+            "games": 167,
+            "clear3": 163,
+            "wins": 143
+          },
+          "gun": {
+            "games": 166,
+            "clear3": 118,
+            "wins": 40
+          },
+          "pinball": {
+            "games": 167,
+            "clear3": 148,
+            "wins": 82
+          },
+          "random": {
+            "games": 167,
+            "clear3": 118,
+            "wins": 44
+          },
+          "sever": {
+            "games": 166,
+            "clear3": 137,
+            "wins": 39
+          },
+          "storm": {
+            "games": 167,
+            "clear3": 144,
+            "wins": 71
+          }
+        },
+        "commonEquippedAbsorption": {
+          "Counterguard": {
+            "copies": 124,
+            "mean": 692.173
+          },
+          "duelist": {
+            "copies": 69,
+            "mean": 10.618
+          },
+          "reactive": {
+            "copies": 56,
+            "mean": 68.67
+          },
+          "plate": {
+            "copies": 74,
+            "mean": 91.224
+          }
+        }
+      },
+      "seconds": 104.26,
+      "provenance": {
+        "assemblySha256": "782535C5CAA78045514E2D3F5DB71D23771A0008C7DDFA51607FC51D6D5C1B7D",
+        "policy": "mixed",
+        "waves": 8,
+        "firstSeed": 12000,
+        "runs": 1000,
+        "workers": 4,
+        "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\RearBoundary-v064\\WalkingHard.exe",
+        "mode": "Fast",
+        "maxCombatSeconds": 600,
+        "startedUtc": "2026-10-29T17:56:30.7344795Z",
+        "completedUtc": "2026-10-29T17:58:15.0143816Z"
+      },
+      "comparison": {
+        "wins": {
+          "improved": 0,
+          "regressed": 0,
+          "deltaPercentagePoints": 0,
+          "approxPaired95CI": null
+        },
+        "clear3": {
+          "improved": 0,
+          "regressed": 0,
+          "deltaPercentagePoints": 0,
+          "approxPaired95CI": null
+        },
+        "fixedBaselineCohorts": {
+          "earlyCounterguard": {
+            "games": 331,
+            "beforeClear3": 331,
+            "afterClear3": 331,
+            "beforeWins": 316,
+            "afterWins": 316,
+            "beforeMeanAbsorption": 851.761,
+            "afterMeanAbsorption": 851.761
+          },
+          "equippedDuelist": {
+            "games": 148,
+            "beforeClear3": 137,
+            "afterClear3": 137,
+            "beforeWins": 73,
+            "afterWins": 73,
+            "beforeMeanAbsorption": 10.302,
+            "afterMeanAbsorption": 10.302
+          }
+        }
+      }
+    },
+    "v066-counterguard-only-1000": {
+      "totals": {
+        "games": 1000,
+        "clear3": 827,
+        "wins": 360,
+        "deathsByWave": {
+          "1": 0,
+          "2": 10,
+          "3": 163,
+          "4": 161,
+          "5": 90,
+          "6": 115,
+          "7": 42,
+          "8": 58
+        },
+        "timeouts": 1,
+        "policies": {
+          "balanced": {
+            "games": 167,
+            "clear3": 163,
+            "wins": 122
+          },
+          "gun": {
+            "games": 166,
+            "clear3": 118,
+            "wins": 35
+          },
+          "pinball": {
+            "games": 167,
+            "clear3": 148,
+            "wins": 73
+          },
+          "random": {
+            "games": 167,
+            "clear3": 117,
+            "wins": 32
+          },
+          "sever": {
+            "games": 166,
+            "clear3": 137,
+            "wins": 34
+          },
+          "storm": {
+            "games": 167,
+            "clear3": 144,
+            "wins": 64
+          }
+        },
+        "commonEquippedAbsorption": {
+          "Counterguard": {
+            "copies": 128,
+            "mean": 483.046
+          },
+          "duelist": {
+            "copies": 68,
+            "mean": 11.956
+          },
+          "reactive": {
+            "copies": 54,
+            "mean": 83.645
+          },
+          "plate": {
+            "copies": 72,
+            "mean": 90.929
+          }
+        }
+      },
+      "seconds": 115.780311,
+      "provenance": {
+        "maxCombatSeconds": 600,
+        "waves": 8,
+        "assemblySha256": "8CE390368580DFD6BDDD50A45D268A67E86C9766E4EB13930F1B2F3B4DDE5A0A",
+        "firstSeed": 12000,
+        "runs": 1000,
+        "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\DefenseBalance-v066-final\\WalkingHard.exe",
+        "policy": "mixed",
+        "workers": 4,
+        "startedUtc": "2026-10-29T18:34:44.7593835Z",
+        "mode": "Fast",
+        "completedUtc": "2026-10-29T18:36:40.5396944Z"
+      },
+      "comparison": {
+        "wins": {
+          "improved": 1,
+          "regressed": 60,
+          "deltaPercentagePoints": -5.9,
+          "approxPaired95CI": [
+            -7.387,
+            -4.413
+          ]
+        },
+        "clear3": {
+          "improved": 0,
+          "regressed": 1,
+          "deltaPercentagePoints": -0.1,
+          "approxPaired95CI": null
+        },
+        "fixedBaselineCohorts": {
+          "earlyCounterguard": {
+            "games": 331,
+            "beforeClear3": 331,
+            "afterClear3": 330,
+            "beforeWins": 316,
+            "afterWins": 259,
+            "beforeMeanAbsorption": 851.761,
+            "afterMeanAbsorption": 643.128
+          },
+          "equippedDuelist": {
+            "games": 148,
+            "beforeClear3": 137,
+            "afterClear3": 137,
+            "beforeWins": 73,
+            "afterWins": 53,
+            "beforeMeanAbsorption": 10.302,
+            "afterMeanAbsorption": 12.227
+          }
+        }
+      }
+    },
+    "v066-duelist-only-1000": {
+      "totals": {
+        "games": 1000,
+        "clear3": 829,
+        "wins": 423,
+        "deathsByWave": {
+          "1": 0,
+          "2": 10,
+          "3": 161,
+          "4": 150,
+          "5": 85,
+          "6": 99,
+          "7": 30,
+          "8": 40
+        },
+        "timeouts": 2,
+        "policies": {
+          "balanced": {
+            "games": 167,
+            "clear3": 163,
+            "wins": 144
+          },
+          "gun": {
+            "games": 166,
+            "clear3": 119,
+            "wins": 43
+          },
+          "pinball": {
+            "games": 167,
+            "clear3": 148,
+            "wins": 82
+          },
+          "random": {
+            "games": 167,
+            "clear3": 118,
+            "wins": 44
+          },
+          "sever": {
+            "games": 166,
+            "clear3": 137,
+            "wins": 39
+          },
+          "storm": {
+            "games": 167,
+            "clear3": 144,
+            "wins": 71
+          }
+        },
+        "commonEquippedAbsorption": {
+          "Counterguard": {
+            "copies": 124,
+            "mean": 692.379
+          },
+          "duelist": {
+            "copies": 69,
+            "mean": 24.54
+          },
+          "reactive": {
+            "copies": 56,
+            "mean": 68.67
+          },
+          "plate": {
+            "copies": 74,
+            "mean": 91.017
+          }
+        }
+      },
+      "seconds": 122.017891,
+      "provenance": {
+        "maxCombatSeconds": 600,
+        "waves": 8,
+        "assemblySha256": "8CE390368580DFD6BDDD50A45D268A67E86C9766E4EB13930F1B2F3B4DDE5A0A",
+        "firstSeed": 12000,
+        "runs": 1000,
+        "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\DefenseBalance-v066-final\\WalkingHard.exe",
+        "policy": "mixed",
+        "workers": 4,
+        "startedUtc": "2026-10-29T18:36:42.2356118Z",
+        "mode": "Fast",
+        "completedUtc": "2026-10-29T18:38:44.2535026Z"
+      },
+      "comparison": {
+        "wins": {
+          "improved": 5,
+          "regressed": 1,
+          "deltaPercentagePoints": 0.4,
+          "approxPaired95CI": null
+        },
+        "clear3": {
+          "improved": 1,
+          "regressed": 0,
+          "deltaPercentagePoints": 0.1,
+          "approxPaired95CI": null
+        },
+        "fixedBaselineCohorts": {
+          "earlyCounterguard": {
+            "games": 331,
+            "beforeClear3": 331,
+            "afterClear3": 331,
+            "beforeWins": 316,
+            "afterWins": 317,
+            "beforeMeanAbsorption": 851.761,
+            "afterMeanAbsorption": 850.192
+          },
+          "equippedDuelist": {
+            "games": 148,
+            "beforeClear3": 137,
+            "afterClear3": 138,
+            "beforeWins": 73,
+            "afterWins": 75,
+            "beforeMeanAbsorption": 10.302,
+            "afterMeanAbsorption": 24.776
+          }
+        }
+      }
+    },
+    "v066-combined-1000": {
+      "totals": {
+        "games": 1000,
+        "clear3": 828,
+        "wins": 365,
+        "deathsByWave": {
+          "1": 0,
+          "2": 10,
+          "3": 162,
+          "4": 156,
+          "5": 92,
+          "6": 116,
+          "7": 43,
+          "8": 55
+        },
+        "timeouts": 1,
+        "policies": {
+          "balanced": {
+            "games": 167,
+            "clear3": 163,
+            "wins": 125
+          },
+          "gun": {
+            "games": 166,
+            "clear3": 119,
+            "wins": 37
+          },
+          "pinball": {
+            "games": 167,
+            "clear3": 148,
+            "wins": 73
+          },
+          "random": {
+            "games": 167,
+            "clear3": 117,
+            "wins": 32
+          },
+          "sever": {
+            "games": 166,
+            "clear3": 137,
+            "wins": 34
+          },
+          "storm": {
+            "games": 167,
+            "clear3": 144,
+            "wins": 64
+          }
+        },
+        "commonEquippedAbsorption": {
+          "Counterguard": {
+            "copies": 128,
+            "mean": 486.766
+          },
+          "duelist": {
+            "copies": 67,
+            "mean": 27.704
+          },
+          "reactive": {
+            "copies": 54,
+            "mean": 83.645
+          },
+          "plate": {
+            "copies": 72,
+            "mean": 91.01
+          }
+        }
+      },
+      "seconds": 113.062033,
+      "provenance": {
+        "maxCombatSeconds": 600,
+        "waves": 8,
+        "assemblySha256": "8CE390368580DFD6BDDD50A45D268A67E86C9766E4EB13930F1B2F3B4DDE5A0A",
+        "firstSeed": 12000,
+        "runs": 1000,
+        "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\DefenseBalance-v066-final\\WalkingHard.exe",
+        "policy": "mixed",
+        "workers": 4,
+        "startedUtc": "2026-10-29T18:38:45.6722944Z",
+        "mode": "Fast",
+        "completedUtc": "2026-10-29T18:40:38.7343275Z"
+      },
+      "comparison": {
+        "wins": {
+          "improved": 4,
+          "regressed": 58,
+          "deltaPercentagePoints": -5.4,
+          "approxPaired95CI": [
+            -6.907,
+            -3.893
+          ]
+        },
+        "clear3": {
+          "improved": 1,
+          "regressed": 1,
+          "deltaPercentagePoints": 0,
+          "approxPaired95CI": null
+        },
+        "fixedBaselineCohorts": {
+          "earlyCounterguard": {
+            "games": 331,
+            "beforeClear3": 331,
+            "afterClear3": 330,
+            "beforeWins": 316,
+            "afterWins": 261,
+            "beforeMeanAbsorption": 851.761,
+            "afterMeanAbsorption": 645.853
+          },
+          "equippedDuelist": {
+            "games": 148,
+            "beforeClear3": 137,
+            "afterClear3": 138,
+            "beforeWins": 73,
+            "afterWins": 57,
+            "beforeMeanAbsorption": 10.302,
+            "afterMeanAbsorption": 31.502
+          }
+        }
+      }
+    }
+  },
+  "fullSample": {
+    "selection": "Seeds 12654-12665 chosen before Full runs because baseline Fast had six Duelist-equipped runs; targeted, not representative. Two games per policy.",
+    "baseline": {
+      "games": 12,
+      "clear3": 12,
+      "wins": 5,
+      "deathsByWave": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 4,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 0
+      },
+      "timeouts": 0,
+      "policies": {
+        "balanced": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 2
+        },
+        "gun": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 1
+        },
+        "pinball": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 0
+        },
+        "random": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 0
+        },
+        "sever": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 1
+        },
+        "storm": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 1
+        }
+      },
+      "commonEquippedAbsorption": {
+        "Counterguard": {
+          "copies": 2,
+          "mean": 427.775
+        },
+        "duelist": {
+          "copies": 5,
+          "mean": 10.138
+        },
+        "reactive": {
+          "copies": 0,
+          "mean": null
+        },
+        "plate": {
+          "copies": 0,
+          "mean": null
+        }
+      }
+    },
+    "candidate": {
+      "games": 12,
+      "clear3": 12,
+      "wins": 4,
+      "deathsByWave": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 5,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 0
+      },
+      "timeouts": 0,
+      "policies": {
+        "balanced": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 2
+        },
+        "gun": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 1
+        },
+        "pinball": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 0
+        },
+        "random": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 0
+        },
+        "sever": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 1
+        },
+        "storm": {
+          "games": 2,
+          "clear3": 2,
+          "wins": 0
+        }
+      },
+      "commonEquippedAbsorption": {
+        "Counterguard": {
+          "copies": 2,
+          "mean": 272.786
+        },
+        "duelist": {
+          "copies": 5,
+          "mean": 32.659
+        },
+        "reactive": {
+          "copies": 0,
+          "mean": null
+        },
+        "plate": {
+          "copies": 0,
+          "mean": null
+        }
+      }
+    },
+    "comparison": {
+      "wins": {
+        "improved": 0,
+        "regressed": 1,
+        "deltaPercentagePoints": -8.333,
+        "approxPaired95CI": null
+      },
+      "clear3": {
+        "improved": 0,
+        "regressed": 0,
+        "deltaPercentagePoints": 0,
+        "approxPaired95CI": null
+      },
+      "fixedBaselineCohorts": {
+        "earlyCounterguard": {
+          "games": 4,
+          "beforeClear3": 4,
+          "afterClear3": 4,
+          "beforeWins": 4,
+          "afterWins": 3,
+          "beforeMeanAbsorption": 774.698,
+          "afterMeanAbsorption": 517.874
+        },
+        "equippedDuelist": {
+          "games": 6,
+          "beforeClear3": 6,
+          "afterClear3": 6,
+          "beforeWins": 3,
+          "afterWins": 2,
+          "beforeMeanAbsorption": 10.819,
+          "afterMeanAbsorption": 32.458
+        }
+      }
+    },
+    "baselineProvenance": {
+      "policy": "mixed",
+      "startedUtc": "2026-10-29T18:35:12.8454669Z",
+      "waves": 8,
+      "workers": 2,
+      "maxCombatSeconds": 600,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\DefenseBalance-v066-final\\WalkingHard.exe",
+      "firstSeed": 12654,
+      "runs": 12,
+      "assemblySha256": "8CE390368580DFD6BDDD50A45D268A67E86C9766E4EB13930F1B2F3B4DDE5A0A",
+      "mode": "Full",
+      "completedUtc": "2026-10-29T18:40:10.0019708Z"
+    },
+    "candidateProvenance": {
+      "policy": "mixed",
+      "startedUtc": "2026-10-29T18:40:10.2073169Z",
+      "waves": 8,
+      "workers": 2,
+      "maxCombatSeconds": 600,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\DefenseBalance-v066-final\\WalkingHard.exe",
+      "firstSeed": 12654,
+      "runs": 12,
+      "assemblySha256": "8CE390368580DFD6BDDD50A45D268A67E86C9766E4EB13930F1B2F3B4DDE5A0A",
+      "mode": "Full",
+      "completedUtc": "2026-10-29T18:44:16.3677760Z"
+    }
+  }
+}

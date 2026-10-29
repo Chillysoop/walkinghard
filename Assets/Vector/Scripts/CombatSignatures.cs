@@ -36,9 +36,9 @@ namespace VectorGame
         sealed class Mote {public Vector3 point;public float left=10,age,heal;public LoadoutItem owner;}
         readonly List<Mote> motes=new List<Mote>();
         public float BarrierAmount=>barriers.Sum(b=>b.left);
-        public string ArmedState=>string.Join(" · ",new[]{guardArmed?"GUARD READY":"",followBank>0?"FOLLOW-THROUGH":"",counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
+        public string ArmedState=>string.Join(" · ",new[]{DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",guardArmed?"GUARD READY":"",followBank>0?"FOLLOW-THROUGH":"",counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
         public bool BreachArmed(LoadoutItem host)=>host!=null&&breachArmed.Contains(host);
-        void ResetSignatures(){contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;guardArmed=false;redlineTurns=0;}
+        void ResetSignatures(){contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
         float Effect(LoadoutItem item)=>LoadoutCatalog.EffectScale(item);
         float ControlResistance(Enemy e)=>e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
         void Control(Enemy e,float seconds,Vector3 impulse)
@@ -95,11 +95,19 @@ namespace VectorGame
                 if(absorbed>0&&Deck.Equipped(Signature.Grounding) is LoadoutItem g)MarkEnemy(attacker,g);
                 if(b.left<=0){barriers.Remove(b);EndBarrier(b);}if(damage<=0)break;
             }
-            if(duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist) is LoadoutItem d){float prevent=damage*Mathf.Min(.65f,d.def.effect.Power(d.rank));damage-=prevent;ContributionFor(d).absorption+=prevent;duelistUntil=0;var saved=currentCredit;currentCredit=new KillCredit{item=d,action=actionSerial};Control(attacker,.4f*Effect(d),Vector3.zero);currentCredit=saved;}
+            if(duelistHits>0&&duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist) is LoadoutItem d&&(damage>0||BalanceOverrides.ConsumeBlockedWard(d.def.id)))
+            {
+                float prevent=damage*Mathf.Min(.65f,d.def.effect.Power(d.rank));damage-=prevent;ContributionFor(d).absorption+=prevent;duelistHits--;
+                if(duelistStaggerReady){duelistStaggerReady=false;var saved=currentCredit;currentCredit=new KillCredit{item=d,action=actionSerial};Control(attacker,.4f*Effect(d),Vector3.zero);currentCredit=saved;}
+                if(duelistHits==0)duelistUntil=0;
+            }
             if(damage<raw*Deck.DamageTaken)fx.Shield(HeroPosition,(attacker.rig.Root.position-HeroPosition).normalized,true);
             RecordEnemyPressure(attacker,Mathf.Min(Health,damage));Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Play(3);
         }
-        float duelistUntil;
+        float duelistUntil;int duelistHits;bool duelistStaggerReady;
+        void ArmDuelist(LoadoutItem item)
+        {duelistUntil=Elapsed+LoadoutCatalog.DuelistWardDuration(item);duelistHits=LoadoutCatalog.DuelistWardHits(item);duelistStaggerReady=true;}
+        public int DuelistHitsRemaining=>duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist)!=null?duelistHits:0;
         void Pulse(Vector3 point,float radius,float stagger,int cap,Enemy exclude=null)
         {
             fx.Shape(point,Vector3.forward,radius,180,VisualFactory.Cyan,.3f);int n=0;
@@ -131,7 +139,7 @@ namespace VectorGame
             if(Deck.Equipped(Signature.Recovery) is LoadoutItem recoveryItem&&Once("recovery")&&motes.Count<24)motes.Add(new Mote{point=e.physics.Center,heal=recoveryItem.def.effect.Power(recoveryItem.rank),owner=recoveryItem});
             if(t.kills>=2&&Deck.Equipped(Signature.Arcstep) is LoadoutItem arc&&Once("arcstep"))foreach(var victim in enemies.Where(x=>Reachable(x,arc.def.effect.Radius(arc.rank))).Take(2+(arc.rank-1)/2))MarkEnemy(victim,arc);
             if(!sever)return;
-            if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)duelistUntil=Elapsed+d.def.effect.Seconds(d.rank);
+            if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)ArmDuelist(d);
             salvagerOwner=Deck.Equipped(Signature.Salvager)??salvagerOwner;
             if(Deck.Equipped(Signature.Salvage) is LoadoutItem magnet&&Once("salvage")){var chain=salvageChain??(salvageChain=new Cascade());if(chain.remaining>0)Launch(e,chain,0,.7f+.1f*(magnet.rank-1));}
         }
@@ -177,7 +185,7 @@ namespace VectorGame
         {
             int max=LoadoutCatalog.Magazine(host);if(max<=0||Ammo(host)>=max)return;ammunition[host]=max;if(host.HasAugment(AugmentId.BreachLoad)){breachArmed.Add(host);Note("Reload armed Breach Load",true);}
             if(Deck.Equipped(Signature.Loader) is LoadoutItem loader&&Once("loader"))Pulse(HeroPosition,loader.def.effect.Radius(loader.rank),loader.def.effect.Seconds(loader.rank),5);
-            if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)duelistUntil=Elapsed+d.def.effect.Seconds(d.rank);
+            if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)ArmDuelist(d);
         }
         void StepSignatures(float dt)
         {

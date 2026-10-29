@@ -213,3 +213,10 @@ Every damaging contact has a source, contact point and direction. Living reactio
 | Redline | Hands/weapons vent orange charge at activation and during its three empowered turns. |
 
 Severing uses the current mannequin's anatomical seams (waist, neck, shoulders, elbows, hips, knees). It is not arbitrary runtime mesh slicing or soft-body crushing. A two-handed blade chooses extra cuts by plane intersection, not random body-part rolls. All pieces retain the original enemy identity, kill credit, corpse lifetime and walking collision rules. Rarity modestly strengthens visual/death reaction intensity. Reduced Motion reduces jitter and suppresses added camera shake/hit stops.
+
+
+## Defensive tuning — 0.6.6
+
+Counterguard's base lifetime is 2.5 seconds, scaled by its existing rarity/effect factor. Common capacity remains 25; bank conversion remains 80%, with the existing bank and total-barrier caps. Its action duration is unchanged.
+
+A qualifying reload or lethal sever refreshes Duelist Jacket to two ward charges for six seconds at Common, with the existing rarity scaling. Each charge reduces a damaging hit by 45% at Common, capped at 65% with rarity. Only the first mitigated hit staggers its attacker. Fully blocked hits preserve both the charge and first-hit stagger. Refreshing replaces the charge count, never adds to it; a full magazine does not qualify as a reload. The combat status shows remaining ward hits, and item descriptions include charges, duration, mitigation and refresh behavior.

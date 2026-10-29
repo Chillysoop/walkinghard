@@ -1,5 +1,8 @@
-# Walking Hard 0.6.5 — Weapon Impact Reactions
-Ranged spawn odds are halved. Offscreen enemies cancel attacks and walk back to a visible flank; ranged shots also need a clear world line. Actions prioritize reachable repeat damage-dealers from the last six seconds, then nearest. A rear death boundary sits three metres beyond the camera floor edge and at least eight metres behind the walker, retaining knockback kill credit. The first-ultimate checkpoint remains after wave three. [Matched 1,000-game balance results and unapplied recommendations](QA/v064-balance-review.md).
+# Walking Hard 0.6.6 — Defensive Build Balance
+
+Counterguard now lasts 2.5 seconds at Common, retaining its 25-point shield and 80% bank conversion. Duelist Jacket now wards two damaging hits for six seconds at Common; only the first staggers, refresh replaces charges, and fully blocked hits preserve them. [Isolated and combined balance tests](QA/v066-balance-review.md).
+
+Ranged spawn odds are halved. Offscreen enemies cancel attacks and walk back to a visible flank; ranged shots also need a clear world line. Actions prioritize reachable repeat damage-dealers from the last six seconds, then nearest. A rear death boundary sits three metres beyond the camera floor edge and at least eight metres behind the walker, retaining knockback kill credit. The first-ultimate checkpoint remains after wave three. [Earlier 1,000-game enemy/progression results](QA/v064-balance-review.md).
 
 Weapons and abilities now drive distinct physical reactions: blade-plane dismemberment, hammer collapse, electrical spasms, directional gun impacts and force/pull reactions. Counterguard flashes a shield and Redline vents energy from the hands. See `QA/v065-verification.md` for coverage and native captures.
 
