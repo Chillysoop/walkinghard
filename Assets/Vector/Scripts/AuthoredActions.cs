@@ -10,7 +10,7 @@ namespace VectorGame
         readonly Dictionary<Enemy,Vector3> returnPoints=new Dictionary<Enemy,Vector3>();
         readonly Dictionary<Enemy,Vector3> backwash=new Dictionary<Enemy,Vector3>();
         readonly Dictionary<LoadoutItem,float> reloadTimers=new Dictionary<LoadoutItem,float>();
-        float Share(LoadoutItem host)=>PairSlot<0||Deck.TwoHanded||actionWeapon==pairWeapon?1:.5f;
+        float Share(LoadoutItem host)=>!BalanceOverrides.LegacyWeaponAugments||PairSlot<0||Deck.TwoHanded||actionWeapon==pairWeapon?1:.5f;
         bool SharedSecond(LoadoutItem host)=>PairSlot>=0&&!Deck.TwoHanded&&actionWeapon==pairWeapon&&currentCredit.item==pairItem;
         void BeginAuthoredTurn(bool ultimate)
         {
@@ -19,13 +19,18 @@ namespace VectorGame
             turnSpeed=TurnSpeed(ultimate,actionWeapon??(ultimate?Deck.Ultimate:actionItem));nativeDuration=Mathf.Max(activeCard.duration,pairCard?.duration??0)/turnSpeed;
             float extension=Mathf.Max(AugmentCatalog.Extension(actionWeapon??actionItem),Deck.TwoHanded?0:AugmentCatalog.Extension(pairWeapon));
             actionDuration=nativeDuration+extension/turnSpeed;extensionStep=0;backwash.Clear();returnPoints.Clear();reloadTimers.Clear();
-            borePending=actionWeapon?.HasAugment(AugmentId.BoreRounds)==true||pairWeapon?.HasAugment(AugmentId.BoreRounds)==true;
+            borePending=BalanceOverrides.LegacyWeaponAugments&&(actionWeapon?.HasAugment(AugmentId.BoreRounds)==true||pairWeapon?.HasAugment(AugmentId.BoreRounds)==true);
         }
         void AdvanceExtension()
         {
-            if(actionAge<nativeDuration||actionDuration<=nativeDuration)return;
-            float progress=(actionAge-nativeDuration)/(actionDuration-nativeDuration);
-            int step=progress>=.7f?2:progress>=.2f?1:0;if(step<=extensionStep)return;extensionStep=step;
+            bool inline=actionWeapon!=null&&!BalanceOverrides.LegacyWeaponAugments;
+            if(!inline&&(actionAge<nativeDuration||actionDuration<=nativeDuration))return;
+            float progress=inline?actionAge/nativeDuration:(actionAge-nativeDuration)/(actionDuration-nativeDuration);
+            int step=inline?(progress>=.88f?2:progress>=.62f?1:0):(progress>=.7f?2:progress>=.2f?1:0);
+            if(step<=extensionStep)return;
+            // Process both contacts even when a large simulation step crosses both thresholds.
+            if(inline){while(extensionStep<step){extensionStep++;WeaponExtension(actionWeapon,actionItem,activeCard,actionTarget,extensionStep);if(PairSlot>=0&&!Deck.TwoHanded&&pairWeapon!=actionWeapon)WeaponExtension(pairWeapon,pairItem,pairCard,pairTarget,extensionStep);}return;}
+            extensionStep=step;
             if(actionWeapon==null)
             {
                 currentCredit=new KillCredit{item=actionItem,action=actionSerial,augment=true};
@@ -47,11 +52,11 @@ namespace VectorGame
         {
             currentCredit=new KillCredit{item=basic,weapon=host,action=actionSerial,augment=true};float share=Share(host);
             if(host.HasAugment(AugmentId.Flurry)&&target?.deathAge<0&&Reachable(target,card.range))
-            {fx.Arc(step==1?hero.LeftHand.position:hero.RightHand.position,target.physics.Center,Color.magenta);fx.FollowupContact(target.physics.Center,false);fx.Burst(target.physics.Center,Color.magenta,3,1);DerivedHit(target,card.damage*.16f*Effect(host)*share*Deck.Damage,Vector3.zero,.08f*share,false,true);if(host.def.profile.style==WeaponStyle.Conductor)MarkEnemy(target,host);}
+            {fx.Arc(step==1?hero.LeftHand.position:hero.RightHand.position,target.physics.Center,Color.magenta);fx.FollowupContact(target.physics.Center,false);fx.Burst(target.physics.Center,Color.magenta,3,1);DerivedHit(target,card.damage*(BalanceOverrides.LegacyWeaponAugments?.16f:.15f)*Effect(host)*share*Deck.Damage,Vector3.zero,.08f*share,false,true);if(host.def.profile.style==WeaponStyle.Conductor)MarkEnemy(target,host);}
             if(host.HasAugment(AugmentId.Crosscut)&&step==1)
             {
                 Vector3 aim=hero.Root.forward;float arc=host.def.profile.arc+(host.rank-1)*10;fx.Sweep(HeroPosition,aim,card.range,arc,new Color(1,.48f,1),.3f,true);
-                foreach(var e in enemies.Where(e=>InCone(e,HeroPosition,aim,card.range,arc)).OrderBy(e=>e.id).Take(share<1?2:4).ToArray())DerivedHit(e,card.damage*.45f*Effect(host)*share*Deck.Damage,aim*2,.2f,true,true);
+                foreach(var e in enemies.Where(e=>InCone(e,HeroPosition,aim,card.range,arc)).OrderBy(e=>e.id).Take(share<1?2:4).ToArray())DerivedHit(e,card.damage*(BalanceOverrides.LegacyWeaponAugments?.45f:.35f)*Effect(host)*share*Deck.Damage,aim*2,.2f,true,true);
             }
         }
         void ResolveAuthoredAbility(AbilityCard card)
@@ -61,6 +66,7 @@ namespace VectorGame
             var target=actionTarget?.deathAge<0&&Reachable(actionTarget,card.range)?actionTarget:Target(card.range);actionTarget=target;
             float stagger=host.HasAugment(AugmentId.FollowThrough)?.55f:1;
             if(host.HasAugment(AugmentId.FollowThrough)){followBank=.4f*s;followOwner=host;}
+            if(card.id==AbilityId.DrainBrand){foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(focused?2:3+(host.rank-1)/2).ToArray()){DrainMark(e,host,focused?1.4f:1);Hurt(e,damage,Vector3.zero,.1f);fx.Arc(hero.RightHand.position,e.physics.Center,SiphonColor);}return;}
             if(card.id==AbilityId.Counterguard){AddBarrier(host,LoadoutCatalog.CounterguardCapacity(host),LoadoutCatalog.CounterguardDuration(host),host.HasAugment(AugmentId.Discharge));return;}
             if(card.id==AbilityId.SteelJab||card.id==AbilityId.MassDriver)
             {
@@ -106,7 +112,7 @@ namespace VectorGame
             if(target==null||target.deathAge>=0||!Reachable(target,card.range))target=Target(card.range);if(target==null)return;
             var profile=host.def.profile;float share=Share(host),s=Effect(host),damage=card.damage*Deck.Damage*AugmentCatalog.Opening(host);
             Vector3 origin=left?hero.LeftHand.position:hero.RightHand.position,aim=target.physics.Center-(HeroPosition+Vector3.up);aim.y=0;aim.Normalize();
-            bool secondary=SharedSecond(host);float range=card.range*(host.HasAugment(AugmentId.HookedEdge)?.85f:1);
+            bool secondary=SharedSecond(host);float range=card.range*(BalanceOverrides.LegacyWeaponAugments&&host.HasAugment(AugmentId.HookedEdge)?.85f:1);
             if(nativeFollowup&&profile.style!=WeaponStyle.Kinetic)return;
             if(host.def.weapon==WeaponKind.Fists)
             {
@@ -119,10 +125,11 @@ namespace VectorGame
             }
             if(host.def.weapon==WeaponKind.Sword)
             {
-                float arc=(profile.arc+10*(host.rank-1))*(host.HasAugment(AugmentId.HookedEdge)?.65f:1);bool hooked=false;
+                float arc=(profile.arc+10*(host.rank-1))*(BalanceOverrides.LegacyWeaponAugments&&host.HasAugment(AugmentId.HookedEdge)?.65f:1);bool hooked=false;
                 fx.Sweep(HeroPosition,aim,range,arc,Color.white,.3f,false,host.def.hands==2?.34f:.18f);
                 foreach(var e in enemies.Where(e=>InCone(e,HeroPosition,aim,range,arc)&&Reachable(e,range)).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).ToArray())
                 {
+                    if(profile.style==WeaponStyle.Siphon)DrainMark(e,host);
                     float d=damage*(profile.style==WeaponStyle.Greatsword&&e.health<e.maxHealth*.5f?1.4f:1);Hurt(e,d,aim*profile.force*s,.4f,true);WeaponHits[1]++;if(e.deathAge>=0&&host.rank>=3&&profile.style==WeaponStyle.Edge&&Once("edge-launch")){Launch(e,null,0,.6f*s);}
                     if(host.HasAugment(AugmentId.HookedEdge)&&!hooked&&e.deathAge<0){hooked=true;var to=HeroPosition+aim*1.9f;fx.Arc(e.physics.Center,to+Vector3.up,Color.magenta);Control(e,.12f,(to-e.rig.Root.position).normalized*8*s*share);SetSetup(e,host);}
                 }
@@ -132,28 +139,28 @@ namespace VectorGame
             {
                 bool pile=host.HasAugment(AugmentId.Piledriver),ground=host.HasAugment(AugmentId.Groundbreaker);var victims=new List<Enemy>{target};
                 int count=profile.style==WeaponStyle.Impact&&host.rank>=3?3:1;
-                if(!pile)victims.AddRange(enemies.Where(e=>e!=target&&Reachable(e,range)&&Vector3.Distance(e.physics.Center,target.physics.Center)<2.5f).Take(count-1));
-                var chain=new Cascade();foreach(var e in victims){Hurt(e,damage,Vector3.zero,.6f*s);Launch(e,chain,0,profile.force/15*s*(ground?.65f:1)*(pile?1+.35f*s*share:1));WeaponHits[2]++;fx.Burst(e.physics.Center,pile?Color.magenta:VisualFactory.Orange,8,3);}
-                if(!pile&&profile.style==WeaponStyle.Impact)Pulse(target.physics.Center,2.2f+.15f*(host.rank-1),.25f*s,4,target);
+                if(!pile||!BalanceOverrides.LegacyWeaponAugments)victims.AddRange(enemies.Where(e=>e!=target&&Reachable(e,range)&&Vector3.Distance(e.physics.Center,target.physics.Center)<2.5f).Take(count-1));
+                var chain=new Cascade();foreach(var e in victims){Hurt(e,damage,Vector3.zero,.6f*s);Launch(e,chain,0,profile.force/15*s*(ground&&BalanceOverrides.LegacyWeaponAugments?.65f:1)*(pile&&(BalanceOverrides.LegacyWeaponAugments||e==target)?1+.35f*s*share:1));WeaponHits[2]++;fx.Burst(e.physics.Center,pile?Color.magenta:VisualFactory.Orange,8,3);}
+                if((!pile||!BalanceOverrides.LegacyWeaponAugments)&&profile.style==WeaponStyle.Impact)Pulse(target.physics.Center,2.2f+.15f*(host.rank-1),.25f*s,4,target);
                 if(ground&&!secondary){float length=share<1?3.2f:4;fx.GroundWave(HeroPosition,aim,length,.9f,Color.magenta,.3f);foreach(var e in enemies.Where(e=>!victims.Contains(e)&&InCorridor(e,HeroPosition,aim,length,.9f)).Take(share<1?2:3))Control(e,.45f*s*share,Vector3.zero);}
                 return;
             }
             if(Ammo(host)<=0)return;ammunition[host]--;bool bore=host.HasAugment(AugmentId.BoreRounds);var hit=new HashSet<int>();
             if(profile.style==WeaponStyle.Scatter)
             {
-                float arc=bore?20:40;fx.Shape(HeroPosition,aim,range,arc,VisualFactory.Cyan,.22f);
+                float arc=bore&&BalanceOverrides.LegacyWeaponAugments?20:40;fx.Shape(HeroPosition,aim,range,arc,VisualFactory.Cyan,.22f);
                 foreach(var e in enemies.Where(e=>InCone(e,HeroPosition,aim,range,arc)&&Reachable(e,range)).OrderBy(e=>e.id).Take(4+(host.rank-1)/2).ToArray()){hit.Add(e.id);Hurt(e,damage,aim*profile.force*s,.2f*s);WeaponHits[5]++;}
             }
             if(bore||profile.style==WeaponStyle.Rifle)
             {
                 int cap=bore?AugmentCatalog.BoreCap(host,share<1):Mathf.Min(4,host.rank+1);fx.Arc(origin,HeroPosition+Vector3.up+aim*range,bore?Color.magenta:VisualFactory.Cyan);
                 var pierced=enemies.Where(e=>(profile.style==WeaponStyle.Scatter||!hit.Contains(e.id))&&InCorridor(e,HeroPosition,aim,range,.7f)&&Reachable(e,range)).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).Take(cap).ToArray();
-                foreach(var e in pierced){Hurt(e,damage*(profile.style==WeaponStyle.Scatter?.35f:1),aim*profile.force,.2f);WeaponHits[(int)host.def.weapon]++;}
+                foreach(var e in pierced){hit.Add(e.id);Hurt(e,damage*(profile.style==WeaponStyle.Scatter?.35f:1),aim*profile.force,.2f);WeaponHits[(int)host.def.weapon]++;}
                 if(profile.style==WeaponStyle.Rifle&&host.rank>=3&&pierced.Length>0&&Once("rail-launch"))Launch(pierced[pierced.Length-1],null,0,.65f*s);
             }
-            else if(profile.style==WeaponStyle.Pistol)
+            if(profile.style==WeaponStyle.Pistol&&(!bore||!BalanceOverrides.LegacyWeaponAugments))
             {
-                var e=target;Vector3 from=origin;for(int i=0;i<Mathf.Min(3,host.rank)&&e!=null;i++){hit.Add(e.id);Vector3 p=e.physics.Center;fx.Arc(from,p,VisualFactory.Cyan);Hurt(e,damage*(i==0?1:.65f),aim*.7f,.15f*s);WeaponHits[3]++;from=p;e=enemies.Where(x=>!hit.Contains(x.id)&&Reachable(x,range)&&Vector3.Distance(x.physics.Center,p)<4.2f).OrderBy(x=>Vector3.Distance(x.physics.Center,p)).FirstOrDefault();}
+                var e=target;Vector3 from=origin;for(int i=0;i<Mathf.Min(3,host.rank)&&e!=null;i++){bool fresh=hit.Add(e.id);Vector3 p=e.physics.Center;fx.Arc(from,p,VisualFactory.Cyan);if(fresh)Hurt(e,damage*(i==0?1:.65f),aim*.7f,.15f*s);WeaponHits[3]++;from=p;e=enemies.Where(x=>!hit.Contains(x.id)&&Reachable(x,range)&&Vector3.Distance(x.physics.Center,p)<4.2f).OrderBy(x=>Vector3.Distance(x.physics.Center,p)).FirstOrDefault();}
             }
             SpendBreach(host,target,share);fx.Play(0);
         }

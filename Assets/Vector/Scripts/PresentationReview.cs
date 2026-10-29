@@ -22,6 +22,7 @@ namespace VectorGame
             while(!game.PresentationFixtureReady){game.SetCombatSpeed(4);yield return null;}
             // QADraft configures the held UI fixture on its next frame.
             for(int i=0;i<8;i++)yield return null;
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
             var d=game.Deck;d.Acquire(LoadoutCatalog.Find("visor"),3);d.Acquire(LoadoutCatalog.Find("capacitor"),5);
@@ -42,7 +43,27 @@ namespace VectorGame
             game.FusionHistory.Clear();game.ConfirmDraft();game.SetCombatSpeed(1);
             fusionDeck=game.Deck;seenFusions=0;shownFusion=null;
             yield return CapturePresentation(directory,"07-combat");
-            Debug.Log("PRESENTATION_REVIEW_SUCCESS: 56 mapped definitions; native UI captures saved.");Application.Quit(0);
+            Debug.Log("PRESENTATION_REVIEW_SUCCESS: 61 mapped definitions; native UI captures saved.");Application.Quit(0);
+        }
+        IEnumerator CaptureSiphonReview(string directory)
+        {
+            var d=game.Deck;
+            foreach(string id in new[]{"siphonblade","DrainBrand","reclaimer","predator","harvest"})if(Resources.Load<Texture2D>("ItemArt/Siphon-"+id)==null)throw new InvalidOperationException("Missing Siphon art: "+id);
+            var blade=d.Acquire(LoadoutCatalog.Find("siphonblade"),3);game.MoveItem(blade,PlaceKind.Weapon,0);
+            game.MoveItem(d.Acquire(LoadoutCatalog.Find("pistol"),3),PlaceKind.Weapon,1);
+            game.MoveItem(d.Acquire(LoadoutCatalog.Find("reclaimer"),2),PlaceKind.Armor);
+            game.MoveItem(d.Acquire(LoadoutCatalog.Find("predator"),2),PlaceKind.Boots);
+            string[] abilities={"DrainBrand","ReapingCut","ArcBolt"};for(int i=0;i<3;i++)game.MoveItem(d.Acquire(LoadoutCatalog.Find(abilities[i]),2),PlaceKind.Sequence,i+2);
+            d.Open(DraftKind.Ultimate,false);game.MoveItem(d.Acquire(LoadoutCatalog.Find("harvest"),2),PlaceKind.Ultimate);
+            d.Attach(d.Acquire(AugmentCatalog.Get(AugmentId.Crosscut)),blade);
+            d.Open(DraftKind.Mixed,false);string[] rewards={"DrainBrand","reclaimer","siphonblade"};for(int i=0;i<3;i++)d.Offers[i]=new RewardOffer(LoadoutCatalog.Find(rewards[i]),1,i+1);
+            yield return CapturePresentation(directory,"13-siphon-sheet");
+            presentationHover=blade;yield return CapturePresentation(directory,"14-siphon-details");presentationHover=null;
+            d.Open(DraftKind.Augment,false);var modules=new[]{AugmentId.Crosscut,AugmentId.HookedEdge,AugmentId.BoreRounds};for(int i=0;i<3;i++)d.Offers[i]=new RewardOffer(AugmentCatalog.Get(modules[i]));
+            yield return CapturePresentation(directory,"15-augment-options");presentationHover=new LoadoutItem(AugmentCatalog.Get(AugmentId.HookedEdge));
+            yield return CapturePresentation(directory,"16-augment-before-after");presentationHover=null;iconGuide=true;yield return CapturePresentation(directory,"17-siphon-key");iconGuide=false;
+            game.ClaimAugmentToHost(1,blade,false);game.ConfirmDraft();game.SetCombatSpeed(1);yield return CapturePresentation(directory,"18-siphon-combat");
+            Debug.Log("SIPHON_REVIEW_SUCCESS: new art, character stats, effects and augment previews captured.");Application.Quit(0);
         }
         IEnumerator CapturePresentation(string directory,string name)
         {

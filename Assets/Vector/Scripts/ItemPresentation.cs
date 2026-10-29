@@ -31,13 +31,14 @@ namespace VectorGame
             {
                 body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching basic attacks fire together; independent targets.");
                 if(shown==game.Deck.Fists)body+="\nEmpty mounts share this one Fists item. It counts once toward fusion.";
-                int magazine=LoadoutCatalog.Magazine(shown);if(magazine>0)body+="\n"+magazine+" rounds / "+(shown.HasAugment(AugmentId.BreachLoad)?"1.5":"1.2")+"s reload before Loader reduction.";
+                int magazine=LoadoutCatalog.Magazine(shown);if(magazine>0)body+="\n"+magazine+" rounds / "+(BalanceOverrides.LegacyWeaponAugments&&shown.HasAugment(AugmentId.BreachLoad)?"1.5":"1.2")+"s reload before Loader reduction.";
             }
             if(shown.def.kind==ItemKind.Ultimate)body+="\n"+LoadoutCatalog.Cooldown(shown).ToString("0")+" combat seconds to recharge. Queues after the current action; U toggles Auto/Manual, F queues when ready.";
+            string siphon=game.SiphonDetails(shown);if(siphon.Length>0)body+="\n"+siphon;
             string rules=EffectRules(shown);if(rules.Length>0)body+="\n"+rules;
             if(offensive)body+="\n\n"+SynergyText(shown.def);
             body+="\n\nRARITY EFFECTS\n"+shown.def.upgrade;if(shown.Augmentable)body+="\n\n"+AugmentCatalog.Values(shown,DisplayShare(shown));
-            if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";
+            if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";if(shown.def.tags.Contains("siphon"))body+="\nHealing: "+game.ContributionFor(shown).healing.ToString("0.#")+" HP";
             if(shown.def.kind==ItemKind.Augment)body=ModuleDetails(shown);
             float width=450,bodyHeight=Style(11).CalcHeight(new GUIContent(body),width-44)+8,height=Mathf.Min(h-24,bodyHeight+228);
             Vector2 mouse=presentationHover!=null?new Vector2(w*.6f,h*.4f):Event.current.mousePosition;float x=mouse.x+18,y=mouse.y+18;
@@ -91,7 +92,7 @@ namespace VectorGame
         }
         string EffectRules(LoadoutItem item)
         {
-            if(item.def.profile!=null){var p=item.def.profile;return "Native: "+p.style+" / "+p.force+" force. "+(item.def.weapon==WeaponKind.Rifle?"Pierces up to "+Mathf.Min(item.rank+1,4)+" aligned targets.":item.def.weapon==WeaponKind.Hammer?"Launch cap "+(item.HasAugment(AugmentId.Piledriver)?1:p.style==WeaponStyle.Impact&&item.rank>=3?3:1)+"; shared 6-hit / 2-hop cascade.":"");}
+            if(item.def.profile!=null){var p=item.def.profile;return "Native: "+p.style+" / "+p.force+" force. "+(item.def.weapon==WeaponKind.Rifle?"Pierces up to "+Mathf.Min(item.rank+1,4)+" aligned targets.":item.def.weapon==WeaponKind.Hammer?"Launch cap "+(BalanceOverrides.LegacyWeaponAugments&&item.HasAugment(AugmentId.Piledriver)?1:p.style==WeaponStyle.Impact&&item.rank>=3?3:1)+"; shared 6-hit / 2-hop cascade.":"");}
             float scale=LoadoutCatalog.EffectScale(item);var effect=item.def.effect;
             if(item.def.signature!=Signature.None)return GearEffectRules(item)+"\nLimit: "+item.def.tradeoff;
             if(item.def.kind==ItemKind.Ability){switch(item.def.ability.id){
@@ -104,7 +105,7 @@ namespace VectorGame
                 case AbilityId.ArcBolt:return (3+(item.rank>=4?1:0))+" targets; consumes Conductive once; stagger adds "+(8*scale).ToString("0.0")+" damage.";
                 case AbilityId.ConductiveBrand:return "Up to five marks; "+(4*scale).ToString("0.0")+"s duration; "+(10*ItemRarity.Power[item.rank]).ToString("0.0")+" conditional discharge damage.";
                 case AbilityId.ReapingCut:return "Weak below "+((.5f+.025f*(item.rank-1))*100).ToString("0")+"% HP: +"+((.4f+.05f*(item.rank-1))*100).ToString("0")+"% damage; lethal hits sever.";
-                case AbilityId.Counterguard:return LoadoutCatalog.CounterguardCapacity(item).ToString("0.#")+" barrier / "+LoadoutCatalog.CounterguardDuration(item).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Total barriers capped at 90.";
+                case AbilityId.Counterguard:return LoadoutCatalog.CounterguardCapacity(item).ToString("0.#")+" barrier / "+LoadoutCatalog.CounterguardDuration(item).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Burst: full bank to one target, 25% to up to four others. Total barriers capped at 90.";
             }}
             return item.def.tradeoff;
         }
@@ -141,7 +142,8 @@ namespace VectorGame
         }
         string ItemStats(ItemDefinition def,int rarity)
         {
-            if(def.kind==ItemKind.Augment)return def.tradeoff;
+            if(def.kind==ItemKind.Augment)return "ONE SOCKET / "+(def.module.family<0?"ABILITY":"WEAPON");
+            if(def.id=="reclaimer")return "+"+(20*ItemRarity.Power[rarity]).ToString("0")+" HP / "+(LoadoutCatalog.SiphonRate(rarity)*100).ToString("0")+"% LIFESTEAL";
             var item=new LoadoutItem(def,rarity);var card=def.profile!=null||def.ability!=null?LoadoutCatalog.Action(item):null;
             if(card!=null)return (def.kind==ItemKind.Weapon?(def.hands==2?"2H / ":"1H / "):"")+card.damage.ToString("0.#")+" DMG / "+card.duration.ToString("0.00")+"s";
             float p=ItemRarity.Power[rarity];var stats=def.stats;
@@ -160,14 +162,14 @@ namespace VectorGame
                 case AugmentId.Backwash:return "Weaker push, then pull struck survivors back.";
                 case AugmentId.Discharge:return "Barrier absorbs damage, then bursts forward.";
                 case AugmentId.Anchor:return "Weaker pull; successful moves end in stagger.";
-                case AugmentId.Flurry:return "Weaker opening, then two quick follow-up hits.";
-                case AugmentId.PalmDrive:return "Less damage; shove the first contact away.";
-                case AugmentId.Crosscut:return "Weaker swing, then a return cut. Lethal cuts sever.";
-                case AugmentId.HookedEdge:return "Narrow cut; pull the first surviving target inward.";
-                case AugmentId.Groundbreaker:return "Less launch force; stagger along a ground wave.";
-                case AugmentId.Piledriver:return "One target; stronger launch with no splash.";
-                case AugmentId.BoreRounds:return "Extra preparation; focused, penetrating shot.";
-                case AugmentId.BreachLoad:return "Longer reload arms one impact stagger burst.";
+                case AugmentId.Flurry:return "Full opening plus two follow-up contacts; no added delay.";
+                case AugmentId.PalmDrive:return "Full punch damage plus a forward shove.";
+                case AugmentId.Crosscut:return "Full swing plus a return cut within the same turn. Lethal cuts sever.";
+                case AugmentId.HookedEdge:return "Full cleave; pull the first surviving target inward.";
+                case AugmentId.Groundbreaker:return "Full launch force plus a ground stagger wave.";
+                case AugmentId.Piledriver:return "Stronger primary launch; native splash and extra launches retained.";
+                case AugmentId.BoreRounds:return "Added line penetration with normal preparation and native shot effects.";
+                case AugmentId.BreachLoad:return "Normal reload arms one impact stagger burst.";
             }
             return item.def.description;
         }
@@ -176,7 +178,7 @@ namespace VectorGame
             if(item==null)return "";var actual=item.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
             if(actual.def.profile==null&&actual.def.ability==null)return ItemStats(actual.def,actual.rank);
             var card=LoadoutCatalog.Action(actual);float damage=card.damage*game.Deck.Damage*AugmentCatalog.Opening(actual);
-            return damage.ToString("0.#")+" DMG / "+(card.range*(actual.HasAugment(AugmentId.HookedEdge)?.85f:1)).ToString("0.#")+"m / "+((card.duration+AugmentCatalog.Extension(actual))/game.Deck.Speed).ToString("0.00")+"s";
+            return damage.ToString("0.#")+" DMG / "+(card.range*(BalanceOverrides.LegacyWeaponAugments&&actual.HasAugment(AugmentId.HookedEdge)?.85f:1)).ToString("0.#")+"m / "+((card.duration+AugmentCatalog.Extension(actual))/game.Deck.Speed).ToString("0.00")+"s";
         }
         static int EffectFor(ItemDefinition def)
         {

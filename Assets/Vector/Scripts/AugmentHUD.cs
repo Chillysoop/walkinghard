@@ -24,7 +24,7 @@ namespace VectorGame
             {
                 if(r.offer>=0||r.socket||r.place==PlaceKind.Weapon&&r.item==null)continue;var host=Host(r);if(host?.Augmentable!=true)continue;
                 bool shared=SharedSocket(r);
-                Rect badge=SocketRect(r);Border(badge,host.augment==null?muted:Violet,1);Label(badge,shared?"=":host.augment==null?"+":"◆",11,host.augment==null?muted:Violet,true,TextAnchor.MiddleCenter);
+                Rect badge=SocketRect(r);Border(badge,host.augment==null?muted:Violet,1);if(host.augment!=null&&!shared)ActionGlyph(badge,host.augment.def,Violet);else Label(badge,shared?"=":"+",11,muted,true,TextAnchor.MiddleCenter);
                 if(host.augment!=null&&!shared)ItemTooltip(badge,host.augment);
             }
             ItemDefinition pending=dragItem?.def.kind==ItemKind.Augment?dragItem.def:selectedItem?.def.kind==ItemKind.Augment?selectedItem.def:game.Deck.Selected>=0&&!game.Deck.RewardClaimed&&game.Deck.Offers[game.Deck.Selected].def.kind==ItemKind.Augment?game.Deck.Offers[game.Deck.Selected].def:null;
@@ -37,14 +37,14 @@ namespace VectorGame
         }
         float DisplayShare(LoadoutItem item)
         {
-            var d=game.Deck;if(item.def.kind!=ItemKind.Weapon||d.TwoHanded)return 1;
+            if(!BalanceOverrides.LegacyWeaponAugments)return 1;var d=game.Deck;if(item.def.kind!=ItemKind.Weapon||d.TwoHanded)return 1;
             for(int i=0;i<5;i++)if(d.Slots[i]?.def.kind==ItemKind.Basic&&d.WeaponFor(d.Slots[i])==item){int pair=d.PairAfter(i);if(pair>=0&&d.WeaponFor(d.Slots[pair])!=item)return .5f;int before=(i+4)%5;if(d.PairAfter(before)==i&&d.WeaponFor(d.Slots[before])!=item)return .5f;}return 1;
         }
         string ModuleDetails(LoadoutItem module)
         {
-            var hosts=game.Deck.CompatibleHosts(module.def).ToArray();string text=module.def.description+"\nCost: "+module.def.tradeoff+"\n\nCOMPATIBLE OWNED ITEMS";
-            foreach(var host in hosts){var preview=new LoadoutItem(host.def,host.rank){augment=module};text+="\n"+host.Name+"\n"+AugmentCatalog.Values(preview,DisplayShare(host)).Split('\n')[0];}
-            text+="\n\nNo independent rarity or fusion. Scales once from host. Drag onto a highlighted host. Drag ◆ to storage to remove.";return text;
+            var hosts=game.Deck.CompatibleHosts(module.def).ToArray();string text=module.def.description+"\n"+(module.def.module.family>=0?"Socket: ":"Tradeoff: ")+module.def.tradeoff+"\n\nBEFORE → AFTER / COMPATIBLE OWNED ITEMS";
+            foreach(var host in hosts){var preview=new LoadoutItem(host.def,host.rank){augment=module};var card=LoadoutCatalog.Action(host);text+="\n"+host.Name+" ["+Category(host.def)+"]\n"+(host.augment?.def.name??"Empty socket")+" → "+module.def.name+"\n"+(card.damage*AugmentCatalog.Opening(host)).ToString("0.#")+" → "+(card.damage*AugmentCatalog.Opening(preview)).ToString("0.#")+" opening DMG; "+(card.duration+AugmentCatalog.Extension(host)).ToString("0.00")+" → "+(card.duration+AugmentCatalog.Extension(preview)).ToString("0.00")+"s\n"+AugmentCatalog.Values(preview,DisplayShare(host)).Split('\n')[0];}
+            text+="\n\nNo independent rarity or fusion. Scales once from host. Drag onto a highlighted host. Drag the installed module icon to storage to remove.";return text;
         }
     }
 }

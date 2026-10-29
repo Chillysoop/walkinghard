@@ -1,0 +1,36 @@
+{
+  "tool": "Built-in image_gen",
+  "basePrompt": "Game inventory card artwork, stylized-concept. Square composition, polished stylized 3D sci-fi loot illustration on a nearly black navy background, metallic angular forms, crisp bright rim lighting, readable at 64 pixels, centered with generous margins. No text, no lettering, no frame, no UI, no watermark.",
+  "assets": [
+    {
+      "id": "siphonblade",
+      "subject": "Siphon Blade, a single futuristic one-handed sword with a silver segmented blade, crimson-magenta energy channel and a small heart-shaped reactor in the guard. Diagonal silhouette.",
+      "file": "Assets/Resources/ItemArt/Siphon-siphonblade.png",
+      "source": "exec-d8c3ed39-72eb-45fc-8eeb-9cb554460a6e.png"
+    },
+    {
+      "id": "DrainBrand",
+      "subject": "Drain Brand ability, three dark metallic humanoid silhouettes with glowing crimson-magenta droplet sigils on their chests, thin energy filaments converging inward. Clear simple readable icon.",
+      "file": "Assets/Resources/ItemArt/Siphon-DrainBrand.png",
+      "source": "exec-a24d07db-8dc0-4bf8-8446-3468f1480aaa.png"
+    },
+    {
+      "id": "reclaimer",
+      "subject": "Reclaimer Armor, a single futuristic armored chestplate in dark steel and pale teal plates with a bright crimson-magenta heart reactor and energy veins.",
+      "file": "Assets/Resources/ItemArt/Siphon-reclaimer.png",
+      "source": "exec-cf447de5-b3cc-400d-8c2c-e31733edfd0f.png"
+    },
+    {
+      "id": "predator",
+      "subject": "Predator Boots, a pair of futuristic armored boots in dark steel and pale teal with crimson-magenta energy jets and subtle forward motion streaks.",
+      "file": "Assets/Resources/ItemArt/Siphon-predator.png",
+      "source": "exec-0949ba81-2814-4818-917c-b50eec945031.png"
+    },
+    {
+      "id": "harvest",
+      "subject": "Harvest ultimate ability, a dramatic circular crimson-magenta energy vortex pulling luminous life-energy wisps inward toward a glowing heart core. No characters, clear bold silhouette.",
+      "file": "Assets/Resources/ItemArt/Siphon-harvest.png",
+      "source": "exec-9b0f12ae-ed74-40d7-87b2-202482068180.png"
+    }
+  ]
+}

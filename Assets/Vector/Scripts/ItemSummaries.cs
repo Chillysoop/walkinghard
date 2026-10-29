@@ -13,7 +13,7 @@ namespace VectorGame
             if(item.augment!=null)switch(item.augment.def.module.id)
             {
                 case AugmentId.FollowThrough:return "Strike; next basic gains stagger.";
-                case AugmentId.Focused:return item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
+                case AugmentId.Focused:return item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
                 case AugmentId.Echo:return item.def.ability.id==AbilityId.ArcBolt?"Chain lightning, then repeat a hit.":item.def.ability.id==AbilityId.ReapingCut?"Cleave, then repeat a weaker cut.":"Punch, then repeat a weaker hit.";
                 case AugmentId.Afterfield:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark foes in a lingering field.":item.def.ability.id==AbilityId.VectorTether?"Line foes up; leave a pull field.":"Gather foes in a lingering field.";
                 case AugmentId.SplitPayload:return "Launch two foes with less force.";
@@ -25,12 +25,17 @@ namespace VectorGame
                 case AugmentId.Crosscut:return "Cut twice; killing blows sever.";
                 case AugmentId.HookedEdge:return "Cut and pull the first survivor.";
                 case AugmentId.Groundbreaker:return "Smash; ground wave staggers foes.";
-                case AugmentId.Piledriver:return "Launch one foe with extra force.";
-                case AugmentId.BoreRounds:return "Aim longer; shots pierce a line.";
+                case AugmentId.Piledriver:return "Smash; stronger primary launch.";
+                case AugmentId.BoreRounds:return "Shots pierce a line; normal timing.";
                 case AugmentId.BreachLoad:return "Shoot; reload arms a stagger burst.";
             }
             switch(item.def.id)
             {
+                case "siphonblade":return "Cuts steal life; severs spread drain.";
+                case "DrainBrand":return "Mark foes; damage to them heals you.";
+                case "reclaimer":return "Steal life; stronger below half health.";
+                case "predator":return "Healing speeds your next ability.";
+                case "harvest":return "Drain the crowd to restore health.";
                 case "SteelJab":return "Quick punch; interrupts attacks.";
                 case "Breaker":return "Palm strike staggers a wide cone.";
                 case "ForcePush":return "Push enemies and bodies away.";
@@ -79,14 +84,14 @@ namespace VectorGame
                 case "aug-Backwash":return "Weaker push, then pull survivors back.";
                 case "aug-Discharge":return "Barrier bursts instead of boosting a basic.";
                 case "aug-Anchor":return "Weaker pulls also stagger moved foes.";
-                case "aug-Flurry":return "Weaker opening; two follow-up punches.";
-                case "aug-PalmDrive":return "Trade punch damage for a forward shove.";
-                case "aug-Crosscut":return "Weaker swing adds a return cut.";
-                case "aug-HookedEdge":return "Narrower cut pulls the first survivor.";
-                case "aug-Groundbreaker":return "Less launch; add a ground stagger wave.";
-                case "aug-Piledriver":return "Trade splash for one stronger launch.";
-                case "aug-BoreRounds":return "Aim longer to pierce lined-up foes.";
-                case "aug-BreachLoad":return "Longer reload arms a stagger burst.";
+                case "aug-Flurry":return "Add two quick follow-up punches.";
+                case "aug-PalmDrive":return "Keep full punch damage; add a shove.";
+                case "aug-Crosscut":return "Add a return cut; normal timing.";
+                case "aug-HookedEdge":return "Full cleave pulls the first survivor.";
+                case "aug-Groundbreaker":return "Full launch plus a stagger wave.";
+                case "aug-Piledriver":return "Boost primary launch; keep splash.";
+                case "aug-BoreRounds":return "Pierce lined-up foes; normal timing.";
+                case "aug-BreachLoad":return "Normal reload arms a stagger burst.";
                 default:return item.def.description;
             }
         }

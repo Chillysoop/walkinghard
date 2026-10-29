@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace VectorGame
 {
-    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard }
+    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard, DrainBrand }
     public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots, Augment }
     public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle, Shotgun }
     public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment, Ultimate }
@@ -82,6 +82,7 @@ namespace VectorGame
         public IEnumerable<LoadoutItem> Equipment=>Armor.Where(i=>i!=null).Concat(Rig==null?Enumerable.Empty<LoadoutItem>():new[]{Rig});
         public LoadoutItem Equipped(Signature signature)=>Equipment.FirstOrDefault(i=>i.def.signature==signature);
         public float Stat(Func<GearStats,float> pick)=>Equipment.Sum(i=>pick(i.def.stats)*ItemRarity.Power[i.rank]);
+        public float Lifesteal=>Weapons.Where(w=>w!=null&&w.def.id=="siphonblade").Distinct().Sum(w=>LoadoutCatalog.SiphonRate(w.rank))+Equipment.Where(i=>i.def.signature==Signature.Reclaimer).Sum(i=>LoadoutCatalog.SiphonRate(i.rank));
         public float Speed=>1+Stat(s=>s.speed);
         public float Damage=>1+Stat(s=>s.damage);
         public float MaxHealthBonus=>Stat(s=>s.health);
@@ -113,27 +114,27 @@ namespace VectorGame
         }
         public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
         public void Open(DraftKind kind,bool grantReroll){Draft=kind;if(kind==DraftKind.Ultimate)UltimatesUnlocked=true;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
-        bool UnlockedReward(ItemDefinition def)=>def.kind!=ItemKind.Ultimate||UltimatesUnlocked;
+        bool UnlockedReward(ItemDefinition def)=>LoadoutCatalog.RewardEnabled(def)&&(def.kind!=ItemKind.Ultimate||UltimatesUnlocked);
         void Shuffle<T>(List<T> list){for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
         void Roll()
         {
             Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
             if(Draft==DraftKind.Ability)
-            {foreach(var def in LoadoutCatalog.Abilities)if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            {foreach(var def in LoadoutCatalog.Abilities.Where(LoadoutCatalog.RewardEnabled))if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
             else if(Draft==DraftKind.Ultimate)
-            {choices.AddRange(LoadoutCatalog.Ultimates.Select(d=>new RewardOffer(d)));Shuffle(choices);}
+            {choices.AddRange(LoadoutCatalog.Ultimates.Where(LoadoutCatalog.RewardEnabled).Select(d=>new RewardOffer(d)));Shuffle(choices);}
             else if(Draft==DraftKind.Augment)
             {choices.AddRange(AugmentCatalog.Offers(this,random).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Equipment)
             {var pool=LoadoutCatalog.Equipment.Where(UnlockedReward).ToList();Shuffle(pool);var empty=Enumerable.Range(0,3).FirstOrDefault(i=>Armor[i]==null);if(Armor[empty]==null){var wanted=pool.First(d=>LoadoutCatalog.ArmorIndex(d.kind)==empty);choices.Add(new RewardOffer(wanted));pool.Remove(wanted);}choices.AddRange(pool.Take(3-choices.Count).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Weapon)
-            {foreach(var def in LoadoutCatalog.Weapons)choices.Add(new RewardOffer(def));Shuffle(choices);}
+            {foreach(var def in LoadoutCatalog.Weapons.Where(LoadoutCatalog.RewardEnabled))choices.Add(new RewardOffer(def));Shuffle(choices);}
             else
             {
                 var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&i.rank<5&&UnlockedReward(i.def)).ToList();Shuffle(owned);
                 if(owned.Count>0){var item=owned[0];choices.Add(new RewardOffer(item.def,2));}
                 else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
-                var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def).ToList();Shuffle(support);
+                var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def&&LoadoutCatalog.RewardEnabled(d)).ToList();Shuffle(support);
                 var tags=string.Join(" ",Slots.Where(i=>i!=null).Select(i=>(i.def.kind==ItemKind.Basic?WeaponFor(i):i).def.tags));
                 var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
                 var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful&&UnlockedReward(d)).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));

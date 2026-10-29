@@ -8,14 +8,18 @@ namespace VectorGame
     // Optional development input. No override file means the authored catalog, unchanged.
     public static class BalanceOverrides
     {
-        [Serializable] sealed class Document {public float enemyDamage,enemyHealth,heroHealth,firstSpawnInterval,finalSpawnInterval;public ItemPatch[] items;}
+        [Serializable] sealed class Document {public float enemyDamage,enemyHealth,heroHealth,firstSpawnInterval,finalSpawnInterval;public bool legacyWeaponAugments,legacyCounterBurst,excludeSiphon;public ItemPatch[] items;}
+        public static bool LegacyWeaponAugments {get;private set;}
+        public static bool LegacyCounterBurst {get;private set;}
+        public static bool ExcludeSiphon {get;private set;}
         [Serializable] sealed class ItemPatch {public string id;public float damageMultiplier,durationMultiplier,effectMultiplier,reloadMultiplier,cooldownMultiplier,barrierMultiplier,barrierSeconds,wardSeconds;public int wardHits;public bool consumeBlockedWard;}
         static readonly Dictionary<string,ItemPatch> patches=new Dictionary<string,ItemPatch>();
         static float Multiplier(float value)=>value==0?1:value;
         static void Validate(float value,string label){if(float.IsNaN(value)||float.IsInfinity(value)||value<0||value>10)throw new ArgumentException("Balance multiplier must be 0 (default) or in (0,10]: "+label);}
         public static void Apply(string path,CombatTuning tuning)
         {
-            patches.Clear();if(string.IsNullOrEmpty(path))return;var doc=JsonUtility.FromJson<Document>(File.ReadAllText(path));if(doc==null)throw new ArgumentException("Invalid balance JSON");
+            patches.Clear();LegacyWeaponAugments=LegacyCounterBurst=ExcludeSiphon=false;if(string.IsNullOrEmpty(path))return;var doc=JsonUtility.FromJson<Document>(File.ReadAllText(path));if(doc==null)throw new ArgumentException("Invalid balance JSON");
+            LegacyWeaponAugments=doc.legacyWeaponAugments;LegacyCounterBurst=doc.legacyCounterBurst;ExcludeSiphon=doc.excludeSiphon;
             foreach(var value in new[]{doc.enemyDamage,doc.enemyHealth,doc.heroHealth,doc.firstSpawnInterval,doc.finalSpawnInterval})if(!float.IsFinite(value)||value<0)throw new ArgumentException("Combat overrides must be finite and non-negative; zero keeps the authored value.");
             if(doc.enemyDamage>0)tuning.enemyDamage=doc.enemyDamage;if(doc.enemyHealth>0)tuning.enemyHealth=doc.enemyHealth;if(doc.heroHealth>0)tuning.heroHealth=doc.heroHealth;
             if(doc.firstSpawnInterval>0)tuning.firstSpawnInterval=doc.firstSpawnInterval;if(doc.finalSpawnInterval>0)tuning.finalSpawnInterval=doc.finalSpawnInterval;

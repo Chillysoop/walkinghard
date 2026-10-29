@@ -1,4 +1,6 @@
-# Walking Hard 0.6.6 — Defensive Build Balance
+# Walking Hard 0.6.7 — Siphon and Weapon Augments
+
+Weapon augments now add effects without slowing or weakening the original weapon. Counterguard's stored burst deals full damage to one target and 25% to up to four others; Amplifier is unchanged. Five new Siphon items add Lifesteal, drain marks, low-health sustain, healing-triggered haste and the Harvest ultimate. The character sheet shows Lifesteal; all new items have distinct art, summaries and rarity-scaled effects. [Balance results](QA/v067-balance-review.md).
 
 Counterguard now lasts 2.5 seconds at Common, retaining its 25-point shield and 80% bank conversion. Duelist Jacket now wards two damaging hits for six seconds at Common; only the first staggers, refresh replaces charges, and fully blocked hits preserve them. [Isolated and combined balance tests](QA/v066-balance-review.md).
 
@@ -8,7 +10,7 @@ Weapons and abilities now drive distinct physical reactions: blade-plane dismemb
 
 Pick-three cards and both action sequences now include a short effect description. Empty equipment mounts have no placeholder artwork. The combat HUD is 20% smaller with translucent panels. Runs start without an ultimate; after wave three, choose one of three ultimates in place of the normal mixed reward, followed by the existing augment choice. See [0.6.3 verification](QA/v063-verification.md).
 
-All 56 item definitions have distinct artwork, shared across rewards, inventory, equipment and combat. Checkpoints explain automatic same-item, same-rarity fusion, show matching-copy counts and separate other-rarity copies. The Icon Key explains categories, rarities and synergy symbols. Augments remain host-scaled and do not fuse. See [art sources and prompts](https://github.com/Chillysoop/walkinghard/tree/main/Art) and [0.6.2 verification](QA/v062-verification.md).
+All 61 item definitions have distinct artwork, shared across rewards, inventory, equipment and combat. Checkpoints explain automatic same-item, same-rarity fusion, show matching-copy counts and separate other-rarity copies. The Icon Key explains categories, rarities and synergy symbols. Augments remain host-scaled and do not fuse. See [art sources and prompts](https://github.com/Chillysoop/walkinghard/tree/main/Art) and [0.6.2 verification](QA/v062-verification.md).
 
 Counterguard now grants 25 barrier at Common (35 previously), with the existing rarity multipliers, duration and damage-conversion rules. The first balance test changes this capacity alone. Optional Fast simulations reuse combat and drafting rules with approximate movement and body collisions; Full remains the default for physics verification. See [the simulation guide](SIMULATIONS.md) and [0.6.1 verification](QA/v061-verification.md).
 
@@ -24,9 +26,9 @@ If main has no matching release, the launcher can build it in an isolated cache 
 
 - Five movable sequence positions: two permanent weapon attacks plus three drafted abilities. The sequence always runs automatically.
 - Matching adjacent one-handed attacks fire together with independent targets. Two-handed weapons fill both mounts and lock their basic cards into one movable group.
-- Nine weapons: two fist styles, one- and two-handed swords and hammers, pistol, rifle and scattergun. Each has an authored signature. Both equipped weapons stay in hand during casts.
-- Ten abilities, twelve armor pieces, five rigs and four ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
-- Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion, have no separate rarity, and expose their tradeoffs and paired limits.
+- Ten weapons: two fist styles, one- and two-handed swords and hammers, pistol, rifle and scattergun. Each has an authored signature. Both equipped weapons stay in hand during casts.
+- Eleven abilities, fourteen armor pieces, five rigs and five ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
+- Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion and have no separate rarity. Weapon modules retain native attacks/timing and receive full paired effects. Before/after previews explain the single-socket choice; ability conversions retain explicit tradeoffs.
 - Temporary amber tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
 - No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
 - Eight waves with formation previews and a final Warden encounter. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
