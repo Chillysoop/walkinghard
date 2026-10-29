@@ -2,10 +2,10 @@
 
 ## Fast balance screening
 
-Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. The tested player is `Build/FastBalance-v2/WalkingHard.exe`; rebuilding current source also includes this mode. Existing v0.6.0 downloads support Full mode only.
+Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. That benchmark used `Build/FastBalance-v2/WalkingHard.exe`; the current player is `Build/Counterguard25-v061-final/WalkingHard.exe`, with Counterguard capacity reduced from 35 to 25. Release 0.6.1 includes Fast mode; older v0.6.0 downloads support Full mode only.
 
 ```powershell
-& '.\Run Simulations.ps1' -Player '.\Build\FastBalance-v2\WalkingHard.exe' `
+& '.\Run Simulations.ps1' -Player '.\Build\Counterguard25-v061-final\WalkingHard.exe' `
   -Mode Fast -Runs 1000 -Workers 4 -Waves 8 -Seed 12000 `
   -MaxCombatSeconds 600
 ```
@@ -14,7 +14,7 @@ Fast mode executes the same authored combat, drafting, rarity, fusion, augment, 
 
 This is a screening model, not a calibrated replacement for the game. In the first 32 matched seeds it agreed on the outcome for 23 games; Full won 19 and Fast won 10. Gun, lightning and collision builds were often understated. Do not use a low Fast win rate alone to buff those builds. Rank hypotheses with contributions and comparable cohorts, then verify a small representative set in Full mode. Mode is recorded per game and per batch; the comparison script rejects mixed-mode balance comparisons.
 
-The 1,000-game screening report is `QA/Simulations/fast-mixed-1000-20261029/balance-review.md` locally. No balance changes were applied from that report. The recorded throughput is hardware/workload dependent, not a universal two-minute guarantee.
+The original, pre-change screening report is `QA/Simulations/fast-mixed-1000-20261029/balance-review.md` locally. The approved Counterguard capacity reduction and its separate 1,000-game retest are recorded in `QA/v061-verification.md`; other recommendations remain unapplied. The recorded throughput is hardware/workload dependent, not a universal two-minute guarantee.
 
 ## Full physics validation
 
@@ -61,7 +61,7 @@ Defeats are valid observations. Invalid state, duplicate ownership, broken kill 
 
 Copy `balance.example.json`, then change only the values you want to test. Omitted values or zero retain the authored defaults. A multiplier of `1` is unchanged; `0.9` means 90% of the base value. This input is development-only and does not alter ordinary play or save data.
 
-Supported combat values: enemy damage, enemy health, hero health, first spawn interval and final spawn interval. Item IDs are defined in `LoadoutCatalog.cs`. Active items support damage, action-duration, effect, reload and ultimate-cooldown multipliers where applicable. Effect multipliers modify the host's authored effect scale and gear effect-profile values; fixed target caps, trigger rules and gear stat bonuses stay authored. Ultimate recharge retains the greater-than-10-second floor. A module uses its host's scaling, not a separate rarity or tuning entry.
+Supported combat values: enemy damage, enemy health, hero health, first spawn interval and final spawn interval. Item IDs are defined in `LoadoutCatalog.cs`. Active items support damage, action-duration, effect, reload and ultimate-cooldown multipliers where applicable. Counterguard additionally supports `barrierMultiplier`, which changes only shield capacity (for example, 1.4 restores 35 from the authored 25 for a controlled baseline). Effect multipliers modify the host's authored effect scale and gear effect-profile values; fixed target caps, trigger rules and gear stat bonuses stay authored. Ultimate recharge retains the greater-than-10-second floor. A module uses its host's scaling, not a separate rarity or tuning entry.
 
 ```powershell
 & '.\Run Simulations.ps1' -Player '.\Build\Windows\WalkingHard.exe' `

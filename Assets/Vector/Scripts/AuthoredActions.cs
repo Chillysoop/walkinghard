@@ -60,7 +60,7 @@ namespace VectorGame
             var target=actionTarget?.deathAge<0&&Reachable(actionTarget,card.range)?actionTarget:Target(card.range);actionTarget=target;
             float stagger=host.HasAugment(AugmentId.FollowThrough)?.55f:1;
             if(host.HasAugment(AugmentId.FollowThrough)){followBank=.4f*s;followOwner=host;}
-            if(card.id==AbilityId.Counterguard){AddBarrier(host,35*ItemRarity.Power[host.rank],3.5f*s,host.HasAugment(AugmentId.Discharge));return;}
+            if(card.id==AbilityId.Counterguard){AddBarrier(host,LoadoutCatalog.CounterguardCapacity(host),3.5f*s,host.HasAugment(AugmentId.Discharge));return;}
             if(card.id==AbilityId.SteelJab||card.id==AbilityId.MassDriver)
             {
                 if(target==null)return;var victims=new List<Enemy>{target};bool split=host.HasAugment(AugmentId.SplitPayload);

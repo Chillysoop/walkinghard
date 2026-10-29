@@ -1,5 +1,7 @@
 # Walking Hard: 1,000-game balance screening
 
+Historical pre-change screening; see [0.6.1 verification](v061-verification.md) for the subsequently approved capacity-25 test.
+
 29 October 2026. **1,000 / 1,000 valid games in 88.30 seconds** (679.5 games/minute); four workers; seeds 12000–12999; mixed policies; eight waves; 600 simulated seconds per run. Outcomes: **415 wins, 578 defeats, 7 timeouts**. No missing or duplicate seeds. All balance values match release 0.6.0; no recommendations have been applied.
 
 This batch uses the new **Fast screening mode**, not full PhysX. Authored combat/drafting executes at 60 Hz; movement, body geometry and contacts are approximate. The previous full-physics run was stopped at 32 valid games when the user requested a two-minute target. Its evidence is preserved separately.

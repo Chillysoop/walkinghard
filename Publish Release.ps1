@@ -1,4 +1,4 @@
-param([string]$Tag='v0.6.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.6.1',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -17,7 +17,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Launcher') -Destination $stage -Recurse
     foreach($doc in @('README.md','DESIGN.md','SIMULATIONS.md','Run Simulations.ps1','Summarize Simulations.ps1','Compare Simulations.ps1','balance.example.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
     $qaStage=Join-Path $stage 'QA';New-Item -ItemType Directory -Path $qaStage -Force | Out-Null
-    foreach($doc in @('v060-verification.md','v060-native-contactsheet.jpg','v060-followup-cues.jpg','v060-mechanic-motion.jsonl','v060-simulation-summary.json','v060-balance-comparisons.csv')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($doc in @('v060-verification.md','v060-native-contactsheet.jpg','v060-followup-cues.jpg','v060-mechanic-motion.jsonl','v060-simulation-summary.json','v060-balance-comparisons.csv','v061-verification.md','v061-fast-comparison.json','v061-full-comparison.json','fast-balance-1000-summary.json','fast-balance-calibration.csv')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -30,7 +30,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Build Variety and Headless Balancing';draft=$true;prerelease=$false;body="Forty authored items and sixteen transferable weapon/ability augments expand the five-action loop. Eight waves include formation previews, thirteen item choices, two augment drafts and a Warden encounter. Weapons, armor, rigs and ultimates have visible signature effects; rarity scales their relevant stats and effects. Checkpoints support module attachment, storage and fusion ownership. Recaps report damage, control, absorption and delays. Engine-only batch scripts run seeded games with actual combat and PhysX, numerical tuning files and before/after CSV comparisons. Balance remains provisional; see QA/v060-verification.md for measured checks and limitations.`n`nExtract the Windows ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. See SIMULATIONS.md for bulk simulations. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Counterguard Tuning and Fast Simulations';draft=$true;prerelease=$false;body="Counterguard's base barrier is reduced from 35 to 25, with its rarity multipliers, duration and damage-conversion rules preserved. This release adds an optional Fast simulation mode for high-volume balance screening; Full mode remains the default for physical verification. Fast mode reuses 60 Hz combat/drafting while approximating movement and body collisions. The initial 1,000-game batch completed in 88.3 seconds on the test machine. Mode is recorded in results, and tuning comparisons reject mixed modes. Physics-heavy builds require Full confirmation. See QA/v061-verification.md for the isolated Counterguard comparison, checks and limits.`n`nExtract the Windows ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. See SIMULATIONS.md for batch commands. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){
