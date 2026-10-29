@@ -13,8 +13,14 @@ namespace VectorGame
         }
         Enemy Target(float range,Enemy exclude=null)
         {
-            Enemy best=null;float score=float.MaxValue;
-            foreach(var e in enemies){if(e==exclude||!Reachable(e,range))continue;float value=Vector3.Distance(e.rig.Root.position,HeroPosition)-(e.attack>=0?.4f:0);if(value<score){best=e;score=value;}}
+            Enemy best=null;float bestPressure=-1,bestDistance=float.MaxValue;
+            foreach(var e in enemies)
+            {
+                if(e==exclude||e.health<=0||!Reachable(e,range))continue;
+                float pressure=RecentEnemyPressure(e),distance=Vector3.Distance(e.rig.Root.position,HeroPosition);
+                if(pressure>bestPressure+.001f||Mathf.Abs(pressure-bestPressure)<=.001f&&(distance<bestDistance-.001f||Mathf.Abs(distance-bestDistance)<=.001f&&(best==null||e.id<best.id)))
+                {best=e;bestPressure=pressure;bestDistance=distance;}
+            }
             return best;
         }
         public int Ammo(LoadoutItem weapon)
@@ -141,19 +147,8 @@ namespace VectorGame
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0)e.attack=-1;
-            if(e.health<=0)
-            {
-                enemies.Remove(e);e.deathAge=0;e.physics.Die(impulse);corpses.Add(e);Kills++;Ragdolls++;
-                SetBodyWalkCollision(e,flights.Exists(f=>f.body==e));
-                if(sever){e.physics.Sever();Severs++;fx.Burst(e.physics.Center,VisualFactory.Orange,10,3);}
-                if(currentCredit!=null)
-                {
-                    var owner=KillOwner(currentCredit.weapon??currentCredit.item);
-                    if(owner!=null)itemKills[owner]=KillsFor(owner)+1;
-                    Score.Kill(e.heavy?200:100,currentCredit.action,currentCredit.hop);
-                }
-                DeathSignatures(e,sever);
-            }
+            RememberDisplacement(e,impulse);
+            if(e.health<=0)KillEnemy(e,impulse,sever);
             else e.physics.Impulse(impulse*ControlResistance(e));
             DirectSignatures(e,damage,staggered);
         }
@@ -168,6 +163,7 @@ namespace VectorGame
             }
             if(forcedDirection.HasValue)direction=forcedDirection.Value;
             if(direction.sqrMagnitude<.1f)direction=hero.Root.forward;
+            RememberDisplacement(body,direction);
             OnLaunch(body);
             energy*=ControlResistance(body);body.physics.Impulse(direction*(body.heavy?11:15)*energy+Vector3.up*1.5f-body.physics.Velocity);
             body.stun=1.2f*ControlResistance(body);body.engaged=false;body.attack=-1;

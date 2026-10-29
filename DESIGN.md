@@ -182,3 +182,14 @@ The optional Icon Key explains item types, rarity progression and labeled synerg
 Each pick-three card shows one plain-language effect line below its art/stats and above fusion progress. Both checkpoint and combat sequences show the same concise effect copy; basic cards resolve their equipped weapon or fallback fists, and augmented hosts describe the modified action. Full numerical rules and tradeoffs remain in hover details. Empty equipment mounts show their slot label and empty status without artwork; empty weapon mounts explain that basics use fists.
 
 Combat UI uses 80% of the previous scale with 66%-opaque panels and a lighter sequence backing. Checkpoint, pause and recap scales remain unchanged. An empty ultimate mount shows the checkpoint-three milestone instead of a countdown or usable controls.
+
+
+### Enemy pressure and rear boundary (0.6.4)
+
+Ranged opponents use a 15% chance on waves 2/5/8 and 7.5% on other eligible waves, after the heavy-enemy roll. Wave one has no shooters. This halves the previous odds. Attacks require visibility within the combat view; the bottom 20% is reserved for the action HUD. Enemies outside view or more than 1.8m behind the walker stop attacking and walk toward a forward flank, preserving separation and physics. They rejoin normal movement once visible and forward again. Ranged windups require a clear world line to the walker; loss of visibility cancels before damage. Fast sims retain their documented world-occlusion approximation.
+
+Primary target selection first considers reachable enemies with at least two damaging hits in the last six combat seconds. Among them it prefers decayed damage pressure; otherwise it chooses nearest, with stable ID tie-breaking. Actual health damage records pressure; fully absorbed hits do not. Range, world visibility and independent paired targets remain constraints. Chain jumps and area geometry retain their authored rules.
+
+The rear death boundary follows the camera's bottom floor intersection with a further 3m cushion, and is never closer than 8m behind the walker. Only enemies beyond it and fully outside the camera (including airborne heads) die. Entry passages are excluded. Living enemies remain threatening in the rear cushion and walk back into view. Boundary deaths use ordinary ragdolls, scoring and on-kill rules. The latest displacement source owns the kill, including fusion resolution; no artificial damage is added to its contribution. Unattributed environmental deaths are counted separately, never assigned to a random weapon. Each enemy dies only once.
+
+The 1,000-game final screening improved first-three-wave survival from 58.5% to 82.8% against released 0.6.3. Proposed Counterguard duration and Duelist ward changes remain unapplied; see QA/v064-balance-review.md.

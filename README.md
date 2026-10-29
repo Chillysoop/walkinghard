@@ -1,4 +1,5 @@
-# Walking Hard 0.6.3 — Readable Effects and Ultimate Draft
+# Walking Hard 0.6.4 — Enemy Pressure and Rear Boundary
+Ranged spawn odds are halved. Offscreen enemies cancel attacks and walk back to a visible flank; ranged shots also need a clear world line. Actions prioritize reachable repeat damage-dealers from the last six seconds, then nearest. A rear death boundary sits three metres beyond the camera floor edge and at least eight metres behind the walker, retaining knockback kill credit. The first-ultimate checkpoint remains after wave three. [Matched 1,000-game balance results and unapplied recommendations](QA/v064-balance-review.md).
 
 Pick-three cards and both action sequences now include a short effect description. Empty equipment mounts have no placeholder artwork. The combat HUD is 20% smaller with translucent panels. Runs start without an ultimate; after wave three, choose one of three ultimates in place of the normal mixed reward, followed by the existing augment choice. See [0.6.3 verification](QA/v063-verification.md).
 

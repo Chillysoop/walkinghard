@@ -45,7 +45,7 @@ namespace VectorGame
         {
             if(e.deathAge>=0)return;float r=ControlResistance(e);float effective=seconds*r;
             ContributionFor(Owner).control+=Mathf.Max(0,effective-e.stun);e.stun=Mathf.Max(e.stun,effective);if(effective>0){e.attack=-1;e.engaged=false;}
-            e.physics.Impulse(impulse*r);
+            RememberDisplacement(e,impulse);e.physics.Impulse(impulse*r);
         }
         void MarkEnemy(Enemy e,LoadoutItem source,float potency=1)
         {
@@ -94,7 +94,7 @@ namespace VectorGame
                 if(b.left<=0){barriers.Remove(b);EndBarrier(b);}if(damage<=0)break;
             }
             if(duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist) is LoadoutItem d){float prevent=damage*Mathf.Min(.65f,d.def.effect.Power(d.rank));damage-=prevent;ContributionFor(d).absorption+=prevent;duelistUntil=0;var saved=currentCredit;currentCredit=new KillCredit{item=d,action=actionSerial};Control(attacker,.4f*Effect(d),Vector3.zero);currentCredit=saved;}
-            Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Play(3);
+            RecordEnemyPressure(attacker,Mathf.Min(Health,damage));Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Play(3);
         }
         float duelistUntil;
         void Pulse(Vector3 point,float radius,float stagger,int cap,Enemy exclude=null)

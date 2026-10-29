@@ -1,0 +1,317 @@
+{
+  "baseline": {
+    "batch": {
+      "mode": "Fast",
+      "maxCombatSeconds": 600,
+      "firstSeed": 12000,
+      "startedUtc": "2026-10-29T17:45:19.5854159Z",
+      "policy": "mixed",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\ReadableHUD-v063-publish\\WalkingHard.exe",
+      "assemblySha256": "50D790EE0A3A09B69E9DC7067983ED0EF06FF1841473DD5B915CD9F699DB9457",
+      "runs": 1000,
+      "workers": 4,
+      "waves": 8,
+      "completedUtc": "2026-10-29T17:46:44.1100470Z"
+    },
+    "seconds": 84.5,
+    "valid": 1000,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateSeeds": 0,
+    "clear3": 585,
+    "wins": 251,
+    "timeouts": 2,
+    "waves": [
+      {
+        "wave": 1,
+        "reached": 1000,
+        "deaths": 0,
+        "cleared": 1000,
+        "conditional_death_percent": 0.0,
+        "median_survivor_health": 264.0
+      },
+      {
+        "wave": 2,
+        "reached": 1000,
+        "deaths": 18,
+        "cleared": 982,
+        "conditional_death_percent": 1.8,
+        "median_survivor_health": 171.2
+      },
+      {
+        "wave": 3,
+        "reached": 982,
+        "deaths": 397,
+        "cleared": 585,
+        "conditional_death_percent": 40.43,
+        "median_survivor_health": 179.33
+      }
+    ],
+    "policies": [
+      {
+        "policy": "balanced",
+        "games": 167,
+        "clear3": 149,
+        "wins": 87
+      },
+      {
+        "policy": "gun",
+        "games": 166,
+        "clear3": 87,
+        "wins": 25
+      },
+      {
+        "policy": "pinball",
+        "games": 167,
+        "clear3": 92,
+        "wins": 53
+      },
+      {
+        "policy": "random",
+        "games": 167,
+        "clear3": 73,
+        "wins": 26
+      },
+      {
+        "policy": "sever",
+        "games": 166,
+        "clear3": 77,
+        "wins": 21
+      },
+      {
+        "policy": "storm",
+        "games": 167,
+        "clear3": 107,
+        "wins": 39
+      }
+    ],
+    "counterguard": [
+      {
+        "counterguard_by_wave2": true,
+        "games": 331,
+        "clear3": 329,
+        "wins": 224
+      },
+      {
+        "counterguard_by_wave2": false,
+        "games": 669,
+        "clear3": 256,
+        "wins": 27
+      }
+    ],
+    "rear_line_games": 0,
+    "rear_line_kills": 0,
+    "rear_line_max": 0,
+    "environmental_kills": 0
+  },
+  "pressure": {
+    "batch": {
+      "assemblySha256": "2A7FDFFF12421CA6E1F6C8AD8B90F51CF2EC8006E5786D78162FC6B0FFE01A4A",
+      "policy": "mixed",
+      "runs": 1000,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\EnemyPressure-v064\\WalkingHard.exe",
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-10-29T17:50:08.3740929Z",
+      "waves": 8,
+      "firstSeed": 12000,
+      "mode": "Fast",
+      "completedUtc": "2026-10-29T17:51:52.1742604Z"
+    },
+    "seconds": 103.51,
+    "valid": 1000,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateSeeds": 0,
+    "clear3": 828,
+    "wins": 418,
+    "timeouts": 2,
+    "waves": [
+      {
+        "wave": 1,
+        "reached": 1000,
+        "deaths": 0,
+        "cleared": 1000,
+        "conditional_death_percent": 0.0,
+        "median_survivor_health": 264.0
+      },
+      {
+        "wave": 2,
+        "reached": 1000,
+        "deaths": 10,
+        "cleared": 990,
+        "conditional_death_percent": 1.0,
+        "median_survivor_health": 209.6
+      },
+      {
+        "wave": 3,
+        "reached": 990,
+        "deaths": 162,
+        "cleared": 828,
+        "conditional_death_percent": 16.36,
+        "median_survivor_health": 177.34
+      }
+    ],
+    "policies": [
+      {
+        "policy": "balanced",
+        "games": 167,
+        "clear3": 163,
+        "wins": 142
+      },
+      {
+        "policy": "gun",
+        "games": 166,
+        "clear3": 118,
+        "wins": 40
+      },
+      {
+        "policy": "pinball",
+        "games": 167,
+        "clear3": 147,
+        "wins": 83
+      },
+      {
+        "policy": "random",
+        "games": 167,
+        "clear3": 119,
+        "wins": 43
+      },
+      {
+        "policy": "sever",
+        "games": 166,
+        "clear3": 137,
+        "wins": 39
+      },
+      {
+        "policy": "storm",
+        "games": 167,
+        "clear3": 144,
+        "wins": 71
+      }
+    ],
+    "counterguard": [
+      {
+        "counterguard_by_wave2": true,
+        "games": 331,
+        "clear3": 331,
+        "wins": 314
+      },
+      {
+        "counterguard_by_wave2": false,
+        "games": 669,
+        "clear3": 497,
+        "wins": 104
+      }
+    ],
+    "rear_line_games": 0,
+    "rear_line_kills": 0,
+    "rear_line_max": 0,
+    "environmental_kills": 0
+  },
+  "final": {
+    "batch": {
+      "assemblySha256": "782535C5CAA78045514E2D3F5DB71D23771A0008C7DDFA51607FC51D6D5C1B7D",
+      "policy": "mixed",
+      "waves": 8,
+      "firstSeed": 12000,
+      "runs": 1000,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\RearBoundary-v064\\WalkingHard.exe",
+      "mode": "Fast",
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-10-29T17:56:30.7344795Z",
+      "completedUtc": "2026-10-29T17:58:15.0143816Z"
+    },
+    "seconds": 104.26,
+    "valid": 1000,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateSeeds": 0,
+    "clear3": 828,
+    "wins": 419,
+    "timeouts": 2,
+    "waves": [
+      {
+        "wave": 1,
+        "reached": 1000,
+        "deaths": 0,
+        "cleared": 1000,
+        "conditional_death_percent": 0.0,
+        "median_survivor_health": 264.0
+      },
+      {
+        "wave": 2,
+        "reached": 1000,
+        "deaths": 10,
+        "cleared": 990,
+        "conditional_death_percent": 1.0,
+        "median_survivor_health": 209.6
+      },
+      {
+        "wave": 3,
+        "reached": 990,
+        "deaths": 162,
+        "cleared": 828,
+        "conditional_death_percent": 16.36,
+        "median_survivor_health": 177.34
+      }
+    ],
+    "policies": [
+      {
+        "policy": "balanced",
+        "games": 167,
+        "clear3": 163,
+        "wins": 143
+      },
+      {
+        "policy": "gun",
+        "games": 166,
+        "clear3": 118,
+        "wins": 40
+      },
+      {
+        "policy": "pinball",
+        "games": 167,
+        "clear3": 148,
+        "wins": 82
+      },
+      {
+        "policy": "random",
+        "games": 167,
+        "clear3": 118,
+        "wins": 44
+      },
+      {
+        "policy": "sever",
+        "games": 166,
+        "clear3": 137,
+        "wins": 39
+      },
+      {
+        "policy": "storm",
+        "games": 167,
+        "clear3": 144,
+        "wins": 71
+      }
+    ],
+    "counterguard": [
+      {
+        "counterguard_by_wave2": true,
+        "games": 331,
+        "clear3": 331,
+        "wins": 316
+      },
+      {
+        "counterguard_by_wave2": false,
+        "games": 669,
+        "clear3": 497,
+        "wins": 103
+      }
+    ],
+    "rear_line_games": 145,
+    "rear_line_kills": 199,
+    "rear_line_max": 5,
+    "environmental_kills": 0
+  }
+}

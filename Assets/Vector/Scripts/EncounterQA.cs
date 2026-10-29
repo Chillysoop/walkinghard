@@ -198,6 +198,7 @@ namespace VectorGame
         }
         [Serializable] sealed class QAReport
         {
+            public int rearBoundaryKills,environmentalKills;
             public bool ultimateProgression;public int ultimateDrafts;
             public int mechanicAssertions;public ContributionReport[] contributions;public int itemChoices,augmentChoices;public bool delayChecks;public int reloadIndicatorFrames,readyIndicatorFrames,pairWaitIndicatorFrames;
             public bool heldWeaponChecks;public int heldWeaponFrames,armedAbilities,armedUltimates,leftHandAttacks;
@@ -208,10 +209,11 @@ namespace VectorGame
         {
             if(simulation){ReportSimulation();return;}
             reported=true;bool timing=true;for(int i=0;i<ultimateTimes.Count;i++)timing&=ultimateTimes[i]+.02f>=ultimateDeadlines[i];
-            int credited=itemKills.Sum(k=>k.Value);
+            int credited=itemKills.Sum(k=>k.Value)+EnvironmentalKills;
             var report=new QAReport{mechanicAssertions=mechanicAssertions,contributions=ContributionReports(),itemChoices=ItemChoices,augmentChoices=AugmentChoices,result=State.ToString(),build=qaBuild,tempestHits=TempestHits,seed=Seed,loadout=Deck.Loadout,waves=Waves.Count,kills=Kills,spawned=Spawned,alive=enemies.Count,casts=AbilityCasts,paired=PairedCasts,independentTargets=IndependentTargets,ultimates=UltimateCasts,severs=Severs,reloads=Reloads,launches=Launches,collisions=CollisionHits,cascadeHop=MaxCascadeHop,ragdolls=Ragdolls,physicsContacts=PhysicsContacts,worldContacts=WorldContacts,leftDoors=LeftEntries,rightDoors=RightEntries,horizon=HorizonEntries,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,rerolls=Deck.Rerolls,fusions=Deck.Fusions,score=Score.Banked,bestCombo=Score.Best,bestMultiplier=Score.BestMultiplier,creditedKills=credited,elapsed=Elapsed,health=Health,draftChecks=qaDraftChecks,manualChecks=qaManualChecks&&(qaBuild!="manual"||qaManualPhase==3),modelChecks=modelChecks,ultimateTiming=timing,slotCasts=SlotCasts,castTrace=castTrace.ToArray(),weaponHits=WeaponHits,ultimateTimes=ultimateTimes.ToArray(),ultimateDeadlines=ultimateDeadlines.ToArray(),reports=Waves.ToArray()};
             report.ultimateProgression=qaUltimateProgression&&(tuning.waveCount<4||qaUltimateDrafts==1);
             report.ultimateDrafts=qaUltimateDrafts;
+            report.rearBoundaryKills=RearBoundaryKills;report.environmentalKills=EnvironmentalKills;
             bool weapon=qaBuild!="sword"||Severs>0;
             weapon&=qaBuild!="tempest"||TempestHits>0;
             weapon&=qaBuild!="hammer"||WeaponHits[(int)WeaponKind.Hammer]>0;
