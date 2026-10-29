@@ -1,0 +1,70 @@
+{
+    "wave": 1,
+    "kills": 37,
+    "collisionKills": 0,
+    "seconds": 38.016258239746097,
+    "damage": 1518.000244140625,
+    "healing": 0.0,
+    "blocked": 0.0,
+    "resistance": 0.0,
+    "items": [
+        {
+            "id": "ArcBolt",
+            "name": "Arc Bolt",
+            "module": "",
+            "rank": 4,
+            "kills": 14,
+            "values": {
+                "direct": 1082.6002197265625,
+                "collision": 0.0,
+                "control": 5.399999618530273,
+                "absorption": 0.0,
+                "reload": 0.0,
+                "preparation": 0.0,
+                "rangeWait": 0.0,
+                "augment": 0.0,
+                "healing": 0.0,
+                "assists": 0
+            }
+        },
+        {
+            "id": "Breaker",
+            "name": "Breaker",
+            "module": "",
+            "rank": 1,
+            "kills": 11,
+            "values": {
+                "direct": 251.7799835205078,
+                "collision": 0.0,
+                "control": 17.0,
+                "absorption": 0.0,
+                "reload": 0.0,
+                "preparation": 0.0,
+                "rangeWait": 3.0333311557769777,
+                "augment": 0.0,
+                "healing": 0.0,
+                "assists": 0
+            }
+        },
+        {
+            "id": "fists",
+            "name": "Kinetic Fists",
+            "module": "",
+            "rank": 1,
+            "kills": 12,
+            "values": {
+                "direct": 183.6199951171875,
+                "collision": 0.0,
+                "control": 7.19999885559082,
+                "absorption": 0.0,
+                "reload": 0.0,
+                "preparation": 0.0,
+                "rangeWait": 8.16671371459961,
+                "augment": 0.0,
+                "healing": 0.0,
+                "assists": 0
+            }
+        }
+    ],
+    "triggers": []
+}

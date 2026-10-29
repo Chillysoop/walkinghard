@@ -1,0 +1,23 @@
+{
+  "games": 64,
+  "differences": [],
+  "excluded": [
+    "version",
+    "wallSeconds",
+    "item reload/preparation/rangeWait (fusion accounting repair)",
+    "Recovery Treads heal/block split (sum checked)"
+  ],
+  "provenance": {
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+    "mode": "Fast",
+    "maxCombatSeconds": 600,
+    "runs": 64,
+    "assemblySha256": "FC03CC19029F29F699DEF21998F52A9554A96CB7E9FF7573A8A13EB11E7E6A29",
+    "firstSeed": 12000,
+    "startedUtc": "2026-10-29T20:44:35.2319984Z",
+    "waves": 8,
+    "policy": "mixed",
+    "workers": 2,
+    "completedUtc": "2026-10-29T20:44:51.2105729Z"
+  }
+}

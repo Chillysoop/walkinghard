@@ -1,4 +1,6 @@
-# Walking Hard 0.6.8 — Siphon Balance and Redline
+# Walking Hard 0.6.9 — Checkpoint Build Feedback
+
+Checkpoints show last-wave damage, healing, blocks and collision kills. Open Wave details for per-item performance, reload and target waits, and recorded synergy payoffs. Results stay fixed while you equip or fuse. [Gun/sever comparison results](QA/v069-balance-review.md) include proposed balance tests; no new balance changes are applied in this release.
 
 Weapon augments now add effects without slowing or weakening the original weapon. Counterguard's stored burst deals full damage to one target and 25% to up to four others; Amplifier is unchanged. Five new Siphon items add Lifesteal, drain marks, low-health sustain, healing-triggered haste and the Harvest ultimate. The character sheet shows Lifesteal; all new items have distinct art, summaries and rarity-scaled effects. [Balance results](QA/v067-balance-review.md).
 
@@ -90,3 +92,5 @@ C# scripts are under Assets/Vector/Scripts. See [DESIGN.md](DESIGN.md) for the c
 
 
 0.6.8 narrows Siphon Blade healing to its own damage and marked targets, tunes Reclaimer to 3/4/5/6/7% global Lifesteal (1.5x below half HP), and gives Redline six accelerated turns. Harvest is unchanged. See the [balance results](QA/v068-balance-review.md) and [verification report](QA/v068-verification.md).
+
+0.6.9 adds last-wave checkpoint feedback and a per-item Wave details panel for damage, healing, blocks, control, delays and triggered synergies. The focused gun/sever study recommends further tests without applying balance changes. See [results](QA/v069-balance-review.md) and [verification](QA/v069-verification.md).

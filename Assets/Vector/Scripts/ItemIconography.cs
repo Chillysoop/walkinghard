@@ -8,6 +8,8 @@ namespace VectorGame
         bool iconGuide;
         public bool HandleOverlayInput()
         {
+            if(game.State!=VectorEncounter.RunState.Drafting)waveDetails=false;
+            if(waveDetails){if(Input.GetKeyDown(KeyCode.Escape))waveDetails=false;return true;}
             if(!iconGuide)return false;
             if(Input.GetKeyDown(KeyCode.Escape))iconGuide=false;
             return true;

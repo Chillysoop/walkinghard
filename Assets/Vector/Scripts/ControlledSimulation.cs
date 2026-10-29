@@ -13,7 +13,7 @@ namespace VectorGame
         {
             public string id,context,category,candidate,helmet,armor,boots,rig,ultimate;
             public string[] weapons,abilities;
-            public int seed,rank=1,baseRank=1;
+            public int seed,rank=1,baseRank=1;public bool matchedWeapons;
             public float healthFraction=1;
         }
         [Serializable] sealed class ControlledCases {public ControlledCase[] cases;}
@@ -55,7 +55,7 @@ namespace VectorGame
                     var item=Deck.Acquire(LoadoutCatalog.Find(id),focal?c.rank:c.baseRank);
                     if(!MoveItem(item,place,index))throw new InvalidOperationException("Controlled placement failed: "+id);return item;
                 }
-                Equip(c.weapons[0],PlaceKind.Weapon,0,c.category=="weapon");Equip(c.weapons[1],PlaceKind.Weapon,1);
+                Equip(c.weapons[0],PlaceKind.Weapon,0,c.category=="weapon"||c.matchedWeapons);Equip(c.weapons[1],PlaceKind.Weapon,1,c.matchedWeapons);
                 for(int i=0;i<3;i++)Equip(c.abilities[i],PlaceKind.Sequence,i+2);
                 Equip(c.helmet,PlaceKind.Helmet);Equip(c.armor,PlaceKind.Armor,0,c.category=="armor");Equip(c.boots,PlaceKind.Boots);Equip(c.rig,PlaceKind.Rig);
                 // Fixed setup -> paired basics -> payoff order, identical within each comparison.

@@ -49,12 +49,12 @@ namespace VectorGame
                 float top=Mathf.Max(r.y,inventoryRect.y),bottom=Mathf.Min(r.yMax,inventoryRect.yMax);
                 if(bottom>top)dropRegions.Insert(dropRegions.Count-1,new DropRegion{rect=new Rect(r.x,top,r.width,bottom-top),place=PlaceKind.Inventory,item=inventory[i]});
             }
-            AddSocketRegions();if(!iconGuide&&!detailHovered)HandleLoadoutInput();
+            AddSocketRegions();if(!iconGuide&&!detailHovered&&!waveDetails)HandleLoadoutInput();
             Panel(new Rect(20,18,w-40,58));TypeIcon(new Rect(34,31,32,32),ItemKind.Rig,muted);
             Label(new Rect(76,33,165,24),"WALKING HARD",17,white,true);
             Label(new Rect(250,25,260,29),game.OpeningDraft?"OPENING DRAFT":"CHECKPOINT "+game.Wave,25,white,true);
             Label(new Rect(520,30,230,22),"COMBAT PAUSED",15,Accent,true);
-            Label(new Rect(251,56,w-285,18),"AUTO-FUSE: 3 identical items + SAME RARITY. Equipped + stored count. Augments do not fuse.",11,muted);
+            WaveFeedbackHeader(w);
             Label(new Rect(w-290,31,250,25),(deck.RewardClaimed?"CHOICE CLAIMED":"CHOOSE 1 OF 3")+(game.OpeningDraft?" / "+(game.OpeningPicks+1)+" OF 2":""),16,deck.RewardClaimed?Accent:white,true,TextAnchor.UpperRight);
             Panel(new Rect(20,86,w-40,178));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Augment?"AUGMENTS / CHOOSE MODULE, THEN HIGHLIGHTED HOST":deck.Draft.ToString().ToUpperInvariant()+" REWARDS",11,Accent,true);
             Label(new Rect(600,86,w-630,17),"NEXT: "+game.EncounterPreview,10,muted,false,TextAnchor.UpperRight);

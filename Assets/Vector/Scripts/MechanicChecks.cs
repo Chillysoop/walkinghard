@@ -74,7 +74,7 @@ namespace VectorGame
                 var attacker=ProbeEnemy(0,2);float before=Health;ReceiveDamage(attacker,capacity+5);
                 MechanicRequire(Mathf.Abs(Health-(before-5))<.001f&&Mathf.Abs(counterBank-Mathf.Min(capacity*.8f,45*Effect(guard)))<.001f,"Counterguard overflow and bank conversion");
             }
-            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();CheckSiphonBalance();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
+            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();CheckSiphonBalance();CheckWaveFeedback();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
         }
     }
 }

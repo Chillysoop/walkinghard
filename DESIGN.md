@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 9, October 29, 2026. Implementation target: 0.6.8. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v068-verification.md.
+Revision 10, October 29, 2026. Implementation target: 0.6.9. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v069-verification.md.
 
 ## Run and sequence
 
@@ -21,7 +21,7 @@ Runs start with an empty ultimate mount. Ultimates are excluded from all early i
 | Opening | Two separate pick-one-of-three abilities |
 | After wave 1 | Third ability, then weapon |
 | After wave 2 | Mixed, equipment |
-| After wave 3 | Mixed, augment |
+| After wave 3 | Ultimate, augment |
 | After wave 4 | Mixed, equipment |
 | After wave 5 | Mixed, augment |
 | After wave 6 | Mixed, equipment |
@@ -32,6 +32,8 @@ Total: **13 item choices plus 2 augment choices**. No random augment drops are i
 Ordinary mixed rewards provide an owned-item duplicate bundle, a limited tag-based build-support candidate, and a distinct discovery item. These are opportunities, not guarantees. Equipment drafts can support an empty armor slot and never contain modules. Rerolls bank; one is granted at each new checkpoint, not every extra draft. Each offered item's rarity rolls independently: Common 55%, Uncommon 27%, Rare 12%, Epic 5%, Legendary 1%.
 
 The sheet has two weapon mounts, helmet, armor, boots, rig, separate ultimate, five actions, and storage. Drag or click/select a destination. Double-click auto-equips when the destination is unambiguous; a full unrelated ability goes to storage. Hover shows native behavior, actual rarity stats, module changes and cost. Category colors and icons are separate from rarity borders.
+
+After a completed wave, the header shows actual last-wave damage, healing, prevented damage and collision kills. Wave details opens an optional panel containing per-item results, separate reload/target/readying delays, longest target wait and recorded synergy triggers. The snapshot remains unchanged while equipping or fusing at that checkpoint; new runs clear it. Blocks include passive resistance in the total, with individual effect blocks in the table. Paired reload timers overlap and are not additive wall-clock delay. Repair motes count as healing. No additional required click or change to edit-after-pick is introduced.
 
 Three identical items of the same rarity fuse to the next tier. Power factors are 1 / 1.2 / 1.5 / 1.9 / 2.5. Legendary is capped. The keeper is the earliest equipped copy, with the shared starter fists preferred; kills and contributions merge. Fusion feedback compares actual before/after rarity and stats. Modules are the exception: no module rarity, currency, or fusion.
 

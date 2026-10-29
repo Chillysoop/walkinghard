@@ -22,6 +22,14 @@ namespace VectorGame
             while(!game.PresentationFixtureReady){game.SetCombatSpeed(4);yield return null;}
             // QADraft configures the held UI fixture on its next frame.
             for(int i=0;i<8;i++)yield return null;
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-feedbackReview")>=0)
+            {
+                if(game.LastWaveFeedback==null)throw new InvalidOperationException("Feedback fixture needs a completed wave");
+                yield return CapturePresentation(directory,"19-checkpoint-feedback");waveDetails=true;
+                yield return CapturePresentation(directory,"20-wave-details");
+                File.WriteAllText(Path.Combine(directory,"wave-feedback.json"),JsonUtility.ToJson(game.LastWaveFeedback,true));
+                Debug.Log("FEEDBACK_REVIEW_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
@@ -69,7 +77,8 @@ namespace VectorGame
         {
             for(int i=0;i<12;i++)yield return null;
             string path=Path.Combine(directory,name+".png");if(File.Exists(path))File.Delete(path);ScreenCapture.CaptureScreenshot(path);
-            for(int i=0;i<60&&!File.Exists(path);i++)yield return null;
+            float deadline=Time.realtimeSinceStartup+10;
+            while(!File.Exists(path)&&Time.realtimeSinceStartup<deadline)yield return null;
             if(!File.Exists(path))throw new InvalidOperationException("Native UI screenshot was not saved: "+name);
         }
         IEnumerator CaptureSummaryReview(string directory)

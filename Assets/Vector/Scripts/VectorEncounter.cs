@@ -176,7 +176,7 @@ namespace VectorGame
             ResetSignatures();ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
-            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();
+            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
             RangedSpawned=RangedHits=RearBoundaryKills=EnvironmentalKills=0;RangedDamage=0;
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
@@ -193,7 +193,7 @@ namespace VectorGame
         }
         void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
         {
-            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
+            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
             if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
         public void SelectOffer(int index){if(State==RunState.Drafting)Deck.Select(index);}
@@ -243,7 +243,7 @@ namespace VectorGame
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
             waveRangedSpawned=RangedSpawned;waveRangedHits=RangedHits;waveRangedDamage=RangedDamage;
-            State=RunState.Running;
+            BeginFeedbackWave();State=RunState.Running;
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
         }
         public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
@@ -403,7 +403,7 @@ namespace VectorGame
         void FinishWave()
         {
             if(simulation)Debug.Log("SIM_WAVE seed="+Seed+" wave="+Wave+" elapsed="+Elapsed+" kills="+Kills+" enemies="+enemies.Count+" hero="+HeroPosition);
-            Score.Bank();
+            Score.Bank();CaptureWaveFeedback();
             Waves.Add(new WaveReport{wave=Wave,kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
             accumulator=0;ActiveSlot=PairSlot=-1;Preparation=0;
             if(Wave>=tuning.waveCount){State=RunState.Complete;return;}

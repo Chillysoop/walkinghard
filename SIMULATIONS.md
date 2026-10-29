@@ -98,3 +98,5 @@ A 32-game legacy control matches all 27 gameplay fields from the prior screening
 
 
 0.6.8 adds development-only `legacySiphonBlade`, `legacyReclaimer` and `legacyRedline` balance switches. Defaults use the new rules. `QA/Balance/v068/` tests each change independently, reconstructing the complete 4,080-case controlled matrix using verified unchanged baseline cases; it records actual rerun counts separately. Source collection for observed drain and production healing is shared to prevent measurement drift.
+
+0.6.9 adds optional `matchedWeapons: true` to fixed cases, giving both carried weapons the focal rarity. The default stays false for previous experiments. `QA/Balance/v069/` compares gun/sever weapon layouts, ultimates and armor at matching rarities, plus a Rare-support sensitivity slice. Read `QA/v069-balance-review.md` before interpreting zero-win frozen Common-support builds as ordinary-run difficulty. Proposed rifle and Duelist changes are not applied. Recovery Treads now reports restoration under healing, and fusion preserves all delay totals; these reporting repairs do not change combat.
