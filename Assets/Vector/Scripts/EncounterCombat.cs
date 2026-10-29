@@ -144,19 +144,20 @@ namespace VectorGame
         void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false)
         {
             if(e.deathAge>=0)return;
+            if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             e.health-=damage;e.stun=Mathf.Max(e.stun,stun);e.react=1;e.engaged=false;e.attack=-1;
             if(e.health<=0)
             {
                 enemies.Remove(e);e.deathAge=0;e.physics.Die(impulse);corpses.Add(e);Kills++;Ragdolls++;
+                SetBodyWalkCollision(e,flights.Exists(f=>f.body==e));
                 if(sever){e.physics.Sever();Severs++;fx.Burst(e.physics.Center,VisualFactory.Orange,10,3);}
                 if(currentCredit!=null)
                 {
-                    var owner=KillOwner(currentCredit.item);var weaponOwner=KillOwner(currentCredit.weapon);
+                    var owner=KillOwner(currentCredit.weapon??currentCredit.item);
                     if(owner!=null)itemKills[owner]=KillsFor(owner)+1;
-                    if(weaponOwner!=null&&weaponOwner!=owner)itemKills[weaponOwner]=KillsFor(weaponOwner)+1;
                     Score.Kill(e.heavy?200:100,currentCredit.action,currentCredit.hop);
                 }
-                Health=Mathf.Min(tuning.heroHealth,Health+.3f);
+                Health=Mathf.Min(MaxHealth,Health+.3f);
             }
             else e.physics.Impulse(impulse);
         }
@@ -175,6 +176,7 @@ namespace VectorGame
             body.stun=1.2f;body.engaged=false;body.attack=-1;
             if(chain==null)chain=new Cascade();if(chain.credit==null)chain.credit=currentCredit;chain.hit.Add(body.id);
             flights.Add(new Flight{body=body,previous=origin,chain=chain,hop=hop,energy=energy});Launches++;MaxCascadeHop=Mathf.Max(MaxCascadeHop,hop);
+            if(body.deathAge>=0)SetBodyWalkCollision(body,true);
         }
         void ProcessContacts()
         {
@@ -207,14 +209,28 @@ namespace VectorGame
             {
                 var e=corpses[i];e.deathAge+=dt;
                 if(!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
-                if(e.deathAge>7||(corpses.Count>22&&e.deathAge>2)){DisposeEnemy(e);corpses.RemoveAt(i);}
             }
             for(int i=flights.Count-1;i>=0;i--)
             {
                 var f=flights[i];if(!byId.ContainsKey(f.body.id)){flights.RemoveAt(i);continue;}
                 f.age+=dt;f.trail-=dt;Vector3 p=f.body.physics.Center;
                 if(f.trail<=0){fx.Arc(f.previous,p,Deck.Pinball?new Color(1,.74f,.28f):VisualFactory.Cyan);f.trail=.04f;}
-                f.previous=p;if(f.age>1.3f)flights.RemoveAt(i);
+                f.previous=p;if(f.age>1.3f){flights.RemoveAt(i);if(f.body.deathAge>=0)SetBodyWalkCollision(f.body,false);}
+            }
+        }
+        void SetBodyWalkCollision(Enemy body,bool projectile)
+        {
+            body.physics.IgnoreWalker(heroPhysics,true);
+            foreach(var enemy in enemies)body.physics.IgnoreWalker(enemy.physics,!projectile);
+        }
+        void ShoveWalkingBodies(float dt)
+        {
+            foreach(var body in corpses)
+            {
+                if(flights.Exists(f=>f.body==body))continue;
+                if(body.physics.ShoveAside(HeroPosition,Vector3.forward*tuning.walkSpeed,dt))CorpseShoves++;
+                foreach(var enemy in enemies)
+                    if(enemy.stun<=0&&body.physics.ShoveAside(enemy.rig.Root.position,enemy.physics.Velocity,dt))CorpseShoves++;
             }
         }
         void ImpactPause(float seconds){if(!qa&&!ReducedMotion)hitStop=Mathf.Max(hitStop,seconds);}

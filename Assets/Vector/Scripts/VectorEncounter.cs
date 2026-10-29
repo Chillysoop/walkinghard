@@ -17,6 +17,7 @@ namespace VectorGame
         public int OpeningPicks {get;private set;}
         public bool OpeningDraft=>OpeningPicks<2;
         public bool UltimateAutomatic {get;private set;}=true;
+        public bool HoldCheckpointAfterPick {get;set;}
         public float UltimateCooldown=>Deck?.Ultimate?.def.id=="tempest"?16f:12f;
         public float UltimateRemaining {get;private set;}=12f;
         public bool UltimateQueued=>Deck.Ultimate!=null&&UltimateRemaining<=0&&(UltimateAutomatic||ultimateRequested);
@@ -38,12 +39,20 @@ namespace VectorGame
         readonly Dictionary<LoadoutItem,LoadoutItem> fusedOwners=new Dictionary<LoadoutItem,LoadoutItem>();
         LoadoutItem KillOwner(LoadoutItem item){while(item!=null&&fusedOwners.TryGetValue(item,out var next))item=next;return item;}
         public int KillsFor(LoadoutItem item){item=KillOwner(item);return item!=null&&itemKills.TryGetValue(item,out int value)?value:0;}
-        public int ActionKills(LoadoutItem item)=>KillsFor(item?.def.kind==ItemKind.Basic&&Deck.TwoHanded?Deck.WeaponFor(item):item);
+        public int ActionKills(LoadoutItem item)=>KillsFor(item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item);
+        public float CombatSpeed {get;private set;}=1;
+        public int CorpseShoves {get;private set;}
+        public int ArmorBonusHits {get;private set;}
+        public float ArmorPreventedDamage {get;private set;}
+        public float ArmorHealing {get;private set;}
+        public int RetainedBodies=>corpses.Count;
+        public void SetCombatSpeed(float speed){if(speed==.5f||speed==1||speed==2||speed==4)CombatSpeed=speed;}
         sealed class KillCredit {public LoadoutItem item,weapon;public int action,hop;}
         KillCredit currentCredit;int actionSerial;
         public bool ReducedMotion {get;private set;}
         public bool Muted=>fx!=null&&fx.muted;
         public float Health {get;private set;}
+        public float MaxHealth=>tuning.heroHealth+(Deck?.MaxHealthBonus??0);
         public float Elapsed {get;private set;}
         public float WaveElapsed {get;private set;}
         public bool CleaningUp=>WaveElapsed>=tuning.waveArrivals;
@@ -75,6 +84,8 @@ namespace VectorGame
         public float DamageFlash=>flash;
         public readonly int[] SlotCasts=new int[5];
         public readonly List<WaveReport> Waves=new List<WaveReport>();
+        public sealed class FusionResult {public ItemDefinition definition;public int before,after;}
+        public readonly List<FusionResult> FusionHistory=new List<FusionResult>();
         public string NextThreat=>Wave==1?"More attackers from both doors and the horizon. Fill your last empty slot.":"Heavy enforcers join the rush. Reinforce the sequence you built.";
 
         sealed class Enemy
@@ -131,7 +142,7 @@ namespace VectorGame
             Seed=tuning.seed;Deck=new AbilityDeck(Seed);
             previousSimulation=Physics.simulationMode;Physics.simulationMode=SimulationMode.Script;
             Physics.defaultSolverIterations=12;Physics.defaultSolverVelocityIterations=8;
-            Application.targetFrameRate=qa?-1:60;QualitySettings.vSyncCount=qa?0:1;
+            Application.targetFrameRate=qa&&Application.isBatchMode?-1:60;QualitySettings.vSyncCount=qa&&Application.isBatchMode?0:1;
             VisualFactory.Initialize();
             var world=VisualFactory.Node("Concourse and covered entry passages",transform,Vector3.zero);VisualFactory.World(world);
             actors=VisualFactory.Node("Fighters",transform,Vector3.zero);
@@ -157,6 +168,7 @@ namespace VectorGame
             Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
+            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
             heroPhysics.Motor.position=new Vector3(0,.04f,0);heroPhysics.Motor.rotation=Quaternion.identity;
@@ -167,6 +179,7 @@ namespace VectorGame
         void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
         {
             foreach(var item in consumed){itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
+            if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
         public void SelectOffer(int index){if(State==RunState.Drafting)Deck.Select(index);}
         public void AssignSlot(int slot){if(State==RunState.Drafting)Deck.Assign(slot);}
@@ -174,10 +187,32 @@ namespace VectorGame
         public void SwapSlots(int a,int b){if(State==RunState.Drafting)Deck.Swap(a,b);}
         public bool MoveItem(LoadoutItem item,PlaceKind place,int index=0)
         {
-            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;
+            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             bool moved=Deck.Move(item,place,index);
+            Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
             return moved;
+        }
+        public bool ClaimReward(int offer,PlaceKind place,int index,bool continueImmediately=true)
+        {
+            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(!Deck.ClaimTo(offer,place,index))return false;
+            Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
+            if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
+            if(continueImmediately)ConfirmDraft();return true;
+        }
+        public bool AutoEquip(LoadoutItem item)
+        {
+            Deck.SuggestedPlace(item.def,out var place,out int index);return MoveItem(item,place,index);
+        }
+        public void AcceptSelectedReward(bool continueImmediately=true)
+        {
+            if(State!=RunState.Drafting)return;
+            if(Deck.RewardClaimed){ConfirmDraft();return;}
+            if(Deck.Selected<0)return;
+            Deck.SuggestedPlace(Deck.Offers[Deck.Selected].def,out var place,out int index);
+            if(Deck.SelectedSlot>=0&&Deck.Offers[Deck.Selected].def.kind==ItemKind.Ability){place=PlaceKind.Sequence;index=Deck.SelectedSlot;}
+            ClaimReward(Deck.Selected,place,index,continueImmediately);
         }
         public void ConfirmDraft()
         {
@@ -233,26 +268,34 @@ namespace VectorGame
                     if(Input.GetKeyDown(KeyCode.D))AssignSlot(3);
                     if(Input.GetKeyDown(KeyCode.C))AssignSlot(4);
                     if(Input.GetKeyDown(KeyCode.Tab))Reroll();
-                    if(Input.GetKeyDown(KeyCode.Return))ConfirmDraft();
+                    if(Input.GetKeyDown(KeyCode.Return))AcceptSelectedReward(!HoldCheckpointAfterPick);
                 }
             }
             if(State==RunState.Running)
             {
-                const float dt=1f/60;
-                if(qa){for(int i=0;i<(Application.isBatchMode?8:1)&&State==RunState.Running;i++)Step(dt);}
-                else
-                {
-                    if(hitStop>0){hitStop=Mathf.Max(0,hitStop-Time.unscaledDeltaTime);return;}
-                    accumulator+=Mathf.Min(Time.deltaTime,.1f);
-                    while(accumulator>=dt&&State==RunState.Running){accumulator-=dt;Step(dt);if(hitStop>0){accumulator=0;break;}}
-                }
+                if(qa){for(int i=0;i<(Application.isBatchMode?8:1)&&State==RunState.Running;i++)AdvanceCombat(1f/60);}
+                else AdvanceCombat(Time.unscaledDeltaTime);
             }
             if(qa&&!qaHolding&&State==RunState.Drafting)QADraft();
             if(qa&&!reported&&(State==RunState.Complete||State==RunState.Defeated))ReportQA();
             if(State==RunState.Ready){clock+=Time.deltaTime;hero.Pose(clock,0,-1,0,0,false,0);}
         }
+        void AdvanceCombat(float realDelta)
+        {
+            if(State!=RunState.Running)return;
+            float budget=Mathf.Min(realDelta,.1f)*CombatSpeed;
+            if(hitStop>0){float used=Mathf.Min(hitStop,budget);hitStop-=used;budget-=used;}
+            accumulator+=budget;
+            const float dt=1f/60;
+            while(accumulator+0.000001f>=dt&&State==RunState.Running)
+            {
+                accumulator=Mathf.Max(0,accumulator-dt);Step(dt);
+                if(hitStop>0){float used=Mathf.Min(hitStop,accumulator);hitStop-=used;accumulator-=used;if(hitStop>0)break;}
+            }
+        }
         void Step(float dt)
         {
+            float restored=Mathf.Min(MaxHealth-Health,Deck.Regeneration*dt);Health+=restored;ArmorHealing+=restored;
             Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
             if(qaBuild=="manual"&&qa)QAManual();
             if(ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
@@ -264,7 +307,7 @@ namespace VectorGame
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/tuning.waveCount;
                 spawnTimer=Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f);
             }
-            StepEnemies(dt);StepHero(dt);Physics.SyncTransforms();Physics.Simulate(dt);ProcessContacts();
+            StepEnemies(dt);StepHero(dt);ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);ProcessContacts();
             StepBodies(dt);fx.Step(dt);UpdateCamera(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
@@ -283,6 +326,7 @@ namespace VectorGame
             var e=new Enemy{id=++nextId,heavy=heavy,health=tuning.enemyHealth*(heavy?1.9f:1),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             e.rig=new FighterRig(heavy?"Enforcer":"Raider",actors,false,heavy);e.rig.Root.position=p;
             e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
+            foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
             if(!EntryLayout.Concealed(cameraRig,p))VisibleSpawns++;
         }
@@ -326,7 +370,7 @@ namespace VectorGame
                     {
                         e.delivered=true;
                         if(e.stun<=0&&Vector3.Distance(e.rig.Root.position,HeroPosition)<tuning.attackRadius+.25f)
-                        {Health-=tuning.enemyDamage*(e.heavy?1.8f:1);HitsTaken++;heroReact=.8f;flash=.3f;fx.Play(3);}
+                        {float raw=tuning.enemyDamage*(e.heavy?1.8f:1);ArmorPreventedDamage+=raw*(1-Deck.DamageTaken);Health-=raw*Deck.DamageTaken;HitsTaken++;heroReact=.8f;flash=.3f;fx.Play(3);}
                     }
                     if(e.attack>=duration){e.attack=-1;e.engaged=false;e.cooldown=CombatRange(.9f,1.8f);}
                 }

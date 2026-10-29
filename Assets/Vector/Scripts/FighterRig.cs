@@ -196,6 +196,18 @@ namespace VectorGame
             }
             return root;
         }
+        public void PreviewLoadout(WeaponKind right,WeaponKind left,bool twoHandedWeapon)
+        {
+            if(weaponRight!=null)Object.Destroy(weaponRight.gameObject);
+            if(weaponLeft!=null)Object.Destroy(weaponLeft.gameObject);
+            weaponRight=right==WeaponKind.Fists?null:MakeWeapon(RightHand,right);
+            weaponLeft=left==WeaponKind.Fists||twoHandedWeapon?null:MakeWeapon(LeftHand,left);
+            Pose(0,0,-1,0,0,false,0);
+            leftArm.localRotation=Quaternion.Euler(5,0,-13);rightArm.localRotation=Quaternion.Euler(5,0,13);
+            leftElbow.localRotation=rightElbow.localRotation=Quaternion.Euler(-8,0,0);
+            if(weaponRight!=null)weaponRight.localRotation=Quaternion.Euler(40,0,0);
+            if(weaponLeft!=null)weaponLeft.localRotation=Quaternion.Euler(40,0,0);
+        }
         public void Airborne(float remaining)
         {
             float lift=Mathf.Sin(Mathf.Clamp01(1-remaining/1.05f)*Mathf.PI)*.5f;

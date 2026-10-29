@@ -1,6 +1,6 @@
 # Walking Hard — Current design contract
 
-Revision 3, October 28, 2026. This records the latest approved instructions and supersedes the previous three-slot sequence, manual combat toggle, two-carried-weapon interpretation, and rank-III cap.
+Revision 4, October 28, 2026. This records the latest approved instructions and supersedes the previous three-slot sequence, manual combat toggle, two-carried-weapon interpretation, and rank-III cap.
 
 ## Combat loop
 
@@ -8,7 +8,7 @@ One fighter walks forward, viewed from behind and above. Enemies enter through c
 
 The sequence contains **two persistent basic attacks plus three drafted abilities**. All five actions can be reordered. Basic 1 uses Weapon 1; Basic 2 uses Weapon 2. Empty weapon mounts use the starter fists. Empty ability positions are skipped. The next occupied action waits for a reachable target instead of silently skipping it.
 
-Start unarmed with two separate pick-one-of-three ability drafts. Each pick goes into an empty sequence position. The first checkpoint grants the third ability, then a separate pick-three weapon offer. Later checkpoints offer mixed abilities, weapons, rigs, ultimates, and duplicate bundles. Rewards are claimed once, then the character sheet remains open until Continue.
+Start unarmed with two separate pick-one-of-three ability drafts. Each pick goes into an empty sequence position. The first checkpoint grants the third ability, then a separate pick-three weapon offer. Later checkpoints offer mixed abilities, weapons, rigs, ultimates, and duplicate bundles. Drop a reward onto a compatible slot to claim, equip and advance immediately. Double-click auto-equips; a new ability goes into an empty position, or an existing matching action is upgraded. When the loop is full, an unrelated ability is stored. Weapons go directly to a mount (two-handed weapons fill both); displaced gear is stored. Enable Edit after pick to stay in the character sheet until Let's fight (or the next required draft pick).
 
 Matching weapon types in adjacent basic positions execute simultaneously and prefer independent targets. Adjacency includes the repeat boundary (position 5 followed by 1); an empty position between them does not count. The pair completes before the next action. Different weapon types execute separately, with a visible switch delay.
 
@@ -24,7 +24,7 @@ The first catalog has Singularity Burst (12 seconds, launch and collision) and T
 
 ## Equipment, inventory, and fusion
 
-The character sheet contains the five-action sequence, two weapon mounts, one utility rig, a separate ultimate mount, and unlimited prototype storage. Drag or click an item and then a compatible destination. Reordering active actions exchanges their positions. Equipping a stored item returns displaced equipment to storage. Both basics remain in the sequence. Two-handed groups cannot be split by dropping an ability into the group; move the group first.
+The checkpoint character sheet uses a live 3D Walker preview, surrounding equipment mounts, a stats panel, icon-grid storage and the five-action sequence below. It contains two weapon mounts, a helmet slot, an armor slot, boots, one utility rig, a separate ultimate mount, and unlimited prototype storage. Hover equipped actions, equipment, rewards or storage for full stats and effects. The reference image supplies layout and visual direction; its level, XP, three-reward pick and four-action layout are not new game rules. Drag or click an item and then a compatible destination. Reordering active actions exchanges their positions. Equipping a stored item returns displaced equipment to storage. Both basics remain in the sequence. Two-handed groups cannot be split by dropping an ability into the group; move the group first.
 
 Every acquired weapon, ability, rig and ultimate has a rarity. Basic cards inherit their weapon's rarity. Starter fists and the initial ultimate are Common. Each offered card rolls its rarity independently of its item identity using these initial balance values:
 
@@ -40,6 +40,8 @@ Three copies of the **same item and same rarity** automatically fuse into one it
 
 Offer cards show category, rarity, actual power, copies provided, and progress toward fusion. A duplicate bundle remains one reward choice. A bundle's rarity follows the same odds; it is not guaranteed to match the rarity already owned. Rarity does not make an incompatible effect fit a build.
 
+Fusion displays a short real-time animation of three copies merging, then the old and new rarity/stat lines and behavior change. A Last fusion button retains the latest comparison for inspection. The animation does not consume combat time or require another confirmation.
+
 Unused rerolls bank across checkpoints. Rerolling changes offers, never owned items. A claimed reward cannot be rerolled or claimed again.
 
 ## Weapons and upgrades
@@ -52,13 +54,23 @@ Unused rerolls bank across checkpoints. Rerolling changes offers, never owned it
 
 Weapon upgrades combine visible behavior with rarity-scaled stats. The catalog is intentionally small. One-handed weapon pairs represent simultaneous attacks, not additional invisible sequence turns.
 
+## Armor and passive equipment
+
+Armor starts unequipped and joins the existing mixed reward pool. Armor has the same five rarities, direct equip, storage and three-copy fusion as other items. A piece only grants effects in its matching slot; utility rigs remain separate. These are initial prototype balance values at Common, scaled by the existing rarity power factor:
+
+- **Tactician Visor / helmet:** +8% direct damage. Expose adds 6 damage against already-staggered targets on direct hits; collision descendants do not gain this bonus.
+- **Bulwark Plate / armor:** +40 maximum integrity. Brace reduces incoming enemy attack damage by 12%.
+- **Recovery Treads / boots:** +8% action speed. Recovery restores 0.4 integrity per combat second while the Walker advances. It does not tick while paused or at a checkpoint.
+
+The character stats summarize damage, resistance, action speed, regeneration and integrity. Hover explains the exact rarity-scaled values. Equipment rarity/fusion keeps its mount and identity. Armor bonuses do not change the ultimate's base recharge period.
+
 ## Physical outcomes and attribution
 
 Living enemies have physical capsules; dead enemies become jointed ragdolls. Sword cuts use prepared anatomy at the waist, not arbitrary mesh cutting. Both halves retain one enemy identity and one kill reward.
 
-Launched bodies can transfer momentum through two additional hops. Descendants share a six-hit budget, a per-target exclusion set, declining energy, and a minimum impact speed. Damage uses relative speed with caps. Body and fragment lifetimes are bounded. Force Push and ultimates also move fallen bodies.
+Launched bodies can transfer momentum through two additional hops. Descendants share a six-hit budget, a per-target exclusion set, declining energy, and a minimum impact speed. Damage uses relative speed with caps. Bodies and severed fragments persist for the entire run, including behind the camera. Settled ragdolls ignore walking capsules; one-way walking shoves push bones aside without feeding reaction forces back into walkers. Bodies launched by attacks temporarily collide with enemies to preserve damaging cascades, then return to walking-safe collisions. No age or count cleanup runs; a new run clears the old encounter. Force Push and ultimates also move fallen bodies.
 
-Kill counters belong to the originating action and weapon, including delayed collision kills. The HUD says **Kills:** instead of activations. Upgrades preserve credited kills. Telemetry still records activations internally to validate ordering.
+Each kill belongs once to its originating weapon, ability or ultimate, including delayed collision kills. Basic cards display their current weapon's count; swapping a weapon does not inherit the former slot count. Moving or storing an item preserves its kills. The HUD says **Kills:** instead of activations. Upgrades preserve credited kills. Telemetry still records activations internally to validate ordering.
 
 ## Combo scoring
 
@@ -69,6 +81,10 @@ The HUD shows base points × multiplier, pending score, reason, remaining window
 ## Visual language
 
 Category and rarity are separate channels. Gold weapon icons and upgrade chevrons identify weapons/copies; teal identifies abilities; violet identifies ultimates; blue identifies utility rigs. Rarity uses its own labeled border: gray, green, blue, purple, orange. Text and distinct shapes accompany color.
+
+Use chamfered navy panels, steel-blue edges, distinctive action pictograms, cyan active markers, amber next markers and segmented bars. Place wave status at top right and the ultimate immediately below it. Keep Pause, New Run and 0.5x / 1x / 2x / 4x speed controls at top left. The five-action strip sits at the bottom edge with no auto-sequence footer. Each combat tile includes a short attack description, damage (including equipped rig), range, action time, rarity and item kills. Ultimate also shows its recharge period.
+
+Speed changes the fixed-step simulation budget, so movement, physics, action timing, spawns, score windows and ultimate recharge scale together. Checkpoints and Pause freeze all of those at every speed. Input and double-click timing use real time.
 
 Show real damage at the offered rarity, clear 1H/2H occupancy, and what a fusion changes. Contextual effect icons and inspection text explain stagger, gathering, launch, collision, cuts, chains and piercing. A linked pair uses a gold connector; two-handed basics also get one shared border and lock. Do not describe a conditional synergy as a guaranteed proc.
 
