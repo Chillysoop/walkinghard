@@ -24,16 +24,30 @@ namespace VectorGame
         readonly FighterRig rig;
         readonly int owner;
         readonly VectorEncounter encounter;
+        readonly bool fast,heroBody;
+        Vector3 fastVelocity,fastImpulse,pendingPosition;Quaternion pendingRotation;bool hasMove,hasRotation;
+        public float FastRadius {get;private set;}
+        public Vector3 LinearVelocity {get=>fast?fastVelocity:Motor.linearVelocity;set{if(fast)fastVelocity=value;else Motor.linearVelocity=value;}}
+        public void MovePosition(Vector3 value){if(fast){pendingPosition=value;hasMove=true;}else Motor.MovePosition(value);}
+        public void MoveRotation(Quaternion value){if(fast){pendingRotation=value;hasRotation=true;}else Motor.MoveRotation(value);}
+        public void IntegrateFast(float dt)
+        {
+            if(!fast)return;
+            if(Ragdoll&&fastVelocity==Vector3.zero&&fastImpulse==Vector3.zero)return;
+            if(hasMove){fastVelocity=(pendingPosition-rig.Root.position)/dt;rig.Root.position=pendingPosition;hasMove=false;}
+            else if(!heroBody){fastVelocity+=fastImpulse;fastVelocity.y-=9.81f*dt;var p=rig.Root.position+fastVelocity*dt;if(p.y<.04f){p.y=.04f;fastVelocity.y=0;}rig.Root.position=p;if(Ragdoll){fastVelocity.x*=1-dt*2.5f;fastVelocity.z*=1-dt*2.5f;if(fastVelocity.sqrMagnitude<.0025f)fastVelocity=Vector3.zero;}}
+            fastImpulse=Vector3.zero;if(hasRotation){rig.Root.rotation=pendingRotation;hasRotation=false;}
+        }
         readonly List<Rigidbody> bodies=new List<Rigidbody>();
         readonly List<Collider> colliders=new List<Collider>();
         public bool Ragdoll {get;private set;}
         public bool Severed {get;private set;}
         public int BodyCount=>bodies.Count;
-        public Vector3 Center=>Ragdoll?bodies[0].position:Motor.position+Vector3.up;
-        public Vector3 Velocity=>Ragdoll?bodies[0].linearVelocity:Motor.linearVelocity;
+        public Vector3 Center=>fast?rig.Root.position+Vector3.up:Ragdoll?bodies[0].position:Motor.position+Vector3.up;
+        public Vector3 Velocity=>fast?fastVelocity:Ragdoll?bodies[0].linearVelocity:Motor.linearVelocity;
         public FighterPhysics(FighterRig rig,int owner,VectorEncounter encounter,bool hero=false,bool heavy=false)
         {
-            this.rig=rig;this.owner=owner;this.encounter=encounter;
+            this.rig=rig;this.owner=owner;this.encounter=encounter;fast=encounter.FastSimulation;heroBody=hero;FastRadius=(heavy?.43f:.37f)*rig.Root.lossyScale.x;if(fast)return;
             capsule=rig.Root.gameObject.AddComponent<CapsuleCollider>();capsule.center=Vector3.up;capsule.height=2;capsule.radius=heavy?.43f:.37f;
             Motor=rig.Root.gameObject.AddComponent<Rigidbody>();Motor.mass=hero?180:heavy?100:65;
             Motor.constraints=RigidbodyConstraints.FreezeRotation;Motor.isKinematic=hero;Motor.useGravity=!hero;
@@ -45,6 +59,7 @@ namespace VectorGame
         void Relay(Transform t){var relay=t.gameObject.AddComponent<ContactRelay>();relay.owner=owner;relay.encounter=encounter;}
         public void Impulse(Vector3 velocity)
         {
+            if(fast){fastImpulse+=velocity;return;}
             if(Ragdoll){foreach(var body in bodies)body.AddForce(velocity,ForceMode.VelocityChange);}
             else Motor.AddForce(velocity,ForceMode.VelocityChange);
         }
@@ -85,6 +100,7 @@ namespace VectorGame
         public void Die(Vector3 addedVelocity)
         {
             if(Ragdoll)return;
+            if(fast){Ragdoll=true;fastImpulse+=addedVelocity;return;}
             Vector3 inherited=Motor.linearVelocity+addedVelocity;Motor.linearVelocity=Vector3.zero;Motor.isKinematic=true;capsule.enabled=false;
             Transform[] bones=rig.PhysicsBones;
             int[] parents={-1,0,1,1,3,1,5,0,7,0,9};
@@ -119,7 +135,7 @@ namespace VectorGame
         }
         public void Sever()
         {
-            if(!Ragdoll||Severed)return;Severed=true;
+            if(!Ragdoll||Severed)return;Severed=true;if(fast)return;
             var waist=rig.Body.GetComponent<CharacterJoint>();if(waist!=null)Object.Destroy(waist);
             rig.Body.SetParent(rig.Root,true);
             var cap=VisualFactory.Part("Upper waist cut",rig.Body,PrimitiveType.Cylinder,Vector3.zero,new Vector3(.5f,.025f,.33f),VisualFactory.RedGlow);

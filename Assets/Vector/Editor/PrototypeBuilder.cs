@@ -53,7 +53,7 @@ namespace VectorGame.Editor
             Directory.CreateDirectory(output);
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Vector/Scenes/CombatStudy.unity"},locationPathName=Path.Combine(output,"WalkingHard.exe"),target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new System.Exception("VECTOR build failed: "+report.summary.result);
-            File.WriteAllText(Path.Combine(output,"simulation-capabilities.json"),"{\"schema\":1,\"version\":\""+PlayerSettings.bundleVersion+"\",\"fixedStepHz\":60,\"physics\":\"PhysX\"}");
+            File.WriteAllText(Path.Combine(output,"simulation-capabilities.json"),"{\"schema\":1,\"version\":\""+PlayerSettings.bundleVersion+"\",\"fixedStepHz\":60,\"physics\":\"PhysX\",\"modes\":[\"Full\",\"Fast\"]}");
             Debug.Log("VECTOR_BUILD_SUCCESS "+report.summary.totalSize+" bytes in "+report.summary.totalTime);
         }
     }

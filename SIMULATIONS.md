@@ -1,5 +1,23 @@
 # Headless balance simulations
 
+## Fast balance screening
+
+Use `-Mode Fast` for high-volume screening. On the Ryzen 5 7600 test machine, 1,000 eight-wave mixed-policy games with four workers completed in **88.30 seconds**, including worker startup, with no invalid, missing or duplicate games. The tested player is `Build/FastBalance-v2/WalkingHard.exe`; rebuilding current source also includes this mode. Existing v0.6.0 downloads support Full mode only.
+
+```powershell
+& '.\Run Simulations.ps1' -Player '.\Build\FastBalance-v2\WalkingHard.exe' `
+  -Mode Fast -Runs 1000 -Workers 4 -Waves 8 -Seed 12000 `
+  -MaxCombatSeconds 600
+```
+
+Fast mode executes the same authored combat, drafting, rarity, fusion, augment, damage, timing and attribution code at 60 Hz. It uses minimal actor transforms and an approximate movement/contact model instead of animated meshes, articulated ragdolls, fragments and PhysX constraints. Launched enemy identities use swept-circle contacts and the existing collision budgets. Idle body pushing, limb contacts, wall occlusion and body packing are not reproduced faithfully. Regular play and `-Mode Full` continue to use PhysX.
+
+This is a screening model, not a calibrated replacement for the game. In the first 32 matched seeds it agreed on the outcome for 23 games; Full won 19 and Fast won 10. Gun, lightning and collision builds were often understated. Do not use a low Fast win rate alone to buff those builds. Rank hypotheses with contributions and comparable cohorts, then verify a small representative set in Full mode. Mode is recorded per game and per batch; the comparison script rejects mixed-mode balance comparisons.
+
+The 1,000-game screening report is `QA/Simulations/fast-mixed-1000-20261029/balance-review.md` locally. No balance changes were applied from that report. The recorded throughput is hardware/workload dependent, not a universal two-minute guarantee.
+
+## Full physics validation
+
 Run actual Walking Hard combat in Unity without a window, clicking, rendering, or computer-use tools. The Windows player uses its normal 60 Hz combat and PhysX loop, including ammunition, action order, collisions, ragdolls, drafting, augments and fusion. Cosmetic effects are skipped. Several persistent worker processes each play many games.
 
 Build once with `Build Windows.ps1`. A simulation-capable build contains `simulation-capabilities.json` beside `WalkingHard.exe`. Older releases fail early instead of opening a menu and hanging. Run the commands below from the repository directory. PowerShell scripts also work beside the executable in an extracted release.

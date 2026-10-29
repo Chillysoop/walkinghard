@@ -9,7 +9,7 @@ namespace VectorGame
         bool Reachable(Enemy e,float range)
         {
             return !e.entering&&Vector3.Distance(e.rig.Root.position,HeroPosition)<=range&&
-                !Physics.Linecast(HeroPosition+Vector3.up*1.2f,e.rig.Root.position+Vector3.up*1.2f,1<<EntryLayout.WorldLayer);
+                (FastSimulation||!Physics.Linecast(HeroPosition+Vector3.up*1.2f,e.rig.Root.position+Vector3.up*1.2f,1<<EntryLayout.WorldLayer));
         }
         Enemy Target(float range,Enemy exclude=null)
         {
@@ -100,7 +100,7 @@ namespace VectorGame
                 if(actionTarget!=null)
                 {
                     Vector3 aim=actionTarget.rig.Root.position-HeroPosition;aim.y=0;
-                    if(aim.sqrMagnitude>.01f)heroPhysics.Motor.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.LookRotation(aim),1-Mathf.Exp(-17*dt)));
+                    if(aim.sqrMagnitude>.01f)heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.LookRotation(aim),1-Mathf.Exp(-17*dt)));
                 }
                 actionAge+=dt;ActionStatus=ActiveSlot==5?"ULTIMATE EXECUTING":PairSlot>=0?(Deck.TwoHanded?"TWO-HANDED SWING":"PAIRED / INDEPENDENT TARGETS"):activeCard.name.ToUpperInvariant();
                 if(!actionDelivered&&actionAge>=nativeDuration*.44f)
@@ -132,7 +132,7 @@ namespace VectorGame
                     ActiveSlot=PairSlot=-1;recovery=.11f/Deck.Speed;
                 }
             }
-            else {hero.Pose(clock,1,-1,0,heroReact,false,0);heroPhysics.Motor.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.identity,dt*4));}
+            else {hero.Pose(clock,1,-1,0,heroReact,false,0);heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.identity,dt*4));}
         }
         void Resolve(AbilityCard card)=>ResolveAuthoredAbility(card);
         void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false)
@@ -205,7 +205,7 @@ namespace VectorGame
             for(int i=corpses.Count-1;i>=0;i--)
             {
                 var e=corpses[i];e.deathAge+=dt;
-                if(!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
+                if(!FastSimulation&&!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
             }
             for(int i=flights.Count-1;i>=0;i--)
             {
@@ -217,6 +217,7 @@ namespace VectorGame
         }
         void SetBodyWalkCollision(Enemy body,bool projectile)
         {
+            if(FastSimulation)return;
             body.physics.IgnoreWalker(heroPhysics,true);
             foreach(var enemy in enemies)body.physics.IgnoreWalker(enemy.physics,!projectile);
         }

@@ -1,0 +1,92 @@
+{
+  "note": "Full mode uses PhysX. Fast mode reuses combat rules with approximate single-body movement and swept-circle collisions; results must be calibrated against Full mode. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+  "policies": [
+    {
+      "policy": "balanced",
+      "games": 167,
+      "wins": 145,
+      "timedOut": 0,
+      "winPercent": 86.83,
+      "ci95Low": 80.86,
+      "ci95High": 91.14,
+      "meanWave": 7.77,
+      "meanKills": 287.6,
+      "meanScore": 292920.0,
+      "meanSeconds": 0.44
+    },
+    {
+      "policy": "gun",
+      "games": 166,
+      "wins": 34,
+      "timedOut": 0,
+      "winPercent": 20.48,
+      "ci95Low": 15.04,
+      "ci95High": 27.26,
+      "meanWave": 5.92,
+      "meanKills": 192.8,
+      "meanScore": 189970.0,
+      "meanSeconds": 0.25
+    },
+    {
+      "policy": "pinball",
+      "games": 167,
+      "wins": 81,
+      "timedOut": 5,
+      "winPercent": 48.5,
+      "ci95Low": 41.04,
+      "ci95High": 56.03,
+      "meanWave": 6.83,
+      "meanKills": 237.5,
+      "meanScore": 235238.0,
+      "meanSeconds": 0.39
+    },
+    {
+      "policy": "random",
+      "games": 167,
+      "wins": 48,
+      "timedOut": 0,
+      "winPercent": 28.74,
+      "ci95Low": 22.42,
+      "ci95High": 36.02,
+      "meanWave": 5.85,
+      "meanKills": 192.7,
+      "meanScore": 185854.0,
+      "meanSeconds": 0.29
+    },
+    {
+      "policy": "sever",
+      "games": 166,
+      "wins": 39,
+      "timedOut": 0,
+      "winPercent": 23.49,
+      "ci95Low": 17.69,
+      "ci95High": 30.5,
+      "meanWave": 6.04,
+      "meanKills": 199.3,
+      "meanScore": 198855.0,
+      "meanSeconds": 0.26
+    },
+    {
+      "policy": "storm",
+      "games": 167,
+      "wins": 68,
+      "timedOut": 2,
+      "winPercent": 40.72,
+      "ci95Low": 33.56,
+      "ci95High": 48.3,
+      "meanWave": 6.8,
+      "meanKills": 235.9,
+      "meanScore": 235627.0,
+      "meanSeconds": 0.32
+    }
+  ],
+  "completed": 1000,
+  "mode": "Fast",
+  "gamesPerMinute": 679.4954717130723,
+  "requested": 1000,
+  "valid": 1000,
+  "missing": 0,
+  "batchSeconds": 88.3008092,
+  "duplicateSeeds": 0,
+  "invalid": 0
+}

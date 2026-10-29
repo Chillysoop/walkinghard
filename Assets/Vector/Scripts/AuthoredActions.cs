@@ -40,7 +40,7 @@ namespace VectorGame
             if(actionWeapon!=null||actionItem?.HasAugment(AugmentId.Backwash)!=true||actionAge<nativeDuration)return;
             foreach(var pair in backwash){var e=pair.Key;if(e.deathAge>=0)continue;if(!returnPoints.TryGetValue(e,out var to)){to=Vector3.Lerp(e.rig.Root.position,pair.Value,.45f);returnPoints[e]=to;fx.Arc(e.physics.Center,to+Vector3.up,Color.magenta);}
                 Vector3 delta=to-e.rig.Root.position;delta.y=0;float remaining=Mathf.Max(dt,actionDuration-actionAge);Vector3 velocity=Vector3.ClampMagnitude(delta/remaining,7*ControlResistance(e));
-                e.physics.Motor.linearVelocity=new Vector3(actionAge>=actionDuration?0:velocity.x,e.physics.Motor.linearVelocity.y,actionAge>=actionDuration?0:velocity.z);e.stun=Mathf.Max(e.stun,remaining);}
+                e.physics.LinearVelocity=new Vector3(actionAge>=actionDuration?0:velocity.x,e.physics.LinearVelocity.y,actionAge>=actionDuration?0:velocity.z);e.stun=Mathf.Max(e.stun,remaining);}
         }
         void WeaponExtension(LoadoutItem host,LoadoutItem basic,AbilityCard card,Enemy target,int step)
         {

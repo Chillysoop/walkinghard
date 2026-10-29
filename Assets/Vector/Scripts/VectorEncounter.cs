@@ -93,7 +93,7 @@ namespace VectorGame
             public int id;public FighterRig rig;public FighterPhysics physics;
             public float maxHealth,health,stun,cooldown,attack=-1,deathAge=-1,radius,orbit,phase,react;
             public bool engaged,heavy,delivered,entering,boss,shooter;
-            public Vector3 doorway;
+            public Vector3 doorway,cachedPosition;
         }
         sealed class Flight
         {
@@ -148,7 +148,7 @@ namespace VectorGame
             VisualFactory.Initialize();
             var world=VisualFactory.Node("Concourse and covered entry passages",transform,Vector3.zero);VisualFactory.World(world);
             actors=VisualFactory.Node("Fighters",transform,Vector3.zero);
-            hero=new FighterRig("The Walker",actors,true);heroPhysics=new FighterPhysics(hero,0,this,true);
+            hero=new FighterRig("The Walker",actors,true,lightweight:FastSimulation);heroPhysics=new FighterPhysics(hero,0,this,true);
             hero.Root.position=new Vector3(0,.04f,0);
             fx=new CombatEffects(VisualFactory.Node("Impacts",transform,Vector3.zero),qa);
             cameraRig=new GameObject("Elevated chase camera").AddComponent<Camera>();cameraRig.tag="MainCamera";
@@ -158,7 +158,7 @@ namespace VectorGame
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;AimCamera();
             Health=tuning.heroHealth;hero.Pose(0,0,-1,0,0,false,0);Physics.SyncTransforms();
             if(!simulation)gameObject.AddComponent<PrototypeHUD>().game=this;
-            if(qa){CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}Begin();}
+            if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
@@ -177,7 +177,7 @@ namespace VectorGame
             // Replace the kinematic motor between runs: a pending MovePosition target must
             // never carry the previous run's world position into the next physics step.
             hero.Root.gameObject.SetActive(false);Destroy(hero.Root.gameObject);
-            hero=new FighterRig("The Walker",actors,true);hero.Root.position=new Vector3(0,.04f,0);
+            hero=new FighterRig("The Walker",actors,true,lightweight:FastSimulation);hero.Root.position=new Vector3(0,.04f,0);
             heroPhysics=new FighterPhysics(hero,0,this,true);
             currentCredit=null;actionTarget=pairTarget=null;actionItem=pairItem=actionWeapon=pairWeapon=null;
             pendingReloads.Clear();reloadTimers.Clear();backwash.Clear();returnPoints.Clear();salvageChain=null;
@@ -279,7 +279,7 @@ namespace VectorGame
             }
             if(State==RunState.Running)
             {
-                if(qa){for(int i=0;i<(Application.isBatchMode?8:1)&&State==RunState.Running;i++)AdvanceCombat(1f/60);}
+                if(qa){for(int i=0;i<(FastSimulation?2048:Application.isBatchMode?8:1)&&State==RunState.Running;i++)AdvanceCombat(1f/60);}
                 else AdvanceCombat(Time.unscaledDeltaTime);
             }
             if(qa&&!qaHolding&&State==RunState.Drafting){if(simulation)SimulationDraft();else QADraft();}
@@ -305,7 +305,7 @@ namespace VectorGame
             Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
             if(qaBuild=="manual"&&qa)QAManual();
             if(ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
-            heroPhysics.Motor.MovePosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1));
+            heroPhysics.MovePosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1));
             spawnTimer-=dt;
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
             {
@@ -313,8 +313,8 @@ namespace VectorGame
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/tuning.waveCount;
                 spawnTimer=Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f);
             }
-            StepSignatures(dt);StepEnemies(dt);StepHero(dt);if(qa&&!simulation)QACheckWeapons();ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);ProcessContacts();
-            StepBodies(dt);fx.Step(dt);UpdateCamera(dt);if(simulation)ValidateSimulationStep(dt);
+            long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
+            StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
             if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
@@ -330,24 +330,24 @@ namespace VectorGame
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=Wave==8&&!bossSpawned;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<(Wave%3==2?.3:.15);if(boss)bossSpawned=true;
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
-            if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
+            if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
-            foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
+            if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
             if(!EntryLayout.Concealed(cameraRig,p))VisibleSpawns++;
         }
         void StepEnemies(float dt)
         {
-            int committed=0;foreach(var e in enemies)if(e.engaged)committed++;
+            int committed=0;foreach(var e in enemies){e.cachedPosition=e.rig.Root.position;if(e.engaged)committed++;}
             foreach(var e in enemies.ToArray())
             {
-                Vector3 p=e.rig.Root.position,delta=HeroPosition-p;delta.y=0;float distance=delta.magnitude;Vector3 inward=distance>.01f?delta/distance:Vector3.back;
+                Vector3 p=e.cachedPosition,delta=HeroPosition-p;delta.y=0;float distance=delta.magnitude;Vector3 inward=distance>.01f?delta/distance:Vector3.back;
                 e.cooldown-=dt;e.stun=Mathf.Max(0,e.stun-dt);e.react=Mathf.Max(0,e.react-dt*3);
                 if(e.stun>0){e.engaged=false;e.attack=-1;}
                 if(e.entering&&Mathf.Abs(p.x)<8.2f)e.entering=false;
                 if(!e.entering&&!e.engaged&&e.stun<=0&&e.cooldown<=0&&distance<(e.shooter?9:3.3f)&&committed<tuning.simultaneousAttackers)
                 {
-                    bool opening=true;foreach(var other in enemies)if(other!=e&&other.engaged&&Vector3.Angle(other.rig.Root.position-HeroPosition,p-HeroPosition)<34){opening=false;break;}
+                    bool opening=true;foreach(var other in enemies)if(other!=e&&other.engaged&&Vector3.Angle(other.cachedPosition-HeroPosition,p-HeroPosition)<34){opening=false;break;}
                     if(opening){e.engaged=true;committed++;}
                 }
                 Vector3 desired;
@@ -360,14 +360,14 @@ namespace VectorGame
                 if(e.heavy)desired*=.82f;
                 if(!e.entering&&e.stun<=0)
                 {
-                    foreach(var other in enemies){if(other==e)continue;Vector3 diff=p-other.rig.Root.position;diff.y=0;float d=diff.magnitude;if(d>.001f&&d<1.1f)desired+=diff/d*(1.1f-d)*2;}
+                    foreach(var other in enemies){if(other==e)continue;Vector3 diff=p-other.cachedPosition;diff.y=0;float d=diff.magnitude;if(d>.001f&&d<1.1f)desired+=diff/d*(1.1f-d)*2;}
                 }
-                Vector3 velocity=e.physics.Motor.linearVelocity;
+                Vector3 velocity=e.physics.LinearVelocity;
                 Vector3 flat=new Vector3(velocity.x,0,velocity.z);
                 flat=Vector3.Lerp(flat,desired,1-Mathf.Exp(-(e.stun>0?1.4f:7)*dt));
-                e.physics.Motor.linearVelocity=new Vector3(flat.x,velocity.y,flat.z);
+                e.physics.LinearVelocity=new Vector3(flat.x,velocity.y,flat.z);
                 Vector3 facing=e.entering?desired:inward;
-                if(e.stun<=0&&facing.sqrMagnitude>.01f)e.physics.Motor.MoveRotation(Quaternion.Slerp(e.rig.Root.rotation,Quaternion.LookRotation(facing),1-Mathf.Exp(-10*dt)));
+                if(e.stun<=0&&facing.sqrMagnitude>.01f)e.physics.MoveRotation(Quaternion.Slerp(e.rig.Root.rotation,Quaternion.LookRotation(facing),1-Mathf.Exp(-10*dt)));
                 if(e.engaged&&distance<(e.shooter?9:tuning.attackRadius)&&e.attack<0){e.attack=0;e.delivered=false;}
                 if(e.attack>=0)
                 {

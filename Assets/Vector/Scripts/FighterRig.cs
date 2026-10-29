@@ -12,15 +12,17 @@ namespace VectorGame
         readonly Renderer intentRenderer;
         readonly Transform pelvis;
         public Transform[] PhysicsBones=>new[]{pelvis,Body,Head,leftArm,leftElbow,rightArm,rightElbow,leftThigh,leftKnee,rightThigh,rightKnee};
-        readonly bool hero;
+        readonly bool hero,lightweight;
         readonly float phase;
         Transform weaponRight,weaponLeft;
         WeaponKind displayedRight=WeaponKind.Fists,displayedLeft=WeaponKind.Fists;
         bool twoHanded;
         internal Transform RightWeapon=>weaponRight;
         internal Transform LeftWeapon=>weaponLeft;
-        public FighterRig(string name, Transform parent, bool isHero, bool heavy = false, int poseSeed = 0)
+        public FighterRig(string name, Transform parent, bool isHero, bool heavy = false, int poseSeed = 0, bool lightweight = false)
         {
+            this.lightweight=lightweight;
+            if(lightweight){hero=isHero;Root=VisualFactory.Node(name,parent,Vector3.zero);Body=VisualFactory.Node("Body",Root,Vector3.up);Head=VisualFactory.Node("Head",Root,Vector3.up*1.9f);LeftHand=VisualFactory.Node("Left hand",Root,new Vector3(-.43f,1.3f,.35f));RightHand=VisualFactory.Node("Right hand",Root,new Vector3(.43f,1.3f,.35f));if(heavy)Root.localScale=Vector3.one*1.17f;return;}
             hero=isHero;phase=isHero?0:(float)new System.Random(poseSeed).NextDouble()*6.28f;
             Root=VisualFactory.Node(name,parent,Vector3.zero);
             var hips=VisualFactory.Node("Pelvis",Root,new Vector3(0,1.02f,0));pelvis=hips;
@@ -81,6 +83,7 @@ namespace VectorGame
         }
         public void Pose(float clock,float speed,int strike,float progress,float hitReact,bool pushing,float pushProgress,int weaponHand=-1,bool pairedAttack=false,bool twoHandedAttack=false)
         {
+            if(lightweight)return;
             float cycle=clock*(hero?8:10)+phase;
             float stride=Mathf.Sin(cycle)*Mathf.Clamp01(speed)*26f;
             float bob=Mathf.Abs(Mathf.Sin(cycle))*.035f*Mathf.Clamp01(speed);
@@ -183,6 +186,7 @@ namespace VectorGame
         static Quaternion Mirror(Quaternion q)=>new Quaternion(q.x,-q.y,-q.z,q.w);
         public void EquipWeapons(WeaponKind right,WeaponKind left,bool bothHands)
         {
+            if(lightweight)return;
             if(right==displayedRight&&left==displayedLeft&&bothHands==twoHanded)return;
             if(weaponRight!=null)Object.Destroy(weaponRight.gameObject);
             if(weaponLeft!=null)Object.Destroy(weaponLeft.gameObject);
