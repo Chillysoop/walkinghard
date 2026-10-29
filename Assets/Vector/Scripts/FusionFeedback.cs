@@ -27,9 +27,10 @@ namespace VectorGame
             {
                 float cx=r.center.x+i*65*(1-t),size=25+9*t;
                 ActionGlyph(new Rect(cx-size/2,cy-size/2,size,size),f.definition,age<.7f?RarityColor(f.before):color);
+                Outline(new Rect(cx-size/2-2,cy-size/2-2,size+4,size+4),age<.7f?RarityColor(f.before):color,3);
                 if(t==1)break;
             }
-            Label(new Rect(r.x+16,r.y+104,r.width-32,18),ItemRarity.Names[f.before].ToUpperInvariant()+"  >  "+ItemRarity.Names[f.after].ToUpperInvariant(),12,color,true);
+            Label(new Rect(r.x+16,r.y+104,r.width-32,18),"3 "+ItemRarity.Names[f.before].ToUpperInvariant()+" → 1 "+ItemRarity.Names[f.after].ToUpperInvariant(),12,color,true);
             Label(new Rect(r.x+16,r.y+130,r.width-32,draft?31:18),"BEFORE  "+ItemStats(f.definition,f.before),11,muted,true);
             Label(new Rect(r.x+16,r.y+(draft?166:155),r.width-32,draft?31:18),"AFTER    "+ItemStats(f.definition,f.after),11,color,true);
             string change=f.definition.kind==ItemKind.Weapon?AttackDescription(new LoadoutItem(f.definition,f.after)):f.definition.upgrade;

@@ -6,13 +6,22 @@ namespace VectorGame
     public sealed partial class PrototypeHUD
     {
         LoadoutItem hoveredItem;
-        void ItemTooltip(Rect r,LoadoutItem item)
+        RewardOffer hoveredOffer,detailOffer;
+        LoadoutItem detailItem;
+        Rect detailPanel;
+        bool detailHovered,detailValid;
+        float detailLastHover;
+        Vector2 detailScroll;
+        string detailIdentity="";
+        void ItemTooltip(Rect r,LoadoutItem item,RewardOffer offer=null)
         {
-            if(item!=null&&r.Contains(Event.current.mousePosition))hoveredItem=item;
+            if(!detailHovered&&item!=null&&r.Contains(Event.current.mousePosition)){hoveredItem=item;hoveredOffer=offer;detailLastHover=Time.realtimeSinceStartup;}
         }
         void DrawItemTooltip(float w,float h)
         {
-            var item=hoveredItem;if(item==null||dragging)return;
+            var item=hoveredItem;bool retained=item==null&&detailValid&&Time.realtimeSinceStartup-detailLastHover<.2f;
+            if(retained){item=detailItem;hoveredOffer=detailOffer;}
+            if(item==null||dragging||iconGuide){detailItem=null;return;}
             var shown=item.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
             bool offensive=shown.def.kind==ItemKind.Weapon||shown.def.kind==ItemKind.Ability||shown.def.kind==ItemKind.Ultimate;
             string stats=offensive?CombatStats(item):ItemStats(shown.def,shown.rank);
@@ -21,6 +30,7 @@ namespace VectorGame
             if(shown.def.kind==ItemKind.Weapon)
             {
                 body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching basic attacks fire together; independent targets.");
+                if(shown==game.Deck.Fists)body+="\nEmpty mounts share this one Fists item. It counts once toward fusion.";
                 int magazine=LoadoutCatalog.Magazine(shown);if(magazine>0)body+="\n"+magazine+" rounds / "+(shown.HasAugment(AugmentId.BreachLoad)?"1.5":"1.2")+"s reload before Loader reduction.";
             }
             if(shown.def.kind==ItemKind.Ultimate)body+="\n"+LoadoutCatalog.Cooldown(shown).ToString("0")+" combat seconds to recharge. Queues after the current action; U toggles Auto/Manual, F queues when ready.";
@@ -28,20 +38,26 @@ namespace VectorGame
             if(offensive)body+="\n\n"+SynergyText(shown.def);
             body+="\n\nRARITY EFFECTS\n"+shown.def.upgrade;if(shown.Augmentable)body+="\n\n"+AugmentCatalog.Values(shown,DisplayShare(shown));
             if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";
-            body+="\n"+(shown.rank==5?"Legendary: maximum rarity.":game.Deck.Copies(shown.def,shown.rank)+" / 3 identical "+ItemRarity.Names[shown.rank]+" copies toward "+ItemRarity.Names[shown.rank+1]+".");
             if(shown.def.kind==ItemKind.Augment)body=ModuleDetails(shown);
-            float width=440,height=Style(12).CalcHeight(new GUIContent(body),width-32)+108;
-            Vector2 mouse=Event.current.mousePosition;float x=mouse.x+18,y=mouse.y+18;
+            float width=450,bodyHeight=Style(11).CalcHeight(new GUIContent(body),width-44)+8,height=Mathf.Min(h-24,bodyHeight+228);
+            Vector2 mouse=presentationHover!=null?new Vector2(w*.6f,h*.4f):Event.current.mousePosition;float x=mouse.x+18,y=mouse.y+18;
             if(x+width>w-12)x=mouse.x-width-18;
             if(y+height>h-12)y=mouse.y-height-18;
             Rect r=new Rect(Mathf.Clamp(x,12,w-width-12),Mathf.Clamp(y,12,Mathf.Max(12,h-height-12)),width,height);
-            Plate(r,new Color(.012f,.033f,.048f,.995f),RarityColor(shown.rank),10,2);
-            ActionGlyph(new Rect(r.x+14,r.y+13,33,33),shown.def,TypeColor(shown.def.kind));
-            Label(new Rect(r.x+58,r.y+14,width-73,24),shown.def.name,18,white,true);
-            Label(new Rect(r.x+58,r.y+42,width-73,17),shown.def.kind.ToString().ToUpperInvariant()+" / "+(shown.def.kind==ItemKind.Augment?"HOST SCALED":ItemRarity.Names[shown.rank].ToUpperInvariant()),11,RarityColor(shown.rank),true);
-            Stroke(new Vector2(r.x+16,r.y+67),new Vector2(r.xMax-16,r.y+67),line,1);
-            Label(new Rect(r.x+16,r.y+77,width-32,height-88),body,12,white);
+            if(detailHovered||retained)r=detailPanel;detailPanel=r;detailItem=item;detailOffer=hoveredOffer;
+            Plate(r,new Color(.012f,.033f,.048f,.995f),ItemEdge(shown),10,2);
+            ActionGlyph(new Rect(r.x+14,r.y+12,60,60),shown.def,white);
+            Label(new Rect(r.x+87,r.y+14,width-100,24),shown.def.name,18,white,true);
+            TypeIcon(new Rect(r.x+86,r.y+42,18,18),shown.def.kind,muted);
+            Label(new Rect(r.x+111,r.y+44,width-124,17),Category(shown.def)+" / "+(shown.def.kind==ItemKind.Augment?"HOST-SCALED":ItemRarity.Names[shown.rank].ToUpperInvariant()),10,ItemEdge(shown),true);
+            DrawSynergyChips(new Rect(r.x+16,r.y+83,width-32,18),shown.def);
+            DrawFusionReadout(new Rect(r.x+16,r.y+111,width-32,86),shown,hoveredOffer);
+            string identity=shown.def.id+":"+shown.rank;if(identity!=detailIdentity){detailIdentity=identity;detailScroll=Vector2.zero;}
+            Rect viewport=new Rect(r.x+16,r.y+208,width-32,height-220);
+            detailScroll=GUI.BeginScrollView(viewport,detailScroll,new Rect(0,0,width-48,bodyHeight));
+            Label(new Rect(0,0,width-48,bodyHeight),body,11,white);GUI.EndScrollView();
         }
+        static readonly Color ModuleEdge=new Color(.45f,.59f,.66f);
         static readonly Color Violet=new Color(.78f,.64f,1),Blue=new Color(.48f,.74f,1);
         static Color RarityColor(int rarity)=>rarity==5?new Color(1,.61f,.22f):rarity==4?new Color(.78f,.48f,1):rarity==3?new Color(.36f,.66f,1):rarity==2?new Color(.45f,.87f,.43f):new Color(.79f,.82f,.84f);
         static Color TypeColor(ItemKind kind)=>kind==ItemKind.Augment?Violet:kind==ItemKind.Weapon||kind==ItemKind.Basic?Gold:kind==ItemKind.Ultimate?Violet:kind==ItemKind.Rig||LoadoutCatalog.IsArmor(kind)?Blue:Accent;
@@ -55,13 +71,15 @@ namespace VectorGame
         static void TypeIcon(Rect r,ItemKind kind,Color color,bool upgrade=false)
         {
             Vector2 c=r.center;
-            if(LoadoutCatalog.IsArmor(kind)){ActionGlyph(r,new ItemDefinition("icon","",kind,""),color);return;}
+            if(LoadoutCatalog.IsArmor(kind)){LineGlyph(r,new ItemDefinition("icon","",kind,""),color);return;}
             if(kind==ItemKind.Weapon||kind==ItemKind.Basic)
             {Stroke(c+new Vector2(-6,7),c+new Vector2(7,-7),color,3);Stroke(c+new Vector2(-8,1),c+new Vector2(-1,8),color,2);}
             else if(kind==ItemKind.Ability)
             {Ring(c,8,color);Stroke(c+new Vector2(2,-6),c+new Vector2(-3,1),color);Stroke(c+new Vector2(-3,1),c+new Vector2(3,0),color);Stroke(c+new Vector2(3,0),c+new Vector2(-2,6),color);}
             else if(kind==ItemKind.Ultimate)
             {for(int i=0;i<8;i++){float a=i*Mathf.PI/4;Stroke(c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*3,c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*9,color,2);}Ring(c,3,color);}
+            else if(kind==ItemKind.Augment)
+            {Stroke(c+new Vector2(0,-9),c+new Vector2(8,-4),color);Stroke(c+new Vector2(8,-4),c+new Vector2(8,4),color);Stroke(c+new Vector2(8,4),c+new Vector2(0,9),color);Stroke(c+new Vector2(0,9),c+new Vector2(-8,4),color);Stroke(c+new Vector2(-8,4),c+new Vector2(-8,-4),color);Stroke(c+new Vector2(-8,-4),c+new Vector2(0,-9),color);Box(new Rect(c.x-2,c.y-2,4,4),color);}
             else
             {Border(new Rect(c.x-5,c.y-5,10,10),color);for(int i=-1;i<=1;i++){Stroke(c+new Vector2(i*4,-9),c+new Vector2(i*4,-5),color);Stroke(c+new Vector2(i*4,5),c+new Vector2(i*4,9),color);}}
             if(upgrade){Stroke(c+new Vector2(6,5),c+new Vector2(10,1),color);Stroke(c+new Vector2(10,1),c+new Vector2(14,5),color);}

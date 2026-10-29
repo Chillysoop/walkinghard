@@ -32,6 +32,10 @@ namespace VectorGame
         }
         static void ActionGlyph(Rect r,ItemDefinition def,Color color)
         {
+            if(!ItemArtwork.Draw(r,def))LineGlyph(r,def,color);
+        }
+        static void LineGlyph(Rect r,ItemDefinition def,Color color)
+        {
             if(def==null)return;
             var matrix=GUI.matrix;GUI.matrix=matrix*Matrix4x4.TRS(new Vector3(r.center.x,r.center.y,0),Quaternion.identity,new Vector3(r.width/64,r.height/64,1));
             void L(float x,float y,float a,float b,float width=3)=>Stroke(new Vector2(x,y),new Vector2(a,b),color,width);
@@ -94,6 +98,14 @@ namespace VectorGame
             if(kind==5){Stroke(c+new Vector2(-8,6),c+new Vector2(8,-6),color);Stroke(c+new Vector2(-6,-6),c+new Vector2(-1,-2),color);Stroke(c+new Vector2(2,2),c+new Vector2(6,6),color);}
             if(kind==6){Stroke(c+new Vector2(-10,0),c+new Vector2(10,0),color);Stroke(c+new Vector2(5,-4),c+new Vector2(10,0),color);Stroke(c+new Vector2(5,4),c+new Vector2(10,0),color);Stroke(c+new Vector2(-3,-7),c+new Vector2(-3,7),color);}
             if(kind==4){Ring(c+new Vector2(-4,3),5,color);Ring(c+new Vector2(4,-3),5,color);Stroke(c+new Vector2(-4,3),c+new Vector2(4,-3),color);}
+            if(kind==7){Stroke(c+new Vector2(-7,-7),c+new Vector2(7,-7),color);Stroke(c+new Vector2(-7,-7),c+new Vector2(-6,3),color);Stroke(c+new Vector2(7,-7),c+new Vector2(6,3),color);Stroke(c+new Vector2(-6,3),c+new Vector2(0,9),color);Stroke(c+new Vector2(6,3),c+new Vector2(0,9),color);}
+            if(kind==8){Stroke(c+new Vector2(0,-9),c+new Vector2(8,0),color);Stroke(c+new Vector2(8,0),c+new Vector2(0,9),color);Stroke(c+new Vector2(0,9),c+new Vector2(-8,0),color);Stroke(c+new Vector2(-8,0),c+new Vector2(0,-9),color);Box(new Rect(c.x-2,c.y-2,4,4),color);}
+            if(kind==9){Border(new Rect(c.x-4,c.y-7,8,14),color);Stroke(c+new Vector2(-2,-2),c+new Vector2(2,-2),color);Stroke(c+new Vector2(7,7),c+new Vector2(10,2),color);Stroke(c+new Vector2(-7,-7),c+new Vector2(-10,-2),color);}
+            if(kind==10){Stroke(c+new Vector2(-7,0),c+new Vector2(7,0),color,4);Stroke(c+new Vector2(0,-7),c+new Vector2(0,7),color,4);}
+            if(kind==11){Ring(c,8,color);Stroke(c,c+new Vector2(0,-5),color);Stroke(c,c+new Vector2(4,0),color);}
+            if(kind==12){for(int i=0;i<8;i++){float a=i*Mathf.PI/4;Stroke(c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*4,c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*9,color);}}
+            if(kind==13){for(int i=-1;i<=1;i++){Stroke(c+new Vector2(i*6-3,-6),c+new Vector2(i*6+2,0),color);Stroke(c+new Vector2(i*6+2,0),c+new Vector2(i*6-3,6),color);}}
+            if(kind==14){Ring(c,7,color);Box(new Rect(c.x-2,c.y-2,4,4),color);}
         }
         void EffectTag(float x,float y,int kind,string label,bool consumes)
         {EffectIcon(new Rect(x,y,20,20),kind,consumes?Gold:Accent);Label(new Rect(x+25,y+1,250,20),(consumes?"USES ":"CREATES ")+label,12,consumes?Gold:muted);}

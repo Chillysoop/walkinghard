@@ -1,4 +1,6 @@
-# Walking Hard 0.6.1 — Counterguard Tuning and Fast Simulations
+# Walking Hard 0.6.2 — Item Art and Clearer Fusion
+
+All 56 item definitions have distinct artwork, shared across rewards, inventory, equipment and combat. Checkpoints explain automatic same-item, same-rarity fusion, show matching-copy counts and separate other-rarity copies. The Icon Key explains categories, rarities and synergy symbols. Augments remain host-scaled and do not fuse. See [art sources and prompts](https://github.com/Chillysoop/walkinghard/tree/main/Art) and [0.6.2 verification](QA/v062-verification.md).
 
 Counterguard now grants 25 barrier at Common (35 previously), with the existing rarity multipliers, duration and damage-conversion rules. The first balance test changes this capacity alone. Optional Fast simulations reuse combat and drafting rules with approximate movement and body collisions; Full remains the default for physics verification. See [the simulation guide](SIMULATIONS.md) and [0.6.1 verification](QA/v061-verification.md).
 

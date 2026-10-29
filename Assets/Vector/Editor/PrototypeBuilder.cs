@@ -22,12 +22,20 @@ namespace VectorGame.Editor
                 string path="Assets/Resources/"+(shaderName.EndsWith("Lit")?"SurfaceShader":"EffectShader")+".mat";
                 if(AssetDatabase.LoadAssetAtPath<Material>(path)==null){var shader=Shader.Find(shaderName);if(shader==null)throw new System.Exception("Missing shader: "+shaderName);var mat=new Material(shader);mat.enableInstancing=true;if(shaderName.Contains("Particles")){mat.SetFloat("_Surface",1);mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");}else{mat.EnableKeyword("_EMISSION");mat.SetColor("_EmissionColor",Color.cyan*2);}AssetDatabase.CreateAsset(mat,path);}
             }
+            foreach(string name in new[]{"Equipment","Actions","Augments"})
+            {
+                string path="Assets/Resources/ItemArt/"+name+".png";
+                var importer=AssetImporter.GetAtPath(path) as TextureImporter;
+                if(importer==null)throw new System.Exception("Missing item artwork: "+path);
+                if(importer.mipmapEnabled||importer.npotScale!=TextureImporterNPOTScale.None||importer.textureCompression!=TextureImporterCompression.Uncompressed)
+                {importer.mipmapEnabled=false;importer.npotScale=TextureImporterNPOTScale.None;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.maxTextureSize=2048;importer.wrapMode=TextureWrapMode.Clamp;importer.filterMode=FilterMode.Bilinear;importer.SaveAndReimport();}
+            }
             var pipeline=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
             if(pipeline==null)throw new System.Exception("URP PC asset missing.");
             pipeline.shadowDistance=45;pipeline.msaaSampleCount=4;pipeline.renderScale=1f;pipeline.supportsHDR=true;
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
             QualitySettings.shadows=UnityEngine.ShadowQuality.All;QualitySettings.shadowResolution=UnityEngine.ShadowResolution.High;QualitySettings.vSyncCount=1;
-            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.6.1";
+            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.6.2";
             PlayerSettings.defaultScreenWidth=1280;PlayerSettings.defaultScreenHeight=720;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;PlayerSettings.resizableWindow=true;
             PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);

@@ -166,3 +166,12 @@ Normal enemy damage is initially 3.2, HP 40 with +3.5% per wave; heavies multipl
 ## Engine-only balance experiments
 
 Headless batches run the production fixed-step combat and PhysX code with cosmetic rendering disabled. Each worker reuses its process but resets all run actors, ownership and combat state. Random, balanced and four synergy-weighted drafting policies exercise different builds; these are test agents, not optimal players. CSV/JSON output separates defeats from invalid runs and timeouts, records per-item contributions, and supports matched-seed before/after comparisons. Optional balance JSON overrides numerical hypotheses without recompiling. See SIMULATIONS.md for commands and limits. Full ragdoll physics remains CPU-intensive; three-wave sweeps are faster, while eight-wave runs exercise both augment choices and the boss. Simulation results cannot establish visual quality or enjoyment.
+
+
+### Item identity and fusion readability (0.6.2)
+
+Three copies of the exact same definition at the same rarity fuse automatically across equipped gear and storage. Different rarities do not contribute to that set. Each physical item counts once, including a two-handed weapon or the shared fallback Fists. Legendary is the cap. Augments retain the approved host-scaled, non-fusing contract.
+
+Every definition has stable artwork. Rarity changes the border and written tier, not the artwork; category glyphs have one meaning across all surfaces. Stored cards show their tier initial and matching-copy count. Reward previews include incoming copies, show when they will fuse and retain leftover-copy information in the detail panel. Hover details list other-rarity copies separately, and matching owned copies highlight together. Storage sorts by type, item and rarity without altering ownership or fusion priority.
+
+The optional Icon Key explains item types, rarity progression and labeled synergy symbols. A shared symbol means a shared synergy concept, not a promise that every item creates or consumes it in the same way; the effect description states the actual interaction. No balance, rarity odds, fusion thresholds or augment mechanics change in this presentation update.
