@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0d6507c050eff46bf0d0918e13ff04, type: 3}
   m_Name: CombatTuning
   m_EditorClassIdentifier: Assembly-CSharp::VectorGame.CombatTuning
-  waveCount: 3
+  waveCount: 8
   waveArrivals: 30
   cleanupWindow: 8
   walkSpeed: 0.72
@@ -31,7 +31,7 @@ MonoBehaviour:
   pushCrowdThreshold: 4
   enemyHealth: 40
   enemySpeed: 2.75
-  enemyDamage: 4
+  enemyDamage: 3.2
   attackRadius: 1.65
   simultaneousAttackers: 4
   firstSpawnInterval: 1.25

@@ -1,0 +1,439 @@
+{
+  "fullRunBenchmark": {
+    "batch": {
+      "firstSeed": 100,
+      "startedUtc": "2026-10-29T07:55:32.7088773Z",
+      "policy": "mixed",
+      "runs": 12,
+      "assemblySha256": "E1E1685866BC15D861BD36AA7876398F245437064A466CD333A3B29C4BE23F49",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060-sim3\\WalkingHard.exe",
+      "workers": 2,
+      "waves": 8,
+      "completedUtc": "2026-10-29T08:02:42.5268201Z"
+    },
+    "summary": {
+      "requested": 12,
+      "missing": 0,
+      "duplicateSeeds": 0,
+      "batchSeconds": 429.5669864,
+      "invalid": 0,
+      "valid": 12,
+      "completed": 12,
+      "gamesPerMinute": 1.676106457886774,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "policies": [
+        {
+          "policy": "balanced",
+          "games": 2,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 50.0,
+          "ci95Low": 9.45,
+          "ci95High": 90.55,
+          "meanWave": 8.0,
+          "meanKills": 294.0,
+          "meanScore": 286250.0,
+          "meanSeconds": 107.22
+        },
+        {
+          "policy": "gun",
+          "games": 2,
+          "wins": 0,
+          "timedOut": 0,
+          "winPercent": 0.0,
+          "ci95Low": 0.0,
+          "ci95High": 65.76,
+          "meanWave": 6.0,
+          "meanKills": 184.5,
+          "meanScore": 174400.0,
+          "meanSeconds": 19.29
+        },
+        {
+          "policy": "pinball",
+          "games": 2,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 50.0,
+          "ci95Low": 9.45,
+          "ci95High": 90.55,
+          "meanWave": 7.5,
+          "meanKills": 255.5,
+          "meanScore": 238500.0,
+          "meanSeconds": 30.92
+        },
+        {
+          "policy": "random",
+          "games": 2,
+          "wins": 2,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 34.24,
+          "ci95High": 100.0,
+          "meanWave": 8.0,
+          "meanKills": 303.5,
+          "meanScore": 307800.0,
+          "meanSeconds": 122.52
+        },
+        {
+          "policy": "sever",
+          "games": 2,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 50.0,
+          "ci95Low": 9.45,
+          "ci95High": 90.55,
+          "meanWave": 8.0,
+          "meanKills": 290.0,
+          "meanScore": 297950.0,
+          "meanSeconds": 58.22
+        },
+        {
+          "policy": "storm",
+          "games": 2,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 50.0,
+          "ci95Low": 9.45,
+          "ci95High": 90.55,
+          "meanWave": 6.0,
+          "meanKills": 210.0,
+          "meanScore": 205800.0,
+          "meanSeconds": 55.92
+        }
+      ]
+    }
+  },
+  "shortRunSmoke": {
+    "batch": {
+      "waves": 3,
+      "workers": 2,
+      "assemblySha256": "BA484C70F2A2B55F3B0EB71D547ECB5F35AECAE40D31565C2E0FCC0F4956AA02",
+      "firstSeed": 103,
+      "runs": 6,
+      "policy": "mixed",
+      "startedUtc": "2026-10-29T08:13:16.0475716Z",
+      "maxCombatSeconds": 480,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060-publish\\WalkingHard.exe",
+      "completedUtc": "2026-10-29T08:13:44.4369910Z"
+    },
+    "summary": {
+      "duplicateSeeds": 0,
+      "batchSeconds": 28.0581015,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "invalid": 0,
+      "requested": 6,
+      "valid": 6,
+      "policies": [
+        {
+          "policy": "balanced",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 120.0,
+          "meanScore": 115300.0,
+          "meanSeconds": 6.9
+        },
+        {
+          "policy": "gun",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 122.0,
+          "meanScore": 125300.0,
+          "meanSeconds": 7.33
+        },
+        {
+          "policy": "pinball",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 115.0,
+          "meanScore": 112300.0,
+          "meanSeconds": 7.01
+        },
+        {
+          "policy": "random",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 111.0,
+          "meanScore": 104600.0,
+          "meanSeconds": 7.65
+        },
+        {
+          "policy": "sever",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 120.0,
+          "meanScore": 117000.0,
+          "meanSeconds": 7.49
+        },
+        {
+          "policy": "storm",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 119.0,
+          "meanScore": 122000.0,
+          "meanSeconds": 8.19
+        }
+      ],
+      "completed": 6,
+      "missing": 0,
+      "gamesPerMinute": 12.830518843194007
+    }
+  },
+  "overrideBaseline": {
+    "batch": {
+      "policy": "gun",
+      "runs": 2,
+      "firstSeed": 210,
+      "startedUtc": "2026-10-29T08:00:50.265888Z",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060-sim5\\WalkingHard.exe",
+      "waves": 3,
+      "maxCombatSeconds": 480,
+      "assemblySha256": "A1EE4A0AB753F909EA2495D716E4B7B00FEFB2372234EB7817E9FB938FDD7F2B",
+      "workers": 1,
+      "completedUtc": "2026-10-29T08:01:17.2396668Z"
+    },
+    "summary": {
+      "policies": [
+        {
+          "policy": "gun",
+          "games": 2,
+          "wins": 2,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 34.24,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 122.5,
+          "meanScore": 120150.0,
+          "meanSeconds": 9.25
+        }
+      ],
+      "missing": 0,
+      "batchSeconds": 27.0,
+      "gamesPerMinute": 4.444444444444445,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "invalid": 0,
+      "duplicateSeeds": 0,
+      "valid": 2,
+      "requested": 2,
+      "completed": 2
+    }
+  },
+  "overrideCandidate": {
+    "batch": {
+      "workers": 1,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060-sim5\\WalkingHard.exe",
+      "waves": 3,
+      "assemblySha256": "A1EE4A0AB753F909EA2495D716E4B7B00FEFB2372234EB7817E9FB938FDD7F2B",
+      "startedUtc": "2026-10-29T08:01:01.1184416Z",
+      "runs": 2,
+      "firstSeed": 210,
+      "policy": "gun",
+      "maxCombatSeconds": 480,
+      "completedUtc": "2026-10-29T08:01:15.1476814Z"
+    },
+    "summary": {
+      "requested": 2,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateSeeds": 0,
+      "completed": 2,
+      "valid": 2,
+      "batchSeconds": 14.0,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "gamesPerMinute": 8.571428571428571,
+      "policies": [
+        {
+          "policy": "gun",
+          "games": 2,
+          "wins": 0,
+          "timedOut": 0,
+          "winPercent": 0.0,
+          "ci95Low": 0.0,
+          "ci95High": 65.76,
+          "meanWave": 3.0,
+          "meanKills": 73.0,
+          "meanScore": 57550.0,
+          "meanSeconds": 5.48
+        }
+      ]
+    }
+  },
+  "identicalSeedReplay": {
+    "batch": {
+      "policy": "gun",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060-sim5\\WalkingHard.exe",
+      "runs": 2,
+      "waves": 3,
+      "assemblySha256": "A1EE4A0AB753F909EA2495D716E4B7B00FEFB2372234EB7817E9FB938FDD7F2B",
+      "workers": 1,
+      "startedUtc": "2026-10-29T08:02:35.7303894Z",
+      "maxCombatSeconds": 480,
+      "firstSeed": 210,
+      "completedUtc": "2026-10-29T08:02:52.5426541Z"
+    },
+    "summary": {
+      "policies": [
+        {
+          "policy": "gun",
+          "games": 2,
+          "wins": 2,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 34.24,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 122.5,
+          "meanScore": 120150.0,
+          "meanSeconds": 7.01
+        }
+      ],
+      "missing": 0,
+      "batchSeconds": 17.0,
+      "gamesPerMinute": 7.0588235294117645,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "invalid": 0,
+      "duplicateSeeds": 0,
+      "valid": 2,
+      "requested": 2,
+      "completed": 2
+    }
+  },
+  "limitations": "Small validation samples, not a thousand-game balance study. The full-run benchmark used an earlier candidate before final rifle-target/visual refinements and competed with other checks. Two replayed games matched all recorded gameplay fields; PhysX cross-machine determinism is not promised.",
+  "finalBuildSmoke": {
+    "batch": {
+      "policy": "mixed",
+      "assemblySha256": "EE7E18B1F9B1BC93C5959BECAF34BF8493D60DC6579B57925C330A1435963DF0",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Release-v060\\WalkingHard.exe",
+      "startedUtc": "2026-10-29T08:23:17.3357962Z",
+      "maxCombatSeconds": 480,
+      "firstSeed": 103,
+      "runs": 6,
+      "workers": 2,
+      "waves": 3,
+      "completedUtc": "2026-10-29T08:23:39.3442617Z"
+    },
+    "summary": {
+      "invalid": 0,
+      "missing": 0,
+      "note": "Real Unity combat and PhysX; headless rendering only. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+      "completed": 6,
+      "batchSeconds": 21.987385,
+      "gamesPerMinute": 16.373024804905178,
+      "duplicateSeeds": 0,
+      "valid": 6,
+      "requested": 6,
+      "policies": [
+        {
+          "policy": "balanced",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 120.0,
+          "meanScore": 115300.0,
+          "meanSeconds": 5.86
+        },
+        {
+          "policy": "gun",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 122.0,
+          "meanScore": 125300.0,
+          "meanSeconds": 6.46
+        },
+        {
+          "policy": "pinball",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 115.0,
+          "meanScore": 112300.0,
+          "meanSeconds": 5.94
+        },
+        {
+          "policy": "random",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 111.0,
+          "meanScore": 104600.0,
+          "meanSeconds": 6.64
+        },
+        {
+          "policy": "sever",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 120.0,
+          "meanScore": 117000.0,
+          "meanSeconds": 6.44
+        },
+        {
+          "policy": "storm",
+          "games": 1,
+          "wins": 1,
+          "timedOut": 0,
+          "winPercent": 100.0,
+          "ci95Low": 20.65,
+          "ci95High": 100.0,
+          "meanWave": 3.0,
+          "meanKills": 119.0,
+          "meanScore": 122000.0,
+          "meanSeconds": 6.99
+        }
+      ]
+    }
+  },
+  "releaseAssemblySha256": "C34693463EB27D86FCAAC98AFB45F68B09F8963116A206FDDE759EC1DC097722",
+  "releaseVerification": "Final changes after the six-game smoke affect only follow-up cue presentation. Echo, Flurry and Crosscut integration scenarios and dense native captures passed on the release DLL; no subsequent combat-rule changes."
+}

@@ -6,11 +6,11 @@ namespace VectorGame
     public sealed class CombatTuning : ScriptableObject
     {
         [Header("Encounter")]
-        public int waveCount = 3;
+        public int waveCount = 8;
         public float waveArrivals = 30f;
         public float cleanupWindow = 8f;
         public float walkSpeed = .72f;
-        public float heroHealth = 230f;
+        public float heroHealth = 280f;
         public int seed = 1741;
         public int maximumEnemies = 42;
         [Header("Melee")]
@@ -28,7 +28,7 @@ namespace VectorGame
         [Header("Swarm")]
         public float enemyHealth = 40f;
         public float enemySpeed = 2.75f;
-        public float enemyDamage = 4f;
+        public float enemyDamage = 3.2f;
         public float attackRadius = 1.65f;
         public int simultaneousAttackers = 4;
         public float firstSpawnInterval = 1.25f;

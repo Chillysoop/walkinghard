@@ -8,6 +8,7 @@ namespace VectorGame
         static void Require(bool condition,string message){if(!condition)throw new InvalidOperationException("Loadout contract: "+message);}
         public static void Run()
         {
+            BuildVarietyChecks.Run();
             var deck=new AbilityDeck(1741);
             Require(deck.Slots.Count(x=>x?.def.kind==ItemKind.Basic)==2,"two permanent basic actions");
             Require(deck.PairAfter(0)==1,"adjacent empty mounts pair fists");
@@ -73,9 +74,9 @@ namespace VectorGame
             armor.Acquire(helmet.def);armor.Acquire(helmet.def);
             Require(armor.Armor[0]==helmet&&helmet.rank==2&&Math.Abs(armor.StaggerBonus-7.2f)<.001f,"armor fusion preserves mount and scales passive");
             armor.Open(DraftKind.Mixed,false);armor.Offers[0]=new RewardOffer(LoadoutCatalog.Armor[1],1,3);
-            Require(!armor.ClaimTo(0,PlaceKind.Helmet)&&armor.ClaimTo(0,PlaceKind.Armor)&&armor.MaxHealthBonus==60&&Math.Abs(armor.DamageTaken-.82f)<.001f,"direct armor reward applies rarity-scaled defense");
+            Require(!armor.ClaimTo(0,PlaceKind.Helmet)&&armor.ClaimTo(0,PlaceKind.Armor)&&armor.MaxHealthBonus==60&&Math.Abs(armor.DamageTaken-.88f)<.001f,"direct armor reward applies rarity-scaled defense");
             armor.Move(armor.Acquire(LoadoutCatalog.Armor[2]),PlaceKind.Boots);
-            Require(armor.Speed>1&&armor.Regeneration==.4f,"boots grant action speed and regeneration");
+            Require(armor.Speed>1&&armor.Regeneration==0,"boots grant speed; recovery requires real mote pickup");
             armor.Move(helmet,PlaceKind.Inventory);Require(armor.StaggerBonus==0&&armor.Damage==1,"stored armor stops granting effects");
             var score=new ComboScore();score.Kill(100,1);score.Kill(100,1);Require(score.Multiplier==2&&score.Pending==400,"bulk kill multiplier");
             score.Kill(100,2,2);Require(score.Multiplier==4&&score.Pending==1200,"chain depth raises multiplier");

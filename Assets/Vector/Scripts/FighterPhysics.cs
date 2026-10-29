@@ -74,6 +74,14 @@ namespace VectorGame
             }
             return moved;
         }
+        public Bounds WalkingBounds()
+        {
+            var bounds=new Bounds(bodies[0].worldCenterOfMass,Vector3.zero);
+            foreach(var body in bodies)bounds.Encapsulate(body.worldCenterOfMass);
+            // ShoveAside cannot reach a body beyond 1.35m horizontally. Including every
+            // fragment keeps this broad phase valid even after a waist sever.
+            bounds.Expand(new Vector3(2.7f,0,2.7f));return bounds;
+        }
         public void Die(Vector3 addedVelocity)
         {
             if(Ragdoll)return;

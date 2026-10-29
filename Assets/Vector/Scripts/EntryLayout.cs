@@ -15,8 +15,8 @@ namespace VectorGame
         }
         public static void Build(Transform parent)
         {
-            Doors.Clear();Solid("Concourse / physical floor",parent,new Vector3(0,-.27f,80),new Vector3(40,.5f,230),VisualFactory.Ground);
-            for(int z=-12;z<190;z+=6)
+            Doors.Clear();Solid("Concourse / physical floor",parent,new Vector3(0,-.27f,250),new Vector3(40,.5f,600),VisualFactory.Ground);
+            for(int z=-12;z<550;z+=6)
             {
                 VisualFactory.Part("Floor seam",parent,PrimitiveType.Cube,new Vector3(0,-.012f,z),new Vector3(18,.02f,.035f),VisualFactory.Black);
                 for(int side=-1;side<=1;side+=2)
@@ -28,7 +28,7 @@ namespace VectorGame
             for(int side=-1;side<=1;side+=2)
             {
                 float previous=-25;
-                for(int z=9;z<180;z+=18)
+                for(int z=9;z<540;z+=18)
                 {
                     float end=z-2;
                     Solid("Concourse wall",parent,new Vector3(side*9.5f,2.3f,(previous+end)*.5f),new Vector3(.7f,4.7f,end-previous),VisualFactory.Stone);
@@ -44,7 +44,7 @@ namespace VectorGame
                     Doors.Add(new Door{side=side,z=z,origin=new Vector3(side*15.5f,.05f,z),exit=new Vector3(side*7.8f,.05f,z)});
                     previous=z+2;
                 }
-                Solid("Far wall",parent,new Vector3(side*9.5f,2.3f,(previous+205)*.5f),new Vector3(.7f,4.7f,205-previous),VisualFactory.Stone);
+                Solid("Far wall",parent,new Vector3(side*9.5f,2.3f,(previous+565)*.5f),new Vector3(.7f,4.7f,565-previous),VisualFactory.Stone);
             }
         }
         public static Door Ahead(int side,float heroZ)

@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace VectorGame
 {
-    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate }
-    public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots }
-    public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle }
-    public enum DraftKind { Ability, Weapon, Mixed }
+    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard }
+    public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots, Augment }
+    public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle, Shotgun }
+    public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment }
     public enum PlaceKind { Sequence, Weapon, Rig, Ultimate, Inventory, Helmet, Armor, Boots }
     public sealed class AbilityCard
     {
@@ -24,6 +24,12 @@ namespace VectorGame
         public readonly ItemKind kind;
         public readonly WeaponKind weapon;
         public readonly int hands;
+        public WeaponProfile profile;
+        public Signature signature;
+        public EffectProfile effect;
+        public GearStats stats;
+        public AugmentDefinition module;
+        public string tags="",tradeoff="";
         public readonly AbilityCard ability;
         public ItemDefinition(string id,string name,ItemKind kind,string description,string upgrade="",WeaponKind weapon=WeaponKind.Fists,int hands=0,AbilityCard ability=null)
         {this.id=id;this.name=name;this.kind=kind;this.description=description;this.upgrade=upgrade;this.weapon=weapon;this.hands=hands;this.ability=ability;}
@@ -32,8 +38,11 @@ namespace VectorGame
     {
         public readonly ItemDefinition def;
         public int rank=1, mount=-1;
+        public LoadoutItem augment;
+        public bool Augmentable=>def.kind==ItemKind.Ability||def.kind==ItemKind.Weapon;
+        public bool HasAugment(AugmentId id)=>augment?.def.module?.id==id;
         public LoadoutItem(ItemDefinition def,int rank=1){this.def=def;this.rank=rank;}
-        public string Name=>def.name+(def.kind==ItemKind.Basic?"":" · "+ItemRarity.Names[rank]);
+        public string Name=>def.name+(def.kind==ItemKind.Basic||def.kind==ItemKind.Augment?"":" · "+ItemRarity.Names[rank]);
     }
     public sealed class RewardOffer
     {
@@ -69,15 +78,21 @@ namespace VectorGame
         public int Count=>Slots.Count(s=>s!=null&&s.def.kind==ItemKind.Ability);
         public bool TwoHanded=>Weapons[0]!=null&&Weapons[0].def.hands==2;
         public bool Pinball=>Rig?.def.id=="faultline";
-        float ArmorPower(int slot)=>Armor[slot]==null?0:ItemRarity.Power[Armor[slot].rank];
-        public float Speed=>(Rig?.def.id=="overclock"?1+.2f*ItemRarity.Power[Rig.rank]:1)+.08f*ArmorPower(2);
-        public float Damage=>(Rig?.def.id=="amplifier"?1+.25f*ItemRarity.Power[Rig.rank]:1)+.08f*ArmorPower(0);
-        public float MaxHealthBonus=>40*ArmorPower(1);
-        public float DamageTaken=>1-.12f*ArmorPower(1);
-        public float StaggerBonus=>6*ArmorPower(0);
-        public float Regeneration=>.4f*ArmorPower(2);
+        public IEnumerable<LoadoutItem> Equipment=>Armor.Where(i=>i!=null).Concat(Rig==null?Enumerable.Empty<LoadoutItem>():new[]{Rig});
+        public LoadoutItem Equipped(Signature signature)=>Equipment.FirstOrDefault(i=>i.def.signature==signature);
+        public float Stat(Func<GearStats,float> pick)=>Equipment.Sum(i=>pick(i.def.stats)*ItemRarity.Power[i.rank]);
+        public float Speed=>1+Stat(s=>s.speed);
+        public float Damage=>1+Stat(s=>s.damage);
+        public float MaxHealthBonus=>Stat(s=>s.health);
+        public float DamageTaken=>Math.Max(.35f,1-Stat(s=>s.resistance));
+        public float StaggerBonus=>Equipped(Signature.Tactician)==null?0:6*ItemRarity.Power[Equipped(Signature.Tactician).rank];
+        public float Regeneration=>0;
+        public IEnumerable<LoadoutItem> Hosts=>Items.Where(i=>i.Augmentable);
+        public LoadoutItem ModuleHost(LoadoutItem module)=>Hosts.FirstOrDefault(i=>i.augment==module);
+        public IEnumerable<LoadoutItem> CompatibleHosts(ItemDefinition module)=>Hosts.Where(i=>module.module!=null&&module.module.Fits(i.def));
+        public LoadoutItem HostAt(PlaceKind place,int index)=>place==PlaceKind.Sequence&&index>=0&&index<5?(Slots[index]?.def.kind==ItemKind.Basic?WeaponFor(Slots[index]):Slots[index]):place==PlaceKind.Weapon&&index>=0&&index<2?WeaponFor(Basics[index]):null;
         public bool CanClaim=>!RewardClaimed&&Selected>=0&&(Draft!=DraftKind.Ability||(SelectedSlot>=0&&Slots[SelectedSlot]==null));
-        public IEnumerable<LoadoutItem> Inventory=>Items.Where(i=>i!=Fists&&Array.IndexOf(Slots,i)<0&&Array.IndexOf(Weapons,i)<0&&Array.IndexOf(Armor,i)<0&&Rig!=i&&Ultimate!=i);
+        public IEnumerable<LoadoutItem> Inventory=>Items.Where(i=>i!=Fists&&Array.IndexOf(Slots,i)<0&&Array.IndexOf(Weapons,i)<0&&Array.IndexOf(Armor,i)<0&&Rig!=i&&Ultimate!=i&&ModuleHost(i)==null);
         public AbilityDeck(int seed)
         {
             random=new Random(seed^0x5f3759df);Fists=new LoadoutItem(LoadoutCatalog.Fists);Items.Add(Fists);
@@ -86,7 +101,7 @@ namespace VectorGame
         }
         public bool Has(AbilityId id)=>Slots.Any(s=>s?.def.ability?.id==id);
         public LoadoutItem WeaponFor(LoadoutItem basic)=>Weapons[basic.mount]??Fists;
-        public AbilityCard Card(LoadoutItem item)=>item.def.kind==ItemKind.Basic?LoadoutCatalog.Basic(WeaponFor(item)):item.def.ability;
+        public AbilityCard Card(LoadoutItem item)=>LoadoutCatalog.Action(item.def.kind==ItemKind.Basic?WeaponFor(item):item);
         public AbilityCard CardAt(int slot)=>Slots[slot]==null?null:Card(Slots[slot]);
         public string SlotName(int slot)=>Slots[slot]==null?"Empty":Slots[slot].def.kind==ItemKind.Basic?Slots[slot].Name+" · "+WeaponFor(Slots[slot]).Name:Slots[slot].Name;
         public int NextOccupied(int from){for(int i=0;i<SequenceSize;i++){int slot=(from+i)%SequenceSize;if(Slots[slot]!=null)return slot;}return -1;}
@@ -94,7 +109,7 @@ namespace VectorGame
         public int PairAfter(int slot)
         {
             var a=Slots[slot];int next=(slot+1)%SequenceSize;var b=Slots[next];
-            return a?.def.kind==ItemKind.Basic&&b?.def.kind==ItemKind.Basic&&WeaponFor(a).def.weapon==WeaponFor(b).def.weapon?next:-1;
+            return a?.def.kind==ItemKind.Basic&&b?.def.kind==ItemKind.Basic&&LoadoutCatalog.Family(WeaponFor(a).def.weapon)==LoadoutCatalog.Family(WeaponFor(b).def.weapon)?next:-1;
         }
         public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
         public void Open(DraftKind kind,bool grantReroll){Draft=kind;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
@@ -104,18 +119,23 @@ namespace VectorGame
             Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
             if(Draft==DraftKind.Ability)
             {foreach(var def in LoadoutCatalog.Abilities)if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            else if(Draft==DraftKind.Augment)
+            {choices.AddRange(AugmentCatalog.Offers(this,random).Select(d=>new RewardOffer(d)));}
+            else if(Draft==DraftKind.Equipment)
+            {var pool=LoadoutCatalog.Equipment.ToList();Shuffle(pool);var empty=Enumerable.Range(0,3).FirstOrDefault(i=>Armor[i]==null);if(Armor[empty]==null){var wanted=pool.First(d=>LoadoutCatalog.ArmorIndex(d.kind)==empty);choices.Add(new RewardOffer(wanted));pool.Remove(wanted);}choices.AddRange(pool.Take(3-choices.Count).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Weapon)
             {foreach(var def in LoadoutCatalog.Weapons)choices.Add(new RewardOffer(def));Shuffle(choices);}
             else
             {
-                var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.rank<5).ToList();Shuffle(owned);
+                var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&i.rank<5).ToList();Shuffle(owned);
                 if(owned.Count>0){var item=owned[0];choices.Add(new RewardOffer(item.def,2));}
                 else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
-                var abilities=new List<ItemDefinition>(LoadoutCatalog.Abilities);Shuffle(abilities);choices.Add(new RewardOffer(abilities[0]));
-                var equipment=new List<ItemDefinition>(LoadoutCatalog.Weapons);equipment.AddRange(LoadoutCatalog.Rigs);equipment.AddRange(LoadoutCatalog.Ultimates);equipment.AddRange(LoadoutCatalog.Armor);equipment.Add(LoadoutCatalog.Fists);Shuffle(equipment);
-                choices.Add(new RewardOffer(equipment.Find(e=>e!=choices[0].def)));
+                var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def).ToList();Shuffle(support);
+                var tags=string.Join(" ",Slots.Where(i=>i!=null).Select(i=>(i.def.kind==ItemKind.Basic?WeaponFor(i):i).def.tags));
+                var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
+                var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));
             }
-            Offers=choices.Take(3).Select(o=>new RewardOffer(o.def,o.copies,ItemRarity.Roll(random))).ToArray();
+            Offers=choices.Take(3).Select(o=>new RewardOffer(o.def,o.copies,o.def.kind==ItemKind.Augment?1:ItemRarity.Roll(random))).ToArray();
             foreach(var offer in Offers)offer.owned=Copies(offer.def,offer.rank);
         }
         public void Select(int index){if(!RewardClaimed&&index>=0&&index<Offers.Length)Selected=index;}
@@ -140,6 +160,7 @@ namespace VectorGame
             if(RewardClaimed||offer<0||offer>=Offers.Length)return false;
             var kind=Offers[offer].def.kind;
             if(Draft==DraftKind.Ability&&(place!=PlaceKind.Sequence||index<0||index>=SequenceSize||Slots[index]!=null))return false;
+            if(kind==ItemKind.Augment)return place==PlaceKind.Inventory||(HostAt(place,index) is LoadoutItem host&&Offers[offer].def.module.Fits(host.def));
             if(place==PlaceKind.Inventory)return Draft!=DraftKind.Ability;
             if(place==PlaceKind.Sequence)return kind==ItemKind.Ability&&index>=0&&index<SequenceSize&&(!TwoHanded||Slots[index]?.def.kind!=ItemKind.Basic);
             if(place==PlaceKind.Weapon)return kind==ItemKind.Weapon&&index>=0&&index<2;
@@ -157,6 +178,7 @@ namespace VectorGame
         public void SuggestedPlace(ItemDefinition def,out PlaceKind place,out int index)
         {
             index=0;
+            if(def.kind==ItemKind.Augment){var hosts=CompatibleHosts(def).ToArray();if(hosts.Length!=1){place=PlaceKind.Inventory;index=-2;MoveMessage="Choose a compatible host; no module has been attached yet.";return;}var host=hosts[0];index=Array.IndexOf(Slots,host);if(index>=0){place=PlaceKind.Sequence;return;}index=Array.FindIndex(Weapons,i=>i==host);if(host==Fists)index=Array.FindIndex(Weapons,i=>i==null);if(index>=0){place=PlaceKind.Weapon;return;}place=PlaceKind.Inventory;index=-2;return;}
             if(def.kind==ItemKind.Weapon)
             {
                 place=PlaceKind.Weapon;index=Array.FindIndex(Weapons,w=>w==null);
@@ -174,13 +196,14 @@ namespace VectorGame
         public LoadoutItem Acquire(ItemDefinition def,int rank=1)
         {
             var added=new LoadoutItem(def,rank);Items.Add(added);LoadoutItem result=added;
+            if(def.kind==ItemKind.Augment)return added;
             for(int r=1;r<5;r++)
             {
                 var copies=Items.Where(i=>i.def.id==def.id&&i.rank==r).ToList();
                 while(copies.Count>=3)
                 {
                     copies.Sort((a,b)=>Priority(a).CompareTo(Priority(b)));
-                    var keep=copies[0];for(int i=1;i<3;i++){Unplace(copies[i]);Items.Remove(copies[i]);}
+                    var keep=copies[0];for(int i=1;i<3;i++){copies[i].augment=null;Unplace(copies[i]);Items.Remove(copies[i]);}
                     keep.rank++;Fusions++;result=keep;Fused?.Invoke(keep,new[]{copies[1],copies[2]});
                     Receipt+="  FUSED: 3 x "+ItemRarity.Names[r]+" "+def.name+" -> "+ItemRarity.Names[keep.rank]+". "+def.upgrade;
                     copies=Items.Where(i=>i.def.id==def.id&&i.rank==r).ToList();
@@ -194,6 +217,7 @@ namespace VectorGame
         public bool CanMove(LoadoutItem item,PlaceKind place,int index=0)
         {
             if(item==null||!Items.Contains(item))return false;
+            if(item.def.kind==ItemKind.Augment)return place==PlaceKind.Inventory||HostAt(place,index)!=null&&item.def.module.Fits(HostAt(place,index).def);
             if(item==Fists)return place==PlaceKind.Weapon&&index>=0&&index<2;
             if(place==PlaceKind.Sequence)return index>=0&&index<SequenceSize&&(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Ability)&&(!TwoHanded||item.def.kind==ItemKind.Basic||Slots[index]?.def.kind!=ItemKind.Basic);
             if(place==PlaceKind.Weapon)return index>=0&&index<2&&item.def.kind==ItemKind.Weapon;
@@ -210,6 +234,7 @@ namespace VectorGame
         public bool Move(LoadoutItem item,PlaceKind place,int index=0)
         {
             if(!CanMove(item,place,index)){MoveMessage=TwoHanded?"Move the locked basic pair as one block. Weapons use mounts; abilities use sequence slots.":"Both basics stay in the sequence. Weapons use mounts; abilities use sequence slots.";return false;}
+            if(item.def.kind==ItemKind.Augment){var previous=ModuleHost(item);if(previous!=null)previous.augment=null;var host=HostAt(place,index);if(place!=PlaceKind.Inventory)host.augment=item;MoveMessage=place==PlaceKind.Inventory?"Module stored; socket is free.":item.Name+" attached to "+host.Name+". Previous module stored.";return true;}
             if(item==Fists){if(TwoHanded)Weapons[0]=Weapons[1]=null;else Weapons[index]=null;MoveMessage="Starter fists equipped; displaced weapon stored.";return true;}
             if(TwoHanded&&place==PlaceKind.Sequence&&item.def.kind==ItemKind.Basic){MoveBlock(index-item.mount);MoveMessage="Two-handed attack moved as one locked pair.";SelectedSlot=-1;return true;}
             int source=Array.IndexOf(Slots,item),weapon=Array.IndexOf(Weapons,item);
@@ -232,6 +257,11 @@ namespace VectorGame
             if(place==PlaceKind.Ultimate)Ultimate=item;
             if(ArmorIndex(place)>=0)Armor[ArmorIndex(place)]=item;
             SelectedSlot=-1;return true;
+        }
+        public bool Attach(LoadoutItem module,LoadoutItem host)
+        {
+            if(module==null||host==null||!Items.Contains(module)||!Items.Contains(host)||module.def.module==null||!module.def.module.Fits(host.def))return false;
+            var previous=ModuleHost(module);if(previous!=null)previous.augment=null;host.augment=module;MoveMessage=module.Name+" attached to "+host.Name+"; replaced module stored.";return true;
         }
         public void Swap(int a,int b){if(a>=0&&b>=0&&a<SequenceSize&&b<SequenceSize&&Slots[a]!=null)Move(Slots[a],PlaceKind.Sequence,b);}
         public string Loadout=>string.Join(" > ",Enumerable.Range(0,SequenceSize).Select(i=>(i+1)+": "+SlotName(i)));
