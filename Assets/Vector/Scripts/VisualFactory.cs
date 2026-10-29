@@ -36,7 +36,7 @@ namespace VectorGame
             Fx.SetFloat("_Surface", 1); Fx.SetFloat("_Blend", 0); Fx.SetFloat("_ZWrite",0);
             Fx.SetInt("_SrcBlend",(int)BlendMode.SrcAlpha); Fx.SetInt("_DstBlend",(int)BlendMode.One);
             Fx.renderQueue=3000; Fx.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            Fx.color=Cyan;
+            Fx.color=Color.white;
         }
         public static Transform Part(string name, Transform parent, PrimitiveType shape, Vector3 local, Vector3 size, Material material)
         {

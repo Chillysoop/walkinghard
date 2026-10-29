@@ -1,0 +1,72 @@
+{
+    "result": "Complete",
+    "build": "pinball",
+    "seed": 4319,
+    "elapsed": 114.05988311767578,
+    "health": 191.19940185546876,
+    "collisionDamage": 398.0,
+    "spawned": 119,
+    "kills": 118,
+    "alive": 1,
+    "peakCrowd": 11,
+    "strikes": 187,
+    "finishers": 41,
+    "pushes": 12,
+    "pushTargets": 61,
+    "hitsTaken": 19,
+    "launches": 26,
+    "collisions": 23,
+    "collisionKills": 12,
+    "rerolls": 2,
+    "passed": true,
+    "checkpointChecks": true,
+    "platform": "WindowsPlayer",
+    "upgrades": [
+        "FluxBracers",
+        "FaultLine"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 29,
+            "launches": 0,
+            "collisions": 0,
+            "hitsTaken": 3,
+            "pushes": 3,
+            "carried": 1,
+            "bankedRerolls": 0,
+            "healthStart": 230.0,
+            "healthEnd": 225.99993896484376,
+            "duration": 38.016258239746097,
+            "choice": "Flux Bracers"
+        },
+        {
+            "wave": 2,
+            "kills": 39,
+            "launches": 13,
+            "collisions": 0,
+            "hitsTaken": 10,
+            "pushes": 4,
+            "carried": 1,
+            "bankedRerolls": 1,
+            "healthStart": 225.99993896484376,
+            "healthEnd": 201.59970092773438,
+            "duration": 38.016258239746097,
+            "choice": "Fault Line"
+        },
+        {
+            "wave": 3,
+            "kills": 50,
+            "launches": 13,
+            "collisions": 23,
+            "hitsTaken": 6,
+            "pushes": 5,
+            "carried": 1,
+            "bankedRerolls": 2,
+            "healthStart": 201.59970092773438,
+            "healthEnd": 191.19940185546876,
+            "duration": 38.016258239746097,
+            "choice": ""
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "result": "Complete",
+    "build": "power",
+    "seed": 1741,
+    "elapsed": 107.15840911865235,
+    "health": 177.999267578125,
+    "collisionDamage": 0.0,
+    "spawned": 126,
+    "kills": 124,
+    "alive": 2,
+    "peakCrowd": 11,
+    "strikes": 205,
+    "finishers": 46,
+    "pushes": 13,
+    "pushTargets": 72,
+    "hitsTaken": 25,
+    "launches": 0,
+    "collisions": 0,
+    "collisionKills": 0,
+    "rerolls": 2,
+    "passed": true,
+    "checkpointChecks": true,
+    "platform": "WindowsPlayer",
+    "upgrades": [
+        "ServoTuning",
+        "ServoTuning"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 29,
+            "launches": 0,
+            "collisions": 0,
+            "hitsTaken": 8,
+            "pushes": 3,
+            "carried": 0,
+            "bankedRerolls": 0,
+            "healthStart": 230.0,
+            "healthEnd": 207.99984741210938,
+            "duration": 33.749656677246097,
+            "choice": "Servo Tuning"
+        },
+        {
+            "wave": 2,
+            "kills": 40,
+            "launches": 0,
+            "collisions": 0,
+            "hitsTaken": 9,
+            "pushes": 5,
+            "carried": 0,
+            "bankedRerolls": 1,
+            "healthStart": 207.99984741210938,
+            "healthEnd": 187.99960327148438,
+            "duration": 35.382965087890628,
+            "choice": "Servo Tuning"
+        },
+        {
+            "wave": 3,
+            "kills": 55,
+            "launches": 0,
+            "collisions": 0,
+            "hitsTaken": 8,
+            "pushes": 5,
+            "carried": 2,
+            "bankedRerolls": 2,
+            "healthStart": 187.99960327148438,
+            "healthEnd": 177.999267578125,
+            "duration": 38.016258239746097,
+            "choice": ""
+        }
+    ]
+}

@@ -8,6 +8,8 @@ namespace VectorGame
         public Transform Root, Body, Head, LeftHand, RightHand;
         readonly Transform leftArm, rightArm, leftElbow, rightElbow, leftThigh, rightThigh, leftKnee, rightKnee;
         readonly Transform coatLeft, coatRight;
+        readonly Transform intent, leftCuff, rightCuff;
+        readonly Renderer intentRenderer;
         readonly bool hero;
         readonly float phase;
         public FighterRig(string name, Transform parent, bool isHero, bool heavy = false)
@@ -35,6 +37,17 @@ namespace VectorGame
             }
             leftArm=Arm(-1,Body,plates,light,out leftElbow,out LeftHand);
             rightArm=Arm(1,Body,plates,light,out rightElbow,out RightHand);
+            if(hero)
+            {
+                leftCuff=VisualFactory.Part("Flux bracer L",leftElbow,PrimitiveType.Cube,new Vector3(0,-.25f,0),new Vector3(.31f,.16f,.30f),VisualFactory.Glow);
+                rightCuff=VisualFactory.Part("Flux bracer R",rightElbow,PrimitiveType.Cube,new Vector3(0,-.25f,0),new Vector3(.31f,.16f,.30f),VisualFactory.Glow);
+                Equipment(false,false);
+            }
+            else
+            {
+                intent=VisualFactory.Part("Attack opening / stagger",Root,PrimitiveType.Cylinder,new Vector3(0,.025f,0),new Vector3(.9f,.012f,.9f),VisualFactory.RedGlow);
+                intentRenderer=intent.GetComponent<Renderer>();intentRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;intent.gameObject.SetActive(false);
+            }
             leftThigh=Leg(-1,hips,cloth,out leftKnee);rightThigh=Leg(1,hips,cloth,out rightKnee);
             if(heavy){Root.localScale=Vector3.one*1.17f;VisualFactory.Part("Reactor",Body,PrimitiveType.Cube,new Vector3(0,.4f,.255f),new Vector3(.13f,.21f,.04f),light);}
         }
@@ -75,9 +88,7 @@ namespace VectorGame
             if(strike>=0)
             {
                 // Pull back -> rapid extension -> follow through -> return to guard.
-                float wind=Mathf.Sin(Mathf.Clamp01(progress/.35f)*Mathf.PI*.5f);
-                float extension=progress<.30f?0:progress<.48f?Mathf.SmoothStep(0,1,(progress-.30f)/.18f):1-Mathf.SmoothStep(0,1,(progress-.48f)/.52f);
-                float prep=progress<.3f?wind:1-extension;
+                float extension=progress<.27f?0:progress<.44f?Mathf.SmoothStep(0,1,(progress-.27f)/.17f):1-Mathf.SmoothStep(0,1,(progress-.44f)/.56f);
                 if(strike==0)
                 {
                     leftArm.localRotation=Quaternion.Euler(Mathf.Lerp(-25,-105,extension),-12,Mathf.Lerp(-18,8,extension));
@@ -99,6 +110,7 @@ namespace VectorGame
                     leftElbow.localRotation=rightElbow.localRotation=Quaternion.Euler(Mathf.Lerp(-90,-4,extension),0,0);
                     rightThigh.localRotation=Quaternion.Euler(-18*extension,0,8);leftThigh.localRotation=Quaternion.Euler(12*extension,0,-8);
                 }
+                Body.localPosition+=new Vector3(0,-extension*.045f,extension*(strike==2?.23f:.13f));
             }
             if(pushing)
             {
@@ -108,6 +120,32 @@ namespace VectorGame
                 leftArm.localRotation=Quaternion.Euler(-85*extension-20,0,-22);rightArm.localRotation=Quaternion.Euler(-85*extension-20,0,22);
                 leftElbow.localRotation=rightElbow.localRotation=Quaternion.Euler(Mathf.Lerp(-110,-5,extension),0,0);
             }
+            if(hitReact>0)
+            {
+                Body.localRotation*=Quaternion.Euler(-27*hitReact,0,hitReact*7);
+                Body.localPosition+=Vector3.back*hitReact*.16f;
+                Head.localRotation=Quaternion.Euler(-18*hitReact,0,0);
+            }
+        }
+        public void Telegraph(bool attacking,bool stunned)
+        {
+            if(intent==null)return;
+            intent.gameObject.SetActive(attacking||stunned);intentRenderer.sharedMaterial=stunned?VisualFactory.Glow:VisualFactory.RedGlow;
+            intent.localScale=new Vector3(attacking?1.2f:.72f,.012f,attacking?1.2f:.72f);
+        }
+        public void Equipment(bool launch,bool pinball)
+        {
+            if(leftCuff==null)return;
+            leftCuff.gameObject.SetActive(launch);rightCuff.gameObject.SetActive(launch);
+            leftCuff.GetComponent<Renderer>().sharedMaterial=rightCuff.GetComponent<Renderer>().sharedMaterial=pinball?VisualFactory.GoldGlow:VisualFactory.Glow;
+        }
+        public void Airborne(float remaining)
+        {
+            float lift=Mathf.Sin(Mathf.Clamp01(1-remaining/1.05f)*Mathf.PI)*.5f;
+            Body.localPosition=new Vector3(0,.08f+lift,0);Body.localRotation=Quaternion.Euler(-55,0,12);
+            leftArm.localRotation=Quaternion.Euler(-40,0,-55);rightArm.localRotation=Quaternion.Euler(-50,0,55);
+            leftThigh.localRotation=Quaternion.Euler(35,0,-12);rightThigh.localRotation=Quaternion.Euler(22,0,12);
+            Telegraph(false,false);
         }
     }
 }

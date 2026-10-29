@@ -1,0 +1,72 @@
+{
+    "result": "Complete",
+    "build": "launch",
+    "seed": 1741,
+    "elapsed": 109.79230499267578,
+    "health": 157.59927368164063,
+    "collisionDamage": 0.0,
+    "spawned": 126,
+    "kills": 123,
+    "alive": 3,
+    "peakCrowd": 14,
+    "strikes": 205,
+    "finishers": 42,
+    "pushes": 13,
+    "pushTargets": 72,
+    "hitsTaken": 30,
+    "launches": 30,
+    "collisions": 0,
+    "collisionKills": 0,
+    "rerolls": 2,
+    "passed": true,
+    "checkpointChecks": true,
+    "platform": "WindowsPlayer",
+    "upgrades": [
+        "FluxBracers",
+        "ServoTuning"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 29,
+            "launches": 0,
+            "collisions": 0,
+            "hitsTaken": 8,
+            "pushes": 3,
+            "carried": 0,
+            "bankedRerolls": 0,
+            "healthStart": 230.0,
+            "healthEnd": 207.99984741210938,
+            "duration": 33.749656677246097,
+            "choice": "Flux Bracers"
+        },
+        {
+            "wave": 2,
+            "kills": 39,
+            "launches": 13,
+            "collisions": 0,
+            "hitsTaken": 13,
+            "pushes": 5,
+            "carried": 1,
+            "bankedRerolls": 1,
+            "healthStart": 207.99984741210938,
+            "healthEnd": 171.599609375,
+            "duration": 38.016258239746097,
+            "choice": "Servo Tuning"
+        },
+        {
+            "wave": 3,
+            "kills": 55,
+            "launches": 17,
+            "collisions": 0,
+            "hitsTaken": 9,
+            "pushes": 5,
+            "carried": 3,
+            "bankedRerolls": 2,
+            "healthStart": 171.599609375,
+            "healthEnd": 157.59927368164063,
+            "duration": 38.016258239746097,
+            "choice": ""
+        }
+    ]
+}
