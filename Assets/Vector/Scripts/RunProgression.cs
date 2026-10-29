@@ -34,8 +34,8 @@ namespace VectorGame
         }
         public bool ClaimAugmentToHost(int offer,LoadoutItem host,bool continueImmediately)
         {
-            if(State!=RunState.Drafting||Deck.RewardClaimed||offer<0||offer>=Deck.Offers.Length||!Deck.Items.Contains(host)||Deck.Offers[offer].def.module?.Fits(host.def)!=true)return false;
-            if(!ClaimReward(offer,PlaceKind.Inventory,0,false))return false;var module=Deck.Inventory.Last(i=>i.def==Deck.Offers[offer].def);Deck.Attach(module,host);if(continueImmediately)ConfirmDraft();return true;
+            if(!TutorialAttachAllowed(host)||State!=RunState.Drafting||Deck.RewardClaimed||offer<0||offer>=Deck.Offers.Length||!Deck.Items.Contains(host)||Deck.Offers[offer].def.module?.Fits(host.def)!=true)return false;
+            if(!ClaimReward(offer,PlaceKind.Inventory,0,false))return false;var module=Deck.Inventory.Last(i=>i.def==Deck.Offers[offer].def);Deck.Attach(module,host);if(continueImmediately&&!TutorialActive)ConfirmDraft();return true;
         }
     }
 }

@@ -1,0 +1,105 @@
+{
+  "core": {
+    "passed": 15,
+    "minProductionAssertions": 533,
+    "reports": [
+      "v073-verified-core-armed-1741.json",
+      "v073-verified-core-armor-1741.json",
+      "v073-verified-core-fast-1741.json",
+      "v073-verified-core-half-1741.json",
+      "v073-verified-core-hammer-1741.json",
+      "v073-verified-core-manual-1741.json",
+      "v073-verified-core-quick-1741.json",
+      "v073-verified-core-reload-1741.json",
+      "v073-verified-core-reroll-1741.json",
+      "v073-verified-core-rifle-1741.json",
+      "v073-verified-core-sequence-1741.json",
+      "v073-verified-core-sequence-4319.json",
+      "v073-verified-core-sword-1741.json",
+      "v073-verified-core-tempest-1741.json",
+      "v073-verified-core-twin-1741.json"
+    ]
+  },
+  "variety": {
+    "passed": 45,
+    "minProductionAssertions": 533,
+    "reports": [
+      "v073-variety-aug-Afterfield-1741.json",
+      "v073-variety-aug-Anchor-1741.json",
+      "v073-variety-aug-Backwash-1741.json",
+      "v073-variety-aug-BoreRounds-1741.json",
+      "v073-variety-aug-BreachLoad-1741.json",
+      "v073-variety-aug-Crosscut-1741.json",
+      "v073-variety-aug-Discharge-1741.json",
+      "v073-variety-aug-Echo-1741.json",
+      "v073-variety-aug-Flurry-1741.json",
+      "v073-variety-aug-Focused-1741.json",
+      "v073-variety-aug-FollowThrough-1741.json",
+      "v073-variety-aug-Groundbreaker-1741.json",
+      "v073-variety-aug-HookedEdge-1741.json",
+      "v073-variety-aug-PalmDrive-1741.json",
+      "v073-variety-aug-Piledriver-1741.json",
+      "v073-variety-aug-SplitPayload-1741.json",
+      "v073-variety-ballet-1741.json",
+      "v073-variety-close-1741.json",
+      "v073-variety-compare-fists-paired-1741.json",
+      "v073-variety-compare-fists-same-1741.json",
+      "v073-variety-compare-fists-separate-1741.json",
+      "v073-variety-compare-fists-shared-1741.json",
+      "v073-variety-compare-fists-single-1741.json",
+      "v073-variety-compare-guns-2h-1741.json",
+      "v073-variety-compare-guns-paired-1741.json",
+      "v073-variety-compare-guns-same-1741.json",
+      "v073-variety-compare-guns-separate-1741.json",
+      "v073-variety-compare-guns-single-1741.json",
+      "v073-variety-compare-hammer-2h-1741.json",
+      "v073-variety-compare-hammer-paired-1741.json",
+      "v073-variety-compare-hammer-same-1741.json",
+      "v073-variety-compare-hammer-separate-1741.json",
+      "v073-variety-compare-hammer-single-1741.json",
+      "v073-variety-compare-sword-2h-1741.json",
+      "v073-variety-compare-sword-paired-1741.json",
+      "v073-variety-compare-sword-same-1741.json",
+      "v073-variety-compare-sword-separate-1741.json",
+      "v073-variety-compare-sword-single-1741.json",
+      "v073-variety-cutcarry-1741.json",
+      "v073-variety-freight-1741.json",
+      "v073-variety-freight-piledriver-1741.json",
+      "v073-variety-funnel-1741.json",
+      "v073-variety-funnel-breach-1741.json",
+      "v073-variety-pinball-1741.json",
+      "v073-variety-pinball-separated-1741.json"
+    ]
+  },
+  "full": {
+    "passed": 1,
+    "minProductionAssertions": 533,
+    "reports": [
+      "v073-verified-full-1741.json"
+    ]
+  },
+  "combatVerified": {
+    "folder": "Tutorial-v073-verified",
+    "assemblySha256": "3fc78c5beaebab22baaf2da70dd17fa4495f0bf6a7b41b36223d352137a7ea36"
+  },
+  "varietyVerified": {
+    "folder": "Tutorial-v073-final",
+    "assemblySha256": "8014e85be558bf3f31568fd7c4ba9016592e1da0d32f0600232fd000ce69be79"
+  },
+  "regression": {
+    "before": 64,
+    "after": 64,
+    "ignoredFields": [
+      "version",
+      "wallSeconds"
+    ],
+    "differences": [],
+    "allValid": true,
+    "seedsMatch": true
+  },
+  "shipping": {
+    "folder": "Tutorial-v073-release",
+    "assemblySha256": "d2cbaa908224a193fddfd48214ee34702197db99417497b2f6b55f9a46a40f27",
+    "tutorialAssertions": 787
+  }
+}

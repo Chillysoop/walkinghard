@@ -1,4 +1,8 @@
-# Walking Hard 0.7.2 — Build reliability
+# Walking Hard 0.7.3 — Learn your loadout
+
+The main menu now offers **Start Run** and **Quick Tutorial**. The tutorial teaches ability selection, weapon equip, same-rarity fusion, augment sockets and sequence order using the actual drag/drop and double-click controls, then gives you a short practice fight. Starting a real run clears practice gear and restores your speed and checkpoint preferences.
+
+Every checkpoint now highlights valid destinations while hovering or dragging rewards and stored items. Ability picks outline the sequence before you hover. Category icons and labels are neutral; rarity colors belong to rarity borders and labels, and cyan marks interaction. Cards and sequence tiles use short effect summaries, with full rules on hover. An augment with no compatible host can be stored directly; multiple hosts prompt you to choose a socket. See [verification](QA/v073-verification.md).
 
 The finale now stops the Walker and turns him around. The camera slowly swings behind him to reveal a giant and its approaching army. Hold your ground as enemies pour in from the distance, flow around the giant, and reach your automatic sequence. The boss is staged just before the scene; no follower is simulated during earlier waves. See [verification](QA/v071-verification.md).
 
@@ -39,7 +43,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Ten weapons: two fist styles, one- and two-handed swords and hammers, pistol, rifle and scattergun. Each has an authored signature. Both equipped weapons stay in hand during casts.
 - Eleven abilities, fourteen armor pieces, five rigs and five ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
 - Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion and have no separate rarity. Weapon modules retain native attacks/timing and receive full paired effects. Before/after previews explain the single-socket choice; ability conversions retain explicit tradeoffs.
-- Temporary amber tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
+- Temporary neutral tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
 - No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
 - Eight waves with formation previews and the Pursuer final stand. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
 - Drop a reward directly into a compatible slot to equip and advance; double-click auto-equips. Edit after pick keeps the character sheet open for rearranging until Let's fight.

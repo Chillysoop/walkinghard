@@ -6,7 +6,7 @@ namespace VectorGame
 {
     public sealed partial class PrototypeHUD
     {
-        Rect SocketRect(DropRegion region)=>new Rect(region.rect.xMax-23,region.place==PlaceKind.Sequence?region.rect.y+7:region.rect.yMax-20,18,16);
+        Rect SocketRect(DropRegion region)=>new Rect(region.rect.xMax-23,region.place==PlaceKind.Sequence?region.rect.y+7:region.place==PlaceKind.Weapon?region.rect.y+43:region.rect.yMax-20,18,16);
         LoadoutItem Host(DropRegion r)=>r.socket?game.Deck.ModuleHost(r.item):r.item?.def.kind==ItemKind.Basic?game.Deck.WeaponFor(r.item):r.place==PlaceKind.Weapon?game.Deck.WeaponFor(game.Deck.Basics[r.index]):r.item;
         bool SharedSocket(DropRegion r)=>((r.place==PlaceKind.Weapon&&r.index==1)||(r.item?.def.kind==ItemKind.Basic&&r.item.mount==1))&&game.Deck.WeaponFor(game.Deck.Basics[0])==game.Deck.WeaponFor(game.Deck.Basics[1]);
         void AddSocketRegions()
@@ -24,15 +24,15 @@ namespace VectorGame
             {
                 if(r.offer>=0||r.socket||r.place==PlaceKind.Weapon&&r.item==null)continue;var host=Host(r);if(host?.Augmentable!=true)continue;
                 bool shared=SharedSocket(r);
-                Rect badge=SocketRect(r);Border(badge,host.augment==null?muted:Violet,1);if(host.augment!=null&&!shared)ActionGlyph(badge,host.augment.def,Violet);else Label(badge,shared?"=":"+",11,muted,true,TextAnchor.MiddleCenter);
+                Rect badge=SocketRect(r);Border(badge,host.augment==null?muted:Accent,1);if(host.augment!=null&&!shared)ActionGlyph(badge,host.augment.def,Accent);else Label(badge,shared?"=":"+",11,muted,true,TextAnchor.MiddleCenter);
                 if(host.augment!=null&&!shared)ItemTooltip(badge,host.augment);
             }
             ItemDefinition pending=dragItem?.def.kind==ItemKind.Augment?dragItem.def:selectedItem?.def.kind==ItemKind.Augment?selectedItem.def:game.Deck.Selected>=0&&!game.Deck.RewardClaimed&&game.Deck.Offers[game.Deck.Selected].def.kind==ItemKind.Augment?game.Deck.Offers[game.Deck.Selected].def:null;
-            if(pending!=null)foreach(var r in dropRegions)if(r.offer<0&&!r.socket&&Host(r) is LoadoutItem h&&pending.module.Fits(h.def))Outline(r.rect,Violet,6,2);
+            if(pending!=null)foreach(var r in dropRegions)if(r.offer<0&&!r.socket&&Host(r) is LoadoutItem h&&pending.module.Fits(h.def))Outline(r.rect,Accent,6,2);
         }
         bool MoveToRegion(LoadoutItem item,DropRegion region)
         {
-            if(item.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host&&host.Augmentable)return game.Deck.Attach(item,host);
+            if(item.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host&&host.Augmentable)return game.TutorialAttachAllowed(host)&&game.Deck.Attach(item,host);
             return game.MoveItem(item,region.place,region.index);
         }
         float DisplayShare(LoadoutItem item)

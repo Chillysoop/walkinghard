@@ -15,6 +15,8 @@ namespace VectorGame
         {if(presentationHover!=null){hoveredItem=presentationHover;hoveredOffer=presentationOffer;detailHovered=false;}}
         IEnumerator Start()
         {
+            var args=Environment.GetCommandLineArgs();
+            if(Array.IndexOf(args,"-tutorialReview")>=0||Array.IndexOf(args,"-tutorialChecks")>=0){yield return RunTutorialReview(Array.IndexOf(args,"-tutorialReview")>=0);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-presentationReview")<0)yield break;
             string directory=Path.Combine(Application.dataPath,"..","PresentationReview");Directory.CreateDirectory(directory);
             foreach(var def in LoadoutCatalog.All.Concat(AugmentCatalog.All))if(!ItemArtwork.Has(def.id))throw new InvalidOperationException("Missing artwork mapping: "+def.id);

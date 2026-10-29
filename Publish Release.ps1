@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.2',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.7.3',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -21,6 +21,8 @@ try {
     foreach($doc in @('v070-verification.md','v070-verification.json','v070-balance-review.md','v070-21-route-choice.png','v070-22-route-rewards.png','v070-23-route-enemies.png','v070-24-shield-exposed.png','v070-25-carrier-blast.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     foreach($doc in @('v071-verification.md','v071-verification.json','v071-26-finale-stop.png','v071-27-finale-turn.png','v071-28-finale-orbit.png','v071-29-finale-reveal.png','v071-30-finale-fight.png','v071-31-finale-contact.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     foreach($doc in @('v072-verification.md','v072-verification.json','v072-balance-review.md','v072-balance-results.json','v072-checkpoint-target-wait.png','v072-target-wait-details.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($doc in @('v073-verification.md','v073-verification.json','v073-gameplay-regression.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v073-ui') -Destination $qaStage -Recurse
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -33,7 +35,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Build Reliability';draft=$true;prerelease=$false;body="Duelist Jacket now guards three damaging hits after a real reload or lethal sever. Rifle damage remains 42. Checkpoints flag repeated target waits above the sequence; Wave details shows duration, pause count and reach. Your chosen order is preserved.`n`n2,088 Fast comparisons isolate ranged sequences, route encounter difficulty and reward value; 18 Full physics comparisons provide separate checks. Both historical Warden timeout seeds reproduce on the old build and complete against the Pursuer. Further route and Deadeye proposals remain unapplied; see QA/v072-balance-review.md.`n`nValidated with 15 core fixtures, 45 build-variety fixtures, full-run progression, 533 production assertions, native checkpoint captures, launcher checks and 64 identical gameplay comparisons against v0.7.1 with the approved third-ward override.`n`nART_VFX_PLAN.md contains a proposed $0 art and VFX pass using free asset sources. No art assets are imported in this release.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Learn Your Loadout';draft=$true;prerelease=$false;body="Start Run and Quick Tutorial now live in the main menu. Learn abilities, weapons, same-rarity fusion, augments and sequence order with real drag/drop controls, then try a short practice fight. Practice items reset before a real run.`n`nNormal checkpoints share the new destination glows. Hover rewards or stored items to see compatible slots. Rarity colors identify rarity; category icons stay neutral. Short effect descriptions remain on cards and sequence tiles, with full mechanics on hover. Augments with no compatible host can be stored; multiple hosts require a socket choice.`n`nNative interaction, text-fit and multi-resolution checks plus core, build-variety and full-run regressions are recorded in QA/v073-verification.md. No combat balance values changed.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

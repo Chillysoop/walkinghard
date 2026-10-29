@@ -1,0 +1,11 @@
+{
+  "before": 64,
+  "after": 64,
+  "ignoredFields": [
+    "version",
+    "wallSeconds"
+  ],
+  "differences": [],
+  "allValid": true,
+  "seedsMatch": true
+}

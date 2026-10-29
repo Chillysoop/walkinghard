@@ -1,0 +1,787 @@
+0/0: cannot skip task
+0/0: curated rewards cannot reroll
+0/0: wrong category rejected
+0/0: ability equipped; no auto advance
+0/0: weapon direct equip or store
+0/0: two same-rarity copies before fusion
+0/0: unrelated fusion choice rejected atomically
+0/0: third copy fuses equipped weapon
+0/0: fusion result available
+0/0: incompatible host rejected
+0/0: Echo attached
+0/0: Arc starts sequence
+0/0: practice starts; cannot instantly finish
+0/0: practice uses production combat and completes
+0/0: real run is clean
+0/0: preferences restored
+0/0: return to main menu
+0/1: cannot skip task
+0/1: curated rewards cannot reroll
+0/1: wrong category rejected
+0/1: ability equipped; no auto advance
+0/1: weapon direct equip or store
+0/1: stored weapon is not equipped
+0/1: stored weapon auto equip
+0/1: two same-rarity copies before fusion
+0/1: unrelated fusion choice rejected atomically
+0/1: third copy fuses equipped weapon
+0/1: fusion result available
+0/1: incompatible host rejected
+0/1: Echo attached
+0/1: Arc starts sequence
+0/1: practice starts; cannot instantly finish
+0/1: practice uses production combat and completes
+0/1: real run is clean
+0/1: preferences restored
+0/1: return to main menu
+0/2: cannot skip task
+0/2: curated rewards cannot reroll
+0/2: wrong category rejected
+0/2: ability equipped; no auto advance
+0/2: weapon direct equip or store
+0/2: two same-rarity copies before fusion
+0/2: unrelated fusion choice rejected atomically
+0/2: third copy fuses equipped weapon
+0/2: fusion result available
+0/2: incompatible host rejected
+0/2: Echo attached
+0/2: linked pair cannot split
+0/2: linked pair moves
+0/2: Arc starts sequence
+0/2: practice starts; cannot instantly finish
+0/2: practice uses production combat and completes
+0/2: real run is clean
+0/2: preferences restored
+0/2: return to main menu
+1/0: cannot skip task
+1/0: curated rewards cannot reroll
+1/0: wrong category rejected
+1/0: ability equipped; no auto advance
+1/0: weapon direct equip or store
+1/0: two same-rarity copies before fusion
+1/0: unrelated fusion choice rejected atomically
+1/0: third copy fuses equipped weapon
+1/0: fusion result available
+1/0: incompatible host rejected
+1/0: Echo attached
+1/0: Arc starts sequence
+1/0: practice starts; cannot instantly finish
+1/0: practice uses production combat and completes
+1/0: real run is clean
+1/0: preferences restored
+1/0: return to main menu
+1/1: cannot skip task
+1/1: curated rewards cannot reroll
+1/1: wrong category rejected
+1/1: ability equipped; no auto advance
+1/1: weapon direct equip or store
+1/1: stored weapon is not equipped
+1/1: stored weapon auto equip
+1/1: two same-rarity copies before fusion
+1/1: unrelated fusion choice rejected atomically
+1/1: third copy fuses equipped weapon
+1/1: fusion result available
+1/1: incompatible host rejected
+1/1: Echo attached
+1/1: Arc starts sequence
+1/1: practice starts; cannot instantly finish
+1/1: practice uses production combat and completes
+1/1: real run is clean
+1/1: preferences restored
+1/1: return to main menu
+1/2: cannot skip task
+1/2: curated rewards cannot reroll
+1/2: wrong category rejected
+1/2: ability equipped; no auto advance
+1/2: weapon direct equip or store
+1/2: two same-rarity copies before fusion
+1/2: unrelated fusion choice rejected atomically
+1/2: third copy fuses equipped weapon
+1/2: fusion result available
+1/2: incompatible host rejected
+1/2: Echo attached
+1/2: linked pair cannot split
+1/2: linked pair moves
+1/2: Arc starts sequence
+1/2: practice starts; cannot instantly finish
+1/2: practice uses production combat and completes
+1/2: real run is clean
+1/2: preferences restored
+1/2: return to main menu
+2/0: cannot skip task
+2/0: curated rewards cannot reroll
+2/0: wrong category rejected
+2/0: ability equipped; no auto advance
+2/0: weapon direct equip or store
+2/0: two same-rarity copies before fusion
+2/0: unrelated fusion choice rejected atomically
+2/0: third copy fuses equipped weapon
+2/0: fusion result available
+2/0: incompatible host rejected
+2/0: Echo attached
+2/0: Arc starts sequence
+2/0: practice starts; cannot instantly finish
+2/0: practice uses production combat and completes
+2/0: real run is clean
+2/0: preferences restored
+2/0: return to main menu
+2/1: cannot skip task
+2/1: curated rewards cannot reroll
+2/1: wrong category rejected
+2/1: ability equipped; no auto advance
+2/1: weapon direct equip or store
+2/1: stored weapon is not equipped
+2/1: stored weapon auto equip
+2/1: two same-rarity copies before fusion
+2/1: unrelated fusion choice rejected atomically
+2/1: third copy fuses equipped weapon
+2/1: fusion result available
+2/1: incompatible host rejected
+2/1: Echo attached
+2/1: Arc starts sequence
+2/1: practice starts; cannot instantly finish
+2/1: practice uses production combat and completes
+2/1: real run is clean
+2/1: preferences restored
+2/1: return to main menu
+2/2: cannot skip task
+2/2: curated rewards cannot reroll
+2/2: wrong category rejected
+2/2: ability equipped; no auto advance
+2/2: weapon direct equip or store
+2/2: two same-rarity copies before fusion
+2/2: unrelated fusion choice rejected atomically
+2/2: third copy fuses equipped weapon
+2/2: fusion result available
+2/2: incompatible host rejected
+2/2: Echo attached
+2/2: linked pair cannot split
+2/2: linked pair moves
+2/2: Arc starts sequence
+2/2: practice starts; cannot instantly finish
+2/2: practice uses production combat and completes
+2/2: real run is clean
+2/2: preferences restored
+2/2: return to main menu
+reward title fits: sword
+category fits: sword
+sequence summary fits: sword/1
+sequence summary fits: sword/2
+sequence summary fits: sword/3
+sequence summary fits: sword/4
+sequence summary fits: sword/5
+reward title fits: hammer
+category fits: hammer
+sequence summary fits: hammer/1
+sequence summary fits: hammer/2
+sequence summary fits: hammer/3
+sequence summary fits: hammer/4
+sequence summary fits: hammer/5
+reward title fits: pistol
+category fits: pistol
+sequence summary fits: pistol/1
+sequence summary fits: pistol/2
+sequence summary fits: pistol/3
+sequence summary fits: pistol/4
+sequence summary fits: pistol/5
+reward title fits: rifle
+category fits: rifle
+sequence summary fits: rifle/1
+sequence summary fits: rifle/2
+sequence summary fits: rifle/3
+sequence summary fits: rifle/4
+sequence summary fits: rifle/5
+reward title fits: fists
+category fits: fists
+sequence summary fits: fists/1
+sequence summary fits: fists/2
+sequence summary fits: fists/3
+sequence summary fits: fists/4
+sequence summary fits: fists/5
+reward title fits: wraps
+category fits: wraps
+sequence summary fits: wraps/1
+sequence summary fits: wraps/2
+sequence summary fits: wraps/3
+sequence summary fits: wraps/4
+sequence summary fits: wraps/5
+reward title fits: greatsword
+category fits: greatsword
+sequence summary fits: greatsword/1
+sequence summary fits: greatsword/2
+sequence summary fits: greatsword/3
+sequence summary fits: greatsword/4
+sequence summary fits: greatsword/5
+reward title fits: breachhammer
+category fits: breachhammer
+sequence summary fits: breachhammer/1
+sequence summary fits: breachhammer/2
+sequence summary fits: breachhammer/3
+sequence summary fits: breachhammer/4
+sequence summary fits: breachhammer/5
+reward title fits: siphonblade
+category fits: siphonblade
+sequence summary fits: siphonblade/1
+sequence summary fits: siphonblade/2
+sequence summary fits: siphonblade/3
+sequence summary fits: siphonblade/4
+sequence summary fits: siphonblade/5
+reward title fits: scattergun
+category fits: scattergun
+sequence summary fits: scattergun/1
+sequence summary fits: scattergun/2
+sequence summary fits: scattergun/3
+sequence summary fits: scattergun/4
+sequence summary fits: scattergun/5
+reward title fits: visor
+category fits: visor
+sequence summary fits: visor/1
+sequence summary fits: visor/2
+sequence summary fits: visor/3
+sequence summary fits: visor/4
+sequence summary fits: visor/5
+reward title fits: plate
+category fits: plate
+sequence summary fits: plate/1
+sequence summary fits: plate/2
+sequence summary fits: plate/3
+sequence summary fits: plate/4
+sequence summary fits: plate/5
+reward title fits: treads
+category fits: treads
+sequence summary fits: treads/1
+sequence summary fits: treads/2
+sequence summary fits: treads/3
+sequence summary fits: treads/4
+sequence summary fits: treads/5
+reward title fits: surveyor
+category fits: surveyor
+sequence summary fits: surveyor/1
+sequence summary fits: surveyor/2
+sequence summary fits: surveyor/3
+sequence summary fits: surveyor/4
+sequence summary fits: surveyor/5
+reward title fits: salvager
+category fits: salvager
+sequence summary fits: salvager/1
+sequence summary fits: salvager/2
+sequence summary fits: salvager/3
+sequence summary fits: salvager/4
+sequence summary fits: salvager/5
+reward title fits: capacitor
+category fits: capacitor
+sequence summary fits: capacitor/1
+sequence summary fits: capacitor/2
+sequence summary fits: capacitor/3
+sequence summary fits: capacitor/4
+sequence summary fits: capacitor/5
+reward title fits: reactive
+category fits: reactive
+sequence summary fits: reactive/1
+sequence summary fits: reactive/2
+sequence summary fits: reactive/3
+sequence summary fits: reactive/4
+sequence summary fits: reactive/5
+reward title fits: grounding
+category fits: grounding
+sequence summary fits: grounding/1
+sequence summary fits: grounding/2
+sequence summary fits: grounding/3
+sequence summary fits: grounding/4
+sequence summary fits: grounding/5
+reward title fits: duelist
+category fits: duelist
+sequence summary fits: duelist/1
+sequence summary fits: duelist/2
+sequence summary fits: duelist/3
+sequence summary fits: duelist/4
+sequence summary fits: duelist/5
+reward title fits: momentum
+category fits: momentum
+sequence summary fits: momentum/1
+sequence summary fits: momentum/2
+sequence summary fits: momentum/3
+sequence summary fits: momentum/4
+sequence summary fits: momentum/5
+reward title fits: loader
+category fits: loader
+sequence summary fits: loader/1
+sequence summary fits: loader/2
+sequence summary fits: loader/3
+sequence summary fits: loader/4
+sequence summary fits: loader/5
+reward title fits: reclaimer
+category fits: reclaimer
+sequence summary fits: reclaimer/1
+sequence summary fits: reclaimer/2
+sequence summary fits: reclaimer/3
+sequence summary fits: reclaimer/4
+sequence summary fits: reclaimer/5
+reward title fits: predator
+category fits: predator
+sequence summary fits: predator/1
+sequence summary fits: predator/2
+sequence summary fits: predator/3
+sequence summary fits: predator/4
+sequence summary fits: predator/5
+reward title fits: arcstep
+category fits: arcstep
+sequence summary fits: arcstep/1
+sequence summary fits: arcstep/2
+sequence summary fits: arcstep/3
+sequence summary fits: arcstep/4
+sequence summary fits: arcstep/5
+reward title fits: faultline
+category fits: faultline
+sequence summary fits: faultline/1
+sequence summary fits: faultline/2
+sequence summary fits: faultline/3
+sequence summary fits: faultline/4
+sequence summary fits: faultline/5
+reward title fits: overclock
+category fits: overclock
+sequence summary fits: overclock/1
+sequence summary fits: overclock/2
+sequence summary fits: overclock/3
+sequence summary fits: overclock/4
+sequence summary fits: overclock/5
+reward title fits: amplifier
+category fits: amplifier
+sequence summary fits: amplifier/1
+sequence summary fits: amplifier/2
+sequence summary fits: amplifier/3
+sequence summary fits: amplifier/4
+sequence summary fits: amplifier/5
+reward title fits: relay
+category fits: relay
+sequence summary fits: relay/1
+sequence summary fits: relay/2
+sequence summary fits: relay/3
+sequence summary fits: relay/4
+sequence summary fits: relay/5
+reward title fits: magnet
+category fits: magnet
+sequence summary fits: magnet/1
+sequence summary fits: magnet/2
+sequence summary fits: magnet/3
+sequence summary fits: magnet/4
+sequence summary fits: magnet/5
+reward title fits: singularity
+category fits: singularity
+sequence summary fits: singularity/1
+sequence summary fits: singularity/2
+sequence summary fits: singularity/3
+sequence summary fits: singularity/4
+sequence summary fits: singularity/5
+reward title fits: tempest
+category fits: tempest
+sequence summary fits: tempest/1
+sequence summary fits: tempest/2
+sequence summary fits: tempest/3
+sequence summary fits: tempest/4
+sequence summary fits: tempest/5
+reward title fits: cyclone
+category fits: cyclone
+sequence summary fits: cyclone/1
+sequence summary fits: cyclone/2
+sequence summary fits: cyclone/3
+sequence summary fits: cyclone/4
+sequence summary fits: cyclone/5
+reward title fits: harvest
+category fits: harvest
+sequence summary fits: harvest/1
+sequence summary fits: harvest/2
+sequence summary fits: harvest/3
+sequence summary fits: harvest/4
+sequence summary fits: harvest/5
+reward title fits: redline
+category fits: redline
+sequence summary fits: redline/1
+sequence summary fits: redline/2
+sequence summary fits: redline/3
+sequence summary fits: redline/4
+sequence summary fits: redline/5
+reward title fits: SteelJab
+category fits: SteelJab
+sequence summary fits: SteelJab/1
+sequence summary fits: SteelJab/2
+sequence summary fits: SteelJab/3
+sequence summary fits: SteelJab/4
+sequence summary fits: SteelJab/5
+reward title fits: Breaker
+category fits: Breaker
+sequence summary fits: Breaker/1
+sequence summary fits: Breaker/2
+sequence summary fits: Breaker/3
+sequence summary fits: Breaker/4
+sequence summary fits: Breaker/5
+reward title fits: ForcePush
+category fits: ForcePush
+sequence summary fits: ForcePush/1
+sequence summary fits: ForcePush/2
+sequence summary fits: ForcePush/3
+sequence summary fits: ForcePush/4
+sequence summary fits: ForcePush/5
+reward title fits: MassDriver
+category fits: MassDriver
+sequence summary fits: MassDriver/1
+sequence summary fits: MassDriver/2
+sequence summary fits: MassDriver/3
+sequence summary fits: MassDriver/4
+sequence summary fits: MassDriver/5
+reward title fits: GravityWell
+category fits: GravityWell
+sequence summary fits: GravityWell/1
+sequence summary fits: GravityWell/2
+sequence summary fits: GravityWell/3
+sequence summary fits: GravityWell/4
+sequence summary fits: GravityWell/5
+reward title fits: ArcBolt
+category fits: ArcBolt
+sequence summary fits: ArcBolt/1
+sequence summary fits: ArcBolt/2
+sequence summary fits: ArcBolt/3
+sequence summary fits: ArcBolt/4
+sequence summary fits: ArcBolt/5
+reward title fits: ConductiveBrand
+category fits: ConductiveBrand
+sequence summary fits: ConductiveBrand/1
+sequence summary fits: ConductiveBrand/2
+sequence summary fits: ConductiveBrand/3
+sequence summary fits: ConductiveBrand/4
+sequence summary fits: ConductiveBrand/5
+reward title fits: VectorTether
+category fits: VectorTether
+sequence summary fits: VectorTether/1
+sequence summary fits: VectorTether/2
+sequence summary fits: VectorTether/3
+sequence summary fits: VectorTether/4
+sequence summary fits: VectorTether/5
+reward title fits: ReapingCut
+category fits: ReapingCut
+sequence summary fits: ReapingCut/1
+sequence summary fits: ReapingCut/2
+sequence summary fits: ReapingCut/3
+sequence summary fits: ReapingCut/4
+sequence summary fits: ReapingCut/5
+reward title fits: DrainBrand
+category fits: DrainBrand
+sequence summary fits: DrainBrand/1
+sequence summary fits: DrainBrand/2
+sequence summary fits: DrainBrand/3
+sequence summary fits: DrainBrand/4
+sequence summary fits: DrainBrand/5
+reward title fits: Counterguard
+category fits: Counterguard
+sequence summary fits: Counterguard/1
+sequence summary fits: Counterguard/2
+sequence summary fits: Counterguard/3
+sequence summary fits: Counterguard/4
+sequence summary fits: Counterguard/5
+reward title fits: aug-FollowThrough
+category fits: aug-FollowThrough
+sequence summary fits: aug-FollowThrough/1
+sequence summary fits: aug-FollowThrough/2
+sequence summary fits: aug-FollowThrough/3
+sequence summary fits: aug-FollowThrough/4
+sequence summary fits: aug-FollowThrough/5
+reward title fits: aug-Focused
+category fits: aug-Focused
+sequence summary fits: aug-Focused/1
+sequence summary fits: aug-Focused/2
+sequence summary fits: aug-Focused/3
+sequence summary fits: aug-Focused/4
+sequence summary fits: aug-Focused/5
+reward title fits: aug-Echo
+category fits: aug-Echo
+sequence summary fits: aug-Echo/1
+sequence summary fits: aug-Echo/2
+sequence summary fits: aug-Echo/3
+sequence summary fits: aug-Echo/4
+sequence summary fits: aug-Echo/5
+reward title fits: aug-Afterfield
+category fits: aug-Afterfield
+sequence summary fits: aug-Afterfield/1
+sequence summary fits: aug-Afterfield/2
+sequence summary fits: aug-Afterfield/3
+sequence summary fits: aug-Afterfield/4
+sequence summary fits: aug-Afterfield/5
+reward title fits: aug-SplitPayload
+category fits: aug-SplitPayload
+sequence summary fits: aug-SplitPayload/1
+sequence summary fits: aug-SplitPayload/2
+sequence summary fits: aug-SplitPayload/3
+sequence summary fits: aug-SplitPayload/4
+sequence summary fits: aug-SplitPayload/5
+reward title fits: aug-Backwash
+category fits: aug-Backwash
+sequence summary fits: aug-Backwash/1
+sequence summary fits: aug-Backwash/2
+sequence summary fits: aug-Backwash/3
+sequence summary fits: aug-Backwash/4
+sequence summary fits: aug-Backwash/5
+reward title fits: aug-Discharge
+category fits: aug-Discharge
+sequence summary fits: aug-Discharge/1
+sequence summary fits: aug-Discharge/2
+sequence summary fits: aug-Discharge/3
+sequence summary fits: aug-Discharge/4
+sequence summary fits: aug-Discharge/5
+reward title fits: aug-Anchor
+category fits: aug-Anchor
+sequence summary fits: aug-Anchor/1
+sequence summary fits: aug-Anchor/2
+sequence summary fits: aug-Anchor/3
+sequence summary fits: aug-Anchor/4
+sequence summary fits: aug-Anchor/5
+reward title fits: aug-Flurry
+category fits: aug-Flurry
+sequence summary fits: aug-Flurry/1
+sequence summary fits: aug-Flurry/2
+sequence summary fits: aug-Flurry/3
+sequence summary fits: aug-Flurry/4
+sequence summary fits: aug-Flurry/5
+reward title fits: aug-PalmDrive
+category fits: aug-PalmDrive
+sequence summary fits: aug-PalmDrive/1
+sequence summary fits: aug-PalmDrive/2
+sequence summary fits: aug-PalmDrive/3
+sequence summary fits: aug-PalmDrive/4
+sequence summary fits: aug-PalmDrive/5
+reward title fits: aug-Crosscut
+category fits: aug-Crosscut
+sequence summary fits: aug-Crosscut/1
+sequence summary fits: aug-Crosscut/2
+sequence summary fits: aug-Crosscut/3
+sequence summary fits: aug-Crosscut/4
+sequence summary fits: aug-Crosscut/5
+reward title fits: aug-HookedEdge
+category fits: aug-HookedEdge
+sequence summary fits: aug-HookedEdge/1
+sequence summary fits: aug-HookedEdge/2
+sequence summary fits: aug-HookedEdge/3
+sequence summary fits: aug-HookedEdge/4
+sequence summary fits: aug-HookedEdge/5
+reward title fits: aug-Groundbreaker
+category fits: aug-Groundbreaker
+sequence summary fits: aug-Groundbreaker/1
+sequence summary fits: aug-Groundbreaker/2
+sequence summary fits: aug-Groundbreaker/3
+sequence summary fits: aug-Groundbreaker/4
+sequence summary fits: aug-Groundbreaker/5
+reward title fits: aug-Piledriver
+category fits: aug-Piledriver
+sequence summary fits: aug-Piledriver/1
+sequence summary fits: aug-Piledriver/2
+sequence summary fits: aug-Piledriver/3
+sequence summary fits: aug-Piledriver/4
+sequence summary fits: aug-Piledriver/5
+reward title fits: aug-BoreRounds
+category fits: aug-BoreRounds
+sequence summary fits: aug-BoreRounds/1
+sequence summary fits: aug-BoreRounds/2
+sequence summary fits: aug-BoreRounds/3
+sequence summary fits: aug-BoreRounds/4
+sequence summary fits: aug-BoreRounds/5
+reward title fits: aug-BreachLoad
+category fits: aug-BreachLoad
+sequence summary fits: aug-BreachLoad/1
+sequence summary fits: aug-BreachLoad/2
+sequence summary fits: aug-BreachLoad/3
+sequence summary fits: aug-BreachLoad/4
+sequence summary fits: aug-BreachLoad/5
+augmented summary fits: sword/aug-Crosscut
+augmented summary fits: sword/aug-HookedEdge
+augmented summary fits: hammer/aug-Groundbreaker
+augmented summary fits: hammer/aug-Piledriver
+augmented summary fits: pistol/aug-BoreRounds
+augmented summary fits: pistol/aug-BreachLoad
+augmented summary fits: rifle/aug-BoreRounds
+augmented summary fits: rifle/aug-BreachLoad
+augmented summary fits: fists/aug-Flurry
+augmented summary fits: fists/aug-PalmDrive
+augmented summary fits: wraps/aug-Flurry
+augmented summary fits: wraps/aug-PalmDrive
+augmented summary fits: greatsword/aug-Crosscut
+augmented summary fits: greatsword/aug-HookedEdge
+augmented summary fits: breachhammer/aug-Groundbreaker
+augmented summary fits: breachhammer/aug-Piledriver
+augmented summary fits: siphonblade/aug-Crosscut
+augmented summary fits: siphonblade/aug-HookedEdge
+augmented summary fits: scattergun/aug-BoreRounds
+augmented summary fits: scattergun/aug-BreachLoad
+augmented summary fits: SteelJab/aug-FollowThrough
+augmented summary fits: SteelJab/aug-Echo
+augmented summary fits: Breaker/aug-FollowThrough
+augmented summary fits: Breaker/aug-Focused
+augmented summary fits: ForcePush/aug-Backwash
+augmented summary fits: MassDriver/aug-SplitPayload
+augmented summary fits: GravityWell/aug-Afterfield
+augmented summary fits: GravityWell/aug-Anchor
+augmented summary fits: ArcBolt/aug-Focused
+augmented summary fits: ArcBolt/aug-Echo
+augmented summary fits: ConductiveBrand/aug-Focused
+augmented summary fits: ConductiveBrand/aug-Afterfield
+augmented summary fits: VectorTether/aug-Afterfield
+augmented summary fits: VectorTether/aug-Anchor
+augmented summary fits: ReapingCut/aug-Focused
+augmented summary fits: ReapingCut/aug-Echo
+augmented summary fits: DrainBrand/aug-Focused
+augmented summary fits: Counterguard/aug-Discharge
+text fit audit ran in native GUI
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drag equips ability
+weapon hover focuses exact reward
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+double-click equips two-handed weapon
+weapon socket clears item name
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drop triggers fusion
+augment hover focuses exact reward
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drop attaches augment to socket
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse reorders linked pair and ability
+practice pause freezes combat
+normal drop guidance matches placement: sword/Sequence/0
+normal drop guidance matches placement: sword/Sequence/1
+normal drop guidance matches placement: sword/Sequence/2
+normal drop guidance matches placement: sword/Sequence/3
+normal drop guidance matches placement: sword/Sequence/4
+normal drop guidance matches placement: sword/Helmet/0
+normal drop guidance matches placement: sword/Armor/0
+normal drop guidance matches placement: sword/Boots/0
+normal drop guidance matches placement: sword/Weapon/0
+normal drop guidance matches placement: sword/Weapon/1
+normal drop guidance matches placement: sword/Rig/0
+normal drop guidance matches placement: sword/Ultimate/0
+normal drop guidance matches placement: hammer/Sequence/0
+normal drop guidance matches placement: hammer/Sequence/1
+normal drop guidance matches placement: hammer/Sequence/2
+normal drop guidance matches placement: hammer/Sequence/3
+normal drop guidance matches placement: hammer/Sequence/4
+normal drop guidance matches placement: hammer/Helmet/0
+normal drop guidance matches placement: hammer/Armor/0
+normal drop guidance matches placement: hammer/Boots/0
+normal drop guidance matches placement: hammer/Weapon/0
+normal drop guidance matches placement: hammer/Weapon/1
+normal drop guidance matches placement: hammer/Rig/0
+normal drop guidance matches placement: hammer/Ultimate/0
+normal drop guidance matches placement: visor/Sequence/0
+normal drop guidance matches placement: visor/Sequence/1
+normal drop guidance matches placement: visor/Sequence/2
+normal drop guidance matches placement: visor/Sequence/3
+normal drop guidance matches placement: visor/Sequence/4
+normal drop guidance matches placement: visor/Helmet/0
+normal drop guidance matches placement: visor/Armor/0
+normal drop guidance matches placement: visor/Boots/0
+normal drop guidance matches placement: visor/Weapon/0
+normal drop guidance matches placement: visor/Weapon/1
+normal drop guidance matches placement: visor/Rig/0
+normal drop guidance matches placement: visor/Ultimate/0
+normal drop guidance matches placement: plate/Sequence/0
+normal drop guidance matches placement: plate/Sequence/1
+normal drop guidance matches placement: plate/Sequence/2
+normal drop guidance matches placement: plate/Sequence/3
+normal drop guidance matches placement: plate/Sequence/4
+normal drop guidance matches placement: plate/Helmet/0
+normal drop guidance matches placement: plate/Armor/0
+normal drop guidance matches placement: plate/Boots/0
+normal drop guidance matches placement: plate/Weapon/0
+normal drop guidance matches placement: plate/Weapon/1
+normal drop guidance matches placement: plate/Rig/0
+normal drop guidance matches placement: plate/Ultimate/0
+normal drop guidance matches placement: treads/Sequence/0
+normal drop guidance matches placement: treads/Sequence/1
+normal drop guidance matches placement: treads/Sequence/2
+normal drop guidance matches placement: treads/Sequence/3
+normal drop guidance matches placement: treads/Sequence/4
+normal drop guidance matches placement: treads/Helmet/0
+normal drop guidance matches placement: treads/Armor/0
+normal drop guidance matches placement: treads/Boots/0
+normal drop guidance matches placement: treads/Weapon/0
+normal drop guidance matches placement: treads/Weapon/1
+normal drop guidance matches placement: treads/Rig/0
+normal drop guidance matches placement: treads/Ultimate/0
+normal drop guidance matches placement: faultline/Sequence/0
+normal drop guidance matches placement: faultline/Sequence/1
+normal drop guidance matches placement: faultline/Sequence/2
+normal drop guidance matches placement: faultline/Sequence/3
+normal drop guidance matches placement: faultline/Sequence/4
+normal drop guidance matches placement: faultline/Helmet/0
+normal drop guidance matches placement: faultline/Armor/0
+normal drop guidance matches placement: faultline/Boots/0
+normal drop guidance matches placement: faultline/Weapon/0
+normal drop guidance matches placement: faultline/Weapon/1
+normal drop guidance matches placement: faultline/Rig/0
+normal drop guidance matches placement: faultline/Ultimate/0
+normal drop guidance matches placement: ArcBolt/Sequence/0
+normal drop guidance matches placement: ArcBolt/Sequence/1
+normal drop guidance matches placement: ArcBolt/Sequence/2
+normal drop guidance matches placement: ArcBolt/Sequence/3
+normal drop guidance matches placement: ArcBolt/Sequence/4
+normal drop guidance matches placement: ArcBolt/Helmet/0
+normal drop guidance matches placement: ArcBolt/Armor/0
+normal drop guidance matches placement: ArcBolt/Boots/0
+normal drop guidance matches placement: ArcBolt/Weapon/0
+normal drop guidance matches placement: ArcBolt/Weapon/1
+normal drop guidance matches placement: ArcBolt/Rig/0
+normal drop guidance matches placement: ArcBolt/Ultimate/0
+normal drop guidance matches placement: aug-Echo/Sequence/0
+normal drop guidance matches placement: aug-Echo/Sequence/1
+normal drop guidance matches placement: aug-Echo/Sequence/2
+normal drop guidance matches placement: aug-Echo/Sequence/3
+normal drop guidance matches placement: aug-Echo/Sequence/4
+normal drop guidance matches placement: aug-Echo/Helmet/0
+normal drop guidance matches placement: aug-Echo/Armor/0
+normal drop guidance matches placement: aug-Echo/Boots/0
+normal drop guidance matches placement: aug-Echo/Weapon/0
+normal drop guidance matches placement: aug-Echo/Weapon/1
+normal drop guidance matches placement: aug-Echo/Rig/0
+normal drop guidance matches placement: aug-Echo/Ultimate/0
+normal drop guidance matches placement: aug-Crosscut/Sequence/0
+normal drop guidance matches placement: aug-Crosscut/Sequence/1
+normal drop guidance matches placement: aug-Crosscut/Sequence/2
+normal drop guidance matches placement: aug-Crosscut/Sequence/3
+normal drop guidance matches placement: aug-Crosscut/Sequence/4
+normal drop guidance matches placement: aug-Crosscut/Helmet/0
+normal drop guidance matches placement: aug-Crosscut/Armor/0
+normal drop guidance matches placement: aug-Crosscut/Boots/0
+normal drop guidance matches placement: aug-Crosscut/Weapon/0
+normal drop guidance matches placement: aug-Crosscut/Weapon/1
+normal drop guidance matches placement: aug-Crosscut/Rig/0
+normal drop guidance matches placement: aug-Crosscut/Ultimate/0
+no-compatible-host instruction
+no compatible host: primary action stores augment
+normal drop guidance matches placement: singularity/Sequence/0
+normal drop guidance matches placement: singularity/Sequence/1
+normal drop guidance matches placement: singularity/Sequence/2
+normal drop guidance matches placement: singularity/Sequence/3
+normal drop guidance matches placement: singularity/Sequence/4
+normal drop guidance matches placement: singularity/Helmet/0
+normal drop guidance matches placement: singularity/Armor/0
+normal drop guidance matches placement: singularity/Boots/0
+normal drop guidance matches placement: singularity/Weapon/0
+normal drop guidance matches placement: singularity/Weapon/1
+normal drop guidance matches placement: singularity/Rig/0
+normal drop guidance matches placement: singularity/Ultimate/0
+augment highlights compatible stored host
+dragged inventory item overrides selected reward
+selected inventory item overrides selected reward
+equipment hover focuses exact reward at 1280
+equipment hover focuses exact reward at 1920
+equipment hover focuses exact reward at 2560

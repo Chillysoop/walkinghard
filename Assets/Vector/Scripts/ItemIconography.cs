@@ -21,7 +21,7 @@ namespace VectorGame
         {
             if(def.kind==ItemKind.Augment)
             {
-                var host=game.Deck.CompatibleHosts(def).FirstOrDefault();if(host!=null)ActionGlyph(new Rect(r.x,r.y,18,18),host.def,white);Label(new Rect(r.x+23,r.y,r.width-23,r.height),(def.module.family<0?"ABILITY":"WEAPON")+" / HOVER: BEFORE → AFTER",9,Violet,true);return;
+                var host=game.Deck.CompatibleHosts(def).FirstOrDefault();if(host!=null)ActionGlyph(new Rect(r.x,r.y,18,18),host.def,white);Label(new Rect(r.x+23,r.y,r.width-23,r.height),(def.module.family<0?"ABILITY":"WEAPON")+" / HOVER: BEFORE → AFTER",9,Accent,true);return;
             }
             var tags=def.tags.Split(' ');float x=r.x;
             foreach(string tag in tags.Where(t=>synergyKeys.Contains(t)).Take(2))
@@ -29,7 +29,7 @@ namespace VectorGame
                 string label=SynergyLabel(tag);float width=Style(9,true).CalcSize(new GUIContent(label)).x+25;
                 if(x+width>r.xMax)break;
                 Plate(new Rect(x,r.y,width,18),new Color(.03f,.08f,.10f),line,3);
-                EffectIcon(new Rect(x+1,r.y-1,20,20),SynergySymbol(tag),tag=="siphon"?VectorEncounter.SiphonColor:muted);
+                EffectIcon(new Rect(x+1,r.y-1,20,20),SynergySymbol(tag),muted);
                 Label(new Rect(x+23,r.y+2,width-23,15),label,9,muted,true);x+=width+5;
             }
         }
@@ -40,7 +40,7 @@ namespace VectorGame
             Rect r=new Rect(w/2-320,h/2-265,640,530);Panel(r);
             Label(new Rect(r.x+24,r.y+18,550,27),"READ YOUR LOADOUT",23,white,true);
             if(Button(new Rect(r.xMax-114,r.y+18,90,25),"CLOSE [ESC]"))iconGuide=false;
-            Label(new Rect(r.x+24,r.y+57,592,34),"Artwork identifies the item. Symbols identify its type and synergies.\nThe border and written rarity identify which copies can fuse.",13,muted);
+            Label(new Rect(r.x+24,r.y+57,592,34),"Icons: type and synergy. Border color: rarity.\nCyan glow: valid drop target. Hover for details.",13,muted);
             var kinds=new[]{ItemKind.Weapon,ItemKind.Ability,ItemKind.Ultimate,ItemKind.Helmet,ItemKind.Armor,ItemKind.Boots,ItemKind.Rig,ItemKind.Augment};
             for(int i=0;i<kinds.Length;i++)
             {
