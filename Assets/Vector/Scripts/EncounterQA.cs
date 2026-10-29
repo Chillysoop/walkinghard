@@ -56,6 +56,7 @@ namespace VectorGame
         }
         void QADraft()
         {
+            if(RoutePending){ChooseRoute((Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);return;}
             if(!modelChecks)
             {
                 LoadoutChecks.Run();

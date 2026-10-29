@@ -1,0 +1,184 @@
+{
+  "rifle": {
+    "before": {
+      "n": 468,
+      "wins": 20,
+      "wave": 5.15
+    },
+    "after": {
+      "n": 468,
+      "wins": 23,
+      "wave": 5.182
+    },
+    "groups": {
+      "gun-rifle/common-support": {
+        "before": {
+          "n": 360,
+          "wins": 1,
+          "wave": 4.436
+        },
+        "after": {
+          "n": 360,
+          "wins": 1,
+          "wave": 4.481
+        }
+      },
+      "gun-rifle/rare-support": {
+        "before": {
+          "n": 108,
+          "wins": 19,
+          "wave": 7.528
+        },
+        "after": {
+          "n": 108,
+          "wins": 22,
+          "wave": 7.519
+        }
+      }
+    }
+  },
+  "duelist": {
+    "before": {
+      "n": 156,
+      "wins": 16,
+      "wave": 6.372
+    },
+    "after": {
+      "n": 156,
+      "wins": 23,
+      "wave": 6.891
+    },
+    "groups": {
+      "sever-greatsword/common-support": {
+        "before": {
+          "n": 60,
+          "wins": 0,
+          "wave": 5.533
+        },
+        "after": {
+          "n": 60,
+          "wins": 0,
+          "wave": 6.167
+        }
+      },
+      "sever-greatsword/rare-support": {
+        "before": {
+          "n": 18,
+          "wins": 9,
+          "wave": 7.889
+        },
+        "after": {
+          "n": 18,
+          "wins": 11,
+          "wave": 8
+        }
+      },
+      "sever-swords/common-support": {
+        "before": {
+          "n": 60,
+          "wins": 0,
+          "wave": 6.333
+        },
+        "after": {
+          "n": 60,
+          "wins": 0,
+          "wave": 6.967
+        }
+      },
+      "sever-swords/rare-support": {
+        "before": {
+          "n": 18,
+          "wins": 7,
+          "wave": 7.778
+        },
+        "after": {
+          "n": 18,
+          "wins": 12,
+          "wave": 7.944
+        }
+      }
+    }
+  },
+  "full-rifle": [
+    {
+      "id": "gun-rifle-weapon-rifle-r3-s0-support-rare",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 300
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "kills": 270
+      }
+    },
+    {
+      "id": "gun-rifle-weapon-rifle-r3-s1-support-rare",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "kills": 286
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "kills": 296
+      }
+    }
+  ],
+  "full-duelist": [
+    {
+      "id": "sever-swords-weapon-sword-r3-s0-support-rare",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 299
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 296
+      }
+    },
+    {
+      "id": "sever-swords-weapon-sword-r3-s1-support-rare",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 300
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 299
+      }
+    },
+    {
+      "id": "sever-greatsword-weapon-greatsword-r3-s0-support-rare",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 298
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 299
+      }
+    },
+    {
+      "id": "sever-greatsword-weapon-greatsword-r3-s1-support-rare",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 301
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "kills": 298
+      }
+    }
+  ]
+}

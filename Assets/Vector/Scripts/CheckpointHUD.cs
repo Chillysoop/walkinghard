@@ -58,6 +58,7 @@ namespace VectorGame
             Label(new Rect(w-290,31,250,25),(deck.RewardClaimed?"CHOICE CLAIMED":"CHOOSE 1 OF 3")+(game.OpeningDraft?" / "+(game.OpeningPicks+1)+" OF 2":""),16,deck.RewardClaimed?Accent:white,true,TextAnchor.UpperRight);
             Panel(new Rect(20,86,w-40,178));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Augment?"AUGMENTS / CHOOSE MODULE, THEN HIGHLIGHTED HOST":deck.Draft.ToString().ToUpperInvariant()+" REWARDS",11,Accent,true);
             Label(new Rect(600,86,w-630,17),"NEXT: "+game.EncounterPreview,10,muted,false,TextAnchor.UpperRight);
+            if(deck.Emphasis!=RewardEmphasis.None)Label(new Rect(300,86,285,17),"BIASED: "+deck.Emphasis.ToString().ToUpperInvariant(),10,Gold,true);
             for(int i=0;i<3;i++)
             {
                 var offer=deck.Offers[i];Rect r=new Rect(32+i*(rewardW+10),104,rewardW,148);bool selected=deck.Selected==i;Color color=offer.def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);

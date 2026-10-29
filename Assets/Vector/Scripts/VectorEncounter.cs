@@ -94,6 +94,8 @@ namespace VectorGame
             public float maxHealth,health,stun,cooldown,attack=-1,deathAge=-1,radius,orbit,phase,react;
             public ImpactReaction reaction;public float reactionLeft,reactionPulse;
             public bool engaged,heavy,delivered,entering,boss,shooter;
+            public bool shieldBearer,volatileCarrier,detonated;
+            public float shieldOpenUntil;
             public bool repositioning;
             public float pressure,lastDamageTime=-1000,previousDamageTime=-1000;
             public KillCredit lastPushCredit;
@@ -173,7 +175,7 @@ namespace VectorGame
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
-            ResetSignatures();ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
+            ResetSignatures();ResetRoutes();ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
             CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
@@ -196,9 +198,9 @@ namespace VectorGame
             foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
             if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
-        public void SelectOffer(int index){if(State==RunState.Drafting)Deck.Select(index);}
+        public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending)Deck.Select(index);}
         public void AssignSlot(int slot){if(State==RunState.Drafting)Deck.Assign(slot);}
-        public void Reroll(){if(State==RunState.Drafting)Deck.Reroll();}
+        public void Reroll(){if(State==RunState.Drafting&&!RoutePending)Deck.Reroll();}
         public void SwapSlots(int a,int b){if(State==RunState.Drafting)Deck.Swap(a,b);}
         public bool MoveItem(LoadoutItem item,PlaceKind place,int index=0)
         {
@@ -210,7 +212,7 @@ namespace VectorGame
         }
         public bool ClaimReward(int offer,PlaceKind place,int index,bool continueImmediately=true)
         {
-            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(State!=RunState.Drafting||RoutePending)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             if(!Deck.ClaimTo(offer,place,index))return false;
             Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
@@ -232,12 +234,13 @@ namespace VectorGame
         }
         public void ConfirmDraft()
         {
-            if(State!=RunState.Drafting)return;
+            if(State!=RunState.Drafting||RoutePending)return;
             if(!Deck.RewardClaimed){Deck.Claim();return;}
             CompleteDraft();
         }
         void BeginWave()
         {
+            routeSpawn=0;
             hero.EquipWeapons(Deck.WeaponFor(Deck.Basics[0]).def.weapon,Deck.WeaponFor(Deck.Basics[1]).def.weapon,Deck.TwoHanded);
             if(qa)QABeginWeapons();
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
@@ -331,6 +334,8 @@ namespace VectorGame
         void SpawnEntry(int kind)
         {
             if(enemies.Count>=tuning.maximumEnemies)return;
+            if(ActiveRoute==EncounterRoute.ShieldLine&&routeSpawn%4==0)kind=2;
+            else if(ActiveRoute==EncounterRoute.VolatileBreach&&routeSpawn%4==0)kind=entryTurn%2;
             EntryLayout.Door door=kind<2?EntryLayout.Ahead(kind==0?-1:1,HeroPosition.z):null;
             Vector3 p=door!=null?door.origin:EntryLayout.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6));
             Physics.SyncTransforms();
@@ -339,7 +344,7 @@ namespace VectorGame
             bool boss=Wave==8&&!bossSpawned;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
-            e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
+            ConfigureRouteEnemy(e);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
             if(shooter)RangedSpawned++;
             if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
@@ -396,15 +401,16 @@ namespace VectorGame
                 e.rig.Pose(clock,flat.magnitude/tuning.enemySpeed,e.attack>=0?1:-1,e.attack/(e.heavy?1.25f:.95f),e.react,false,0);
                 StepReaction(e,dt,true);
                 e.rig.Telegraph(e.attack>=0&&!e.delivered,e.stun>0);
+                if(e.shieldBearer)e.rig.ShieldGuard(e.shieldOpenUntil>Elapsed);
             }
         }
         [Serializable] public sealed class WaveReport
-        {public int wave,kills,launches,collisions,carried,hitsTaken,shooters,rangedHits;public float health,rangedDamage;public string choice="";}
+        {public int wave,kills,launches,collisions,carried,hitsTaken,shooters,rangedHits;public float health,rangedDamage;public string choice="",route="";}
         void FinishWave()
         {
             if(simulation)Debug.Log("SIM_WAVE seed="+Seed+" wave="+Wave+" elapsed="+Elapsed+" kills="+Kills+" enemies="+enemies.Count+" hero="+HeroPosition);
             Score.Bank();CaptureWaveFeedback();
-            Waves.Add(new WaveReport{wave=Wave,kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
+            Waves.Add(new WaveReport{wave=Wave,route=RouteName(ActiveRoute),kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
             accumulator=0;ActiveSlot=PairSlot=-1;Preparation=0;
             if(Wave>=tuning.waveCount){State=RunState.Complete;return;}
             OpenCheckpoint();

@@ -44,6 +44,7 @@ namespace VectorGame
         void Control(Enemy e,float seconds,Vector3 impulse)
         {
             if(e.deathAge>=0)return;float r=ControlResistance(e);float effective=seconds*r;
+            ExposeShield(e,effective);
             ContributionFor(Owner).control+=Mathf.Max(0,effective-e.stun);e.stun=Mathf.Max(e.stun,effective);if(effective>0){e.attack=-1;e.engaged=false;}
             RememberDisplacement(e,impulse);e.physics.Impulse(impulse*r);
             if(!FastSimulation&&impulse.sqrMagnitude>.1f){e.reaction=DescribeImpact(e,impulse,false);e.reactionLeft=.32f;}

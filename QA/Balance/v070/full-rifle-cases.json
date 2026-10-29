@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "gun-rifle-weapon-rifle-r3-s0-support-rare",
+      "context": "gun-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 41000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "VectorTether",
+        "ArcBolt",
+        "Breaker"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "gun-rifle-weapon-rifle-r3-s1-support-rare",
+      "context": "gun-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 41001,
+      "healthFraction": 1
+    }
+  ]
+}

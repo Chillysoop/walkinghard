@@ -141,9 +141,10 @@ namespace VectorGame
             else {hero.Pose(clock,1,-1,0,heroReact,false,0);heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.identity,dt*4));}
         }
         void Resolve(AbilityCard card)=>ResolveAuthoredAbility(card);
-        void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false,ImpactKind? reactionKind=null)
+        void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false,ImpactKind? reactionKind=null,Vector3? hitOrigin=null)
         {
             if(e.deathAge>=0)return;
+            damage=ShieldDamage(e,damage,impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0)e.attack=-1;
@@ -169,8 +170,10 @@ namespace VectorGame
             OnLaunch(body);
             energy*=ControlResistance(body);body.physics.Impulse(direction*(body.heavy?11:15)*energy+Vector3.up*1.5f-body.physics.Velocity);
             body.stun=1.2f*ControlResistance(body);body.engaged=false;body.attack=-1;
+            ExposeShield(body,body.stun);
             if(chain==null)chain=new Cascade();if(chain.credit==null)chain.credit=currentCredit;chain.hit.Add(body.id);
             flights.Add(new Flight{body=body,previous=origin,chain=chain,hop=hop,energy=energy});Launches++;MaxCascadeHop=Mathf.Max(MaxCascadeHop,hop);
+            if(body.volatileCarrier&&!body.detonated){fx.Ring(origin,1.3f,VisualFactory.Orange,.3f);Note("Carrier armed by launch",true);}
             if(body.deathAge>=0)SetBodyWalkCollision(body,true);
         }
         void ProcessContacts()
@@ -178,7 +181,7 @@ namespace VectorGame
             var batch=contacts.ToArray();contacts.Clear();
             foreach(var contact in batch)
             {
-                if(contact.target<0){if(contact.speed>1)WorldContacts++;continue;}
+                if(contact.target<0){if(contact.speed>1)WorldContacts++;if(contact.speed>=2)foreach(var f in flights.ToArray())if(f.body.id==contact.source)DetonateCarrier(f);continue;}
                 PhysicsContacts++;
                 if(contact.target<=0||!byId.TryGetValue(contact.target,out var target)||target.deathAge>=0)continue;
                 foreach(var flight in flights.ToArray())
@@ -191,9 +194,10 @@ namespace VectorGame
                     if(Deck.Pinball)damage+=Deck.Rig.def.effect.Power(Deck.Rig.rank);
                     Vector3 direction=target.physics.Center-flight.body.physics.Center;direction.y=0;direction.Normalize();
                     currentCredit=new KillCredit{item=chain.credit?.item,weapon=chain.credit?.weapon,action=chain.credit?.action??0,hop=flight.hop+1};
-                    OnCollision(target,contact.point,damage);Hurt(target,damage,Vector3.zero,Deck.Pinball?1:.4f);if(target.deathAge>=0)CollisionKills++;
+                    OnCollision(target,contact.point,damage);Hurt(target,damage,Vector3.zero,Deck.Pinball?1:.4f,hitOrigin:flight.body.physics.Center);if(target.deathAge>=0)CollisionKills++;
                     if(flight.hop<2&&chain.remaining>0)Launch(target,chain,flight.hop+1,flight.energy*.64f,direction);
                     ImpactPause(.04f);
+                    DetonateCarrier(flight);
                 }
             }
         }
@@ -211,7 +215,7 @@ namespace VectorGame
                 var f=flights[i];if(!byId.ContainsKey(f.body.id)){flights.RemoveAt(i);continue;}
                 f.age+=dt;f.trail-=dt;Vector3 p=f.body.physics.Center;
                 if(f.trail<=0){fx.Arc(f.previous,p,Deck.Pinball?new Color(1,.74f,.28f):VisualFactory.Cyan);f.trail=.04f;}
-                f.previous=p;if(f.age>1.3f){flights.RemoveAt(i);if(f.body.deathAge>=0)SetBodyWalkCollision(f.body,false);}
+                f.previous=p;if(f.age>1.3f){DetonateCarrier(f);flights.RemoveAt(i);if(f.body.deathAge>=0)SetBodyWalkCollision(f.body,false);}
             }
         }
         void SetBodyWalkCollision(Enemy body,bool projectile)

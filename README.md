@@ -1,4 +1,10 @@
-# Walking Hard 0.6.9 — Checkpoint Build Feedback
+# Walking Hard 0.7.0 — Branching Encounters
+
+After waves 2 and 5, choose **Shield Line** or **Volatile Breach** for the next wave. Shield Line guarantees two equipment options in the existing mixed pick; Volatile Breach guarantees two ability options. The third option stays a wildcard. Reward counts, rarity odds and checkpoint-three ultimate progression are unchanged.
+
+Shield bearers halve frontal damage until stagger opens their guard for two seconds. Flanking bypasses the guard. Volatile carriers detonate when a launched body impacts or finishes its flight; the explosion credits the launching item and shares the existing cascade limits. Both enter through concealed doors or the horizon.
+
+The rifle damage and Duelist ward candidates were tested separately and remain unapplied. See [balance review](QA/v070-balance-review.md) and [verification](QA/v070-verification.md).
 
 Checkpoints show last-wave damage, healing, blocks and collision kills. Open Wave details for per-item performance, reload and target waits, and recorded synergy payoffs. Results stay fixed while you equip or fuse. [Gun/sever comparison results](QA/v069-balance-review.md) include proposed balance tests; no new balance changes are applied in this release.
 

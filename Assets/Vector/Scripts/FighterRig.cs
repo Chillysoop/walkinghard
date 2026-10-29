@@ -15,6 +15,24 @@ namespace VectorGame
         readonly bool hero,lightweight;
         readonly float phase;
         Transform weaponRight,weaponLeft;
+        Transform enemyShield;
+        public void EncounterEquipment(bool shield,bool carrier)
+        {
+            if(lightweight)return;
+            if(shield)
+            {
+                enemyShield=VisualFactory.Node("Stagger opens guard",Body,new Vector3(-.28f,.25f,.5f));
+                VisualFactory.Part("Shield plate",enemyShield,PrimitiveType.Cube,Vector3.zero,new Vector3(.9f,1.25f,.14f),VisualFactory.Joint);
+                VisualFactory.Part("Shield face",enemyShield,PrimitiveType.Cube,new Vector3(0,0,.08f),new Vector3(.8f,1.1f,.05f),VisualFactory.Armor);
+                VisualFactory.Part("Guard light",enemyShield,PrimitiveType.Cube,new Vector3(0,0,.12f),new Vector3(.1f,.95f,.03f),VisualFactory.Glow);
+            }
+            if(carrier)
+            {
+                for(int side=-1;side<=1;side+=2)VisualFactory.Part("Volatile canister",Body,PrimitiveType.Cylinder,new Vector3(side*.34f,.4f,-.3f),new Vector3(.27f,.4f,.27f),VisualFactory.GoldGlow);
+                VisualFactory.Part("Volatile chest warning",Body,PrimitiveType.Cube,new Vector3(0,.4f,.26f),new Vector3(.4f,.32f,.08f),VisualFactory.GoldGlow);
+            }
+        }
+        public void ShieldGuard(bool exposed){if(enemyShield!=null)enemyShield.localRotation=Quaternion.Euler(0,0,exposed?70:0);}
         WeaponKind displayedRight=WeaponKind.Fists,displayedLeft=WeaponKind.Fists;
         bool twoHanded;
         internal Transform RightWeapon=>weaponRight;

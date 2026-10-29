@@ -44,6 +44,7 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Ready){Intro(w,h);return;}
             if(game.State==VectorEncounter.RunState.Drafting)
             {
+                if(game.RoutePending){RouteChoice(w,h);return;}
                 var eventType=Event.current.type;
                 bool blocked=(iconGuide||detailHovered||waveDetails)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
                 if(blocked)Event.current.type=EventType.Ignore;
