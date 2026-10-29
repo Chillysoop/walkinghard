@@ -31,7 +31,7 @@ namespace VectorGame
             }
             switch(item.def.id)
             {
-                case "siphonblade":return "Cuts steal life; severs spread drain.";
+                case "siphonblade":return "Cuts heal; marks let other hits drain.";
                 case "DrainBrand":return "Mark foes; damage to them heals you.";
                 case "reclaimer":return "Steal life; stronger below half health.";
                 case "predator":return "Healing speeds your next ability.";
@@ -58,7 +58,7 @@ namespace VectorGame
                 case "singularity":return "Launch foes into collision chains.";
                 case "tempest":return "Chain lightning; consume marks.";
                 case "cyclone":return "Full-circle cut; killing blows sever.";
-                case "redline":return "Refill guns; haste for three turns.";
+                case "redline":return "Refill guns; haste for six turns.";
                 case "visor":return "Hits spread stagger to a neighbor.";
                 case "surveyor":return "Multi-target hits echo extra damage.";
                 case "salvager":return "Launch/sever primes a corpse pull.";

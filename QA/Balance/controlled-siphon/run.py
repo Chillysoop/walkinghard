@@ -38,13 +38,15 @@ def load_rows(out):
     return rows
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--mode',default='Fast',choices=['Fast','Full']);p.add_argument('--seeds',type=int,default=12);p.add_argument('--workers',type=int,default=4);p.add_argument('--smoke',action='store_true');p.add_argument('--cases');p.add_argument('--player',default=str(ROOT/'Build/ControlledSiphon-v067-report/WalkingHard.exe'));a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--mode',default='Fast',choices=['Fast','Full']);p.add_argument('--seeds',type=int,default=12);p.add_argument('--workers',type=int,default=4);p.add_argument('--smoke',action='store_true');p.add_argument('--cases');p.add_argument('--balance');p.add_argument('--player',default=str(ROOT/'Build/ControlledSiphon-v067-report/WalkingHard.exe'));a=p.parse_args()
     out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=False)
     jobs=json.loads(Path(a.cases).read_text(encoding='utf-8'))['cases'] if a.cases else cases(a.seeds)
     if a.smoke: jobs=[c for c in jobs if c['context']=='sever' and c['rank'] in (1,5) and c['seed']==31000]
     (out/'cases.json').write_text(json.dumps({'cases':jobs},indent=2),encoding='utf-8')
     dll=Path(a.player).parent/'WalkingHard_Data/Managed/Assembly-CSharp.dll'
     meta=dict(mode=a.mode,runs=len(jobs),workers=a.workers,player=a.player,assemblySha256=hashlib.sha256(dll.read_bytes()).hexdigest(),maxCombatSeconds=600,baseHealth=280,startedUtc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()))
+    if a.balance:
+        balance=json.loads(Path(a.balance).read_text(encoding='utf-8'));(out/'balance.json').write_text(json.dumps(balance,indent=2),encoding='utf-8');meta['balance']=balance
     (out/'batch.json').write_text(json.dumps(meta,indent=2),encoding='utf-8')
     workers=[];start=time.monotonic();last=start
     try:
@@ -53,6 +55,7 @@ def main():
             if not subset: continue
             cp=out/f'cases-{wi}.json';cp.write_text(json.dumps({'cases':subset}),encoding='utf-8')
             args=[a.player,'-batchmode','-nographics','-simMode',a.mode,'-simRuns',str(len(subset)),'-simPolicy','balanced','-simWaves','8','-simMaxSeconds','600','-simCases',str(cp),'-simOutput',str(out/f'worker-{wi}.jsonl'),'-logFile',str(out/f'worker-{wi}.log')]
+            if a.balance: args+=['-simBalance',str(out/'balance.json')]
             workers.append(subprocess.Popen(args,creationflags=subprocess.CREATE_NO_WINDOW))
         print(f'{len(jobs)} controlled {a.mode} cases, {len(workers)} workers',flush=True)
         while any(w.poll() is None for w in workers):

@@ -81,10 +81,7 @@ namespace VectorGame
         void ObserveControlledDrain(Enemy enemy,float dealt)
         {
             if(Controlled==null||controlledMetrics==null||currentCredit==null||dealt<=0||Health<=0)return;
-            float rate=Deck.Lifesteal;
-            if(Health<MaxHealth*.5f&&Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor)rate+=LoadoutCatalog.SiphonRate(armor.rank);
-            if(drains.TryGetValue(enemy.id,out var mark)&&mark.until>Elapsed)rate+=mark.rate;
-            bool harvest=Owner?.def.id=="harvest";if(harvest)rate+=.2f*Effect(Owner);
+            float rate=DrainSources(enemy).Values.Sum();bool harvest=Owner?.def.id=="harvest";
             if(rate<=0)return;
             int action=currentCredit.action;float used=turns.TryGetValue(action,out var turn)?turn.siphonHealed:0;
             float potential=dealt*rate,remaining=Mathf.Max(0,(harvest?HarvestHealingLimit(Owner):MaxHealth*.01f)-used),capped=Mathf.Min(potential,remaining);

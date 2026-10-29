@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 8, October 29, 2026. Implementation target: 0.6.7. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v067-verification.md.
+Revision 9, October 29, 2026. Implementation target: 0.6.8. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v068-verification.md.
 
 ## Run and sequence
 
@@ -69,7 +69,7 @@ All identities function at Common. Higher rarity improves relevant stats and the
 | Rig | Relay Coil | Body impacts consume Conductive to discharge lightning. | Needs a mark and a later body impact; arcs cannot repeat the trigger. | One extra arc at Common, two at Rare, three at Legendary; more reach. |
 | Rig | Salvage Magnet | A direct sever propels the body/fragments into one follow-up collision chain. | Once per turn, with one shared hit budget and enemy identity. | More retrieval reach and launch impulse. |
 | Ultimate | Razor Cyclone | 15s recharge; radial cutting burst, lethal hits sever. | Local radius; no automatic executions. | Damage and radius. |
-| Ultimate | Redline | 18s recharge; refill equipped guns and accelerate three sequence turns. | No damage; a full magazine is not a reload. | Haste 20% at Common, +3 percentage points per rarity. |
+| Ultimate | Redline | 18s recharge; refill equipped guns and accelerate six sequence turns. | No damage; a full magazine is not a reload. | Haste 20% at Common, +3 percentage points per rarity. |
 | Ultimate | Singularity Burst | 12s recharge; radial damage and up to six body launches sharing a cascade. | Needs nearby bodies; shared six-hit cascade budget. | Damage, launch force and reach. |
 | Ultimate | Tempest Array | 16s recharge; 52 Common damage, seven linked targets; consumes Conductive and benefits from stagger. | Requires targets within 6m jump reach. | Damage, jump reach; eight targets at Rare, nine at Legendary. |
 | Weapon / 1H | Breach Hammer | A light hammer staggers and knocks the first target forward. | Less force and splash than Impact Hammer. | Longer stagger; stronger controlled launch. |
@@ -210,7 +210,7 @@ Every damaging contact has a source, contact point and direction. Living reactio
 | Gravity Well, Vector Tether | Body leans into the actual gathering/pull direction. |
 | Force Push, Mass Driver, Singularity | Body snaps with the actual force; existing launches carry bodies into physical cascades. |
 | Counterguard | A visible hexagonal shield appears on creation and flashes when it absorbs a hit. |
-| Redline | Hands/weapons vent orange charge at activation and during its three empowered turns. |
+| Redline | Hands/weapons vent orange charge at activation and during its six empowered turns. |
 
 Severing uses the current mannequin's anatomical seams (waist, neck, shoulders, elbows, hips, knees). It is not arbitrary runtime mesh slicing or soft-body crushing. A two-handed blade chooses extra cuts by plane intersection, not random body-part rolls. All pieces retain the original enemy identity, kill credit, corpse lifetime and walking collision rules. Rarity modestly strengthens visual/death reaction intensity. Reduced Motion reduces jitter and suppresses added camera shake/hit stops.
 
@@ -231,12 +231,19 @@ Lifesteal returns a percentage of actual damage to living enemies as health. Sou
 
 | Item | Common identity | Rarity progression |
 | --- | --- | --- |
-| Siphon Blade / 1H sword | 30 damage / .74s; +4% global Lifesteal. Cuts apply Siphon; one sever per action spreads it within 3m. | Lifesteal and mark bonus 4/5/6/8/10%; damage uses normal rarity; longer marks, wider spread/cleave. |
+| Siphon Blade / 1H sword | 30 damage / .74s; 4% Lifesteal from this blade's own damage. Cuts apply Siphon; one sever per action spreads it within 3m. | Lifesteal and mark bonus 4/5/6/8/10%; damage uses normal rarity; longer marks, wider spread/cleave. |
 | Drain Brand / ability | 8 damage / .65s; marks 3 targets for +4% Lifesteal against them for 4s. | 3/3/4/4/5 targets; bonus 4/5/6/8/10%; duration uses effect scaling. Strongest active mark refreshes, never stacks. |
-| Reclaimer Armor | +20 HP and +4% global Lifesteal; this armor's contribution doubles below half health. | Normal HP rarity scaling; Lifesteal 4/5/6/8/10% before low-health doubling. |
+| Reclaimer Armor | +20 HP and +3% global Lifesteal; this armor's contribution is multiplied by 1.5 below half health. | Normal HP rarity scaling; Lifesteal 3/4/5/6/7% before the 1.5x low-health bonus. |
 | Predator Boots | +2% action speed. Actual healing stores 12% haste for the next ability. | Normal speed scaling and effect-scaled haste. One charge; no stacking or overheal triggers; weapons/ultimates preserve it. |
 | Harvest / ultimate | 38 damage, 7m pulse, 16s recharge; heals 20% of actual damage up to 8% max HP. | Damage/range/effect scaling; healing limit 8/9/10/11/12% max HP. |
 
 All five use normal rarity odds and three-identical-same-rarity fusion. Harvest remains excluded until the checkpoint-three ultimate draft. Siphon uses a crimson droplet-plus symbol; category icons and rarity borders retain their existing meanings. Five distinct raster artworks and shared summaries cover every UI surface. Healing contribution is reported separately from damage prevention.
 
 The catalog now contains 10 weapons, 11 abilities, 14 armor pieces, five rigs, five ultimates and 16 augment modules: 61 identities including modules. No global enemy damage, health, spawn cadence, ultimate unlock or rarity odds change in this pass. See QA/v067-balance-review.md for measured results and limitations.
+
+
+### Controlled sustain balance (0.6.8)
+
+Siphon Blade no longer grants global Lifesteal. Only damage credited to that blade (including augment follow-ups and delayed collisions) gets its native drain. Each paired blade uses its own rarity; an offhand blade does not donate its percentage to another weapon. Blade-applied marks still allow any later damage to drain the marked target. Reclaimer is the persistent global Lifesteal source, with 3/4/5/6/7% by rarity and a 1.5x contribution below half health. The shared 1% max-HP originating-action budget is unchanged; percentages are potential healing before this limit and missing-health clipping. The character sheet explicitly labels global Lifesteal.
+
+Redline now accelerates six sequence turns, retaining its 18-second recharge, ammo-refill behavior and 20/23/26/29/32% haste. The ultimate activation consumes no charge; a paired action consumes one. Harvest stays at 16 seconds and an 8/9/10/11/12% max-HP pulse budget. See QA/v068-balance-review.md for isolated changes, matched controls, normal-draft retests and the limits of Fast physics.

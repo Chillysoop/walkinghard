@@ -49,7 +49,7 @@ namespace VectorGame
             {
                 ProbeReset();var ult=Deck.Acquire(def);Deck.Move(ult,PlaceKind.Ultimate);currentCredit=new KillCredit{item=ult,action=actionSerial};var target=ProbeEnemy(0,2,5);int kills=Kills;
                 ResolveUltimate();
-                if(def.id=="redline")MechanicRequire(Kills==kills&&redlineTurns==3,"Redline visual vent retains a non-damaging three-turn payoff");
+                if(def.id=="redline")MechanicRequire(Kills==kills&&redlineTurns==6,"Redline visual vent retains a non-damaging six-turn payoff");
                 else
                 {
                     var kind=def.id=="harvest"?ImpactKind.Pull:def.id=="tempest"?ImpactKind.Electric:def.id=="cyclone"?ImpactKind.Slash:ImpactKind.Force;
