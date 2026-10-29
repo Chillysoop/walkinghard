@@ -46,78 +46,42 @@ namespace VectorGame
         void Intro(float w,float h)
         {
             Panel(new Rect(28,115,470,485));
-            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.3",15,Accent,true);
+            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.4",15,Accent,true);
             Label(new Rect(52,189,420,125),"BUILD THE ORDER.\nBREAK THE CROWD.",40,white,true);
-            Label(new Rect(55,333,400,90),"Draft two abilities. Choose their slots.\nYour fighter repeats them in that order.\nFill the third slot at the first checkpoint.",18,muted);
-            Label(new Rect(55,438,400,48),"Enemies enter through side doors and the horizon. Bodies collide, tumble, and fly.",16,white);
+            Label(new Rect(55,333,400,90),"Two weapon attacks. Three chosen abilities.\nArrange all five; combat runs automatically.\nYour ultimate has its own 12-second timer.",18,muted);
+            Label(new Rect(55,438,400,48),"Find weapons at checkpoints. Pair matching attacks, split bodies, and build collision cascades.",16,white);
             if(Button(new Rect(55,521,410,49),"DRAFT YOUR LOADOUT  [ ENTER ]",true))game.Begin();
             Label(new Rect(29,h-50,850,25),"THREE WAVES  /  CHOOSE ONE OF THREE  /  A NEW DRAFT EACH RUN",14,muted);
         }
         void CombatBar(float w,float h)
         {
-            float y=h-153;
-            Panel(new Rect(25,y,260,125));
-            if(Button(new Rect(40,y+12,230,34),"AUTO COMBAT: "+(game.Automatic?"ON":"OFF")+"  [ A ]",game.Automatic))game.ToggleAutomatic();
-            GUI.enabled=game.ActiveSlot<0;
-            if(Button(new Rect(40,y+53,230,29),"ADVANCE NEXT SLOT  [ F ]"))game.Advance();
-            GUI.enabled=true;
-            if(Button(new Rect(40,y+89,230,25),"PAUSE  [ SPACE ]"))game.TogglePause();
-            float width=(w-345)/3;
-            for(int i=0;i<3;i++)
+            float y=h-137,width=(w-90)/5;
+            for(int i=0;i<5;i++)
             {
-                float x=305+i*(width+10);var card=game.Deck.Slots[i];bool active=i==game.ActiveSlot,next=game.ActiveSlot<0&&i==game.NextSlot;
-                Panel(new Rect(x,y,width,125));Box(new Rect(x,y,width,3),active?Accent:next?Gold:line);
-                Label(new Rect(x+16,y+15,width-32,22),"SLOT "+(i+1)+(active?" / EXECUTING":next?" / NEXT":""),13,active?Accent:next?Gold:muted,true);
-                Label(new Rect(x+16,y+47,width-32,32),card?.name??"Empty",23,white,true);
-                Label(new Rect(x+16,y+85,width-32,27),card==null?"Fill at checkpoint one":game.SlotCasts[i]+" activations",14,muted);
-                if(active)Box(new Rect(x+16,y+116,(width-32)*game.ActionProgress,3),Accent);
+                float x=25+i*(width+10);var item=game.Deck.Slots[i];bool active=i==game.ActiveSlot||i==game.PairSlot,next=game.ActiveSlot<0&&i==game.NextSlot;
+                Panel(new Rect(x,y,width,108));Box(new Rect(x,y,width,3),active?Accent:next?Gold:line);
+                Label(new Rect(x+12,y+11,width-24,20),"SLOT "+(i+1)+(active?" / EXECUTING":next?" / NEXT":""),12,active?Accent:next?Gold:muted,true);
+                Label(new Rect(x+12,y+36,width-24,42),item==null?"Empty":item.def.kind==ItemKind.Basic?item.def.name+" / "+game.Deck.WeaponFor(item).def.name:item.def.name,17,white,true);
+                Label(new Rect(x+12,y+81,width-24,18),item==null?"Empty / skipped":"Kills: "+game.ActionKills(item)+(game.Deck.PairAfter(i)>=0?(game.Deck.TwoHanded?" / LOCKED 2H":" / PAIRED"):""),12,game.Deck.PairAfter(i)>=0?Gold:muted);
+
+                if(active)Box(new Rect(x+12,y+102,(width-24)*game.ActionProgress,3),Accent);
             }
-            Label(new Rect(25,h-23,w-50,20),"1 > 2 > 3 > REPEAT     ·     EMPTY SLOTS ARE SKIPPED     ·     R new run     T repeat seed "+game.Seed,12,muted,false,TextAnchor.MiddleCenter);
-        }
-        void Draft(float w,float h)
-        {
-            Box(new Rect(0,0,w,h),new Color(.01f,.025f,.03f,.88f));float x=40,y=(h-720)/2+20,width=w-80;
-            Panel(new Rect(x,y,width,680));
-            string phase=game.OpeningDraft?"OPENING DRAFT "+(game.OpeningPicks+1)+" / 2":"CHECKPOINT "+game.Wave+" / 2";
-            Label(new Rect(x+24,y+19,700,22),phase+"  /  COMBAT PAUSED",14,Accent,true);
-            Label(new Rect(x+width-274,y+19,250,22),"INTEGRITY  "+Mathf.CeilToInt(game.Health)+" / "+(int)game.tuning.heroHealth,14,white,true,TextAnchor.UpperRight);
-            Label(new Rect(x+24,y+55,width-48,48),game.Deck.IsAbilityDraft?"CHOOSE THE NEXT MOVE.":"STRENGTHEN YOUR SEQUENCE.",35,white,true);
-            Label(new Rect(x+24,y+111,width-48,42),game.OpeningDraft?"Choose one of three abilities, then choose an empty slot. Slot order is attack order.":game.NextThreat,17,muted);
-            float gap=16,cw=(width-48-gap*2)/3,cy=y+167;
-            HandleDraftDrag(x+24,cy,y+443,cw,gap);
-            for(int i=0;i<3;i++)
-            {
-                float cx=x+24+i*(cw+gap);bool selected=game.Deck.Selected==i;var rect=new Rect(cx,cy,cw,220);
-                Box(rect,selected?new Color(.10f,.24f,.23f):new Color(.055f,.105f,.12f));Box(new Rect(cx,cy,cw,3),selected?Accent:line);
-                if(GUI.Button(rect,GUIContent.none,GUIStyle.none))game.SelectOffer(i);
-                Label(new Rect(cx+17,cy+14,cw-34,21),"PICK "+(i+1),13,muted,true);
-                string name,description,interaction;
-                if(game.Deck.IsAbilityDraft){var a=game.Deck.Offers[i];name=a.name;description=a.description;interaction=a.interaction;}
-                else{var m=game.Deck.ModifierOffers[i];name=m.name;description=m.description;interaction="Applied to your current loadout.";}
-                Label(new Rect(cx+17,cy+45,cw-34,36),name,25,white,true);
-                Label(new Rect(cx+17,cy+94,cw-34,62),description,16,white);
-                if(game.Deck.IsAbilityDraft)DrawSynergies(new Rect(cx+17,cy+165,cw-34,46),game.Deck.Offers[i].id);
-                else Label(new Rect(cx+17,cy+168,cw-34,44),interaction,14,muted);
-            }
-            Label(new Rect(x+24,y+408,width-48,22),"CHARACTER SHEET  /  YOUR ATTACK SEQUENCE",14,Accent,true);
-            float sy=y+443;string[] keys={"Q","W","E"};
-            for(int i=0;i<3;i++)
-            {
-                float cx=x+24+i*(cw+gap);var slot=game.Deck.Slots[i];bool chosen=game.Deck.SelectedSlot==i;
-                Box(new Rect(cx,sy,cw,76),chosen?new Color(.12f,.28f,.24f):new Color(.065f,.12f,.14f));
-                if(game.Deck.IsAbilityDraft&&slot==null&&GUI.Button(new Rect(cx,sy,cw,76),GUIContent.none,GUIStyle.none))game.AssignSlot(i);
-                Label(new Rect(cx+16,sy+12,cw-32,21),"SLOT "+(i+1)+"  [ "+keys[i]+" ]",13,chosen?Accent:muted,true);
-                Label(new Rect(cx+16,sy+40,cw-32,28),slot?.name??(chosen?"Assign selected ability here":"Choose this empty slot"),17,white,true);
-            }
-            Label(new Rect(x+24,y+524,width-48,22),"DRAG ABILITIES BETWEEN SLOTS TO REORDER  /  DRAG A DRAFT CARD TO AN EMPTY SLOT",12,muted);
-            GUI.enabled=game.Deck.Rerolls>0;
-            if(Button(new Rect(x+24,y+552,250,44),"REROLL [ TAB ]  /  "+game.Deck.Rerolls+" BANKED"))game.Reroll();GUI.enabled=true;
-            Label(new Rect(x+292,y+556,width-680,46),"Unused rerolls carry forward.\nCards: 1 / 2 / 3   ·   Slots: Q / W / E",14,muted);
-            GUI.enabled=game.Deck.CanInstall;
-            if(Button(new Rect(x+width-354,y+552,330,44),game.OpeningDraft&&game.OpeningPicks==0?"INSTALL & DRAFT AGAIN [ ENTER ]":"INSTALL & CONTINUE [ ENTER ]",true))game.ConfirmDraft();
-            GUI.enabled=true;
-            Label(new Rect(x+24,y+621,width-48,38),game.Deck.IsAbilityDraft?"Pick a card and a slot. Nothing starts until you install.":"Your abilities keep their order. This upgrade changes how they perform.",15,Accent);
-            DrawDragPreview();
+            GroupOutline(25,y,width,10,108);
+            Label(new Rect(25,h-24,w-50,20),"SEQUENCE ALWAYS AUTOMATIC  /  EMPTY SLOTS SKIP  /  SPACE pause  /  R new run  /  T repeat seed "+game.Seed,12,muted,false,TextAnchor.MiddleCenter);
+            Panel(new Rect(w/2-215,24,430,118));TypeIcon(new Rect(w/2+184,33,20,20),ItemKind.Ultimate,Violet);
+            string status=game.Deck.Ultimate==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED · NEXT ACTION":"READY";
+            Label(new Rect(w/2-199,35,398,21),"ULTIMATE / "+(game.Deck.Ultimate?.def.name.ToUpperInvariant()??"EMPTY"),14,Violet,true);
+            Label(new Rect(w/2-199,61,398,23),status+" / Kills: "+game.KillsFor(game.Deck.Ultimate),19,Violet,true);
+            if(Button(new Rect(w/2-199,99,192,29),"ULT: "+(game.UltimateAutomatic?"AUTO":"MANUAL")+" [ U ]"))game.ToggleUltimate();
+            GUI.enabled=game.Deck.Ultimate!=null&&game.UltimateRemaining<=0&&game.ActiveSlot!=5;
+            if(Button(new Rect(w/2+4,99,195,29),"QUEUE ULTIMATE [ F ]",true))game.RequestUltimate();GUI.enabled=true;
+            if(game.Preparation>0||game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-300,y-32,600,26),game.ActionStatus,15,Gold,true,TextAnchor.MiddleCenter);
+            Panel(new Rect(25,194,270,112));
+            Label(new Rect(43,206,234,20),"SCORE  "+game.Score.Banked.ToString("N0"),17,white,true);
+            Label(new Rect(43,235,234,29),game.Score.Kills>0?game.Score.Base.ToString("N0")+" × "+game.Score.Multiplier+" = "+game.Score.Pending.ToString("N0"):"BEST COMBO "+game.Score.Best.ToString("N0"),game.Score.Kills>0?17:15,Gold,true);
+            Label(new Rect(43,269,234,20),game.Score.Kills>0?game.Score.Reason+" / "+game.Score.Kills+" KILLS":"MULTI-KILLS + CHAIN KILLS",11,muted);
+            Box(new Rect(43,295,234*game.Score.Remaining/ComboScore.Window,3),Gold);
+            if(Button(new Rect(43,149,234,28),"PAUSE [ SPACE ]"))game.TogglePause();
         }
         void Pause(float w,float h)
         {
@@ -138,8 +102,8 @@ namespace VectorGame
             Label(new Rect(x+32,y+24,896,22),win?"THREE WAVES SURVIVED":"OVERRUN IN WAVE "+game.Wave,15,Accent,true);
             Label(new Rect(x+32,y+66,896,60),"YOUR ORDER. YOUR FIGHT.",40,white,true);
             Label(new Rect(x+32,y+137,896,40),game.Deck.Loadout,17,muted);
-            string[] values={game.AbilityCasts.ToString(),game.Kills.ToString(),game.Launches.ToString(),game.CollisionHits.ToString()};
-            string[] labels={"ABILITY ACTIVATIONS","TAKEDOWNS","BODIES LAUNCHED","COLLISION HITS"};
+            string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
+            string[] labels={"SCORE","KILLS","BEST COMBO","COLLISION HITS"};
             for(int i=0;i<4;i++){Label(new Rect(x+32+i*226,y+194,212,42),values[i],33,white,true);Label(new Rect(x+32+i*226,y+241,212,20),labels[i],13,muted);}
             float[] columns={32,190,370,548,728};string[] headers={"WAVE","TAKEDOWNS","LAUNCHES","COLLISIONS","INTEGRITY"};
             for(int j=0;j<5;j++)Label(new Rect(x+columns[j],y+292,150,24),headers[j],13,muted,true);
@@ -148,7 +112,7 @@ namespace VectorGame
                 var row=game.Waves[i];string[] cells={row.wave.ToString("00"),row.kills.ToString(),row.launches.ToString(),row.collisions.ToString(),Mathf.CeilToInt(row.health).ToString()};
                 for(int j=0;j<5;j++)Label(new Rect(x+columns[j],y+327+i*35,150,28),cells[j],18,j==3&&row.collisions>0?Gold:white,true);
             }
-            Label(new Rect(x+32,y+449,896,42),"Try another order or a different draft. Seed "+game.Seed+"  /  "+game.Ragdolls+" ragdolls.",16,muted);
+            Label(new Rect(x+32,y+449,896,42),"Try another order or a different draft. Seed "+game.Seed+"  /  "+game.Ragdolls+" ragdolls / "+game.Severs+" severs / "+game.UltimateCasts+" ultimates.",16,muted);
             if(Button(new Rect(x+32,y+534,430,46),"NEW DRAFT [ R ]",true))game.Begin();
             if(Button(new Rect(x+478,y+534,290,46),"REPEAT SEED [ T ]"))game.Begin(true);
             if(Button(new Rect(x+784,y+534,144,46),"QUIT"))game.Quit();

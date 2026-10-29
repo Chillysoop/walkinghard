@@ -16,7 +16,31 @@ namespace VectorGame
         public int Wave {get;private set;}=1;
         public int OpeningPicks {get;private set;}
         public bool OpeningDraft=>OpeningPicks<2;
-        public bool Automatic {get;private set;}=true;
+        public bool UltimateAutomatic {get;private set;}=true;
+        public float UltimateCooldown=>Deck?.Ultimate?.def.id=="tempest"?16f:12f;
+        public float UltimateRemaining {get;private set;}=12f;
+        public bool UltimateQueued=>Deck.Ultimate!=null&&UltimateRemaining<=0&&(UltimateAutomatic||ultimateRequested);
+        public int UltimateCasts {get;private set;}
+        public int TempestHits {get;private set;}
+        float ultimateDue;
+        readonly List<float> ultimateDeadlines=new List<float>();
+        public int PairedCasts {get;private set;}
+        public int IndependentTargets {get;private set;}
+        public int Severs {get;private set;}
+        public int Reloads {get;private set;}
+        public int MaxCascadeHop {get;private set;}
+        public int PairSlot {get;private set;}=-1;
+        public string ActionStatus {get;private set;}="";
+        public float Preparation {get;private set;}
+        public int[] WeaponHits {get;}=new int[5];
+        public ComboScore Score {get;private set;}=new ComboScore();
+        readonly Dictionary<LoadoutItem,int> itemKills=new Dictionary<LoadoutItem,int>();
+        readonly Dictionary<LoadoutItem,LoadoutItem> fusedOwners=new Dictionary<LoadoutItem,LoadoutItem>();
+        LoadoutItem KillOwner(LoadoutItem item){while(item!=null&&fusedOwners.TryGetValue(item,out var next))item=next;return item;}
+        public int KillsFor(LoadoutItem item){item=KillOwner(item);return item!=null&&itemKills.TryGetValue(item,out int value)?value:0;}
+        public int ActionKills(LoadoutItem item)=>KillsFor(item?.def.kind==ItemKind.Basic&&Deck.TwoHanded?Deck.WeaponFor(item):item);
+        sealed class KillCredit {public LoadoutItem item,weapon;public int action,hop;}
+        KillCredit currentCredit;int actionSerial;
         public bool ReducedMotion {get;private set;}
         public bool Muted=>fx!=null&&fx.muted;
         public float Health {get;private set;}
@@ -42,14 +66,14 @@ namespace VectorGame
         public int OrderErrors {get;private set;}
         public int ActiveSlot {get;private set;}=-1;
         public int NextSlot=>Deck?.NextOccupied(sequencePointer)??-1;
-        public float ActionProgress=>ActiveSlot<0?0:Mathf.Clamp01(actionAge/(Deck.Slots[ActiveSlot].duration/Deck.Speed));
+        public float ActionProgress=>ActiveSlot<0?0:Mathf.Clamp01(actionAge/Mathf.Max(.01f,actionDuration));
         public string EventText {get;private set;}="";
         public float EventAge {get;private set;}=99;
         public int EnemyCount=>enemies.Count;
         public int CrowdNear {get;private set;}
         public Vector3 HeroPosition=>hero.Root.position;
         public float DamageFlash=>flash;
-        public readonly int[] SlotCasts=new int[3];
+        public readonly int[] SlotCasts=new int[5];
         public readonly List<WaveReport> Waves=new List<WaveReport>();
         public string NextThreat=>Wave==1?"More attackers from both doors and the horizon. Fill your last empty slot.":"Heavy enforcers join the rush. Reinforce the sequence you built.";
 
@@ -63,8 +87,9 @@ namespace VectorGame
         sealed class Flight
         {
             public Enemy body;public float age,trail;public Vector3 previous;
-            public readonly HashSet<int> hit=new HashSet<int>();
+            public Cascade chain;public int hop;public float energy=1;
         }
+        sealed class Cascade {public KillCredit credit;public int remaining=6;public readonly HashSet<int> hit=new HashSet<int>();}
         struct Contact {public int source,target;public float speed;public Vector3 point;}
         readonly List<Enemy> enemies=new List<Enemy>();
         readonly List<Enemy> corpses=new List<Enemy>();
@@ -78,9 +103,17 @@ namespace VectorGame
         SimulationMode previousSimulation;
         float clock,accumulator,spawnTimer,actionAge,recovery,hitStop,shake,flash,heroReact;
         int nextId,entryTurn,sequencePointer,expectedSlot,waveKills,waveLaunches,waveCollisions,waveHits;
-        bool actionDelivered,qa,reported,forcedSeed,qaDraftChecks=true,qaManualChecks=true;
+        bool actionDelivered,qa,reported,forcedSeed,qaDraftChecks=true,qaManualChecks=true,ultimateRequested,bonusDelivered;
+        AbilityCard activeCard,pairCard;
+        LoadoutItem actionItem,pairItem,actionWeapon,pairWeapon;
+        Enemy pairTarget;
+        float actionDuration;
+        WeaponKind heldWeapon=WeaponKind.Fists;
+        readonly Dictionary<LoadoutItem,int> ammunition=new Dictionary<LoadoutItem,int>();
+        readonly List<float> ultimateTimes=new List<float>();
         Enemy actionTarget;
         string qaPath,qaBuild="sequence";
+        bool qaHoldCheckpoint,qaHolding;
         int qaManualPhase,qaHeldCasts;
 
         void Awake()
@@ -88,6 +121,7 @@ namespace VectorGame
             if(tuning==null)tuning=Resources.Load<CombatTuning>("CombatTuning");
             if(tuning==null)tuning=ScriptableObject.CreateInstance<CombatTuning>();
             var args=Environment.GetCommandLineArgs();qa=Array.IndexOf(args,"-vectorQA")>=0;
+            qaHoldCheckpoint=qa&&Array.IndexOf(args,"-qaHoldCheckpoint")>=0;
             for(int i=0;i<args.Length-1;i++)
             {
                 if(args[i]=="-qaOutput")qaPath=args[i+1];
@@ -120,43 +154,53 @@ namespace VectorGame
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
-            Deck=new AbilityDeck(Seed);spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
-            Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;Automatic=true;
+            Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
+            Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
-            for(int i=0;i<3;i++)SlotCasts[i]=0;
+            for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
             heroPhysics.Motor.position=new Vector3(0,.04f,0);heroPhysics.Motor.rotation=Quaternion.identity;
-            hero.Equipment(false,false);hero.Pose(0,0,-1,0,0,false,0);
+            hero.Equipment(false,false);hero.SetWeapons(WeaponKind.Fists,false,false);hero.Pose(0,0,-1,0,0,false,0);
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;cameraVelocity=Vector3.zero;AimCamera();Physics.SyncTransforms();
-            State=RunState.Drafting;Deck.Open(true,true);
+            State=RunState.Drafting;PairSlot=-1;Preparation=0;Deck.Open(DraftKind.Ability,true);
+        }
+        void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
+        {
+            foreach(var item in consumed){itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
         }
         public void SelectOffer(int index){if(State==RunState.Drafting)Deck.Select(index);}
         public void AssignSlot(int slot){if(State==RunState.Drafting)Deck.Assign(slot);}
         public void Reroll(){if(State==RunState.Drafting)Deck.Reroll();}
         public void SwapSlots(int a,int b){if(State==RunState.Drafting)Deck.Swap(a,b);}
+        public bool MoveItem(LoadoutItem item,PlaceKind place,int index=0)
+        {
+            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;
+            bool moved=Deck.Move(item,place,index);
+            if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
+            return moved;
+        }
         public void ConfirmDraft()
         {
-            if(State!=RunState.Drafting||!Deck.CanInstall)return;
-            bool recoveryPick=!Deck.IsAbilityDraft&&Deck.ModifierOffers[Deck.Selected].id==ModifierId.Recovery;
-            string installed=Deck.Install();if(installed==null)return;
-            if(recoveryPick)Health=Mathf.Min(tuning.heroHealth,Health+65);
-            hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);
+            if(State!=RunState.Drafting)return;
+            if(!Deck.RewardClaimed){Deck.Claim();return;}
             if(OpeningPicks<2)
             {
                 OpeningPicks++;
-                if(OpeningPicks<2){Deck.Open(true,false);return;}
+                if(OpeningPicks<2){Deck.Open(DraftKind.Ability,false);return;}
             }
-            else {Waves[Waves.Count-1].choice=installed;Wave++;}
-            BeginWave();Announce(installed.ToUpperInvariant()+" INSTALLED");
+            else if(Wave==1&&Deck.Draft==DraftKind.Ability){Deck.Open(DraftKind.Weapon,false);return;}
+            else {Waves[Waves.Count-1].choice=Deck.Loadout;Wave++;}
+            hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);BeginWave();Announce("LOADOUT READY");
         }
         void BeginWave()
         {
-            WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=-1;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
+            WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
             State=RunState.Running;
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
         }
-        public void ToggleAutomatic(){Automatic=!Automatic;}
+        public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
+        public void RequestUltimate(){if(State==RunState.Running&&UltimateRemaining<=0)ultimateRequested=true;}
         public void TogglePause(){if(State==RunState.Running)State=RunState.Paused;else if(State==RunState.Paused)State=RunState.Running;}
         public void ToggleMotion(){ReducedMotion=!ReducedMotion;}
         public void ToggleSound(){fx.muted=!fx.muted;}
@@ -174,8 +218,8 @@ namespace VectorGame
                 if(Input.GetKeyDown(KeyCode.R))Begin();
                 if(Input.GetKeyDown(KeyCode.T))Begin(true);
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Escape))TogglePause();
-                if(Input.GetKeyDown(KeyCode.A))ToggleAutomatic();
-                if(Input.GetKeyDown(KeyCode.F))Advance();
+                if(Input.GetKeyDown(KeyCode.U))ToggleUltimate();
+                if(Input.GetKeyDown(KeyCode.F))RequestUltimate();
                 if(Input.GetKeyDown(KeyCode.M))ToggleSound();
                 if(Input.GetKeyDown(KeyCode.F8))Capture();
                 if(State==RunState.Drafting)
@@ -186,6 +230,8 @@ namespace VectorGame
                     if(Input.GetKeyDown(KeyCode.Q))AssignSlot(0);
                     if(Input.GetKeyDown(KeyCode.W))AssignSlot(1);
                     if(Input.GetKeyDown(KeyCode.E))AssignSlot(2);
+                    if(Input.GetKeyDown(KeyCode.D))AssignSlot(3);
+                    if(Input.GetKeyDown(KeyCode.C))AssignSlot(4);
                     if(Input.GetKeyDown(KeyCode.Tab))Reroll();
                     if(Input.GetKeyDown(KeyCode.Return))ConfirmDraft();
                 }
@@ -201,14 +247,15 @@ namespace VectorGame
                     while(accumulator>=dt&&State==RunState.Running){accumulator-=dt;Step(dt);if(hitStop>0){accumulator=0;break;}}
                 }
             }
-            if(qa&&State==RunState.Drafting)QADraft();
+            if(qa&&!qaHolding&&State==RunState.Drafting)QADraft();
             if(qa&&!reported&&(State==RunState.Complete||State==RunState.Defeated))ReportQA();
             if(State==RunState.Ready){clock+=Time.deltaTime;hero.Pose(clock,0,-1,0,0,false,0);}
         }
         void Step(float dt)
         {
-            clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
+            Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
             if(qaBuild=="manual"&&qa)QAManual();
+            if(ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
             heroPhysics.Motor.MovePosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1));
             spawnTimer-=dt;
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
@@ -221,7 +268,7 @@ namespace VectorGame
             StepBodies(dt);fx.Step(dt);UpdateCamera(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
-            if(Health<=0){Health=0;State=RunState.Defeated;Announce("OVERRUN");}
+            if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
             else if(CleaningUp&&(enemies.Count==0||WaveElapsed>=tuning.waveArrivals+tuning.cleanupWindow))FinishWave();
         }
         void SpawnEntry(int kind)
@@ -291,10 +338,11 @@ namespace VectorGame
         {public int wave,kills,launches,collisions,carried,hitsTaken;public float health;public string choice="";}
         void FinishWave()
         {
+            Score.Bank();
             Waves.Add(new WaveReport{wave=Wave,kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health});
-            accumulator=0;ActiveSlot=-1;
+            accumulator=0;ActiveSlot=PairSlot=-1;Preparation=0;
             if(Wave>=tuning.waveCount){State=RunState.Complete;return;}
-            State=RunState.Drafting;Deck.Open(Wave==1,true);
+            State=RunState.Drafting;Deck.Open(Wave==1?DraftKind.Ability:DraftKind.Mixed,true);
         }
         void UpdateCamera(float dt)
         {
