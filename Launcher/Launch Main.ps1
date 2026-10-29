@@ -1,4 +1,4 @@
-param([switch]$NoLaunch, [switch]$Offline, [string]$CacheRoot = (Join-Path $env:LOCALAPPDATA 'WalkingHard'), [string]$UnityEditor, [switch]$FunctionsOnly)
+param([switch]$NoLaunch, [switch]$Offline, [string]$CacheRoot = (Join-Path $env:USERPROFILE 'Games\WalkingHard'), [string]$UnityEditor, [switch]$FunctionsOnly)
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $repository = 'Chillysoop/walkinghard'

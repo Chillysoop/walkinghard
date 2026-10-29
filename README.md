@@ -8,7 +8,7 @@ Download the Windows ZIP from [Releases](https://github.com/Chillysoop/walkingha
 
 For an updating desktop shortcut, run `Launcher/Install.cmd` from the extracted ZIP. **Walking Hard (Main)** checks the main branch each time it opens. It downloads a matching published build and verifies its SHA-256. If main is newer than the published build, it builds an isolated copy using installed Git and Unity 6000.3.27f1. No editor is needed for published builds. If an update fails or you are offline, it keeps the last working installation and reports the fallback. It never resets your development checkout.
 
-The launcher cache and log live under `%LOCALAPPDATA%/WalkingHard`. The first source build can take several minutes. Cloud Unity compilation is not configured; contributors should publish a matching Windows release after merging changes. Without a matching release or an installed editor, the launcher cannot run unreleased source and uses its last working build.
+The launcher cache and log live under `%USERPROFILE%/Games/WalkingHard`. This location is accessible from both desktop shortcuts and packaged development apps, without AppData redirection. The first source build can take several minutes. Cloud Unity compilation is not configured; contributors should publish a matching Windows release after merging changes. Without a matching release or an installed editor, the launcher cannot run unreleased source and uses its last working build.
 
 ## The current playable slice
 
