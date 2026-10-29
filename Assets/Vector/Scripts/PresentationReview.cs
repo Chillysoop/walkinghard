@@ -22,6 +22,15 @@ namespace VectorGame
             while(!game.PresentationFixtureReady){game.SetCombatSpeed(4);yield return null;}
             // QADraft configures the held UI fixture on its next frame.
             for(int i=0;i<8;i++)yield return null;
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-routeReview")>=0)
+            {
+                game.PrepareRouteReview();yield return CapturePresentation(directory,"21-route-choice");
+                game.ChooseRoute(EncounterRoute.ShieldLine);yield return CapturePresentation(directory,"22-route-rewards");
+                game.PrepareRouteActors();yield return CapturePresentation(directory,"23-route-enemies");
+                game.PrepareRouteActors(true);yield return CapturePresentation(directory,"24-shield-exposed");
+                game.PrepareRouteActors(true,true);yield return CapturePresentation(directory,"25-carrier-blast");
+                Debug.Log("ROUTE_REVIEW_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-feedbackReview")>=0)
             {
                 if(game.LastWaveFeedback==null)throw new InvalidOperationException("Feedback fixture needs a completed wave");

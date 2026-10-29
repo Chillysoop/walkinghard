@@ -1,6 +1,17 @@
 # Walking Hard — build-variety contract
 
-Revision 10, October 29, 2026. Implementation target: 0.6.9. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v069-verification.md.
+Revision 11, October 29, 2026. Implementation target: 0.7.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v070-verification.md.
+
+## Branching encounters
+
+After waves 2 and 5, a required route choice precedes that checkpoint's existing mixed pick. Shield Line emphasizes equipment (weapons, armor or rigs); Volatile Breach emphasizes abilities. Two distinct offers match the emphasis and the third is an unlocked wildcard. An owned upgrade bundle is preferred in the emphasized pair when available. Rerolls retain the emphasis and ordinary rarity odds. The choice grants no additional item picks or rerolls. Other checkpoint drafts remain unchanged: 13 item picks and two augment picks per completed run, with the first ultimate drafted after wave 3.
+
+The route affects the upcoming wave only (3 or 6), then ordinary formations return. Roughly one in four eligible non-shooter arrivals becomes the route's enemy type. Shield-line special arrivals favor the horizon; volatile arrivals favor side doors. All actors still enter concealed; shooter frequency and base spawn cadence are unchanged.
+
+- **Shield bearer:** visible shield reduces frontal damage by 50%. Any successful stagger or launch opens the guard for two seconds; subsequent hits deal full damage. The first staggering hit still meets a closed guard. Rear hits bypass it. No immunity or special required item.
+- **Volatile carrier:** amber canisters identify a launch opportunity. Launching a living enemy or corpse arms it. First valid impact (body or world) or the 1.3-second flight timeout detonates it once, killing the carrier if still alive. Up to four nearby enemies within 3.5m receive 26 damage scaled by flight energy plus knockback/stagger. The blast cannot launch another carrier. It shares the original six-hit cascade budget and twelve-derived-hit action budget, retains the launching item's credit, and does not hurt the hero.
+
+Ordinary simulation policies alternate routes deterministically by seed/checkpoint to cover both paths. Fixed-loadout controlled experiments intentionally retain the standard encounter schedule for comparable balance evidence; they do not model drafting or route difficulty. Rifle 42→52 damage and Duelist 2→3 ward hits are still test overrides, not authored defaults.
 
 ## Run and sequence
 

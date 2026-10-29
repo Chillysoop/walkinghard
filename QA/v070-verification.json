@@ -1,0 +1,186 @@
+{
+  "assemblySha256": "35ed566e1a3cae469f55c65a312beecb6da5d687a99c201a263aaa36c3286ec5",
+  "coreAndVarietyChecks": 62,
+  "mechanicAssertions": 508,
+  "finalFullRunPassed": true,
+  "matchedGameplayGames": 64,
+  "batches": {
+    "v070-routes-1000": {
+      "assemblySha256": "D5247703BF61BBA6EE78576EACFDAF0D8920FDB22F334FF881A1092A5C98DF1A",
+      "mode": "Fast",
+      "startedUtc": "2026-10-29T21:33:05.0110128Z",
+      "policy": "mixed",
+      "workers": 4,
+      "waves": 8,
+      "maxCombatSeconds": 480,
+      "runs": 1000,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Routes-v070-final\\WalkingHard.exe",
+      "firstSeed": 1,
+      "completedUtc": "2026-10-29T21:35:10.6718167Z"
+    },
+    "v070-verified-regression": {
+      "assemblySha256": "35ED566E1A3CAE469F55C65A312BEECB6DA5D687A99C201A263AAA36C3286EC5",
+      "firstSeed": 1,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Routes-v070-verified\\WalkingHard.exe",
+      "startedUtc": "2026-10-29T21:39:47.2150985Z",
+      "workers": 4,
+      "runs": 64,
+      "waves": 8,
+      "policy": "mixed",
+      "maxCombatSeconds": 480,
+      "mode": "Fast",
+      "completedUtc": "2026-10-29T21:39:57.0521822Z"
+    },
+    "v070-rifle": {
+      "mode": "Fast",
+      "runs": 468,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:26:15Z",
+      "balance": {
+        "items": [
+          {
+            "id": "rifle",
+            "damageMultiplier": 1.2380952380952381
+          }
+        ]
+      },
+      "wallSeconds": 31.101076599999942,
+      "valid": 468,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 23,
+      "timeouts": 0
+    },
+    "v070-rifle-baseline": {
+      "mode": "Fast",
+      "runs": 468,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:36:58Z",
+      "wallSeconds": 33.11069090000092,
+      "valid": 468,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 20,
+      "timeouts": 0
+    },
+    "v070-duelist": {
+      "mode": "Fast",
+      "runs": 156,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:26:47Z",
+      "balance": {
+        "items": [
+          {
+            "id": "duelist",
+            "wardHits": 3
+          }
+        ]
+      },
+      "wallSeconds": 18.043283599999995,
+      "valid": 156,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 23,
+      "timeouts": 0
+    },
+    "v070-duelist-baseline": {
+      "mode": "Fast",
+      "runs": 156,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:37:31Z",
+      "wallSeconds": 19.048202300000412,
+      "valid": 156,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 16,
+      "timeouts": 0
+    },
+    "v070-full-baseline": {
+      "mode": "Full",
+      "runs": 6,
+      "workers": 2,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:27:49Z",
+      "wallSeconds": 118.06784149999658,
+      "valid": 6,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 5,
+      "timeouts": 0
+    },
+    "v070-full-rifle": {
+      "mode": "Full",
+      "runs": 2,
+      "workers": 2,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:29:47Z",
+      "balance": {
+        "items": [
+          {
+            "id": "rifle",
+            "damageMultiplier": 1.2380952380952381
+          }
+        ]
+      },
+      "wallSeconds": 46.02448960000038,
+      "valid": 2,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 0,
+      "timeouts": 0
+    },
+    "v070-full-duelist": {
+      "mode": "Full",
+      "runs": 4,
+      "workers": 2,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Feedback-v069-final\\WalkingHard.exe",
+      "assemblySha256": "fc03cc19029f29f699def21998f52a9554a96cb7e9ff7573a8a13eb11e7e6a29",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T21:30:33Z",
+      "balance": {
+        "items": [
+          {
+            "id": "duelist",
+            "wardHits": 3
+          }
+        ]
+      },
+      "wallSeconds": 82.04959450000024,
+      "valid": 4,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 4,
+      "timeouts": 0
+    }
+  }
+}

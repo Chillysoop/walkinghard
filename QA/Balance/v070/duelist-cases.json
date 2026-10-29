@@ -1,0 +1,3904 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s0",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s0",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s1",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s1",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s2",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s2",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s3",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s3",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s4",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s4",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s5",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s5",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s6",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s6",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s7",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s7",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s8",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s8",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s9",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s9",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s10",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s10",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s11",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s11",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s0",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s0",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s1",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s1",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s2",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s2",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s3",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s3",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s4",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s4",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s5",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s5",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s6",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s6",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s7",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s7",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s8",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s8",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s9",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s9",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s10",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s10",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r2-s11",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r2-s11",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 2,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s0",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s0",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s1",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s1",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s2",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s2",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s3",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s3",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s4",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s4",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s5",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s5",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s6",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s6",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s7",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s7",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s8",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s8",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s9",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s9",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s10",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s10",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s11",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s11",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s0",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s0",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s1",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s1",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s2",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s2",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s3",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s3",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s4",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s4",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s5",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s5",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s6",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s6",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s7",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s7",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s8",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s8",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s9",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s9",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s10",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s10",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r4-s11",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r4-s11",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 4,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s0",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s0",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s1",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s1",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s2",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s2",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s3",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s3",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s4",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s4",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s5",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s5",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s6",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s6",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42006,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s7",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s7",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42007,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s8",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s8",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42008,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s9",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s9",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42009,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s10",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s10",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42010,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s11",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s11",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 42011,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s0-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s0-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s1-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s1-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s2-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s2-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s3-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s3-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s4-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s4-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r1-s5-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r1-s5-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 1,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s0-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s0-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s1-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s1-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s2-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s2-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s3-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s3-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s4-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s4-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r3-s5-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r3-s5-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s0-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s0-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42000,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s1-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s1-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42001,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s2-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s2-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42002,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s3-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s3-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42003,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s4-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s4-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42004,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-swords-armor-duelist-r5-s5-support-rare",
+      "context": "sever-swords",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    },
+    {
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "SteelJab"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "sever-greatsword-armor-duelist-r5-s5-support-rare",
+      "context": "sever-greatsword",
+      "category": "armor",
+      "candidate": "duelist",
+      "rank": 5,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 42005,
+      "healthFraction": 1
+    }
+  ]
+}
