@@ -8,12 +8,25 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         bool modelChecks;
+        bool qaDelayChecks=true;
+        int qaReloadFrames,qaReadyFrames,qaPairWaitFrames;
         bool qaWeaponChecks=true;
         Transform qaRightWeapon,qaLeftWeapon;
         int qaArmedAbilities,qaArmedUltimates,qaLeftAttacks,qaWeaponFrames,qaWeaponAction=-1;
         void QABeginWeapons(){qaRightWeapon=hero.RightWeapon;qaLeftWeapon=hero.LeftWeapon;}
         void QACheckWeapons()
         {
+            for(int slot=0;slot<6;slot++)
+            {
+                bool shown=TryGetActionDelay(slot,out var delay);
+                qaDelayChecks&=shown==(Preparation>0&&(slot==ActiveSlot||slot==PairSlot));
+                if(!shown)continue;
+                qaDelayChecks&=delay.remaining>0&&delay.remaining<=delay.duration&&delay.Progress>=0&&delay.Progress<=1&&ActionProgress==0;
+                if(delay.label=="RELOADING")qaReloadFrames++;
+                else if(delay.label=="READYING")qaReadyFrames++;
+                else if(delay.label=="WAITING FOR PAIR")qaPairWaitFrames++;
+                else qaDelayChecks=false;
+            }
             // Check the actual rendered objects through preparation, attacks, casts and recovery.
             // Identity checks catch destroying/recreating the same-looking weapon between actions.
             qaWeaponFrames++;
@@ -90,11 +103,17 @@ namespace VectorGame
                 var reward=Deck.Inventory.FirstOrDefault(i=>i.def==Deck.Offers[Deck.Selected].def);
                 if(reward!=null)MoveItem(reward,PlaceKind.Weapon,0);
                 // Named weapon scenarios add explicit fixtures to exercise each family independently of draft luck.
-                if(new[]{"sword","hammer","rifle","twin"}.Contains(qaBuild))
+                if(new[]{"sword","hammer","rifle","twin","reload"}.Contains(qaBuild))
                 {
-                    string wanted=qaBuild=="twin"?"pistol":qaBuild;var def=LoadoutCatalog.Weapons.First(d=>d.id==wanted);
+                    string wanted=qaBuild=="twin"||qaBuild=="reload"?"pistol":qaBuild;var def=LoadoutCatalog.Weapons.First(d=>d.id==wanted);
                     var item=Deck.Items.FirstOrDefault(i=>i.def==def)??Deck.Acquire(def);MoveItem(item,PlaceKind.Weapon,0);
-                    if(qaBuild=="twin")MoveItem(Deck.Acquire(def),PlaceKind.Weapon,1);
+                    if(qaBuild=="twin"||qaBuild=="reload")MoveItem(Deck.Acquire(def),PlaceKind.Weapon,1);
+                    if(qaBuild=="reload")
+                    {
+                        // Desynchronize paired magazines: only the empty pistol reloads.
+                        ammunition[Deck.Weapons[0]]=0;ammunition[Deck.Weapons[1]]=3;
+                        if(!Application.isBatchMode)SetCombatSpeed(.5f);
+                    }
                 }
                 if(qaBuild=="tempest")MoveItem(Deck.Acquire(LoadoutCatalog.Ultimates[1]),PlaceKind.Ultimate);
                 if(qaBuild=="armed")
@@ -153,6 +172,7 @@ namespace VectorGame
         }
         [Serializable] sealed class QAReport
         {
+            public bool delayChecks;public int reloadIndicatorFrames,readyIndicatorFrames,pairWaitIndicatorFrames;
             public bool heldWeaponChecks;public int heldWeaponFrames,armedAbilities,armedUltimates,leftHandAttacks;
             public string result,build,loadout;public int tempestHits,seed,waves,kills,spawned,alive,casts,paired,independentTargets,ultimates,severs,reloads,launches,collisions,cascadeHop,ragdolls,physicsContacts,worldContacts,leftDoors,rightDoors,horizon,visibleSpawns,orderErrors,rerolls,fusions,score,bestCombo,bestMultiplier,creditedKills;
             public float elapsed,health,speed,oldestBody,maxHealth,armorHealing,armorPreventedDamage;public int retainedBodies,walkingShoves,armorBonusHits;public bool passed,draftChecks,manualChecks,modelChecks,ultimateTiming,walkingIgnoresBodies;public int[] slotCasts,castTrace,weaponHits;public float[] ultimateTimes,ultimateDeadlines;public WaveReport[] reports;
@@ -173,6 +193,9 @@ namespace VectorGame
             weapon&=qaBuild!="armor"||(MaxHealth>tuning.heroHealth&&ArmorBonusHits>0&&ArmorPreventedDamage>0&&ArmorHealing>0);
             report.heldWeaponChecks=qaWeaponChecks;report.heldWeaponFrames=qaWeaponFrames;report.armedAbilities=qaArmedAbilities;report.armedUltimates=qaArmedUltimates;report.leftHandAttacks=qaLeftAttacks;
             weapon&=qaWeaponChecks&&qaWeaponFrames>0;
+            report.delayChecks=qaDelayChecks;report.reloadIndicatorFrames=qaReloadFrames;report.readyIndicatorFrames=qaReadyFrames;report.pairWaitIndicatorFrames=qaPairWaitFrames;
+            weapon&=qaDelayChecks&&qaReadyFrames>0;
+            weapon&=qaBuild!="reload"||(qaReloadFrames>0&&qaPairWaitFrames>0&&Reloads>0&&WeaponHits[(int)WeaponKind.Pistol]>0);
             weapon&=qaBuild!="armed"||(qaArmedAbilities>0&&qaArmedUltimates>0&&qaLeftAttacks>0&&WeaponHits[(int)WeaponKind.Pistol]>0&&WeaponHits[(int)WeaponKind.Sword]>0);
             report.passed=State==RunState.Complete&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&UltimateCasts>0&&Score.Banked>0&&weapon&&corpses.Count==Kills&&report.oldestBody>7&&CorpseShoves>0&&report.walkingIgnoresBodies;
             string path=string.IsNullOrEmpty(qaPath)?Path.Combine(Application.persistentDataPath,"qa-report.json"):qaPath;

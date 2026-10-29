@@ -23,10 +23,37 @@ namespace VectorGame
             if(!ammunition.TryGetValue(weapon,out int ammo)){ammo=LoadoutCatalog.Magazine(weapon);ammunition[weapon]=ammo;}return ammo;
         }
         readonly List<LoadoutItem> pendingReloads=new List<LoadoutItem>();
+        float preparationDuration;
+        string preparationLabel="";
+        public readonly struct ActionDelay
+        {
+            public readonly string label;
+            public readonly float remaining,duration;
+            public float Progress=>Mathf.Clamp01(1-remaining/Mathf.Max(.001f,duration));
+            public ActionDelay(string label,float remaining,float duration){this.label=label;this.remaining=remaining;this.duration=duration;}
+        }
+        // Timed delays expose one presentation contract, also usable by future charges/channels.
+        void DelayAction(float seconds,string label)
+        {
+            if(seconds<Preparation)return;
+            Preparation=preparationDuration=seconds;preparationLabel=label;
+        }
+        public bool TryGetActionDelay(int slot,out ActionDelay delay)
+        {
+            delay=default;
+            if(Preparation<=0||slot<0||(slot!=ActiveSlot&&slot!=PairSlot))return false;
+            string label=preparationLabel;
+            if(label=="RELOADING"&&slot<5)
+            {
+                var item=Deck.Slots[slot];
+                if(item?.def.kind==ItemKind.Basic&&!pendingReloads.Contains(Deck.WeaponFor(item)))label="WAITING FOR PAIR";
+            }
+            delay=new ActionDelay(label,Preparation,preparationDuration);return true;
+        }
         void PrepareWeapon(LoadoutItem weapon)
         {
             if(weapon==null||LoadoutCatalog.Magazine(weapon)==0||Ammo(weapon)>0||pendingReloads.Contains(weapon))return;
-            pendingReloads.Add(weapon);Preparation=Mathf.Max(Preparation,1.2f);Reloads++;ActionStatus="RELOADING / "+weapon.def.name;
+            pendingReloads.Add(weapon);DelayAction(1.2f,"RELOADING");Reloads++;ActionStatus="RELOADING / "+weapon.def.name;
         }
         bool Advance()
         {
@@ -51,7 +78,7 @@ namespace VectorGame
             WeaponKind desired=actionWeapon?.def.weapon??(card.id==AbilityId.SteelJab||card.id==AbilityId.Breaker||card.id==AbilityId.MassDriver?WeaponKind.Fists:heldWeapon);
             ActionStatus=ultimate?"ULTIMATE":PairSlot>=0?(Deck.TwoHanded?"TWO-HANDED ATTACK":"SIMULTANEOUS ATTACKS"):card.name.ToUpperInvariant();
             // Keep the approved preparation cadence; changing stance never unequips a weapon.
-            if(desired!=heldWeapon){Preparation=.28f;ActionStatus="READYING / "+desired;heldWeapon=desired;}
+            if(desired!=heldWeapon){DelayAction(.28f,"READYING");ActionStatus="READYING / "+desired;heldWeapon=desired;}
             PrepareWeapon(actionWeapon);if(PairSlot>=0&&!Deck.TwoHanded)PrepareWeapon(pairWeapon);
             Announce(ultimate?"ULTIMATE / SINGULARITY BURST":PairSlot>=0?ActionStatus:"SLOT "+(slot+1)+" / "+card.name.ToUpperInvariant());return true;
         }

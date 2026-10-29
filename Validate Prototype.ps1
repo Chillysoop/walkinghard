@@ -1,9 +1,9 @@
-param([string]$Player = (Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'), [string]$ReportPrefix='v051')
+param([string]$Player = (Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'), [string]$ReportPrefix='v052')
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path -LiteralPath $Player)) { throw 'Build the Windows player first.' }
 New-Item -ItemType Directory -Path (Join-Path $PSScriptRoot 'QA') -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $PSScriptRoot 'Logs') -Force | Out-Null
-$cases = @(@{Build='sequence';Seed=1741},@{Build='sequence';Seed=4319},@{Build='sword';Seed=1741},@{Build='hammer';Seed=1741},@{Build='rifle';Seed=1741},@{Build='twin';Seed=1741},@{Build='tempest';Seed=1741},@{Build='manual';Seed=1741},@{Build='reroll';Seed=1741},@{Build='half';Seed=1741},@{Build='fast';Seed=1741},@{Build='armor';Seed=1741},@{Build='quick';Seed=1741},@{Build='armed';Seed=1741})
+$cases = @(@{Build='sequence';Seed=1741},@{Build='sequence';Seed=4319},@{Build='sword';Seed=1741},@{Build='hammer';Seed=1741},@{Build='rifle';Seed=1741},@{Build='twin';Seed=1741},@{Build='tempest';Seed=1741},@{Build='manual';Seed=1741},@{Build='reroll';Seed=1741},@{Build='half';Seed=1741},@{Build='fast';Seed=1741},@{Build='armor';Seed=1741},@{Build='quick';Seed=1741},@{Build='armed';Seed=1741},@{Build='reload';Seed=1741})
 $reports = foreach ($case in $cases) {
     $stem = $ReportPrefix + '-' + $case.Build + '-' + $case.Seed
     $reportPath = Join-Path $PSScriptRoot ('QA\' + $stem + '.json')
@@ -18,4 +18,4 @@ $reports = foreach ($case in $cases) {
     $report
 }
 $reports | Select-Object build,seed,result,kills,launches,collisions,ragdolls,health,visibleSpawns,orderErrors,passed | Format-Table -AutoSize
-Write-Output 'Fourteen runs passed persistent held weapons, mounted-hand attacks, direct equip, fusion, ordered pairs, ultimate controls, speed clocks, persistent bodies, walking shoves, attribution, scoring and concealed entry checks.'
+Write-Output 'Fifteen runs passed action-delay indicators, persistent held weapons, mounted-hand attacks, direct equip, fusion, ordered pairs, ultimate controls, speed clocks, persistent bodies, walking shoves, attribution, scoring and concealed entry checks.'
