@@ -35,6 +35,7 @@ namespace VectorGame
         }
         void OnGUI()
         {
+            if(game!=null&&game.TrailerMode){TrailerGUI();return;}
             if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f)*(game.State==VectorEncounter.RunState.Running?.8f:1),w=Screen.width/scale,h=Screen.height/scale;
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
             detailValid=detailItem!=null&&(detailOffer!=null?game.State==VectorEncounter.RunState.Drafting&&System.Array.IndexOf(game.Deck.Offers,detailOffer)>=0:game.Deck.Items.Contains(detailItem));

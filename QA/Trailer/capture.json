@@ -1,0 +1,382 @@
+{
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 900,
+    "bossFrames": 0,
+    "version": "0.7.2",
+    "sounds": [
+        {
+            "time": 0.20000000298023225,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 1.100000023841858,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 1.1333333253860474,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 1.2000000476837159,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 1.2333333492279053,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 1.2999999523162842,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 2.0,
+            "clip": "punch",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 2.7333333492279054,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 3.633333444595337,
+            "clip": "slash",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 4.833333492279053,
+            "clip": "punch",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 5.599999904632568,
+            "clip": "crush",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 5.699999809265137,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 5.766666889190674,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 5.866666793823242,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 6.0333333015441898,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 6.099999904632568,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 7.333333492279053,
+            "clip": "shot",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 8.0,
+            "clip": "electric",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 8.666666984558106,
+            "clip": "shot",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 10.5,
+            "clip": "electric",
+            "volume": 0.44999998807907107
+        },
+        {
+            "time": 11.800000190734864,
+            "clip": "finish",
+            "volume": 0.5
+        },
+        {
+            "time": 13.0,
+            "clip": "finish",
+            "volume": 0.5
+        },
+        {
+            "time": 14.199999809265137,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 15.100000381469727,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 15.133333206176758,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 15.199999809265137,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 15.233333587646485,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 15.300000190734864,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 16.0,
+            "clip": "punch",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 16.733333587646486,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 17.03333282470703,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 17.133333206176759,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 17.200000762939454,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 17.299999237060548,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 17.433332443237306,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 17.46666717529297,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 19.0,
+            "clip": "electric",
+            "volume": 0.6499999761581421
+        },
+        {
+            "time": 22.799999237060548,
+            "clip": "push",
+            "volume": 0.44999998807907107
+        },
+        {
+            "time": 23.933332443237306,
+            "clip": "slash",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 24.16666603088379,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 24.299999237060548,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 24.5,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 25.100000381469728,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 27.200000762939454,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 28.100000381469728,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 28.133333206176759,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 28.200000762939454,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 28.233333587646486,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 28.299999237060548,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 28.366666793823243,
+            "clip": "crush",
+            "volume": 0.3799999952316284
+        },
+        {
+            "time": 29.03333282470703,
+            "clip": "punch",
+            "volume": 0.6200000047683716
+        },
+        {
+            "time": 29.766666412353517,
+            "clip": "push",
+            "volume": 0.6200000047683716
+        }
+    ],
+    "shots": [
+        {
+            "name": "pinball-hook",
+            "loadout": "1: Gravity Well · Rare > 2: Mass Driver · Rare > 3: Basic 1 · Kinetic Fists · Common > 4: Basic 2 · Kinetic Fists · Common > 5: Force Push · Rare",
+            "start": 0,
+            "end": 90,
+            "kills": 18,
+            "collisions": 6,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "greatsword",
+            "loadout": "1: Basic 1 · Execution Greatsword · Rare > 2: Basic 2 · Execution Greatsword · Rare > 3: Reaping Cut · Rare > 4: Empty > 5: Empty",
+            "start": 90,
+            "end": 150,
+            "kills": 13,
+            "collisions": 0,
+            "severs": 13,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "hammer",
+            "loadout": "1: Basic 1 · Impact Hammer · Rare > 2: Basic 2 · Impact Hammer · Rare > 3: Mass Driver · Rare > 4: Empty > 5: Empty",
+            "start": 150,
+            "end": 210,
+            "kills": 3,
+            "collisions": 6,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "paired-guns",
+            "loadout": "1: Basic 1 · Pulse Pistol · Rare > 2: Basic 2 · Pulse Pistol · Rare > 3: Arc Bolt · Rare > 4: Empty > 5: Empty",
+            "start": 210,
+            "end": 270,
+            "kills": 6,
+            "collisions": 0,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "pick-and-order",
+            "loadout": "1: Gravity Well · Rare > 2: Mass Driver · Rare > 3: Basic 1 · Kinetic Fists · Common > 4: Basic 2 · Kinetic Fists · Common > 5: Force Push · Rare",
+            "start": 270,
+            "end": 420,
+            "kills": 0,
+            "collisions": 0,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "pinball-payoff",
+            "loadout": "1: Gravity Well · Rare > 2: Mass Driver · Rare > 3: Basic 1 · Kinetic Fists · Common > 4: Basic 2 · Kinetic Fists · Common > 5: Force Push · Rare",
+            "start": 420,
+            "end": 540,
+            "kills": 24,
+            "collisions": 12,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "fusion",
+            "loadout": "1: Basic 1 · Edge Sword · Uncommon > 2: Basic 2 · Kinetic Fists · Common > 3: Arc Bolt · Uncommon > 4: Empty > 5: Empty",
+            "start": 540,
+            "end": 660,
+            "kills": 0,
+            "collisions": 0,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 1
+        },
+        {
+            "name": "ultimate-draft",
+            "loadout": "1: Basic 1 · Edge Sword · Rare > 2: Basic 2 · Pulse Pistol · Rare > 3: Gravity Well · Rare > 4: Arc Bolt · Rare > 5: Mass Driver · Rare",
+            "start": 660,
+            "end": 705,
+            "kills": 0,
+            "collisions": 0,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        },
+        {
+            "name": "ultimate-payoff",
+            "loadout": "1: Basic 1 · Edge Sword · Rare > 2: Basic 2 · Pulse Pistol · Rare > 3: Gravity Well · Rare > 4: Arc Bolt · Rare > 5: Mass Driver · Rare",
+            "start": 705,
+            "end": 810,
+            "kills": 30,
+            "collisions": 3,
+            "severs": 6,
+            "ultimates": 1,
+            "fusions": 0
+        },
+        {
+            "name": "title",
+            "loadout": "1: Gravity Well · Rare > 2: Mass Driver · Rare > 3: Basic 1 · Kinetic Fists · Common > 4: Basic 2 · Kinetic Fists · Common > 5: Force Push · Rare",
+            "start": 810,
+            "end": 900,
+            "kills": 20,
+            "collisions": 6,
+            "severs": 0,
+            "ultimates": 0,
+            "fusions": 0
+        }
+    ]
+}
