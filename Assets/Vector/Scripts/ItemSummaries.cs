@@ -61,7 +61,7 @@ namespace VectorGame
                 case "plate":return "Finish a sequence to arm a guard.";
                 case "reactive":return "Crowds trigger a repelling barrier.";
                 case "grounding":return "Lightning/body hits build a barrier.";
-                case "duelist":return "Reload or sever to guard one hit.";
+                case "duelist":return "Reload or sever to guard two hits.";
                 case "treads":return "First kill each turn drops healing.";
                 case "momentum":return "Launching speeds your next ability.";
                 case "loader":return "Faster reloads stagger nearby foes.";
