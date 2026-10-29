@@ -45,9 +45,9 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Drafting)
             {
                 var eventType=Event.current.type;
-                bool blocked=(iconGuide||detailHovered)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
+                bool blocked=(iconGuide||detailHovered||waveDetails)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
                 if(blocked)Event.current.type=EventType.Ignore;
-                Draft(w,h);if(blocked)Event.current.type=eventType;DrawFusionFeedback(w,h);DrawItemTooltip(w,h);DrawIconGuide(w,h);return;
+                Draft(w,h);if(blocked)Event.current.type=eventType;DrawFusionFeedback(w,h);if(!waveDetails)DrawItemTooltip(w,h);DrawIconGuide(w,h);DrawWaveDetails(w,h);return;
             }
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
