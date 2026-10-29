@@ -21,6 +21,11 @@ namespace VectorGame
                     }
                 }
             }
+            var savedCases=controlledCases;bool savedSimulation=simulation;
+            try
+            {
+            // Probe ordinary checkpoint rules even when the runner uses fixed experimental loadouts.
+            controlledCases=null;simulation=false;
             int oldWave=Wave;var oldState=State;
             ProbeReset();Wave=2;OpenCheckpoint();int rolls=Deck.Rerolls;
             MechanicRequire(RoutePending&&pendingDrafts.Count==2,"route precedes the existing checkpoint-two picks");
@@ -30,6 +35,8 @@ namespace VectorGame
             Wave=3;MechanicRequire(ActiveRoute==EncounterRoute.ShieldLine,"route applies to next wave");Wave=4;MechanicRequire(ActiveRoute==EncounterRoute.Standard,"route expires after one wave");
             Wave=5;OpenCheckpoint();ChooseRoute(EncounterRoute.VolatileBreach);MechanicRequire(pendingDrafts.Single()==DraftKind.Augment,"checkpoint five retains its augment pick");
             ResetRoutes();pendingDrafts.Clear();Wave=oldWave;State=oldState;
+            }
+            finally {controlledCases=savedCases;simulation=savedSimulation;}
 
             ProbeReset();var host=ProbeHost(LoadoutCatalog.Find("MassDriver"));var shield=ProbeEnemy(0,2);shield.shieldBearer=true;shield.rig.Root.rotation=Quaternion.Euler(0,180,0);
             Hurt(shield,40,Vector3.zero,0);MechanicRequire(shield.health==480,"frontal shield halves damage");

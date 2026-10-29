@@ -12,7 +12,8 @@ namespace VectorGame
         [Serializable] sealed class ControlledCase
         {
             public string id,context,category,candidate,helmet,armor,boots,rig,ultimate;
-            public string[] weapons,abilities;
+            public string[] weapons,abilities,sequence;
+            public EncounterRoute route;
             public int seed,rank=1,baseRank=1;public bool matchedWeapons;
             public float healthFraction=1;
         }
@@ -39,6 +40,8 @@ namespace VectorGame
                 if(c.rank<1||c.rank>5||c.baseRank<1||c.baseRank>5||c.healthFraction<=0||c.healthFraction>1||c.weapons?.Length!=2||c.abilities?.Length!=3)throw new ArgumentException("Invalid controlled case "+c.id);
                 foreach(var id in c.weapons.Concat(c.abilities).Concat(new[]{c.helmet,c.armor,c.boots,c.rig,c.ultimate}).Where(s=>!string.IsNullOrEmpty(s)))LoadoutCatalog.Find(id);
                 if(c.category!="weapon"&&c.category!="armor"&&c.category!="ultimate")throw new ArgumentException("Invalid controlled category");
+                if(c.route<EncounterRoute.Standard||c.route>EncounterRoute.VolatileBreach)throw new ArgumentException("Invalid controlled route");
+                if(c.sequence!=null&&(c.sequence.Length!=5||!c.sequence.OrderBy(s=>s).SequenceEqual(c.abilities.Concat(new[]{"basic0","basic1"}).OrderBy(s=>s))))throw new ArgumentException("Controlled sequence must contain both basics and every ability once");
             }
             simulationSeed=controlledCases[0].seed;
         }
@@ -60,6 +63,13 @@ namespace VectorGame
                 Equip(c.helmet,PlaceKind.Helmet);Equip(c.armor,PlaceKind.Armor,0,c.category=="armor");Equip(c.boots,PlaceKind.Boots);Equip(c.rig,PlaceKind.Rig);
                 // Fixed setup -> paired basics -> payoff order, identical within each comparison.
                 Deck.Move(Deck.Slots[2],PlaceKind.Sequence,0);
+                if(c.sequence!=null)
+                {
+                    var ordered=c.sequence.Select(id=>id=="basic0"?Deck.Basics[0]:id=="basic1"?Deck.Basics[1]:Deck.Slots.Single(i=>i?.def.id==id)).ToArray();
+                    if(Deck.TwoHanded&&System.Array.IndexOf(ordered,Deck.Basics[1])!=System.Array.IndexOf(ordered,Deck.Basics[0])+1)throw new ArgumentException("Two-handed basics must stay adjacent and ordered");
+                    for(int i=0;i<ordered.Length;i++)if(ordered[i].def.kind!=ItemKind.Basic||!Deck.TwoHanded||ordered[i]==Deck.Basics[0])Deck.Move(ordered[i],PlaceKind.Sequence,i);
+                    if(!Deck.Slots.SequenceEqual(ordered))throw new InvalidOperationException("Controlled sequence placement changed order");
+                }
                 OpeningPicks=2;Health=MaxHealth*c.healthFraction;
                 controlledMetrics.initialHealth=Health;controlledMetrics.maxHealth=MaxHealth;
             }
@@ -76,6 +86,7 @@ namespace VectorGame
                 }
             }
             controlledLoadout=Deck.Loadout;
+            RoutePending=false;SelectedRoute=c.route;routedWave=Wave==3||Wave==6?Wave:0;
             hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);BeginWave();
         }
         void ObserveControlledDrain(Enemy enemy,float dealt)

@@ -1,0 +1,471 @@
+{
+  "version": "0.7.2",
+  "shippingAssemblySha256": "10dbb4e7918855038663f92cf6e1dad6004caac668271ca38cbaa015c0826eac",
+  "mechanicAssertions": 533,
+  "fixtures": [
+    {
+      "file": "v072-core-armed-1741.json",
+      "build": "armed",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-armor-1741.json",
+      "build": "armor",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-fast-1741.json",
+      "build": "fast",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-half-1741.json",
+      "build": "half",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-hammer-1741.json",
+      "build": "hammer",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-manual-1741.json",
+      "build": "manual",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-quick-1741.json",
+      "build": "quick",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-reload-1741.json",
+      "build": "reload",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-reroll-1741.json",
+      "build": "reroll",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-rifle-1741.json",
+      "build": "rifle",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-sequence-1741.json",
+      "build": "sequence",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-sequence-4319.json",
+      "build": "sequence",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-sword-1741.json",
+      "build": "sword",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-tempest-1741.json",
+      "build": "tempest",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-core-twin-1741.json",
+      "build": "twin",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Afterfield-1741.json",
+      "build": "aug-Afterfield",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Anchor-1741.json",
+      "build": "aug-Anchor",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Backwash-1741.json",
+      "build": "aug-Backwash",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-BoreRounds-1741.json",
+      "build": "aug-BoreRounds",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-BreachLoad-1741.json",
+      "build": "aug-BreachLoad",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Crosscut-1741.json",
+      "build": "aug-Crosscut",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Discharge-1741.json",
+      "build": "aug-Discharge",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Echo-1741.json",
+      "build": "aug-Echo",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Flurry-1741.json",
+      "build": "aug-Flurry",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Focused-1741.json",
+      "build": "aug-Focused",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-FollowThrough-1741.json",
+      "build": "aug-FollowThrough",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Groundbreaker-1741.json",
+      "build": "aug-Groundbreaker",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-HookedEdge-1741.json",
+      "build": "aug-HookedEdge",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-PalmDrive-1741.json",
+      "build": "aug-PalmDrive",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-Piledriver-1741.json",
+      "build": "aug-Piledriver",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-aug-SplitPayload-1741.json",
+      "build": "aug-SplitPayload",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-ballet-1741.json",
+      "build": "ballet",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-close-1741.json",
+      "build": "close",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-fists-paired-1741.json",
+      "build": "compare-fists-paired",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-fists-same-1741.json",
+      "build": "compare-fists-same",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-fists-separate-1741.json",
+      "build": "compare-fists-separate",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-fists-shared-1741.json",
+      "build": "compare-fists-shared",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-fists-single-1741.json",
+      "build": "compare-fists-single",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-guns-2h-1741.json",
+      "build": "compare-guns-2h",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-guns-paired-1741.json",
+      "build": "compare-guns-paired",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-guns-same-1741.json",
+      "build": "compare-guns-same",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-guns-separate-1741.json",
+      "build": "compare-guns-separate",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-guns-single-1741.json",
+      "build": "compare-guns-single",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-hammer-2h-1741.json",
+      "build": "compare-hammer-2h",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-hammer-paired-1741.json",
+      "build": "compare-hammer-paired",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-hammer-same-1741.json",
+      "build": "compare-hammer-same",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-hammer-separate-1741.json",
+      "build": "compare-hammer-separate",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-hammer-single-1741.json",
+      "build": "compare-hammer-single",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-sword-2h-1741.json",
+      "build": "compare-sword-2h",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-sword-paired-1741.json",
+      "build": "compare-sword-paired",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-sword-same-1741.json",
+      "build": "compare-sword-same",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-sword-separate-1741.json",
+      "build": "compare-sword-separate",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-compare-sword-single-1741.json",
+      "build": "compare-sword-single",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-cutcarry-1741.json",
+      "build": "cutcarry",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-freight-1741.json",
+      "build": "freight",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-freight-piledriver-1741.json",
+      "build": "freight-piledriver",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-funnel-1741.json",
+      "build": "funnel",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-funnel-breach-1741.json",
+      "build": "funnel-breach",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-pinball-1741.json",
+      "build": "pinball",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-variety-pinball-separated-1741.json",
+      "build": "pinball-separated",
+      "passed": true,
+      "waves": 3,
+      "mechanicAssertions": 533
+    },
+    {
+      "file": "v072-shipping-full-1741.json",
+      "build": "full",
+      "passed": true,
+      "waves": 8,
+      "mechanicAssertions": 533
+    }
+  ],
+  "matchedGameplayGames": 64,
+  "baseline": "v0.7.1 plus duelist wardHits=3 only",
+  "excludedComparisonFields": [
+    "version",
+    "wallSeconds",
+    "waitEpisodes"
+  ],
+  "nativeReview": "WAIT_REVIEW_SUCCESS",
+  "launcherChecksPassed": true,
+  "batches": {
+    "v072-legacy-three-64": {
+      "waves": 8,
+      "policy": "mixed",
+      "runs": 64,
+      "startedUtc": "2026-10-29T22:37:27.8151354Z",
+      "firstSeed": 1,
+      "workers": 2,
+      "assemblySha256": "AC218049204D652CCAD915C461E744F68EC2C1F0F601009571EA532C66287C01",
+      "mode": "Fast",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Pursuer-v071-pursuit\\WalkingHard.exe",
+      "maxCombatSeconds": 480,
+      "completedUtc": "2026-10-29T22:37:51.9128097Z"
+    },
+    "v072-verified-64": {
+      "waves": 8,
+      "policy": "mixed",
+      "runs": 64,
+      "startedUtc": "2026-10-29T22:37:52.2314013Z",
+      "firstSeed": 1,
+      "workers": 2,
+      "assemblySha256": "10DBB4E7918855038663F92CF6E1DAD6004CAAC668271CA38CBAA015C0826EAC",
+      "mode": "Fast",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-verified\\WalkingHard.exe",
+      "maxCombatSeconds": 480,
+      "completedUtc": "2026-10-29T22:38:18.5525347Z"
+    }
+  }
+}

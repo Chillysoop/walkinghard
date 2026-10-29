@@ -13,6 +13,7 @@ namespace VectorGame
         void ProfileSim(int stage,ref long stamp){long now=System.Diagnostics.Stopwatch.GetTimestamp();simulationProfile[stage]+=now-stamp;stamp=now;}
         bool simulation;int simulationRuns,simulationIndex,simulationSeed,simulationStride=1,simulationWaves=8;
         string simulationPolicy="mixed",simulationOutput;
+        int simulationEncounterRoute=-1,simulationRewardRoute=-1;
         readonly System.Diagnostics.Stopwatch simulationClock=new System.Diagnostics.Stopwatch();
         System.Random policyRandom;
         bool simulationTimedOut;float nextSimulationCheck;float simulationLimit=480,nextSimulationTrace=60;
@@ -25,6 +26,8 @@ namespace VectorGame
             if(simulationWaves!=3&&simulationWaves!=8)throw new ArgumentException("-simWaves must be 3 or 8");
             string mode=Arg("-simMode","Full");if(mode!="Full"&&mode!="Fast")throw new ArgumentException("Unknown simulation mode");FastSimulation=mode=="Fast";
             simulationPolicy=Arg("-simPolicy","mixed");if(simulationPolicy!="mixed"&&!SimulationPolicies.Contains(simulationPolicy))throw new ArgumentException("Unknown simulation policy");
+            int RouteOption(string value){if(value=="linked"||value=="alternating")return -1;if(value=="standard")return 0;if(value=="shield")return 1;if(value=="volatile")return 2;throw new ArgumentException("Unknown simulation route: "+value);}
+            simulationEncounterRoute=RouteOption(Arg("-simEncounterRoute","alternating"));simulationRewardRoute=RouteOption(Arg("-simRewardRoute","linked"));
             simulationLimit=float.Parse(Arg("-simMaxSeconds","480"),System.Globalization.CultureInfo.InvariantCulture);if(!float.IsFinite(simulationLimit)||simulationLimit<120||simulationLimit>600)throw new ArgumentException("Simulation time limit must be 120–600 combat seconds");
             simulationOutput=Path.GetFullPath(Arg("-simOutput",Path.Combine(Application.dataPath,"..","simulations.jsonl")));
             Directory.CreateDirectory(Path.GetDirectoryName(simulationOutput));
@@ -57,7 +60,7 @@ namespace VectorGame
         {
             if(Controlled!=null){ControlledDraft();return;}
             if(policyRandom==null)policyRandom=new System.Random(Seed^0x371e);
-            if(RoutePending){ChooseRoute((Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);return;}
+            if(RoutePending){ChooseRoute(simulationEncounterRoute>0?(EncounterRoute)simulationEncounterRoute:(Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);return;}
             if(!Deck.RewardClaimed)
             {
                 int pick=CurrentPolicy=="random"?policyRandom.Next(Deck.Offers.Length):Enumerable.Range(0,Deck.Offers.Length).OrderByDescending(i=>PolicyValue(Deck.Offers[i].def,Deck.Offers[i].rank)+(Deck.Copies(Deck.Offers[i].def,Deck.Offers[i].rank)+Deck.Offers[i].copies>=3?2:0)).First();

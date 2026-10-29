@@ -1,0 +1,119 @@
+[
+  {
+    "version": "old",
+    "seed": 439,
+    "assemblySha256": "d5247703bf61bba6ee78576eacfdaf0d8920fdb22f334ff881a1092a5c98df1a",
+    "result": "TimedOut",
+    "health": 181.59991455078125,
+    "elapsed": 480.7100830078125,
+    "loadout": "1: Steel Jab \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 5: Arc Bolt \u00b7 Rare",
+    "waits": {
+      "SteelJab": 168.5029754638672,
+      "Counterguard": 0.0,
+      "ArcBolt": 0.0,
+      "rifle": 0.0,
+      "redline": 0.0,
+      "capacitor": 0.0,
+      "treads": 0.0,
+      "reclaimer": 0.0,
+      "overclock": 0.0
+    },
+    "traces": [
+      "SIM_PROGRESS seed=439 elapsed=60.94924 wave=2 health=276.8 enemies=8 boss=none action=READYING / Rifle",
+      "SIM_PROGRESS seed=439 elapsed=120.0112 wave=4 health=280 enemies=11 boss=none action=TWO-HANDED SWING",
+      "SIM_PROGRESS seed=439 elapsed=180.8666 wave=5 health=280 enemies=14 boss=none action=COUNTERGUARD",
+      "SIM_PROGRESS seed=439 elapsed=240.8353 wave=7 health=300 enemies=22 boss=none action=ARC BOLT",
+      "SIM_PROGRESS seed=439 elapsed=300.804 wave=8 health=294.24 enemies=23 boss=921.2063 at (-3.12, 0.04, 153.58) action=READYING / Rifle",
+      "SIM_PROGRESS seed=439 elapsed=360.7727 wave=8 health=277.5999 enemies=2 boss=33.17498 at (-3.63, 0.04, 187.82) action=WAITING FOR TARGET / Steel Jab",
+      "SIM_PROGRESS seed=439 elapsed=420.7414 wave=8 health=229.5999 enemies=2 boss=33.17498 at (-3.53, 0.04, 230.40) action=WAITING FOR TARGET / Steel Jab",
+      "SIM_PROGRESS seed=439 elapsed=480.7101 wave=8 health=181.5999 enemies=2 boss=33.17498 at (-3.69, 0.04, 272.97) action=WAITING FOR TARGET / Steel Jab"
+    ]
+  },
+  {
+    "version": "old",
+    "seed": 685,
+    "assemblySha256": "d5247703bf61bba6ee78576eacfdaf0d8920fdb22f334ff881a1092a5c98df1a",
+    "result": "TimedOut",
+    "health": 126.21351623535156,
+    "elapsed": 480.7100830078125,
+    "loadout": "1: Basic 1 \u00b7 Breach Hammer \u00b7 Common > 2: Basic 2 \u00b7 Conductor Wraps \u00b7 Uncommon > 3: Mass Driver \u00b7 Uncommon > 4: Force Push \u00b7 Epic > 5: Arc Bolt \u00b7 Uncommon",
+    "waits": {
+      "MassDriver": 1.1499996185302734,
+      "ForcePush": 0.9499997496604919,
+      "ArcBolt": 0.0,
+      "breachhammer": 206.7269744873047,
+      "surveyor": 0.0,
+      "redline": 0.0,
+      "wraps": 17.216575622558594,
+      "predator": 0.0,
+      "reclaimer": 0.0,
+      "amplifier": 0.0
+    },
+    "traces": [
+      "SIM_PROGRESS seed=685 elapsed=60.94924 wave=2 health=235.1999 enemies=12 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+      "SIM_PROGRESS seed=685 elapsed=120.0112 wave=4 health=191.5703 enemies=6 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+      "SIM_PROGRESS seed=685 elapsed=180.8666 wave=5 health=186.2061 enemies=12 boss=none action=FORCE PUSH",
+      "SIM_PROGRESS seed=685 elapsed=240.8353 wave=7 health=245.9071 enemies=12 boss=none action=ARC BOLT",
+      "SIM_PROGRESS seed=685 elapsed=300.804 wave=8 health=261.2039 enemies=7 boss=811.5929 at (5.25, 0.04, 168.55) action=MASS DRIVER",
+      "SIM_PROGRESS seed=685 elapsed=360.7727 wave=8 health=222.2134 enemies=2 boss=600.6502 at (3.57, 0.04, 208.97) action=ULTIMATE EXECUTING",
+      "SIM_PROGRESS seed=685 elapsed=420.7414 wave=8 health=174.2135 enemies=2 boss=600.6502 at (3.31, 0.04, 251.62) action=WAITING FOR TARGET / Breach Hammer \u00b7 Common",
+      "SIM_PROGRESS seed=685 elapsed=480.7101 wave=8 health=126.2135 enemies=2 boss=600.6502 at (3.57, 0.04, 294.19) action=WAITING FOR TARGET / Breach Hammer \u00b7 Common"
+    ]
+  },
+  {
+    "version": "current",
+    "seed": 439,
+    "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+    "result": "Complete",
+    "health": 273.3392333984375,
+    "elapsed": 349.19219970703125,
+    "loadout": "1: Steel Jab \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 5: Arc Bolt \u00b7 Rare",
+    "waits": {
+      "SteelJab": 29.816383361816406,
+      "Counterguard": 0.0,
+      "ArcBolt": 0.0,
+      "rifle": 0.0,
+      "redline": 0.0,
+      "capacitor": 0.0,
+      "treads": 0.0,
+      "reclaimer": 0.0,
+      "overclock": 0.0
+    },
+    "traces": [
+      "SIM_PROGRESS seed=439 elapsed=60.94924 wave=2 health=276.8 enemies=8 boss=none action=READYING / Rifle",
+      "SIM_PROGRESS seed=439 elapsed=120.0112 wave=4 health=280 enemies=11 boss=none action=TWO-HANDED SWING",
+      "SIM_PROGRESS seed=439 elapsed=180.8666 wave=5 health=280 enemies=14 boss=none action=COUNTERGUARD",
+      "SIM_PROGRESS seed=439 elapsed=240.8353 wave=7 health=300 enemies=22 boss=none action=ARC BOLT",
+      "SIM_PROGRESS seed=439 elapsed=300.804 wave=8 health=300 enemies=38 boss=1021.736 at (0.01, 0.04, 132.54) action=READYING / Fists"
+    ]
+  },
+  {
+    "version": "current",
+    "seed": 685,
+    "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+    "result": "Complete",
+    "health": 226.91824340820312,
+    "elapsed": 372.15325927734375,
+    "loadout": "1: Basic 1 \u00b7 Breach Hammer \u00b7 Common > 2: Basic 2 \u00b7 Conductor Wraps \u00b7 Uncommon > 3: Mass Driver \u00b7 Uncommon > 4: Force Push \u00b7 Epic > 5: Arc Bolt \u00b7 Uncommon",
+    "waits": {
+      "MassDriver": 1.1999995708465576,
+      "ForcePush": 0.9499997496604919,
+      "ArcBolt": 0.0,
+      "breachhammer": 79.75255584716797,
+      "surveyor": 0.0,
+      "redline": 0.0,
+      "wraps": 15.89992904663086,
+      "predator": 0.0,
+      "reclaimer": 0.0,
+      "amplifier": 0.0
+    },
+    "traces": [
+      "SIM_PROGRESS seed=685 elapsed=60.94924 wave=2 health=235.1999 enemies=12 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+      "SIM_PROGRESS seed=685 elapsed=120.0112 wave=4 health=191.5703 enemies=6 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+      "SIM_PROGRESS seed=685 elapsed=180.8666 wave=5 health=186.2061 enemies=12 boss=none action=FORCE PUSH",
+      "SIM_PROGRESS seed=685 elapsed=240.8353 wave=7 health=245.9071 enemies=12 boss=none action=ARC BOLT",
+      "SIM_PROGRESS seed=685 elapsed=300.804 wave=8 health=262.2008 enemies=28 boss=1077.616 at (-0.96, 0.04, 142.48) action=FORCE PUSH",
+      "SIM_PROGRESS seed=685 elapsed=360.7727 wave=8 health=226.3587 enemies=1 boss=241.5901 at (3.34, 0.04, 147.05) action=ULTIMATE EXECUTING"
+    ]
+  }
+]

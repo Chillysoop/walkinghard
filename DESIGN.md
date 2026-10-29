@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 12, October 29, 2026. Implementation target: 0.7.1. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v071-verification.md.
+Revision 13, October 29, 2026. Implementation target: 0.7.2. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v072-verification.md.
 
 ## Final stand: the Pursuer
 
@@ -23,7 +23,7 @@ The route affects the upcoming wave only (3 or 6), then ordinary formations retu
 - **Shield bearer:** visible shield reduces frontal damage by 50%. Any successful stagger or launch opens the guard for two seconds; subsequent hits deal full damage. The first staggering hit still meets a closed guard. Rear hits bypass it. No immunity or special required item.
 - **Volatile carrier:** amber canisters identify a launch opportunity. Launching a living enemy or corpse arms it. First valid impact (body or world) or the 1.3-second flight timeout detonates it once, killing the carrier if still alive. Up to four nearby enemies within 3.5m receive 26 damage scaled by flight energy plus knockback/stagger. The blast cannot launch another carrier. It shares the original six-hit cascade budget and twelve-derived-hit action budget, retains the launching item's credit, and does not hurt the hero.
 
-Ordinary simulation policies alternate routes deterministically by seed/checkpoint to cover both paths. Fixed-loadout controlled experiments intentionally retain the standard encounter schedule for comparable balance evidence; they do not model drafting or route difficulty. Rifle 42→52 damage and Duelist 2→3 ward hits are still test overrides, not authored defaults.
+Ordinary simulation policies alternate routes deterministically by seed/checkpoint to cover both paths. Fixed-loadout controlled experiments intentionally retain the standard encounter schedule for comparable balance evidence; they do not model drafting or route difficulty. Rifle remains at 42 damage. Duelist now guards three damaging hits, following approval of the paired comparison. Fixed experiments may explicitly select a route; ordinary drafting and route rewards retain their rules.
 
 ## Run and sequence
 
@@ -77,7 +77,7 @@ All identities function at Common. Higher rarity improves relevant stats and the
 | Ability | Steel Jab | Quick interrupt; bonus impact against an attacking enemy. | Short reach; one target. | Damage and the authored control, area, mark, launch or barrier profile. |
 | Ability | Vector Tether | Pull targets into a narrow forward corridor. | Long thin setup instead of a compact cluster. | Damage and the authored control, area, mark, launch or barrier profile. |
 | Armor | Bulwark Plate | Completing a sequence arms a guard. The next hit is absorbed and releases stagger. | One guard per completed loop. | More guard capacity and pulse coverage. |
-| Armor | Duelist Jacket | A reload or sever guards two damaging hits; only the first staggers. | Ward lasts 6s at Common; refresh replaces charges, fully blocked hits preserve them. | More mitigation and retaliation duration. |
+| Armor | Duelist Jacket | A reload or sever guards three damaging hits; only the first staggers. | Ward lasts 6s at Common; refresh replaces charges, fully blocked hits preserve them. | More mitigation and retaliation duration. |
 | Armor | Grounding Mantle | Lightning/body impacts generate a capped barrier; attackers hitting it become Conductive. | Requires lightning or body impacts. | More barrier capacity and mark duration. |
 | Armor | Reactive Shell | Three nearby enemies trigger a barrier. Its break/expiry repels the crowd. | 8s cooldown; repulsion can disrupt a gathered crowd. | More barrier capacity and repulsion reach. |
 | Boots | Arcstep Boots | Two kills from one turn mark nearby survivors Conductive. | Requires a multi-kill; once per originating turn. | More marked targets and wider coverage. |
@@ -116,7 +116,7 @@ Abilities at Common (damage / action seconds / range): Jab 24 / .40 / 2.6m; Brea
 Unless an explicit milestone overrides it, effect scale S = 1 + .15 × (rarity − 1), separately from damage/stat power. Gear radius adds .15m per rarity step and gear duration adds 10% per step. Do not apply module rarity scaling: there is none. Extra weapon/ability hits use the already-scaled host damage and their authored effect coefficient once.
 
 - Conductive: 4S seconds; discharge 10 × rarity power, modified by Focused/Afterfield as described below. Consumption clears the mark before damage. The same origin cannot reapply and consume it repeatedly.
-- Counterguard: 25 × rarity power barrier for 3.5S seconds; normal conversion 80% of absorbed damage, capped at 45S. One stored next-basic payoff, no accumulation. All simultaneous barriers share a 90-point cap. This is the first isolated balance change after the 1,000-game screening run; duration, conversion and other items are unchanged.
+- Counterguard: 25 × rarity power barrier for 2.5S seconds; normal conversion 80% of absorbed damage, capped at 45S. One stored next-basic payoff, no accumulation. All simultaneous barriers share a 90-point cap. This is the first isolated balance change after the 1,000-game screening run; duration, conversion and other items are unchanged.
 - Tactician: +6% direct damage × rarity power; +6 damage × rarity power against stagger. One nearby stagger transfer per turn: .25s, 3m at Common.
 - Surveyor: two distinct direct targets permit one 9S echo on the last surviving target, plus a .7m weak splash with at most two neighbors.
 - Salvager: launch/sever primes one retrieval within 5m at Common. Retrieved body uses normal collision limits.
@@ -124,7 +124,7 @@ Unless an explicit milestone overrides it, effect scale S = 1 + .15 × (rarity �
 - Bulwark: +40 HP and 8% resistance × rarity power. Loop completion arms one guard, absorbing up to 14S; .4s stagger / 2.6m pulse at Common.
 - Reactive: +25 HP × rarity power. Three targets within 3m trigger an 18S barrier; 8s cooldown, 3s life; expiry/break repels nearby living targets.
 - Grounding: 5% resistance × rarity power. The first lightning hit or real body impact per originating turn converts 20% of damage × S into a barrier capped at 18S for 4s. A launch alone does not qualify. Barrier attackers receive Conductive.
-- Duelist: +20 HP × rarity power. Reload/sever arms a 4s ward; next hit mitigated by 45% × S, capped at 65%, then attacker staggered.
+- Duelist: +20 HP × rarity power. Reload/sever arms three ward charges for 6s at Common; each damaging hit is mitigated by 45% × S, capped at 65%. Only the first staggers; refresh replaces charges.
 - Recovery: +4% speed × rarity power. First kill per turn drops a 3S repair mote; 3m pickup, 10s lifetime, at most 24 motes. A brief visible drop precedes pickup; no passive regeneration.
 - Momentum: +3% speed × rarity power. Launch arms 18% × S next-ability haste, capped at 40%, expiring after 5s at Common; no stacking.
 - Loader: +2% speed × rarity power. Preparation/reload reduction 16% × S, capped at 40%; qualifying reload releases one .35s / 2.4m pulse for a paired turn.
@@ -244,7 +244,7 @@ Severing uses the current mannequin's anatomical seams (waist, neck, shoulders, 
 
 Counterguard's base lifetime is 2.5 seconds, scaled by its existing rarity/effect factor. Common capacity remains 25; bank conversion remains 80%, with the existing bank and total-barrier caps. Its action duration is unchanged.
 
-A qualifying reload or lethal sever refreshes Duelist Jacket to two ward charges for six seconds at Common, with the existing rarity scaling. Each charge reduces a damaging hit by 45% at Common, capped at 65% with rarity. Only the first mitigated hit staggers its attacker. Fully blocked hits preserve both the charge and first-hit stagger. Refreshing replaces the charge count, never adds to it; a full magazine does not qualify as a reload. The combat status shows remaining ward hits, and item descriptions include charges, duration, mitigation and refresh behavior.
+A qualifying reload or lethal sever refreshes Duelist Jacket to three ward charges for six seconds at Common, with the existing rarity scaling. Each charge reduces a damaging hit by 45% at Common, capped at 65% with rarity. Only the first mitigated hit staggers its attacker. Fully blocked hits preserve both the charge and first-hit stagger. Refreshing replaces the charge count, never adds to it; a full magazine does not qualify as a reload. The combat status shows remaining ward hits, and item descriptions include charges, duration, mitigation and refresh behavior.
 
 ## Siphon and weapon-augment balance (0.6.7)
 
@@ -272,3 +272,7 @@ The catalog now contains 10 weapons, 11 abilities, 14 armor pieces, five rigs, f
 Siphon Blade no longer grants global Lifesteal. Only damage credited to that blade (including augment follow-ups and delayed collisions) gets its native drain. Each paired blade uses its own rarity; an offhand blade does not donate its percentage to another weapon. Blade-applied marks still allow any later damage to drain the marked target. Reclaimer is the persistent global Lifesteal source, with 3/4/5/6/7% by rarity and a 1.5x contribution below half health. The shared 1% max-HP originating-action budget is unchanged; percentages are potential healing before this limit and missing-health clipping. The character sheet explicitly labels global Lifesteal.
 
 Redline now accelerates six sequence turns, retaining its 18-second recharge, ammo-refill behavior and 20/23/26/29/32% haste. The ultimate activation consumes no charge; a paired action consumes one. Harvest stays at 16 seconds and an 8/9/10/11/12% max-HP pulse budget. See QA/v068-balance-review.md for isolated changes, matched controls, normal-draft retests and the limits of Fast physics.
+
+## Target-wait feedback (0.7.2)
+
+Every continuous target wait of at least 0.5s counts as one pause. A checkpoint warning identifies the highest-wait item if it spent at least 3s and 10% of the wave waiting, with either two such pauses or at least 6s total wait. Wave details show elapsed waiting, pause count and the item's reach at that time. These are recorded observations, not an instruction to skip or reorder actions. Reports remain frozen while equipping, storing or fusing; cumulative wait counts merge with the owned item. No automatic sequence skipping was added.

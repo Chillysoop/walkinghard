@@ -1,4 +1,4 @@
-# Walking Hard 0.7.1 — The Pursuer
+# Walking Hard 0.7.2 — Build reliability
 
 The finale now stops the Walker and turns him around. The camera slowly swings behind him to reveal a giant and its approaching army. Hold your ground as enemies pour in from the distance, flow around the giant, and reach your automatic sequence. The boss is staged just before the scene; no follower is simulated during earlier waves. See [verification](QA/v071-verification.md).
 
@@ -6,13 +6,13 @@ After waves 2 and 5, choose **Shield Line** or **Volatile Breach** for the next 
 
 Shield bearers halve frontal damage until stagger opens their guard for two seconds. Flanking bypasses the guard. Volatile carriers detonate when a launched body impacts or finishes its flight; the explosion credits the launching item and shares the existing cascade limits. Both enter through concealed doors or the horizon.
 
-The rifle damage and Duelist ward candidates were tested separately and remain unapplied. See [balance review](QA/v070-balance-review.md) and [verification](QA/v070-verification.md).
+Duelist Jacket now guards three damaging hits after reload/sever; only the first staggers. Rail Rifle remains at 42 damage. Checkpoints flag repeated target waits above the sequence, with reach and pause counts in Wave details. The chosen order stays intact. See [new comparisons](QA/v072-balance-review.md) and [verification](QA/v072-verification.md).
 
-Checkpoints show last-wave damage, healing, blocks and collision kills. Open Wave details for per-item performance, reload and target waits, and recorded synergy payoffs. Results stay fixed while you equip or fuse. [Gun/sever comparison results](QA/v069-balance-review.md) include proposed balance tests; no new balance changes are applied in this release.
+Checkpoints show last-wave damage, healing, blocks and collision kills. Open Wave details for per-item performance, reload and target waits, and recorded synergy payoffs. Results stay fixed while you equip or fuse. [Gun/sever comparison results](QA/v069-balance-review.md) include proposed balance tests; the current balance change is the approved third Duelist ward charge.
 
 Weapon augments now add effects without slowing or weakening the original weapon. Counterguard's stored burst deals full damage to one target and 25% to up to four others; Amplifier is unchanged. Five new Siphon items add Lifesteal, drain marks, low-health sustain, healing-triggered haste and the Harvest ultimate. The character sheet shows Lifesteal; all new items have distinct art, summaries and rarity-scaled effects. [Balance results](QA/v067-balance-review.md).
 
-Counterguard now lasts 2.5 seconds at Common, retaining its 25-point shield and 80% bank conversion. Duelist Jacket now wards two damaging hits for six seconds at Common; only the first staggers, refresh replaces charges, and fully blocked hits preserve them. [Isolated and combined balance tests](QA/v066-balance-review.md).
+Counterguard now lasts 2.5 seconds at Common, retaining its 25-point shield and 80% bank conversion. Duelist Jacket now wards three damaging hits for six seconds at Common; only the first staggers, refresh replaces charges, and fully blocked hits preserve them. [Isolated and combined balance tests](QA/v066-balance-review.md).
 
 Ranged spawn odds are halved. Offscreen enemies cancel attacks and walk back to a visible flank; ranged shots also need a clear world line. Actions prioritize reachable repeat damage-dealers from the last six seconds, then nearest. A rear death boundary sits three metres beyond the camera floor edge and at least eight metres behind the walker, retaining knockback kill credit. The first-ultimate checkpoint remains after wave three. [Earlier 1,000-game enemy/progression results](QA/v064-balance-review.md).
 
@@ -102,3 +102,5 @@ C# scripts are under Assets/Vector/Scripts. See [DESIGN.md](DESIGN.md) for the c
 0.6.8 narrows Siphon Blade healing to its own damage and marked targets, tunes Reclaimer to 3/4/5/6/7% global Lifesteal (1.5x below half HP), and gives Redline six accelerated turns. Harvest is unchanged. See the [balance results](QA/v068-balance-review.md) and [verification report](QA/v068-verification.md).
 
 0.6.9 adds last-wave checkpoint feedback and a per-item Wave details panel for damage, healing, blocks, control, delays and triggered synergies. The focused gun/sever study recommends further tests without applying balance changes. See [results](QA/v069-balance-review.md) and [verification](QA/v069-verification.md).
+
+The proposed next presentation pass is in [Art and VFX plan](ART_VFX_PLAN.md): a $0 CC0 asset shortlist, a small review scene first, then character/weapon integration, impact families, body cuts, the Pursuer and performance checks. Assets have not been imported yet.

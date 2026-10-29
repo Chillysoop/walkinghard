@@ -195,7 +195,7 @@ namespace VectorGame
         }
         void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
         {
-            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
+            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;to.waitEpisodes+=from.waitEpisodes;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
             if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
         public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending)Deck.Select(index);}

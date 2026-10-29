@@ -99,7 +99,7 @@ namespace VectorGame
             }
             if(rows>4)inventoryScroll.y=Mathf.Round(GUI.VerticalScrollbar(new Rect(inventoryRect.xMax-12,inventoryRect.y,12,inventoryRect.height),inventoryScroll.y,4,0,rows));
             Label(new Rect(storage.x+15,storage.yMax-22,storage.width-30,17),"DRAG / DOUBLE-CLICK EQUIP · 3 MATCHING AUTO-FUSE",10,muted,false,TextAnchor.MiddleCenter);
-            Panel(new Rect(20,sequenceY-24,w-40,124));Label(new Rect(32,sequenceY-22,w-64,18),"ACTION SEQUENCE / DRAG TO REORDER",11,muted,true);
+            Panel(new Rect(20,sequenceY-24,w-40,124));Label(new Rect(32,sequenceY-22,315,18),"ACTION SEQUENCE / DRAG TO REORDER",11,muted,true);TargetWaitCheckpoint(w,sequenceY-23);
             for(int i=0;i<5;i++)
             {
                 Rect r=new Rect(30+i*(sequenceW+10),sequenceY,sequenceW,91);var item=deck.Slots[i];

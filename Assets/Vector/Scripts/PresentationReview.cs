@@ -22,6 +22,12 @@ namespace VectorGame
             while(!game.PresentationFixtureReady){game.SetCombatSpeed(4);yield return null;}
             // QADraft configures the held UI fixture on its next frame.
             for(int i=0;i<8;i++)yield return null;
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-waitReview")>=0)
+            {
+                game.PrepareWaitReview();yield return CapturePresentation(directory,"32-checkpoint-target-wait");waveDetails=true;
+                yield return CapturePresentation(directory,"33-target-wait-details");
+                Debug.Log("WAIT_REVIEW_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-finaleReview")>=0)
             {
                 game.PrepareFinaleReview();yield return CapturePresentation(directory,"26-finale-stop");
