@@ -1,4 +1,4 @@
-param([string]$Tag='v0.6.1',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.6.2',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -17,7 +17,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Launcher') -Destination $stage -Recurse
     foreach($doc in @('README.md','DESIGN.md','SIMULATIONS.md','Run Simulations.ps1','Summarize Simulations.ps1','Compare Simulations.ps1','balance.example.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
     $qaStage=Join-Path $stage 'QA';New-Item -ItemType Directory -Path $qaStage -Force | Out-Null
-    foreach($doc in @('v060-verification.md','v060-native-contactsheet.jpg','v060-followup-cues.jpg','v060-mechanic-motion.jsonl','v060-simulation-summary.json','v060-balance-comparisons.csv','v061-verification.md','v061-fast-comparison.json','v061-full-comparison.json','fast-balance-1000-summary.json','fast-balance-calibration.csv')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($doc in @('v060-verification.md','v060-native-contactsheet.jpg','v060-followup-cues.jpg','v060-mechanic-motion.jsonl','v060-simulation-summary.json','v060-balance-comparisons.csv','v061-verification.md','v061-fast-comparison.json','v061-full-comparison.json','fast-balance-1000-summary.json','fast-balance-calibration.csv','v062-verification.md','v062-checkpoint.png','v062-rarity-mismatch.png','v062-fusion-preview.png','v062-augment-details.png','v062-icon-key.png','v062-fused.png','v062-combat.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -30,7 +30,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Counterguard Tuning and Fast Simulations';draft=$true;prerelease=$false;body="Counterguard's base barrier is reduced from 35 to 25, with its rarity multipliers, duration and damage-conversion rules preserved. This release adds an optional Fast simulation mode for high-volume balance screening; Full mode remains the default for physical verification. Fast mode reuses 60 Hz combat/drafting while approximating movement and body collisions. The initial 1,000-game batch completed in 88.3 seconds on the test machine. Mode is recorded in results, and tuning comparisons reject mixed modes. Physics-heavy builds require Full confirmation. See QA/v061-verification.md for the isolated Counterguard comparison, checks and limits.`n`nExtract the Windows ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. See SIMULATIONS.md for batch commands. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Item Art and Clearer Fusion';draft=$true;prerelease=$false;body="Distinct artwork for all 56 item definitions, shared across rewards, inventory, equipment, combat and fusion feedback. Checkpoints clearly explain automatic fusion: three copies of the same item at the same rarity, counting equipped and stored copies. Cards show matching-copy progress; hover details list other rarities separately, and eligible copies highlight together. Augments use a neutral frame and explicit host-scaled/no-fusion labels. A shared Icon Key explains item categories, rarity tiers and synergy symbols. Fusion receipts show completion and the resulting tier. Mechanics, odds and balance are unchanged from v0.6.1.`n`nSee QA/v062-verification.md and the native UI captures for validation. Source artwork and generation prompts are in the repository's Art folder.`n`nExtract the Windows ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

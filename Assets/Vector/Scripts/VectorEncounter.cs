@@ -125,6 +125,7 @@ namespace VectorGame
         Enemy actionTarget;
         string qaPath,qaBuild="sequence";
         bool qaHoldCheckpoint,qaHolding;
+        PrototypeHUD hud;
         int qaManualPhase,qaHeldCasts;
 
         void Awake()
@@ -157,7 +158,7 @@ namespace VectorGame
             cameraRig.gameObject.AddComponent<AudioListener>();cameraRig.GetUniversalAdditionalCameraData().renderPostProcessing=true;
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;AimCamera();
             Health=tuning.heroHealth;hero.Pose(0,0,-1,0,0,false,0);Physics.SyncTransforms();
-            if(!simulation)gameObject.AddComponent<PrototypeHUD>().game=this;
+            if(!simulation){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
             if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
         }
@@ -253,7 +254,7 @@ namespace VectorGame
         void Update()
         {
             if(MechanicReview){StepMechanicReview(Time.unscaledDeltaTime);return;}
-            if(!qa)
+            if(!qa&&hud?.HandleOverlayInput()!=true)
             {
                 if(Input.GetKeyDown(KeyCode.Return)&&(State==RunState.Ready||State==RunState.Complete||State==RunState.Defeated))Begin();
                 if(Input.GetKeyDown(KeyCode.R))Begin();

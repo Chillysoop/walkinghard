@@ -35,10 +35,19 @@ namespace VectorGame
         void OnGUI()
         {
             if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f),w=Screen.width/scale,h=Screen.height/scale;
-            hoveredItem=null;
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
+            detailValid=detailItem!=null&&(detailOffer!=null?game.State==VectorEncounter.RunState.Drafting&&System.Array.IndexOf(game.Deck.Offers,detailOffer)>=0:game.Deck.Items.Contains(detailItem));
+            detailHovered=detailValid&&detailPanel.Contains(Event.current.mousePosition);
+            if(detailHovered)detailLastHover=Time.realtimeSinceStartup;
+            hoveredItem=detailHovered?detailItem:null;hoveredOffer=detailHovered?detailOffer:null;
             if(game.State==VectorEncounter.RunState.Ready){Intro(w,h);return;}
-            if(game.State==VectorEncounter.RunState.Drafting){Draft(w,h);DrawFusionFeedback(w,h);DrawItemTooltip(w,h);return;}
+            if(game.State==VectorEncounter.RunState.Drafting)
+            {
+                var eventType=Event.current.type;
+                bool blocked=(iconGuide||detailHovered)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
+                if(blocked)Event.current.type=EventType.Ignore;
+                Draft(w,h);if(blocked)Event.current.type=eventType;DrawFusionFeedback(w,h);DrawItemTooltip(w,h);DrawIconGuide(w,h);return;
+            }
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
             CombatHeader(w,h);CombatBar(w,h);
@@ -91,6 +100,7 @@ namespace VectorGame
         {
             var item=game.Deck.Ultimate;Panel(r);Outline(r,new Color(Violet.r,Violet.g,Violet.b,.55f),11);
             ActionGlyph(new Rect(r.x+13,r.y+19,40,40),item?.def,Violet);
+            Box(new Rect(r.x+43,r.y+46,18,18),ink);TypeIcon(new Rect(r.x+43,r.y+46,18,18),ItemKind.Ultimate,muted);
             Label(new Rect(r.x+65,r.y+14,r.width-80,18),"ULTIMATE / "+ItemRarity.Names[item?.rank??1].ToUpperInvariant(),9,item==null?muted:RarityColor(item.rank),true);
             Label(new Rect(r.x+65,r.y+34,r.width-80,24),item?.def.name??"EMPTY",17,Violet,true);
             bool delayed=game.TryGetActionDelay(5,out var delay);
@@ -119,6 +129,7 @@ namespace VectorGame
                 Plate(new Rect(x,y,width,137),ink,edge,8,active?2:1);
                 if(i<4){Stroke(new Vector2(x+width,y+65),new Vector2(x+width+10,y+65),edge);Box(new Rect(x+width+3,y+63,4,4),edge);}
                 ActionGlyph(new Rect(x+10,y+10,35,35),shown?.def,delayed?Gold:active?Accent:muted);
+                if(shown!=null){Box(new Rect(x+33,y+34,17,17),ink);TypeIcon(new Rect(x+33,y+34,17,17),shown.def.kind,muted);}
                 Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"BASIC "+(item.mount+1):"ABILITY"),10,edge,true);
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Gold);}
