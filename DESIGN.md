@@ -1,6 +1,18 @@
 # Walking Hard — build-variety contract
 
-Revision 11, October 29, 2026. Implementation target: 0.7.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v070-verification.md.
+Revision 12, October 29, 2026. Implementation target: 0.7.1. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v071-verification.md.
+
+## Final stand: the Pursuer
+
+After the wave-seven checkpoint, the Walker stops, turns 180 degrees and holds his ground. A 6.5-second reveal slowly orbits the camera behind his new facing, revealing a giant approaching along the corridor he just crossed. The implication is that it has been following him; the actor is created out of view immediately before this scene, with no actor or simulation cost during earlier waves.
+
+The giant uses a 4.5× armored silhouette. Twelve initial followers are staged, concealed, behind it before the camera turns. The giant is already lumbering forward from the first reveal frame; its stride phase carries straight into combat without restarting. The giant and these followers animate and advance during the reveal while gameplay clocks, attacks, health and ultimate recharge remain frozen. Pause/resume and restarting work during the reveal. Headless runs skip the real-time presentation delay while reproducing its final actor positions.
+
+The Walker remains anchored for the entire fight; the five-slot sequence and independent ultimate retain their existing behavior. The giant approaches at 1.05m/s before physical friction and stops within fist range. Its heavy strike has a 1.5s windup, 2.4s total action and 2.2s recovery, using the previous boss's 1.8× enemy damage. Boss health remains 24× base enemy HP with the wave multiplier. The existing 2.5s control window every eight seconds is retained; ordinary damage, stagger, healing and kill attribution still apply.
+
+Reinforcements arrive only from the distant horizon behind the giant, in groups of three every 1.6s during the arrival period, within the existing live-enemy cap. They spread across the corridor and steer around the giant toward the Walker. There are no finale side-door arrivals. The corridor extends backward far enough to keep these concealed arrivals on physical ground. The camera, ordinary-enemy repositioning and rear death boundary reverse together; the boss is excluded from rear-boundary deaths. Defeating the giant completes the run.
+
+This replaces the ordinary Warden spawn in wave eight. Checkpoint previews say "Final Stand" without spoiling the reveal. The combat HUD shows the final stand and boss health rather than a cleanup countdown. Other item tuning, reward counts, route choices and ultimate progression remain unchanged.
 
 ## Branching encounters
 
@@ -156,7 +168,7 @@ Shared next-basic payoffs, Amplifier, Overclock and gear triggers treat a pair a
 
 ## Encounters, information and physical rules
 
-Wave previews correspond to the actual formation mix: dense packs; ranged crossfire; heavy front; side-door flankers; ranged support behind heavies; repeated breach packs; mixed pressure; Warden plus reinforcements. Shooters use a visible windup and distance check. The Warden has 2.5 seconds of full control susceptibility every eight seconds; otherwise displacement/stagger is reduced to 22%, not immune. Heavy enemies retain 65% control susceptibility. Warden health/control state is visible.
+Wave previews correspond to the actual formation mix: dense packs; ranged crossfire; heavy front; side-door flankers; ranged support behind heavies; repeated breach packs; mixed pressure; Final Stand. Shooters use a visible windup and distance check. The Pursuer has 2.5 seconds of full control susceptibility every eight seconds; otherwise displacement/stagger is reduced to 22%, not immune. Heavy enemies retain 65% control susceptibility. Boss health/control state is visible.
 
 Stance changes take .28s before Loader; native reload 1.2s. Pair delays complete before attack progression. Amber tile bars show real RELOADING, READYING and WAITING FOR PAIR time. ECHO and BACKWASH show their actual extension. Weapon follow-ups fit inside the native turn and do not add a delay. Unbounded target/range waits have no invented countdown. Small armed and consumed states explain the next-basic payoffs.
 
@@ -174,7 +186,7 @@ Iron Saint uses stagger, guards and fists; Vector Savant arranges targets and bo
 
 Required hybrid fixtures include Human Pinball, Thunder Freight, Shrapnel Ballet, Ballistic Funnel, Cut & Carry and Close Quarters. Matched-rarity comparisons cover distinct modules, identical modules, one augmented partner, shared fists, separated basics and two-handed swords/hammers/guns. Read the measured results before claiming balance. More targets, raw damage and control are different benefits; reward investment and reload exposure matter.
 
-Normal enemy damage is initially 3.2, HP 40 with +3.5% per wave; heavies multiply HP by 1.9. The Warden uses ×24 HP before the wave multiplier. Grounding conversion, paired DPS, two-handed opportunity costs, high-rarity crowd control and eight-wave pacing remain tuning hypotheses. Procedural models, authored cuts and animations remain prototype art. Arbitrary mesh slicing and permanent progression are outside this update.
+Normal enemy damage is initially 3.2, HP 40 with +3.5% per wave; heavies multiply HP by 1.9. The Pursuer uses ×24 HP before the wave multiplier. Grounding conversion, paired DPS, two-handed opportunity costs, high-rarity crowd control and eight-wave pacing remain tuning hypotheses. Procedural models, authored cuts and animations remain prototype art. Arbitrary mesh slicing and permanent progression are outside this update.
 
 ## Engine-only balance experiments
 

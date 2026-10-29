@@ -96,7 +96,7 @@ namespace VectorGame
             {
                 if(Preparation>0)
                 {
-                    Preparation=Mathf.Max(0,Preparation-dt);hero.Pose(clock,.6f,-1,0,heroReact,false,0);
+                    Preparation=Mathf.Max(0,Preparation-dt);hero.Pose(clock,finaleActive?0:.6f,-1,0,heroReact,false,0);
                     foreach(var weapon in pendingReloads.ToArray()){reloadTimers[weapon]-=dt;ContributionFor(weapon).reload+=dt;if(reloadTimers[weapon]<=0){currentCredit=new KillCredit{item=actionItem,weapon=weapon,action=actionSerial};Replenish(weapon);pendingReloads.Remove(weapon);}}
                     if(pendingReloads.Count==0)ContributionFor(actionWeapon??actionItem).preparation+=dt;
                     if(Preparation==0&&borePending){DelayAction(.3f,"FOCUSING");borePending=false;}
@@ -128,7 +128,7 @@ namespace VectorGame
                     if(PairSlot>=0&&!Deck.TwoHanded&&pairWeapon?.def.weapon==WeaponKind.Fists&&pairWeapon.rank>=2){currentCredit=new KillCredit{item=pairItem,weapon=pairWeapon,action=actionSerial};ResolveBasic(pairWeapon,pairCard,pairTarget,pairItem.mount==1,true);}
                 }
                 AdvanceExtension();StepBackwash(dt);
-                hero.Pose(clock,.7f,activeCard.pose,actionAge/actionDuration,heroReact,activeCard.pose<0,actionAge/actionDuration,
+                hero.Pose(clock,finaleActive?0:.7f,activeCard.pose,actionAge/actionDuration,heroReact,activeCard.pose<0,actionAge/actionDuration,
                     actionWeapon==null?-1:Deck.TwoHanded?0:actionItem.mount,PairSlot>=0&&!Deck.TwoHanded,actionWeapon!=null&&Deck.TwoHanded);
                 if(actionAge>=actionDuration)
                 {
@@ -138,7 +138,7 @@ namespace VectorGame
                     ActiveSlot=PairSlot=-1;recovery=.11f/Deck.Speed;
                 }
             }
-            else {hero.Pose(clock,1,-1,0,heroReact,false,0);heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.identity,dt*4));}
+            else {hero.Pose(clock,finaleActive?0:1,-1,0,heroReact,false,0);heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.LookRotation(EncounterForward),dt*4));}
         }
         void Resolve(AbilityCard card)=>ResolveAuthoredAbility(card);
         void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false,ImpactKind? reactionKind=null,Vector3? hitOrigin=null)
@@ -231,7 +231,7 @@ namespace VectorGame
                 if(flights.Exists(f=>f.body==body))continue;
                 var bounds=body.physics.WalkingBounds();
                 bool Nearby(Vector3 p)=>p.x>=bounds.min.x&&p.x<=bounds.max.x&&p.z>=bounds.min.z&&p.z<=bounds.max.z;
-                if(Nearby(HeroPosition)&&body.physics.ShoveAside(HeroPosition,Vector3.forward*tuning.walkSpeed,dt))CorpseShoves++;
+                if(!finaleActive&&Nearby(HeroPosition)&&body.physics.ShoveAside(HeroPosition,Vector3.forward*tuning.walkSpeed,dt))CorpseShoves++;
                 foreach(var enemy in enemies)
                     if(enemy.stun<=0&&Nearby(enemy.rig.Root.position)&&body.physics.ShoveAside(enemy.rig.Root.position,enemy.physics.Velocity,dt))CorpseShoves++;
             }

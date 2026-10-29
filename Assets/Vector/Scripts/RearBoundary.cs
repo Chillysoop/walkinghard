@@ -13,7 +13,7 @@ namespace VectorGame
                 var ray=cameraRig.ViewportPointToRay(new Vector3(.5f,0,0));
                 var ground=new Plane(Vector3.up,Vector3.zero);
                 float bottom=ground.Raycast(ray,out float distance)?ray.GetPoint(distance).z:HeroPosition.z-7;
-                return Mathf.Min(HeroPosition.z-8,bottom-3);
+                return finaleActive?Mathf.Max(HeroPosition.z+8,bottom+3):Mathf.Min(HeroPosition.z-8,bottom-3);
             }
         }
         bool BodyInCamera(Enemy e)
@@ -37,7 +37,7 @@ namespace VectorGame
             float line=RearBoundaryZ;
             foreach(var e in enemies.ToArray())
             {
-                if(e.entering||e.deathAge>=0||e.rig.Root.position.z>=line||BodyInCamera(e))continue;
+                if(e.entering||e.deathAge>=0||finaleActive&&e.boss||EncounterDirection*(e.rig.Root.position.z-line)>=0||BodyInCamera(e))continue;
                 var saved=currentCredit;currentCredit=e.lastPushCredit;
                 e.health=0;KillEnemy(e,Vector3.zero,false);RearBoundaryKills++;currentCredit=saved;
             }
