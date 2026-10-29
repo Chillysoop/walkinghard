@@ -2,6 +2,13 @@ namespace VectorGame
 {
     public static class LoadoutCatalog
     {
+        public static bool IsArmor(ItemKind kind)=>kind==ItemKind.Helmet||kind==ItemKind.Armor||kind==ItemKind.Boots;
+        public static int ArmorIndex(ItemKind kind)=>IsArmor(kind)?(int)kind-(int)ItemKind.Helmet:-1;
+        public static readonly ItemDefinition[] Armor={
+            new ItemDefinition("visor","Tactician Visor",ItemKind.Helmet,"More direct damage. Expose: bonus damage against already-staggered targets.","Higher rarity increases damage and the Expose bonus."),
+            new ItemDefinition("plate","Bulwark Plate",ItemKind.Armor,"More maximum integrity. Brace: reduces incoming enemy attack damage.","Higher rarity increases integrity and damage reduction."),
+            new ItemDefinition("treads","Recovery Treads",ItemKind.Boots,"Faster actions. Recovery: regenerates integrity while walking in combat.","Higher rarity increases action speed and regeneration.")
+        };
         static ItemDefinition Skill(AbilityId id,string name,string description,string interaction,float duration,float range,float damage,int pose)
         {return new ItemDefinition(id.ToString(),name,ItemKind.Ability,description,"Higher rarities increase damage.",ability:new AbilityCard(id,name,description,interaction,duration,range,damage,pose));}
         public static readonly ItemDefinition[] Abilities={

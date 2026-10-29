@@ -48,6 +48,32 @@ namespace VectorGame
             if(Ragdoll){foreach(var body in bodies)body.AddForce(velocity,ForceMode.VelocityChange);}
             else Motor.AddForce(velocity,ForceMode.VelocityChange);
         }
+        public void IgnoreWalker(FighterPhysics walker,bool ignore)
+        {
+            foreach(var collider in colliders)Physics.IgnoreCollision(collider,walker.capsule,ignore);
+        }
+        public bool IgnoresWalker(FighterPhysics walker)
+        {
+            foreach(var collider in colliders)if(!Physics.GetIgnoreCollision(collider,walker.capsule))return false;return true;
+        }
+        public bool ShoveAside(Vector3 walker,Vector3 velocity,float dt)
+        {
+            velocity.y=0;if(!Ragdoll||velocity.sqrMagnitude<.04f)return false;
+            bool moved=false;Vector3 forward=velocity.normalized,right=new Vector3(forward.z,0,-forward.x);
+            foreach(var body in bodies)
+            {
+                Vector3 delta=body.worldCenterOfMass-walker;
+                if(delta.y<-.4f||delta.y>2.2f)continue;delta.y=0;
+                if(delta.sqrMagnitude>1.35f*1.35f)continue;
+                float lateral=Vector3.Dot(delta,right),ahead=Vector3.Dot(delta,forward);
+                if(Mathf.Abs(lateral)>.85f||ahead<-.7f||ahead>1.15f)continue;
+                float side=Mathf.Abs(lateral)>.04f?Mathf.Sign(lateral):(owner%2==0?1:-1);
+                Vector3 desired=right*side*3.2f+forward*Mathf.Min(velocity.magnitude,3);
+                Vector3 current=body.linearVelocity;current.y=0;
+                body.AddForce(Vector3.ClampMagnitude(desired-current,4)*Mathf.Min(1,dt*10),ForceMode.VelocityChange);moved=true;
+            }
+            return moved;
+        }
         public void Die(Vector3 addedVelocity)
         {
             if(Ragdoll)return;

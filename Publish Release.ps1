@@ -1,4 +1,4 @@
-param([string]$Tag='v0.4.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.5.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -17,7 +17,7 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Launcher') -Destination $stage -Recurse
     foreach($doc in @('README.md','DESIGN.md')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
     $qaStage=Join-Path $stage 'QA';New-Item -ItemType Directory -Path $qaStage -Force | Out-Null
-    foreach($doc in @('v04-verification.md','v04-checkpoint.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($doc in @('v05-verification.md','v05-checkpoint.png','v05-combat.png','v05-hover.png','v05-fusion.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -30,7 +30,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Weapons, Rarity and Combos';draft=$true;prerelease=$false;body="Five movable actions, simultaneous matching one-handed attacks, locked two-handed groups, separate Auto/Manual ultimates, drag-and-drop inventory, five rarities with automatic three-copy fusion, weapon upgrades, authored body cuts, bounded collision cascades, per-action kills, and combo scoring. Nine standalone scenarios validate gameplay contracts; native Windows UI checks cover drafting and loadout interactions. Procedural art and balance remain prototype work.`n`nExtract the Windows ZIP, run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. Built from $commit. See README and QA/v04-verification.md for details."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Persistent Bodies and Fast Loadouts';draft=$true;prerelease=$false;body="Persistent ragdolls that walking fighters push aside without slowing down; one-step reward drag/equip/advance and double-click auto-equip; direct weapon rewards; item-owned kill counts; 0.5x/1x/2x/4x combat speed; an RPG checkpoint sheet with character preview and icon storage; helmet/armor/boots passives; full hover details; animated fusion comparisons; and an angular sci-fi HUD with descriptions and live stats. Ultimate sits below wave status on the right, with controls top left and the sequence at the bottom edge. Thirteen standalone scenarios validate gameplay contracts; native Windows UI checks cover drafting and loadout interactions. Procedural art and balance remain prototype work.`n`nExtract the Windows ZIP, run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. Built from $commit. See README and QA/v05-verification.md for details."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

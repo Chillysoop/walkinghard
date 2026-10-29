@@ -17,7 +17,16 @@ namespace VectorGame
                 itemKills[a]=2;itemKills[b]=3;MergeKillCounts(a,new[]{b});
                 var delayed=KillOwner(b);itemKills[delayed]=KillsFor(delayed)+1;
                 if(KillsFor(a)!=6||KillsFor(b)!=6)throw new InvalidOperationException("Delayed kill credit must survive fusion");
+                itemKills[Deck.Fists]=7;
+                if(ActionKills(Deck.Basics[0])!=7)throw new InvalidOperationException("Basic must show its weapon's kills");
+                var sword=Deck.Acquire(LoadoutCatalog.Weapons[0]);MoveItem(sword,PlaceKind.Weapon,0);
+                if(ActionKills(Deck.Basics[0])!=0)throw new InvalidOperationException("New weapon inherited slot kills");
+                itemKills[sword]=3;MoveItem(sword,PlaceKind.Weapon,1);
+                if(ActionKills(Deck.Basics[0])!=7||ActionKills(Deck.Basics[1])!=3)throw new InvalidOperationException("Kill counts must follow moved weapons");
+                MoveItem(sword,PlaceKind.Inventory);Deck.Items.Remove(sword);
                 itemKills.Clear();fusedOwners.Clear();modelChecks=true;
+                CheckSpeedClock();SetCombatSpeed(qaBuild=="half"?.5f:qaBuild=="fast"?4:1);
+                if(qaBuild=="armor")for(int i=0;i<3;i++)MoveItem(Deck.Acquire(LoadoutCatalog.Armor[i],2),(PlaceKind)((int)PlaceKind.Helmet+i));
             }
             float elapsed=Elapsed,health=Health,ultimate=UltimateRemaining;Vector3 position=HeroPosition;int count=Deck.Items.Count;
             Advance();TogglePause();
@@ -38,6 +47,14 @@ namespace VectorGame
                     for(int i=0;i<3;i++)if(Deck.Offers[i].def.id==wanted)selected=i;
                 }
                 SelectOffer(selected);
+                if(qaBuild=="quick")
+                {
+                    Deck.SuggestedPlace(Deck.Offers[selected].def,out var place,out int destination);
+                    int picks=OpeningPicks,wave=Wave;var kind=Deck.Draft;
+                    if(!ClaimReward(selected,place,destination))throw new InvalidOperationException("One-step reward equip failed");
+                    qaDraftChecks&=picks<2?OpeningPicks==picks+1:kind==DraftKind.Ability?Deck.Draft==DraftKind.Weapon:State==RunState.Running&&Wave==wave+1;
+                    return;
+                }
                 if(Deck.Draft==DraftKind.Ability)AssignSlot(Array.FindIndex(Deck.Slots,s=>s==null));
                 ConfirmDraft();qaDraftChecks&=Deck.RewardClaimed;
                 return;
@@ -54,7 +71,19 @@ namespace VectorGame
                     if(qaBuild=="twin")MoveItem(Deck.Acquire(def),PlaceKind.Weapon,1);
                 }
                 if(qaBuild=="tempest")MoveItem(Deck.Acquire(LoadoutCatalog.Ultimates[1]),PlaceKind.Ultimate);
-                if(qaHoldCheckpoint){qaHolding=true;return;}
+                if(qaHoldCheckpoint)
+                {
+                    if(qaBuild=="ui")
+                    {
+                        MoveItem(Deck.Acquire(LoadoutCatalog.Weapons[0],3),PlaceKind.Weapon,0);
+                        for(int i=0;i<3;i++)MoveItem(Deck.Acquire(LoadoutCatalog.Armor[i]),(PlaceKind)((int)PlaceKind.Helmet+i));
+                        Deck.Acquire(LoadoutCatalog.Armor[0]);Deck.Acquire(LoadoutCatalog.Weapons[2]);Deck.Acquire(LoadoutCatalog.Ultimates[1]);Deck.Acquire(LoadoutCatalog.Rigs[0]);
+                        Deck.Open(DraftKind.Mixed,false);
+                        Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Armor[0]){owned=2};Deck.Offers[1]=new RewardOffer(LoadoutCatalog.Weapons[1],1,3);Deck.Offers[2]=new RewardOffer(LoadoutCatalog.Abilities[5],2,1){owned=Deck.Copies(LoadoutCatalog.Abilities[5],1)};
+                        HoldCheckpointAfterPick=true;
+                    }
+                    qaHolding=true;return;
+                }
             }
             if(!OpeningDraft&&Deck.Draft==DraftKind.Mixed&&new[]{"sword","hammer","rifle"}.Contains(qaBuild))
             {
@@ -62,6 +91,21 @@ namespace VectorGame
             }
             ConfirmDraft();
             if(State==RunState.Running){int wave=Wave;ConfirmDraft();qaDraftChecks&=wave==Wave;}
+        }
+        void CheckSpeedClock()
+        {
+            // Exercise the same frame-budget path as the player, without an encounter step.
+            float[] speeds={.5f,1,2,4};float savedAccumulator=accumulator;
+            foreach(float speed in speeds)
+            {
+                SetCombatSpeed(speed);accumulator=0;State=RunState.Running;AdvanceCombat(.001f);
+                if(Mathf.Abs(accumulator-.001f*speed)>.000001f)throw new InvalidOperationException("Combat speed must scale the simulation budget");
+                float held=accumulator;State=RunState.Paused;AdvanceCombat(.1f);
+                if(accumulator!=held)throw new InvalidOperationException("Pause must freeze the combat clock at every speed");
+                State=RunState.Drafting;AdvanceCombat(.1f);
+                if(accumulator!=held)throw new InvalidOperationException("Checkpoint must freeze the combat clock at every speed");
+            }
+            accumulator=savedAccumulator;
         }
         void QAManual()
         {
@@ -77,19 +121,23 @@ namespace VectorGame
         [Serializable] sealed class QAReport
         {
             public string result,build,loadout;public int tempestHits,seed,waves,kills,spawned,alive,casts,paired,independentTargets,ultimates,severs,reloads,launches,collisions,cascadeHop,ragdolls,physicsContacts,worldContacts,leftDoors,rightDoors,horizon,visibleSpawns,orderErrors,rerolls,fusions,score,bestCombo,bestMultiplier,creditedKills;
-            public float elapsed,health;public bool passed,draftChecks,manualChecks,modelChecks,ultimateTiming;public int[] slotCasts,castTrace,weaponHits;public float[] ultimateTimes,ultimateDeadlines;public WaveReport[] reports;
+            public float elapsed,health,speed,oldestBody,maxHealth,armorHealing,armorPreventedDamage;public int retainedBodies,walkingShoves,armorBonusHits;public bool passed,draftChecks,manualChecks,modelChecks,ultimateTiming,walkingIgnoresBodies;public int[] slotCasts,castTrace,weaponHits;public float[] ultimateTimes,ultimateDeadlines;public WaveReport[] reports;
         }
         void ReportQA()
         {
             reported=true;bool timing=true;for(int i=0;i<ultimateTimes.Count;i++)timing&=ultimateTimes[i]+.02f>=ultimateDeadlines[i];
-            int credited=itemKills.Where(k=>k.Key.def.kind!=ItemKind.Weapon).Sum(k=>k.Value);
+            int credited=itemKills.Sum(k=>k.Value);
             var report=new QAReport{result=State.ToString(),build=qaBuild,tempestHits=TempestHits,seed=Seed,loadout=Deck.Loadout,waves=Waves.Count,kills=Kills,spawned=Spawned,alive=enemies.Count,casts=AbilityCasts,paired=PairedCasts,independentTargets=IndependentTargets,ultimates=UltimateCasts,severs=Severs,reloads=Reloads,launches=Launches,collisions=CollisionHits,cascadeHop=MaxCascadeHop,ragdolls=Ragdolls,physicsContacts=PhysicsContacts,worldContacts=WorldContacts,leftDoors=LeftEntries,rightDoors=RightEntries,horizon=HorizonEntries,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,rerolls=Deck.Rerolls,fusions=Deck.Fusions,score=Score.Banked,bestCombo=Score.Best,bestMultiplier=Score.BestMultiplier,creditedKills=credited,elapsed=Elapsed,health=Health,draftChecks=qaDraftChecks,manualChecks=qaManualChecks&&(qaBuild!="manual"||qaManualPhase==3),modelChecks=modelChecks,ultimateTiming=timing,slotCasts=SlotCasts,castTrace=castTrace.ToArray(),weaponHits=WeaponHits,ultimateTimes=ultimateTimes.ToArray(),ultimateDeadlines=ultimateDeadlines.ToArray(),reports=Waves.ToArray()};
             bool weapon=qaBuild!="sword"||Severs>0;
             weapon&=qaBuild!="tempest"||TempestHits>0;
             weapon&=qaBuild!="hammer"||WeaponHits[(int)WeaponKind.Hammer]>0;
             weapon&=qaBuild!="rifle"||(WeaponHits[(int)WeaponKind.Rifle]>0&&Reloads>0);
             weapon&=qaBuild!="twin"||(WeaponHits[(int)WeaponKind.Pistol]>0&&IndependentTargets>0&&Reloads>0);
-            report.passed=State==RunState.Complete&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&UltimateCasts>0&&Score.Banked>0&&weapon;
+            report.retainedBodies=corpses.Count;report.walkingShoves=CorpseShoves;report.oldestBody=corpses.Count==0?0:corpses.Max(e=>e.deathAge);report.speed=CombatSpeed;
+            report.walkingIgnoresBodies=corpses.All(c=>c.physics.IgnoresWalker(heroPhysics)&&(flights.Exists(f=>f.body==c)||enemies.All(e=>c.physics.IgnoresWalker(e.physics))));
+            report.maxHealth=MaxHealth;report.armorHealing=ArmorHealing;report.armorPreventedDamage=ArmorPreventedDamage;report.armorBonusHits=ArmorBonusHits;
+            weapon&=qaBuild!="armor"||(MaxHealth>tuning.heroHealth&&ArmorBonusHits>0&&ArmorPreventedDamage>0&&ArmorHealing>0);
+            report.passed=State==RunState.Complete&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&UltimateCasts>0&&Score.Banked>0&&weapon&&corpses.Count==Kills&&report.oldestBody>7&&CorpseShoves>0&&report.walkingIgnoresBodies;
             string path=string.IsNullOrEmpty(qaPath)?Path.Combine(Application.persistentDataPath,"qa-report.json"):qaPath;
             Directory.CreateDirectory(Path.GetDirectoryName(path));File.WriteAllText(path,JsonUtility.ToJson(report,true));Debug.Log("WALKING_HARD_QA "+JsonUtility.ToJson(report));Application.Quit(report.passed?0:2);
         }

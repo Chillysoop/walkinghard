@@ -7,8 +7,8 @@ namespace VectorGame
     {
         public VectorEncounter game;
         readonly Dictionary<string,GUIStyle> styles=new Dictionary<string,GUIStyle>();
-        readonly Color ink=new Color(.035f,.065f,.075f,.96f),line=new Color(.25f,.4f,.42f,.6f),white=new Color(.93f,.98f,.97f),muted=new Color(.68f,.79f,.80f);
-        static readonly Color Accent=new Color(.45f,1,.79f),Gold=new Color(1,.77f,.37f);
+        readonly Color ink=new Color(.018f,.045f,.060f,.94f),line=new Color(.29f,.48f,.57f,.8f),white=new Color(.91f,.97f,1),muted=new Color(.46f,.66f,.77f);
+        static readonly Color Accent=new Color(.06f,1,.79f),Gold=new Color(1,.66f,.16f);
         GUIStyle Style(int size,bool bold=false,TextAnchor anchor=TextAnchor.UpperLeft)
         {
             string key=size+"/"+bold+"/"+anchor;if(styles.TryGetValue(key,out var s))return s;
@@ -17,71 +17,112 @@ namespace VectorGame
         void Label(Rect r,string text,int size,Color color,bool bold=false,TextAnchor anchor=TextAnchor.UpperLeft)
         {var s=Style(size,bold,anchor);s.normal.textColor=color;GUI.Label(r,text,s);}
         static void Box(Rect r,Color color){var previous=GUI.color;GUI.color=color;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=previous;}
-        void Panel(Rect r){Box(r,ink);Box(new Rect(r.x,r.y,r.width,1),line);}
+        void Panel(Rect r)
+        {
+            Plate(r,ink,line,11);
+            Color corner=new Color(.58f,.78f,.9f,.9f);
+            Stroke(new Vector2(r.x,r.y+14),new Vector2(r.x+14,r.y),corner,2);
+            Stroke(new Vector2(r.xMax-14,r.yMax),new Vector2(r.xMax,r.yMax-14),corner,2);
+        }
         bool Button(Rect r,string text,bool primary=false)
         {
             bool hover=r.Contains(Event.current.mousePosition);
-            Box(r,!GUI.enabled?new Color(.08f,.13f,.15f):primary?(hover?new Color(.65f,1,.86f):Accent):(hover?new Color(.17f,.29f,.29f):new Color(.09f,.16f,.18f)));
-            Label(r,text,14,!GUI.enabled?muted:primary?ink:white,true,TextAnchor.MiddleCenter);
+            Color tint=!GUI.enabled?line:primary?Accent:muted;
+            Plate(r,hover&&GUI.enabled?new Color(.07f,.18f,.21f,.98f):ink,tint,5,primary?1.5f:1);
+            Label(r,text,12,!GUI.enabled?line:primary?Accent:white,true,TextAnchor.MiddleCenter);
             return GUI.Button(r,GUIContent.none,GUIStyle.none);
         }
         void OnGUI()
         {
             if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f),w=Screen.width/scale,h=Screen.height/scale;
+            hoveredItem=null;
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
             if(game.State==VectorEncounter.RunState.Ready){Intro(w,h);return;}
-            if(game.State==VectorEncounter.RunState.Drafting){Draft(w,h);return;}
+            if(game.State==VectorEncounter.RunState.Drafting){Draft(w,h);DrawFusionFeedback(w,h);DrawItemTooltip(w,h);return;}
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
-            Panel(new Rect(25,24,270,118));Label(new Rect(43,36,235,26),"WALKING HARD",24,white,true);
-            Label(new Rect(43,76,225,20),"INTEGRITY   "+Mathf.CeilToInt(game.Health)+" / "+(int)game.tuning.heroHealth,14,muted);
-            Box(new Rect(43,111,234,5),line);Box(new Rect(43,111,234*Mathf.Clamp01(game.Health/game.tuning.heroHealth),5),game.Health<game.tuning.heroHealth*.3f?Gold:Accent);
-            Panel(new Rect(w-277,24,252,118));Label(new Rect(w-257,37,160,20),game.CleaningUp?"CLEANUP":"WAVE "+game.Wave+" / 3",15,Accent,true);
-            Label(new Rect(w-105,36,60,40),Mathf.CeilToInt(game.WaveRemaining).ToString("00")+"s",29,white,true,TextAnchor.UpperRight);
-            Label(new Rect(w-257,86,220,40),game.Kills+" takedowns  /  "+game.EnemyCount+" incoming\n"+game.CollisionHits+" body impacts",14,muted);
-            if(game.EventAge<1.4f)Label(new Rect(w/2-330,h-200,660,36),game.EventText,21,game.EventText.Contains("COLLISION")?Gold:Accent,true,TextAnchor.MiddleCenter);
-            CombatBar(w,h);
+            CombatHeader(w,h);CombatBar(w,h);
+            if(game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Gold:Accent,true,TextAnchor.MiddleCenter);
             if(game.DamageFlash>0&&!game.ReducedMotion){var c=new Color(1,.23f,.1f,game.DamageFlash*.3f);Box(new Rect(0,0,w,5),c);Box(new Rect(0,h-5,w,5),c);}
+            DrawFusionFeedback(w,h);DrawItemTooltip(w,h);
         }
         void Intro(float w,float h)
         {
             Panel(new Rect(28,115,470,485));
-            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.4",15,Accent,true);
-            Label(new Rect(52,189,420,125),"BUILD THE ORDER.\nBREAK THE CROWD.",40,white,true);
+            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.5",15,Accent,true);
+            Label(new Rect(52,189,420,125),"BUILD THE ORDER.\nBREAK THE CROWD.",34,white,true);
             Label(new Rect(55,333,400,90),"Two weapon attacks. Three chosen abilities.\nArrange all five; combat runs automatically.\nYour ultimate has its own 12-second timer.",18,muted);
             Label(new Rect(55,438,400,48),"Find weapons at checkpoints. Pair matching attacks, split bodies, and build collision cascades.",16,white);
             if(Button(new Rect(55,521,410,49),"DRAFT YOUR LOADOUT  [ ENTER ]",true))game.Begin();
             Label(new Rect(29,h-50,850,25),"THREE WAVES  /  CHOOSE ONE OF THREE  /  A NEW DRAFT EACH RUN",14,muted);
         }
+        void CombatHeader(float w,float h)
+        {
+            Panel(new Rect(20,18,306,105));
+            TypeIcon(new Rect(36,42,36,36),ItemKind.Rig,muted);
+            Label(new Rect(84,32,223,28),"WALKING HARD",22,white,true);
+            Label(new Rect(84,69,220,19),"INTEGRITY     "+Mathf.CeilToInt(game.Health)+" / "+(int)game.MaxHealth,13,muted,true);
+            Segments(new Rect(38,101,270,7),game.Health/game.MaxHealth,game.Health<game.MaxHealth*.3f?Gold:Accent,14);
+            if(Button(new Rect(20,132,148,28),"PAUSE [ SPACE ]"))game.TogglePause();
+            if(Button(new Rect(178,132,148,28),"NEW RUN [ R ]"))game.Begin();
+            Label(new Rect(21,177,53,22),"SPEED",11,muted,true);
+            float[] speeds={.5f,1,2,4};string[] labels={"0.5x","1x","2x","4x"};
+            for(int i=0;i<4;i++)if(Button(new Rect(78+i*63,169,58,29),labels[i],game.CombatSpeed==speeds[i]))game.SetCombatSpeed(speeds[i]);
+            Panel(new Rect(20,214,238,142));
+            Label(new Rect(38,227,202,18),"SCORE",13,muted,true);
+            Label(new Rect(38,247,205,36),game.Score.Banked.ToString("N0"),32,white,true);
+            Label(new Rect(38,288,205,27),game.Score.Kills>0?"x"+game.Score.Multiplier+"  +"+game.Score.Pending.ToString("N0"):"BEST "+game.Score.Best.ToString("N0"),22,Gold,true);
+            Label(new Rect(38,321,204,18),game.Score.Kills>0?game.Score.Kills+" KILL COMBO  /  "+game.Score.Reason:"CHAIN + BULK KILLS",10,muted,true);
+            Segments(new Rect(38,343,202,5),game.Score.Remaining/ComboScore.Window,Gold,10);
+            float x=w-330;
+            Panel(new Rect(x,18,310,108));
+            Label(new Rect(x+20,34,190,23),game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / 03",17,white,true);
+            Label(new Rect(x+231,29,61,40),Mathf.CeilToInt(game.WaveRemaining)+"s",31,white,true,TextAnchor.UpperRight);
+            Stroke(new Vector2(x+20,64),new Vector2(x+290,64),line,1);
+            string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
+            string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
+            for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
+            UltimatePanel(new Rect(x,138,310,180));
+        }
+        void UltimatePanel(Rect r)
+        {
+            var item=game.Deck.Ultimate;Panel(r);Outline(r,new Color(Violet.r,Violet.g,Violet.b,.55f),11);
+            ActionGlyph(new Rect(r.x+13,r.y+19,40,40),item?.def,Violet);
+            Label(new Rect(r.x+65,r.y+14,r.width-80,18),"ULTIMATE / "+ItemRarity.Names[item?.rank??1].ToUpperInvariant(),9,item==null?muted:RarityColor(item.rank),true);
+            Label(new Rect(r.x+65,r.y+34,r.width-80,24),item?.def.name??"EMPTY",17,Violet,true);
+            string status=item==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED":"READY";
+            Label(new Rect(r.x+16,r.y+68,145,23),status,21,Violet,true);
+            Label(new Rect(r.x+161,r.y+73,133,18),"Kills: "+game.KillsFor(item),12,muted,true,TextAnchor.UpperRight);
+            Label(new Rect(r.x+16,r.y+98,r.width-32,18),AttackDescription(item),11,white);
+            Label(new Rect(r.x+16,r.y+120,r.width-32,18),CombatStats(item)+" / "+game.UltimateCooldown.ToString("0")+"s CD",10,muted,true);
+            Segments(new Rect(r.x+16,r.y+140,r.width-32,4),1-game.UltimateRemaining/game.UltimateCooldown,Violet,20);
+            ItemTooltip(new Rect(r.x,r.y,r.width,146),item);
+            if(Button(new Rect(r.x+16,r.y+151,133,23),(game.UltimateAutomatic?"AUTO":"MANUAL")+" [ U ]"))game.ToggleUltimate();
+            GUI.enabled=item!=null&&game.UltimateRemaining<=0&&game.ActiveSlot!=5;
+            if(Button(new Rect(r.x+158,r.y+151,136,23),"QUEUE [ F ]",true))game.RequestUltimate();GUI.enabled=true;
+        }
         void CombatBar(float w,float h)
         {
-            float y=h-137,width=(w-90)/5;
+            float y=h-151,width=(w-100)/5;
+            Panel(new Rect(16,y-10,w-32,157));
             for(int i=0;i<5;i++)
             {
-                float x=25+i*(width+10);var item=game.Deck.Slots[i];bool active=i==game.ActiveSlot||i==game.PairSlot,next=game.ActiveSlot<0&&i==game.NextSlot;
-                Panel(new Rect(x,y,width,108));Box(new Rect(x,y,width,3),active?Accent:next?Gold:line);
-                Label(new Rect(x+12,y+11,width-24,20),"SLOT "+(i+1)+(active?" / EXECUTING":next?" / NEXT":""),12,active?Accent:next?Gold:muted,true);
-                Label(new Rect(x+12,y+36,width-24,42),item==null?"Empty":item.def.kind==ItemKind.Basic?item.def.name+" / "+game.Deck.WeaponFor(item).def.name:item.def.name,17,white,true);
-                Label(new Rect(x+12,y+81,width-24,18),item==null?"Empty / skipped":"Kills: "+game.ActionKills(item)+(game.Deck.PairAfter(i)>=0?(game.Deck.TwoHanded?" / LOCKED 2H":" / PAIRED"):""),12,game.Deck.PairAfter(i)>=0?Gold:muted);
-
-                if(active)Box(new Rect(x+12,y+102,(width-24)*game.ActionProgress,3),Accent);
+                float x=30+i*(width+10);var item=game.Deck.Slots[i];var shown=item?.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
+                bool active=i==game.ActiveSlot||i==game.PairSlot,next=!active&&i==game.NextSlot;
+                Color edge=active?Accent:next?Gold:line;
+                Plate(new Rect(x,y,width,137),ink,edge,8,active?2:1);
+                if(i<4){Stroke(new Vector2(x+width,y+65),new Vector2(x+width+10,y+65),edge);Box(new Rect(x+width+3,y+63,4,4),edge);}
+                ActionGlyph(new Rect(x+10,y+10,35,35),shown?.def,active?Accent:muted);
+                Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"BASIC "+(item.mount+1):"ABILITY"),10,edge,true);
+                Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
+                Label(new Rect(x+12,y+57,width-24,34),AttackDescription(item),12,white);
+                Label(new Rect(x+12,y+94,width-24,17),CombatStats(item),11,muted,true);
+                Label(new Rect(x+12,y+115,width-24,17),shown==null?"SKIPPED":"Kills: "+game.ActionKills(item)+"  /  "+ItemRarity.Names[shown.rank],11,shown==null?muted:RarityColor(shown.rank));
+                if(active)Box(new Rect(x+12,y+133,(width-24)*game.ActionProgress,2),Accent);
+                ItemTooltip(new Rect(x,y,width,137),item);
             }
-            GroupOutline(25,y,width,10,108);
-            Label(new Rect(25,h-24,w-50,20),"SEQUENCE ALWAYS AUTOMATIC  /  EMPTY SLOTS SKIP  /  SPACE pause  /  R new run  /  T repeat seed "+game.Seed,12,muted,false,TextAnchor.MiddleCenter);
-            Panel(new Rect(w/2-215,24,430,118));TypeIcon(new Rect(w/2+184,33,20,20),ItemKind.Ultimate,Violet);
-            string status=game.Deck.Ultimate==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED · NEXT ACTION":"READY";
-            Label(new Rect(w/2-199,35,398,21),"ULTIMATE / "+(game.Deck.Ultimate?.def.name.ToUpperInvariant()??"EMPTY"),14,Violet,true);
-            Label(new Rect(w/2-199,61,398,23),status+" / Kills: "+game.KillsFor(game.Deck.Ultimate),19,Violet,true);
-            if(Button(new Rect(w/2-199,99,192,29),"ULT: "+(game.UltimateAutomatic?"AUTO":"MANUAL")+" [ U ]"))game.ToggleUltimate();
-            GUI.enabled=game.Deck.Ultimate!=null&&game.UltimateRemaining<=0&&game.ActiveSlot!=5;
-            if(Button(new Rect(w/2+4,99,195,29),"QUEUE ULTIMATE [ F ]",true))game.RequestUltimate();GUI.enabled=true;
-            if(game.Preparation>0||game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-300,y-32,600,26),game.ActionStatus,15,Gold,true,TextAnchor.MiddleCenter);
-            Panel(new Rect(25,194,270,112));
-            Label(new Rect(43,206,234,20),"SCORE  "+game.Score.Banked.ToString("N0"),17,white,true);
-            Label(new Rect(43,235,234,29),game.Score.Kills>0?game.Score.Base.ToString("N0")+" × "+game.Score.Multiplier+" = "+game.Score.Pending.ToString("N0"):"BEST COMBO "+game.Score.Best.ToString("N0"),game.Score.Kills>0?17:15,Gold,true);
-            Label(new Rect(43,269,234,20),game.Score.Kills>0?game.Score.Reason+" / "+game.Score.Kills+" KILLS":"MULTI-KILLS + CHAIN KILLS",11,muted);
-            Box(new Rect(43,295,234*game.Score.Remaining/ComboScore.Window,3),Gold);
-            if(Button(new Rect(43,149,234,28),"PAUSE [ SPACE ]"))game.TogglePause();
+            GroupOutline(30,y,width,10,137);
+            if(game.Preparation>0||game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-300,y-38,600,24),game.ActionStatus,13,Gold,true,TextAnchor.MiddleCenter);
         }
         void Pause(float w,float h)
         {
