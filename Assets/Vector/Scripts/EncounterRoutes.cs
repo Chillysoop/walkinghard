@@ -86,7 +86,7 @@ namespace VectorGame
             for(int i=0;i<2;i++)
             {
                 var route=i==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach;
-                var r=new Rect(x+26+i*512,y+119,496,208);Color color=i==0?Accent:Gold;
+                var r=new Rect(x+26+i*512,y+119,496,208);Color color=i==0?Accent:Strong;
                 Plate(r,ink,color,9);TypeIcon(new Rect(r.x+16,r.y+17,30,30),i==0?ItemKind.Armor:ItemKind.Ability,color);
                 Label(new Rect(r.x+58,r.y+17,r.width-74,29),VectorEncounter.RouteName(route),21,color,true);
                 Label(new Rect(r.x+18,r.y+60,r.width-36,65),VectorEncounter.RouteDescription(route),16,white);

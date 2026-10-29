@@ -36,13 +36,13 @@ namespace VectorGame
                 case "reclaimer":return "Steal life; stronger below half health.";
                 case "predator":return "Healing speeds your next ability.";
                 case "harvest":return "Drain the crowd to restore health.";
-                case "SteelJab":return "Quick punch; interrupts attacks.";
-                case "Breaker":return "Palm strike staggers a wide cone.";
-                case "ForcePush":return "Push enemies and bodies away.";
+                case "SteelJab":return "Punch; interrupt attacks.";
+                case "Breaker":return "Stagger a wide cone.";
+                case "ForcePush":return "Push foes and bodies away.";
                 case "MassDriver":return "Launch a foe through the crowd.";
-                case "GravityWell":return "Pull nearby foes into a cluster.";
-                case "ArcBolt":return "Chain lightning between enemies.";
-                case "ConductiveBrand":return "Mark foes for bonus lightning damage.";
+                case "GravityWell":return "Pull nearby foes together.";
+                case "ArcBolt":return "Chain lightning between foes.";
+                case "ConductiveBrand":return "Mark foes for bonus lightning.";
                 case "VectorTether":return "Pull enemies into a straight line.";
                 case "ReapingCut":return "Slash weak foes; kills sever.";
                 case "Counterguard":return "Absorb hits; empower the next basic.";
@@ -54,7 +54,7 @@ namespace VectorGame
                 case "hammer":return item.rank>=3?"Smash and launch up to three foes.":"Smash and launch a foe into others.";
                 case "pistol":return item.rank>=2?"Quick shots ricochet between foes.":"Quick shots; reload after six.";
                 case "rifle":return "Pierce a line; reload after four.";
-                case "scattergun":return "Short-range blast pushes foes back.";
+                case "scattergun":return "Close blast; push foes back.";
                 case "singularity":return "Launch foes into collision chains.";
                 case "tempest":return "Chain lightning; consume marks.";
                 case "cyclone":return "Full-circle cut; killing blows sever.";
@@ -66,7 +66,7 @@ namespace VectorGame
                 case "plate":return "Finish a sequence to arm a guard.";
                 case "reactive":return "Crowds trigger a repelling barrier.";
                 case "grounding":return "Lightning/body hits build a barrier.";
-                case "duelist":return "Reload or sever to guard two hits.";
+                case "duelist":return "Reload or sever: guard "+LoadoutCatalog.DuelistWardHits(item)+" hits.";
                 case "treads":return "First kill each turn drops healing.";
                 case "momentum":return "Launching speeds your next ability.";
                 case "loader":return "Faster reloads stagger nearby foes.";
@@ -82,16 +82,16 @@ namespace VectorGame
                 case "aug-Afterfield":return "Weaker opening leaves a lasting field.";
                 case "aug-SplitPayload":return "Launch two bodies with less force.";
                 case "aug-Backwash":return "Weaker push, then pull survivors back.";
-                case "aug-Discharge":return "Barrier bursts instead of boosting a basic.";
+                case "aug-Discharge":return "Trade basic boost for a barrier burst.";
                 case "aug-Anchor":return "Weaker pulls also stagger moved foes.";
                 case "aug-Flurry":return "Add two quick follow-up punches.";
-                case "aug-PalmDrive":return "Keep full punch damage; add a shove.";
-                case "aug-Crosscut":return "Add a return cut; normal timing.";
+                case "aug-PalmDrive":return "Add a shove to punches.";
+                case "aug-Crosscut":return "Add a return cut.";
                 case "aug-HookedEdge":return "Full cleave pulls the first survivor.";
                 case "aug-Groundbreaker":return "Full launch plus a stagger wave.";
                 case "aug-Piledriver":return "Boost primary launch; keep splash.";
-                case "aug-BoreRounds":return "Pierce lined-up foes; normal timing.";
-                case "aug-BreachLoad":return "Normal reload arms a stagger burst.";
+                case "aug-BoreRounds":return "Shots pierce lined-up foes.";
+                case "aug-BreachLoad":return "Reload arms a stagger burst.";
                 default:return item.def.description;
             }
         }

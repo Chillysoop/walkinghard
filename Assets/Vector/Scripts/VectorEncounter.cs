@@ -172,6 +172,7 @@ namespace VectorGame
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
         public void Begin(bool repeatSeed=false)
         {
+            EndTutorial();
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
@@ -200,11 +201,11 @@ namespace VectorGame
         }
         public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending)Deck.Select(index);}
         public void AssignSlot(int slot){if(State==RunState.Drafting)Deck.Assign(slot);}
-        public void Reroll(){if(State==RunState.Drafting&&!RoutePending)Deck.Reroll();}
+        public void Reroll(){if(State==RunState.Drafting&&!RoutePending&&!TutorialActive)Deck.Reroll();}
         public void SwapSlots(int a,int b){if(State==RunState.Drafting)Deck.Swap(a,b);}
         public bool MoveItem(LoadoutItem item,PlaceKind place,int index=0)
         {
-            if(State!=RunState.Drafting)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(State!=RunState.Drafting||!TutorialMoveAllowed(item,place,index))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             bool moved=Deck.Move(item,place,index);
             Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
@@ -212,11 +213,11 @@ namespace VectorGame
         }
         public bool ClaimReward(int offer,PlaceKind place,int index,bool continueImmediately=true)
         {
-            if(State!=RunState.Drafting||RoutePending)return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(State!=RunState.Drafting||RoutePending||!TutorialClaimAllowed(offer))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             if(!Deck.ClaimTo(offer,place,index))return false;
             Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
-            if(continueImmediately)ConfirmDraft();return true;
+            if(continueImmediately&&!TutorialActive)ConfirmDraft();return true;
         }
         public bool AutoEquip(LoadoutItem item)
         {
@@ -228,12 +229,14 @@ namespace VectorGame
             if(Deck.RewardClaimed){ConfirmDraft();return;}
             if(Deck.Selected<0)return;
             Deck.SuggestedPlace(Deck.Offers[Deck.Selected].def,out var place,out int index);
+            if(index==-2&&!System.Linq.Enumerable.Any(Deck.CompatibleHosts(Deck.Offers[Deck.Selected].def))){place=PlaceKind.Inventory;index=0;}
             if(index==-2)return;
             if(Deck.SelectedSlot>=0&&Deck.Offers[Deck.Selected].def.kind==ItemKind.Ability){place=PlaceKind.Sequence;index=Deck.SelectedSlot;}
             ClaimReward(Deck.Selected,place,index,continueImmediately);
         }
         public void ConfirmDraft()
         {
+            if(TutorialActive){TutorialNext();return;}
             if(State!=RunState.Drafting||RoutePending)return;
             if(!Deck.RewardClaimed){Deck.Claim();return;}
             CompleteDraft();
@@ -263,12 +266,13 @@ namespace VectorGame
         float SpawnRange(float min,float max)=>Mathf.Lerp(min,max,(float)spawnRandom.NextDouble());
         void Update()
         {
+            if(TutorialActive){StepTutorial(Time.unscaledDeltaTime);return;}
             if(MechanicReview){StepMechanicReview(Time.unscaledDeltaTime);return;}
             if(!qa&&hud?.HandleOverlayInput()!=true)
             {
                 if(Input.GetKeyDown(KeyCode.Return)&&(State==RunState.Ready||State==RunState.Complete||State==RunState.Defeated))Begin();
                 if(Input.GetKeyDown(KeyCode.R))Begin();
-                if(Input.GetKeyDown(KeyCode.T))Begin(true);
+                if(Input.GetKeyDown(KeyCode.T)){if(State==RunState.Ready)BeginTutorial();else Begin(true);}
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Escape))TogglePause();
                 if(Input.GetKeyDown(KeyCode.U))ToggleUltimate();
                 if(Input.GetKeyDown(KeyCode.F))RequestUltimate();

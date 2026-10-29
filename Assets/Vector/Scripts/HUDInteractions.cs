@@ -109,7 +109,7 @@ namespace VectorGame
             if(kind==14){Ring(c,7,color);Box(new Rect(c.x-2,c.y-2,4,4),color);}
         }
         void EffectTag(float x,float y,int kind,string label,bool consumes)
-        {EffectIcon(new Rect(x,y,20,20),kind,consumes?Gold:Accent);Label(new Rect(x+25,y+1,250,20),(consumes?"USES ":"CREATES ")+label,12,consumes?Gold:muted);}
+        {EffectIcon(new Rect(x,y,20,20),kind,consumes?Strong:Accent);Label(new Rect(x+25,y+1,250,20),(consumes?"USES ":"CREATES ")+label,12,consumes?Strong:muted);}
         void DrawSynergies(Rect r,AbilityId id)
         {
             switch(id)

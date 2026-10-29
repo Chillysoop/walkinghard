@@ -12,16 +12,20 @@ namespace VectorGame
         bool detailHovered,detailValid;
         float detailLastHover;
         Vector2 detailScroll;
-        string detailIdentity="";
+        string detailIdentity="",pendingTooltipIdentity="";
+        float pendingTooltipSince;
         void ItemTooltip(Rect r,LoadoutItem item,RewardOffer offer=null)
         {
-            if(!detailHovered&&item!=null&&r.Contains(Event.current.mousePosition)){hoveredItem=item;hoveredOffer=offer;detailLastHover=Time.realtimeSinceStartup;}
+            if(!detailHovered&&item!=null&&r.Contains(Pointer)){hoveredItem=item;hoveredOffer=offer;detailLastHover=Time.realtimeSinceStartup;}
         }
         void DrawItemTooltip(float w,float h)
         {
             var item=hoveredItem;bool retained=item==null&&detailValid&&Time.realtimeSinceStartup-detailLastHover<.2f;
             if(retained){item=detailItem;hoveredOffer=detailOffer;}
-            if(item==null||dragging||iconGuide){detailItem=null;return;}
+            if(item==null||dragging||iconGuide){detailItem=null;pendingTooltipIdentity="";return;}
+            string pending=item.def.id+":"+item.rank+":"+(hoveredOffer==null?"owned":"offer");
+            if(pending!=pendingTooltipIdentity){pendingTooltipIdentity=pending;pendingTooltipSince=Time.realtimeSinceStartup;}
+            if(presentationHover==null&&!detailHovered&&!retained&&Time.realtimeSinceStartup-pendingTooltipSince<.5f){detailItem=null;return;}
             var shown=item.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
             bool offensive=shown.def.kind==ItemKind.Weapon||shown.def.kind==ItemKind.Ability||shown.def.kind==ItemKind.Ultimate;
             string stats=offensive?CombatStats(item):ItemStats(shown.def,shown.rank);
@@ -41,7 +45,7 @@ namespace VectorGame
             if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";if(shown.def.tags.Contains("siphon"))body+="\nHealing: "+game.ContributionFor(shown).healing.ToString("0.#")+" HP";
             if(shown.def.kind==ItemKind.Augment)body=ModuleDetails(shown);
             float width=450,bodyHeight=Style(11).CalcHeight(new GUIContent(body),width-44)+8,height=Mathf.Min(h-24,bodyHeight+228);
-            Vector2 mouse=presentationHover!=null?new Vector2(w*.6f,h*.4f):Event.current.mousePosition;float x=mouse.x+18,y=mouse.y+18;
+            Vector2 mouse=presentationHover!=null?new Vector2(w*.6f,h*.4f):Pointer;float x=mouse.x+18,y=mouse.y+18;
             if(x+width>w-12)x=mouse.x-width-18;
             if(y+height>h-12)y=mouse.y-height-18;
             Rect r=new Rect(Mathf.Clamp(x,12,w-width-12),Mathf.Clamp(y,12,Mathf.Max(12,h-height-12)),width,height);
@@ -59,9 +63,9 @@ namespace VectorGame
             Label(new Rect(0,0,width-48,bodyHeight),body,11,white);GUI.EndScrollView();
         }
         static readonly Color ModuleEdge=new Color(.45f,.59f,.66f);
-        static readonly Color Violet=new Color(.78f,.64f,1),Blue=new Color(.48f,.74f,1);
+        static readonly Color SoftWhite=new Color(.85f,.92f,.94f);
         static Color RarityColor(int rarity)=>rarity==5?new Color(1,.61f,.22f):rarity==4?new Color(.78f,.48f,1):rarity==3?new Color(.36f,.66f,1):rarity==2?new Color(.45f,.87f,.43f):new Color(.79f,.82f,.84f);
-        static Color TypeColor(ItemKind kind)=>kind==ItemKind.Augment?Violet:kind==ItemKind.Weapon||kind==ItemKind.Basic?Gold:kind==ItemKind.Ultimate?Violet:kind==ItemKind.Rig||LoadoutCatalog.IsArmor(kind)?Blue:Accent;
+        static Color TypeColor(ItemKind kind)=>new Color(.91f,.97f,1);
         static void Border(Rect r,Color color,float thickness=2)
         {Box(new Rect(r.x,r.y,r.width,thickness),color);Box(new Rect(r.x,r.yMax-thickness,r.width,thickness),color);Box(new Rect(r.x,r.y,thickness,r.height),color);Box(new Rect(r.xMax-thickness,r.y,thickness,r.height),color);}
         static void LockIcon(Vector2 center,Color color)
@@ -204,8 +208,8 @@ namespace VectorGame
             if(!game.Deck.TwoHanded)return;
             int a=System.Array.IndexOf(game.Deck.Slots,game.Deck.Basics[0]);
             Rect r=new Rect(x+a*(width+gap)-4,y-4,width*2+gap+8,height+8);
-            Outline(r,Gold,9,2);var c=new Vector2(r.x+width+gap/2+4,r.y+height/2);
-            Box(new Rect(c.x-13,c.y-13,26,26),ink);LockIcon(c,Gold);
+            Outline(r,Strong,9,2);var c=new Vector2(r.x+width+gap/2+4,r.y+height/2);
+            Box(new Rect(c.x-13,c.y-13,26,26),ink);LockIcon(c,Strong);
         }
     }
 }

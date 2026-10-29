@@ -18,10 +18,10 @@ namespace VectorGame
         }
         string FusionSummary(ItemDefinition def,int rank,int incoming=0)
         {
-            if(def.kind==ItemKind.Augment)return "NO FUSION / SCALES WITH HOST";
+            if(def.kind==ItemKind.Augment)return "NO FUSION";
             if(rank==5)return "LEGENDARY / MAX RARITY";
             int count=game.Deck.Copies(def,rank),total=count+incoming;
-            return incoming>0?(total>=3?"AUTO-FUSES TO "+ItemRarity.Names[rank+1].ToUpperInvariant():count+" OWNED + "+incoming+" = "+total+"/3 "+ItemRarity.Names[rank].ToUpperInvariant()):count+"/3 "+ItemRarity.Names[rank].ToUpperInvariant()+" / NEED "+Mathf.Max(0,3-count)+" MORE";
+            return incoming>0?(total>=3?"FUSES TO "+ItemRarity.Names[rank+1].ToUpperInvariant():total+"/3 "+ItemRarity.Names[rank].ToUpperInvariant()+" WITH THIS PICK"):count+"/3 "+ItemRarity.Names[rank].ToUpperInvariant()+" / NEED "+Mathf.Max(0,3-count)+" MORE";
         }
         void FusionPips(Rect r,int owned,int incoming,Color color)
         {
@@ -48,7 +48,7 @@ namespace VectorGame
             }
             if(d.kind==ItemKind.Augment)
             {
-                Label(new Rect(r.x+10,r.y+8,r.width-20,17),"AUGMENT / DOES NOT FUSE",11,Violet,true);
+                Label(new Rect(r.x+10,r.y+8,r.width-20,17),"AUGMENT / DOES NOT FUSE",11,Accent,true);
                 Label(new Rect(r.x+10,r.y+29,r.width-20,32),"Attach to a compatible weapon or ability.\nIts effect scales from that host's rarity.",11,white);return;
             }
             Label(new Rect(r.x+10,r.y+7,r.width-20,17),FusionSummary(d,item.rank,incoming),11,color,true);
@@ -58,7 +58,7 @@ namespace VectorGame
             int spare=incoming>0&&owned+incoming>=3?(owned+incoming)%3:0;
             Label(new Rect(r.x+90,r.y+28,r.width-100,20),"3 "+ItemRarity.Names[item.rank]+" → 1 "+ItemRarity.Names[item.rank+1]+(spare>0?" / "+spare+" left":""),11,white,true);
             string others=OtherRarities(d,item.rank);
-            Label(new Rect(r.x+10,r.y+51,r.width-20,31),others.Length>0?"NOT COUNTED: "+others+". Rarities must match.":"Exact same item + rarity. Equipped and stored copies count. Fusion happens automatically.",10,others.Length>0?Gold:muted);
+            Label(new Rect(r.x+10,r.y+51,r.width-20,31),others.Length>0?"NOT COUNTED: "+others+". Rarities must match.":"Exact same item + rarity. Equipped and stored copies count. Fusion happens automatically.",10,others.Length>0?Strong:muted);
         }
         void StorageIdentity(Rect r,LoadoutItem item)
         {

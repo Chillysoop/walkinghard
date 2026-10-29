@@ -276,3 +276,11 @@ Redline now accelerates six sequence turns, retaining its 18-second recharge, am
 ## Target-wait feedback (0.7.2)
 
 Every continuous target wait of at least 0.5s counts as one pause. A checkpoint warning identifies the highest-wait item if it spent at least 3s and 10% of the wave waiting, with either two such pauses or at least 6s total wait. Wave details show elapsed waiting, pause count and the item's reach at that time. These are recorded observations, not an instruction to skip or reorder actions. Reports remain frozen while equipping, storing or fusing; cumulative wait counts merge with the owned item. No automatic sequence skipping was added.
+
+## Onboarding and shared drop guidance (0.7.3)
+
+Start Run enters the ordinary opening draft. Quick Tutorial is optional, with six tasks: pick an ability, equip a weapon, fuse three matching Common copies, attach Echo to Arc Bolt, reorder the sequence, then watch a 16-second practice fight. Players use production inventory controls. The two-handed choice teaches moving the locked pair before placing an ability first. Each task waits for completion; Escape exits. Practice can finish after eight seconds and three casts. Starting a real run resets its equipment, counters, enemies and drafts, restoring the player's previous speed and edit-after-pick preference. No tutorial rewards carry over.
+
+The same destination guidance runs in ordinary checkpoints. A dedicated ability draft outlines the sequence and its empty targets without requiring hover. Hover, selection or drag narrows the glow to compatible destinations: basics/hand mounts for weapons, the correct armor/rig/ultimate slot, or compatible host/socket for an augment. Storage is a secondary destination where the draft permits it. Invalid destinations stay unlit. An augment with no compatible host says Store for later and its primary action stores it; ambiguous hosts require an explicit socket choice.
+
+UI semantics: neutral category icons plus written type; rarity colors only on rarity borders, labels and fusion tiers; cyan for interaction and progress. Existing item artwork and in-world VFX retain their authored colors. Short effect sentences are shared by cards and both sequence views. Exact mechanics, scaling, limits and tradeoffs remain in delayed hover details. Upcoming encounter names remain available in the checkpoint footer.

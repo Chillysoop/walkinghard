@@ -19,3 +19,5 @@ Follow the current contract in DESIGN.md: five movable actions, two-handed group
 The desktop launcher downloads a matching release; if source is ahead, it can compile main in a separate cache when Git and the matching Unity editor are installed. Offline or failed updates preserve the last working build. Merge and release deliberately: main is the version players receive.
 
 For item presentation changes, run the rendered `-vectorQA -qaBuild ui -qaHoldCheckpoint -presentationReview` fixture and inspect its checkpoint, rarity mismatch, fusion, augment, icon-key and combat captures. Keep the stable ID mapping in `ItemArtwork.cs` complete when adding items; save generation prompts with art sources.
+
+For onboarding or drop-guidance changes, run `Validate Tutorial.ps1` and `Validate Tutorial.ps1 -Rendered` against the built player. The rendered mode briefly opens the game, drives its production mouse handlers, checks text metrics, and captures tutorial/ordinary checkpoints at several resolutions. Inspect the screenshots as well as the assertions; synthetic interaction checks are not a substitute for player feedback.

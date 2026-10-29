@@ -25,7 +25,7 @@ namespace VectorGame
             Label(new Rect(panel.x+22,panel.y+82,panel.width-44,32),"Recorded before this checkpoint. Damage includes body impacts. Blocks below are item effects; passive resistance prevented another "+report.resistance.ToString("0.#")+". Paired reload timers overlap.",11,muted);
             var wait=report.items.OrderByDescending(i=>i.values.rangeWait).FirstOrDefault();
             string insight=wait!=null&&wait.values.rangeWait>=.5f?"TARGET WAIT: "+wait.name+" / "+wait.values.rangeWait.ToString("0.0")+"s / "+wait.values.waitEpisodes+" pauses / "+wait.range.ToString("0.0")+"m reach. Order was held. Consider longer reach or a pull before it.":"TARGET ACCESS: No item spent half a second waiting for a reachable target.";
-            Label(new Rect(panel.x+22,panel.y+118,panel.width-44,22),insight,12,Gold,true);
+            Label(new Rect(panel.x+22,panel.y+118,panel.width-44,22),insight,12,Strong,true);
             Rect view=new Rect(panel.x+20,panel.y+153,panel.width-40,panel.height-197);
             float width=view.width-24,contentHeight=34+report.items.Length*58+64+report.triggers.Length*23;
             waveDetailsScroll=GUI.BeginScrollView(view,waveDetailsScroll,new Rect(0,0,width,contentHeight));
@@ -40,7 +40,7 @@ namespace VectorGame
                 Label(new Rect(41,y,nameWidth-48,20),row.name,13,white,true);
                 Label(new Rect(41,y+20,nameWidth-48,28),ItemRarity.Names[row.rank]+(row.module.Length>0?" / "+row.module:""),10,RarityColor(row.rank));
                 string[] values={row.kills.ToString(),(c.direct+c.collision).ToString("0"),c.healing.ToString("0.#"),c.absorption.ToString("0.#"),c.control.ToString("0.0")+"s",c.reload.ToString("0.0")+"s reload"};
-                for(int i=0;i<values.Length;i++)Label(new Rect(nameWidth+i*col,y,col-6,20),values[i],12,i==5?Gold:white);
+                for(int i=0;i<values.Length;i++)Label(new Rect(nameWidth+i*col,y,col-6,20),values[i],12,i==5?Strong:white);
                 Label(new Rect(nameWidth+col,y+21,col-6,30),c.collision.ToString("0")+" collision",9,muted);
                 Label(new Rect(nameWidth+4*col,y+21,col-6,30),c.assists+" assists",10,muted);
                 Label(new Rect(nameWidth+5*col,y+19,col-6,34),c.rangeWait.ToString("0.0")+"s target\n"+c.preparation.ToString("0.0")+"s ready",9,muted);
