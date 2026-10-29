@@ -32,6 +32,8 @@ namespace VectorGame
     }
     public static class LoadoutCatalog
     {
+        public const float CounterguardBarrier=25f;
+        public static float CounterguardCapacity(LoadoutItem item)=>CounterguardBarrier*ItemRarity.Power[item.rank]*BalanceOverrides.Barrier(item.def.id);
         public static bool IsArmor(ItemKind kind)=>kind==ItemKind.Helmet||kind==ItemKind.Armor||kind==ItemKind.Boots;
         public static int ArmorIndex(ItemKind kind)=>IsArmor(kind)?(int)kind-(int)ItemKind.Helmet:-1;
         public static int Family(WeaponKind kind)=>kind==WeaponKind.Pistol||kind==WeaponKind.Rifle||kind==WeaponKind.Shotgun?3:(int)kind;

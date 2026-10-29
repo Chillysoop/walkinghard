@@ -6,6 +6,9 @@ param(
 $ErrorActionPreference='Stop'
 $a=Get-Content -LiteralPath (Join-Path $Baseline 'batch.json') -Raw | ConvertFrom-Json
 $b=Get-Content -LiteralPath (Join-Path $Candidate 'batch.json') -Raw | ConvertFrom-Json
+$baselineMode=if($a.mode){$a.mode}else{'Full'}
+$candidateMode=if($b.mode){$b.mode}else{'Full'}
+if($baselineMode -ne $candidateMode){throw 'Balance comparisons require the same simulation mode. Full/Fast differences measure model error, not a tuning effect.'}
 foreach($field in @('runs','workers','firstSeed','policy','waves','maxCombatSeconds')){if($a.$field -ne $b.$field){throw ('Comparison requires matching '+$field+'. Use the same seed set, workers, policy and wave count.')}}
 & (Join-Path $PSScriptRoot 'Summarize Simulations.ps1') -Directory $Baseline | Out-Null
 & (Join-Path $PSScriptRoot 'Summarize Simulations.ps1') -Directory $Candidate | Out-Null

@@ -66,6 +66,14 @@ namespace VectorGame
             ProbeReset();var sword=ProbeHost(LoadoutCatalog.Find("sword"),AugmentId.Crosscut);var low=ProbeEnemy(0,2,5);int beforeKills=Kills;ResolveBasic(sword,activeCard,low,false);WeaponExtension(sword,actionItem,activeCard,low,1);MechanicRequire(Kills==beforeKills+1&&corpses.Count==1,"return cut cannot kill fragments twice");
             ProbeReset();var hammer=ProbeHost(LoadoutCatalog.Find("hammer"),AugmentId.Piledriver,5);var first=ProbeEnemy(0,2,1000);ProbeEnemy(.5f,2.2f,1000);ResolveBasic(hammer,activeCard,first,false);MechanicRequire(flights.Count==1,"Legendary Piledriver still trades away multi-launch");
             ProbeReset();var shared=ProbeHost(LoadoutCatalog.Fists,AugmentId.Flurry);actionWeapon=pairWeapon=shared;PairSlot=1;MechanicRequire(Share(shared)==1,"shared fists combine pair shares once");var otherFists=Deck.Acquire(LoadoutCatalog.Fists);pairWeapon=otherFists;MechanicRequire(Share(shared)==.5f,"distinct paired host gets half even if partner unaugmented");PairSlot=-1;MechanicRequire(Share(shared)==1,"separation restores full budget");
+            // The shield and its preview share one authored value at every rarity.
+            foreach(int rank in new[]{1,2,3,4,5})
+            {
+                ProbeReset();var guard=ProbeHost(LoadoutCatalog.Find("Counterguard"),null,rank);Resolve(activeCard);
+                float capacity=LoadoutCatalog.CounterguardCapacity(guard);MechanicRequire(Mathf.Abs(BarrierAmount-capacity)<.001f,"Counterguard rarity capacity");
+                var attacker=ProbeEnemy(0,2);float before=Health;ReceiveDamage(attacker,capacity+5);
+                MechanicRequire(Mathf.Abs(Health-(before-5))<.001f&&Mathf.Abs(counterBank-Mathf.Min(capacity*.8f,45*Effect(guard)))<.001f,"Counterguard overflow and bank conversion");
+            }
             ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
         }
     }

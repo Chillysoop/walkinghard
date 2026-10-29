@@ -1,0 +1,447 @@
+{
+  "mode": "Full",
+  "baselineCapacity": 35,
+  "candidateCapacity": 25,
+  "baselineOverride": {
+    "items": [
+      {
+        "id": "Counterguard",
+        "barrierMultiplier": 1.4
+      }
+    ]
+  },
+  "baselineBatch": {
+    "firstSeed": 12000,
+    "policy": "mixed",
+    "workers": 2,
+    "waves": 8,
+    "startedUtc": "2026-10-29T09:25:40.3527993Z",
+    "mode": "Full",
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Counterguard25-v061-final\\WalkingHard.exe",
+    "runs": 6,
+    "maxCombatSeconds": 600,
+    "assemblySha256": "67B5F0172E74EB791AFFFF6C2AFE6F1675227F0E0D47957CAA7AAFD07A31EDF2",
+    "completedUtc": "2026-10-29T09:31:27.6596603Z"
+  },
+  "candidateBatch": {
+    "mode": "Full",
+    "runs": 6,
+    "waves": 8,
+    "workers": 2,
+    "assemblySha256": "67B5F0172E74EB791AFFFF6C2AFE6F1675227F0E0D47957CAA7AAFD07A31EDF2",
+    "startedUtc": "2026-10-29T09:25:40.3526186Z",
+    "firstSeed": 12000,
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Counterguard25-v061-final\\WalkingHard.exe",
+    "maxCombatSeconds": 600,
+    "policy": "mixed",
+    "completedUtc": "2026-10-29T09:31:26.3686131Z"
+  },
+  "baselineSummary": {
+    "duplicateSeeds": 0,
+    "batchSeconds": 347.0,
+    "missing": 0,
+    "policies": [
+      {
+        "policy": "balanced",
+        "games": 1,
+        "wins": 1,
+        "timedOut": 0,
+        "winPercent": 100.0,
+        "ci95Low": 20.65,
+        "ci95High": 100.0,
+        "meanWave": 8.0,
+        "meanKills": 299.0,
+        "meanScore": 289900.0,
+        "meanSeconds": 157.18
+      },
+      {
+        "policy": "gun",
+        "games": 1,
+        "wins": 1,
+        "timedOut": 0,
+        "winPercent": 100.0,
+        "ci95Low": 20.65,
+        "ci95High": 100.0,
+        "meanWave": 8.0,
+        "meanKills": 301.0,
+        "meanScore": 302600.0,
+        "meanSeconds": 47.24
+      },
+      {
+        "policy": "pinball",
+        "games": 1,
+        "wins": 1,
+        "timedOut": 0,
+        "winPercent": 100.0,
+        "ci95Low": 20.65,
+        "ci95High": 100.0,
+        "meanWave": 8.0,
+        "meanKills": 300.0,
+        "meanScore": 304200.0,
+        "meanSeconds": 133.94
+      },
+      {
+        "policy": "random",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 0,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 5.0,
+        "meanKills": 132.0,
+        "meanScore": 121200.0,
+        "meanSeconds": 13.63
+      },
+      {
+        "policy": "sever",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 0,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 6.0,
+        "meanKills": 204.0,
+        "meanScore": 201700.0,
+        "meanSeconds": 36.82
+      },
+      {
+        "policy": "storm",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 1,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 8.0,
+        "meanKills": 300.0,
+        "meanScore": 283400.0,
+        "meanSeconds": 136.34
+      }
+    ],
+    "invalid": 0,
+    "requested": 6,
+    "gamesPerMinute": 1.037463976945245,
+    "valid": 6,
+    "completed": 6,
+    "note": "Full mode uses PhysX. Fast mode reuses combat rules with approximate single-body movement and swept-circle collisions; results must be calibrated against Full mode. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+    "mode": "Full"
+  },
+  "candidateSummary": {
+    "duplicateSeeds": 0,
+    "batchSeconds": 346.0,
+    "missing": 0,
+    "policies": [
+      {
+        "policy": "balanced",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 1,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 8.0,
+        "meanKills": 298.0,
+        "meanScore": 289000.0,
+        "meanSeconds": 156.62
+      },
+      {
+        "policy": "gun",
+        "games": 1,
+        "wins": 1,
+        "timedOut": 0,
+        "winPercent": 100.0,
+        "ci95Low": 20.65,
+        "ci95High": 100.0,
+        "meanWave": 8.0,
+        "meanKills": 301.0,
+        "meanScore": 295900.0,
+        "meanSeconds": 48.96
+      },
+      {
+        "policy": "pinball",
+        "games": 1,
+        "wins": 1,
+        "timedOut": 0,
+        "winPercent": 100.0,
+        "ci95Low": 20.65,
+        "ci95High": 100.0,
+        "meanWave": 8.0,
+        "meanKills": 300.0,
+        "meanScore": 295900.0,
+        "meanSeconds": 167.02
+      },
+      {
+        "policy": "random",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 0,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 5.0,
+        "meanKills": 155.0,
+        "meanScore": 136000.0,
+        "meanSeconds": 16.95
+      },
+      {
+        "policy": "sever",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 0,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 6.0,
+        "meanKills": 169.0,
+        "meanScore": 148000.0,
+        "meanSeconds": 20.74
+      },
+      {
+        "policy": "storm",
+        "games": 1,
+        "wins": 0,
+        "timedOut": 1,
+        "winPercent": 0.0,
+        "ci95Low": 0.0,
+        "ci95High": 79.35,
+        "meanWave": 8.0,
+        "meanKills": 300.0,
+        "meanScore": 298000.0,
+        "meanSeconds": 133.9
+      }
+    ],
+    "invalid": 0,
+    "requested": 6,
+    "gamesPerMinute": 1.0404624277456647,
+    "valid": 6,
+    "completed": 6,
+    "note": "Full mode uses PhysX. Fast mode reuses combat rules with approximate single-body movement and swept-circle collisions; results must be calibrated against Full mode. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+    "mode": "Full"
+  },
+  "neverOwnedCounterguardControls": [
+    12000,
+    12003,
+    12004,
+    12005
+  ],
+  "pairs": [
+    {
+      "seed": 12000,
+      "policy": "random",
+      "baseline": {
+        "result": "Defeated",
+        "kills": 132,
+        "health": 0.0,
+        "elapsed": 158.2721405029297,
+        "collisions": 72,
+        "score": 121200,
+        "waveReached": 5,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "candidate": {
+        "result": "Defeated",
+        "kills": 155,
+        "health": 0.0,
+        "elapsed": 183.81590270996094,
+        "collisions": 84,
+        "score": 136000,
+        "waveReached": 5,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "changedGameplayFields": [
+        "kills",
+        "spawned",
+        "collisions",
+        "launches",
+        "reloads",
+        "score",
+        "elapsed",
+        "items",
+        "waveReports"
+      ]
+    },
+    {
+      "seed": 12001,
+      "policy": "balanced",
+      "baseline": {
+        "result": "Complete",
+        "kills": 299,
+        "health": 317.92974853515625,
+        "elapsed": 585.451171875,
+        "collisions": 65,
+        "score": 289900,
+        "waveReached": 8,
+        "everOwnedCounterguard": true,
+        "counterguardAbsorbed": 544.0942077636719
+      },
+      "candidate": {
+        "result": "TimedOut",
+        "kills": 298,
+        "health": 310.64324951171875,
+        "elapsed": 600.6474609375,
+        "collisions": 64,
+        "score": 289000,
+        "waveReached": 8,
+        "everOwnedCounterguard": true,
+        "counterguardAbsorbed": 545.2513275146484
+      },
+      "changedGameplayFields": [
+        "result",
+        "waves",
+        "kills",
+        "collisions",
+        "launches",
+        "score",
+        "elapsed",
+        "health",
+        "items",
+        "waveReports"
+      ]
+    },
+    {
+      "seed": 12002,
+      "policy": "pinball",
+      "baseline": {
+        "result": "Complete",
+        "kills": 300,
+        "health": 328.0,
+        "elapsed": 520.9669189453125,
+        "collisions": 256,
+        "score": 304200,
+        "waveReached": 8,
+        "everOwnedCounterguard": true,
+        "counterguardAbsorbed": 276.5314025878906
+      },
+      "candidate": {
+        "result": "Complete",
+        "kills": 300,
+        "health": 328.0,
+        "elapsed": 599.5477294921875,
+        "collisions": 246,
+        "score": 295900,
+        "waveReached": 8,
+        "everOwnedCounterguard": true,
+        "counterguardAbsorbed": 301.6449279785156
+      },
+      "changedGameplayFields": [
+        "collisions",
+        "launches",
+        "score",
+        "elapsed",
+        "items",
+        "waveReports"
+      ]
+    },
+    {
+      "seed": 12003,
+      "policy": "storm",
+      "baseline": {
+        "result": "TimedOut",
+        "kills": 300,
+        "health": 94.14322662353516,
+        "elapsed": 600.6474609375,
+        "collisions": 67,
+        "score": 283400,
+        "waveReached": 8,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "candidate": {
+        "result": "TimedOut",
+        "kills": 300,
+        "health": 67.25362396240234,
+        "elapsed": 600.6474609375,
+        "collisions": 59,
+        "score": 298000,
+        "waveReached": 8,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "changedGameplayFields": [
+        "collisions",
+        "launches",
+        "score",
+        "health",
+        "items",
+        "waveReports"
+      ]
+    },
+    {
+      "seed": 12004,
+      "policy": "sever",
+      "baseline": {
+        "result": "Defeated",
+        "kills": 204,
+        "health": 0.0,
+        "elapsed": 225.8556365966797,
+        "collisions": 117,
+        "score": 201700,
+        "waveReached": 6,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "candidate": {
+        "result": "Defeated",
+        "kills": 169,
+        "health": 0.0,
+        "elapsed": 202.07810974121094,
+        "collisions": 74,
+        "score": 148000,
+        "waveReached": 6,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "changedGameplayFields": [
+        "kills",
+        "spawned",
+        "collisions",
+        "launches",
+        "score",
+        "elapsed",
+        "items",
+        "waveReports"
+      ]
+    },
+    {
+      "seed": 12005,
+      "policy": "gun",
+      "baseline": {
+        "result": "Complete",
+        "kills": 301,
+        "health": 23.347925186157227,
+        "elapsed": 318.86627197265625,
+        "collisions": 52,
+        "score": 302600,
+        "waveReached": 8,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "candidate": {
+        "result": "Complete",
+        "kills": 301,
+        "health": 42.26822280883789,
+        "elapsed": 323.93170166015625,
+        "collisions": 51,
+        "score": 295900,
+        "waveReached": 8,
+        "everOwnedCounterguard": false,
+        "counterguardAbsorbed": 0
+      },
+      "changedGameplayFields": [
+        "collisions",
+        "launches",
+        "reloads",
+        "score",
+        "elapsed",
+        "health",
+        "items",
+        "waveReports"
+      ]
+    }
+  ],
+  "interpretation": "All 12 runs valid and both worker starts per arm passed 66 mechanic assertions. Both arms use the same executable, seed assignment, process reuse and combat settings. Four never-owned-Counterguard controls differ in gameplay despite unchanged applicable tuning. Full-mode process-level variance prevents isolating the capacity effect from this small sample. A balanced win becoming a timeout is not established as a tuning regression. This checks runtime integrity, not causal balance or human difficulty."
+}

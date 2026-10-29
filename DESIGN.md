@@ -91,7 +91,7 @@ Abilities at Common (damage / action seconds / range): Jab 24 / .40 / 2.6m; Brea
 Unless an explicit milestone overrides it, effect scale S = 1 + .15 × (rarity − 1), separately from damage/stat power. Gear radius adds .15m per rarity step and gear duration adds 10% per step. Do not apply module rarity scaling: there is none. Extra weapon/ability hits use the already-scaled host damage and their authored effect coefficient once.
 
 - Conductive: 4S seconds; discharge 10 × rarity power, modified by Focused/Afterfield as described below. Consumption clears the mark before damage. The same origin cannot reapply and consume it repeatedly.
-- Counterguard: 35 × rarity power barrier for 3.5S seconds; normal conversion 80% of absorbed damage, capped at 45S. One stored next-basic payoff, no accumulation. All simultaneous barriers share a 90-point cap.
+- Counterguard: 25 × rarity power barrier for 3.5S seconds; normal conversion 80% of absorbed damage, capped at 45S. One stored next-basic payoff, no accumulation. All simultaneous barriers share a 90-point cap. This is the first isolated balance change after the 1,000-game screening run; duration, conversion and other items are unchanged.
 - Tactician: +6% direct damage × rarity power; +6 damage × rarity power against stagger. One nearby stagger transfer per turn: .25s, 3m at Common.
 - Surveyor: two distinct direct targets permit one 9S echo on the last surviving target, plus a .7m weak splash with at most two neighbors.
 - Salvager: launch/sever primes one retrieval within 5m at Common. Retrieved body uses normal collision limits.

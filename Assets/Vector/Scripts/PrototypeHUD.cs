@@ -50,7 +50,7 @@ namespace VectorGame
         void Intro(float w,float h)
         {
             Panel(new Rect(28,115,470,485));
-            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.6.0",15,Accent,true);
+            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE "+Application.version,15,Accent,true);
             Label(new Rect(52,189,420,125),"BUILD THE ORDER.\nBREAK THE CROWD.",34,white,true);
             Label(new Rect(55,333,400,90),"Two weapon attacks. Three chosen abilities.\nArrange all five; combat runs automatically.\nYour ultimate has a separate recharge timer.",18,muted);
             Label(new Rect(55,438,400,48),"Find weapons at checkpoints. Pair matching attacks, split bodies, and build collision cascades.",16,white);

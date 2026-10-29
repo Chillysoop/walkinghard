@@ -86,7 +86,7 @@ namespace VectorGame
                 case AbilityId.ArcBolt:return (3+(item.rank>=4?1:0))+" targets; consumes Conductive once; stagger adds "+(8*scale).ToString("0.0")+" damage.";
                 case AbilityId.ConductiveBrand:return "Up to five marks; "+(4*scale).ToString("0.0")+"s duration; "+(10*ItemRarity.Power[item.rank]).ToString("0.0")+" conditional discharge damage.";
                 case AbilityId.ReapingCut:return "Weak below "+((.5f+.025f*(item.rank-1))*100).ToString("0")+"% HP: +"+((.4f+.05f*(item.rank-1))*100).ToString("0")+"% damage; lethal hits sever.";
-                case AbilityId.Counterguard:return (35*ItemRarity.Power[item.rank]).ToString("0")+" barrier / "+(3.5f*scale).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Total barriers capped at 90.";
+                case AbilityId.Counterguard:return LoadoutCatalog.CounterguardCapacity(item).ToString("0.#")+" barrier / "+(3.5f*scale).ToString("0.0")+"s. Bank 80% of absorption, capped at "+(45*scale).ToString("0")+". Total barriers capped at 90.";
             }}
             return item.def.tradeoff;
         }

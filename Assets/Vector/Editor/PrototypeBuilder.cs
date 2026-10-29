@@ -27,7 +27,7 @@ namespace VectorGame.Editor
             pipeline.shadowDistance=45;pipeline.msaaSampleCount=4;pipeline.renderScale=1f;pipeline.supportsHDR=true;
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
             QualitySettings.shadows=UnityEngine.ShadowQuality.All;QualitySettings.shadowResolution=UnityEngine.ShadowResolution.High;QualitySettings.vSyncCount=1;
-            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.6.0";
+            PlayerSettings.companyName="Banjo Gaming";PlayerSettings.productName="Walking Hard";PlayerSettings.bundleVersion="0.6.1";
             PlayerSettings.defaultScreenWidth=1280;PlayerSettings.defaultScreenHeight=720;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;PlayerSettings.resizableWindow=true;
             PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
@@ -53,7 +53,7 @@ namespace VectorGame.Editor
             Directory.CreateDirectory(output);
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Vector/Scenes/CombatStudy.unity"},locationPathName=Path.Combine(output,"WalkingHard.exe"),target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new System.Exception("VECTOR build failed: "+report.summary.result);
-            File.WriteAllText(Path.Combine(output,"simulation-capabilities.json"),"{\"schema\":1,\"version\":\""+PlayerSettings.bundleVersion+"\",\"fixedStepHz\":60,\"physics\":\"PhysX\"}");
+            File.WriteAllText(Path.Combine(output,"simulation-capabilities.json"),"{\"schema\":1,\"version\":\""+PlayerSettings.bundleVersion+"\",\"fixedStepHz\":60,\"physics\":\"PhysX\",\"modes\":[\"Full\",\"Fast\"]}");
             Debug.Log("VECTOR_BUILD_SUCCESS "+report.summary.totalSize+" bytes in "+report.summary.totalTime);
         }
     }
