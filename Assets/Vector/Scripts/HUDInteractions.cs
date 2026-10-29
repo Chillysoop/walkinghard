@@ -105,6 +105,7 @@ namespace VectorGame
             if(kind==11){Ring(c,8,color);Stroke(c,c+new Vector2(0,-5),color);Stroke(c,c+new Vector2(4,0),color);}
             if(kind==12){for(int i=0;i<8;i++){float a=i*Mathf.PI/4;Stroke(c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*4,c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*9,color);}}
             if(kind==13){for(int i=-1;i<=1;i++){Stroke(c+new Vector2(i*6-3,-6),c+new Vector2(i*6+2,0),color);Stroke(c+new Vector2(i*6+2,0),c+new Vector2(i*6-3,6),color);}}
+            if(kind==15){Stroke(c+new Vector2(0,-9),c+new Vector2(-6,1),color,2);Stroke(c+new Vector2(0,-9),c+new Vector2(6,1),color,2);Stroke(c+new Vector2(-6,1),c+new Vector2(-4,7),color,2);Stroke(c+new Vector2(6,1),c+new Vector2(4,7),color,2);Stroke(c+new Vector2(-4,7),c+new Vector2(4,7),color,2);Stroke(c+new Vector2(-3,2),c+new Vector2(3,2),color);Stroke(c+new Vector2(0,-1),c+new Vector2(0,5),color);}
             if(kind==14){Ring(c,7,color);Box(new Rect(c.x-2,c.y-2,4,4),color);}
         }
         void EffectTag(float x,float y,int kind,string label,bool consumes)

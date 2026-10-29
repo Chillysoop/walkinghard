@@ -25,7 +25,7 @@ namespace VectorGame
                 else if(weapon==WeaponKind.Hammer||id=="Breaker")kind=ImpactKind.Crush;
                 else if(id=="ArcBolt"||id=="ConductiveBrand"||id=="tempest"||id=="wraps"||def?.signature==Signature.Relay)kind=ImpactKind.Electric;
                 else if(weapon==WeaponKind.Pistol||weapon==WeaponKind.Rifle||weapon==WeaponKind.Shotgun)kind=ImpactKind.Bullet;
-                else if(id=="GravityWell"||id=="VectorTether")kind=ImpactKind.Pull;
+                else if(id=="GravityWell"||id=="VectorTether"||id=="DrainBrand"||id=="harvest")kind=ImpactKind.Pull;
                 else if(id=="ForcePush"||id=="MassDriver"||id=="singularity")kind=ImpactKind.Force;
             }
             if(overrideKind.HasValue)kind=overrideKind.Value;

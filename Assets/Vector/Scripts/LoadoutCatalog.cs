@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage }
-    public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter }
+    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator }
+    public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter,Siphon }
     public readonly struct GearStats
     {
         public readonly float damage,speed,health,resistance;
@@ -40,6 +40,9 @@ namespace VectorGame
         public static bool IsArmor(ItemKind kind)=>kind==ItemKind.Helmet||kind==ItemKind.Armor||kind==ItemKind.Boots;
         public static int ArmorIndex(ItemKind kind)=>IsArmor(kind)?(int)kind-(int)ItemKind.Helmet:-1;
         public static int Family(WeaponKind kind)=>kind==WeaponKind.Pistol||kind==WeaponKind.Rifle||kind==WeaponKind.Shotgun?3:(int)kind;
+        static readonly float[] siphonRates={0,.04f,.05f,.06f,.08f,.10f};
+        public static float SiphonRate(int rank)=>siphonRates[rank];
+        public static bool RewardEnabled(ItemDefinition def)=>!BalanceOverrides.ExcludeSiphon||!def.tags.Split(' ').Contains("siphon");
         static ItemDefinition Gear(string id,string name,ItemKind kind,Signature sig,string description,string scaling,string tags,string cost,GearStats stats,EffectProfile effect)
         {return new ItemDefinition(id,name,kind,description,scaling){signature=sig,stats=stats,effect=effect,tags=tags,tradeoff=cost};}
         // First three preserve the original definitions/indices used by saved QA fixtures.
@@ -55,6 +58,8 @@ namespace VectorGame
             Gear("duelist","Duelist Jacket",ItemKind.Armor,Signature.Duelist,"A reload or sever guards the next two damaging hits; the first also staggers its attacker.","More mitigation, ward duration and first-hit stagger.","reload sever gun blade","Ward lasts 6s at Common. Refresh replaces charges; no stacking.",new GearStats(health:20),new EffectProfile(.45f,0,6)),
             Gear("momentum","Momentum Soles",ItemKind.Boots,Signature.Momentum,"Launching a body accelerates your next non-weapon ability.","Stronger acceleration and longer storage.","launch vector hammer iron","One stored boost; weapons do not consume it.",new GearStats(speed:.03f),new EffectProfile(.18f,0,5)),
             Gear("loader","Loader Greaves",ItemKind.Boots,Signature.Loader,"Shorter preparation/reloads. Replenishing ammo sends a nearby stagger pulse.","Faster preparation and a wider/longer pulse.","reload gun close","Pulse is local; a paired reload triggers it once.",new GearStats(speed:.02f),new EffectProfile(.16f,2.4f,.35f)),
+            Gear("reclaimer","Reclaimer Armor",ItemKind.Armor,Signature.Reclaimer,"Gain Lifesteal; this armor's contribution doubles below half health.","Lifesteal 4 / 5 / 6 / 8 / 10%; doubled below half health.","siphon sustain","Healing shares the 1% max-health budget per action.",new GearStats(health:20),new EffectProfile(1,0,0)),
+            Gear("predator","Predator Boots",ItemKind.Boots,Signature.Predator,"Actual healing accelerates the next ability; one stored boost.","Stronger ability haste with rarity.","siphon sustain tempo","One boost; refreshes rather than stacks. No boost from overhealing.",new GearStats(speed:.02f),new EffectProfile(.12f,0,0)),
             Gear("arcstep","Arcstep Boots",ItemKind.Boots,Signature.Arcstep,"Two kills from one turn mark nearby survivors Conductive.","More marked targets and wider coverage.","mark storm blade","Requires a multi-kill; once per originating turn.",new GearStats(speed:.03f),new EffectProfile(10,3,6,2))
         };
         static ItemDefinition Skill(AbilityId id,string name,string desc,string interaction,float duration,float range,float damage,int pose,string tags,string cost)
@@ -69,6 +74,7 @@ namespace VectorGame
             Skill(AbilityId.ConductiveBrand,"Conductive Brand","Mark a group for later lightning discharges.","Creates Conductive; Relay Coil lets impacts consume it.",.6f,7,7,-1,"mark storm","Low immediate damage; requires a later consumer."),
             Skill(AbilityId.VectorTether,"Vector Tether","Pull targets into a narrow forward corridor.","Creates a line for piercing shots.",.8f,8,10,-1,"gather pierce vector gun","Long thin setup instead of a compact cluster."),
             Skill(AbilityId.ReapingCut,"Reaping Cut","A projected cutting arc; weakened targets take extra damage and lethal hits sever.","Creates severed bodies for retrieval and collision.",.85f,4.5f,28,3,"sever blade","Slower commitment; bonus is damage, never automatic execution."),
+            Skill(AbilityId.DrainBrand,"Drain Brand","Mark a group; damage against them steals additional life.","Creates Siphon marks; all weapons and abilities can drain them.",.65f,7,8,-1,"siphon sustain","3 / 3 / 4 / 4 / 5 targets; shared healing budget."),
             Skill(AbilityId.Counterguard,"Counterguard","Create a barrier; absorbed damage empowers the next basic turn.","Defense creates a stored offensive payoff.",.55f,8,0,-1,"guard iron hammer","Only absorbed damage charges the payoff; one capped bank.")
         };
         static ItemDefinition Weapon(string id,string name,WeaponKind family,int hands,WeaponStyle style,string desc,string upgrade,string tags,string cost,float damage,float duration,float range,float arc,float force,int mag,int pose)
@@ -83,6 +89,7 @@ namespace VectorGame
             Weapon("wraps","Conductor Wraps",WeaponKind.Fists,1,WeaponStyle.Conductor,"Fist contacts apply Conductive for later lightning.","Longer marks and stronger discharges.","mark storm iron","Lower direct impact/stagger than Kinetic Fists.",15,.4f,2.7f,0,1,0,0),
             Weapon("greatsword","Execution Greatsword",WeaponKind.Sword,2,WeaponStyle.Greatsword,"A heavy cleave; lethal cuts split bodies and limbs along the blade plane.","Wider cleave, greater reach and follow-through force.","sever blade","Slow single swing; both mounts.",59,1.18f,4.1f,70,6,0,3),
             Weapon("breachhammer","Breach Hammer",WeaponKind.Hammer,1,WeaponStyle.Breach,"A light hammer staggers and knocks the first target forward.","Longer stagger; stronger controlled launch.","stagger launch hammer","Less force and splash than Impact Hammer.",29,.66f,3.1f,25,8,0,4),
+            Weapon("siphonblade","Siphon Blade",WeaponKind.Sword,1,WeaponStyle.Siphon,"Gain Lifesteal. Cuts mark survivors; severing spreads the mark to a nearby enemy.","Lifesteal and drain strength 4 / 5 / 6 / 8 / 10%; longer marks and wider spread.","siphon sustain sever blade","One healing budget per action; no healing from overkill or corpses.",30,.74f,3.7f,45,3,0,3),
             Weapon("scattergun","Compact Scattergun",WeaponKind.Shotgun,1,WeaponStyle.Scatter,"Three rounds; a short cone of knockback pellets.","Wider useful coverage and better pellet retention.","gun push close","Short reach; small magazine.",31,.75f,6,40,5,3,5)
         };
         public static readonly ItemDefinition[] Rigs={
@@ -97,6 +104,7 @@ namespace VectorGame
             new ItemDefinition("singularity","Singularity Burst",ItemKind.Ultimate,"Launch nearby bodies into a shared collision cascade.","More launch force and coverage.",ability:Ultimate){tags="launch vector hammer",tradeoff="Shared six-hit cascade budget."},
             new ItemDefinition("tempest","Tempest Array",ItemKind.Ultimate,"Chain lightning through a crowd; exploit stagger and Conductive.","More chain reach and target capacity.",ability:new AbilityCard(AbilityId.Ultimate,"Tempest Array","Chain discharge.","Uses marks and stagger.",1.2f,12,52,-1)){tags="chain storm",tradeoff="Targets must connect through jump reach."},
             new ItemDefinition("cyclone","Razor Cyclone",ItemKind.Ultimate,"Radial cutting burst; lethal hits sever and shove.","More cutting coverage and follow-through force.",ability:new AbilityCard(AbilityId.Ultimate,"Razor Cyclone","Radial severing burst.","Creates fragments.",1.3f,6,45,3)){tags="sever blade",tradeoff="Local area; no automatic executions."},
+            new ItemDefinition("harvest","Harvest",ItemKind.Ultimate,"Drain nearby enemies in a visible pulse; restore health from damage dealt.","Stronger damage, drain and coverage; healing limit grows from 8% to 12% max health.",ability:new AbilityCard(AbilityId.Ultimate,"Harvest","Drain the crowd for health.","Uses Siphon marks; heals from actual damage only.",1.1f,7,38,-1)){tags="siphon sustain",tradeoff="16s recharge; 20% damage drained, rarity-scaled, within its displayed healing limit."},
             new ItemDefinition("redline","Redline",ItemKind.Ultimate,"Refill equipped guns and accelerate the next three sequence turns.","Stronger acceleration; capped at 45%.",ability:new AbilityCard(AbilityId.Ultimate,"Redline","Reload and accelerate three turns.","Uses reload and tempo.",.65f,14,0,-1)){tags="reload tempo gun iron",tradeoff="No direct damage; full magazines do not count as reloads."}
         };
         public static IEnumerable<ItemDefinition> Equipment=>Weapons.Concat(Armor).Concat(Rigs).Concat(Ultimates);
@@ -104,7 +112,7 @@ namespace VectorGame
         public static ItemDefinition Find(string id)=>All.Concat(AugmentCatalog.All).First(d=>d.id==id);
         public static float EffectScale(LoadoutItem item)=>(1+.15f*(item.rank-1))*BalanceOverrides.Effect(item.def.id);
         public static int Magazine(LoadoutItem item)=>item?.def.profile?.magazine??0;
-        public static float Cooldown(LoadoutItem item)=>Mathf.Max(10.1f,(item?.def.id=="tempest"?16:item?.def.id=="cyclone"?15:item?.def.id=="redline"?18:12)*BalanceOverrides.Cooldown(item?.def.id??""));
+        public static float Cooldown(LoadoutItem item)=>Mathf.Max(10.1f,(item?.def.id=="harvest"?16:item?.def.id=="tempest"?16:item?.def.id=="cyclone"?15:item?.def.id=="redline"?18:12)*BalanceOverrides.Cooldown(item?.def.id??""));
         public static AbilityCard Basic(LoadoutItem weapon)=>Action(weapon);
         public static AbilityCard Action(LoadoutItem item)
         {

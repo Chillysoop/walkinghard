@@ -52,7 +52,7 @@ namespace VectorGame
                 if(def.id=="redline")MechanicRequire(Kills==kills&&redlineTurns==3,"Redline visual vent retains a non-damaging three-turn payoff");
                 else
                 {
-                    var kind=def.id=="tempest"?ImpactKind.Electric:def.id=="cyclone"?ImpactKind.Slash:ImpactKind.Force;
+                    var kind=def.id=="harvest"?ImpactKind.Pull:def.id=="tempest"?ImpactKind.Electric:def.id=="cyclone"?ImpactKind.Slash:ImpactKind.Force;
                     MechanicRequire(target.physics.Ragdoll&&target.reaction.kind==kind,"ultimate impact identity: "+def.name);
                     ProbeFrames(30);MechanicRequire(target.physics.Finite(),"ultimate fragments and launch remain finite: "+def.name);
                 }

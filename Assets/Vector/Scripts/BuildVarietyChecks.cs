@@ -8,7 +8,7 @@ namespace VectorGame
         static void Check(bool value,string rule){if(!value)throw new InvalidOperationException("Build variety: "+rule);}
         public static void Run()
         {
-            Check(LoadoutCatalog.All.Count()==40&&LoadoutCatalog.All.Select(d=>d.id).Distinct().Count()==40,"40 unique identities");
+            Check(LoadoutCatalog.All.Count()==45&&LoadoutCatalog.All.Select(d=>d.id).Distinct().Count()==45,"45 unique identities");
             Check(AugmentCatalog.All.Length==16,"16 modules");
             Check(Enumerable.Range(1,7).SelectMany(VectorEncounter.RewardsAfter).Count(d=>d!=DraftKind.Augment)+2==13,"13 item choices");
             Check(Enumerable.Range(1,7).SelectMany(VectorEncounter.RewardsAfter).Count(d=>d==DraftKind.Augment)==2,"2 augment choices");

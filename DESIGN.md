@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 7, October 29, 2026. Implementation target: 0.6.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v060-verification.md.
+Revision 8, October 29, 2026. Implementation target: 0.6.7. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification results are recorded separately in QA/v067-verification.md.
 
 ## Run and sequence
 
@@ -37,7 +37,7 @@ Three identical items of the same rarity fuse to the next tier. Power factors ar
 
 ## Item identities
 
-All identities function at Common. Higher rarity improves relevant stats and the authored effect; it does not remove the tradeoff. Profiles and signature identifiers live in `LoadoutCatalog.cs`; `AuthoredActions.cs` and `CombatSignatures.cs` execute them. Family membership is compatibility, not an identical attack definition.
+All identities function at Common. Higher rarity improves relevant stats and the authored effect. Weapon augments use the single socket as their primary opportunity cost; ability augments retain explicit conversions/tradeoffs. Profiles and signature identifiers live in `LoadoutCatalog.cs`; `AuthoredActions.cs` and `CombatSignatures.cs` execute them. Family membership is compatibility, not an identical attack definition.
 
 | Slot | Item | Common identity / trigger | Tradeoff / limit | Rarity direction |
 | --- | --- | --- | --- | --- |
@@ -52,7 +52,7 @@ All identities function at Common. Higher rarity improves relevant stats and the
 | Ability | Steel Jab | Quick interrupt; bonus impact against an attacking enemy. | Short reach; one target. | Damage and the authored control, area, mark, launch or barrier profile. |
 | Ability | Vector Tether | Pull targets into a narrow forward corridor. | Long thin setup instead of a compact cluster. | Damage and the authored control, area, mark, launch or barrier profile. |
 | Armor | Bulwark Plate | Completing a sequence arms a guard. The next hit is absorbed and releases stagger. | One guard per completed loop. | More guard capacity and pulse coverage. |
-| Armor | Duelist Jacket | A reload or sever arms one brief ward: reduce the next hit and stagger its attacker. | Ward expires after 4s; no stacking. | More mitigation and retaliation duration. |
+| Armor | Duelist Jacket | A reload or sever guards two damaging hits; only the first staggers. | Ward lasts 6s at Common; refresh replaces charges, fully blocked hits preserve them. | More mitigation and retaliation duration. |
 | Armor | Grounding Mantle | Lightning/body impacts generate a capped barrier; attackers hitting it become Conductive. | Requires lightning or body impacts. | More barrier capacity and mark duration. |
 | Armor | Reactive Shell | Three nearby enemies trigger a barrier. Its break/expiry repels the crowd. | 8s cooldown; repulsion can disrupt a gathered crowd. | More barrier capacity and repulsion reach. |
 | Boots | Arcstep Boots | Two kills from one turn mark nearby survivors Conductive. | Requires a multi-kill; once per originating turn. | More marked targets and wider coverage. |
@@ -114,30 +114,30 @@ Unless an explicit milestone overrides it, effect scale S = 1 + .15 × (rarity �
 
 A distinct owned ability or weapon (including fists) has one socket. Armor, rigs and ultimates do not. The module stays attached to the host through sequence reordering, hand swaps and storage. Replacing/removing a module returns it to storage. A module can occupy one host only. On fusion, the keeper retains its module; consumed hosts' modules return to storage.
 
-Both empty mounts reference the same starter fists: one host, one socket, one added module activation combining the two paired shares. Separate owned fists have separate sockets. Two-handed weapons receive one full module budget once. Distinct simultaneous one-handed hosts each receive half their added effect budget, even with an unaugmented partner. Ordinary attack damage is not halved. Separating the basics grants full module effects on two sequential turns. Geometry uses explicit caps rather than half-ranges.
+Both empty mounts reference the same starter fists: one host, one socket, one added module activation combining the two paired shares. Separate owned fists have separate sockets. Two-handed weapons receive one full module budget once. Distinct simultaneous one-handed hosts each receive their full module effect. Shared starter fists still own only one socket/effect. Native damage is preserved. Shared collision and per-origin derived-hit limits still apply.
 
 Augment drafts offer one compatible ability module, one compatible weapon module and one distinct compatible option from either. Every offer has an owned compatible host. Another copy is eligible only when compatible owned host count exceeds owned copies of that module. Matching module copies still obey pair budgets.
 
-Drag modules onto highlighted compatible equipped or stored hosts. Drag the socket diamond into storage to remove. Double-click attaches only with one unambiguous compatible destination; otherwise it leaves selection pending and highlights destinations. The socket diamond is also shown on the corresponding basic. Two-handed positions share the socket presentation.
+Drag modules onto highlighted compatible equipped or stored hosts. Drag the installed module icon into storage to remove. Double-click attaches only with one unambiguous compatible destination; otherwise it leaves selection pending and highlights destinations. The installed module icon is also shown on the corresponding basic. Two-handed positions share the socket presentation.
 
 | Module | Hosts | Benefit at Common | Persistent cost and limits |
 | --- | --- | --- | --- |
 | Follow-through | Jab, Breaker | One next-basic 0.4S-second stagger pulse, 2.2m, max 5 | Immediate stagger × .55; one bank, replaced rather than accumulated |
-| Focused | Breaker, Arc, Brand, Reaping | Breaker stagger ×1.5; Arc primary ×1.35; Brand discharge ×1.4; Reaping weak-target bonus +80% | Breaker half arc 40°; Arc 1 target (2 Rare+); Brand 2 marks; Reaping half arc 42°; no execution |
+| Focused | Breaker, Arc, Conductive Brand, Reaping, Drain Brand | Breaker stagger ×1.5; Arc primary ×1.35; Brand discharge ×1.4; Reaping weak-target bonus +80%; Drain Brand bonus Lifesteal +40% | Breaker half arc 40°; Arc 1 target (2 Rare+); Brand 2 marks; Reaping half arc 42°; Drain Brand 2 targets; no execution |
 | Echo | Jab, Arc, Reaping | One primary-only repeat, .35S of host damage; +.22s | Opening ×.8; never repeats whole cleave/chain |
 | Afterfield | Gravity, Tether, Brand | 2s field, .4s ticks, six distinct targets; point vs corridor preserved | Initial strength ×.65; lingering pull/mark only, no damage loop |
 | Split Payload | Driver | Up to two launches, one shared six-hit/exclusion budget | Each impulse ×.65; still executes with one eligible target |
 | Backwash | Push | Surviving affected living targets return 45% toward original positions over .32s | Outward ×.65; return ends before advancement; no corpse/untouched return |
 | Discharge | Counterguard | 55% absorption converted on barrier break/expiry, cap 30S, 4m forward cone, max 5 | Replaces 80% next-basic bank; no simultaneous bank |
 | Anchor | Gravity, Tether | .25S-second stagger only after at least .25m actual movement | Pull ×.7; resistant/blocked targets may not qualify |
-| Flurry | Fists | Two .16S follow-ups; each gets the host's pair share | Opening ×.82; +.28s; same primary and origin; bounded stagger |
-| Palm Drive | Fists | First contact shoves with (6 + .6 per rarity step) × share | Damage ×.8; can force a later melee range wait; no cascade |
-| Crosscut | Swords | .45S return cut × share; cap 4 unpaired / 2 paired | Opening ×.8; +.32s; lethal severs share death identity and proc limits |
-| Hooked Edge | Swords | First surviving struck enemy pulled toward the forward impact area, force 8S × share | Reach ×.85; arc ×.65; no untouched/corpse retrieval |
-| Groundbreaker | Hammers | Forward 4m wave (3.2m paired), width 1.8m, max 3 extra targets (2 paired), .45S × share stagger | Native launch ×.65; descendants cannot emit waves |
-| Piledriver | Hammers | One launch with extra .35S × share impulse multiplier | Splash/additional launches removed at every rarity; normal collision caps |
-| Bore Rounds | Guns | Pistol bounded straight line; rifle adds bounded penetration; scatter has 20° half cone plus one .35-damage central penetrating shot | +.30s FOCUSING after reload/readying; pistol/scatter line cap 2→4 (paired max3), rifle max6 |
-| Breach Load | Guns | Actual refill arms one .4S × share stagger burst; 2m (1.6m paired), +.15m/rarity; max5 (3 paired) | Reload 1.2→1.5s before Loader; one armed state; one successful shot consumes it, never per pellet/bounce |
+| Flurry | Fists | Two .15S follow-up contacts in the normal action | Full opening damage; no extra action time; same primary and origin |
+| Palm Drive | Fists | First contact shoves with 6 + .6 per rarity step | Full native damage; spacing can change; no cascade |
+| Crosscut | Swords | .35S return cut; max 4 targets | Full opening damage and normal timing; shared death identity and proc limits |
+| Hooked Edge | Swords | Pull the first surviving struck enemy inward with force 8S | Native reach and cleave retained; no untouched/corpse retrieval |
+| Groundbreaker | Hammers | 4m ground wave; max 3 extra targets, .45S stagger | Full native launch force; descendants cannot emit waves |
+| Piledriver | Hammers | Primary launch gains .35S extra impulse | Native splash/additional launches retained; normal shared collision caps |
+| Bore Rounds | Guns | Bounded line penetration added to native ricochets/scatter; rifle adds penetration | No focusing delay; native scatter cone retained; line cap 2–4 (rifle max6) |
+| Breach Load | Guns | Real refill arms one .4S stagger burst, 2m + .15m per rarity step, max5 | Normal 1.2s reload before Loader; one armed burst, consumed once |
 
 Shared next-basic payoffs, Amplifier, Overclock and gear triggers treat a pair as one turn. Sequence lead resolves first, then its partner: this stable ordering determines primary shared payoff and mark consumption. Follow-ups remain within their origin; derived effects cannot generate recursive copies of themselves. Additional derived hits share a per-origin budget of twelve. A paired reload triggers Loader once. Redline only arms Breach if it actually restores ammo.
 
@@ -145,7 +145,7 @@ Shared next-basic payoffs, Amplifier, Overclock and gear triggers treat a pair a
 
 Wave previews correspond to the actual formation mix: dense packs; ranged crossfire; heavy front; side-door flankers; ranged support behind heavies; repeated breach packs; mixed pressure; Warden plus reinforcements. Shooters use a visible windup and distance check. The Warden has 2.5 seconds of full control susceptibility every eight seconds; otherwise displacement/stagger is reduced to 22%, not immune. Heavy enemies retain 65% control susceptibility. Warden health/control state is visible.
 
-Stance changes take .28s before Loader; native reload 1.2s. Pair delays complete before attack progression. Amber tile bars show real RELOADING, READYING, FOCUSING and WAITING FOR PAIR time. ECHO, FLURRY, RETURN CUT and BACKWASH show their actual extension. Unbounded target/range waits have no invented countdown. Small armed and consumed states explain the next-basic payoffs.
+Stance changes take .28s before Loader; native reload 1.2s. Pair delays complete before attack progression. Amber tile bars show real RELOADING, READYING and WAITING FOR PAIR time. ECHO and BACKWASH show their actual extension. Weapon follow-ups fit inside the native turn and do not add a delay. Unbounded target/range waits have no invented countdown. Small armed and consumed states explain the next-basic payoffs.
 
 Stagger uses target intent interruption, Conductive uses a persistent lightning shape, barriers use a local outline, and geometry footprints correspond to real cones/corridors. Pull paths and physical movement identify gathering. Outgoing and return cuts use different direction/color. Reload bursts occur once at the real impact. Icons and labels supplement color. Native frame sequences and simulation traces are review aids, not a substitute for player readability testing.
 
@@ -220,3 +220,23 @@ Severing uses the current mannequin's anatomical seams (waist, neck, shoulders, 
 Counterguard's base lifetime is 2.5 seconds, scaled by its existing rarity/effect factor. Common capacity remains 25; bank conversion remains 80%, with the existing bank and total-barrier caps. Its action duration is unchanged.
 
 A qualifying reload or lethal sever refreshes Duelist Jacket to two ward charges for six seconds at Common, with the existing rarity scaling. Each charge reduces a damaging hit by 45% at Common, capped at 65% with rarity. Only the first mitigated hit staggers its attacker. Fully blocked hits preserve both the charge and first-hit stagger. Refreshing replaces the charge count, never adds to it; a full magazine does not qualify as a reload. The combat status shows remaining ward hits, and item descriptions include charges, duration, mitigation and refresh behavior.
+
+## Siphon and weapon-augment balance (0.6.7)
+
+Approved implementation: weapon augments add effects without weakening native attacks. Paired one-handed hosts retain full augment budgets; shared fists/two-handed weapons still have one socket. Ability-module conversions remain explicit. Focused also fits Drain Brand: two marks with 40% stronger bonus Lifesteal. Offers show a compatible host icon, effect sentence and before/after tooltip; installed sockets show the module art.
+
+Counterguard retains its 25-point Common barrier, 2.5-second base duration and 80% bank conversion. The stored bank hits one enemy at 100% and up to four others at 25%, retaining the existing radius and caps. Amplifier's separate contribution remains full on every target. Discharge remains a separate conversion.
+
+Lifesteal returns a percentage of actual damage to living enemies as health. Sources add together; overkill/corpse damage never heals. Ordinary actions, simultaneous pairs, follow-ups and all delayed collision descendants share a 1% maximum-health healing budget by originating action. Healing cannot exceed missing health or recursively generate damage. Harvest has its own displayed budget. Character-sheet Lifesteal includes equipped sources and Reclaimer's current low-health bonus; conditional enemy marks are explained in item details.
+
+| Item | Common identity | Rarity progression |
+| --- | --- | --- |
+| Siphon Blade / 1H sword | 30 damage / .74s; +4% global Lifesteal. Cuts apply Siphon; one sever per action spreads it within 3m. | Lifesteal and mark bonus 4/5/6/8/10%; damage uses normal rarity; longer marks, wider spread/cleave. |
+| Drain Brand / ability | 8 damage / .65s; marks 3 targets for +4% Lifesteal against them for 4s. | 3/3/4/4/5 targets; bonus 4/5/6/8/10%; duration uses effect scaling. Strongest active mark refreshes, never stacks. |
+| Reclaimer Armor | +20 HP and +4% global Lifesteal; this armor's contribution doubles below half health. | Normal HP rarity scaling; Lifesteal 4/5/6/8/10% before low-health doubling. |
+| Predator Boots | +2% action speed. Actual healing stores 12% haste for the next ability. | Normal speed scaling and effect-scaled haste. One charge; no stacking or overheal triggers; weapons/ultimates preserve it. |
+| Harvest / ultimate | 38 damage, 7m pulse, 16s recharge; heals 20% of actual damage up to 8% max HP. | Damage/range/effect scaling; healing limit 8/9/10/11/12% max HP. |
+
+All five use normal rarity odds and three-identical-same-rarity fusion. Harvest remains excluded until the checkpoint-three ultimate draft. Siphon uses a crimson droplet-plus symbol; category icons and rarity borders retain their existing meanings. Five distinct raster artworks and shared summaries cover every UI surface. Healing contribution is reported separately from damage prevention.
+
+The catalog now contains 10 weapons, 11 abilities, 14 armor pieces, five rigs, five ultimates and 16 augment modules: 61 identities including modules. No global enemy damage, health, spawn cadence, ultimate unlock or rarity odds change in this pass. See QA/v067-balance-review.md for measured results and limitations.

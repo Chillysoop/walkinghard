@@ -12,14 +12,14 @@ namespace VectorGame
             if(Input.GetKeyDown(KeyCode.Escape))iconGuide=false;
             return true;
         }
-        static readonly string[] synergyKeys={"stagger","launch","collision","sever","mark","chain","gather","pierce","reload","guard","sustain","tempo","burst","push","close"};
+        static readonly string[] synergyKeys={"stagger","launch","collision","sever","mark","chain","gather","pierce","reload","guard","sustain","tempo","burst","push","close","siphon"};
         static string SynergyLabel(string key)=>key=="mark"?"CONDUCTIVE":key=="sustain"?"HEALING":key.ToUpperInvariant();
-        static int SynergySymbol(string key)=>key=="stagger"?0:key=="launch"?1:key=="collision"?2:key=="gather"?3:key=="chain"?4:key=="sever"?5:key=="pierce"?6:key=="guard"?7:key=="mark"?8:key=="reload"?9:key=="sustain"?10:key=="tempo"?11:key=="burst"?12:key=="push"?13:14;
+        static int SynergySymbol(string key)=>key=="siphon"?15:key=="stagger"?0:key=="launch"?1:key=="collision"?2:key=="gather"?3:key=="chain"?4:key=="sever"?5:key=="pierce"?6:key=="guard"?7:key=="mark"?8:key=="reload"?9:key=="sustain"?10:key=="tempo"?11:key=="burst"?12:key=="push"?13:14;
         void DrawSynergyChips(Rect r,ItemDefinition def)
         {
             if(def.kind==ItemKind.Augment)
             {
-                Label(r,"MODIFIES "+(def.module.family<0?"ABILITY":"WEAPON")+" / HOVER FOR TRADEOFF",9,Violet,true);return;
+                var host=game.Deck.CompatibleHosts(def).FirstOrDefault();if(host!=null)ActionGlyph(new Rect(r.x,r.y,18,18),host.def,white);Label(new Rect(r.x+23,r.y,r.width-23,r.height),(def.module.family<0?"ABILITY":"WEAPON")+" / HOVER: BEFORE → AFTER",9,Violet,true);return;
             }
             var tags=def.tags.Split(' ');float x=r.x;
             foreach(string tag in tags.Where(t=>synergyKeys.Contains(t)).Take(2))
@@ -27,7 +27,7 @@ namespace VectorGame
                 string label=SynergyLabel(tag);float width=Style(9,true).CalcSize(new GUIContent(label)).x+25;
                 if(x+width>r.xMax)break;
                 Plate(new Rect(x,r.y,width,18),new Color(.03f,.08f,.10f),line,3);
-                EffectIcon(new Rect(x+1,r.y-1,20,20),SynergySymbol(tag),muted);
+                EffectIcon(new Rect(x+1,r.y-1,20,20),SynergySymbol(tag),tag=="siphon"?VectorEncounter.SiphonColor:muted);
                 Label(new Rect(x+23,r.y+2,width-23,15),label,9,muted,true);x+=width+5;
             }
         }

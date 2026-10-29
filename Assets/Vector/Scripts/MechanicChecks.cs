@@ -38,7 +38,7 @@ namespace VectorGame
                 {
                     if(host.HasAugment(AugmentId.BreachLoad)){MechanicRequire(!breachArmed.Contains(host),"Breach starts unarmed");Replenish(host);MechanicRequire(!breachArmed.Contains(host),"full magazine is not a qualifying reload");ammunition[host]=0;Replenish(host);MechanicRequire(breachArmed.Contains(host)&&Ammo(host)==LoadoutCatalog.Magazine(host),"actual refill arms once");}
                     float before=target.health;ResolveBasic(host,activeCard,target,false);float opening=before-target.health;MechanicRequire(opening>0,"weapon module retains real direct attack: "+module.name);
-                    if(host.HasAugment(AugmentId.Flurry)||host.HasAugment(AugmentId.Crosscut)){WeaponExtension(host,actionItem,activeCard,target,1);WeaponExtension(host,actionItem,activeCard,target,2);MechanicRequire(target.health<before-opening&&AugmentCatalog.Extension(host)>0,"follow-up has added impact and commitment: "+module.name);}
+                    if(host.HasAugment(AugmentId.Flurry)||host.HasAugment(AugmentId.Crosscut)){WeaponExtension(host,actionItem,activeCard,target,1);WeaponExtension(host,actionItem,activeCard,target,2);MechanicRequire(target.health<before-opening&&AugmentCatalog.Extension(host)==0,"follow-up adds impact without delaying the sequence: "+module.name);}
                     if(host.HasAugment(AugmentId.PalmDrive)||host.HasAugment(AugmentId.HookedEdge)){Vector3 beforePosition=target.rig.Root.position;ProbeFrames(12);MechanicRequire(Vector3.Distance(target.rig.Root.position,beforePosition)>.05f,"actual displacement: "+module.name);}
                     if(host.HasAugment(AugmentId.Groundbreaker))MechanicRequire(other.stun>0,"ground wave affects additional target");
                     if(host.HasAugment(AugmentId.Piledriver))MechanicRequire(flights.Count==1,"Piledriver one launch");
@@ -64,8 +64,8 @@ namespace VectorGame
             ProbeReset();var gun=ProbeHost(LoadoutCatalog.Find("pistol"),AugmentId.BreachLoad);var red=Deck.Acquire(LoadoutCatalog.Find("redline"));Deck.Move(red,PlaceKind.Ultimate);ResolveUltimate();MechanicRequire(!breachArmed.Contains(gun),"Redline full mag cannot arm Breach");ammunition[gun]=2;ResolveUltimate();MechanicRequire(breachArmed.Contains(gun)&&redlineTurns==3,"Redline real refill arms Breach and three turns");
             ProbeReset();var wrap=ProbeHost(LoadoutCatalog.Find("wraps"));var marked=ProbeEnemy(0,2);MarkEnemy(marked,wrap);float beforeMark=marked.health;MechanicRequire(ConsumeMark(marked)&&!ConsumeMark(marked)&&beforeMark>marked.health,"Conductive consumes exactly once");MarkEnemy(marked,wrap);MechanicRequire(!ConsumeMark(marked),"same-origin mark refresh cannot discharge loop");
             ProbeReset();var sword=ProbeHost(LoadoutCatalog.Find("sword"),AugmentId.Crosscut);var low=ProbeEnemy(0,2,5);int beforeKills=Kills;ResolveBasic(sword,activeCard,low,false);WeaponExtension(sword,actionItem,activeCard,low,1);MechanicRequire(Kills==beforeKills+1&&corpses.Count==1,"return cut cannot kill fragments twice");
-            ProbeReset();var hammer=ProbeHost(LoadoutCatalog.Find("hammer"),AugmentId.Piledriver,5);var first=ProbeEnemy(0,2,1000);ProbeEnemy(.5f,2.2f,1000);ResolveBasic(hammer,activeCard,first,false);MechanicRequire(flights.Count==1,"Legendary Piledriver still trades away multi-launch");
-            ProbeReset();var shared=ProbeHost(LoadoutCatalog.Fists,AugmentId.Flurry);actionWeapon=pairWeapon=shared;PairSlot=1;MechanicRequire(Share(shared)==1,"shared fists combine pair shares once");var otherFists=Deck.Acquire(LoadoutCatalog.Fists);pairWeapon=otherFists;MechanicRequire(Share(shared)==.5f,"distinct paired host gets half even if partner unaugmented");PairSlot=-1;MechanicRequire(Share(shared)==1,"separation restores full budget");
+            ProbeReset();var hammer=ProbeHost(LoadoutCatalog.Find("hammer"),AugmentId.Piledriver,5);var first=ProbeEnemy(0,2,1000);ProbeEnemy(.5f,2.2f,1000);ResolveBasic(hammer,activeCard,first,false);MechanicRequire(flights.Count==2,"Legendary Piledriver preserves native multi-launch");
+            ProbeReset();var shared=ProbeHost(LoadoutCatalog.Fists,AugmentId.Flurry);actionWeapon=pairWeapon=shared;PairSlot=1;MechanicRequire(Share(shared)==1,"shared fists combine pair shares once");var otherFists=Deck.Acquire(LoadoutCatalog.Fists);pairWeapon=otherFists;MechanicRequire(Share(shared)==1,"distinct paired host keeps its full module budget");PairSlot=-1;MechanicRequire(Share(shared)==1,"separation restores full budget");
             // The shield and its preview share one authored value at every rarity.
             foreach(int rank in new[]{1,2,3,4,5})
             {
@@ -74,7 +74,7 @@ namespace VectorGame
                 var attacker=ProbeEnemy(0,2);float before=Health;ReceiveDamage(attacker,capacity+5);
                 MechanicRequire(Mathf.Abs(Health-(before-5))<.001f&&Mathf.Abs(counterBank-Mathf.Min(capacity*.8f,45*Effect(guard)))<.001f,"Counterguard overflow and bank conversion");
             }
-            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
+            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();CheckSiphonBalance();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
         }
     }
 }
