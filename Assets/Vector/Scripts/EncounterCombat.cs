@@ -141,15 +141,17 @@ namespace VectorGame
             else {hero.Pose(clock,1,-1,0,heroReact,false,0);heroPhysics.MoveRotation(Quaternion.Slerp(hero.Root.rotation,Quaternion.identity,dt*4));}
         }
         void Resolve(AbilityCard card)=>ResolveAuthoredAbility(card);
-        void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false)
+        void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false,ImpactKind? reactionKind=null)
         {
             if(e.deathAge>=0)return;
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0)e.attack=-1;
             RememberDisplacement(e,impulse);
+            var impact=DescribeImpact(e,impulse,sever,reactionKind);e.reaction=impact;
             if(e.health<=0)KillEnemy(e,impulse,sever);
             else e.physics.Impulse(impulse*ControlResistance(e));
+            PresentImpact(e,impact,e.deathAge>=0);
             DirectSignatures(e,damage,staggered);
         }
         void Launch(Enemy body,Cascade chain=null,int hop=0,float energy=1,Vector3? forcedDirection=null)
@@ -201,6 +203,7 @@ namespace VectorGame
             for(int i=corpses.Count-1;i>=0;i--)
             {
                 var e=corpses[i];e.deathAge+=dt;
+                StepReaction(e,dt,false);
                 if(!FastSimulation&&!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
             }
             for(int i=flights.Count-1;i>=0;i--)

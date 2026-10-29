@@ -138,7 +138,12 @@ namespace VectorGame
                     rightElbow.localRotation=Quaternion.Euler(-15,0,0);
                     Body.localRotation=Quaternion.Euler(Mathf.Lerp(-15,24,swing)*returnToGuard,0,0);
                 }
-                if(strike==5){rightArm.localRotation=Quaternion.Euler(-90,0,8);rightElbow.localRotation=Quaternion.Euler(-5,0,0);}
+                if(strike==5)
+                {
+                    float recoil=progress<.44f?0:Mathf.Exp(-(progress-.44f)*20)*(twoHandedAttack?1.3f:1);
+                    rightArm.localRotation=Quaternion.Euler(-90-14*recoil,0,8);rightElbow.localRotation=Quaternion.Euler(-5-18*recoil,0,0);
+                    Body.localRotation*=Quaternion.Euler(-6*recoil,0,0);
+                }
             }
             if(weaponHand>=0)
             {
@@ -170,6 +175,28 @@ namespace VectorGame
                 Body.localPosition+=Vector3.back*hitReact*.16f;
                 Head.localRotation=Quaternion.Euler(-18*hitReact,0,0);
             }
+        }
+        public void ReactToImpact(ImpactReaction hit,float weight,float time,bool reducedMotion)
+        {
+            if(lightweight||weight<=0)return;
+            float amount=weight*hit.strength*(reducedMotion?.45f:1);
+            Vector3 local=Root.InverseTransformDirection(hit.direction);
+            if(hit.kind==ImpactKind.Electric)
+            {
+                float twitch=Mathf.Sin(time*95+phase)*amount;
+                Body.localRotation*=Quaternion.Euler(twitch*9,0,twitch*5);
+                Head.localRotation*=Quaternion.Euler(-twitch*12,twitch*8,0);
+                leftArm.localRotation*=Quaternion.Euler(twitch*22,0,-18*amount);
+                rightArm.localRotation*=Quaternion.Euler(-twitch*22,0,18*amount);
+                leftElbow.localRotation*=Quaternion.Euler(twitch*25,0,0);rightElbow.localRotation*=Quaternion.Euler(-twitch*25,0,0);
+                return;
+            }
+            if(hit.kind==ImpactKind.Crush)
+            {Body.localRotation*=Quaternion.Euler(35*amount,0,local.x*-12*amount);Body.localPosition+=Vector3.down*.14f*amount;leftKnee.localRotation*=Quaternion.Euler(22*amount,0,0);rightKnee.localRotation*=Quaternion.Euler(22*amount,0,0);}
+            else if(hit.kind==ImpactKind.Slash)
+            {Body.localRotation*=Quaternion.Euler(-8*amount,local.x*30*amount,local.x*-18*amount);Head.localRotation*=Quaternion.Euler(0,-local.x*15*amount,0);}
+            else
+            {float lean=hit.kind==ImpactKind.Pull?23:hit.kind==ImpactKind.Bullet?16:28;Body.localRotation*=Quaternion.Euler(local.z*lean*amount,0,-local.x*lean*amount);Body.localPosition+=new Vector3(local.x,0,local.z)*(.09f*amount);}
         }
         public void Telegraph(bool attacking,bool stunned)
         {

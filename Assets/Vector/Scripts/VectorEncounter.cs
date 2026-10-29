@@ -92,6 +92,7 @@ namespace VectorGame
         {
             public int id;public FighterRig rig;public FighterPhysics physics;
             public float maxHealth,health,stun,cooldown,attack=-1,deathAge=-1,radius,orbit,phase,react;
+            public ImpactReaction reaction;public float reactionLeft,reactionPulse;
             public bool engaged,heavy,delivered,entering,boss,shooter;
             public bool repositioning;
             public float pressure,lastDamageTime=-1000,previousDamageTime=-1000;
@@ -392,6 +393,7 @@ namespace VectorGame
                     if(e.attack>=duration){e.attack=-1;e.engaged=false;e.cooldown=CombatRange(e.shooter?2:.9f,e.shooter?3:1.8f);}
                 }
                 e.rig.Pose(clock,flat.magnitude/tuning.enemySpeed,e.attack>=0?1:-1,e.attack/(e.heavy?1.25f:.95f),e.react,false,0);
+                StepReaction(e,dt,true);
                 e.rig.Telegraph(e.attack>=0&&!e.delivered,e.stun>0);
             }
         }

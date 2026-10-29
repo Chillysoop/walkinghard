@@ -1,5 +1,7 @@
-# Walking Hard 0.6.4 — Enemy Pressure and Rear Boundary
+# Walking Hard 0.6.5 — Weapon Impact Reactions
 Ranged spawn odds are halved. Offscreen enemies cancel attacks and walk back to a visible flank; ranged shots also need a clear world line. Actions prioritize reachable repeat damage-dealers from the last six seconds, then nearest. A rear death boundary sits three metres beyond the camera floor edge and at least eight metres behind the walker, retaining knockback kill credit. The first-ultimate checkpoint remains after wave three. [Matched 1,000-game balance results and unapplied recommendations](QA/v064-balance-review.md).
+
+Weapons and abilities now drive distinct physical reactions: blade-plane dismemberment, hammer collapse, electrical spasms, directional gun impacts and force/pull reactions. Counterguard flashes a shield and Redline vents energy from the hands. See `QA/v065-verification.md` for coverage and native captures.
 
 Pick-three cards and both action sequences now include a short effect description. Empty equipment mounts have no placeholder artwork. The combat HUD is 20% smaller with translucent panels. Runs start without an ultimate; after wave three, choose one of three ultimates in place of the normal mixed reward, followed by the existing augment choice. See [0.6.3 verification](QA/v063-verification.md).
 
@@ -34,7 +36,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Distinct category colors and icons, labeled rarity borders, fusion previews, synergy inspection, and item-owned kill counters that follow weapons and abilities between slots.
 - Combat speed: 0.5x, 1x, 2x or 4x. The angular combat HUD and checkpoint sheet share colors and icons; combat tiles retain descriptions and live stats.
 - Bodies persist for the run. Walkers push resting corpses aside without slowing down; launched bodies still cause collision damage.
-- Physical crowd collisions, ragdolls, authored waist cuts, and bounded multi-hop collision cascades. Hidden side-door/horizon creation remains enforced.
+- Physical crowd collisions, ragdolls, hit-location body/limb cuts, and bounded multi-hop collision cascades. Hidden side-door/horizon creation remains enforced.
 - Combo scoring for rapid, bulk and chain kills. Three-second banking window, up to 10× multiplier, checkpoint banking and end-of-run score.
 
 ## Controls
