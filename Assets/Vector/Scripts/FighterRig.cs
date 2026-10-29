@@ -19,9 +19,9 @@ namespace VectorGame
         bool twoHanded;
         internal Transform RightWeapon=>weaponRight;
         internal Transform LeftWeapon=>weaponLeft;
-        public FighterRig(string name, Transform parent, bool isHero, bool heavy = false)
+        public FighterRig(string name, Transform parent, bool isHero, bool heavy = false, int poseSeed = 0)
         {
-            hero=isHero;phase=isHero?0:Random.value*6.28f;
+            hero=isHero;phase=isHero?0:(float)new System.Random(poseSeed).NextDouble()*6.28f;
             Root=VisualFactory.Node(name,parent,Vector3.zero);
             var hips=VisualFactory.Node("Pelvis",Root,new Vector3(0,1.02f,0));pelvis=hips;
             var cloth=hero?VisualFactory.Hero:heavy?VisualFactory.EnemyHeavy:VisualFactory.Enemy;
@@ -189,6 +189,7 @@ namespace VectorGame
             displayedRight=right;displayedLeft=left;twoHanded=bothHands;
             weaponRight=right==WeaponKind.Fists?null:MakeWeapon(RightHand,right);
             weaponLeft=left==WeaponKind.Fists||bothHands?null:MakeWeapon(LeftHand,left);
+            if(weaponRight!=null&&bothHands)weaponRight.localScale=Vector3.one*1.22f;
         }
         Transform MakeWeapon(Transform hand,WeaponKind kind)
         {
@@ -206,9 +207,10 @@ namespace VectorGame
             }
             else
             {
-                float length=kind==WeaponKind.Pistol?.55f:1.1f;
+                float length=kind==WeaponKind.Pistol?.55f:kind==WeaponKind.Shotgun?.7f:1.1f;
                 VisualFactory.Part("Receiver",root,PrimitiveType.Cube,new Vector3(0,0,length*.45f),new Vector3(.18f,.22f,length),VisualFactory.Trim);
                 VisualFactory.Part("Muzzle",root,PrimitiveType.Cube,new Vector3(0,0,length),new Vector3(.12f,.12f,.12f),VisualFactory.Glow);
+                if(kind==WeaponKind.Shotgun){VisualFactory.Part("Second barrel",root,PrimitiveType.Cube,new Vector3(.15f,0,length*.5f),new Vector3(.13f,.16f,length),VisualFactory.Trim);VisualFactory.Part("Second muzzle",root,PrimitiveType.Cube,new Vector3(.15f,0,length),new Vector3(.12f,.12f,.12f),VisualFactory.Glow);}
             }
             return root;
         }

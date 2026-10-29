@@ -45,7 +45,7 @@ namespace VectorGame
             {L(-18,20,18,-20,5);L(18,-20,12,-6);L(18,-20,4,-13);L(-19,4,-4,19);L(-24,25,-18,19,5);}
             else if(def.kind==ItemKind.Weapon&&def.weapon==WeaponKind.Hammer)
             {L(-19,23,10,-9,5);L(-1,-21,23,3,11);L(-5,-17,19,7,8);}
-            else if(def.kind==ItemKind.Weapon&&(def.weapon==WeaponKind.Pistol||def.weapon==WeaponKind.Rifle))
+            else if(def.kind==ItemKind.Weapon&&(def.weapon==WeaponKind.Pistol||def.weapon==WeaponKind.Rifle||def.weapon==WeaponKind.Shotgun))
             {L(-22,-7,21,-7,9);L(-13,-3,-18,19,9);L(21,-7,28,-7,3);if(def.weapon==WeaponKind.Rifle){L(-22,-7,-28,7,5);L(6,-7,6,-16);L(0,-16,12,-16);L(4,0,1,14,7);}}
             else if((def.kind==ItemKind.Weapon&&def.weapon==WeaponKind.Fists)||def.ability?.id==AbilityId.SteelJab)
             {L(-16,15,-3,25,11);L(-12,9,3,-13,10);L(0,14,15,-8,9);L(10,10,23,-6,7);L(-20,-2,-9,-17,7);L(-16,10,-22,-2,8);}
@@ -61,6 +61,16 @@ namespace VectorGame
             {for(int i=-1;i<=1;i++){L(-20+i*8,19+i*3,12+i*8,-13+i*3,4);L(12+i*8,-13+i*3,3+i*8,-10+i*3);L(12+i*8,-13+i*3,9+i*8,-4+i*3);}}
             else if(def.ability?.id==AbilityId.ForcePush)
             {for(int i=-1;i<=1;i++){L(-20+i*15,-19,-7+i*15,0);L(-7+i*15,0,-20+i*15,19);}L(-27,-10,-27,10);}
+            else if(def.ability?.id==AbilityId.Counterguard)
+            {L(-22,-18,22,-18);L(-22,-18,-18,9);L(22,-18,18,9);L(-18,9,0,26);L(18,9,0,26);L(0,-11,0,12);L(-10,1,10,1);}
+            else if(def.ability?.id==AbilityId.VectorTether)
+            {L(-21,22,-21,-22);L(21,22,21,-22);L(-13,0,-3,0);L(13,0,3,0);L(0,22,0,-22);L(-7,-13,0,-22);L(7,-13,0,-22);}
+            else if(def.ability?.id==AbilityId.ConductiveBrand)
+            {L(0,-25,22,0);L(22,0,0,25);L(0,25,-22,0);L(-22,0,0,-25);L(5,-14,-6,2);L(-6,2,6,0);L(6,0,-5,14);}
+            else if(def.ability?.id==AbilityId.ReapingCut||def.id=="cyclone")
+            {L(-24,20,24,-20,5);L(24,-20,12,-16);L(24,-20,20,-7);if(def.id=="cyclone")Ring(Vector2.zero,27,color);else{L(-20,-15,-8,-24);L(-8,-24,12,-24);}}
+            else if(def.id=="redline")
+            {L(-23,-18,-5,0,5);L(-5,0,-23,18,5);L(-3,-18,15,0,5);L(15,0,-3,18,5);L(25,-23,25,23);}
             else if(def.ability?.id==AbilityId.ArcBolt||def.id=="tempest")
             {L(11,-25,-11,1,5);L(-11,1,9,-2,5);L(9,-2,-10,24,5);L(-23,-12,-28,-5,2);L(24,11,29,4,2);}
             else {TypeIcon(new Rect(-24,-24,48,48),def.kind,color);Ring(Vector2.zero,24,color);}

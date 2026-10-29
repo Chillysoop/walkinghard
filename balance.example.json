@@ -1,0 +1,17 @@
+{
+  "enemyDamage": 3.2,
+  "enemyHealth": 40,
+  "heroHealth": 280,
+  "firstSpawnInterval": 1.25,
+  "finalSpawnInterval": 0.62,
+  "items": [
+    {
+      "id": "pistol",
+      "damageMultiplier": 1.0,
+      "durationMultiplier": 1.0,
+      "effectMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "cooldownMultiplier": 1.0
+    }
+  ]
+}

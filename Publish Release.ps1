@@ -1,4 +1,4 @@
-param([string]$Tag='v0.5.2',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.6.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -10,14 +10,14 @@ try {
     if ($remote[0] -ne $commit) { throw 'Push this exact commit to main before publishing.' }
     $releases=Join-Path $PSScriptRoot 'Releases';New-Item -ItemType Directory -Path $releases -Force | Out-Null
     $stage=Join-Path $releases ('Stage-'+[Guid]::NewGuid().ToString('N'));New-Item -ItemType Directory -Path $stage -Force | Out-Null
-    foreach($f in @('WalkingHard.exe','WalkingHard_Data','UnityPlayer.dll','UnityCrashHandler64.exe','MonoBleedingEdge','D3D12')) {
+    foreach($f in @('WalkingHard.exe','WalkingHard_Data','UnityPlayer.dll','UnityCrashHandler64.exe','MonoBleedingEdge','D3D12','simulation-capabilities.json')) {
         $source=Join-Path $PlayerDirectory $f
         if(Test-Path -LiteralPath $source){Copy-Item -LiteralPath $source -Destination $stage -Recurse}
     }
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Launcher') -Destination $stage -Recurse
-    foreach($doc in @('README.md','DESIGN.md')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
+    foreach($doc in @('README.md','DESIGN.md','SIMULATIONS.md','Run Simulations.ps1','Summarize Simulations.ps1','Compare Simulations.ps1','balance.example.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
     $qaStage=Join-Path $stage 'QA';New-Item -ItemType Directory -Path $qaStage -Force | Out-Null
-    foreach($doc in @('v052-verification.md','v052-reloading.png','v051-verification.md','v051-armed-cast.png','v05-verification.md','v05-checkpoint.png','v05-combat.png','v05-hover.png','v05-fusion.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($doc in @('v060-verification.md','v060-native-contactsheet.jpg','v060-followup-cues.jpg','v060-mechanic-motion.jsonl','v060-simulation-summary.json','v060-balance-comparisons.csv')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -30,7 +30,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Visible Action Delays';draft=$true;prerelease=$false;body="Combat tiles now show temporary amber progress bars and remaining combat seconds during RELOADING and READYING. A loaded paired weapon says WAITING FOR PAIR when its partner needs to reload. Normal attack progress resumes when the delay ends. Descriptions, stats, rarity and item kills stay visible. Existing reload durations, sequence order and damage are unchanged. Fifteen standalone scenarios passed, including a paired-pistol fixture with different ammunition counts; native UI inspection confirmed the bars. DESIGN.md includes a proposed content/replayability round; its new items and reward changes are not in this player.`n`nExtract the Windows ZIP, run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. Built from $commit. See QA/v052-verification.md for details."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Build Variety and Headless Balancing';draft=$true;prerelease=$false;body="Forty authored items and sixteen transferable weapon/ability augments expand the five-action loop. Eight waves include formation previews, thirteen item choices, two augment drafts and a Warden encounter. Weapons, armor, rigs and ultimates have visible signature effects; rarity scales their relevant stats and effects. Checkpoints support module attachment, storage and fusion ownership. Recaps report damage, control, absorption and delays. Engine-only batch scripts run seeded games with actual combat and PhysX, numerical tuning files and before/after CSV comparisons. Balance remains provisional; see QA/v060-verification.md for measured checks and limitations.`n`nExtract the Windows ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. See SIMULATIONS.md for bulk simulations. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

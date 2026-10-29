@@ -42,6 +42,7 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
             CombatHeader(w,h);CombatBar(w,h);
+            if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
             if(game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Gold:Accent,true,TextAnchor.MiddleCenter);
             if(game.DamageFlash>0&&!game.ReducedMotion){var c=new Color(1,.23f,.1f,game.DamageFlash*.3f);Box(new Rect(0,0,w,5),c);Box(new Rect(0,h-5,w,5),c);}
             DrawFusionFeedback(w,h);DrawItemTooltip(w,h);
@@ -49,12 +50,12 @@ namespace VectorGame
         void Intro(float w,float h)
         {
             Panel(new Rect(28,115,470,485));
-            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.5.2",15,Accent,true);
+            Label(new Rect(54,142,410,24),"WALKING HARD  /  PROTOTYPE 0.6.0",15,Accent,true);
             Label(new Rect(52,189,420,125),"BUILD THE ORDER.\nBREAK THE CROWD.",34,white,true);
-            Label(new Rect(55,333,400,90),"Two weapon attacks. Three chosen abilities.\nArrange all five; combat runs automatically.\nYour ultimate has its own 12-second timer.",18,muted);
+            Label(new Rect(55,333,400,90),"Two weapon attacks. Three chosen abilities.\nArrange all five; combat runs automatically.\nYour ultimate has a separate recharge timer.",18,muted);
             Label(new Rect(55,438,400,48),"Find weapons at checkpoints. Pair matching attacks, split bodies, and build collision cascades.",16,white);
             if(Button(new Rect(55,521,410,49),"DRAFT YOUR LOADOUT  [ ENTER ]",true))game.Begin();
-            Label(new Rect(29,h-50,850,25),"THREE WAVES  /  CHOOSE ONE OF THREE  /  A NEW DRAFT EACH RUN",14,muted);
+            Label(new Rect(29,h-50,850,25),"EIGHT WAVES  /  CHOOSE ONE OF THREE  /  A NEW DRAFT EACH RUN",14,muted);
         }
         void CombatHeader(float w,float h)
         {
@@ -76,13 +77,15 @@ namespace VectorGame
             Segments(new Rect(38,343,202,5),game.Score.Remaining/ComboScore.Window,Gold,10);
             float x=w-330;
             Panel(new Rect(x,18,310,108));
-            Label(new Rect(x+20,34,190,23),game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / 03",17,white,true);
+            Label(new Rect(x+20,34,190,23),game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
             Label(new Rect(x+231,29,61,40),Mathf.CeilToInt(game.WaveRemaining)+"s",31,white,true,TextAnchor.UpperRight);
             Stroke(new Vector2(x+20,64),new Vector2(x+290,64),line,1);
             string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
             string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
             UltimatePanel(new Rect(x,138,310,180));
+            if(game.BossFraction>0){Rect boss=new Rect(w/2-170,20,340,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,316,22),"WARDEN / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Gold,true);Segments(new Rect(boss.x+12,boss.y+39,316,8),game.BossFraction,Gold,20);}
+            Label(new Rect(20,365,310,45),"BARRIER "+game.BarrierAmount.ToString("0")+" / "+game.ArmedState+"\n"+game.VisiblePayoff,11,Accent,true);
         }
         void UltimatePanel(Rect r)
         {
@@ -94,7 +97,8 @@ namespace VectorGame
             string status=delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":item==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED":"READY";
             Label(new Rect(r.x+16,r.y+68,145,23),status,delayed?13:21,delayed?Gold:Violet,true);
             Label(new Rect(r.x+161,r.y+73,133,18),"Kills: "+game.KillsFor(item),12,muted,true,TextAnchor.UpperRight);
-            Label(new Rect(r.x+16,r.y+98,r.width-32,18),AttackDescription(item),11,white);
+            string description=item==null?"No ultimate equipped.":item.def.id=="redline"?"Refill guns; haste for three turns.":item.def.id=="cyclone"?"Full-circle cut; lethal hits sever.":item.def.id=="tempest"?"Chain lightning; consumes Conductive.":"Launch foes into collision chains.";
+            Label(new Rect(r.x+16,r.y+98,r.width-32,18),description,11,white);
             Label(new Rect(r.x+16,r.y+120,r.width-32,18),CombatStats(item)+" / "+game.UltimateCooldown.ToString("0")+"s CD",10,muted,true);
             Segments(new Rect(r.x+16,r.y+140,r.width-32,4),delayed?delay.Progress:1-game.UltimateRemaining/game.UltimateCooldown,delayed?Gold:Violet,20);
             ItemTooltip(new Rect(r.x,r.y,r.width,146),item);
@@ -122,6 +126,7 @@ namespace VectorGame
                 Label(new Rect(x+12,y+94,width-24,17),CombatStats(item),11,muted,true);
                 Label(new Rect(x+12,y+115,width-24,17),shown==null?"SKIPPED":"Kills: "+game.ActionKills(item)+"  /  "+ItemRarity.Names[shown.rank],11,shown==null?muted:RarityColor(shown.rank));
                 if(active&&!delayed)Box(new Rect(x+12,y+133,(width-24)*game.ActionProgress,2),Accent);
+                if(shown?.augment!=null){bool shared=item.def.kind==ItemKind.Basic&&item.mount==1&&game.Deck.WeaponFor(game.Deck.Basics[0])==shown;Label(new Rect(x+12,y-18,width-24,17),(shared?"SHARED SOCKET":shown.augment.Name)+(game.BreachArmed(shown)?" · ARMED":""),10,Violet,true);}
                 ItemTooltip(new Rect(x,y,width,137),item);
             }
             GroupOutline(30,y,width,10,137);
@@ -139,24 +144,25 @@ namespace VectorGame
             if(Button(new Rect(x+275,y+267,235,38),"REPEAT SEED [ T ]"))game.Begin(true);
             if(Button(new Rect(x+30,y+330,480,38),"QUIT"))game.Quit();
         }
+        Vector2 recapScroll;
         void Summary(float w,float h)
         {
             Box(new Rect(0,0,w,h),new Color(.015f,.035f,.045f,.87f));float x=w/2-480,y=h/2-305;Panel(new Rect(x,y,960,610));
             bool win=game.State==VectorEncounter.RunState.Complete;
-            Label(new Rect(x+32,y+24,896,22),win?"THREE WAVES SURVIVED":"OVERRUN IN WAVE "+game.Wave,15,Accent,true);
+            Label(new Rect(x+32,y+24,896,22),win?game.WaveCount+" WAVES SURVIVED":"OVERRUN IN WAVE "+game.Wave,15,Accent,true);
             Label(new Rect(x+32,y+66,896,60),"YOUR ORDER. YOUR FIGHT.",40,white,true);
             Label(new Rect(x+32,y+137,896,40),game.Deck.Loadout,17,muted);
             string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
             string[] labels={"SCORE","KILLS","BEST COMBO","COLLISION HITS"};
             for(int i=0;i<4;i++){Label(new Rect(x+32+i*226,y+194,212,42),values[i],33,white,true);Label(new Rect(x+32+i*226,y+241,212,20),labels[i],13,muted);}
-            float[] columns={32,190,370,548,728};string[] headers={"WAVE","TAKEDOWNS","LAUNCHES","COLLISIONS","INTEGRITY"};
-            for(int j=0;j<5;j++)Label(new Rect(x+columns[j],y+292,150,24),headers[j],13,muted,true);
-            for(int i=0;i<game.Waves.Count;i++)
-            {
-                var row=game.Waves[i];string[] cells={row.wave.ToString("00"),row.kills.ToString(),row.launches.ToString(),row.collisions.ToString(),Mathf.CeilToInt(row.health).ToString()};
-                for(int j=0;j<5;j++)Label(new Rect(x+columns[j],y+327+i*35,150,28),cells[j],18,j==3&&row.collisions>0?Gold:white,true);
-            }
-            Label(new Rect(x+32,y+449,896,42),"Try another order or a different draft. Seed "+game.Seed+"  /  "+game.Ragdolls+" ragdolls / "+game.Severs+" severs / "+game.UltimateCasts+" ultimates.",16,muted);
+            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=42+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
+            recapScroll=GUI.BeginScrollView(viewport,recapScroll,new Rect(0,0,880,contentHeight));
+            Label(new Rect(4,0,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
+            float rowY=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}
+            Label(new Rect(4,rowY,860,20),"ITEM CONTRIBUTIONS · setup assists never add kills",12,Accent,true);rowY+=25;
+            foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / range wait "+c.rangeWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
+            foreach(var note in game.InteractionNotes){Label(new Rect(4,rowY,870,18),note.Key+" × "+note.Value,11,Accent);rowY+=19;}
+            GUI.EndScrollView();
             if(Button(new Rect(x+32,y+534,430,46),"NEW DRAFT [ R ]",true))game.Begin();
             if(Button(new Rect(x+478,y+534,290,46),"REPEAT SEED [ T ]"))game.Begin(true);
             if(Button(new Rect(x+784,y+534,144,46),"QUIT"))game.Quit();

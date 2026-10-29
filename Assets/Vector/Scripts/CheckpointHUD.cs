@@ -7,7 +7,7 @@ namespace VectorGame
 {
     public sealed partial class PrototypeHUD
     {
-        sealed class DropRegion {public Rect rect;public LoadoutItem item;public PlaceKind place;public int index,offer=-1;}
+        sealed class DropRegion {public Rect rect;public LoadoutItem item;public PlaceKind place;public int index,offer=-1;public bool socket;}
         readonly List<DropRegion> dropRegions=new List<DropRegion>();
         Vector2 inventoryScroll,dragStart;
         LoadoutItem selectedItem,dragItem,lastClickItem;
@@ -49,14 +49,14 @@ namespace VectorGame
                 float top=Mathf.Max(r.y,inventoryRect.y),bottom=Mathf.Min(r.yMax,inventoryRect.yMax);
                 if(bottom>top)dropRegions.Insert(dropRegions.Count-1,new DropRegion{rect=new Rect(r.x,top,r.width,bottom-top),place=PlaceKind.Inventory,item=inventory[i]});
             }
-            HandleLoadoutInput();
+            AddSocketRegions();HandleLoadoutInput();
             Panel(new Rect(20,18,w-40,58));TypeIcon(new Rect(34,31,32,32),ItemKind.Rig,muted);
             Label(new Rect(76,33,165,24),"WALKING HARD",17,white,true);
             Label(new Rect(250,25,260,29),game.OpeningDraft?"OPENING DRAFT":"CHECKPOINT "+game.Wave,25,white,true);
             Label(new Rect(520,30,230,22),"COMBAT PAUSED",15,Accent,true);
-            Label(new Rect(251,56,610,18),"Drag rewards onto your loadout or into storage. Hover any item for full details.",11,muted);
+            Label(new Rect(251,56,610,18),game.EncounterPreview,11,muted);
             Label(new Rect(w-290,31,250,25),(deck.RewardClaimed?"CHOICE CLAIMED":"CHOOSE 1 OF 3")+(game.OpeningDraft?" / "+(game.OpeningPicks+1)+" OF 2":""),16,deck.RewardClaimed?Accent:white,true,TextAnchor.UpperRight);
-            Panel(new Rect(20,86,w-40,146));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Weapon?"WEAPON REWARDS":"REWARDS",11,Accent,true);
+            Panel(new Rect(20,86,w-40,146));Label(new Rect(33,86,500,17),deck.Draft==DraftKind.Augment?"AUGMENTS / CHOOSE MODULE, THEN HIGHLIGHTED HOST":deck.Draft.ToString().ToUpperInvariant()+" REWARDS",11,Accent,true);
             for(int i=0;i<3;i++)
             {
                 var offer=deck.Offers[i];Rect r=new Rect(32+i*(rewardW+10),104,rewardW,116);bool selected=deck.Selected==i;Color color=RarityColor(offer.rank);
@@ -66,7 +66,7 @@ namespace VectorGame
                 Label(new Rect(r.x+103,r.y+11,r.width-115,15),OfferType(offer)+(deck.RewardClaimed?(selected?" / CLAIMED":" / PASSED"):""),10,TypeColor(offer.def.kind),true);
                 Label(new Rect(r.x+103,r.y+31,r.width-115,27),offer.Name,20,white,true);
                 Label(new Rect(r.x+103,r.y+62,r.width-115,27),ItemStats(offer.def,offer.rank),11,muted,true);
-                Label(new Rect(r.x+14,r.y+96,r.width-28,15),ItemRarity.Names[offer.rank].ToUpperInvariant()+" / "+UpgradePreview(offer),9,color,true);
+                Label(new Rect(r.x+14,r.y+96,r.width-28,15),(offer.def.kind==ItemKind.Augment?"HOST-SCALED":ItemRarity.Names[offer.rank].ToUpperInvariant())+" / "+UpgradePreview(offer),9,color,true);
                 ItemTooltip(r,new LoadoutItem(offer.def,offer.rank));
             }
             CharacterStats(stats);
@@ -109,10 +109,10 @@ namespace VectorGame
             FusionHistoryButton(new Rect(400,h-34,235,25));
             if(game.FusionHistory.Count==0)Label(new Rect(402,h-30,230,20),"Replaced gear moves to storage.",11,muted);
             GUI.enabled=deck.RewardClaimed||deck.Selected>=0;
-            string next=!deck.RewardClaimed?"AUTO-EQUIP [ ENTER ]":game.OpeningDraft&&game.OpeningPicks==0?"NEXT OPENING PICK":!game.OpeningDraft&&game.Wave==1&&deck.Draft==DraftKind.Ability?"NEXT: WEAPON PICK":"LET'S FIGHT";
+            string next=!deck.RewardClaimed?"AUTO-EQUIP [ ENTER ]":game.OpeningDraft&&game.OpeningPicks==0?"NEXT OPENING PICK":game.PendingDraft;
             if(Button(new Rect(w-274,h-35,254,27),next,true)){if(deck.RewardClaimed)game.ConfirmDraft();else game.AcceptSelectedReward(!editAfterPick);ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(650,h-33,w-940,27),loadoutFeedback,10,Gold);
-            DrawDragPreview();
+            DrawSockets();DrawDragPreview();
         }
         void CharacterStats(Rect r)
         {
@@ -122,10 +122,10 @@ namespace VectorGame
             Label(new Rect(r.x+16,r.y+60,r.width-32,22),"INTEGRITY",12,muted,true);
             Label(new Rect(r.x+16,r.y+58,r.width-32,22),Mathf.CeilToInt(game.Health)+" / "+game.MaxHealth.ToString("0"),18,white,true,TextAnchor.UpperRight);
             Segments(new Rect(r.x+16,r.y+88,r.width-32,10),game.Health/game.MaxHealth,Accent,12);
-            string[] names={"DIRECT DAMAGE","DAMAGE RESIST","ACTION SPEED","REGEN / SECOND"};
-            string[] values={"+"+((d.Damage-1)*100).ToString("0.#")+"%",((1-d.DamageTaken)*100).ToString("0.#")+"%","+"+((d.Speed-1)*100).ToString("0.#")+"%",d.Regeneration.ToString("0.##")};
+            string[] names={"DIRECT DAMAGE","DAMAGE RESIST","ACTION SPEED","BARRIER"};
+            string[] values={"+"+((d.Damage-1)*100).ToString("0.#")+"%",((1-d.DamageTaken)*100).ToString("0.#")+"%","+"+((d.Speed-1)*100).ToString("0.#")+"%",game.BarrierAmount.ToString("0")};
             for(int i=0;i<4;i++){float y=r.y+119+i*28;Label(new Rect(r.x+16,y,r.width-90,20),names[i],12,muted,true);Label(new Rect(r.x+16,y,r.width-32,20),values[i],15,white,true,TextAnchor.UpperRight);Stroke(new Vector2(r.x+16,y+23),new Vector2(r.xMax-16,y+23),new Color(line.r,line.g,line.b,.35f),1);}
-            string passive=d.Armor[0]!=null?"EXPOSE +"+d.StaggerBonus.ToString("0.#")+" damage vs staggered targets.":d.Armor.Any(a=>a!=null)?"Armor passives active. Hover gear for details.":"Armor slots grant stats and passive effects.";
+            string passive=d.StaggerBonus>0?"EXPOSE +"+d.StaggerBonus.ToString("0.#")+" damage vs staggered targets.":d.Armor.Any(a=>a!=null)?"Armor passives active. Hover gear for details.":"Armor slots grant stats and passive effects.";
             Label(new Rect(r.x+16,r.y+235,r.width-32,18),passive,10,Accent);
         }
         void ConnectMount(Rect slot,Vector2 target)
@@ -178,6 +178,7 @@ namespace VectorGame
         }
         void DropReward(int offer,DropRegion hit)
         {
+            if(game.Deck.Offers[offer].def.kind==ItemKind.Augment&&Host(hit) is LoadoutItem host&&host.Augmentable){if(game.ClaimAugmentToHost(offer,host,!editAfterPick)){ClearLoadoutGesture();GUIUtility.ExitGUI();}loadoutFeedback="Choose a compatible highlighted host.";return;}
             RewardTarget(offer,hit,out var place,out int index);
             if(game.ClaimReward(offer,place,index,!editAfterPick)){ClearLoadoutGesture();GUIUtility.ExitGUI();}
             loadoutFeedback="That destination does not fit. Drop abilities into the sequence, weapons into mounts, or spare rewards into inventory.";
@@ -193,7 +194,7 @@ namespace VectorGame
             {
                 if(hit!=null&&hit.offer<0)
                 {
-                    if(dragItem!=null){game.MoveItem(dragItem,hit.place,hit.index);loadoutFeedback=game.Deck.MoveMessage;}
+                    if(dragItem!=null){MoveToRegion(dragItem,hit);loadoutFeedback=game.Deck.MoveMessage;}
                     else if(dragOffer>=0)DropReward(dragOffer,hit);
                 }
                 lastClickTime=-10;GUIUtility.hotControl=0;selectedItem=null;e.Use();
@@ -202,10 +203,10 @@ namespace VectorGame
             {
                 bool twice=Time.realtimeSinceStartup-lastClickTime<.4f&&lastClickOffers==game.Deck.Offers&&lastClickOffer==hit.offer&&lastClickItem==hit.item;
                 lastClickTime=Time.realtimeSinceStartup;lastClickOffer=hit.offer;lastClickItem=hit.item;lastClickOffers=game.Deck.Offers;
-                if(twice&&hit.offer>=0){game.SelectOffer(hit.offer);game.AcceptSelectedReward(!editAfterPick);ClearLoadoutGesture();GUIUtility.ExitGUI();}
-                else if(twice&&hit.item!=null){game.AutoEquip(hit.item);selectedItem=null;loadoutFeedback=game.Deck.MoveMessage;}
+                if(twice&&hit.offer>=0){game.SelectOffer(hit.offer);game.AcceptSelectedReward(!editAfterPick);if(game.Deck.Draft==DraftKind.Augment&&!game.Deck.RewardClaimed){loadoutFeedback="Choose a highlighted host to attach.";}else{ClearLoadoutGesture();GUIUtility.ExitGUI();}}
+                else if(twice&&hit.item!=null){bool equipped=game.AutoEquip(hit.item);selectedItem=!equipped&&hit.item.def.kind==ItemKind.Augment?hit.item:null;loadoutFeedback=game.Deck.MoveMessage;}
                 else if(hit.offer>=0){game.SelectOffer(hit.offer);selectedItem=null;}
-                else if(selectedItem!=null&&hit.item!=selectedItem){game.MoveItem(selectedItem,hit.place,hit.index);selectedItem=null;loadoutFeedback=game.Deck.MoveMessage;}
+                else if(selectedItem!=null&&hit.item!=selectedItem){MoveToRegion(selectedItem,hit);selectedItem=null;loadoutFeedback=game.Deck.MoveMessage;}
                 else if(!game.Deck.RewardClaimed&&game.Deck.Selected>=0)DropReward(game.Deck.Selected,hit);
                 else if(hit.item!=null)selectedItem=selectedItem==hit.item?null:hit.item;
                 e.Use();
@@ -219,8 +220,8 @@ namespace VectorGame
             foreach(var region in dropRegions)if(region.offer<0)
             {
                 bool valid;
-                if(dragItem!=null)valid=game.Deck.CanMove(dragItem,region.place,region.index);
-                else {RewardTarget(dragOffer,region,out var place,out int index);valid=game.Deck.CanClaimTo(dragOffer,place,index);}
+                if(dragItem!=null)valid=dragItem.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host?dragItem.def.module.Fits(host.def):game.Deck.CanMove(dragItem,region.place,region.index);
+                else {RewardTarget(dragOffer,region,out var place,out int index);valid=game.Deck.Offers[dragOffer].def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host?game.Deck.Offers[dragOffer].def.module.Fits(host.def):game.Deck.CanClaimTo(dragOffer,place,index);}
                 if(valid)Outline(region.rect,Accent,8,region.rect.Contains(Event.current.mousePosition)?3:1);
                 else if(region.rect.Contains(Event.current.mousePosition))Outline(region.rect,Gold,8,2);
             }
