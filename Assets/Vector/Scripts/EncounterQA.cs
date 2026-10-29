@@ -8,6 +8,32 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         bool modelChecks;
+        bool qaWeaponChecks=true;
+        Transform qaRightWeapon,qaLeftWeapon;
+        int qaArmedAbilities,qaArmedUltimates,qaLeftAttacks,qaWeaponFrames,qaWeaponAction=-1;
+        void QABeginWeapons(){qaRightWeapon=hero.RightWeapon;qaLeftWeapon=hero.LeftWeapon;}
+        void QACheckWeapons()
+        {
+            // Check the actual rendered objects through preparation, attacks, casts and recovery.
+            // Identity checks catch destroying/recreating the same-looking weapon between actions.
+            qaWeaponFrames++;
+            qaWeaponChecks&=hero.RightWeapon==qaRightWeapon&&hero.LeftWeapon==qaLeftWeapon;
+            for(int mount=0;mount<2;mount++)
+            {
+                var model=mount==0?hero.RightWeapon:hero.LeftWeapon;
+                var kind=Deck.WeaponFor(Deck.Basics[mount]).def.weapon;
+                bool expected=kind!=WeaponKind.Fists&&(mount==0||!Deck.TwoHanded);
+                qaWeaponChecks&=expected?model!=null&&model.gameObject.activeInHierarchy&&model.parent==(mount==0?hero.RightHand:hero.LeftHand)&&model.name==kind.ToString():model==null;
+            }
+            if(ActiveSlot<0||Preparation>0||actionAge<=0||qaWeaponAction==actionSerial)return;
+            qaWeaponAction=actionSerial;
+            if(hero.RightWeapon!=null||hero.LeftWeapon!=null)
+            {
+                if(ActiveSlot==5)qaArmedUltimates++;
+                else if(actionWeapon==null)qaArmedAbilities++;
+                else if(!Deck.TwoHanded&&actionItem.mount==1)qaLeftAttacks++;
+            }
+        }
         void QADraft()
         {
             if(!modelChecks)
@@ -71,6 +97,13 @@ namespace VectorGame
                     if(qaBuild=="twin")MoveItem(Deck.Acquire(def),PlaceKind.Weapon,1);
                 }
                 if(qaBuild=="tempest")MoveItem(Deck.Acquire(LoadoutCatalog.Ultimates[1]),PlaceKind.Ultimate);
+                if(qaBuild=="armed")
+                {
+                    MoveItem(Deck.Acquire(LoadoutCatalog.Weapons.First(d=>d.id=="sword")),PlaceKind.Weapon,0);
+                    MoveItem(Deck.Acquire(LoadoutCatalog.Weapons.First(d=>d.id=="pistol")),PlaceKind.Weapon,1);
+                    MoveItem(Deck.Basics[1],PlaceKind.Sequence,0);
+                    for(int i=0;i<3;i++)MoveItem(Deck.Acquire(LoadoutCatalog.Abilities.First(d=>d.ability.id==new[]{AbilityId.Breaker,AbilityId.MassDriver,AbilityId.ForcePush}[i])),PlaceKind.Sequence,i+2);
+                }
                 if(qaHoldCheckpoint)
                 {
                     if(qaBuild=="ui")
@@ -120,6 +153,7 @@ namespace VectorGame
         }
         [Serializable] sealed class QAReport
         {
+            public bool heldWeaponChecks;public int heldWeaponFrames,armedAbilities,armedUltimates,leftHandAttacks;
             public string result,build,loadout;public int tempestHits,seed,waves,kills,spawned,alive,casts,paired,independentTargets,ultimates,severs,reloads,launches,collisions,cascadeHop,ragdolls,physicsContacts,worldContacts,leftDoors,rightDoors,horizon,visibleSpawns,orderErrors,rerolls,fusions,score,bestCombo,bestMultiplier,creditedKills;
             public float elapsed,health,speed,oldestBody,maxHealth,armorHealing,armorPreventedDamage;public int retainedBodies,walkingShoves,armorBonusHits;public bool passed,draftChecks,manualChecks,modelChecks,ultimateTiming,walkingIgnoresBodies;public int[] slotCasts,castTrace,weaponHits;public float[] ultimateTimes,ultimateDeadlines;public WaveReport[] reports;
         }
@@ -137,6 +171,9 @@ namespace VectorGame
             report.walkingIgnoresBodies=corpses.All(c=>c.physics.IgnoresWalker(heroPhysics)&&(flights.Exists(f=>f.body==c)||enemies.All(e=>c.physics.IgnoresWalker(e.physics))));
             report.maxHealth=MaxHealth;report.armorHealing=ArmorHealing;report.armorPreventedDamage=ArmorPreventedDamage;report.armorBonusHits=ArmorBonusHits;
             weapon&=qaBuild!="armor"||(MaxHealth>tuning.heroHealth&&ArmorBonusHits>0&&ArmorPreventedDamage>0&&ArmorHealing>0);
+            report.heldWeaponChecks=qaWeaponChecks;report.heldWeaponFrames=qaWeaponFrames;report.armedAbilities=qaArmedAbilities;report.armedUltimates=qaArmedUltimates;report.leftHandAttacks=qaLeftAttacks;
+            weapon&=qaWeaponChecks&&qaWeaponFrames>0;
+            weapon&=qaBuild!="armed"||(qaArmedAbilities>0&&qaArmedUltimates>0&&qaLeftAttacks>0&&WeaponHits[(int)WeaponKind.Pistol]>0&&WeaponHits[(int)WeaponKind.Sword]>0);
             report.passed=State==RunState.Complete&&Deck.Count==3&&OrderErrors==0&&VisibleSpawns==0&&LeftEntries>0&&RightEntries>0&&HorizonEntries>0&&Ragdolls>=10&&PhysicsContacts>0&&WorldContacts>0&&Spawned==Kills+enemies.Count&&credited==Kills&&qaDraftChecks&&report.manualChecks&&modelChecks&&timing&&UltimateCasts>0&&Score.Banked>0&&weapon&&corpses.Count==Kills&&report.oldestBody>7&&CorpseShoves>0&&report.walkingIgnoresBodies;
             string path=string.IsNullOrEmpty(qaPath)?Path.Combine(Application.persistentDataPath,"qa-report.json"):qaPath;
             Directory.CreateDirectory(Path.GetDirectoryName(path));File.WriteAllText(path,JsonUtility.ToJson(report,true));Debug.Log("WALKING_HARD_QA "+JsonUtility.ToJson(report));Application.Quit(report.passed?0:2);

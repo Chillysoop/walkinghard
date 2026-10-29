@@ -50,9 +50,9 @@ namespace VectorGame
             }
             WeaponKind desired=actionWeapon?.def.weapon??(card.id==AbilityId.SteelJab||card.id==AbilityId.Breaker||card.id==AbilityId.MassDriver?WeaponKind.Fists:heldWeapon);
             ActionStatus=ultimate?"ULTIMATE":PairSlot>=0?(Deck.TwoHanded?"TWO-HANDED ATTACK":"SIMULTANEOUS ATTACKS"):card.name.ToUpperInvariant();
-            if(desired!=heldWeapon){Preparation=.28f;ActionStatus="SWITCHING WEAPON / "+desired;heldWeapon=desired;}
+            // Keep the approved preparation cadence; changing stance never unequips a weapon.
+            if(desired!=heldWeapon){Preparation=.28f;ActionStatus="READYING / "+desired;heldWeapon=desired;}
             PrepareWeapon(actionWeapon);if(PairSlot>=0&&!Deck.TwoHanded)PrepareWeapon(pairWeapon);
-            hero.SetWeapons(heldWeapon,PairSlot>=0&&!Deck.TwoHanded,actionWeapon?.def.hands==2);
             Announce(ultimate?"ULTIMATE / SINGULARITY BURST":PairSlot>=0?ActionStatus:"SLOT "+(slot+1)+" / "+card.name.ToUpperInvariant());return true;
         }
         void StepHero(float dt)
@@ -80,18 +80,19 @@ namespace VectorGame
                     if(ActiveSlot==5)ResolveUltimate();
                     else if(actionWeapon!=null)
                     {
-                        ResolveBasic(actionWeapon,activeCard,actionTarget,false);
-                        if(PairSlot>=0&&!Deck.TwoHanded){currentCredit=new KillCredit{item=pairItem,weapon=pairWeapon,action=actionSerial};ResolveBasic(pairWeapon,pairCard,pairTarget,true);}
+                        ResolveBasic(actionWeapon,activeCard,actionTarget,!Deck.TwoHanded&&actionItem.mount==1);
+                        if(PairSlot>=0&&!Deck.TwoHanded){currentCredit=new KillCredit{item=pairItem,weapon=pairWeapon,action=actionSerial};ResolveBasic(pairWeapon,pairCard,pairTarget,pairItem.mount==1);}
                     }
                     else Resolve(activeCard);
                 }
                 if(!bonusDelivered&&actionAge>=actionDuration*.70f)
                 {
                     bonusDelivered=true;currentCredit=new KillCredit{item=actionItem,weapon=actionWeapon,action=actionSerial};
-                    if(actionWeapon?.def.weapon==WeaponKind.Fists&&actionWeapon.rank>=2)ResolveBasic(actionWeapon,activeCard,actionTarget,false,true);
-                    if(PairSlot>=0&&!Deck.TwoHanded&&pairWeapon?.def.weapon==WeaponKind.Fists&&pairWeapon.rank>=2){currentCredit=new KillCredit{item=pairItem,weapon=pairWeapon,action=actionSerial};ResolveBasic(pairWeapon,pairCard,pairTarget,true,true);}
+                    if(actionWeapon?.def.weapon==WeaponKind.Fists&&actionWeapon.rank>=2)ResolveBasic(actionWeapon,activeCard,actionTarget,actionItem.mount==1,true);
+                    if(PairSlot>=0&&!Deck.TwoHanded&&pairWeapon?.def.weapon==WeaponKind.Fists&&pairWeapon.rank>=2){currentCredit=new KillCredit{item=pairItem,weapon=pairWeapon,action=actionSerial};ResolveBasic(pairWeapon,pairCard,pairTarget,pairItem.mount==1,true);}
                 }
-                hero.Pose(clock,.7f,activeCard.pose,actionAge/actionDuration,heroReact,activeCard.pose<0,actionAge/actionDuration);
+                hero.Pose(clock,.7f,activeCard.pose,actionAge/actionDuration,heroReact,activeCard.pose<0,actionAge/actionDuration,
+                    actionWeapon==null?-1:Deck.TwoHanded?0:actionItem.mount,PairSlot>=0&&!Deck.TwoHanded,actionWeapon!=null&&Deck.TwoHanded);
                 if(actionAge>=actionDuration)
                 {
                     if(ActiveSlot==5){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;}

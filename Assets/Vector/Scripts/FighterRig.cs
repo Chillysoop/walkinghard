@@ -15,8 +15,10 @@ namespace VectorGame
         readonly bool hero;
         readonly float phase;
         Transform weaponRight,weaponLeft;
-        WeaponKind displayed=WeaponKind.Fists;
-        bool dualWeapon,twoHanded;
+        WeaponKind displayedRight=WeaponKind.Fists,displayedLeft=WeaponKind.Fists;
+        bool twoHanded;
+        internal Transform RightWeapon=>weaponRight;
+        internal Transform LeftWeapon=>weaponLeft;
         public FighterRig(string name, Transform parent, bool isHero, bool heavy = false)
         {
             hero=isHero;phase=isHero?0:Random.value*6.28f;
@@ -77,7 +79,7 @@ namespace VectorGame
             VisualFactory.Part("Boot",knee,PrimitiveType.Cube,new Vector3(0,-.39f,.09f),new Vector3(.26f,.20f,.43f),VisualFactory.Joint);
             return thigh;
         }
-        public void Pose(float clock,float speed,int strike,float progress,float hitReact,bool pushing,float pushProgress)
+        public void Pose(float clock,float speed,int strike,float progress,float hitReact,bool pushing,float pushProgress,int weaponHand=-1,bool pairedAttack=false,bool twoHandedAttack=false)
         {
             float cycle=clock*(hero?8:10)+phase;
             float stride=Mathf.Sin(cycle)*Mathf.Clamp01(speed)*26f;
@@ -117,7 +119,6 @@ namespace VectorGame
                 }
                 Body.localPosition+=new Vector3(0,-extension*.045f,extension*(strike==2?.23f:.13f));
             }
-            if(dualWeapon&&strike==0){rightArm.localRotation=leftArm.localRotation;rightElbow.localRotation=leftElbow.localRotation;}
             if(strike>=3)
             {
                 float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.16f)/.38f));
@@ -135,7 +136,22 @@ namespace VectorGame
                     Body.localRotation=Quaternion.Euler(Mathf.Lerp(-15,24,swing)*returnToGuard,0,0);
                 }
                 if(strike==5){rightArm.localRotation=Quaternion.Euler(-90,0,8);rightElbow.localRotation=Quaternion.Euler(-5,0,0);}
-                if(dualWeapon||twoHanded){leftArm.localRotation=rightArm.localRotation;leftElbow.localRotation=rightElbow.localRotation;}
+            }
+            if(weaponHand>=0)
+            {
+                // Weapon poses are authored on the right; the fist jab starts on the left.
+                // Resolve the attacking hand from the mount, never from the sequence position.
+                if(strike==0){rightArm.localRotation=Mirror(leftArm.localRotation);rightElbow.localRotation=Mirror(leftElbow.localRotation);Body.localRotation=Mirror(Body.localRotation);}
+                leftArm.localRotation=Quaternion.Euler(-35,0,-12);leftElbow.localRotation=Quaternion.Euler(-75,0,0);
+                if(weaponHand==1||pairedAttack||twoHandedAttack)
+                {
+                    leftArm.localRotation=Mirror(rightArm.localRotation);leftElbow.localRotation=Mirror(rightElbow.localRotation);
+                    if(weaponHand==1&&!pairedAttack&&!twoHandedAttack)
+                    {
+                        rightArm.localRotation=Quaternion.Euler(-25,0,12);rightElbow.localRotation=Quaternion.Euler(-85,0,0);
+                        Body.localRotation=Mirror(Body.localRotation);
+                    }
+                }
             }
             if(pushing)
             {
@@ -164,15 +180,15 @@ namespace VectorGame
             leftCuff.gameObject.SetActive(launch);rightCuff.gameObject.SetActive(launch);
             leftCuff.GetComponent<Renderer>().sharedMaterial=rightCuff.GetComponent<Renderer>().sharedMaterial=pinball?VisualFactory.GoldGlow:VisualFactory.Glow;
         }
-        public void SetWeapons(WeaponKind kind,bool dual,bool bothHands)
+        static Quaternion Mirror(Quaternion q)=>new Quaternion(q.x,-q.y,-q.z,q.w);
+        public void EquipWeapons(WeaponKind right,WeaponKind left,bool bothHands)
         {
-            if(kind==displayed&&dual==dualWeapon&&bothHands==twoHanded)return;
+            if(right==displayedRight&&left==displayedLeft&&bothHands==twoHanded)return;
             if(weaponRight!=null)Object.Destroy(weaponRight.gameObject);
             if(weaponLeft!=null)Object.Destroy(weaponLeft.gameObject);
-            displayed=kind;dualWeapon=dual;twoHanded=bothHands;
-            if(kind==WeaponKind.Fists)return;
-            weaponRight=MakeWeapon(RightHand,kind);
-            if(dual)weaponLeft=MakeWeapon(LeftHand,kind);
+            displayedRight=right;displayedLeft=left;twoHanded=bothHands;
+            weaponRight=right==WeaponKind.Fists?null:MakeWeapon(RightHand,right);
+            weaponLeft=left==WeaponKind.Fists||bothHands?null:MakeWeapon(LeftHand,left);
         }
         Transform MakeWeapon(Transform hand,WeaponKind kind)
         {
@@ -198,10 +214,7 @@ namespace VectorGame
         }
         public void PreviewLoadout(WeaponKind right,WeaponKind left,bool twoHandedWeapon)
         {
-            if(weaponRight!=null)Object.Destroy(weaponRight.gameObject);
-            if(weaponLeft!=null)Object.Destroy(weaponLeft.gameObject);
-            weaponRight=right==WeaponKind.Fists?null:MakeWeapon(RightHand,right);
-            weaponLeft=left==WeaponKind.Fists||twoHandedWeapon?null:MakeWeapon(LeftHand,left);
+            EquipWeapons(right,left,twoHandedWeapon);
             Pose(0,0,-1,0,0,false,0);
             leftArm.localRotation=Quaternion.Euler(5,0,-13);rightArm.localRotation=Quaternion.Euler(5,0,13);
             leftElbow.localRotation=rightElbow.localRotation=Quaternion.Euler(-8,0,0);

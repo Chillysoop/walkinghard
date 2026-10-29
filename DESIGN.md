@@ -1,6 +1,6 @@
 # Walking Hard — Current design contract
 
-Revision 4, October 28, 2026. This records the latest approved instructions and supersedes the previous three-slot sequence, manual combat toggle, two-carried-weapon interpretation, and rank-III cap.
+Revision 5, October 28, 2026. This records the latest approved instructions and supersedes the previous three-slot sequence, manual combat toggle, two-carried-weapon interpretation, and rank-III cap.
 
 ## Combat loop
 
@@ -10,7 +10,7 @@ The sequence contains **two persistent basic attacks plus three drafted abilitie
 
 Start unarmed with two separate pick-one-of-three ability drafts. Each pick goes into an empty sequence position. The first checkpoint grants the third ability, then a separate pick-three weapon offer. Later checkpoints offer mixed abilities, weapons, rigs, ultimates, and duplicate bundles. Drop a reward onto a compatible slot to claim, equip and advance immediately. Double-click auto-equips; a new ability goes into an empty position, or an existing matching action is upgraded. When the loop is full, an unrelated ability is stored. Weapons go directly to a mount (two-handed weapons fill both); displaced gear is stored. Enable Edit after pick to stay in the character sheet until Let's fight (or the next required draft pick).
 
-Matching weapon types in adjacent basic positions execute simultaneously and prefer independent targets. Adjacency includes the repeat boundary (position 5 followed by 1); an empty position between them does not count. The pair completes before the next action. Different weapon types execute separately, with a visible switch delay.
+Matching weapon types in adjacent basic positions execute simultaneously and prefer independent targets. Adjacency includes the repeat boundary (position 5 followed by 1); an empty position between them does not count. The pair completes before the next action. Different weapon types execute separately, with the existing preparation delay. Equipped weapons remain in their respective hands during all abilities and ultimates. Preparation changes the attack stance; it never holsters or replaces the models. Reordering a basic changes its sequence position, not its hand. Two-handed weapons use one model and both basic positions. This visual update preserves action durations, preparation timing, damage and ultimate scheduling.
 
 A **two-handed weapon occupies both weapon mounts**. It stores the previously equipped weapons, locks the two basic cards adjacently, and produces one weapon attack across the pair. A shared bounding box and lock identify the group. Dragging either basic moves the group. Two two-handed weapons cannot be equipped together. Replacing a two-handed weapon with a one-handed weapon stores it and frees the other mount.
 
@@ -91,3 +91,14 @@ Show real damage at the offered rarity, clear 1H/2H occupancy, and what a fusion
 ## Remaining work
 
 Models, animations and authored cuts remain procedural prototype art. Arbitrary runtime slicing, a large weapon catalog, long-run pacing, bosses, permanent unlocks and balance across the full rarity curve are future work. The old workshop site's saved choices remain historical review evidence; this file records the latest game rules.
+
+## Recommended next milestones (proposals, not approved rule changes)
+
+The checkpoint/inventory milestone and the first weapon spectacle pass now have playable implementations. The next question is whether the build economy stays interesting across a complete run.
+
+1. **A complete short run:** trial 6–8 waves targeting roughly 5–8 minutes of combat, with checkpoint tinkering measured separately. Add contrasting enemy roles and a final boss with supporting enemies so launch/collision builds have useful targets. Preview the next encounter at checkpoints. The earlier 12-wave / 15–20-minute idea remains a pacing hypothesis.
+2. **Build payoff and reward pacing:** use a small comparison set—Human Pinball, sword/fragment interactions, and pull/piercing-gun interactions. Give armor, useful duplicates, and loadout pivots enough opportunities to be evaluated. Review proposed changes to reward quantity, category guarantees, weighting, or rarity odds before implementing them; preserve the current rules until then. Rarity alone should not determine the best choice.
+3. **Feedback for friend playtests:** a compact run recap showing item kills, collision contributions, biggest combo, and a repeatable seed. Use it to compare sequences and locate stalls. Profile persistent-body cost at the longer duration before expanding further.
+4. **Then permanent unlocks:** telegraph upcoming weapon, gear and style unlocks and their requirements, as requested in the workshop review. Whether permanent progression grants baseline power is still unresolved. Broader content and production art follow a stable run structure.
+
+These recommendations reflect the current five-action loop, independent ultimate, two-handed groups, armor, five rarities and automatic fusion. They do not change any of those rules.

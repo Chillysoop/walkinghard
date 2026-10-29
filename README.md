@@ -1,4 +1,4 @@
-# Walking Hard 0.5 — Persistent Bodies & Fast Loadouts
+# Walking Hard 0.5.1 — Weapons Stay in Hand
 
 A Unity autobattler: one fighter walks forward through a physical crowd, seen from behind and above. Build a five-action loop, discover weapons, and turn bodies into chain reactions.
 
@@ -12,7 +12,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 
 - Five movable sequence positions: two permanent weapon attacks plus three drafted abilities. The sequence always runs automatically.
 - Matching adjacent one-handed attacks fire together with independent targets. Two-handed weapons fill both mounts and lock their basic cards into one movable group.
-- Fists, swords, hammers, pistols and rifles with distinct attacks, visible switches/reloads and behavior upgrades.
+- Fists, swords, hammers, pistols and rifles with distinct attacks, visible preparation/reloads and behavior upgrades. Both equipped weapons stay in their mounted hands during abilities and ultimates; a two-handed weapon remains one model.
 - Separate ultimates with 12–16 second countdowns, automatic queuing or manual activation, and preserved sequence order.
 - Two opening ability drafts; checkpoint one grants a third ability and a weapon choice. Later rewards mix item types and duplicate bundles.
 - Drop a reward directly into a compatible slot to equip and advance; double-click auto-equips. Edit after pick keeps the character sheet open for rearranging until Let's fight.
@@ -52,7 +52,7 @@ There is no toggle for the normal sequence. An ultimate never interrupts an acti
 
 Use **Unity 6000.3.27f1** with Windows Build Support. Open Assets/Vector/Scenes/CombatStudy.unity. The project uses URP and procedural geometry, animation and audio; no paid assets are required.
 
-Run Build Windows.ps1, then Validate Prototype.ps1. Thirteen standalone scenarios cover normal drafts, distinct weapon families, paired targets, manual ultimates, exhausted rerolls, rarity/fusion contracts, scoring, attribution, hidden entries and physical outcomes, plus persistent bodies, walking shoves, half/quadruple speed, armor passives and one-step reward progression. Named weapon scenarios use explicit weapon fixtures to exercise every family independently of draft luck. Run Launcher/Test Launcher.ps1 for updater safety checks.
+Run Build Windows.ps1, then Validate Prototype.ps1. Fourteen standalone scenarios cover normal drafts, distinct weapon families, paired targets, manual ultimates, exhausted rerolls, rarity/fusion contracts, scoring, attribution, hidden entries and physical outcomes, plus persistent held weapons through casts, mounted-hand effects after reordering, persistent bodies, walking shoves, half/quadruple speed, armor passives and one-step reward progression. Named weapon scenarios use explicit weapon fixtures to exercise every family independently of draft luck. Run Launcher/Test Launcher.ps1 for updater safety checks.
 
 | Source | Responsibility |
 | --- | --- |
@@ -63,6 +63,6 @@ Run Build Windows.ps1, then Validate Prototype.ps1. Thirteen standalone scenario
 | ComboScore | Kill strings, multiplier and banking |
 | LoadoutChecks, EncounterQA | Contract assertions and standalone encounter reports |
 
-See [the 0.5 verification report](QA/v05-verification.md) for checks and screenshots.
+See [the 0.5.1 verification report](QA/v051-verification.md) and [the 0.5 UI checks](QA/v05-verification.md) for checks and screenshots.
 
 C# scripts are under Assets/Vector/Scripts. See [DESIGN.md](DESIGN.md) for the current design contract and [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration/release instructions. Historical Vector paths remain for asset stability. Art, balance and long-run progression remain prototype work; this release uses authored cuts rather than arbitrary mesh slicing.
