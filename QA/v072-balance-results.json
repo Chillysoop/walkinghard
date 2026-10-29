@@ -1,0 +1,1102 @@
+{
+  "batches": {
+    "v072-range": {
+      "mode": "Fast",
+      "runs": 600,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T22:29:08Z",
+      "wallSeconds": 84.2348972999971,
+      "valid": 600,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 355,
+      "timeouts": 0
+    },
+    "v072-routes": {
+      "mode": "Fast",
+      "runs": 288,
+      "workers": 4,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T22:30:32Z",
+      "wallSeconds": 51.114042100001825,
+      "valid": 288,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 226,
+      "timeouts": 0
+    },
+    "v072-full-range-fixed": {
+      "mode": "Full",
+      "runs": 12,
+      "workers": 3,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-verified\\WalkingHard.exe",
+      "assemblySha256": "10dbb4e7918855038663f92cf6e1dad6004caac668271ca38cbaa015c0826eac",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-29T22:32:18Z",
+      "wallSeconds": 334.5645442999994,
+      "valid": 12,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 10,
+      "timeouts": 0
+    },
+    "v072-full-routes-fresh": {
+      "mode": "Full",
+      "runs": 6,
+      "workers": 3,
+      "processPerGame": true,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-verified\\WalkingHard.exe",
+      "assemblySha256": "10dbb4e7918855038663f92cf6e1dad6004caac668271ca38cbaa015c0826eac",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "valid": 6,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 6,
+      "timeouts": 0,
+      "wallSeconds": 126.31463029999941
+    },
+    "v072-reward-standard": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "runs": 240,
+      "mode": "Fast",
+      "firstSeed": 71000,
+      "policy": "mixed",
+      "encounterRoute": "standard",
+      "rewardRoute": "standard",
+      "maxCombatSeconds": 480,
+      "wallSeconds": 31.049861700001202,
+      "valid": 240,
+      "wins": 95,
+      "timeouts": 0
+    },
+    "v072-reward-shield": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "runs": 240,
+      "mode": "Fast",
+      "firstSeed": 71000,
+      "policy": "mixed",
+      "encounterRoute": "standard",
+      "rewardRoute": "shield",
+      "maxCombatSeconds": 480,
+      "wallSeconds": 35.09126909999759,
+      "valid": 240,
+      "wins": 116,
+      "timeouts": 0
+    },
+    "v072-reward-volatile": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "runs": 240,
+      "mode": "Fast",
+      "firstSeed": 71000,
+      "policy": "mixed",
+      "encounterRoute": "standard",
+      "rewardRoute": "volatile",
+      "maxCombatSeconds": 480,
+      "wallSeconds": 45.07863260000158,
+      "valid": 240,
+      "wins": 98,
+      "timeouts": 0
+    },
+    "v072-linked-shield": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "runs": 240,
+      "mode": "Fast",
+      "firstSeed": 71000,
+      "policy": "mixed",
+      "encounterRoute": "shield",
+      "rewardRoute": "shield",
+      "maxCombatSeconds": 480,
+      "wallSeconds": 56.31573149999895,
+      "valid": 240,
+      "wins": 117,
+      "timeouts": 0
+    },
+    "v072-linked-volatile": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Reliability-v072-study\\WalkingHard.exe",
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "runs": 240,
+      "mode": "Fast",
+      "firstSeed": 71000,
+      "policy": "mixed",
+      "encounterRoute": "volatile",
+      "rewardRoute": "volatile",
+      "maxCombatSeconds": 480,
+      "wallSeconds": 52.32051280000087,
+      "valid": 240,
+      "wins": 104,
+      "timeouts": 0
+    }
+  },
+  "range": {
+    "Fast": {
+      "range-pistol-drain": {
+        "games": 60,
+        "wins": 60,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 266.0351,
+        "targetWaitPercent": 17.5162
+      },
+      "range-pistol-guard": {
+        "games": 60,
+        "wins": 60,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 302.0861,
+        "targetWaitPercent": 14.1455
+      },
+      "range-pistol-mark": {
+        "games": 60,
+        "wins": 45,
+        "timeouts": 0,
+        "meanWave": 7.9833,
+        "meanHealth": 132.0562,
+        "targetWaitPercent": 18.2586
+      },
+      "range-pistol-short": {
+        "games": 60,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 7.9333,
+        "meanHealth": 64.3151,
+        "targetWaitPercent": 26.847
+      },
+      "range-pistol-short-gun-first": {
+        "games": 60,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 7.95,
+        "meanHealth": 86.1271,
+        "targetWaitPercent": 26.2309
+      },
+      "range-rifle-drain": {
+        "games": 60,
+        "wins": 48,
+        "timeouts": 0,
+        "meanWave": 7.9833,
+        "meanHealth": 130.5368,
+        "targetWaitPercent": 9.6897
+      },
+      "range-rifle-guard": {
+        "games": 60,
+        "wins": 60,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 288.5866,
+        "targetWaitPercent": 5.6768
+      },
+      "range-rifle-mark": {
+        "games": 60,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 7,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 10.5291
+      },
+      "range-rifle-short": {
+        "games": 60,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 6.5167,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 16.7084
+      },
+      "range-rifle-short-gun-first": {
+        "games": 60,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 7.1667,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 16.7696
+      }
+    },
+    "Full": {
+      "range-pistol-guard": {
+        "games": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 308.008,
+        "targetWaitPercent": 19.2681
+      },
+      "range-pistol-mark": {
+        "games": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 239.3614,
+        "targetWaitPercent": 23.409
+      },
+      "range-pistol-short": {
+        "games": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 115.1567,
+        "targetWaitPercent": 33.2784
+      },
+      "range-rifle-guard": {
+        "games": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 301.8928,
+        "targetWaitPercent": 7.6661
+      },
+      "range-rifle-mark": {
+        "games": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 100.3919,
+        "targetWaitPercent": 12.5921
+      },
+      "range-rifle-short": {
+        "games": 2,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 20.8569
+      }
+    }
+  },
+  "routes": {
+    "Fast": {
+      "route-pinball-0": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 209.3022,
+        "targetWaitPercent": 38.0335,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 299.2383,
+          "meanHits": 10.25,
+          "meanKills": 37.375
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 251.507,
+          "meanHits": 10.8125,
+          "meanKills": 49
+        }
+      },
+      "route-pinball-1": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 201.5583,
+        "targetWaitPercent": 37.5809,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 295.0495,
+          "meanHits": 10.5,
+          "meanKills": 37
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 255.5199,
+          "meanHits": 9.6875,
+          "meanKills": 47.6875
+        }
+      },
+      "route-pinball-2": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 205.3951,
+        "targetWaitPercent": 37.5056,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 301.1391,
+          "meanHits": 8.9375,
+          "meanKills": 37.8125
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 260.9054,
+          "meanHits": 8.5,
+          "meanKills": 48.5625
+        }
+      },
+      "route-pistols-0": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 83.2447,
+        "targetWaitPercent": 28.4369,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 269.6943,
+          "meanHits": 6.5625,
+          "meanKills": 37.8125
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 201.6719,
+          "meanHits": 11,
+          "meanKills": 49.125
+        }
+      },
+      "route-pistols-1": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 70.6253,
+        "targetWaitPercent": 28.4985,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 262.9154,
+          "meanHits": 7.8125,
+          "meanKills": 37.625
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 192.9951,
+          "meanHits": 10.375,
+          "meanKills": 48.75
+        }
+      },
+      "route-pistols-2": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 82.1941,
+        "targetWaitPercent": 28.8036,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 267.4421,
+          "meanHits": 6.625,
+          "meanKills": 37.9375
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 195.9007,
+          "meanHits": 10.1875,
+          "meanKills": 49.0625
+        }
+      },
+      "route-rifle-0": {
+        "games": 16,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 7.6875,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 17.553,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 226.7587,
+          "meanHits": 16.25,
+          "meanKills": 37.3125
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 77.3569,
+          "meanHits": 24.1875,
+          "meanKills": 47.6875
+        }
+      },
+      "route-rifle-1": {
+        "games": 16,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 7.625,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 17.0706,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 236.5236,
+          "meanHits": 13.5,
+          "meanKills": 36.6875
+        },
+        "wave6": {
+          "completed": 15,
+          "meanHealth": 80.0535,
+          "meanHits": 23.8667,
+          "meanKills": 46.1333
+        }
+      },
+      "route-rifle-2": {
+        "games": 16,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 7.6875,
+        "meanHealth": 0.0,
+        "targetWaitPercent": 18.1018,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 234.6362,
+          "meanHits": 13.875,
+          "meanKills": 37.5625
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 86.8799,
+          "meanHits": 22.625,
+          "meanKills": 48.25
+        }
+      },
+      "route-sever-0": {
+        "games": 16,
+        "wins": 13,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 31.4038,
+        "targetWaitPercent": 29.7567,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 240.1263,
+          "meanHits": 17.0625,
+          "meanKills": 37.75
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 141.7114,
+          "meanHits": 22.1875,
+          "meanKills": 48.9375
+        }
+      },
+      "route-sever-1": {
+        "games": 16,
+        "wins": 10,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 23.1948,
+        "targetWaitPercent": 29.9551,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 244.9421,
+          "meanHits": 15,
+          "meanKills": 37.1875
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 142.8018,
+          "meanHits": 21.75,
+          "meanKills": 48.875
+        }
+      },
+      "route-sever-2": {
+        "games": 16,
+        "wins": 11,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 32.6578,
+        "targetWaitPercent": 30.0877,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 245.7785,
+          "meanHits": 14.375,
+          "meanKills": 37.75
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 143.9906,
+          "meanHits": 21,
+          "meanKills": 48.875
+        }
+      },
+      "route-siphon-0": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 308.5619,
+        "targetWaitPercent": 20.5402,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 309.5817,
+          "meanHits": 6,
+          "meanKills": 37.6875
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 309.7594,
+          "meanHits": 10.375,
+          "meanKills": 49.1875
+        }
+      },
+      "route-siphon-1": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 309.6403,
+        "targetWaitPercent": 20.9619,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 309.6826,
+          "meanHits": 6.0625,
+          "meanKills": 37.625
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 308.8352,
+          "meanHits": 10.1875,
+          "meanKills": 48.75
+        }
+      },
+      "route-siphon-2": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 309.2761,
+        "targetWaitPercent": 20.9505,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 308.4311,
+          "meanHits": 7.625,
+          "meanKills": 37.875
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 309.0796,
+          "meanHits": 9.125,
+          "meanKills": 48.75
+        }
+      },
+      "route-storm-0": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 179.7552,
+        "targetWaitPercent": 25.1742,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 255.2933,
+          "meanHits": 31,
+          "meanKills": 34.1875
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 223.6862,
+          "meanHits": 38.5,
+          "meanKills": 45
+        }
+      },
+      "route-storm-1": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 154.8735,
+        "targetWaitPercent": 25.4102,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 255.8518,
+          "meanHits": 31.5,
+          "meanKills": 33.75
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 211.1666,
+          "meanHits": 41.5625,
+          "meanKills": 43.125
+        }
+      },
+      "route-storm-2": {
+        "games": 16,
+        "wins": 16,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 196.3475,
+        "targetWaitPercent": 26.4421,
+        "wave3": {
+          "completed": 16,
+          "meanHealth": 268.2725,
+          "meanHits": 22,
+          "meanKills": 37.0625
+        },
+        "wave6": {
+          "completed": 16,
+          "meanHealth": 241.7152,
+          "meanHits": 28.0625,
+          "meanKills": 48.3125
+        }
+      }
+    },
+    "Full": {
+      "route-pinball-1": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 233.555,
+        "targetWaitPercent": 45.7285,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 315.2191,
+          "meanHits": 11,
+          "meanKills": 33
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 292.6911,
+          "meanHits": 5,
+          "meanKills": 49
+        }
+      },
+      "route-pinball-2": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 235.2446,
+        "targetWaitPercent": 42.0038,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 323.1039,
+          "meanHits": 7,
+          "meanKills": 36
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 287.0591,
+          "meanHits": 3,
+          "meanKills": 49
+        }
+      },
+      "route-rifle-1": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 2.6559,
+        "targetWaitPercent": 24.3253,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 255.4334,
+          "meanHits": 8,
+          "meanKills": 36
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 165.8495,
+          "meanHits": 10,
+          "meanKills": 45
+        }
+      },
+      "route-rifle-2": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 52.1407,
+        "targetWaitPercent": 24.4189,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 260.9279,
+          "meanHits": 8,
+          "meanKills": 39
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 202.3039,
+          "meanHits": 4,
+          "meanKills": 46
+        }
+      },
+      "route-sever-1": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 14.0318,
+        "targetWaitPercent": 41.1725,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 254.7166,
+          "meanHits": 16,
+          "meanKills": 39
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 158.947,
+          "meanHits": 19,
+          "meanKills": 48
+        }
+      },
+      "route-sever-2": {
+        "games": 1,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanHealth": 58.8766,
+        "targetWaitPercent": 41.1197,
+        "wave3": {
+          "completed": 1,
+          "meanHealth": 261.3695,
+          "meanHits": 14,
+          "meanKills": 39
+        },
+        "wave6": {
+          "completed": 1,
+          "meanHealth": 153.6446,
+          "meanHits": 13,
+          "meanKills": 48
+        }
+      }
+    }
+  },
+  "rewards": {
+    "standard": {
+      "all": {
+        "games": 240,
+        "wins": 95,
+        "timeouts": 0,
+        "meanWave": 6.3042,
+        "meanHealth": 81.4857,
+        "targetWaitPercent": 18.2954
+      },
+      "policies": {
+        "balanced": {
+          "games": 40,
+          "wins": 31,
+          "timeouts": 0,
+          "meanWave": 7.65,
+          "meanHealth": 218.3552,
+          "targetWaitPercent": 17.4472
+        },
+        "gun": {
+          "games": 40,
+          "wins": 9,
+          "timeouts": 0,
+          "meanWave": 5.475,
+          "meanHealth": 36.1312,
+          "targetWaitPercent": 13.8634
+        },
+        "pinball": {
+          "games": 40,
+          "wins": 18,
+          "timeouts": 0,
+          "meanWave": 6.5,
+          "meanHealth": 73.6181,
+          "targetWaitPercent": 23.8795
+        },
+        "random": {
+          "games": 40,
+          "wins": 9,
+          "timeouts": 0,
+          "meanWave": 5.425,
+          "meanHealth": 30.503,
+          "targetWaitPercent": 19.0867
+        },
+        "sever": {
+          "games": 40,
+          "wins": 12,
+          "timeouts": 0,
+          "meanWave": 6.35,
+          "meanHealth": 61.6788,
+          "targetWaitPercent": 17.1379
+        },
+        "storm": {
+          "games": 40,
+          "wins": 16,
+          "timeouts": 0,
+          "meanWave": 6.425,
+          "meanHealth": 68.6278,
+          "targetWaitPercent": 18.3577
+        }
+      }
+    },
+    "shield": {
+      "all": {
+        "games": 240,
+        "wins": 116,
+        "timeouts": 0,
+        "meanWave": 6.4875,
+        "meanHealth": 97.4097,
+        "targetWaitPercent": 18.4235
+      },
+      "policies": {
+        "balanced": {
+          "games": 40,
+          "wins": 36,
+          "timeouts": 0,
+          "meanWave": 7.725,
+          "meanHealth": 237.2557,
+          "targetWaitPercent": 18.0385
+        },
+        "gun": {
+          "games": 40,
+          "wins": 11,
+          "timeouts": 0,
+          "meanWave": 5.45,
+          "meanHealth": 57.7675,
+          "targetWaitPercent": 13.7537
+        },
+        "pinball": {
+          "games": 40,
+          "wins": 16,
+          "timeouts": 0,
+          "meanWave": 6.45,
+          "meanHealth": 48.2233,
+          "targetWaitPercent": 23.2923
+        },
+        "random": {
+          "games": 40,
+          "wins": 13,
+          "timeouts": 0,
+          "meanWave": 5.675,
+          "meanHealth": 50.2095,
+          "targetWaitPercent": 18.5952
+        },
+        "sever": {
+          "games": 40,
+          "wins": 18,
+          "timeouts": 0,
+          "meanWave": 6.5,
+          "meanHealth": 84.2874,
+          "targetWaitPercent": 17.4274
+        },
+        "storm": {
+          "games": 40,
+          "wins": 22,
+          "timeouts": 0,
+          "meanWave": 7.125,
+          "meanHealth": 106.7148,
+          "targetWaitPercent": 19.4337
+        }
+      }
+    },
+    "volatile": {
+      "all": {
+        "games": 240,
+        "wins": 98,
+        "timeouts": 0,
+        "meanWave": 6.2542,
+        "meanHealth": 86.0691,
+        "targetWaitPercent": 18.0119
+      },
+      "policies": {
+        "balanced": {
+          "games": 40,
+          "wins": 30,
+          "timeouts": 0,
+          "meanWave": 7.425,
+          "meanHealth": 213.0806,
+          "targetWaitPercent": 16.2346
+        },
+        "gun": {
+          "games": 40,
+          "wins": 9,
+          "timeouts": 0,
+          "meanWave": 5.3,
+          "meanHealth": 31.0828,
+          "targetWaitPercent": 14.0979
+        },
+        "pinball": {
+          "games": 40,
+          "wins": 19,
+          "timeouts": 0,
+          "meanWave": 6.7,
+          "meanHealth": 79.6937,
+          "targetWaitPercent": 23.3331
+        },
+        "random": {
+          "games": 40,
+          "wins": 10,
+          "timeouts": 0,
+          "meanWave": 5.525,
+          "meanHealth": 56.2123,
+          "targetWaitPercent": 18.4799
+        },
+        "sever": {
+          "games": 40,
+          "wins": 13,
+          "timeouts": 0,
+          "meanWave": 6.025,
+          "meanHealth": 63.533,
+          "targetWaitPercent": 17.2462
+        },
+        "storm": {
+          "games": 40,
+          "wins": 17,
+          "timeouts": 0,
+          "meanWave": 6.55,
+          "meanHealth": 72.8121,
+          "targetWaitPercent": 18.6796
+        }
+      }
+    }
+  },
+  "paired": {
+    "reward-shield-vs-volatile": {
+      "pairs": 240,
+      "gainedWins": 40,
+      "lostWins": 22,
+      "winRateDelta": 0.075,
+      "mcnemarExactP": 0.030015864349067292
+    },
+    "linked-shield-vs-volatile": {
+      "pairs": 240,
+      "gainedWins": 41,
+      "lostWins": 28,
+      "winRateDelta": 0.05416666666666667,
+      "mcnemarExactP": 0.14803218069275836
+    }
+  },
+  "linked": {
+    "shield": {
+      "games": 240,
+      "wins": 117,
+      "timeouts": 0,
+      "meanWave": 6.4167,
+      "meanHealth": 96.0666,
+      "targetWaitPercent": 18.4729
+    },
+    "volatile": {
+      "games": 240,
+      "wins": 104,
+      "timeouts": 0,
+      "meanWave": 6.3917,
+      "meanHealth": 87.9502,
+      "targetWaitPercent": 18.2377
+    }
+  },
+  "timeouts": [
+    {
+      "version": "old",
+      "seed": 439,
+      "assemblySha256": "d5247703bf61bba6ee78576eacfdaf0d8920fdb22f334ff881a1092a5c98df1a",
+      "result": "TimedOut",
+      "health": 181.59991455078125,
+      "elapsed": 480.7100830078125,
+      "loadout": "1: Steel Jab \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 5: Arc Bolt \u00b7 Rare",
+      "waits": {
+        "SteelJab": 168.5029754638672,
+        "Counterguard": 0.0,
+        "ArcBolt": 0.0,
+        "rifle": 0.0,
+        "redline": 0.0,
+        "capacitor": 0.0,
+        "treads": 0.0,
+        "reclaimer": 0.0,
+        "overclock": 0.0
+      },
+      "traces": [
+        "SIM_PROGRESS seed=439 elapsed=60.94924 wave=2 health=276.8 enemies=8 boss=none action=READYING / Rifle",
+        "SIM_PROGRESS seed=439 elapsed=120.0112 wave=4 health=280 enemies=11 boss=none action=TWO-HANDED SWING",
+        "SIM_PROGRESS seed=439 elapsed=180.8666 wave=5 health=280 enemies=14 boss=none action=COUNTERGUARD",
+        "SIM_PROGRESS seed=439 elapsed=240.8353 wave=7 health=300 enemies=22 boss=none action=ARC BOLT",
+        "SIM_PROGRESS seed=439 elapsed=300.804 wave=8 health=294.24 enemies=23 boss=921.2063 at (-3.12, 0.04, 153.58) action=READYING / Rifle",
+        "SIM_PROGRESS seed=439 elapsed=360.7727 wave=8 health=277.5999 enemies=2 boss=33.17498 at (-3.63, 0.04, 187.82) action=WAITING FOR TARGET / Steel Jab",
+        "SIM_PROGRESS seed=439 elapsed=420.7414 wave=8 health=229.5999 enemies=2 boss=33.17498 at (-3.53, 0.04, 230.40) action=WAITING FOR TARGET / Steel Jab",
+        "SIM_PROGRESS seed=439 elapsed=480.7101 wave=8 health=181.5999 enemies=2 boss=33.17498 at (-3.69, 0.04, 272.97) action=WAITING FOR TARGET / Steel Jab"
+      ]
+    },
+    {
+      "version": "old",
+      "seed": 685,
+      "assemblySha256": "d5247703bf61bba6ee78576eacfdaf0d8920fdb22f334ff881a1092a5c98df1a",
+      "result": "TimedOut",
+      "health": 126.21351623535156,
+      "elapsed": 480.7100830078125,
+      "loadout": "1: Basic 1 \u00b7 Breach Hammer \u00b7 Common > 2: Basic 2 \u00b7 Conductor Wraps \u00b7 Uncommon > 3: Mass Driver \u00b7 Uncommon > 4: Force Push \u00b7 Epic > 5: Arc Bolt \u00b7 Uncommon",
+      "waits": {
+        "MassDriver": 1.1499996185302734,
+        "ForcePush": 0.9499997496604919,
+        "ArcBolt": 0.0,
+        "breachhammer": 206.7269744873047,
+        "surveyor": 0.0,
+        "redline": 0.0,
+        "wraps": 17.216575622558594,
+        "predator": 0.0,
+        "reclaimer": 0.0,
+        "amplifier": 0.0
+      },
+      "traces": [
+        "SIM_PROGRESS seed=685 elapsed=60.94924 wave=2 health=235.1999 enemies=12 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+        "SIM_PROGRESS seed=685 elapsed=120.0112 wave=4 health=191.5703 enemies=6 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+        "SIM_PROGRESS seed=685 elapsed=180.8666 wave=5 health=186.2061 enemies=12 boss=none action=FORCE PUSH",
+        "SIM_PROGRESS seed=685 elapsed=240.8353 wave=7 health=245.9071 enemies=12 boss=none action=ARC BOLT",
+        "SIM_PROGRESS seed=685 elapsed=300.804 wave=8 health=261.2039 enemies=7 boss=811.5929 at (5.25, 0.04, 168.55) action=MASS DRIVER",
+        "SIM_PROGRESS seed=685 elapsed=360.7727 wave=8 health=222.2134 enemies=2 boss=600.6502 at (3.57, 0.04, 208.97) action=ULTIMATE EXECUTING",
+        "SIM_PROGRESS seed=685 elapsed=420.7414 wave=8 health=174.2135 enemies=2 boss=600.6502 at (3.31, 0.04, 251.62) action=WAITING FOR TARGET / Breach Hammer \u00b7 Common",
+        "SIM_PROGRESS seed=685 elapsed=480.7101 wave=8 health=126.2135 enemies=2 boss=600.6502 at (3.57, 0.04, 294.19) action=WAITING FOR TARGET / Breach Hammer \u00b7 Common"
+      ]
+    },
+    {
+      "version": "current",
+      "seed": 439,
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "result": "Complete",
+      "health": 273.3392333984375,
+      "elapsed": 349.19219970703125,
+      "loadout": "1: Steel Jab \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 5: Arc Bolt \u00b7 Rare",
+      "waits": {
+        "SteelJab": 29.816383361816406,
+        "Counterguard": 0.0,
+        "ArcBolt": 0.0,
+        "rifle": 0.0,
+        "redline": 0.0,
+        "capacitor": 0.0,
+        "treads": 0.0,
+        "reclaimer": 0.0,
+        "overclock": 0.0
+      },
+      "traces": [
+        "SIM_PROGRESS seed=439 elapsed=60.94924 wave=2 health=276.8 enemies=8 boss=none action=READYING / Rifle",
+        "SIM_PROGRESS seed=439 elapsed=120.0112 wave=4 health=280 enemies=11 boss=none action=TWO-HANDED SWING",
+        "SIM_PROGRESS seed=439 elapsed=180.8666 wave=5 health=280 enemies=14 boss=none action=COUNTERGUARD",
+        "SIM_PROGRESS seed=439 elapsed=240.8353 wave=7 health=300 enemies=22 boss=none action=ARC BOLT",
+        "SIM_PROGRESS seed=439 elapsed=300.804 wave=8 health=300 enemies=38 boss=1021.736 at (0.01, 0.04, 132.54) action=READYING / Fists"
+      ]
+    },
+    {
+      "version": "current",
+      "seed": 685,
+      "assemblySha256": "63aff7e28927426ba7f3e054146691d04ba88d37f58ea019fc5f2098c57d7c38",
+      "result": "Complete",
+      "health": 226.91824340820312,
+      "elapsed": 372.15325927734375,
+      "loadout": "1: Basic 1 \u00b7 Breach Hammer \u00b7 Common > 2: Basic 2 \u00b7 Conductor Wraps \u00b7 Uncommon > 3: Mass Driver \u00b7 Uncommon > 4: Force Push \u00b7 Epic > 5: Arc Bolt \u00b7 Uncommon",
+      "waits": {
+        "MassDriver": 1.1999995708465576,
+        "ForcePush": 0.9499997496604919,
+        "ArcBolt": 0.0,
+        "breachhammer": 79.75255584716797,
+        "surveyor": 0.0,
+        "redline": 0.0,
+        "wraps": 15.89992904663086,
+        "predator": 0.0,
+        "reclaimer": 0.0,
+        "amplifier": 0.0
+      },
+      "traces": [
+        "SIM_PROGRESS seed=685 elapsed=60.94924 wave=2 health=235.1999 enemies=12 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+        "SIM_PROGRESS seed=685 elapsed=120.0112 wave=4 health=191.5703 enemies=6 boss=none action=WAITING FOR TARGET / Kinetic Fists \u00b7 Common",
+        "SIM_PROGRESS seed=685 elapsed=180.8666 wave=5 health=186.2061 enemies=12 boss=none action=FORCE PUSH",
+        "SIM_PROGRESS seed=685 elapsed=240.8353 wave=7 health=245.9071 enemies=12 boss=none action=ARC BOLT",
+        "SIM_PROGRESS seed=685 elapsed=300.804 wave=8 health=262.2008 enemies=28 boss=1077.616 at (-0.96, 0.04, 142.48) action=FORCE PUSH",
+        "SIM_PROGRESS seed=685 elapsed=360.7727 wave=8 health=226.3587 enemies=1 boss=241.5901 at (3.34, 0.04, 147.05) action=ULTIMATE EXECUTING"
+      ]
+    }
+  ]
+}

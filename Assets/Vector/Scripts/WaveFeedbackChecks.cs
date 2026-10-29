@@ -28,6 +28,15 @@ namespace VectorGame
             BeginFeedbackWave();ContributionFor(keeper).direct+=11;Note("Recorded trigger");CaptureWaveFeedback();
             MechanicRequire(LastWaveFeedback.damage==11&&LastWaveFeedback.items.Single().values.reload==0&&LastWaveFeedback.triggers.Single().count==1,"next wave excludes pre-fusion history and previous-wave triggers");
             ResetWaveFeedback();MechanicRequire(LastWaveFeedback==null,"new run clears previous feedback");
+            BeginFeedbackWave();ObserveTargetWait(keeper,.2f);EndTargetWait();
+            MechanicRequire(ContributionFor(keeper).waitEpisodes==0,"brief target acquisition does not count as a prolonged pause");
+            ObserveTargetWait(keeper,2);ObserveTargetWait(keeper,1);EndTargetWait();ObserveTargetWait(keeper,2);Elapsed+=20;CaptureWaveFeedback();
+            MechanicRequire(LastWaveFeedback.items.Single().values.waitEpisodes==2,"a continuous wait counts once and a later wait counts separately");
+            MechanicRequire(TargetWaitWarning!=null&&TargetWaitWarning.id==keeper.def.id,"repeated long waits appear at the checkpoint");
+            var snapshot=TargetWaitWarning;EndTargetWait();Deck.Move(keeper,PlaceKind.Inventory);
+            MechanicRequire(TargetWaitWarning==snapshot,"rearranging items keeps the last-wave warning factual");
+            BeginFeedbackWave();Elapsed+=20;CaptureWaveFeedback();MechanicRequire(TargetWaitWarning==null,"warnings do not leak into a later wave");
+            ResetWaveFeedback();
         }
     }
 }

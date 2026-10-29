@@ -24,7 +24,7 @@ namespace VectorGame
             Label(new Rect(panel.x+22,panel.y+54,panel.width-44,21),report.kills+" KILLS  ·  "+report.seconds.ToString("0.0")+"s  ·  "+report.damage.ToString("N0")+" DAMAGE  ·  "+report.healing.ToString("0.#")+" HEALED  ·  "+report.blocked.ToString("0.#")+" BLOCKED  ·  "+report.collisionKills+" COLLISION KILLS",13,Accent,true);
             Label(new Rect(panel.x+22,panel.y+82,panel.width-44,32),"Recorded before this checkpoint. Damage includes body impacts. Blocks below are item effects; passive resistance prevented another "+report.resistance.ToString("0.#")+". Paired reload timers overlap.",11,muted);
             var wait=report.items.OrderByDescending(i=>i.values.rangeWait).FirstOrDefault();
-            string insight=wait!=null&&wait.values.rangeWait>=.5f?"LONGEST TARGET WAIT: "+wait.name+" / "+wait.values.rangeWait.ToString("0.0")+"s. Check its reach and the actions before it.":"TARGET ACCESS: No item spent half a second waiting for a reachable target.";
+            string insight=wait!=null&&wait.values.rangeWait>=.5f?"TARGET WAIT: "+wait.name+" / "+wait.values.rangeWait.ToString("0.0")+"s / "+wait.values.waitEpisodes+" pauses / "+wait.range.ToString("0.0")+"m reach. Order was held. Consider longer reach or a pull before it.":"TARGET ACCESS: No item spent half a second waiting for a reachable target.";
             Label(new Rect(panel.x+22,panel.y+118,panel.width-44,22),insight,12,Gold,true);
             Rect view=new Rect(panel.x+20,panel.y+153,panel.width-40,panel.height-197);
             float width=view.width-24,contentHeight=34+report.items.Length*58+64+report.triggers.Length*23;

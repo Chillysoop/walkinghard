@@ -14,18 +14,18 @@ namespace VectorGame
         public int ShieldBearersSpawned {get;private set;}
         public int VolatileCarriersSpawned {get;private set;}
         public int CarrierDetonations {get;private set;}
-        public EncounterRoute ActiveRoute=>Wave==routedWave?SelectedRoute:EncounterRoute.Standard;
+        public EncounterRoute ActiveRoute=>Wave==routedWave?(simulation&&Controlled==null&&simulationEncounterRoute==0?EncounterRoute.Standard:SelectedRoute):EncounterRoute.Standard;
         public static string RouteName(EncounterRoute route)=>route==EncounterRoute.ShieldLine?"SHIELD LINE":route==EncounterRoute.VolatileBreach?"VOLATILE BREACH":"STANDARD";
         public static string RouteDescription(EncounterRoute route)=>route==EncounterRoute.ShieldLine?
             "Shield bearers advance from the horizon. Stagger opens their guard for 2 seconds; attacks from behind bypass it.":
             "Carriers emerge from side doors. Launch one to arm its explosive pack; impact or a 1.3s flight detonates it.";
-        public static RewardEmphasis RouteReward(EncounterRoute route)=>route==EncounterRoute.ShieldLine?RewardEmphasis.Equipment:RewardEmphasis.Abilities;
+        public static RewardEmphasis RouteReward(EncounterRoute route)=>route==EncounterRoute.Standard?RewardEmphasis.None:route==EncounterRoute.ShieldLine?RewardEmphasis.Equipment:RewardEmphasis.Abilities;
         void ResetRoutes(){RoutePending=false;SelectedRoute=EncounterRoute.Standard;routedWave=routeSpawn=0;ShieldBearersSpawned=VolatileCarriersSpawned=CarrierDetonations=0;}
         public bool ChooseRoute(EncounterRoute route)
         {
             if(State!=RunState.Drafting||!RoutePending||route==EncounterRoute.Standard)return false;
             SelectedRoute=route;routedWave=Wave+1;RoutePending=false;
-            Deck.Open(pendingDrafts.Dequeue(),true,RouteReward(route));return true;
+            Deck.Open(pendingDrafts.Dequeue(),true,RouteReward(simulation&&simulationRewardRoute>=0?(EncounterRoute)simulationRewardRoute:route));return true;
         }
         void ConfigureRouteEnemy(Enemy e)
         {

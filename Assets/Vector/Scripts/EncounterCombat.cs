@@ -68,8 +68,8 @@ namespace VectorGame
             bool ultimate=UltimateQueued&&Target(Deck.Ultimate.def.ability.range)!=null;
             int slot=ultimate?5:NextSlot;if(slot<0)return false;
             var item=ultimate?null:Deck.Slots[slot];var card=ultimate?LoadoutCatalog.Action(Deck.Ultimate):Deck.Card(item);
-            var target=Target(card.range);if(target==null){ContributionFor(item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item).rangeWait+=1f/60;ActionStatus="WAITING FOR TARGET / "+card.name;return false;}
-            ActiveSlot=slot;PairSlot=ultimate?-1:Deck.PairAfter(slot);actionItem=item;actionWeapon=item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):null;
+            var target=Target(card.range);if(target==null){ObserveTargetWait(item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item,1f/60);ActionStatus="WAITING FOR TARGET / "+card.name;return false;}
+            EndTargetWait();ActiveSlot=slot;PairSlot=ultimate?-1:Deck.PairAfter(slot);actionItem=item;actionWeapon=item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):null;
             activeCard=card;actionTarget=target;pairItem=PairSlot>=0?Deck.Slots[PairSlot]:null;pairWeapon=pairItem!=null?Deck.WeaponFor(pairItem):null;
             pairCard=pairItem==null?null:Deck.Card(pairItem);pairTarget=pairCard==null?null:Target(pairCard.range,target)??target;
             actionSerial++;actionAge=0;actionDelivered=bonusDelivered=false;Preparation=0;pendingReloads.Clear();

@@ -7,7 +7,7 @@ namespace VectorGame
 {
     public sealed partial class VectorEncounter
     {
-        [Serializable] public sealed class Contribution {public float direct,collision,control,absorption,reload,preparation,rangeWait,augment,healing;public int assists;}
+        [Serializable] public sealed class Contribution {public float direct,collision,control,absorption,reload,preparation,rangeWait,augment,healing;public int assists,waitEpisodes;}
         readonly Dictionary<LoadoutItem,Contribution> contributions=new Dictionary<LoadoutItem,Contribution>();
         public Contribution ContributionFor(LoadoutItem item){item=KillOwner(item);if(item==null)return new Contribution();if(!contributions.TryGetValue(item,out var c))contributions[item]=c=new Contribution();return c;}
         sealed class Turn {public readonly HashSet<string> procs=new HashSet<string>();public readonly HashSet<int> hits=new HashSet<int>();public readonly List<Enemy> orderedHits=new List<Enemy>();public int kills;public Enemy last;public int extra=12;public float siphonHealed;}
