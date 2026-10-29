@@ -89,3 +89,9 @@ A 32-game legacy control matches all 27 gameplay fields from the prior screening
 
 
 0.6.7 experiments add opt-in `legacyWeaponAugments`, `legacyCounterBurst` and `excludeSiphon` switches to balance JSON. The default player uses the new rules and full catalog. The legacy combination reproduces 0.6.6 for matched controls. Exact inputs are in `QA/Balance/v067`. Item contribution records and CSVs now include actual `healing`, distinct from absorption.
+
+### Controlled slot comparisons (analysis only)
+
+`-simCases <json>` opts into explicit, fixed per-game loadouts and seeds instead of drafting. The case count must equal `-simRuns`. `QA/Balance/controlled-siphon/run.py` generates a matched matrix covering five focal rarities, four build contexts and one-slot substitutions. Each worker receives its own case list. Fixed gear/abilities start equipped; ultimates still enter after checkpoint three with normal cooldowns. No further rewards or augments are selected. These fixtures measure item substitution under stated builds, not ordinary progression difficulty.
+
+`QA/controlled-siphon-review.md` records 3,600 Common-support cases, 480 Rare-support sensitivity cases and 24 Full physics cases, plus recommendations that have not been applied. `summary.csv`, `games.csv`, `results.json`, exact sensitivity/Full inputs and reproducible analysis scripts live in `QA/Balance/controlled-siphon/`. Full raw JSONL stays in the ignored `QA/Simulations/` directory. Ordinary simulations without `-simCases` retain the released drafting behavior, verified by matched regression runs. No balance override is loaded by the controlled runner.

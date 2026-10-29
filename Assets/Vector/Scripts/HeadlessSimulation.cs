@@ -29,7 +29,7 @@ namespace VectorGame
             simulationOutput=Path.GetFullPath(Arg("-simOutput",Path.Combine(Application.dataPath,"..","simulations.jsonl")));
             Directory.CreateDirectory(Path.GetDirectoryName(simulationOutput));
             if(File.Exists(simulationOutput))throw new IOException("Simulation output already exists; use a fresh output path to avoid mixing batches.");
-            forcedSeed=true;tuning.seed=simulationSeed;
+            ConfigureControlled(Arg("-simCases",null));forcedSeed=true;tuning.seed=simulationSeed;
         }
         string CurrentPolicy=>simulationPolicy=="mixed"?SimulationPolicies[Math.Abs(Seed)%SimulationPolicies.Length]:simulationPolicy;
         void ValidateSimulationStep(float dt)
@@ -55,6 +55,7 @@ namespace VectorGame
         }
         void SimulationDraft()
         {
+            if(Controlled!=null){ControlledDraft();return;}
             if(policyRandom==null)policyRandom=new System.Random(Seed^0x371e);
             if(!Deck.RewardClaimed)
             {
@@ -93,7 +94,7 @@ namespace VectorGame
         }
         [Serializable] sealed class SimulationResult
         {
-            public int rangedSpawned,rangedHits,rearBoundaryKills,environmentalKills;public float rangedDamage;
+            public ControlledMetrics controlled;public int rangedSpawned,rangedHits,rearBoundaryKills,environmentalKills;public float rangedDamage;
             public string schema="walkinghard-sim-1",version,mode,policy,result,loadout;public int seed,waves,waveReached,kills,spawned,collisions,launches,reloads,score,itemChoices,augmentChoices;public float elapsed,health;public double wallSeconds;public bool valid;public string[] errors;public ContributionReport[] items;public WaveReport[] waveReports;
         }
         void ReportSimulation()
@@ -101,17 +102,18 @@ namespace VectorGame
             simulationClock.Stop();Debug.Log("SIM_PROFILE signatures,ai,hero,motion,contacts,bodies="+string.Join(",",simulationProfile.Select(t=>(t*1000.0/System.Diagnostics.Stopwatch.Frequency).ToString("F1"))));Array.Clear(simulationProfile,0,simulationProfile.Length);var errors=new List<string>();
             if(OrderErrors!=0)errors.Add("sequence order");if(VisibleSpawns!=0)errors.Add("visible spawn");if(Spawned!=Kills+enemies.Count)errors.Add("enemy accounting");if(corpses.Count!=Kills||itemKills.Sum(p=>p.Value)+EnvironmentalKills!=Kills)errors.Add("kill identity");if(MaxCascadeHop>2)errors.Add("cascade limit");
             var modules=Deck.Hosts.Where(h=>h.augment!=null).Select(h=>h.augment).ToArray();if(modules.Distinct().Count()!=modules.Length)errors.Add("duplicate module ownership");
-            if(State==RunState.Complete&&simulationWaves==8&&(ItemChoices!=13||AugmentChoices!=2))errors.Add("reward totals");
+            if(Controlled==null&&State==RunState.Complete&&simulationWaves==8&&(ItemChoices!=13||AugmentChoices!=2))errors.Add("reward totals");
             if(State==RunState.Complete&&simulationWaves==8&&!bossSpawned)errors.Add("final boss never spawned");
             if(State==RunState.Complete&&(Kills==0||AbilityCasts==0))errors.Add("completed without combat");
-            var result=new SimulationResult{version=Application.version,mode=FastSimulation?"Fast":"Full",policy=CurrentPolicy,result=simulationTimedOut?"TimedOut":State.ToString(),loadout=Deck.Loadout,seed=Seed,waves=Waves.Count,waveReached=Wave,kills=Kills,spawned=Spawned,collisions=CollisionHits,launches=Launches,reloads=Reloads,score=Score.Banked,itemChoices=ItemChoices,augmentChoices=AugmentChoices,elapsed=Elapsed,health=Health,wallSeconds=simulationClock.Elapsed.TotalSeconds,valid=errors.Count==0,errors=errors.ToArray(),items=ContributionReports(),waveReports=Waves.ToArray()};
+            if(Controlled!=null&&(Deck.Loadout!=controlledLoadout||controlledMetrics.ultimateEquipWave!=0&&controlledMetrics.ultimateEquipWave!=4))errors.Add("controlled loadout/gating changed");
+            var result=new SimulationResult{controlled=FinishControlled(),version=Application.version,mode=FastSimulation?"Fast":"Full",policy=CurrentPolicy,result=simulationTimedOut?"TimedOut":State.ToString(),loadout=Deck.Loadout,seed=Seed,waves=Waves.Count,waveReached=Wave,kills=Kills,spawned=Spawned,collisions=CollisionHits,launches=Launches,reloads=Reloads,score=Score.Banked,itemChoices=ItemChoices,augmentChoices=AugmentChoices,elapsed=Elapsed,health=Health,wallSeconds=simulationClock.Elapsed.TotalSeconds,valid=errors.Count==0,errors=errors.ToArray(),items=ContributionReports(),waveReports=Waves.ToArray()};
             result.rangedSpawned=RangedSpawned;result.rangedHits=RangedHits;result.rangedDamage=RangedDamage;
             result.rearBoundaryKills=RearBoundaryKills;result.environmentalKills=EnvironmentalKills;
             File.AppendAllText(simulationOutput,JsonUtility.ToJson(result)+Environment.NewLine);
             Debug.Log("SIMULATION "+(simulationIndex+1)+"/"+simulationRuns+" seed="+Seed+" "+result.result+" valid="+result.valid);
             if(!result.valid){Application.Quit(4);return;}
             simulationIndex++;if(simulationIndex>=simulationRuns){reported=true;Application.Quit(0);return;}
-            tuning.seed=simulationSeed+simulationIndex*simulationStride;policyRandom=null;simulationTimedOut=false;nextSimulationCheck=0;nextSimulationTrace=60;Begin();
+            tuning.seed=Controlled?.seed??(simulationSeed+simulationIndex*simulationStride);policyRandom=null;simulationTimedOut=false;nextSimulationCheck=0;nextSimulationTrace=60;Begin();
         }
     }
 }

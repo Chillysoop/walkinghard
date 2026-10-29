@@ -1,0 +1,6 @@
+{
+  "games": 30,
+  "comparison": "All JSON fields except wallSeconds and corrected terminal damageTaken",
+  "differences": [],
+  "healthAccounting": true
+}
