@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VectorGame
 {
-    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt }
-    public enum ModifierId { FaultLine, Overclock, HeavyHands, Recovery }
+    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate }
+    public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate }
+    public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle }
+    public enum DraftKind { Ability, Weapon, Mixed }
+    public enum PlaceKind { Sequence, Weapon, Rig, Ultimate, Inventory }
     public sealed class AbilityCard
     {
         public readonly AbilityId id;
@@ -14,80 +18,169 @@ namespace VectorGame
         public AbilityCard(AbilityId id,string name,string description,string interaction,float duration,float range,float damage,int pose)
         {this.id=id;this.name=name;this.description=description;this.interaction=interaction;this.duration=duration;this.range=range;this.damage=damage;this.pose=pose;}
     }
-    public sealed class ModifierCard
+    public sealed class ItemDefinition
     {
-        public readonly ModifierId id;public readonly string name,description;
-        public ModifierCard(ModifierId id,string name,string description){this.id=id;this.name=name;this.description=description;}
+        public readonly string id,name,description,upgrade;
+        public readonly ItemKind kind;
+        public readonly WeaponKind weapon;
+        public readonly int hands;
+        public readonly AbilityCard ability;
+        public ItemDefinition(string id,string name,ItemKind kind,string description,string upgrade="",WeaponKind weapon=WeaponKind.Fists,int hands=0,AbilityCard ability=null)
+        {this.id=id;this.name=name;this.kind=kind;this.description=description;this.upgrade=upgrade;this.weapon=weapon;this.hands=hands;this.ability=ability;}
+    }
+    public sealed class LoadoutItem
+    {
+        public readonly ItemDefinition def;
+        public int rank=1, mount=-1;
+        public LoadoutItem(ItemDefinition def,int rank=1){this.def=def;this.rank=rank;}
+        public string Name=>def.name+(def.kind==ItemKind.Basic?"":" · "+ItemRarity.Names[rank]);
+    }
+    public sealed class RewardOffer
+    {
+        public readonly ItemDefinition def;
+        public readonly int copies,rank;
+        public int owned;
+        public RewardOffer(ItemDefinition def,int copies=1,int rank=1){this.def=def;this.copies=copies;this.rank=rank;}
+        public string Name=>def.name+(copies>1?" ×"+copies:"");
     }
     public sealed class AbilityDeck
     {
-        public static readonly AbilityCard[] Abilities={
-            new AbilityCard(AbilityId.SteelJab,"Steel Jab","A fast, precise punch. 24 damage to the nearest threat.","Quick recovery gets you to the next slot sooner.",.40f,2.6f,24,0),
-            new AbilityCard(AbilityId.Breaker,"Breaker","A sweeping palm strike. 34 damage and stagger in a wide melee arc.","Staggered targets take extra damage from Arc Bolt.",.68f,3.2f,34,2),
-            new AbilityCard(AbilityId.ForcePush,"Force Push","A radial field deals 20 damage and physically throws nearby enemies back.","Follows Gravity Well with a burst through the gathered crowd.",.95f,5.3f,20,-1),
-            new AbilityCard(AbilityId.MassDriver,"Mass Driver","Strike for 28 damage, then launch one body. Its first two physical contacts deal 18 damage.","Killing blows still launch ragdolls. Fault Line later amplifies collisions.",.82f,3.5f,28,2),
-            new AbilityCard(AbilityId.GravityWell,"Gravity Well","Deal 16 damage and pull nearby enemies into a point ahead of you.","Place before Breaker, Force Push, or Mass Driver to gather their targets.",.80f,6.5f,16,-1),
-            new AbilityCard(AbilityId.ArcBolt,"Arc Bolt","Deal 28 damage at range; chain to two nearby enemies for 18 damage each.","Staggered targets take +12 damage. Put Breaker ahead of it.",.65f,9f,28,1)
-        };
-        public static readonly ModifierCard[] Modifiers={
-            new ModifierCard(ModifierId.FaultLine,"Fault Line","Launched bodies deal +14 collision damage and stagger each target for one second."),
-            new ModifierCard(ModifierId.Overclock,"Overclock","Execute every occupied slot 20% faster. The order stays exactly as you placed it."),
-            new ModifierCard(ModifierId.HeavyHands,"Amplifier","All slotted abilities deal 25% more direct damage."),
-            new ModifierCard(ModifierId.Recovery,"Repair Weave","Restore 65 integrity immediately, up to the maximum.")
-        };
+        public const int SequenceSize=5;
         readonly Random random;
-        public AbilityCard[] Slots {get;}=new AbilityCard[3];
-        public AbilityCard[] Offers {get;private set;}=Array.Empty<AbilityCard>();
-        public ModifierCard[] ModifierOffers {get;private set;}=Array.Empty<ModifierCard>();
-        public readonly List<ModifierId> Upgrades=new List<ModifierId>();
-        public bool IsAbilityDraft {get;private set;}
+        public LoadoutItem[] Slots {get;}=new LoadoutItem[SequenceSize];
+        public LoadoutItem[] Weapons {get;}=new LoadoutItem[2];
+        public LoadoutItem Rig {get;private set;}
+        public LoadoutItem Ultimate {get;private set;}
+        public LoadoutItem Fists {get;}
+        public readonly LoadoutItem[] Basics=new LoadoutItem[2];
+        public readonly List<LoadoutItem> Items=new List<LoadoutItem>();
+        public RewardOffer[] Offers {get;private set;}=Array.Empty<RewardOffer>();
+        public DraftKind Draft {get;private set;}
         public int Selected {get;private set;}=-1;
         public int SelectedSlot {get;private set;}=-1;
         public int Rerolls {get;private set;}
         public int Spent {get;private set;}
-        public int Count {get {int count=0;foreach(var slot in Slots)if(slot!=null)count++;return count;}}
-        public bool Pinball=>Upgrades.Contains(ModifierId.FaultLine);
-        public float Speed=>Upgrades.Contains(ModifierId.Overclock)?1.2f:1;
-        public float Damage=>Upgrades.Contains(ModifierId.HeavyHands)?1.25f:1;
-        public bool CanInstall=>Selected>=0&&(!IsAbilityDraft||(SelectedSlot>=0&&Slots[SelectedSlot]==null));
-        public AbilityDeck(int seed){random=new Random(seed^0x5f3759df);}
-        public bool Has(AbilityId id){foreach(var slot in Slots)if(slot!=null&&slot.id==id)return true;return false;}
-        public int NextOccupied(int from)
-        {for(int i=0;i<3;i++){int slot=(from+i)%3;if(Slots[slot]!=null)return slot;}return -1;}
-        public void Open(bool ability,bool grantReroll)
-        {IsAbilityDraft=ability;if(grantReroll)Rerolls++;Roll();}
-        void Shuffle<T>(List<T> list)
-        {for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
+        public int Fusions {get;private set;}
+        public event Action<LoadoutItem,LoadoutItem[]> Fused;
+        public string Receipt {get;private set;}="";
+        public string MoveMessage {get;private set;}="";
+        public bool RewardClaimed {get;private set;}
+        public int Count=>Slots.Count(s=>s!=null&&s.def.kind==ItemKind.Ability);
+        public bool TwoHanded=>Weapons[0]!=null&&Weapons[0].def.hands==2;
+        public bool Pinball=>Rig?.def.id=="faultline";
+        public float Speed=>Rig?.def.id=="overclock"?1+.2f*ItemRarity.Power[Rig.rank]:1;
+        public float Damage=>Rig?.def.id=="amplifier"?1+.25f*ItemRarity.Power[Rig.rank]:1;
+        public bool CanClaim=>!RewardClaimed&&Selected>=0&&(Draft!=DraftKind.Ability||(SelectedSlot>=0&&Slots[SelectedSlot]==null));
+        public IEnumerable<LoadoutItem> Inventory=>Items.Where(i=>i!=Fists&&Array.IndexOf(Slots,i)<0&&Array.IndexOf(Weapons,i)<0&&Rig!=i&&Ultimate!=i);
+        public AbilityDeck(int seed)
+        {
+            random=new Random(seed^0x5f3759df);Fists=new LoadoutItem(LoadoutCatalog.Fists);Items.Add(Fists);
+            Ultimate=new LoadoutItem(LoadoutCatalog.Ultimates[0]);Items.Add(Ultimate);
+            for(int i=0;i<2;i++){Basics[i]=new LoadoutItem(new ItemDefinition("basic"+i,"Basic "+(i+1),ItemKind.Basic,"Uses Weapon "+(i+1)+". Empty mounts use fists.")){mount=i};Slots[i]=Basics[i];Items.Add(Basics[i]);}
+        }
+        public bool Has(AbilityId id)=>Slots.Any(s=>s?.def.ability?.id==id);
+        public LoadoutItem WeaponFor(LoadoutItem basic)=>Weapons[basic.mount]??Fists;
+        public AbilityCard Card(LoadoutItem item)=>item.def.kind==ItemKind.Basic?LoadoutCatalog.Basic(WeaponFor(item)):item.def.ability;
+        public AbilityCard CardAt(int slot)=>Slots[slot]==null?null:Card(Slots[slot]);
+        public string SlotName(int slot)=>Slots[slot]==null?"Empty":Slots[slot].def.kind==ItemKind.Basic?Slots[slot].Name+" · "+WeaponFor(Slots[slot]).Name:Slots[slot].Name;
+        public int NextOccupied(int from){for(int i=0;i<SequenceSize;i++){int slot=(from+i)%SequenceSize;if(Slots[slot]!=null)return slot;}return -1;}
+        // Adjacency means neighboring sequence positions, including the repeat boundary.
+        public int PairAfter(int slot)
+        {
+            var a=Slots[slot];int next=(slot+1)%SequenceSize;var b=Slots[next];
+            return a?.def.kind==ItemKind.Basic&&b?.def.kind==ItemKind.Basic&&WeaponFor(a).def.weapon==WeaponFor(b).def.weapon?next:-1;
+        }
+        public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
+        public void Open(DraftKind kind,bool grantReroll){Draft=kind;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
+        void Shuffle<T>(List<T> list){for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
         void Roll()
         {
-            Selected=SelectedSlot=-1;
-            if(IsAbilityDraft)
-            {
-                var choices=new List<AbilityCard>();foreach(var ability in Abilities)if(!Has(ability.id))choices.Add(ability);
-                Shuffle(choices);Offers=choices.GetRange(0,Math.Min(3,choices.Count)).ToArray();ModifierOffers=Array.Empty<ModifierCard>();
-            }
+            Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
+            if(Draft==DraftKind.Ability)
+            {foreach(var def in LoadoutCatalog.Abilities)if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            else if(Draft==DraftKind.Weapon)
+            {foreach(var def in LoadoutCatalog.Weapons)choices.Add(new RewardOffer(def));Shuffle(choices);}
             else
             {
-                var choices=new List<ModifierCard>();foreach(var modifier in Modifiers)
-                    if(!Upgrades.Contains(modifier.id)&&(modifier.id!=ModifierId.FaultLine||Has(AbilityId.MassDriver)))choices.Add(modifier);
-                Shuffle(choices);ModifierOffers=choices.GetRange(0,Math.Min(3,choices.Count)).ToArray();Offers=Array.Empty<AbilityCard>();
+                var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.rank<5).ToList();Shuffle(owned);
+                if(owned.Count>0){var item=owned[0];choices.Add(new RewardOffer(item.def,2));}
+                else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
+                var abilities=new List<ItemDefinition>(LoadoutCatalog.Abilities);Shuffle(abilities);choices.Add(new RewardOffer(abilities[0]));
+                var equipment=new List<ItemDefinition>(LoadoutCatalog.Weapons);equipment.AddRange(LoadoutCatalog.Rigs);equipment.AddRange(LoadoutCatalog.Ultimates);equipment.Add(LoadoutCatalog.Fists);Shuffle(equipment);
+                choices.Add(new RewardOffer(equipment.Find(e=>e!=choices[0].def)));
             }
+            Offers=choices.Take(3).Select(o=>new RewardOffer(o.def,o.copies,ItemRarity.Roll(random))).ToArray();
+            foreach(var offer in Offers)offer.owned=Copies(offer.def,offer.rank);
         }
-        public void Select(int index)
-        {if(index>=0&&index<(IsAbilityDraft?Offers.Length:ModifierOffers.Length))Selected=index;}
-        public void Assign(int slot)
-        {if(IsAbilityDraft&&slot>=0&&slot<3&&Slots[slot]==null)SelectedSlot=slot;}
-        public void Swap(int a,int b)
-        {if(a<0||a>2||b<0||b>2)return;var temp=Slots[a];Slots[a]=Slots[b];Slots[b]=temp;SelectedSlot=-1;}
-        public bool Reroll(){if(Rerolls<=0)return false;Rerolls--;Spent++;Roll();return true;}
-        public string Install()
+        public void Select(int index){if(!RewardClaimed&&index>=0&&index<Offers.Length)Selected=index;}
+        public void Assign(int slot){if(slot>=0&&slot<SequenceSize&&Slots[slot]==null)SelectedSlot=slot;}
+        public bool Reroll(){if(RewardClaimed||Rerolls<=0)return false;Rerolls--;Spent++;Roll();return true;}
+        public bool Claim()
         {
-            if(!CanInstall)return null;string name;
-            if(IsAbilityDraft){Slots[SelectedSlot]=Offers[Selected];name=Offers[Selected].name;}
-            else{var card=ModifierOffers[Selected];Upgrades.Add(card.id);name=card.name;}
-            Selected=SelectedSlot=-1;Offers=Array.Empty<AbilityCard>();ModifierOffers=Array.Empty<ModifierCard>();return name;
+            if(!CanClaim)return false;var offer=Offers[Selected];LoadoutItem received=null;
+            Receipt="Received "+offer.Name+" ("+ItemRarity.Names[offer.rank]+").";
+            for(int i=0;i<offer.copies;i++)received=Acquire(offer.def,offer.rank);
+            if(Draft==DraftKind.Ability&&received!=null)Move(received,PlaceKind.Sequence,SelectedSlot);
+            RewardClaimed=true;return true;
         }
-        public string Loadout
-        {get {var names=new string[3];for(int i=0;i<3;i++)names[i]=(i+1)+": "+(Slots[i]?.name??"Empty");return string.Join("  >  ",names);}}
+        public LoadoutItem Acquire(ItemDefinition def,int rank=1)
+        {
+            var added=new LoadoutItem(def,rank);Items.Add(added);LoadoutItem result=added;
+            for(int r=1;r<5;r++)
+            {
+                var copies=Items.Where(i=>i.def.id==def.id&&i.rank==r).ToList();
+                while(copies.Count>=3)
+                {
+                    copies.Sort((a,b)=>Priority(a).CompareTo(Priority(b)));
+                    var keep=copies[0];for(int i=1;i<3;i++){Unplace(copies[i]);Items.Remove(copies[i]);}
+                    keep.rank++;Fusions++;result=keep;Fused?.Invoke(keep,new[]{copies[1],copies[2]});
+                    Receipt+="  FUSED: 3 x "+ItemRarity.Names[r]+" "+def.name+" -> "+ItemRarity.Names[keep.rank]+". "+def.upgrade;
+                    copies=Items.Where(i=>i.def.id==def.id&&i.rank==r).ToList();
+                }
+            }
+            return Items.Contains(result)?result:Items.First(i=>i.def==def);
+        }
+        int Priority(LoadoutItem i){if(i==Fists)return -1;int n=Array.IndexOf(Slots,i);if(n>=0)return n;n=Array.IndexOf(Weapons,i);if(n>=0)return 10+n;return i==Rig?12:i==Ultimate?13:100+Items.IndexOf(i);}
+        void Unplace(LoadoutItem item){for(int i=0;i<SequenceSize;i++)if(Slots[i]==item)Slots[i]=null;for(int i=0;i<2;i++)if(Weapons[i]==item)Weapons[i]=null;if(Rig==item)Rig=null;if(Ultimate==item)Ultimate=null;}
+        public bool CanMove(LoadoutItem item,PlaceKind place,int index=0)
+        {
+            if(item==null||!Items.Contains(item)||item==Fists)return false;
+            if(place==PlaceKind.Sequence)return index>=0&&index<SequenceSize&&(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Ability)&&(!TwoHanded||item.def.kind==ItemKind.Basic||Slots[index]?.def.kind!=ItemKind.Basic);
+            if(place==PlaceKind.Weapon)return index>=0&&index<2&&item.def.kind==ItemKind.Weapon;
+            if(place==PlaceKind.Rig)return item.def.kind==ItemKind.Rig;
+            if(place==PlaceKind.Ultimate)return item.def.kind==ItemKind.Ultimate;
+            return item.def.kind!=ItemKind.Basic;
+        }
+        void MoveBlock(int start)
+        {
+            var rest=Slots.Where(s=>s==null||s.def.kind!=ItemKind.Basic).ToList();
+            start=Math.Max(0,Math.Min(3,start));rest.Insert(start,Basics[0]);rest.Insert(start+1,Basics[1]);rest.CopyTo(Slots);
+        }
+        public bool Move(LoadoutItem item,PlaceKind place,int index=0)
+        {
+            if(!CanMove(item,place,index)){MoveMessage=TwoHanded?"Move the locked basic pair as one block. Weapons use mounts; abilities use sequence slots.":"Both basics stay in the sequence. Weapons use mounts; abilities use sequence slots.";return false;}
+            if(TwoHanded&&place==PlaceKind.Sequence&&item.def.kind==ItemKind.Basic){MoveBlock(index-item.mount);MoveMessage="Two-handed attack moved as one locked pair.";SelectedSlot=-1;return true;}
+            int source=Array.IndexOf(Slots,item),weapon=Array.IndexOf(Weapons,item);
+            LoadoutItem displaced=place==PlaceKind.Sequence?Slots[index]:place==PlaceKind.Weapon?Weapons[index]:place==PlaceKind.Rig?Rig:place==PlaceKind.Ultimate?Ultimate:null;
+            if(displaced==item)return true;
+            if(place==PlaceKind.Sequence&&source<0&&displaced?.def.kind==ItemKind.Basic)
+            {
+                int spare=Array.FindIndex(Slots,s=>s==null);if(spare<0)spare=Array.FindIndex(Slots,s=>s.def.kind==ItemKind.Ability);
+                Slots[spare]=displaced;displaced=null;MoveMessage="Basic moved to slot "+(spare+1)+". Any replaced ability is stored.";
+            }
+            else MoveMessage=item.Name+" moved.";
+            bool wasTwoHanded=TwoHanded;Unplace(item);
+            if(place==PlaceKind.Sequence){Slots[index]=item;if(source>=0)Slots[source]=displaced;}
+            if(place==PlaceKind.Weapon)
+            {
+                if(item.def.hands==2){Weapons[0]=Weapons[1]=item;MoveBlock(Math.Min(Array.IndexOf(Slots,Basics[0]),Array.IndexOf(Slots,Basics[1])));}
+                else {if(wasTwoHanded)Weapons[0]=Weapons[1]=null;Weapons[index]=item;if(weapon>=0&&!wasTwoHanded)Weapons[weapon]=displaced;}
+            }
+            if(place==PlaceKind.Rig)Rig=item;
+            if(place==PlaceKind.Ultimate)Ultimate=item;
+            SelectedSlot=-1;return true;
+        }
+        public void Swap(int a,int b){if(a>=0&&b>=0&&a<SequenceSize&&b<SequenceSize&&Slots[a]!=null)Move(Slots[a],PlaceKind.Sequence,b);}
+        public string Loadout=>string.Join(" > ",Enumerable.Range(0,SequenceSize).Select(i=>(i+1)+": "+SlotName(i)));
     }
 }

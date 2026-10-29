@@ -1,69 +1,59 @@
-# Walking Hard 0.3 — Drafted Sequences
+# Walking Hard 0.4 — Weapons, Rarity & Combos
 
-A Unity autobattler prototype: one fighter walks forward while enemies enter through side doors and the horizon. Draft the actions, choose their order, and turn bodies into physical projectiles. Camera: behind and above the fighter.
+A Unity autobattler: one fighter walks forward through a physical crowd, seen from behind and above. Build a five-action loop, discover weapons, and turn bodies into chain reactions.
 
 ## Play
 
-Download the Windows ZIP from [Releases](https://github.com/Chillysoop/walkinghard/releases/latest), extract the whole archive, and run `WalkingHard.exe`.
+Download the Windows ZIP from [Releases](https://github.com/Chillysoop/walkinghard/releases/latest), extract the whole archive, and run WalkingHard.exe. For an updating desktop shortcut, run Launcher/Install.cmd. **Walking Hard (Main)** checks main, verifies the published ZIP checksum, and launches it. Its files and log live in %USERPROFILE%/Games/WalkingHard.
 
-For an updating desktop shortcut, run `Launcher/Install.cmd` from the extracted ZIP. **Walking Hard (Main)** checks the main branch each time it opens. It downloads a matching published build and verifies its SHA-256. If main is newer than the published build, it builds an isolated copy using installed Git and Unity 6000.3.27f1. No editor is needed for published builds. If an update fails or you are offline, it keeps the last working installation and reports the fallback. It never resets your development checkout.
+If main has no matching release, the launcher can build it in an isolated cache using Git and Unity 6000.3.27f1. Offline or failed updates retain the last working build. It never resets your development checkout.
 
-The launcher cache and log live under `%USERPROFILE%/Games/WalkingHard`. This location is accessible from both desktop shortcuts and packaged development apps, without AppData redirection. The first source build can take several minutes. Cloud Unity compilation is not configured; contributors should publish a matching Windows release after merging changes. Without a matching release or an installed editor, the launcher cannot run unreleased source and uses its last working build.
+## Playable systems
 
-## The current playable slice
-
-- Two separate opening pick-one-of-three ability drafts. Place each in a slot, then explicitly install it.
-- Occupied slots execute strictly **1 → 2 → 3 → repeat**. Empty slots skip. Auto Combat is on the main combat screen.
-- The first checkpoint offers the third ability. The second offers a modifier; unused rerolls accumulate.
-- Drag draft cards to empty slots, or drag existing abilities between slots to reorder at a checkpoint. Keyboard card/slot selection remains available.
-- Six abilities: Steel Jab, Breaker, Force Push, Mass Driver, Gravity Well, and Arc Bolt. Labeled effect icons distinguish effects an ability creates from effects it uses.
-- Dynamic enemy capsules collide with the floor, walls, and each other. Defeated enemies become jointed ragdolls. Mass Driver turns living or defeated bodies into projectiles; their first two distinct enemy contacts deal damage. Fault Line strengthens those contacts.
-- Covered side passages and camera-frustum checks hide spawn locations. Enemies move through door openings or run in from the horizon.
-
-Three waves each have 30 seconds of arrivals and up to 8 seconds of cleanup. Remaining enemies carry into the next wave. Combat and physics stop for drafting. Surviving wave three completes the run even with enemies remaining. Builds and combat outcomes vary; these are balance hypotheses, not final difficulty.
+- Five movable sequence positions: two permanent weapon attacks plus three drafted abilities. The sequence always runs automatically.
+- Matching adjacent one-handed attacks fire together with independent targets. Two-handed weapons fill both mounts and lock their basic cards into one movable group.
+- Fists, swords, hammers, pistols and rifles with distinct attacks, visible switches/reloads and behavior upgrades.
+- Separate ultimates with 12–16 second countdowns, automatic queuing or manual activation, and preserved sequence order.
+- Two opening ability drafts; checkpoint one grants a third ability and a weapon choice. Later rewards mix item types and duplicate bundles.
+- Drag-and-drop character sheet, unlimited storage, two weapon mounts, one rig, and a separate ultimate mount. Click-to-select/destination is also supported.
+- Common, Uncommon, Rare, Epic and Legendary drops. Three identical items of the same rarity fuse to the next rarity, capped at Legendary.
+- Rarity odds: 55% / 27% / 12% / 5% / 1%. Power: 1× / 1.2× / 1.5× / 1.9× / 2.5× Common.
+- Distinct category colors and icons, labeled rarity borders, fusion previews, synergy inspection, and per-action kill counters.
+- Physical crowd collisions, ragdolls, authored waist cuts, and bounded multi-hop collision cascades. Hidden side-door/horizon creation remains enforced.
+- Combo scoring for rapid, bulk and chain kills. Three-second banking window, up to 10× multiplier, checkpoint banking and end-of-run score.
 
 ## Controls
 
 | Input | Action |
 | --- | --- |
-| Enter | Begin / install a selected draft |
+| Enter | Begin / claim selected reward / continue after claiming |
 | 1 / 2 / 3 | Select draft offer |
-| Q / W / E | Assign the selected ability to an empty slot |
-| Drag a card or ability | Assign to an empty slot / reorder occupied slots |
+| Q / W / E / D / C | Assign draft ability to an empty sequence position |
+| Drag, or click then click destination | Reorder, equip, or store an item |
 | Tab | Spend a banked reroll |
-| A | Toggle Auto Combat on the fight screen |
-| F | Advance the next eligible action in sequence |
+| U | Toggle ultimate Auto/Manual |
+| F | Queue a ready ultimate |
 | Space / Escape | Pause or resume |
-| R | New run and draft |
-| T | Repeat the seed |
+| R | New run |
+| T | Repeat seed |
 | M | Mute |
-| F8 | Save a screenshot |
+| F8 | Save screenshot |
 
-With Auto Combat off, F advances one action in the same order; it does not select a different slot. Pause includes reduced motion. Physics is not guaranteed bit-for-bit deterministic across machines even when the draft seed matches.
+There is no toggle for the normal sequence. An ultimate never interrupts an action or a simultaneous pair. Combat, physics, combo expiry and ultimate countdowns stop at checkpoints. Pause includes reduced motion. Physics can differ slightly across machines even with the same draft seed.
 
-## Develop
+## Develop and verify
 
-Clone this repo and add it to Unity Hub. Use **Unity 6000.3.27f1** with Windows Build Support. Open `Assets/Vector/Scenes/CombatStudy.unity`. The project uses URP 17.3.0, procedural geometry, animation, and audio; no paid art packs are required.
+Use **Unity 6000.3.27f1** with Windows Build Support. Open Assets/Vector/Scenes/CombatStudy.unity. The project uses URP and procedural geometry, animation and audio; no paid assets are required.
 
-Run `Build Windows.ps1` to build `Build/Windows/WalkingHard.exe`. The `-UnityEditor` parameter supports a nonstandard editor location. Run `Validate Prototype.ps1` against the resulting player; it exercises five encounter paths, including manual control and exhausted rerolls. Run `Launcher/Test Launcher.ps1` to check installation and failure handling.
+Run Build Windows.ps1, then Validate Prototype.ps1. Nine standalone scenarios cover normal drafts, distinct weapon families, paired targets, manual ultimates, exhausted rerolls, rarity/fusion contracts, scoring, attribution, hidden entries and physical outcomes. Named weapon scenarios use explicit weapon fixtures to exercise every family independently of draft luck. Run Launcher/Test Launcher.ps1 for updater safety checks.
 
 | Source | Responsibility |
 | --- | --- |
-| `AbilityDeck.cs` | Ability definitions, draft offers, slot order, modifiers |
-| `VectorEncounter.cs` | Waves, state, movement, concealed entries |
-| `EncounterCombat.cs` | Ability execution, damage, launch/contact rules |
-| `FighterPhysics.cs` | Capsules, bodies, joints, contact forwarding |
-| `EntryLayout.cs` | Floor, walls, covered doors, visibility tests |
-| `PrototypeHUD.cs`, `HUDInteractions.cs` | Drafts, combat HUD, dragging, synergy icons |
-| `EncounterQA.cs` | Standalone simulation assertions and reports |
-| `Assets/Resources/CombatTuning.asset` | Active encounter tuning |
+| AbilityDeck, LoadoutCatalog, ItemRarity | Inventory, equipment, offers, grouping, fusion, content and rarity |
+| VectorEncounter, EncounterCombat, WeaponCombat | Waves, ordered scheduler, ultimates, weapon attacks, attribution and cascades |
+| FighterPhysics, FighterRig, EntryLayout | Physical actors, cuts, procedural weapons and concealed entries |
+| PrototypeHUD, CheckpointHUD, ItemPresentation, HUDInteractions | Combat, loadout drag/drop, category/rarity presentation and icons |
+| ComboScore | Kill strings, multiplier and banking |
+| LoadoutChecks, EncounterQA | Contract assertions and standalone encounter reports |
 
-Scripts are in `Assets/Vector/Scripts`. The historical Vector folder names are retained for asset stability.
-
-## Design versus implementation
-
-[DESIGN.md](DESIGN.md) records the agreed next direction: two carried weapons including one- and two-handed options; visible switching time; unlimited prototype storage; automatic three-copy, same-rank upgrades through rank III; unarmed starts; weapons at checkpoints; mixed later rewards. Drag-and-drop inventory and shared synergy icons are part of that direction.
-
-**Weapon equipment, stored inventory, fusion, body severing, and multi-hop collision cascades are not in the 0.3 executable.** The interactive workshop demonstrates those loadout rules. The current physical projectile system has two direct damaging contacts per launched body, with capped ragdoll lifetime/count. Models and presentation remain placeholders.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration and release instructions. The owner-private design workshop is separate from this public repository; personal review history is not included here.
+C# scripts are under Assets/Vector/Scripts. See [DESIGN.md](DESIGN.md) for the current design contract and [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration/release instructions. Historical Vector paths remain for asset stability. Art, balance and long-run progression remain prototype work; this release uses authored cuts rather than arbitrary mesh slicing.

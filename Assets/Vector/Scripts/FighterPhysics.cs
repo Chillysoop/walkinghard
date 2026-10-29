@@ -27,6 +27,7 @@ namespace VectorGame
         readonly List<Rigidbody> bodies=new List<Rigidbody>();
         readonly List<Collider> colliders=new List<Collider>();
         public bool Ragdoll {get;private set;}
+        public bool Severed {get;private set;}
         public int BodyCount=>bodies.Count;
         public Vector3 Center=>Ragdoll?bodies[0].position:Motor.position+Vector3.up;
         public Vector3 Velocity=>Ragdoll?bodies[0].linearVelocity:Motor.linearVelocity;
@@ -81,6 +82,16 @@ namespace VectorGame
             }
             for(int i=0;i<colliders.Count;i++)for(int j=i+1;j<colliders.Count;j++)Physics.IgnoreCollision(colliders[i],colliders[j]);
             Ragdoll=true;rig.Telegraph(false,false);
+        }
+        public void Sever()
+        {
+            if(!Ragdoll||Severed)return;Severed=true;
+            var waist=rig.Body.GetComponent<CharacterJoint>();if(waist!=null)Object.Destroy(waist);
+            rig.Body.SetParent(rig.Root,true);
+            var cap=VisualFactory.Part("Upper waist cut",rig.Body,PrimitiveType.Cylinder,Vector3.zero,new Vector3(.5f,.025f,.33f),VisualFactory.RedGlow);
+            VisualFactory.Part("Lower waist cut",rig.PhysicsBones[0],PrimitiveType.Cylinder,new Vector3(0,.17f,0),new Vector3(.47f,.025f,.32f),VisualFactory.RedGlow);
+            bodies[1].AddForce(Vector3.up*2+Vector3.right*(owner%2==0?2:-2),ForceMode.VelocityChange);
+            bodies[0].AddForce(Vector3.left*(owner%2==0?1:-1),ForceMode.VelocityChange);
         }
         public bool Finite()
         {

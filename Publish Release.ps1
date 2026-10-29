@@ -1,9 +1,9 @@
-param([string]$Tag='v0.3.1',[switch]$SkipBuild)
+param([string]$Tag='v0.4.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
 try {
-    if (-not $SkipBuild) { & '.\Build Windows.ps1'; & '.\Validate Prototype.ps1' }
+    if (-not $SkipBuild) { & '.\Build Windows.ps1' -OutputDirectory $PlayerDirectory; & '.\Validate Prototype.ps1' -Player (Join-Path $PlayerDirectory 'WalkingHard.exe') }
     $commit=(& git rev-parse HEAD).Trim()
     if ((& git status --porcelain).Length -gt 0) { throw 'Commit the source and validation reports before publishing.' }
     $remote=(& git ls-remote origin refs/heads/main) -split '\s+'
@@ -11,11 +11,13 @@ try {
     $releases=Join-Path $PSScriptRoot 'Releases';New-Item -ItemType Directory -Path $releases -Force | Out-Null
     $stage=Join-Path $releases ('Stage-'+[Guid]::NewGuid().ToString('N'));New-Item -ItemType Directory -Path $stage -Force | Out-Null
     foreach($f in @('WalkingHard.exe','WalkingHard_Data','UnityPlayer.dll','UnityCrashHandler64.exe','MonoBleedingEdge','D3D12')) {
-        $source=Join-Path $PSScriptRoot ('Build\Windows\'+$f)
+        $source=Join-Path $PlayerDirectory $f
         if(Test-Path -LiteralPath $source){Copy-Item -LiteralPath $source -Destination $stage -Recurse}
     }
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Launcher') -Destination $stage -Recurse
-    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'README.md') -Destination $stage
+    foreach($doc in @('README.md','DESIGN.md')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $doc) -Destination $stage}
+    $qaStage=Join-Path $stage 'QA';New-Item -ItemType Directory -Path $qaStage -Force | Out-Null
+    foreach($doc in @('v04-verification.md','v04-checkpoint.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -28,7 +30,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard 0.3 - Drafted Sequences';draft=$true;prerelease=$false;body="Draft two opening abilities, place them into a repeating sequence, then draft the third at checkpoint one. Includes physical crowd collisions, ragdolls, concealed doorway/horizon entries, and the Auto Combat toggle on the fight screen. Full equipment inventory, three-copy fusion and severing remain design proposals.`n`nExtract the Windows ZIP, run WalkingHard.exe, or use Launcher/Install.cmd for a main-tracking desktop shortcut. Built from $commit. See README for controls and development."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Weapons, Rarity and Combos';draft=$true;prerelease=$false;body="Five movable actions, simultaneous matching one-handed attacks, locked two-handed groups, separate Auto/Manual ultimates, drag-and-drop inventory, five rarities with automatic three-copy fusion, weapon upgrades, authored body cuts, bounded collision cascades, per-action kills, and combo scoring. Nine standalone scenarios validate gameplay contracts; native Windows UI checks cover drafting and loadout interactions. Procedural art and balance remain prototype work.`n`nExtract the Windows ZIP, run WalkingHard.exe, or use Launcher/Install.cmd for the main-tracking shortcut. Built from $commit. See README and QA/v04-verification.md for details."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

@@ -14,6 +14,9 @@ namespace VectorGame
         public Transform[] PhysicsBones=>new[]{pelvis,Body,Head,leftArm,leftElbow,rightArm,rightElbow,leftThigh,leftKnee,rightThigh,rightKnee};
         readonly bool hero;
         readonly float phase;
+        Transform weaponRight,weaponLeft;
+        WeaponKind displayed=WeaponKind.Fists;
+        bool dualWeapon,twoHanded;
         public FighterRig(string name, Transform parent, bool isHero, bool heavy = false)
         {
             hero=isHero;phase=isHero?0:Random.value*6.28f;
@@ -114,6 +117,26 @@ namespace VectorGame
                 }
                 Body.localPosition+=new Vector3(0,-extension*.045f,extension*(strike==2?.23f:.13f));
             }
+            if(dualWeapon&&strike==0){rightArm.localRotation=leftArm.localRotation;rightElbow.localRotation=leftElbow.localRotation;}
+            if(strike>=3)
+            {
+                float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.16f)/.38f));
+                float returnToGuard=1-Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.65f)/.35f));
+                if(strike==3)
+                {
+                    Body.localRotation=Quaternion.Euler(0,Mathf.Lerp(-48,48,swing)*returnToGuard,0);
+                    rightArm.localRotation=Quaternion.Euler(-95,Mathf.Lerp(55,-35,swing),15);
+                    rightElbow.localRotation=Quaternion.Euler(-12,0,0);
+                }
+                if(strike==4)
+                {
+                    rightArm.localRotation=Quaternion.Euler(Mathf.Lerp(-170,-65,swing),0,12);
+                    rightElbow.localRotation=Quaternion.Euler(-15,0,0);
+                    Body.localRotation=Quaternion.Euler(Mathf.Lerp(-15,24,swing)*returnToGuard,0,0);
+                }
+                if(strike==5){rightArm.localRotation=Quaternion.Euler(-90,0,8);rightElbow.localRotation=Quaternion.Euler(-5,0,0);}
+                if(dualWeapon||twoHanded){leftArm.localRotation=rightArm.localRotation;leftElbow.localRotation=rightElbow.localRotation;}
+            }
             if(pushing)
             {
                 float extension=Mathf.SmoothStep(0,1,Mathf.Clamp01((pushProgress-.18f)/.28f));
@@ -140,6 +163,38 @@ namespace VectorGame
             if(leftCuff==null)return;
             leftCuff.gameObject.SetActive(launch);rightCuff.gameObject.SetActive(launch);
             leftCuff.GetComponent<Renderer>().sharedMaterial=rightCuff.GetComponent<Renderer>().sharedMaterial=pinball?VisualFactory.GoldGlow:VisualFactory.Glow;
+        }
+        public void SetWeapons(WeaponKind kind,bool dual,bool bothHands)
+        {
+            if(kind==displayed&&dual==dualWeapon&&bothHands==twoHanded)return;
+            if(weaponRight!=null)Object.Destroy(weaponRight.gameObject);
+            if(weaponLeft!=null)Object.Destroy(weaponLeft.gameObject);
+            displayed=kind;dualWeapon=dual;twoHanded=bothHands;
+            if(kind==WeaponKind.Fists)return;
+            weaponRight=MakeWeapon(RightHand,kind);
+            if(dual)weaponLeft=MakeWeapon(LeftHand,kind);
+        }
+        Transform MakeWeapon(Transform hand,WeaponKind kind)
+        {
+            var root=VisualFactory.Node(kind.ToString(),hand,Vector3.zero);
+            if(kind==WeaponKind.Sword)
+            {
+                VisualFactory.Part("Blade",root,PrimitiveType.Cube,new Vector3(0,-.05f,.85f),new Vector3(.09f,.16f,1.45f),VisualFactory.Glow);
+                VisualFactory.Part("Guard",root,PrimitiveType.Cube,new Vector3(0,0,.15f),new Vector3(.42f,.15f,.10f),VisualFactory.Armor);
+            }
+            else if(kind==WeaponKind.Hammer)
+            {
+                VisualFactory.Part("Haft",root,PrimitiveType.Cube,new Vector3(0,0,.65f),new Vector3(.1f,.1f,1.4f),VisualFactory.Trim);
+                VisualFactory.Part("Hammer head",root,PrimitiveType.Cube,new Vector3(0,0,1.35f),new Vector3(.95f,.5f,.42f),VisualFactory.Armor);
+                VisualFactory.Part("Impact core",root,PrimitiveType.Cube,new Vector3(0,0,1.57f),new Vector3(.6f,.28f,.04f),VisualFactory.GoldGlow);
+            }
+            else
+            {
+                float length=kind==WeaponKind.Pistol?.55f:1.1f;
+                VisualFactory.Part("Receiver",root,PrimitiveType.Cube,new Vector3(0,0,length*.45f),new Vector3(.18f,.22f,length),VisualFactory.Trim);
+                VisualFactory.Part("Muzzle",root,PrimitiveType.Cube,new Vector3(0,0,length),new Vector3(.12f,.12f,.12f),VisualFactory.Glow);
+            }
+            return root;
         }
         public void Airborne(float remaining)
         {
