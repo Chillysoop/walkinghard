@@ -29,6 +29,10 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-ui') -Destination $qaStage -Recurse
     foreach($doc in @('v076-verification.md','v076-balance-review.md','v076-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v076-ui') -Destination $qaStage -Recurse
+    $balanceStage=Join-Path $qaStage 'Balance';New-Item -ItemType Directory -Path $balanceStage -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\v076') -Destination $balanceStage -Recurse
+    $runnerStage=Join-Path $balanceStage 'controlled-siphon';New-Item -ItemType Directory -Path $runnerStage -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\controlled-siphon\run.py') -Destination $runnerStage
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
