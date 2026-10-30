@@ -50,9 +50,13 @@ namespace VectorGame
             {
                 ReviewCheck(Style(17,true).CalcSize(new GUIContent(def.name)).x<=281,"reward title fits: "+def.id);
                 ReviewCheck(Style(11,true).CalcSize(new GUIContent(Category(def))).x<=258,"category fits: "+def.id);
+                ReviewCheck(Style(22,true).CalcHeight(new GUIContent(def.name),275)<=52,"focused reward title fits: "+def.id);
+                ReviewCheck(Style(10).CalcSize(new GUIContent(ItemRole(def))).x<=275,"item role fits: "+def.id);
+                ReviewCheck(Style(18,true).CalcSize(new GUIContent(ItemType(def))).x<=245,"large item type fits: "+def.id);
                 for(int rank=1;rank<=5;rank++)
                 {
                     var item=new LoadoutItem(def,rank);
+                    ReviewCheck(Style(10,true).CalcSize(new GUIContent(RewardStats(def,rank))).x<=275,"reward stats fit: "+def.id+"/"+rank);
                     ReviewCheck(Style(9).CalcSize(new GUIContent(ItemSummary(item))).x<=167,"sequence summary fits: "+def.id+"/"+rank);
                 }
             }
@@ -87,6 +91,7 @@ namespace VectorGame
                 if(game.Deck.TwoHanded){ReviewCheck(!game.MoveItem(game.TutorialArc,PlaceKind.Sequence,0),path+"linked pair cannot split");ReviewCheck(game.MoveItem(game.Deck.Basics[0],PlaceKind.Sequence,1),path+"linked pair moves");}
                 ReviewCheck(game.MoveItem(game.TutorialArc,PlaceKind.Sequence,0)&&game.TutorialReady,path+"Arc starts sequence");game.TutorialNext();
                 ReviewCheck(game.State==VectorEncounter.RunState.Running&&!game.TutorialReady,path+"practice starts; cannot instantly finish");
+                ReviewCheck(!game.AutoEquip(game.TutorialArc.augment),path+"augment auto-equip cannot change a running fight");
                 for(int step=0;step<180&&game.TutorialLesson==VectorEncounter.Lesson.Practice;step++)game.AdvanceTutorialPractice(.1f);
                 ReviewCheck(game.TutorialLesson==VectorEncounter.Lesson.Finished&&game.AbilityCasts>=3,path+"practice uses production combat and completes");
                 game.TutorialNext();ReviewCheck(!game.TutorialActive&&game.OpeningPicks==0&&game.Deck.Count==0&&game.Deck.Weapons.All(i=>i==null)&&game.Deck.Ultimate==null&&game.FusionHistory.Count==0,path+"real run is clean");
@@ -124,7 +129,7 @@ namespace VectorGame
                 foreach(string id in new[]{"sword","hammer","visor","plate","treads","faultline","ArcBolt","aug-Echo","aug-Crosscut","singularity"})
                 {
                     game.Deck.Open(id=="singularity"?DraftKind.Ultimate:DraftKind.Mixed,false);
-                    game.Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Find(id));yield return null;
+                    game.Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Find(id));game.SelectOffer(0);yield return null;yield return null;
                     var def=game.Deck.Offers[0].def;
                     foreach(var region in dropRegions.Where(r=>r.offer<0&&!r.socket&&r.place!=PlaceKind.Inventory))
                     {
@@ -139,7 +144,7 @@ namespace VectorGame
                     }
                 }
                 game.Begin();var storedWeapon=game.Deck.Acquire(LoadoutCatalog.Find("sword"));game.Deck.Open(DraftKind.Mixed,false);game.Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Find("aug-Crosscut"));game.SelectOffer(0);
-                yield return null;yield return null;
+                yield return null;yield return null;SetManageBuild(true);yield return null;
                 ReviewCheck(OfferFitsRegion(0,dropRegions.First(r=>r.item==storedWeapon&&!r.socket)),"augment highlights compatible stored host");
                 dragItem=storedWeapon;ReviewCheck(FocusedReward()==-1&&StoredFitsRegion(storedWeapon,ReviewRegion(PlaceKind.Weapon,0)),"dragged inventory item overrides selected reward");dragItem=null;
                 selectedItem=storedWeapon;ReviewCheck(FocusedReward()==-1,"selected inventory item overrides selected reward");ClearLoadoutGesture();
@@ -152,6 +157,7 @@ namespace VectorGame
                     reviewPointer=dropRegions.First(r=>r.offer==resolution).rect.center;yield return CapturePresentation(directory,"12-equipment-"+width);ReviewCheck(FocusedReward()==resolution,"equipment hover focuses exact reward at "+width);
                 }
                 game.MainMenu();
+                yield return RunCheckpointClarityReview(directory);
             }
             File.WriteAllText(Path.Combine(directory,"checks.txt"),string.Join("\n",tutorialChecks));
             Debug.Log("TUTORIAL_REVIEW_SUCCESS: "+tutorialChecks.Count+" assertions; "+(rendered?"native mouse handlers and captures":"model checks"));Application.Quit(0);

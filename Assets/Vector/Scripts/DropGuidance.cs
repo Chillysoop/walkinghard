@@ -16,6 +16,7 @@ namespace VectorGame
         string RewardHeading=>game.Deck.Draft==DraftKind.Ability?"ABILITY / SEQUENCE SLOT":game.Deck.Draft==DraftKind.Weapon?"WEAPON / HAND SLOT":game.Deck.Draft==DraftKind.Equipment?"EQUIPMENT / MATCHING SLOT":game.Deck.Draft==DraftKind.Augment?"AUGMENT / + SOCKET":game.Deck.Draft==DraftKind.Ultimate?"ULTIMATE / SEPARATE SLOT":"REWARD OPTIONS";
         int FocusedReward()
         {
+            if(FocusedCheckpoint)return PreviewOffer();
             if(game.Deck.RewardClaimed)return -1;
             if(dragItem!=null)return -1;
             if(dragOffer>=0)return dragOffer;
@@ -59,7 +60,7 @@ namespace VectorGame
             if(offer<0&&item==null&&!categoryPreview){if(game.TutorialActive)TutorialHighlights();return;}
             var def=offer>=0?game.Deck.Offers[offer].def:item?.def;
             bool ability=def?.kind==ItemKind.Ability||(categoryPreview&&game.Deck.Draft==DraftKind.Ability);
-            if(ability)DestinationGlow(new Rect(20,sequenceY-24,w-290,124),Accent,false);
+            if(ability)DestinationGlow(FocusedCheckpoint?focusedSequence:new Rect(20,sequenceY-24,w-290,124),Accent,false);
             foreach(var r in dropRegions)
             {
                 bool valid=offer>=0?OfferFitsRegion(offer,r):item!=null?StoredFitsRegion(item,r):Enumerable.Range(0,game.Deck.Offers.Length).Any(i=>OfferFitsRegion(i,r));

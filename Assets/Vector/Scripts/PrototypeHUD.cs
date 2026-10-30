@@ -141,7 +141,7 @@ namespace VectorGame
                 if(i<4){Stroke(new Vector2(x+width,y+65),new Vector2(x+width+10,y+65),edge);Box(new Rect(x+width+3,y+63,4,4),edge);}
                 ActionGlyph(new Rect(x+10,y+10,35,35),shown?.def,delayed?Strong:active?Accent:muted);
                 if(shown!=null){Box(new Rect(x+33,y+34,17,17),ink);TypeIcon(new Rect(x+33,y+34,17,17),shown.def.kind,muted);}
-                Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"BASIC "+(item.mount+1):"ABILITY"),10,edge,true);
+                Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"WEAPON ATTACK":"ABILITY"),10,edge,true);
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Strong);}
                 EffectLine(new Rect(x+12,y+57,width-24,18),item,12);

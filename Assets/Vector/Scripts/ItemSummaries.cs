@@ -12,7 +12,7 @@ namespace VectorGame
             if(item.def.kind==ItemKind.Basic)item=game.Deck.WeaponFor(item);
             if(item.augment!=null)switch(item.augment.def.module.id)
             {
-                case AugmentId.FollowThrough:return "Strike; next basic gains stagger.";
+                case AugmentId.FollowThrough:return "Strike; next weapon hit staggers.";
                 case AugmentId.Focused:return item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
                 case AugmentId.Echo:return item.def.ability.id==AbilityId.ArcBolt?"Chain lightning, then repeat a hit.":item.def.ability.id==AbilityId.ReapingCut?"Cleave, then repeat a weaker cut.":"Punch, then repeat a weaker hit.";
                 case AugmentId.Afterfield:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark foes in a lingering field.":item.def.ability.id==AbilityId.VectorTether?"Line foes up; leave a pull field.":"Gather foes in a lingering field.";
@@ -45,7 +45,7 @@ namespace VectorGame
                 case "ConductiveBrand":return "Mark foes for bonus lightning.";
                 case "VectorTether":return "Pull enemies into a straight line.";
                 case "ReapingCut":return "Slash weak foes; kills sever.";
-                case "Counterguard":return "Absorb hits; empower the next basic.";
+                case "Counterguard":return "Block hits; charge a weapon burst.";
                 case "fists":return item.rank>=3?"Double punch; stagger shockwave.":item.rank>=2?"Two quick punches that stagger.":"Quick close punch that staggers.";
                 case "wraps":return "Punch; mark foes for lightning.";
                 case "sword":return item.rank>=3?"Cleave; kills sever and launch.":"Cleave; killing blows sever.";
@@ -73,10 +73,10 @@ namespace VectorGame
                 case "arcstep":return "Double kills mark nearby survivors.";
                 case "faultline":return "Body impacts trigger stagger waves.";
                 case "overclock":return "Speed ramps up through the sequence.";
-                case "amplifier":return "Abilities charge the next basic burst.";
+                case "amplifier":return "Abilities charge a weapon burst.";
                 case "relay":return "Body hits discharge marked foes.";
                 case "magnet":return "Severed bodies launch into others.";
-                case "aug-FollowThrough":return "Trade stagger for a next-basic pulse.";
+                case "aug-FollowThrough":return "Next weapon hit gains a pulse.";
                 case "aug-Focused":return "Stronger effect on fewer targets.";
                 case "aug-Echo":return "Weaker opening; one delayed repeat.";
                 case "aug-Afterfield":return "Weaker opening leaves a lasting field.";

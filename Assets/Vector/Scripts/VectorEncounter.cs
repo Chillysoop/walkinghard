@@ -221,6 +221,12 @@ namespace VectorGame
         }
         public bool AutoEquip(LoadoutItem item)
         {
+            if(State!=RunState.Drafting||item==null)return false;
+            if(item.def.kind==ItemKind.Augment)
+            {
+                var hosts=System.Linq.Enumerable.ToArray(Deck.CompatibleHosts(item.def));
+                return hosts.Length==1&&TutorialAttachAllowed(hosts[0])&&Deck.Attach(item,hosts[0]);
+            }
             Deck.SuggestedPlace(item.def,out var place,out int index);return index!=-2&&MoveItem(item,place,index);
         }
         public void AcceptSelectedReward(bool continueImmediately=true)
@@ -228,6 +234,11 @@ namespace VectorGame
             if(State!=RunState.Drafting)return;
             if(Deck.RewardClaimed){ConfirmDraft();return;}
             if(Deck.Selected<0)return;
+            if(Deck.Offers[Deck.Selected].def.kind==ItemKind.Augment)
+            {
+                var hosts=System.Linq.Enumerable.ToArray(Deck.CompatibleHosts(Deck.Offers[Deck.Selected].def));
+                if(hosts.Length==1){ClaimAugmentToHost(Deck.Selected,hosts[0],continueImmediately);return;}
+            }
             Deck.SuggestedPlace(Deck.Offers[Deck.Selected].def,out var place,out int index);
             if(index==-2&&!System.Linq.Enumerable.Any(Deck.CompatibleHosts(Deck.Offers[Deck.Selected].def))){place=PlaceKind.Inventory;index=0;}
             if(index==-2)return;
