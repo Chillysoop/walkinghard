@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.4',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.7.5',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -25,6 +25,8 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v073-ui') -Destination $qaStage -Recurse
     foreach($doc in @('v074-verification.md','v074-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v074-ui') -Destination $qaStage -Recurse
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-verification.md') -Destination $qaStage
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-ui') -Destination $qaStage -Recurse
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -37,7 +39,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Clearer Checkpoints';draft=$true;prerelease=$false;body="Checkpoints now focus on three rewards and their matching destinations. Open Manage build for the RPG sheet, storage and full sequence. Large category labels and distinct frame shapes separate weapons, abilities, gear, augments and ultimates. Rarity colors stay with rarity.`n`nCards use one-line effects, concise stats and concrete equip buttons. Replacement previews explain what moves to storage. A sole compatible stored item can now receive an augment through the primary action; multiple hosts still require a choice. Existing reward counts, two-handed grouping, fusion, ultimate progression and Edit after pick behavior are preserved.`n`nNative UI interaction, text-fit and multi-resolution captures plus core and full-run validation are recorded in QA/v074-verification.md. No balance values changed.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Rarity Outlines and Storage';draft=$true;prerelease=$false;body="Reward cards once again have a full rarity-colored outline in addition to the rarity label. Selected cards keep their rarity border, with a separate cyan selection glow. Applies to focused checkpoints, Manage build and the tutorial. Host-scaled augments retain neutral borders. The focused upgrade screen has an explicit Add to storage button beside Equip, so a selected reward can be taken without replacing equipped items. It also accepts dragged rewards and honors Edit after pick.`n`nNative UI captures and the fifteen core regression fixtures are recorded in QA/v075-verification.md. No gameplay or balance changes.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){
