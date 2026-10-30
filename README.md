@@ -1,4 +1,7 @@
-# Walking Hard 0.7.5 — Rarity outlines and storage
+# Walking Hard 0.7.6 — Synergy clarity and Deadeye options
+
+Reward previews identify an equipped combo partner and explain the payoff in one line. The matching item gets a white effect badge; short combat cues confirm actual synergies. **Suppressive Volley** interrupts distant groups without pushing them away. **Recoil Harness** turns a reload into one block, then a stronger gun hit. Both have dedicated card art, rarity scaling and full hover rules. [Controlled comparisons and proposed tuning](QA/v076-balance-review.md) remain separate from shipped balance.
+
 
 Ordinary checkpoints now open with three focused reward cards and the relevant equip destinations. **Manage build** opens the RPG character sheet, storage and full sequence on the same screen. Large Weapon / Ability / Gear / Augment / Ultimate labels, distinct art frames and neutral icons identify item type; full card outlines and rarity badges use the rarity colors, including on selected cards. One-line effects explain what the item does, and hover details retain the full mechanics. Preview text names the replacement, while primary buttons say Equip weapon, Equip helmet, Add ability, Attach to an item, or Store. An explicit **Add to storage** button beside Equip takes the selected reward without replacing equipped items; rewards can also be dragged onto it. It follows Edit after pick. The opening ability picks still require an empty sequence slot. See [outline and storage verification](QA/v075-verification.md).
 

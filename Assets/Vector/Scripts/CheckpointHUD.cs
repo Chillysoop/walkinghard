@@ -55,7 +55,7 @@ namespace VectorGame
             CheckpointHeader(w,true);
             }
             Panel(new Rect(20,86,w-40,178));Label(new Rect(33,86,500,17),RewardHeading,11,Accent,true);
-            Label(new Rect(600,86,w-630,17),RewardHint,11,muted,false,TextAnchor.UpperRight);
+            if(CurrentBuildLink()!=null)BuildFitLine(new Rect(520,86,w-550,17));else Label(new Rect(600,86,w-630,17),RewardHint,11,muted,false,TextAnchor.UpperRight);
             if(deck.Emphasis!=RewardEmphasis.None)Label(new Rect(300,86,285,17),"BIASED: "+deck.Emphasis.ToString().ToUpperInvariant(),10,Strong,true);
             for(int i=0;i<3;i++)
             {
@@ -109,7 +109,7 @@ namespace VectorGame
             if(Button(new Rect(646,h-34,98,25),"ICON KEY"))iconGuide=!iconGuide;
             if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(754,h-33,w-1035,27),loadoutFeedback,10,Strong);
             else if(!game.TutorialActive)Label(new Rect(754,h-33,w-1035,27),"NEXT: "+game.EncounterPreview.Split('·')[0].Trim(),10,muted);
-            DrawSockets();ApplyPresentationReviewHover();HighlightFusionMatches();DrawDestinationGuidance(w,sequenceY);DrawDragPreview();
+            DrawSockets();ApplyPresentationReviewHover();HighlightFusionMatches();DrawDestinationGuidance(w,sequenceY);HighlightBuildPartner();DrawDragPreview();
             if(game.TutorialActive&&game.TutorialHint.Length>0)Label(new Rect(32,sequenceY-49,w-64,21),game.TutorialHint,12,white,true);
         }
         void CharacterStats(Rect r)

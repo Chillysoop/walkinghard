@@ -27,7 +27,7 @@ namespace VectorGame
         public readonly Dictionary<string,int> InteractionNotes=new Dictionary<string,int>();
         public string RecentPayoff {get;private set;}="";float payoffUntil;
         public string VisiblePayoff=>Elapsed<payoffUntil?RecentPayoff:"";
-        void Note(string text,bool flash=false){InteractionNotes[text]=InteractionNotes.TryGetValue(text,out int count)?count+1:1;if(flash){RecentPayoff=text;payoffUntil=Elapsed+.7f;}}
+        void Note(string text,bool flash=false){NotePayoff(text);InteractionNotes[text]=InteractionNotes.TryGetValue(text,out int count)?count+1:1;if(flash){RecentPayoff=text;payoffUntil=Elapsed+.7f;}}
         void SetSetup(Enemy e,LoadoutItem host){setups[e.id]=new Setup{host=host,until=Elapsed+3};}
         sealed class Field {public LoadoutItem host;public KillCredit credit;public Vector3 origin,aim,point;public float left=2,tick;public readonly HashSet<int> hit=new HashSet<int>();}
         readonly List<Field> fields=new List<Field>();
@@ -36,9 +36,9 @@ namespace VectorGame
         sealed class Mote {public Vector3 point;public float left=10,age,heal;public LoadoutItem owner;}
         readonly List<Mote> motes=new List<Mote>();
         public float BarrierAmount=>barriers.Sum(b=>b.left);
-        public string ArmedState=>string.Join(" · ",new[]{DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",followBank>0?"FOLLOW-THROUGH":"",counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
+        public string ArmedState=>string.Join(" · ",new[]{RecoilState,DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",followBank>0?"FOLLOW-THROUGH":"",counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
         public bool BreachArmed(LoadoutItem host)=>host!=null&&breachArmed.Contains(host);
-        void ResetSignatures(){ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
+        void ResetSignatures(){ResetDeadeye();ResetSynergyCues();ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
         float Effect(LoadoutItem item)=>LoadoutCatalog.EffectScale(item);
         float ControlResistance(Enemy e)=>e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
         void Control(Enemy e,float seconds,Vector3 impulse)
@@ -97,6 +97,7 @@ namespace VectorGame
                 if(absorbed>0&&Deck.Equipped(Signature.Grounding) is LoadoutItem g)MarkEnemy(attacker,g);
                 if(b.left<=0){barriers.Remove(b);EndBarrier(b);}if(damage<=0)break;
             }
+            damage=BlockRecoil(damage);
             if(duelistHits>0&&duelistUntil>Elapsed&&Deck.Equipped(Signature.Duelist) is LoadoutItem d&&(damage>0||BalanceOverrides.ConsumeBlockedWard(d.def.id)))
             {
                 float prevent=damage*Mathf.Min(.65f,d.def.effect.Power(d.rank));damage-=prevent;ContributionFor(d).absorption+=prevent;duelistHits--;if(prevent>0)Note("Duelist ward blocked damage");
@@ -123,6 +124,7 @@ namespace VectorGame
         void DirectSignatures(Enemy e,float damage,bool wasStaggered)
         {
             if(currentCredit==null||currentCredit.derived||currentCredit.hop>0)return;
+            SpendRecoil(e);
             var t=CurrentTurn;if(setups.TryGetValue(e.id,out var setup)&&setup.until>Elapsed&&setup.host!=Owner&&Once("setup:"+e.id)){ContributionFor(setup.host).assists++;Note("Gather / pull enabled a follow-up hit");}
             if(t.hits.Add(e.id))t.orderedHits.Add(e);t.last=e;
             if(wasStaggered&&Deck.Equipped(Signature.Tactician) is LoadoutItem tact&&Once("tactician")){var other=enemies.FirstOrDefault(x=>x!=e&&Vector3.Distance(x.physics.Center,e.physics.Center)<tact.def.effect.Radius(tact.rank));if(other!=null){Control(other,tact.def.effect.Seconds(tact.rank),Vector3.zero);fx.Arc(e.physics.Center,other.physics.Center,VisualFactory.Cyan);}}
@@ -188,7 +190,7 @@ namespace VectorGame
         float LoaderFactor=>Deck.Equipped(Signature.Loader) is LoadoutItem l?1-Mathf.Min(.4f,l.def.effect.Power(l.rank)):1;
         void Replenish(LoadoutItem host)
         {
-            int max=LoadoutCatalog.Magazine(host);if(max<=0||Ammo(host)>=max)return;ammunition[host]=max;if(host.HasAugment(AugmentId.BreachLoad)){breachArmed.Add(host);Note("Reload armed Breach Load",true);}
+            int max=LoadoutCatalog.Magazine(host);if(max<=0||Ammo(host)>=max)return;ammunition[host]=max;ArmRecoil();if(host.HasAugment(AugmentId.BreachLoad)){breachArmed.Add(host);Note("Reload armed Breach Load",true);}
             if(Deck.Equipped(Signature.Loader) is LoadoutItem loader&&Once("loader")){Pulse(HeroPosition,loader.def.effect.Radius(loader.rank),loader.def.effect.Seconds(loader.rank),5);Note("Reload released a Loader stagger pulse");}
             if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)ArmDuelist(d);
         }

@@ -41,6 +41,7 @@ namespace VectorGame
             string siphon=game.SiphonDetails(shown);if(siphon.Length>0)body+="\n"+siphon;
             string rules=EffectRules(shown);if(rules.Length>0)body+="\n"+rules;
             if(offensive)body+="\n\n"+SynergyText(shown.def);
+            if(!shown.HasAugment(AugmentId.Discharge))foreach(var fit in BuildSynergies.Find(game.Deck,shown.def).Take(3))body+="\nWith "+fit.partner.def.name+": "+fit.text;
             body+="\n\nRARITY EFFECTS\n"+shown.def.upgrade;if(shown.Augmentable)body+="\n\n"+AugmentCatalog.Values(shown,DisplayShare(shown));
             if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";if(shown.def.tags.Contains("siphon"))body+="\nHealing: "+game.ContributionFor(shown).healing.ToString("0.#")+" HP";
             if(shown.def.kind==ItemKind.Augment)body=ModuleDetails(shown);
@@ -100,6 +101,7 @@ namespace VectorGame
             float scale=LoadoutCatalog.EffectScale(item);var effect=item.def.effect;
             if(item.def.signature!=Signature.None)return GearEffectRules(item)+"\nLimit: "+item.def.tradeoff;
             if(item.def.kind==ItemKind.Ability){switch(item.def.ability.id){
+                case AbilityId.SuppressiveVolley:return "Up to three targets; "+LoadoutCatalog.VolleyStagger(item).ToString("0.00")+"s stagger; "+(12+2*(item.rank-1))+"° half arc, aimed at the selected foe. No knockback. Before augments.";
                 case AbilityId.SteelJab:return (.5f*scale).ToString("0.00")+"s interrupt; attacking targets take +"+((.25f+.05f*(item.rank-1))*100).ToString("0")+"% damage.";
                 case AbilityId.Breaker:return (1*scale).ToString("0.00")+"s stagger; "+(100+5*(item.rank-1))+"° half arc before augments.";
                 case AbilityId.ForcePush:return (11*scale).ToString("0.0")+" outward force; living targets and up to six fallen bodies.";
@@ -117,6 +119,7 @@ namespace VectorGame
         {
             var e=item.def.effect;float s=LoadoutCatalog.EffectScale(item);string power=e.Power(item.rank).ToString("0.##"),radius=e.Radius(item.rank).ToString("0.##"),seconds=e.Seconds(item.rank).ToString("0.##");
             switch(item.def.signature){
+                case Signature.Recoil:return "Actual refill arms one "+LoadoutCatalog.RecoilBlock(item).ToString("0.#")+"-damage block for "+seconds+"s. Absorption primes +"+LoadoutCatalog.RecoilDamage(item).ToString("0.#")+" damage on the next gun hit. Other barriers absorb first. One shared charge across hands; unused block capacity is lost. Shot can be wasted on a lethal hit.";
                 case Signature.Tactician:return "+"+(6*ItemRarity.Power[item.rank]).ToString("0.#")+" damage against stagger. First qualifying hit per turn transfers "+seconds+"s stagger to one neighbor within "+radius+"m.";
                 case Signature.Bulwark:return "Completing the loop arms "+power+" guard capacity. Absorbing a hit staggers nearby enemies for "+seconds+"s within "+radius+"m.";
                 case Signature.Recovery:return "First kill per turn drops a "+power+" HP mote. Collect within "+radius+"m before its 10s expiry. Up to 24 motes.";

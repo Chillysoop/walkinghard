@@ -14,3 +14,8 @@ The Unity importer preserves atlas dimensions, disables mipmaps and compression,
 
 
 Siphon additions (0.6.7): five individual originals in `Assets/Resources/ItemArt/Siphon-*.png`, generated with the built-in image_gen tool. Full prompts and ID mapping are in [siphon-prompts.json](siphon-prompts.json). No image editing was used; Unity imports the supplied PNGs.
+
+
+## Deadeye additions (0.7.6)
+
+Two individual images were generated with the built-in imagegen tool. Prompts are in `deadeye-prompts.json`; original generated files remain in the local Codex generated-images directory. Project assets are `Assets/Resources/ItemArt/Deadeye-recoil.png` and `Deadeye-SuppressiveVolley.png`, with stable catalog-ID mappings and individual texture metadata. They use neutral gunmetal/teal identity art; UI rarity remains a separate frame and badge.

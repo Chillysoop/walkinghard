@@ -1,0 +1,1540 @@
+{
+  "cases": [
+    {
+      "id": "rail-ability-SuppressiveVolley-r1-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r1-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-SuppressiveVolley-r1-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r1-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-SuppressiveVolley-r3-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r3-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-SuppressiveVolley-r3-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r3-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-SuppressiveVolley-r5-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r5-s76000",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-SuppressiveVolley-r5-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-ability-Breaker-r5-s76001",
+      "context": "rail",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r1-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r1-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r1-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r1-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r3-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r3-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r3-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r3-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r5-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r5-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r5-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-duelist-r5-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r1-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r1-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r1-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r1-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r3-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r3-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r3-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r3-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r5-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r5-s76000",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-SuppressiveVolley-r5-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "SuppressiveVolley",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-ability-Breaker-r5-s76001",
+      "context": "pistols",
+      "category": "ability",
+      "candidate": "Breaker",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "Breaker",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "sequence": [
+        "Breaker",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "DrainBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r1-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r1-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r1-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r1-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r3-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r3-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r3-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r3-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r5-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r5-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r5-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-duelist-r5-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "duelist",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    }
+  ]
+}

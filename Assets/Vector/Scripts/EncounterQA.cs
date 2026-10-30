@@ -228,7 +228,9 @@ namespace VectorGame
             weapon&=qaWeaponChecks&&qaWeaponFrames>0;
             report.delayChecks=qaDelayChecks;report.reloadIndicatorFrames=qaReloadFrames;report.readyIndicatorFrames=qaReadyFrames;report.pairWaitIndicatorFrames=qaPairWaitFrames;
             weapon&=qaDelayChecks;
-            if(qaArmedAbilities>0||qaArmedUltimates>0)weapon&=qaReadyFrames>0;
+            // A same-type gun pair can cover its initial readying entirely with reload.
+            // The mixed-weapon fixture explicitly switches type and must show READYING.
+            if(qaBuild=="armed")weapon&=qaReadyFrames>0;
             weapon&=qaBuild!="reload"||(qaReloadFrames>0&&qaPairWaitFrames>0&&Reloads>0&&WeaponHits[(int)WeaponKind.Pistol]>0);
             weapon&=qaBuild!="armed"||(qaArmedAbilities>0&&qaArmedUltimates>0&&qaLeftAttacks>0&&WeaponHits[(int)WeaponKind.Pistol]>0&&WeaponHits[(int)WeaponKind.Sword]>0);
             bool ultimateCoverage=Deck.Ultimate==null?UltimateCasts==0:UltimateCasts>0;

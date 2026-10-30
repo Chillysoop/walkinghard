@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.5',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.7.6',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -27,6 +27,8 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v074-ui') -Destination $qaStage -Recurse
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-verification.md') -Destination $qaStage
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-ui') -Destination $qaStage -Recurse
+    foreach($doc in @('v076-verification.md','v076-balance-review.md','v076-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v076-ui') -Destination $qaStage -Recurse
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
