@@ -27,10 +27,10 @@ QA_WAVE 1 / ultimate=none / casts=0
 QA_WAVE 2 / ultimate=cyclone / casts=0
 QA_WAVE 3 / ultimate=cyclone / casts=2
 InvalidOperationException: Unstable ragdoll physics
-  at VectorGame.VectorEncounter.StepBodies (System.Single dt) [0x0008e] in <aca76128e5064af8b10b82f9777bc501>:0 
-  at VectorGame.VectorEncounter.Step (System.Single dt) [0x003af] in <aca76128e5064af8b10b82f9777bc501>:0 
-  at VectorGame.VectorEncounter.AdvanceCombat (System.Single realDelta) [0x00075] in <aca76128e5064af8b10b82f9777bc501>:0 
-  at VectorGame.VectorEncounter.Update () [0x001f2] in <aca76128e5064af8b10b82f9777bc501>:0 
+  at VectorGame.VectorEncounter.StepBodies (System.Single dt) [0x0008e] in <aca76128e5064af8b10b82f9777bc501>:0
+  at VectorGame.VectorEncounter.Step (System.Single dt) [0x003af] in <aca76128e5064af8b10b82f9777bc501>:0
+  at VectorGame.VectorEncounter.AdvanceCombat (System.Single realDelta) [0x00075] in <aca76128e5064af8b10b82f9777bc501>:0
+  at VectorGame.VectorEncounter.Update () [0x001f2] in <aca76128e5064af8b10b82f9777bc501>:0
 
 [Physics::Module] Cleanup current backend.
 [Physics::Module] Id: 0xf2b8ea05
