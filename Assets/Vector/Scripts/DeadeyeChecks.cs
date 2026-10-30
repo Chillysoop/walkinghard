@@ -7,6 +7,7 @@ namespace VectorGame
     {
         void CheckDeadeyeMechanics()
         {
+            CheckRecoilRetention();
             foreach(int rank in new[]{1,3,5})
             {
                 ProbeReset();var volley=ProbeHost(LoadoutCatalog.Find("SuppressiveVolley"),null,rank);
@@ -51,6 +52,46 @@ namespace VectorGame
             ResetSynergyCues();SynergyCue("mark","TEST DISCHARGE","actual event");SynergyCue("guard","TEST GUARD","later event");
             MechanicRequire(simulation?PayoffTitle=="":PayoffTitle=="TEST DISCHARGE","simulations suppress cues; simultaneous play payoffs cannot flood or overwrite them");
             ResetSynergyCues();MechanicRequire(!PayoffVisible&&PayoffTitle=="","new runs clear synergy cues");
+        }
+        void CheckRecoilRetention()
+        {
+            foreach(int rank in new[]{1,2,3,4,5})
+            {
+                // A rifle passes through a lethal target before reaching a survivor.
+                ProbeReset();var rifle=ProbeHost(LoadoutCatalog.Find("rifle"),null,3);
+                var armor=Deck.Acquire(LoadoutCatalog.Find("recoil"),rank);Deck.Move(armor,PlaceKind.Armor);
+                var attacker=ProbeEnemy(-4,2);ammunition[rifle]=0;Replenish(rifle);ReceiveDamage(attacker,5);
+                float bonus=LoadoutCatalog.RecoilDamage(armor),baseHit=activeCard.damage;
+                var lethal=ProbeEnemy(0,4,1);var live=ProbeEnemy(0,6,1000);var later=ProbeEnemy(0,8,1000);
+                ResolveBasic(rifle,activeCard,lethal,false);
+                MechanicRequire(lethal.deathAge>=0&&Mathf.Abs(1000-live.health-baseHit-bonus)<.001f,"lethal rifle contact preserves charge for the next pierced survivor at rarity "+rank);
+                MechanicRequire(Mathf.Abs(1000-later.health-baseHit)<.001f&&recoilShot==0&&Mathf.Abs(ContributionFor(armor).direct-bonus)<.001f,"piercing spends one armor-owned charge, never repeats it");
+
+                // Paired hands share one originating action, even after the first hand kills.
+                ProbeReset();var first=ProbeHost(LoadoutCatalog.Find("pistol"));var second=Deck.Acquire(LoadoutCatalog.Find("pistol"));Deck.Move(second,PlaceKind.Weapon,1);
+                armor=Deck.Acquire(LoadoutCatalog.Find("recoil"),rank);Deck.Move(armor,PlaceKind.Armor);
+                attacker=ProbeEnemy(-4,2);ammunition[first]=0;Replenish(first);ReceiveDamage(attacker,5);
+                lethal=ProbeEnemy(-1,4,1);live=ProbeEnemy(1,4,activeCard.damage+bonus*.5f);
+                ResolveBasic(first,activeCard,lethal,false);
+                MechanicRequire(lethal.deathAge>=0&&recoilShot==bonus&&RecoilState=="RECOIL SHOT READY"&&!CurrentTurn.procs.Contains("recoil-shot"),"lethal first hand preserves ready state and the shared proc");
+                currentCredit=new KillCredit{item=Deck.Basics[1],weapon=second,action=actionSerial};ResolveBasic(second,LoadoutCatalog.Action(second),live,true);
+                MechanicRequire(live.deathAge>=0&&recoilShot==0&&KillsFor(armor)==1&&Mathf.Abs(ContributionFor(armor).direct-bonus*.5f)<.001f,"second hand spends once and armor owns the bonus kill, excluding overkill");
+
+                // The weaker ricochet, rather than the lethal primary, can consume it.
+                ProbeReset();var pistol=ProbeHost(LoadoutCatalog.Find("pistol"),null,3);
+                armor=Deck.Acquire(LoadoutCatalog.Find("recoil"),rank);Deck.Move(armor,PlaceKind.Armor);
+                attacker=ProbeEnemy(-4,2);ammunition[pistol]=0;Replenish(pistol);ReceiveDamage(attacker,5);
+                lethal=ProbeEnemy(0,5,1);live=ProbeEnemy(1,6,1000);later=ProbeEnemy(2,7,1000);baseHit=activeCard.damage*.65f;
+                ResolveBasic(pistol,activeCard,lethal,false);
+                MechanicRequire(lethal.deathAge>=0&&Mathf.Abs(1000-live.health-baseHit-bonus)<.001f&&Mathf.Abs(1000-later.health-baseHit)<.001f,"ricochet consumes one saved charge on the first survivor");
+
+                // An entirely lethal action leaves the charge available for a later action.
+                ProbeReset();pistol=ProbeHost(LoadoutCatalog.Find("pistol"));armor=Deck.Acquire(LoadoutCatalog.Find("recoil"),rank);Deck.Move(armor,PlaceKind.Armor);
+                attacker=ProbeEnemy(-4,2);ammunition[pistol]=0;Replenish(pistol);ReceiveDamage(attacker,5);
+                lethal=ProbeEnemy(0,5,1);ResolveBasic(pistol,activeCard,lethal,false);
+                currentCredit=new KillCredit{item=Deck.Basics[0],weapon=pistol,action=++actionSerial};live=ProbeEnemy(0,6,1000);ResolveBasic(pistol,activeCard,live,false);
+                MechanicRequire(recoilShot==0&&Mathf.Abs(ContributionFor(armor).direct-bonus)<.001f,"charge carries across actions until a gun target survives");
+            }
         }
     }
 }

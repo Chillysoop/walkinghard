@@ -26,9 +26,10 @@ namespace VectorGame
         }
         void SpendRecoil(Enemy target)
         {
-            if(recoilShot<=0||LoadoutCatalog.Magazine(currentCredit?.weapon)<=0||Deck.Equipped(Signature.Recoil)!=recoilOwner||!Once("recoil-shot"))return;
+            // A lethal base hit leaves both the charge and this turn's proc available.
+            // A later piercing/ricochet contact or the other hand can spend it once.
+            if(target.deathAge>=0||recoilShot<=0||LoadoutCatalog.Magazine(currentCredit?.weapon)<=0||Deck.Equipped(Signature.Recoil)!=recoilOwner||!Once("recoil-shot"))return;
             float bonus=recoilShot;recoilShot=0;
-            if(target.deathAge>=0)return;
             var saved=currentCredit;currentCredit=new KillCredit{item=recoilOwner,action=saved.action,derived=true};
             float before=target.health;
             DerivedHit(target,bonus,Vector3.zero,0,false,false,ImpactKind.Bullet);
