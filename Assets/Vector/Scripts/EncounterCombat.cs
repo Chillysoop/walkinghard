@@ -147,6 +147,7 @@ namespace VectorGame
             damage=ShieldDamage(e,damage,impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
+            if(dealt>0&&(currentCredit?.hop??0)>0)SynergyCue("collision","COLLISION CHAIN","Launched body → impact damage");
             ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0)e.attack=-1;
             RememberDisplacement(e,impulse);
             var impact=DescribeImpact(e,impulse,sever,reactionKind);e.reaction=impact;

@@ -66,6 +66,7 @@ namespace VectorGame
             var target=actionTarget?.deathAge<0&&Reachable(actionTarget,card.range)?actionTarget:Target(card.range);actionTarget=target;
             float stagger=host.HasAugment(AugmentId.FollowThrough)?.55f:1;
             if(host.HasAugment(AugmentId.FollowThrough)){followBank=.4f*s;followOwner=host;}
+            if(card.id==AbilityId.SuppressiveVolley){ResolveSuppressiveVolley(host,card,target,damage);return;}
             if(card.id==AbilityId.DrainBrand){foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(focused?2:3+(host.rank-1)/2).ToArray()){DrainMark(e,host,focused?1.4f:1);Hurt(e,damage,Vector3.zero,.1f);fx.Arc(hero.RightHand.position,e.physics.Center,SiphonColor);}return;}
             if(card.id==AbilityId.Counterguard){AddBarrier(host,LoadoutCatalog.CounterguardCapacity(host),LoadoutCatalog.CounterguardDuration(host),host.HasAugment(AugmentId.Discharge));return;}
             if(card.id==AbilityId.SteelJab||card.id==AbilityId.MassDriver)

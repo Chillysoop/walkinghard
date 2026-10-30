@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator }
+    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator,Recoil }
     public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter,Siphon }
     public readonly struct GearStats
     {
@@ -32,6 +32,9 @@ namespace VectorGame
     }
     public static class LoadoutCatalog
     {
+        public static float VolleyStagger(LoadoutItem item)=>.7f*EffectScale(item);
+        public static float RecoilBlock(LoadoutItem item)=>12*ItemRarity.Power[item.rank]*BalanceOverrides.Effect(item.def.id);
+        public static float RecoilDamage(LoadoutItem item)=>12*ItemRarity.Power[item.rank]*BalanceOverrides.Damage(item.def.id);
         public const float CounterguardBarrier=25f;
         public static float CounterguardCapacity(LoadoutItem item)=>CounterguardBarrier*ItemRarity.Power[item.rank]*BalanceOverrides.Barrier(item.def.id);
         public static float CounterguardDuration(LoadoutItem item)=>BalanceOverrides.BarrierSeconds(item.def.id,2.5f)*EffectScale(item);
@@ -64,7 +67,8 @@ namespace VectorGame
             Gear("loader","Loader Greaves",ItemKind.Boots,Signature.Loader,"Shorter preparation/reloads. Replenishing ammo sends a nearby stagger pulse.","Faster preparation and a wider/longer pulse.","reload gun close","Pulse is local; a paired reload triggers it once.",new GearStats(speed:.02f),new EffectProfile(.16f,2.4f,.35f)),
             Gear("reclaimer","Reclaimer Armor",ItemKind.Armor,Signature.Reclaimer,"Gain global Lifesteal; this armor's contribution is 50% stronger below half health.","Lifesteal 3 / 4 / 5 / 6 / 7%; 1.5x below half health.","siphon sustain","Healing shares the 1% max-health budget per action.",new GearStats(health:20),new EffectProfile(1,0,0)),
             Gear("predator","Predator Boots",ItemKind.Boots,Signature.Predator,"Actual healing accelerates the next ability; one stored boost.","Stronger ability haste with rarity.","siphon sustain tempo","One boost; refreshes rather than stacks. No boost from overhealing.",new GearStats(speed:.02f),new EffectProfile(.12f,0,0)),
-            Gear("arcstep","Arcstep Boots",ItemKind.Boots,Signature.Arcstep,"Two kills from one turn mark nearby survivors Conductive.","More marked targets and wider coverage.","mark storm blade","Requires a multi-kill; once per originating turn.",new GearStats(speed:.03f),new EffectProfile(10,3,6,2))
+            Gear("arcstep","Arcstep Boots",ItemKind.Boots,Signature.Arcstep,"Two kills from one turn mark nearby survivors Conductive.","More marked targets and wider coverage.","mark storm blade","Requires a multi-kill; once per originating turn.",new GearStats(speed:.03f),new EffectProfile(10,3,6,2)),
+            Gear("recoil","Recoil Harness",ItemKind.Armor,Signature.Recoil,"Reload to guard one hit. Blocking charges bonus damage for your next gun hit.","More block capacity, bonus shot damage and guard duration.","reload guard gun","Guard lasts 6s at Common. One shared guard and shot; refreshes never stack. Full magazines do not trigger it.",new GearStats(health:20),new EffectProfile(12,0,6))
         };
         static ItemDefinition Skill(AbilityId id,string name,string desc,string interaction,float duration,float range,float damage,int pose,string tags,string cost)
         {return new ItemDefinition(id.ToString(),name,ItemKind.Ability,desc,"Rarity improves damage and the signature's coverage, duration or force.",ability:new AbilityCard(id,name,desc,interaction,duration,range,damage,pose)){tags=tags,tradeoff=cost,effect=new EffectProfile(1,range,.4f)};}
@@ -79,7 +83,8 @@ namespace VectorGame
             Skill(AbilityId.VectorTether,"Vector Tether","Pull targets into a narrow forward corridor.","Creates a line for piercing shots.",.8f,8,10,-1,"gather pierce vector gun","Long thin setup instead of a compact cluster."),
             Skill(AbilityId.ReapingCut,"Reaping Cut","A projected cutting arc; weakened targets take extra damage and lethal hits sever.","Creates severed bodies for retrieval and collision.",.85f,4.5f,28,3,"sever blade","Slower commitment; bonus is damage, never automatic execution."),
             Skill(AbilityId.DrainBrand,"Drain Brand","Mark a group; damage against them steals additional life.","Creates Siphon marks; all weapons and abilities can drain them.",.65f,7,8,-1,"siphon sustain","3 / 3 / 4 / 4 / 5 targets; shared healing budget."),
-            Skill(AbilityId.Counterguard,"Counterguard","Create a barrier; absorbed damage empowers the next basic turn.","Defense creates a stored offensive payoff.",.55f,8,0,-1,"guard iron hammer","Only absorbed damage charges the payoff; one capped bank.")
+            Skill(AbilityId.Counterguard,"Counterguard","Create a barrier; absorbed damage empowers the next basic turn.","Defense creates a stored offensive payoff.",.55f,8,0,-1,"guard iron hammer","Only absorbed damage charges the payoff; one capped bank."),
+            Skill(AbilityId.SuppressiveVolley,"Suppressive Volley","Interrupt up to three distant foes in a narrow fan without pushing them away.","Stagger feeds lightning and stagger gear.",.75f,13,12,5,"stagger gun iron","Three targets maximum; narrower coverage than a close-range strike.")
         };
         static ItemDefinition Weapon(string id,string name,WeaponKind family,int hands,WeaponStyle style,string desc,string upgrade,string tags,string cost,float damage,float duration,float range,float arc,float force,int mag,int pose)
         {return new ItemDefinition(id,name,ItemKind.Weapon,desc,upgrade,family,hands){profile=new WeaponProfile(style,damage,duration,range,arc,force,mag,pose),tags=tags,tradeoff=cost};}

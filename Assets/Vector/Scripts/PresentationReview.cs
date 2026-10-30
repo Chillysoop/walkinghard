@@ -78,7 +78,7 @@ namespace VectorGame
             game.FusionHistory.Clear();game.ConfirmDraft();game.SetCombatSpeed(1);
             fusionDeck=game.Deck;seenFusions=0;shownFusion=null;
             yield return CapturePresentation(directory,"07-combat");
-            Debug.Log("PRESENTATION_REVIEW_SUCCESS: 61 mapped definitions; native UI captures saved.");Application.Quit(0);
+            Debug.Log("PRESENTATION_REVIEW_SUCCESS: "+LoadoutCatalog.All.Concat(AugmentCatalog.All).Count()+" mapped definitions; native UI captures saved.");Application.Quit(0);
         }
         IEnumerator CaptureSiphonReview(string directory)
         {

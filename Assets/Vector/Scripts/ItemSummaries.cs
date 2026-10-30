@@ -13,8 +13,8 @@ namespace VectorGame
             if(item.augment!=null)switch(item.augment.def.module.id)
             {
                 case AugmentId.FollowThrough:return "Strike; next weapon hit staggers.";
-                case AugmentId.Focused:return item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
-                case AugmentId.Echo:return item.def.ability.id==AbilityId.ArcBolt?"Chain lightning, then repeat a hit.":item.def.ability.id==AbilityId.ReapingCut?"Cleave, then repeat a weaker cut.":"Punch, then repeat a weaker hit.";
+                case AugmentId.Focused:return item.def.ability.id==AbilityId.SuppressiveVolley?"Longer interrupt on one foe.":item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
+                case AugmentId.Echo:return item.def.ability.id==AbilityId.SuppressiveVolley?"Interrupt foes; repeat one hit.":item.def.ability.id==AbilityId.ArcBolt?"Chain lightning, then repeat a hit.":item.def.ability.id==AbilityId.ReapingCut?"Cleave, then repeat a weaker cut.":"Punch, then repeat a weaker hit.";
                 case AugmentId.Afterfield:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark foes in a lingering field.":item.def.ability.id==AbilityId.VectorTether?"Line foes up; leave a pull field.":"Gather foes in a lingering field.";
                 case AugmentId.SplitPayload:return "Launch two foes with less force.";
                 case AugmentId.Backwash:return "Push foes, then pull survivors back.";
@@ -36,6 +36,8 @@ namespace VectorGame
                 case "reclaimer":return "Steal life; stronger below half health.";
                 case "predator":return "Healing speeds your next ability.";
                 case "harvest":return "Drain the crowd to restore health.";
+                case "SuppressiveVolley":return "Interrupt up to three distant foes.";
+                case "recoil":return "Reload: block, then boost a shot.";
                 case "SteelJab":return "Punch; interrupt attacks.";
                 case "Breaker":return "Stagger a wide cone.";
                 case "ForcePush":return "Push foes and bodies away.";

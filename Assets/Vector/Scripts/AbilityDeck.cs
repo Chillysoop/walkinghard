@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace VectorGame
 {
-    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard, DrainBrand }
+    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard, DrainBrand, SuppressiveVolley }
     public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots, Augment }
     public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle, Shotgun }
     public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment, Ultimate }

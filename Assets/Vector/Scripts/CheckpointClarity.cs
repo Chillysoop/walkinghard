@@ -163,8 +163,9 @@ namespace VectorGame
             }
             var hoveredTarget=dropRegions.FirstOrDefault(r=>r.offer<0&&!r.socket&&r.rect.Contains(Pointer));
             string hint=def==null?"Full details on hover. Your character sheet is in Manage build.":DestinationPreview(def,hoveredTarget,preview);
-            Label(new Rect(32,563,w-64,42),hint,13,white);
-            if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(32,605,w-64,22),loadoutFeedback,12,Strong,true);
+            Label(new Rect(32,555,w-64,38),hint,12,white);
+            BuildFitLine(new Rect(32,596,w-64,20));
+            if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(32,139,w-64,20),loadoutFeedback,12,Strong,true);
             if(store)
             {
                 GUI.enabled=pending!=null?d.CanMove(pending,PlaceKind.Inventory):d.CanClaimTo(dragOffer>=0?dragOffer:d.Selected,PlaceKind.Inventory);
@@ -180,7 +181,7 @@ namespace VectorGame
             if(Button(new Rect(w-316,h-57,284,42),CheckpointActionLabel(),true)){if(d.RewardClaimed)game.ConfirmDraft();else game.AcceptSelectedReward(!editAfterPick);ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(game.FusionHistory.Count>0)FusionHistoryButton(new Rect(w-260,h-99,228,30));
             Label(new Rect(208,h-92,w-493,21),"NEXT: "+game.EncounterPreview.Split('·')[0].Trim(),11,muted);
-            DrawSockets();ApplyPresentationReviewHover();HighlightFusionMatches();DrawDestinationGuidance(w,440);DrawDragPreview();
+            DrawSockets();ApplyPresentationReviewHover();HighlightFusionMatches();DrawDestinationGuidance(w,440);HighlightBuildPartner();DrawDragPreview();
         }
         string DestinationPreview(ItemDefinition def,DropRegion target,int offer)
         {

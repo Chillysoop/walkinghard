@@ -39,7 +39,8 @@ namespace VectorGame
             {
                 if(c.rank<1||c.rank>5||c.baseRank<1||c.baseRank>5||c.healthFraction<=0||c.healthFraction>1||c.weapons?.Length!=2||c.abilities?.Length!=3)throw new ArgumentException("Invalid controlled case "+c.id);
                 foreach(var id in c.weapons.Concat(c.abilities).Concat(new[]{c.helmet,c.armor,c.boots,c.rig,c.ultimate}).Where(s=>!string.IsNullOrEmpty(s)))LoadoutCatalog.Find(id);
-                if(c.category!="weapon"&&c.category!="armor"&&c.category!="ultimate")throw new ArgumentException("Invalid controlled category");
+                if(c.category!="weapon"&&c.category!="armor"&&c.category!="ultimate"&&c.category!="ability")throw new ArgumentException("Invalid controlled category");
+                if(c.category=="ability"&&c.abilities.Count(id=>id==c.candidate)!=1)throw new ArgumentException("Focal ability must occur once");
                 if(c.route<EncounterRoute.Standard||c.route>EncounterRoute.VolatileBreach)throw new ArgumentException("Invalid controlled route");
                 if(c.sequence!=null&&(c.sequence.Length!=5||!c.sequence.OrderBy(s=>s).SequenceEqual(c.abilities.Concat(new[]{"basic0","basic1"}).OrderBy(s=>s))))throw new ArgumentException("Controlled sequence must contain both basics and every ability once");
             }
@@ -59,7 +60,7 @@ namespace VectorGame
                     if(!MoveItem(item,place,index))throw new InvalidOperationException("Controlled placement failed: "+id);return item;
                 }
                 Equip(c.weapons[0],PlaceKind.Weapon,0,c.category=="weapon"||c.matchedWeapons);Equip(c.weapons[1],PlaceKind.Weapon,1,c.matchedWeapons);
-                for(int i=0;i<3;i++)Equip(c.abilities[i],PlaceKind.Sequence,i+2);
+                for(int i=0;i<3;i++)Equip(c.abilities[i],PlaceKind.Sequence,i+2,c.category=="ability"&&c.abilities[i]==c.candidate);
                 Equip(c.helmet,PlaceKind.Helmet);Equip(c.armor,PlaceKind.Armor,0,c.category=="armor");Equip(c.boots,PlaceKind.Boots);Equip(c.rig,PlaceKind.Rig);
                 // Fixed setup -> paired basics -> payoff order, identical within each comparison.
                 Deck.Move(Deck.Slots[2],PlaceKind.Sequence,0);

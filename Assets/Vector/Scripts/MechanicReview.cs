@@ -34,7 +34,7 @@ namespace VectorGame
             var previous=RenderTexture.active;RenderTexture.active=reviewTarget;reviewPixels.ReadPixels(new Rect(0,0,1600,900),0,0);reviewPixels.Apply();RenderTexture.active=previous;
             File.WriteAllBytes(path,reviewPixels.EncodeToPNG());
         }
-        string[] ReviewCases=>reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline"}).ToArray();
+        string[] ReviewCases=>reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline","SuppressiveVolley"}).ToArray();
         public void StartMechanicReview(int index=0)
         {
             combatRandom=new System.Random(7);MechanicReview=true;reviewIndex=index;reviewAge=0;reviewFrame=0;reviewCaptures=Array.IndexOf(Environment.GetCommandLineArgs(),"-reviewCapture")>=0;WaveElapsed=0;ProbeReset();
@@ -44,7 +44,7 @@ namespace VectorGame
             else
             {
                 host=Deck.Acquire(def);Deck.SuggestedPlace(def,out var place,out int mount);Deck.Move(host,place,mount);start=0;
-                string weapon=new[]{Signature.Surveyor,Signature.Salvager,Signature.Salvage,Signature.Recovery,Signature.Arcstep}.Contains(def.signature)?"sword":def.signature==Signature.Loader||def.signature==Signature.Duelist||def.kind==ItemKind.Ultimate&&def.id=="redline"?"pistol":"fists";
+                string weapon=new[]{Signature.Surveyor,Signature.Salvager,Signature.Salvage,Signature.Recovery,Signature.Arcstep}.Contains(def.signature)?"sword":def.signature==Signature.Loader||def.signature==Signature.Recoil||def.signature==Signature.Duelist||def.kind==ItemKind.Ultimate&&def.id=="redline"?"pistol":"fists";
                 var basic=Deck.Acquire(LoadoutCatalog.Find(weapon));Deck.Move(basic,PlaceKind.Weapon,0);if(LoadoutCatalog.Magazine(basic)>0)ammunition[basic]=0;
                 AbilityId[] skills=def.signature==Signature.Relay?new[]{AbilityId.ConductiveBrand,AbilityId.MassDriver,AbilityId.ArcBolt}:new[]{AbilityId.ArcBolt,AbilityId.MassDriver,AbilityId.Breaker};
                 for(int i=0;i<3;i++)Deck.Move(Deck.Acquire(LoadoutCatalog.Abilities.First(d=>d.ability.id==skills[i])),PlaceKind.Sequence,i+2);

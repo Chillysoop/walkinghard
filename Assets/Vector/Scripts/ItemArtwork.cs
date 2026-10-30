@@ -12,11 +12,11 @@ namespace VectorGame
             public Entry(int sheet,int index,int columns,int rows){this.sheet=sheet;this.index=index;this.columns=columns;this.rows=rows;}
         }
         static readonly Dictionary<string,Entry> entries=new Dictionary<string,Entry>();
-        static readonly Texture2D[] textures=new Texture2D[8];
-        static readonly string[] files={"ItemArt/Equipment","ItemArt/Actions","ItemArt/Augments","ItemArt/Siphon-siphonblade","ItemArt/Siphon-DrainBrand","ItemArt/Siphon-reclaimer","ItemArt/Siphon-predator","ItemArt/Siphon-harvest"};
+        static readonly Texture2D[] textures=new Texture2D[10];
+        static readonly string[] files={"ItemArt/Equipment","ItemArt/Actions","ItemArt/Augments","ItemArt/Siphon-siphonblade","ItemArt/Siphon-DrainBrand","ItemArt/Siphon-reclaimer","ItemArt/Siphon-predator","ItemArt/Siphon-harvest","ItemArt/Deadeye-recoil","ItemArt/Deadeye-SuppressiveVolley"};
         static ItemArtwork()
         {
-            Add(3,1,1,"siphonblade");Add(4,1,1,"DrainBrand");Add(5,1,1,"reclaimer");Add(6,1,1,"predator");Add(7,1,1,"harvest");
+            Add(3,1,1,"siphonblade");Add(4,1,1,"DrainBrand");Add(5,1,1,"reclaimer");Add(6,1,1,"predator");Add(7,1,1,"harvest");Add(8,1,1,"recoil");Add(9,1,1,"SuppressiveVolley");
             Add(0,6,5,"fists wraps sword greatsword breachhammer hammer pistol rifle scattergun visor surveyor salvager capacitor plate reactive grounding duelist treads momentum loader arcstep faultline overclock amplifier relay magnet");
             Add(1,4,4,"SteelJab Breaker ForcePush MassDriver GravityWell ArcBolt ConductiveBrand VectorTether ReapingCut Counterguard singularity tempest cyclone redline");
             Add(2,4,4,"aug-FollowThrough aug-Focused aug-Echo aug-Afterfield aug-SplitPayload aug-Backwash aug-Discharge aug-Anchor aug-Flurry aug-PalmDrive aug-Crosscut aug-HookedEdge aug-Groundbreaker aug-Piledriver aug-BoreRounds aug-BreachLoad");

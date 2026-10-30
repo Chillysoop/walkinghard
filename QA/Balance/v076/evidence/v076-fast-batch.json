@@ -1,0 +1,17 @@
+{
+  "mode": "Fast",
+  "runs": 1200,
+  "workers": 4,
+  "player": "Build/Synergy-v076/WalkingHard.exe",
+  "assemblySha256": "3187ddff739e08e05bb009095ecf1ed19586b5e27392d04164ef25fe3c18ccef",
+  "maxCombatSeconds": 600,
+  "baseHealth": 280,
+  "startedUtc": "2026-10-30T07:03:31Z",
+  "wallSeconds": 224.87682459999633,
+  "valid": 1200,
+  "invalid": 0,
+  "missing": 0,
+  "duplicateCases": 0,
+  "wins": 1138,
+  "timeouts": 0
+}

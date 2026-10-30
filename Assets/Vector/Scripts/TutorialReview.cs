@@ -158,6 +158,7 @@ namespace VectorGame
                 }
                 game.MainMenu();
                 yield return RunCheckpointClarityReview(directory);
+                yield return RunSynergyReview(directory);
             }
             File.WriteAllText(Path.Combine(directory,"checks.txt"),string.Join("\n",tutorialChecks));
             Debug.Log("TUTORIAL_REVIEW_SUCCESS: "+tutorialChecks.Count+" assertions; "+(rendered?"native mouse handlers and captures":"model checks"));Application.Quit(0);
