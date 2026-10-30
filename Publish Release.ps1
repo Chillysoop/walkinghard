@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.6',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.7.7',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -29,8 +29,11 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v075-ui') -Destination $qaStage -Recurse
     foreach($doc in @('v076-verification.md','v076-balance-review.md','v076-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v076-ui') -Destination $qaStage -Recurse
+    foreach($doc in @('v077-verification.md','v077-balance-review.md','v077-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v077-ui') -Destination $qaStage -Recurse
     $balanceStage=Join-Path $qaStage 'Balance';New-Item -ItemType Directory -Path $balanceStage -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\v076') -Destination $balanceStage -Recurse
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\v077') -Destination $balanceStage -Recurse
     $runnerStage=Join-Path $balanceStage 'controlled-siphon';New-Item -ItemType Directory -Path $runnerStage -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\controlled-siphon\run.py') -Destination $runnerStage
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
@@ -45,7 +48,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Rarity Outlines and Storage';draft=$true;prerelease=$false;body="Reward cards once again have a full rarity-colored outline in addition to the rarity label. Selected cards keep their rarity border, with a separate cyan selection glow. Applies to focused checkpoints, Manage build and the tutorial. Host-scaled augments retain neutral borders. The focused upgrade screen has an explicit Add to storage button beside Equip, so a selected reward can be taken without replacing equipped items. It also accepts dragged rewards and honors Edit after pick.`n`nNative UI captures and the fifteen core regression fixtures are recorded in QA/v075-verification.md. No gameplay or balance changes.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Recoil Charge Preservation';draft=$true;prerelease=$false;body="Recoil Harness keeps its stored bonus when the base gun hit already kills the target. A surviving piercing or ricochet target, the other pistol, or a later attack can spend it once. Damage and kills still belong to the armor. Hover rules explain the behavior.`n`nAll item stats remain unchanged. Matched Fast and Full/PhysX comparisons are recorded in QA/v077-balance-review.md; regression and native presentation checks are recorded in QA/v077-verification.md.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

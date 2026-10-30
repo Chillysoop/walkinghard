@@ -119,7 +119,7 @@ namespace VectorGame
         {
             var e=item.def.effect;float s=LoadoutCatalog.EffectScale(item);string power=e.Power(item.rank).ToString("0.##"),radius=e.Radius(item.rank).ToString("0.##"),seconds=e.Seconds(item.rank).ToString("0.##");
             switch(item.def.signature){
-                case Signature.Recoil:return "Actual refill arms one "+LoadoutCatalog.RecoilBlock(item).ToString("0.#")+"-damage block for "+seconds+"s. Absorption primes +"+LoadoutCatalog.RecoilDamage(item).ToString("0.#")+" damage on the next gun hit. Other barriers absorb first. One shared charge across hands; unused block capacity is lost. Shot can be wasted on a lethal hit.";
+                case Signature.Recoil:return "Actual refill arms one "+LoadoutCatalog.RecoilBlock(item).ToString("0.#")+"-damage block for "+seconds+"s. Absorption primes +"+LoadoutCatalog.RecoilDamage(item).ToString("0.#")+" damage on the next gun hit. Other barriers absorb first. One shared charge across hands; unused block capacity is lost. Lethal base hits save the shot for the next surviving gun target.";
                 case Signature.Tactician:return "+"+(6*ItemRarity.Power[item.rank]).ToString("0.#")+" damage against stagger. First qualifying hit per turn transfers "+seconds+"s stagger to one neighbor within "+radius+"m.";
                 case Signature.Bulwark:return "Completing the loop arms "+power+" guard capacity. Absorbing a hit staggers nearby enemies for "+seconds+"s within "+radius+"m.";
                 case Signature.Recovery:return "First kill per turn drops a "+power+" HP mote. Collect within "+radius+"m before its 10s expiry. Up to 24 motes.";

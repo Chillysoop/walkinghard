@@ -1,0 +1,388 @@
+{
+  "cases": [
+    {
+      "id": "rail-armor-recoil-r1-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r1-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r3-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r3-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r5-s76000",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "rail-armor-recoil-r5-s76001",
+      "context": "rail",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r1-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r1-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 1,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r3-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r3-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 3,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r5-s76000",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76000,
+      "route": 0
+    },
+    {
+      "id": "pistols-armor-recoil-r5-s76001",
+      "context": "pistols",
+      "category": "armor",
+      "candidate": "recoil",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ArcBolt",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "sequence": [
+        "ArcBolt",
+        "basic0",
+        "basic1",
+        "VectorTether",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "rank": 5,
+      "baseRank": 3,
+      "healthFraction": 1,
+      "seed": 76001,
+      "route": 0
+    }
+  ]
+}

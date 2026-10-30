@@ -1,0 +1,56 @@
+{
+  "version": "0.7.7",
+  "date": "2026-10-30",
+  "player": "Build\\Recoil-v077\\WalkingHard.exe",
+  "assemblySha256": "4e0e096d60d0363483e091252caebf53ec66a0f2a82635e13768a250ed5ddaf8",
+  "coreFixtures": 15,
+  "varietyFixtures": 45,
+  "fullProgression": true,
+  "mechanicAssertions": 607,
+  "newRecoilAssertions": 30,
+  "nativeUiAssertions": 1342,
+  "artDefinitions": 63,
+  "visibleSpawns": 0,
+  "orderErrors": 0,
+  "fixtureBaseHealth": 5000,
+  "simulations": [
+    {
+      "mode": "Fast",
+      "runs": 204,
+      "workers": 3,
+      "player": "Build/Recoil-v077/WalkingHard.exe",
+      "assemblySha256": "4e0e096d60d0363483e091252caebf53ec66a0f2a82635e13768a250ed5ddaf8",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-10-30T07:56:53Z",
+      "wallSeconds": 63.14063259999966,
+      "valid": 204,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 168,
+      "timeouts": 0
+    },
+    {
+      "mode": "Full",
+      "runs": 12,
+      "workers": 3,
+      "processPerGame": true,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Recoil-v077\\WalkingHard.exe",
+      "assemblySha256": "4e0e096d60d0363483e091252caebf53ec66a0f2a82635e13768a250ed5ddaf8",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "valid": 12,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 12,
+      "timeouts": 0,
+      "wallSeconds": 419.3312456999993
+    }
+  ],
+  "gameplayChanges": [
+    "Preserve Recoil charge and proc allowance when the base gun hit kills the target"
+  ],
+  "numericalBalanceChanges": []
+}

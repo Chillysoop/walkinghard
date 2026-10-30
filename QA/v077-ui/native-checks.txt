@@ -1,0 +1,1342 @@
+0/0: cannot skip task
+0/0: curated rewards cannot reroll
+0/0: wrong category rejected
+0/0: ability equipped; no auto advance
+0/0: weapon direct equip or store
+0/0: two same-rarity copies before fusion
+0/0: unrelated fusion choice rejected atomically
+0/0: third copy fuses equipped weapon
+0/0: fusion result available
+0/0: incompatible host rejected
+0/0: Echo attached
+0/0: Arc starts sequence
+0/0: practice starts; cannot instantly finish
+0/0: augment auto-equip cannot change a running fight
+0/0: practice uses production combat and completes
+0/0: real run is clean
+0/0: preferences restored
+0/0: return to main menu
+0/1: cannot skip task
+0/1: curated rewards cannot reroll
+0/1: wrong category rejected
+0/1: ability equipped; no auto advance
+0/1: weapon direct equip or store
+0/1: stored weapon is not equipped
+0/1: stored weapon auto equip
+0/1: two same-rarity copies before fusion
+0/1: unrelated fusion choice rejected atomically
+0/1: third copy fuses equipped weapon
+0/1: fusion result available
+0/1: incompatible host rejected
+0/1: Echo attached
+0/1: Arc starts sequence
+0/1: practice starts; cannot instantly finish
+0/1: augment auto-equip cannot change a running fight
+0/1: practice uses production combat and completes
+0/1: real run is clean
+0/1: preferences restored
+0/1: return to main menu
+0/2: cannot skip task
+0/2: curated rewards cannot reroll
+0/2: wrong category rejected
+0/2: ability equipped; no auto advance
+0/2: weapon direct equip or store
+0/2: two same-rarity copies before fusion
+0/2: unrelated fusion choice rejected atomically
+0/2: third copy fuses equipped weapon
+0/2: fusion result available
+0/2: incompatible host rejected
+0/2: Echo attached
+0/2: linked pair cannot split
+0/2: linked pair moves
+0/2: Arc starts sequence
+0/2: practice starts; cannot instantly finish
+0/2: augment auto-equip cannot change a running fight
+0/2: practice uses production combat and completes
+0/2: real run is clean
+0/2: preferences restored
+0/2: return to main menu
+1/0: cannot skip task
+1/0: curated rewards cannot reroll
+1/0: wrong category rejected
+1/0: ability equipped; no auto advance
+1/0: weapon direct equip or store
+1/0: two same-rarity copies before fusion
+1/0: unrelated fusion choice rejected atomically
+1/0: third copy fuses equipped weapon
+1/0: fusion result available
+1/0: incompatible host rejected
+1/0: Echo attached
+1/0: Arc starts sequence
+1/0: practice starts; cannot instantly finish
+1/0: augment auto-equip cannot change a running fight
+1/0: practice uses production combat and completes
+1/0: real run is clean
+1/0: preferences restored
+1/0: return to main menu
+1/1: cannot skip task
+1/1: curated rewards cannot reroll
+1/1: wrong category rejected
+1/1: ability equipped; no auto advance
+1/1: weapon direct equip or store
+1/1: stored weapon is not equipped
+1/1: stored weapon auto equip
+1/1: two same-rarity copies before fusion
+1/1: unrelated fusion choice rejected atomically
+1/1: third copy fuses equipped weapon
+1/1: fusion result available
+1/1: incompatible host rejected
+1/1: Echo attached
+1/1: Arc starts sequence
+1/1: practice starts; cannot instantly finish
+1/1: augment auto-equip cannot change a running fight
+1/1: practice uses production combat and completes
+1/1: real run is clean
+1/1: preferences restored
+1/1: return to main menu
+1/2: cannot skip task
+1/2: curated rewards cannot reroll
+1/2: wrong category rejected
+1/2: ability equipped; no auto advance
+1/2: weapon direct equip or store
+1/2: two same-rarity copies before fusion
+1/2: unrelated fusion choice rejected atomically
+1/2: third copy fuses equipped weapon
+1/2: fusion result available
+1/2: incompatible host rejected
+1/2: Echo attached
+1/2: linked pair cannot split
+1/2: linked pair moves
+1/2: Arc starts sequence
+1/2: practice starts; cannot instantly finish
+1/2: augment auto-equip cannot change a running fight
+1/2: practice uses production combat and completes
+1/2: real run is clean
+1/2: preferences restored
+1/2: return to main menu
+2/0: cannot skip task
+2/0: curated rewards cannot reroll
+2/0: wrong category rejected
+2/0: ability equipped; no auto advance
+2/0: weapon direct equip or store
+2/0: two same-rarity copies before fusion
+2/0: unrelated fusion choice rejected atomically
+2/0: third copy fuses equipped weapon
+2/0: fusion result available
+2/0: incompatible host rejected
+2/0: Echo attached
+2/0: Arc starts sequence
+2/0: practice starts; cannot instantly finish
+2/0: augment auto-equip cannot change a running fight
+2/0: practice uses production combat and completes
+2/0: real run is clean
+2/0: preferences restored
+2/0: return to main menu
+2/1: cannot skip task
+2/1: curated rewards cannot reroll
+2/1: wrong category rejected
+2/1: ability equipped; no auto advance
+2/1: weapon direct equip or store
+2/1: stored weapon is not equipped
+2/1: stored weapon auto equip
+2/1: two same-rarity copies before fusion
+2/1: unrelated fusion choice rejected atomically
+2/1: third copy fuses equipped weapon
+2/1: fusion result available
+2/1: incompatible host rejected
+2/1: Echo attached
+2/1: Arc starts sequence
+2/1: practice starts; cannot instantly finish
+2/1: augment auto-equip cannot change a running fight
+2/1: practice uses production combat and completes
+2/1: real run is clean
+2/1: preferences restored
+2/1: return to main menu
+2/2: cannot skip task
+2/2: curated rewards cannot reroll
+2/2: wrong category rejected
+2/2: ability equipped; no auto advance
+2/2: weapon direct equip or store
+2/2: two same-rarity copies before fusion
+2/2: unrelated fusion choice rejected atomically
+2/2: third copy fuses equipped weapon
+2/2: fusion result available
+2/2: incompatible host rejected
+2/2: Echo attached
+2/2: linked pair cannot split
+2/2: linked pair moves
+2/2: Arc starts sequence
+2/2: practice starts; cannot instantly finish
+2/2: augment auto-equip cannot change a running fight
+2/2: practice uses production combat and completes
+2/2: real run is clean
+2/2: preferences restored
+2/2: return to main menu
+reward title fits: sword
+category fits: sword
+focused reward title fits: sword
+item role fits: sword
+large item type fits: sword
+reward stats fit: sword/1
+sequence summary fits: sword/1
+reward stats fit: sword/2
+sequence summary fits: sword/2
+reward stats fit: sword/3
+sequence summary fits: sword/3
+reward stats fit: sword/4
+sequence summary fits: sword/4
+reward stats fit: sword/5
+sequence summary fits: sword/5
+reward title fits: hammer
+category fits: hammer
+focused reward title fits: hammer
+item role fits: hammer
+large item type fits: hammer
+reward stats fit: hammer/1
+sequence summary fits: hammer/1
+reward stats fit: hammer/2
+sequence summary fits: hammer/2
+reward stats fit: hammer/3
+sequence summary fits: hammer/3
+reward stats fit: hammer/4
+sequence summary fits: hammer/4
+reward stats fit: hammer/5
+sequence summary fits: hammer/5
+reward title fits: pistol
+category fits: pistol
+focused reward title fits: pistol
+item role fits: pistol
+large item type fits: pistol
+reward stats fit: pistol/1
+sequence summary fits: pistol/1
+reward stats fit: pistol/2
+sequence summary fits: pistol/2
+reward stats fit: pistol/3
+sequence summary fits: pistol/3
+reward stats fit: pistol/4
+sequence summary fits: pistol/4
+reward stats fit: pistol/5
+sequence summary fits: pistol/5
+reward title fits: rifle
+category fits: rifle
+focused reward title fits: rifle
+item role fits: rifle
+large item type fits: rifle
+reward stats fit: rifle/1
+sequence summary fits: rifle/1
+reward stats fit: rifle/2
+sequence summary fits: rifle/2
+reward stats fit: rifle/3
+sequence summary fits: rifle/3
+reward stats fit: rifle/4
+sequence summary fits: rifle/4
+reward stats fit: rifle/5
+sequence summary fits: rifle/5
+reward title fits: fists
+category fits: fists
+focused reward title fits: fists
+item role fits: fists
+large item type fits: fists
+reward stats fit: fists/1
+sequence summary fits: fists/1
+reward stats fit: fists/2
+sequence summary fits: fists/2
+reward stats fit: fists/3
+sequence summary fits: fists/3
+reward stats fit: fists/4
+sequence summary fits: fists/4
+reward stats fit: fists/5
+sequence summary fits: fists/5
+reward title fits: wraps
+category fits: wraps
+focused reward title fits: wraps
+item role fits: wraps
+large item type fits: wraps
+reward stats fit: wraps/1
+sequence summary fits: wraps/1
+reward stats fit: wraps/2
+sequence summary fits: wraps/2
+reward stats fit: wraps/3
+sequence summary fits: wraps/3
+reward stats fit: wraps/4
+sequence summary fits: wraps/4
+reward stats fit: wraps/5
+sequence summary fits: wraps/5
+reward title fits: greatsword
+category fits: greatsword
+focused reward title fits: greatsword
+item role fits: greatsword
+large item type fits: greatsword
+reward stats fit: greatsword/1
+sequence summary fits: greatsword/1
+reward stats fit: greatsword/2
+sequence summary fits: greatsword/2
+reward stats fit: greatsword/3
+sequence summary fits: greatsword/3
+reward stats fit: greatsword/4
+sequence summary fits: greatsword/4
+reward stats fit: greatsword/5
+sequence summary fits: greatsword/5
+reward title fits: breachhammer
+category fits: breachhammer
+focused reward title fits: breachhammer
+item role fits: breachhammer
+large item type fits: breachhammer
+reward stats fit: breachhammer/1
+sequence summary fits: breachhammer/1
+reward stats fit: breachhammer/2
+sequence summary fits: breachhammer/2
+reward stats fit: breachhammer/3
+sequence summary fits: breachhammer/3
+reward stats fit: breachhammer/4
+sequence summary fits: breachhammer/4
+reward stats fit: breachhammer/5
+sequence summary fits: breachhammer/5
+reward title fits: siphonblade
+category fits: siphonblade
+focused reward title fits: siphonblade
+item role fits: siphonblade
+large item type fits: siphonblade
+reward stats fit: siphonblade/1
+sequence summary fits: siphonblade/1
+reward stats fit: siphonblade/2
+sequence summary fits: siphonblade/2
+reward stats fit: siphonblade/3
+sequence summary fits: siphonblade/3
+reward stats fit: siphonblade/4
+sequence summary fits: siphonblade/4
+reward stats fit: siphonblade/5
+sequence summary fits: siphonblade/5
+reward title fits: scattergun
+category fits: scattergun
+focused reward title fits: scattergun
+item role fits: scattergun
+large item type fits: scattergun
+reward stats fit: scattergun/1
+sequence summary fits: scattergun/1
+reward stats fit: scattergun/2
+sequence summary fits: scattergun/2
+reward stats fit: scattergun/3
+sequence summary fits: scattergun/3
+reward stats fit: scattergun/4
+sequence summary fits: scattergun/4
+reward stats fit: scattergun/5
+sequence summary fits: scattergun/5
+reward title fits: visor
+category fits: visor
+focused reward title fits: visor
+item role fits: visor
+large item type fits: visor
+reward stats fit: visor/1
+sequence summary fits: visor/1
+reward stats fit: visor/2
+sequence summary fits: visor/2
+reward stats fit: visor/3
+sequence summary fits: visor/3
+reward stats fit: visor/4
+sequence summary fits: visor/4
+reward stats fit: visor/5
+sequence summary fits: visor/5
+reward title fits: plate
+category fits: plate
+focused reward title fits: plate
+item role fits: plate
+large item type fits: plate
+reward stats fit: plate/1
+sequence summary fits: plate/1
+reward stats fit: plate/2
+sequence summary fits: plate/2
+reward stats fit: plate/3
+sequence summary fits: plate/3
+reward stats fit: plate/4
+sequence summary fits: plate/4
+reward stats fit: plate/5
+sequence summary fits: plate/5
+reward title fits: treads
+category fits: treads
+focused reward title fits: treads
+item role fits: treads
+large item type fits: treads
+reward stats fit: treads/1
+sequence summary fits: treads/1
+reward stats fit: treads/2
+sequence summary fits: treads/2
+reward stats fit: treads/3
+sequence summary fits: treads/3
+reward stats fit: treads/4
+sequence summary fits: treads/4
+reward stats fit: treads/5
+sequence summary fits: treads/5
+reward title fits: surveyor
+category fits: surveyor
+focused reward title fits: surveyor
+item role fits: surveyor
+large item type fits: surveyor
+reward stats fit: surveyor/1
+sequence summary fits: surveyor/1
+reward stats fit: surveyor/2
+sequence summary fits: surveyor/2
+reward stats fit: surveyor/3
+sequence summary fits: surveyor/3
+reward stats fit: surveyor/4
+sequence summary fits: surveyor/4
+reward stats fit: surveyor/5
+sequence summary fits: surveyor/5
+reward title fits: salvager
+category fits: salvager
+focused reward title fits: salvager
+item role fits: salvager
+large item type fits: salvager
+reward stats fit: salvager/1
+sequence summary fits: salvager/1
+reward stats fit: salvager/2
+sequence summary fits: salvager/2
+reward stats fit: salvager/3
+sequence summary fits: salvager/3
+reward stats fit: salvager/4
+sequence summary fits: salvager/4
+reward stats fit: salvager/5
+sequence summary fits: salvager/5
+reward title fits: capacitor
+category fits: capacitor
+focused reward title fits: capacitor
+item role fits: capacitor
+large item type fits: capacitor
+reward stats fit: capacitor/1
+sequence summary fits: capacitor/1
+reward stats fit: capacitor/2
+sequence summary fits: capacitor/2
+reward stats fit: capacitor/3
+sequence summary fits: capacitor/3
+reward stats fit: capacitor/4
+sequence summary fits: capacitor/4
+reward stats fit: capacitor/5
+sequence summary fits: capacitor/5
+reward title fits: reactive
+category fits: reactive
+focused reward title fits: reactive
+item role fits: reactive
+large item type fits: reactive
+reward stats fit: reactive/1
+sequence summary fits: reactive/1
+reward stats fit: reactive/2
+sequence summary fits: reactive/2
+reward stats fit: reactive/3
+sequence summary fits: reactive/3
+reward stats fit: reactive/4
+sequence summary fits: reactive/4
+reward stats fit: reactive/5
+sequence summary fits: reactive/5
+reward title fits: grounding
+category fits: grounding
+focused reward title fits: grounding
+item role fits: grounding
+large item type fits: grounding
+reward stats fit: grounding/1
+sequence summary fits: grounding/1
+reward stats fit: grounding/2
+sequence summary fits: grounding/2
+reward stats fit: grounding/3
+sequence summary fits: grounding/3
+reward stats fit: grounding/4
+sequence summary fits: grounding/4
+reward stats fit: grounding/5
+sequence summary fits: grounding/5
+reward title fits: duelist
+category fits: duelist
+focused reward title fits: duelist
+item role fits: duelist
+large item type fits: duelist
+reward stats fit: duelist/1
+sequence summary fits: duelist/1
+reward stats fit: duelist/2
+sequence summary fits: duelist/2
+reward stats fit: duelist/3
+sequence summary fits: duelist/3
+reward stats fit: duelist/4
+sequence summary fits: duelist/4
+reward stats fit: duelist/5
+sequence summary fits: duelist/5
+reward title fits: momentum
+category fits: momentum
+focused reward title fits: momentum
+item role fits: momentum
+large item type fits: momentum
+reward stats fit: momentum/1
+sequence summary fits: momentum/1
+reward stats fit: momentum/2
+sequence summary fits: momentum/2
+reward stats fit: momentum/3
+sequence summary fits: momentum/3
+reward stats fit: momentum/4
+sequence summary fits: momentum/4
+reward stats fit: momentum/5
+sequence summary fits: momentum/5
+reward title fits: loader
+category fits: loader
+focused reward title fits: loader
+item role fits: loader
+large item type fits: loader
+reward stats fit: loader/1
+sequence summary fits: loader/1
+reward stats fit: loader/2
+sequence summary fits: loader/2
+reward stats fit: loader/3
+sequence summary fits: loader/3
+reward stats fit: loader/4
+sequence summary fits: loader/4
+reward stats fit: loader/5
+sequence summary fits: loader/5
+reward title fits: reclaimer
+category fits: reclaimer
+focused reward title fits: reclaimer
+item role fits: reclaimer
+large item type fits: reclaimer
+reward stats fit: reclaimer/1
+sequence summary fits: reclaimer/1
+reward stats fit: reclaimer/2
+sequence summary fits: reclaimer/2
+reward stats fit: reclaimer/3
+sequence summary fits: reclaimer/3
+reward stats fit: reclaimer/4
+sequence summary fits: reclaimer/4
+reward stats fit: reclaimer/5
+sequence summary fits: reclaimer/5
+reward title fits: predator
+category fits: predator
+focused reward title fits: predator
+item role fits: predator
+large item type fits: predator
+reward stats fit: predator/1
+sequence summary fits: predator/1
+reward stats fit: predator/2
+sequence summary fits: predator/2
+reward stats fit: predator/3
+sequence summary fits: predator/3
+reward stats fit: predator/4
+sequence summary fits: predator/4
+reward stats fit: predator/5
+sequence summary fits: predator/5
+reward title fits: arcstep
+category fits: arcstep
+focused reward title fits: arcstep
+item role fits: arcstep
+large item type fits: arcstep
+reward stats fit: arcstep/1
+sequence summary fits: arcstep/1
+reward stats fit: arcstep/2
+sequence summary fits: arcstep/2
+reward stats fit: arcstep/3
+sequence summary fits: arcstep/3
+reward stats fit: arcstep/4
+sequence summary fits: arcstep/4
+reward stats fit: arcstep/5
+sequence summary fits: arcstep/5
+reward title fits: recoil
+category fits: recoil
+focused reward title fits: recoil
+item role fits: recoil
+large item type fits: recoil
+reward stats fit: recoil/1
+sequence summary fits: recoil/1
+reward stats fit: recoil/2
+sequence summary fits: recoil/2
+reward stats fit: recoil/3
+sequence summary fits: recoil/3
+reward stats fit: recoil/4
+sequence summary fits: recoil/4
+reward stats fit: recoil/5
+sequence summary fits: recoil/5
+reward title fits: faultline
+category fits: faultline
+focused reward title fits: faultline
+item role fits: faultline
+large item type fits: faultline
+reward stats fit: faultline/1
+sequence summary fits: faultline/1
+reward stats fit: faultline/2
+sequence summary fits: faultline/2
+reward stats fit: faultline/3
+sequence summary fits: faultline/3
+reward stats fit: faultline/4
+sequence summary fits: faultline/4
+reward stats fit: faultline/5
+sequence summary fits: faultline/5
+reward title fits: overclock
+category fits: overclock
+focused reward title fits: overclock
+item role fits: overclock
+large item type fits: overclock
+reward stats fit: overclock/1
+sequence summary fits: overclock/1
+reward stats fit: overclock/2
+sequence summary fits: overclock/2
+reward stats fit: overclock/3
+sequence summary fits: overclock/3
+reward stats fit: overclock/4
+sequence summary fits: overclock/4
+reward stats fit: overclock/5
+sequence summary fits: overclock/5
+reward title fits: amplifier
+category fits: amplifier
+focused reward title fits: amplifier
+item role fits: amplifier
+large item type fits: amplifier
+reward stats fit: amplifier/1
+sequence summary fits: amplifier/1
+reward stats fit: amplifier/2
+sequence summary fits: amplifier/2
+reward stats fit: amplifier/3
+sequence summary fits: amplifier/3
+reward stats fit: amplifier/4
+sequence summary fits: amplifier/4
+reward stats fit: amplifier/5
+sequence summary fits: amplifier/5
+reward title fits: relay
+category fits: relay
+focused reward title fits: relay
+item role fits: relay
+large item type fits: relay
+reward stats fit: relay/1
+sequence summary fits: relay/1
+reward stats fit: relay/2
+sequence summary fits: relay/2
+reward stats fit: relay/3
+sequence summary fits: relay/3
+reward stats fit: relay/4
+sequence summary fits: relay/4
+reward stats fit: relay/5
+sequence summary fits: relay/5
+reward title fits: magnet
+category fits: magnet
+focused reward title fits: magnet
+item role fits: magnet
+large item type fits: magnet
+reward stats fit: magnet/1
+sequence summary fits: magnet/1
+reward stats fit: magnet/2
+sequence summary fits: magnet/2
+reward stats fit: magnet/3
+sequence summary fits: magnet/3
+reward stats fit: magnet/4
+sequence summary fits: magnet/4
+reward stats fit: magnet/5
+sequence summary fits: magnet/5
+reward title fits: singularity
+category fits: singularity
+focused reward title fits: singularity
+item role fits: singularity
+large item type fits: singularity
+reward stats fit: singularity/1
+sequence summary fits: singularity/1
+reward stats fit: singularity/2
+sequence summary fits: singularity/2
+reward stats fit: singularity/3
+sequence summary fits: singularity/3
+reward stats fit: singularity/4
+sequence summary fits: singularity/4
+reward stats fit: singularity/5
+sequence summary fits: singularity/5
+reward title fits: tempest
+category fits: tempest
+focused reward title fits: tempest
+item role fits: tempest
+large item type fits: tempest
+reward stats fit: tempest/1
+sequence summary fits: tempest/1
+reward stats fit: tempest/2
+sequence summary fits: tempest/2
+reward stats fit: tempest/3
+sequence summary fits: tempest/3
+reward stats fit: tempest/4
+sequence summary fits: tempest/4
+reward stats fit: tempest/5
+sequence summary fits: tempest/5
+reward title fits: cyclone
+category fits: cyclone
+focused reward title fits: cyclone
+item role fits: cyclone
+large item type fits: cyclone
+reward stats fit: cyclone/1
+sequence summary fits: cyclone/1
+reward stats fit: cyclone/2
+sequence summary fits: cyclone/2
+reward stats fit: cyclone/3
+sequence summary fits: cyclone/3
+reward stats fit: cyclone/4
+sequence summary fits: cyclone/4
+reward stats fit: cyclone/5
+sequence summary fits: cyclone/5
+reward title fits: harvest
+category fits: harvest
+focused reward title fits: harvest
+item role fits: harvest
+large item type fits: harvest
+reward stats fit: harvest/1
+sequence summary fits: harvest/1
+reward stats fit: harvest/2
+sequence summary fits: harvest/2
+reward stats fit: harvest/3
+sequence summary fits: harvest/3
+reward stats fit: harvest/4
+sequence summary fits: harvest/4
+reward stats fit: harvest/5
+sequence summary fits: harvest/5
+reward title fits: redline
+category fits: redline
+focused reward title fits: redline
+item role fits: redline
+large item type fits: redline
+reward stats fit: redline/1
+sequence summary fits: redline/1
+reward stats fit: redline/2
+sequence summary fits: redline/2
+reward stats fit: redline/3
+sequence summary fits: redline/3
+reward stats fit: redline/4
+sequence summary fits: redline/4
+reward stats fit: redline/5
+sequence summary fits: redline/5
+reward title fits: SteelJab
+category fits: SteelJab
+focused reward title fits: SteelJab
+item role fits: SteelJab
+large item type fits: SteelJab
+reward stats fit: SteelJab/1
+sequence summary fits: SteelJab/1
+reward stats fit: SteelJab/2
+sequence summary fits: SteelJab/2
+reward stats fit: SteelJab/3
+sequence summary fits: SteelJab/3
+reward stats fit: SteelJab/4
+sequence summary fits: SteelJab/4
+reward stats fit: SteelJab/5
+sequence summary fits: SteelJab/5
+reward title fits: Breaker
+category fits: Breaker
+focused reward title fits: Breaker
+item role fits: Breaker
+large item type fits: Breaker
+reward stats fit: Breaker/1
+sequence summary fits: Breaker/1
+reward stats fit: Breaker/2
+sequence summary fits: Breaker/2
+reward stats fit: Breaker/3
+sequence summary fits: Breaker/3
+reward stats fit: Breaker/4
+sequence summary fits: Breaker/4
+reward stats fit: Breaker/5
+sequence summary fits: Breaker/5
+reward title fits: ForcePush
+category fits: ForcePush
+focused reward title fits: ForcePush
+item role fits: ForcePush
+large item type fits: ForcePush
+reward stats fit: ForcePush/1
+sequence summary fits: ForcePush/1
+reward stats fit: ForcePush/2
+sequence summary fits: ForcePush/2
+reward stats fit: ForcePush/3
+sequence summary fits: ForcePush/3
+reward stats fit: ForcePush/4
+sequence summary fits: ForcePush/4
+reward stats fit: ForcePush/5
+sequence summary fits: ForcePush/5
+reward title fits: MassDriver
+category fits: MassDriver
+focused reward title fits: MassDriver
+item role fits: MassDriver
+large item type fits: MassDriver
+reward stats fit: MassDriver/1
+sequence summary fits: MassDriver/1
+reward stats fit: MassDriver/2
+sequence summary fits: MassDriver/2
+reward stats fit: MassDriver/3
+sequence summary fits: MassDriver/3
+reward stats fit: MassDriver/4
+sequence summary fits: MassDriver/4
+reward stats fit: MassDriver/5
+sequence summary fits: MassDriver/5
+reward title fits: GravityWell
+category fits: GravityWell
+focused reward title fits: GravityWell
+item role fits: GravityWell
+large item type fits: GravityWell
+reward stats fit: GravityWell/1
+sequence summary fits: GravityWell/1
+reward stats fit: GravityWell/2
+sequence summary fits: GravityWell/2
+reward stats fit: GravityWell/3
+sequence summary fits: GravityWell/3
+reward stats fit: GravityWell/4
+sequence summary fits: GravityWell/4
+reward stats fit: GravityWell/5
+sequence summary fits: GravityWell/5
+reward title fits: ArcBolt
+category fits: ArcBolt
+focused reward title fits: ArcBolt
+item role fits: ArcBolt
+large item type fits: ArcBolt
+reward stats fit: ArcBolt/1
+sequence summary fits: ArcBolt/1
+reward stats fit: ArcBolt/2
+sequence summary fits: ArcBolt/2
+reward stats fit: ArcBolt/3
+sequence summary fits: ArcBolt/3
+reward stats fit: ArcBolt/4
+sequence summary fits: ArcBolt/4
+reward stats fit: ArcBolt/5
+sequence summary fits: ArcBolt/5
+reward title fits: ConductiveBrand
+category fits: ConductiveBrand
+focused reward title fits: ConductiveBrand
+item role fits: ConductiveBrand
+large item type fits: ConductiveBrand
+reward stats fit: ConductiveBrand/1
+sequence summary fits: ConductiveBrand/1
+reward stats fit: ConductiveBrand/2
+sequence summary fits: ConductiveBrand/2
+reward stats fit: ConductiveBrand/3
+sequence summary fits: ConductiveBrand/3
+reward stats fit: ConductiveBrand/4
+sequence summary fits: ConductiveBrand/4
+reward stats fit: ConductiveBrand/5
+sequence summary fits: ConductiveBrand/5
+reward title fits: VectorTether
+category fits: VectorTether
+focused reward title fits: VectorTether
+item role fits: VectorTether
+large item type fits: VectorTether
+reward stats fit: VectorTether/1
+sequence summary fits: VectorTether/1
+reward stats fit: VectorTether/2
+sequence summary fits: VectorTether/2
+reward stats fit: VectorTether/3
+sequence summary fits: VectorTether/3
+reward stats fit: VectorTether/4
+sequence summary fits: VectorTether/4
+reward stats fit: VectorTether/5
+sequence summary fits: VectorTether/5
+reward title fits: ReapingCut
+category fits: ReapingCut
+focused reward title fits: ReapingCut
+item role fits: ReapingCut
+large item type fits: ReapingCut
+reward stats fit: ReapingCut/1
+sequence summary fits: ReapingCut/1
+reward stats fit: ReapingCut/2
+sequence summary fits: ReapingCut/2
+reward stats fit: ReapingCut/3
+sequence summary fits: ReapingCut/3
+reward stats fit: ReapingCut/4
+sequence summary fits: ReapingCut/4
+reward stats fit: ReapingCut/5
+sequence summary fits: ReapingCut/5
+reward title fits: DrainBrand
+category fits: DrainBrand
+focused reward title fits: DrainBrand
+item role fits: DrainBrand
+large item type fits: DrainBrand
+reward stats fit: DrainBrand/1
+sequence summary fits: DrainBrand/1
+reward stats fit: DrainBrand/2
+sequence summary fits: DrainBrand/2
+reward stats fit: DrainBrand/3
+sequence summary fits: DrainBrand/3
+reward stats fit: DrainBrand/4
+sequence summary fits: DrainBrand/4
+reward stats fit: DrainBrand/5
+sequence summary fits: DrainBrand/5
+reward title fits: Counterguard
+category fits: Counterguard
+focused reward title fits: Counterguard
+item role fits: Counterguard
+large item type fits: Counterguard
+reward stats fit: Counterguard/1
+sequence summary fits: Counterguard/1
+reward stats fit: Counterguard/2
+sequence summary fits: Counterguard/2
+reward stats fit: Counterguard/3
+sequence summary fits: Counterguard/3
+reward stats fit: Counterguard/4
+sequence summary fits: Counterguard/4
+reward stats fit: Counterguard/5
+sequence summary fits: Counterguard/5
+reward title fits: SuppressiveVolley
+category fits: SuppressiveVolley
+focused reward title fits: SuppressiveVolley
+item role fits: SuppressiveVolley
+large item type fits: SuppressiveVolley
+reward stats fit: SuppressiveVolley/1
+sequence summary fits: SuppressiveVolley/1
+reward stats fit: SuppressiveVolley/2
+sequence summary fits: SuppressiveVolley/2
+reward stats fit: SuppressiveVolley/3
+sequence summary fits: SuppressiveVolley/3
+reward stats fit: SuppressiveVolley/4
+sequence summary fits: SuppressiveVolley/4
+reward stats fit: SuppressiveVolley/5
+sequence summary fits: SuppressiveVolley/5
+reward title fits: aug-FollowThrough
+category fits: aug-FollowThrough
+focused reward title fits: aug-FollowThrough
+item role fits: aug-FollowThrough
+large item type fits: aug-FollowThrough
+reward stats fit: aug-FollowThrough/1
+sequence summary fits: aug-FollowThrough/1
+reward stats fit: aug-FollowThrough/2
+sequence summary fits: aug-FollowThrough/2
+reward stats fit: aug-FollowThrough/3
+sequence summary fits: aug-FollowThrough/3
+reward stats fit: aug-FollowThrough/4
+sequence summary fits: aug-FollowThrough/4
+reward stats fit: aug-FollowThrough/5
+sequence summary fits: aug-FollowThrough/5
+reward title fits: aug-Focused
+category fits: aug-Focused
+focused reward title fits: aug-Focused
+item role fits: aug-Focused
+large item type fits: aug-Focused
+reward stats fit: aug-Focused/1
+sequence summary fits: aug-Focused/1
+reward stats fit: aug-Focused/2
+sequence summary fits: aug-Focused/2
+reward stats fit: aug-Focused/3
+sequence summary fits: aug-Focused/3
+reward stats fit: aug-Focused/4
+sequence summary fits: aug-Focused/4
+reward stats fit: aug-Focused/5
+sequence summary fits: aug-Focused/5
+reward title fits: aug-Echo
+category fits: aug-Echo
+focused reward title fits: aug-Echo
+item role fits: aug-Echo
+large item type fits: aug-Echo
+reward stats fit: aug-Echo/1
+sequence summary fits: aug-Echo/1
+reward stats fit: aug-Echo/2
+sequence summary fits: aug-Echo/2
+reward stats fit: aug-Echo/3
+sequence summary fits: aug-Echo/3
+reward stats fit: aug-Echo/4
+sequence summary fits: aug-Echo/4
+reward stats fit: aug-Echo/5
+sequence summary fits: aug-Echo/5
+reward title fits: aug-Afterfield
+category fits: aug-Afterfield
+focused reward title fits: aug-Afterfield
+item role fits: aug-Afterfield
+large item type fits: aug-Afterfield
+reward stats fit: aug-Afterfield/1
+sequence summary fits: aug-Afterfield/1
+reward stats fit: aug-Afterfield/2
+sequence summary fits: aug-Afterfield/2
+reward stats fit: aug-Afterfield/3
+sequence summary fits: aug-Afterfield/3
+reward stats fit: aug-Afterfield/4
+sequence summary fits: aug-Afterfield/4
+reward stats fit: aug-Afterfield/5
+sequence summary fits: aug-Afterfield/5
+reward title fits: aug-SplitPayload
+category fits: aug-SplitPayload
+focused reward title fits: aug-SplitPayload
+item role fits: aug-SplitPayload
+large item type fits: aug-SplitPayload
+reward stats fit: aug-SplitPayload/1
+sequence summary fits: aug-SplitPayload/1
+reward stats fit: aug-SplitPayload/2
+sequence summary fits: aug-SplitPayload/2
+reward stats fit: aug-SplitPayload/3
+sequence summary fits: aug-SplitPayload/3
+reward stats fit: aug-SplitPayload/4
+sequence summary fits: aug-SplitPayload/4
+reward stats fit: aug-SplitPayload/5
+sequence summary fits: aug-SplitPayload/5
+reward title fits: aug-Backwash
+category fits: aug-Backwash
+focused reward title fits: aug-Backwash
+item role fits: aug-Backwash
+large item type fits: aug-Backwash
+reward stats fit: aug-Backwash/1
+sequence summary fits: aug-Backwash/1
+reward stats fit: aug-Backwash/2
+sequence summary fits: aug-Backwash/2
+reward stats fit: aug-Backwash/3
+sequence summary fits: aug-Backwash/3
+reward stats fit: aug-Backwash/4
+sequence summary fits: aug-Backwash/4
+reward stats fit: aug-Backwash/5
+sequence summary fits: aug-Backwash/5
+reward title fits: aug-Discharge
+category fits: aug-Discharge
+focused reward title fits: aug-Discharge
+item role fits: aug-Discharge
+large item type fits: aug-Discharge
+reward stats fit: aug-Discharge/1
+sequence summary fits: aug-Discharge/1
+reward stats fit: aug-Discharge/2
+sequence summary fits: aug-Discharge/2
+reward stats fit: aug-Discharge/3
+sequence summary fits: aug-Discharge/3
+reward stats fit: aug-Discharge/4
+sequence summary fits: aug-Discharge/4
+reward stats fit: aug-Discharge/5
+sequence summary fits: aug-Discharge/5
+reward title fits: aug-Anchor
+category fits: aug-Anchor
+focused reward title fits: aug-Anchor
+item role fits: aug-Anchor
+large item type fits: aug-Anchor
+reward stats fit: aug-Anchor/1
+sequence summary fits: aug-Anchor/1
+reward stats fit: aug-Anchor/2
+sequence summary fits: aug-Anchor/2
+reward stats fit: aug-Anchor/3
+sequence summary fits: aug-Anchor/3
+reward stats fit: aug-Anchor/4
+sequence summary fits: aug-Anchor/4
+reward stats fit: aug-Anchor/5
+sequence summary fits: aug-Anchor/5
+reward title fits: aug-Flurry
+category fits: aug-Flurry
+focused reward title fits: aug-Flurry
+item role fits: aug-Flurry
+large item type fits: aug-Flurry
+reward stats fit: aug-Flurry/1
+sequence summary fits: aug-Flurry/1
+reward stats fit: aug-Flurry/2
+sequence summary fits: aug-Flurry/2
+reward stats fit: aug-Flurry/3
+sequence summary fits: aug-Flurry/3
+reward stats fit: aug-Flurry/4
+sequence summary fits: aug-Flurry/4
+reward stats fit: aug-Flurry/5
+sequence summary fits: aug-Flurry/5
+reward title fits: aug-PalmDrive
+category fits: aug-PalmDrive
+focused reward title fits: aug-PalmDrive
+item role fits: aug-PalmDrive
+large item type fits: aug-PalmDrive
+reward stats fit: aug-PalmDrive/1
+sequence summary fits: aug-PalmDrive/1
+reward stats fit: aug-PalmDrive/2
+sequence summary fits: aug-PalmDrive/2
+reward stats fit: aug-PalmDrive/3
+sequence summary fits: aug-PalmDrive/3
+reward stats fit: aug-PalmDrive/4
+sequence summary fits: aug-PalmDrive/4
+reward stats fit: aug-PalmDrive/5
+sequence summary fits: aug-PalmDrive/5
+reward title fits: aug-Crosscut
+category fits: aug-Crosscut
+focused reward title fits: aug-Crosscut
+item role fits: aug-Crosscut
+large item type fits: aug-Crosscut
+reward stats fit: aug-Crosscut/1
+sequence summary fits: aug-Crosscut/1
+reward stats fit: aug-Crosscut/2
+sequence summary fits: aug-Crosscut/2
+reward stats fit: aug-Crosscut/3
+sequence summary fits: aug-Crosscut/3
+reward stats fit: aug-Crosscut/4
+sequence summary fits: aug-Crosscut/4
+reward stats fit: aug-Crosscut/5
+sequence summary fits: aug-Crosscut/5
+reward title fits: aug-HookedEdge
+category fits: aug-HookedEdge
+focused reward title fits: aug-HookedEdge
+item role fits: aug-HookedEdge
+large item type fits: aug-HookedEdge
+reward stats fit: aug-HookedEdge/1
+sequence summary fits: aug-HookedEdge/1
+reward stats fit: aug-HookedEdge/2
+sequence summary fits: aug-HookedEdge/2
+reward stats fit: aug-HookedEdge/3
+sequence summary fits: aug-HookedEdge/3
+reward stats fit: aug-HookedEdge/4
+sequence summary fits: aug-HookedEdge/4
+reward stats fit: aug-HookedEdge/5
+sequence summary fits: aug-HookedEdge/5
+reward title fits: aug-Groundbreaker
+category fits: aug-Groundbreaker
+focused reward title fits: aug-Groundbreaker
+item role fits: aug-Groundbreaker
+large item type fits: aug-Groundbreaker
+reward stats fit: aug-Groundbreaker/1
+sequence summary fits: aug-Groundbreaker/1
+reward stats fit: aug-Groundbreaker/2
+sequence summary fits: aug-Groundbreaker/2
+reward stats fit: aug-Groundbreaker/3
+sequence summary fits: aug-Groundbreaker/3
+reward stats fit: aug-Groundbreaker/4
+sequence summary fits: aug-Groundbreaker/4
+reward stats fit: aug-Groundbreaker/5
+sequence summary fits: aug-Groundbreaker/5
+reward title fits: aug-Piledriver
+category fits: aug-Piledriver
+focused reward title fits: aug-Piledriver
+item role fits: aug-Piledriver
+large item type fits: aug-Piledriver
+reward stats fit: aug-Piledriver/1
+sequence summary fits: aug-Piledriver/1
+reward stats fit: aug-Piledriver/2
+sequence summary fits: aug-Piledriver/2
+reward stats fit: aug-Piledriver/3
+sequence summary fits: aug-Piledriver/3
+reward stats fit: aug-Piledriver/4
+sequence summary fits: aug-Piledriver/4
+reward stats fit: aug-Piledriver/5
+sequence summary fits: aug-Piledriver/5
+reward title fits: aug-BoreRounds
+category fits: aug-BoreRounds
+focused reward title fits: aug-BoreRounds
+item role fits: aug-BoreRounds
+large item type fits: aug-BoreRounds
+reward stats fit: aug-BoreRounds/1
+sequence summary fits: aug-BoreRounds/1
+reward stats fit: aug-BoreRounds/2
+sequence summary fits: aug-BoreRounds/2
+reward stats fit: aug-BoreRounds/3
+sequence summary fits: aug-BoreRounds/3
+reward stats fit: aug-BoreRounds/4
+sequence summary fits: aug-BoreRounds/4
+reward stats fit: aug-BoreRounds/5
+sequence summary fits: aug-BoreRounds/5
+reward title fits: aug-BreachLoad
+category fits: aug-BreachLoad
+focused reward title fits: aug-BreachLoad
+item role fits: aug-BreachLoad
+large item type fits: aug-BreachLoad
+reward stats fit: aug-BreachLoad/1
+sequence summary fits: aug-BreachLoad/1
+reward stats fit: aug-BreachLoad/2
+sequence summary fits: aug-BreachLoad/2
+reward stats fit: aug-BreachLoad/3
+sequence summary fits: aug-BreachLoad/3
+reward stats fit: aug-BreachLoad/4
+sequence summary fits: aug-BreachLoad/4
+reward stats fit: aug-BreachLoad/5
+sequence summary fits: aug-BreachLoad/5
+augmented summary fits: sword/aug-Crosscut
+augmented summary fits: sword/aug-HookedEdge
+augmented summary fits: hammer/aug-Groundbreaker
+augmented summary fits: hammer/aug-Piledriver
+augmented summary fits: pistol/aug-BoreRounds
+augmented summary fits: pistol/aug-BreachLoad
+augmented summary fits: rifle/aug-BoreRounds
+augmented summary fits: rifle/aug-BreachLoad
+augmented summary fits: fists/aug-Flurry
+augmented summary fits: fists/aug-PalmDrive
+augmented summary fits: wraps/aug-Flurry
+augmented summary fits: wraps/aug-PalmDrive
+augmented summary fits: greatsword/aug-Crosscut
+augmented summary fits: greatsword/aug-HookedEdge
+augmented summary fits: breachhammer/aug-Groundbreaker
+augmented summary fits: breachhammer/aug-Piledriver
+augmented summary fits: siphonblade/aug-Crosscut
+augmented summary fits: siphonblade/aug-HookedEdge
+augmented summary fits: scattergun/aug-BoreRounds
+augmented summary fits: scattergun/aug-BreachLoad
+augmented summary fits: SteelJab/aug-FollowThrough
+augmented summary fits: SteelJab/aug-Echo
+augmented summary fits: Breaker/aug-FollowThrough
+augmented summary fits: Breaker/aug-Focused
+augmented summary fits: ForcePush/aug-Backwash
+augmented summary fits: MassDriver/aug-SplitPayload
+augmented summary fits: GravityWell/aug-Afterfield
+augmented summary fits: GravityWell/aug-Anchor
+augmented summary fits: ArcBolt/aug-Focused
+augmented summary fits: ArcBolt/aug-Echo
+augmented summary fits: ConductiveBrand/aug-Focused
+augmented summary fits: ConductiveBrand/aug-Afterfield
+augmented summary fits: VectorTether/aug-Afterfield
+augmented summary fits: VectorTether/aug-Anchor
+augmented summary fits: ReapingCut/aug-Focused
+augmented summary fits: ReapingCut/aug-Echo
+augmented summary fits: DrainBrand/aug-Focused
+augmented summary fits: Counterguard/aug-Discharge
+augmented summary fits: SuppressiveVolley/aug-Focused
+augmented summary fits: SuppressiveVolley/aug-Echo
+text fit audit ran in native GUI
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drag equips ability
+weapon hover focuses exact reward
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+double-click equips two-handed weapon
+weapon socket clears item name
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drop triggers fusion
+augment hover focuses exact reward
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse drop attaches augment to socket
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+mouse reorders linked pair and ability
+practice pause freezes combat
+normal drop guidance matches placement: sword/Weapon/0
+normal drop guidance matches placement: sword/Weapon/1
+normal drop guidance matches placement: hammer/Weapon/0
+normal drop guidance matches placement: hammer/Weapon/1
+normal drop guidance matches placement: visor/Helmet/0
+normal drop guidance matches placement: plate/Armor/0
+normal drop guidance matches placement: treads/Boots/0
+normal drop guidance matches placement: faultline/Rig/0
+normal drop guidance matches placement: ArcBolt/Sequence/0
+normal drop guidance matches placement: ArcBolt/Sequence/1
+normal drop guidance matches placement: ArcBolt/Sequence/2
+normal drop guidance matches placement: ArcBolt/Sequence/3
+normal drop guidance matches placement: ArcBolt/Sequence/4
+no-compatible-host instruction
+no compatible host: primary action stores augment
+normal drop guidance matches placement: singularity/Ultimate/0
+augment highlights compatible stored host
+dragged inventory item overrides selected reward
+selected inventory item overrides selected reward
+equipment hover focuses exact reward at 1280
+equipment hover focuses exact reward at 1920
+equipment hover focuses exact reward at 2560
+ordinary checkpoints start focused
+ability opening hides unrelated gear and storage
+empty selection explains required action
+focused destination exists: sword
+focused compatible destination: sword
+concrete action label: sword
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: sword
+focused destination exists: hammer
+focused compatible destination: hammer
+concrete action label: hammer
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: hammer
+focused destination exists: visor
+focused compatible destination: visor
+concrete action label: visor
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: visor
+focused destination exists: plate
+focused compatible destination: plate
+concrete action label: plate
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: plate
+focused destination exists: treads
+focused compatible destination: treads
+concrete action label: treads
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: treads
+focused destination exists: faultline
+focused compatible destination: faultline
+concrete action label: faultline
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: faultline
+focused destination exists: ArcBolt
+focused compatible destination: ArcBolt
+concrete action label: ArcBolt
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: ArcBolt
+focused destination exists: singularity
+focused compatible destination: singularity
+concrete action label: singularity
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused drop equips and honors edit-after-pick: singularity
+Manage build exposes storage and all five actions
+stored compatible host appears in focused augment view
+stored host is named in primary action
+primary action attaches augment to sole stored host
+multiple hosts require an explicit destination
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+focused augment drop targets exact stored copy
+owned augment auto-equips with one host
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+stored item click preserves pending reward
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+click equip stored weapon preserves pending reward
+storage button is visible before selecting: sword
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: sword
+storage preserves the equipped loadout: sword
+storage honors edit-after-pick: sword
+storage button is visible before selecting: GravityWell
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: GravityWell
+storage preserves the equipped loadout: GravityWell
+storage honors edit-after-pick: GravityWell
+storage button is visible before selecting: visor
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: visor
+storage preserves the equipped loadout: visor
+storage honors edit-after-pick: visor
+storage button is visible before selecting: faultline
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: faultline
+storage preserves the equipped loadout: faultline
+storage honors edit-after-pick: faultline
+storage button is visible before selecting: singularity
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: singularity
+storage preserves the equipped loadout: singularity
+storage honors edit-after-pick: singularity
+storage button is visible before selecting: aug-Crosscut
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage button takes reward without equipping: aug-Crosscut
+storage preserves the equipped loadout: aug-Crosscut
+storage honors edit-after-pick: aug-Crosscut
+mouse handler consumed mouseDown
+mouse handler consumed mouseUp
+storage advances when edit-after-pick is off
+reward cards do not overlap destinations at 1280
+reward cards do not overlap destinations at 1920
+reward cards do not overlap destinations at 2560
+equipped partner shown for SuppressiveVolley
+specific valid partner: SuppressiveVolley
+partner highlight maps to equipped item: SuppressiveVolley
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+new reward drops directly into its destination: SuppressiveVolley
+equipped partner shown for recoil
+specific valid partner: recoil
+partner highlight maps to equipped item: recoil
+mouse handler consumed mouseDown
+mouse handler consumed mouseDrag
+mouse handler consumed mouseUp
+new reward drops directly into its destination: recoil
+actual discharge creates combat cue

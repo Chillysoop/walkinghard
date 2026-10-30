@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 16, October 30, 2026. Implementation target: 0.7.6. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification for the rarity outline update is in QA/v075-verification.md; the broader checkpoint pass is in QA/v074-verification.md.
+Revision 17, October 30, 2026. Implementation target: 0.7.7. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification for Recoil charge preservation is in QA/v077-verification.md; the broader checkpoint pass is in QA/v074-verification.md.
 
 ## Deadeye additions and synergy clarity
 
@@ -10,9 +10,9 @@ Actual Conductive discharges, gathering follow-ups, collision damage, lifesteal,
 
 **Suppressive Volley — ability.** Common: 12 damage, 13m range, 0.75s action, 0.70s stagger, three targets in a 12-degree half-angle fan aimed at the chosen reachable target. No knockback. Damage follows normal rarity multipliers; each rarity step adds 0.15m reach, two degrees of half-angle and 15% of the base stagger. Focused reduces coverage to one target for 50% longer stagger. Echo uses the existing weaker opening and one weaker primary-target repeat. It neither consumes ammunition nor requires a gun.
 
-**Recoil Harness — armor.** +20 integrity at Common, rarity-scaled. Actual ammunition replenishment arms one shared block across both hands; full magazines do not qualify. Common block capacity and subsequent bonus shot are both 12, following normal rarity multipliers. The guard lasts six seconds, plus 0.6 seconds per rarity step. Other barriers absorb first. Actual absorption spends the entire guard and primes one later gun hit; remaining block capacity is lost. A refill refreshes rather than stacks; paired refills arm once. Melee and ability damage do not consume the shot. In the initial implementation, a lethal base gun hit can spend the charge without dealing additional damage. Damage and kills from the bonus belong to the armor.
+**Recoil Harness — armor.** +20 integrity at Common, rarity-scaled. Actual ammunition replenishment arms one shared block across both hands; full magazines do not qualify. Common block capacity and subsequent bonus shot are both 12, following normal rarity multipliers. The guard lasts six seconds, plus 0.6 seconds per rarity step. Other barriers absorb first. Actual absorption spends the entire guard and primes one later gun hit; remaining block capacity is lost. A refill refreshes rather than stacks; paired refills arm once. Melee and ability damage do not consume the shot. A lethal base gun hit preserves both the charge and that originating action's proc allowance: the next surviving gun target can consume it, including a piercing or ricochet contact, the other hand, or a later action. It spends once, with damage and kills attributed to the armor.
 
-These are initial authored values. Comparison recommendations in `QA/v076-balance-review.md` are proposals, not approved tuning. No existing item's combat values changed in 0.7.6.
+These are initial authored values. The approved charge-preservation recommendation from `QA/v076-balance-review.md` is implemented in 0.7.7; matched before/after results are in `QA/v077-balance-review.md`. Volley, Recoil's numbers and all other defenses retain their 0.7.6 values. Further numerical tuning requires evidence and approval.
 
 ## Final stand: the Pursuer
 
