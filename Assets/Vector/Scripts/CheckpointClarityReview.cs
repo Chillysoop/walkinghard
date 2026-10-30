@@ -54,6 +54,28 @@ namespace VectorGame
             var handCenter=ReviewRegion(PlaceKind.Weapon,0).rect.center;
             yield return ReviewMouse(EventType.MouseDown,handCenter);yield return ReviewMouse(EventType.MouseUp,handCenter);
             ReviewCheck(game.Deck.Weapons[0]==pendingWeapon&&!game.Deck.RewardClaimed,"click equip stored weapon preserves pending reward");
+            foreach(string id in new[]{"sword","GravityWell","visor","faultline","singularity","aug-Crosscut"})
+            {
+                game.Begin();game.HoldCheckpointAfterPick=true;
+                game.Deck.Move(game.Deck.Acquire(LoadoutCatalog.Find("rifle")),PlaceKind.Weapon,0);
+                game.Deck.Move(game.Deck.Acquire(LoadoutCatalog.Find("ArcBolt")),PlaceKind.Sequence,2);
+                game.Deck.Move(game.Deck.Acquire(LoadoutCatalog.Find("plate")),PlaceKind.Armor);
+                var slots=game.Deck.Slots.ToArray();var weapons=game.Deck.Weapons.ToArray();var armor=game.Deck.Armor.ToArray();
+                game.Deck.Open(DraftKind.Mixed,false);game.Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Find(id));
+                yield return null;yield return null;
+                ReviewCheck(dropRegions.Any(r=>r.place==PlaceKind.Inventory&&r.index==-1),"storage button is visible before selecting: "+id);
+                game.SelectOffer(0);yield return null;yield return null;
+                var storageCenter=ReviewRegion(PlaceKind.Inventory,-1).rect.center;
+                yield return ReviewMouse(EventType.MouseDown,storageCenter);yield return ReviewMouse(EventType.MouseUp,storageCenter);
+                ReviewCheck(game.Deck.RewardClaimed&&game.Deck.Inventory.Any(i=>i.def.id==id),"storage button takes reward without equipping: "+id);
+                ReviewCheck(game.Deck.Slots.SequenceEqual(slots)&&game.Deck.Weapons.SequenceEqual(weapons)&&game.Deck.Armor.SequenceEqual(armor)&&game.Deck.Rig==null&&game.Deck.Ultimate==null,"storage preserves the equipped loadout: "+id);
+                ReviewCheck(game.State==VectorEncounter.RunState.Drafting,"storage honors edit-after-pick: "+id);
+            }
+            game.Begin();game.HoldCheckpointAfterPick=false;game.Deck.Open(DraftKind.Mixed,false);
+            game.Deck.Offers[0]=new RewardOffer(LoadoutCatalog.Find("sword"));game.SelectOffer(0);yield return null;yield return null;
+            var autoStorage=ReviewRegion(PlaceKind.Inventory,-1).rect.center;
+            yield return ReviewMouse(EventType.MouseDown,autoStorage);yield return ReviewMouse(EventType.MouseUp,autoStorage);
+            ReviewCheck(game.OpeningPicks==1&&!game.Deck.RewardClaimed&&game.Deck.Inventory.Any(i=>i.def.id=="sword")&&game.Deck.Weapons.All(i=>i==null),"storage advances when edit-after-pick is off");
             game.Begin();game.HoldCheckpointAfterPick=true;game.Deck.Open(DraftKind.Mixed,false);
             string[] mixed={"sword","GravityWell","plate"};for(int i=0;i<3;i++)game.Deck.Offers[i]=new RewardOffer(LoadoutCatalog.Find(mixed[i]),1,i+2);
             for(int size=0;size<3;size++)

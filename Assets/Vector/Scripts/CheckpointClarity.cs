@@ -46,7 +46,7 @@ namespace VectorGame
         }
         void CategoryArt(Rect r,ItemDefinition def)
         {
-            // Shape identifies type; only the separate rarity badge uses rarity color.
+            // Shape identifies type; the card outline and badge identify rarity.
             Color edge=muted;float cx=r.center.x,cy=r.center.y;
             if(def.kind==ItemKind.Ability)Ring(r.center,r.width*.49f,edge);
             else if(def.kind==ItemKind.Ultimate)
@@ -60,7 +60,8 @@ namespace VectorGame
         void RewardCard(Rect r,int index,bool compact=false)
         {
             var d=game.Deck;var offer=d.Offers[index];var def=offer.def;bool selected=d.Selected==index;
-            Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,selected?Accent:line,9,selected?2:1);
+            Color edge=def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);
+            Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,edge,9,selected?3:2);
             TypeIcon(new Rect(r.x+14,r.y+13,21,21),def.kind,white);
             Label(new Rect(r.x+43,r.y+13,r.width-150,24),ItemType(def),compact?15:18,white,true);
             if(def.kind!=ItemKind.Augment)
@@ -129,8 +130,9 @@ namespace VectorGame
                 d.SuggestedPlace(def,out var place,out int index);var current=place==PlaceKind.Rig?d.Rig:place==PlaceKind.Ultimate?d.Ultimate:d.Armor[Mathf.Clamp(LoadoutCatalog.ArmorIndex(def.kind),0,2)];
                 dropRegions.Add(new DropRegion{rect=new Rect(48,440,w-96,91),place=place,index=index,item=current});
             }
-            bool store=!d.RewardClaimed&&d.Draft!=DraftKind.Ability&&def!=null||pending!=null;
-            if(store)dropRegions.Add(new DropRegion{rect=new Rect(32,h-99,164,30),place=PlaceKind.Inventory,index=-1});
+            bool store=!d.RewardClaimed&&d.Draft!=DraftKind.Ability||pending!=null;
+            Rect storageButton=new Rect(w-512,h-57,184,42);
+            if(store)dropRegions.Add(new DropRegion{rect=storageButton,place=PlaceKind.Inventory,index=-1});
             AddSocketRegions();if(!iconGuide&&!detailHovered&&!waveDetails)HandleLoadoutInput();
             CheckpointHeader(w,false);
             Label(new Rect(32,99,w-400,37),d.RewardClaimed?"Ready when you are.":"Choose 1 "+(d.Draft==DraftKind.Ability?"ability":d.Draft==DraftKind.Weapon?"weapon":d.Draft==DraftKind.Augment?"augment":d.Draft==DraftKind.Ultimate?"ultimate":"reward")+".",29,white,true);
@@ -163,16 +165,21 @@ namespace VectorGame
             string hint=def==null?"Full details on hover. Your character sheet is in Manage build.":DestinationPreview(def,hoveredTarget,preview);
             Label(new Rect(32,563,w-64,42),hint,13,white);
             if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(32,605,w-64,22),loadoutFeedback,12,Strong,true);
-            if(store){Plate(new Rect(32,h-99,164,30),ink,line,5);Label(new Rect(32,h-99,164,30),"STORE INSTEAD",11,muted,true,TextAnchor.MiddleCenter);}
+            if(store)
+            {
+                GUI.enabled=pending!=null?d.CanMove(pending,PlaceKind.Inventory):d.CanClaimTo(dragOffer>=0?dragOffer:d.Selected,PlaceKind.Inventory);
+                // The shared mouse handler owns clicks and drops on this button.
+                Button(storageButton,pending!=null?"MOVE TO STORAGE":"ADD TO STORAGE");GUI.enabled=true;
+            }
             GUI.enabled=!d.RewardClaimed&&d.Rerolls>0;
-            if(Button(new Rect(store?208:32,h-99,135,30),"REROLL "+d.Rerolls+" [ TAB ]")){game.Reroll();ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
+            if(Button(new Rect(32,h-99,135,30),"REROLL "+d.Rerolls+" [ TAB ]")){game.Reroll();ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(Button(new Rect(32,h-52,208,32),"EDIT AFTER PICK: "+(editAfterPick?"ON":"OFF"),editAfterPick))editAfterPick=!editAfterPick;
-            Label(new Rect(260,h-47,w-600,26),d.RewardClaimed?"Open Manage build to change gear or order.":editAfterPick?"Equip, then tinker before continuing.":"Equipping advances to the next pick or fight.",11,muted);
+            Label(new Rect(260,h-47,w-(store?800:600),26),d.RewardClaimed?"Open Manage build to change gear or order.":editAfterPick?"Take a reward, then tinker before continuing.":"Taking a reward advances to the next pick or fight.",11,muted);
             bool many=d.Selected>=0&&!d.RewardClaimed&&d.Offers[d.Selected].def.kind==ItemKind.Augment&&d.CompatibleHosts(d.Offers[d.Selected].def).Count()>1;
             GUI.enabled=(d.RewardClaimed||d.Selected>=0)&&!many;
             if(Button(new Rect(w-316,h-57,284,42),CheckpointActionLabel(),true)){if(d.RewardClaimed)game.ConfirmDraft();else game.AcceptSelectedReward(!editAfterPick);ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(game.FusionHistory.Count>0)FusionHistoryButton(new Rect(w-260,h-99,228,30));
-            Label(new Rect(360,h-92,w-645,21),"NEXT: "+game.EncounterPreview.Split('·')[0].Trim(),11,muted);
+            Label(new Rect(208,h-92,w-493,21),"NEXT: "+game.EncounterPreview.Split('·')[0].Trim(),11,muted);
             DrawSockets();ApplyPresentationReviewHover();HighlightFusionMatches();DrawDestinationGuidance(w,440);DrawDragPreview();
         }
         string DestinationPreview(ItemDefinition def,DropRegion target,int offer)
