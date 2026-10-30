@@ -17,7 +17,7 @@ namespace VectorGame
         bool editAfterPick {get=>game.HoldCheckpointAfterPick;set=>game.HoldCheckpointAfterPick=value;}
         float lastClickTime=-10;
         string loadoutFeedback="";
-        void Draft(float w,float h)
+        void ExpandedDraft(float w,float h)
         {
             Box(new Rect(0,0,w,h),new Color(.006f,.018f,.028f,.73f));
             var deck=game.Deck;if(selectedItem!=null&&!deck.Items.Contains(selectedItem))selectedItem=null;
@@ -52,30 +52,14 @@ namespace VectorGame
             AddSocketRegions();if(!iconGuide&&!detailHovered&&!waveDetails)HandleLoadoutInput();
             if(game.TutorialActive)TutorialHeader(w);else
             {
-            Panel(new Rect(20,18,w-40,58));TypeIcon(new Rect(34,31,32,32),ItemKind.Rig,muted);
-            Label(new Rect(76,33,165,24),"WALKING HARD",17,white,true);
-            Label(new Rect(250,25,260,29),game.OpeningDraft?"OPENING DRAFT":"CHECKPOINT "+game.Wave,25,white,true);
-            Label(new Rect(520,30,230,22),"COMBAT PAUSED",15,Accent,true);
-            WaveFeedbackHeader(w);
-            Label(new Rect(w-290,31,250,25),(deck.RewardClaimed?"CHOICE CLAIMED":"CHOOSE 1 OF 3")+(game.OpeningDraft?" / "+(game.OpeningPicks+1)+" OF 2":""),16,deck.RewardClaimed?Accent:white,true,TextAnchor.UpperRight);
+            CheckpointHeader(w,true);
             }
             Panel(new Rect(20,86,w-40,178));Label(new Rect(33,86,500,17),RewardHeading,11,Accent,true);
             Label(new Rect(600,86,w-630,17),RewardHint,11,muted,false,TextAnchor.UpperRight);
             if(deck.Emphasis!=RewardEmphasis.None)Label(new Rect(300,86,285,17),"BIASED: "+deck.Emphasis.ToString().ToUpperInvariant(),10,Strong,true);
             for(int i=0;i<3;i++)
             {
-                var offer=deck.Offers[i];Rect r=new Rect(32+i*(rewardW+10),104,rewardW,148);bool selected=deck.Selected==i;Color color=offer.def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);
-                Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,color,10,selected?3:1.5f);
-                Plate(new Rect(r.x+10,r.y+10,86,86),new Color(.02f,.06f,.09f),line,7);
-                ActionGlyph(new Rect(r.x+13,r.y+13,80,80),offer.def,TypeColor(offer.def.kind));
-                TypeIcon(new Rect(r.x+106,r.y+9,21,21),offer.def.kind,white);
-                Label(new Rect(r.x+130,r.y+12,r.width-140,15),Category(offer.def),11,white,true);
-                Label(new Rect(r.x+107,r.y+32,r.width-117,24),offer.Name,17,white,true);
-                Label(new Rect(r.x+107,r.y+60,r.width-117,17),offer.def.kind==ItemKind.Augment?"HOST-SCALED":ItemRarity.Names[offer.rank].ToUpperInvariant()+" / "+ItemStats(offer.def,offer.rank),10,color,true);
-                DrawSynergyChips(new Rect(r.x+107,r.y+81,r.width-117,18),offer.def);
-                EffectLine(new Rect(r.x+12,r.y+104,r.width-24,18),new LoadoutItem(offer.def,offer.rank),12);
-                Label(new Rect(r.x+12,r.y+128,r.width-24,15),deck.RewardClaimed?(selected?(deck.Receipt.Contains("FUSED:")?"FUSED":"TAKEN"):"PASSED"):FusionSummary(offer.def,offer.rank,offer.copies),10,!deck.RewardClaimed&&offer.rank<5&&offer.def.kind!=ItemKind.Augment&&deck.Copies(offer.def,offer.rank)+offer.copies>=3?Accent:color,true);
-                ItemTooltip(r,new LoadoutItem(offer.def,offer.rank),offer);
+                RewardCard(new Rect(32+i*(rewardW+10),104,rewardW,148),i,true);
             }
             if(game.TutorialActive)TutorialCoach(stats);else CharacterStats(stats);
             Plate(center,new Color(.01f,.03f,.045f,.96f),new Color(.12f,.28f,.34f,.25f),12);
@@ -106,7 +90,7 @@ namespace VectorGame
             for(int i=0;i<5;i++)
             {
                 Rect r=new Rect(30+i*(sequenceW+10),sequenceY,sequenceW,91);var item=deck.Slots[i];
-                ItemPanel(r,item,deck.SelectedSlot==i,deck.SlotName(i),(i+1).ToString("00")+" / "+(item?.def.kind==ItemKind.Basic?"BASIC "+(item.mount+1):"ABILITY"));
+                ItemPanel(r,item,deck.SelectedSlot==i,deck.SlotName(i),(i+1).ToString("00")+" / "+(item?.def.kind==ItemKind.Basic?"WEAPON ATTACK":"ABILITY"));
                 if(i<4)Stroke(new Vector2(r.xMax,r.center.y),new Vector2(r.xMax+10,r.center.y),deck.PairAfter(i)>=0?Strong:line,2);
             }
             GroupOutline(30,sequenceY,sequenceW,10,91);
@@ -120,7 +104,7 @@ namespace VectorGame
             bool selectedAugment=!deck.RewardClaimed&&deck.Selected>=0&&deck.Offers[deck.Selected].def.kind==ItemKind.Augment;
             int hosts=selectedAugment?deck.CompatibleHosts(deck.Offers[deck.Selected].def).Count():-1;
             GUI.enabled=game.TutorialActive?game.TutorialReady:(deck.RewardClaimed||deck.Selected>=0)&&hosts<=1;
-            string next=game.TutorialActive?(game.TutorialLesson==VectorEncounter.Lesson.Order?"TRY YOUR BUILD [ ENTER ]":"NEXT LESSON [ ENTER ]"):!deck.RewardClaimed?(hosts>1?"DROP ON A + SOCKET":hosts==0?"STORE [ ENTER ]":"AUTO-EQUIP [ ENTER ]"):game.OpeningDraft&&game.OpeningPicks==0?"NEXT OPENING PICK":game.PendingDraft;
+            string next=game.TutorialActive?(game.TutorialLesson==VectorEncounter.Lesson.Order?"TRY YOUR BUILD [ ENTER ]":"NEXT LESSON [ ENTER ]"):CheckpointActionLabel();
             if(Button(new Rect(w-274,h-35,254,27),next,true)){if(game.TutorialActive)game.TutorialNext();else if(deck.RewardClaimed)game.ConfirmDraft();else game.AcceptSelectedReward(!editAfterPick);ClearLoadoutGesture();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(Button(new Rect(646,h-34,98,25),"ICON KEY"))iconGuide=!iconGuide;
             if(!string.IsNullOrEmpty(loadoutFeedback))Label(new Rect(754,h-33,w-1035,27),loadoutFeedback,10,Strong);
@@ -222,6 +206,9 @@ namespace VectorGame
                 else if(twice&&hit.item!=null){bool equipped=game.AutoEquip(hit.item);selectedItem=!equipped&&hit.item.def.kind==ItemKind.Augment?hit.item:null;loadoutFeedback=game.Deck.MoveMessage;}
                 else if(hit.offer>=0){game.SelectOffer(hit.offer);selectedItem=null;}
                 else if(selectedItem!=null&&hit.item!=selectedItem){var moving=selectedItem;string fusionFeedback=MoveFeedback(moving,hit);bool moved=MoveToRegion(moving,hit);selectedItem=null;loadoutFeedback=moved&&fusionFeedback.Length>0?fusionFeedback:game.Deck.MoveMessage;}
+                else if(hit.place==PlaceKind.Inventory&&hit.item!=null&&!hit.socket&&
+                    !(game.Deck.Selected>=0&&!game.Deck.RewardClaimed&&game.Deck.Offers[game.Deck.Selected].def.kind==ItemKind.Augment&&OfferFitsRegion(game.Deck.Selected,hit)))
+                    selectedItem=selectedItem==hit.item?null:hit.item;
                 else if(!game.Deck.RewardClaimed&&game.Deck.Selected>=0)DropReward(game.Deck.Selected,hit);
                 else if(hit.item!=null)selectedItem=selectedItem==hit.item?null:hit.item;
                 e.Use();

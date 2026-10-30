@@ -33,7 +33,7 @@ namespace VectorGame
             if(shown.augment!=null)body+="\nBase item: "+shown.def.description;
             if(shown.def.kind==ItemKind.Weapon)
             {
-                body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching basic attacks fire together; independent targets.");
+                body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching weapon attacks fire together; independent targets.");
                 if(shown==game.Deck.Fists)body+="\nEmpty mounts share this one Fists item. It counts once toward fusion.";
                 int magazine=LoadoutCatalog.Magazine(shown);if(magazine>0)body+="\n"+magazine+" rounds / "+(BalanceOverrides.LegacyWeaponAugments&&shown.HasAugment(AugmentId.BreachLoad)?"1.5":"1.2")+"s reload before Loader reduction.";
             }
@@ -121,7 +121,7 @@ namespace VectorGame
                 case Signature.Bulwark:return "Completing the loop arms "+power+" guard capacity. Absorbing a hit staggers nearby enemies for "+seconds+"s within "+radius+"m.";
                 case Signature.Recovery:return "First kill per turn drops a "+power+" HP mote. Collect within "+radius+"m before its 10s expiry. Up to 24 motes.";
                 case Signature.Surveyor:return "A turn hitting two targets echoes "+power+" damage onto its last survivor; 35% splash to two neighbors within "+radius+"m.";
-                case Signature.Salvager:return "Launch/sever arms one retrieval. The next basic pulls a corpse within "+radius+"m toward its impact with "+(.6f*s).ToString("0.00")+"× launch impulse.";
+                case Signature.Salvager:return "Launch/sever arms one retrieval. The next weapon attack pulls a corpse within "+radius+"m toward its impact with "+(.6f*s).ToString("0.00")+"× launch impulse.";
                 case Signature.Capacitor:return "First direct hit against stagger applies one Conductive mark: "+(4*s).ToString("0.0")+"s duration, "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" damage if later discharged.";
                 case Signature.Reactive:return "Three enemies within 3m grant "+power+" barrier for 3s. Break/expiry repels enemies within 3m. 8s cooldown.";
                 case Signature.Grounding:return "Convert "+(20*s).ToString("0")+"% of a lightning/body hit into barrier, capped at "+power+" once per turn; lasts 4s. Attackers hitting barrier become Conductive.";
@@ -131,7 +131,7 @@ namespace VectorGame
                 case Signature.Arcstep:return "Two kills in one turn mark up to "+(2+(item.rank-1)/2)+" survivors within "+radius+"m for "+(4*s).ToString("0.0")+"s. Later discharges deal "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" bonus damage.";
                 case Signature.FaultLine:return "+"+power+" body-collision damage. First impact per turn staggers up to four neighbors within "+radius+"m for "+seconds+"s.";
                 case Signature.Overclock:return "+"+(e.Power(item.rank)*100).ToString("0.#")+"% tempo per completed turn, capped at "+(Mathf.Min(.4f,.25f+.04f*(item.rank-1))*100).ToString("0")+"%. Resets when the loop wraps.";
-                case Signature.Amplifier:return "Each ability banks "+power+" damage, up to "+(e.Power(item.rank)*3).ToString("0.#")+". The next basic spends it once in a "+radius+"m burst against up to five foes.";
+                case Signature.Amplifier:return "Each ability banks "+power+" damage, up to "+(e.Power(item.rank)*3).ToString("0.#")+". The next weapon attack spends it once in a "+radius+"m burst against up to five foes.";
                 case Signature.Relay:return "Body impacts consume Conductive; chain "+power+" damage to "+(1+(item.rank>=3?1:0)+(item.rank==5?1:0))+" neighbors within "+radius+"m. Arcs cannot retrigger themselves.";
                 case Signature.Salvage:return "First sever per turn launches its body/fragments at "+(.7f+.1f*(item.rank-1)).ToString("0.0")+"× impulse. One enemy identity; six collision hits and two extra hops.";
             }
@@ -158,7 +158,7 @@ namespace VectorGame
             if(item==null)return "Empty position; skipped in combat.";
             if(item.def.kind==ItemKind.Basic)item=game.Deck.WeaponFor(item);
             if(item.augment!=null)switch(item.augment.def.module.id){
-                case AugmentId.FollowThrough:return "Weaker stagger; banks a pulse for the next basic.";
+                case AugmentId.FollowThrough:return "Weaker stagger; banks a pulse for the next weapon attack.";
                 case AugmentId.Focused:return "Narrower coverage; stronger primary payoff.";
                 case AugmentId.Echo:return "Weaker opening; one delayed repeat hit.";
                 case AugmentId.Afterfield:return "Weaker opening; leaves a two-second field.";

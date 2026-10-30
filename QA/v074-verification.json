@@ -1,0 +1,161 @@
+{
+  "version": "0.7.4",
+  "date": "2026-10-29",
+  "unity": "6000.3.27f1",
+  "player": "Build/Clarity-v074-final/WalkingHard.exe",
+  "assemblySha256": "85a61b973a4a688b948e9109778e81386b59514f68d6505070537bc66aa35cde",
+  "modelAssertions": 174,
+  "nativeUiAssertions": 1256,
+  "screenshots": 27,
+  "presentationDefinitions": 61,
+  "launcherPassed": true,
+  "core": [
+    {
+      "file": "v074-core-armed-1741.json",
+      "build": "armed",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-armor-1741.json",
+      "build": "armor",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-fast-1741.json",
+      "build": "fast",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-half-1741.json",
+      "build": "half",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-hammer-1741.json",
+      "build": "hammer",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-manual-1741.json",
+      "build": "manual",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-quick-1741.json",
+      "build": "quick",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-reload-1741.json",
+      "build": "reload",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-reroll-1741.json",
+      "build": "reroll",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-rifle-1741.json",
+      "build": "rifle",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-sequence-1741.json",
+      "build": "sequence",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-sequence-4319.json",
+      "build": "sequence",
+      "seed": 4319,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-sword-1741.json",
+      "build": "sword",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-tempest-1741.json",
+      "build": "tempest",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    },
+    {
+      "file": "v074-core-twin-1741.json",
+      "build": "twin",
+      "seed": 1741,
+      "passed": true,
+      "mechanicAssertions": 533,
+      "visibleSpawns": 0,
+      "orderErrors": 0
+    }
+  ],
+  "fullRun": {
+    "file": "v074-full-full-1741.json",
+    "passed": true,
+    "waves": 8,
+    "itemChoices": 13,
+    "augmentChoices": 2,
+    "kills": 314,
+    "collisions": 144,
+    "mechanicAssertions": 533
+  },
+  "fixtureStartingIntegrity": 5000,
+  "balanceChanges": false
+}

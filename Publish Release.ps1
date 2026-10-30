@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.3',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.7.4',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -23,6 +23,8 @@ try {
     foreach($doc in @('v072-verification.md','v072-verification.json','v072-balance-review.md','v072-balance-results.json','v072-checkpoint-target-wait.png','v072-target-wait-details.png')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     foreach($doc in @('v073-verification.md','v073-verification.json','v073-gameplay-regression.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v073-ui') -Destination $qaStage -Recurse
+    foreach($doc in @('v074-verification.md','v074-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v074-ui') -Destination $qaStage -Recurse
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
     Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
     $manifest=Join-Path $releases 'walkinghard-main.json'
@@ -35,7 +37,7 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Learn Your Loadout';draft=$true;prerelease=$false;body="Start Run and Quick Tutorial now live in the main menu. Learn abilities, weapons, same-rarity fusion, augments and sequence order with real drag/drop controls, then try a short practice fight. Practice items reset before a real run.`n`nNormal checkpoints share the new destination glows. Hover rewards or stored items to see compatible slots. Rarity colors identify rarity; category icons stay neutral. Short effect descriptions remain on cards and sequence tiles, with full mechanics on hover. Augments with no compatible host can be stored; multiple hosts require a socket choice.`n`nNative interaction, text-fit and multi-resolution checks plus core, build-variety and full-run regressions are recorded in QA/v073-verification.md. No combat balance values changed.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Clearer Checkpoints';draft=$true;prerelease=$false;body="Checkpoints now focus on three rewards and their matching destinations. Open Manage build for the RPG sheet, storage and full sequence. Large category labels and distinct frame shapes separate weapons, abilities, gear, augments and ultimates. Rarity colors stay with rarity.`n`nCards use one-line effects, concise stats and concrete equip buttons. Replacement previews explain what moves to storage. A sole compatible stored item can now receive an augment through the primary action; multiple hosts still require a choice. Existing reward counts, two-handed grouping, fusion, ultimate progression and Edit after pick behavior are preserved.`n`nNative UI interaction, text-fit and multi-resolution captures plus core and full-run validation are recorded in QA/v074-verification.md. No balance values changed.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

@@ -1,4 +1,8 @@
-# Walking Hard 0.7.3 — Learn your loadout
+# Walking Hard 0.7.4 — Clearer checkpoints
+
+Ordinary checkpoints now open with three focused reward cards and the relevant equip destinations. **Manage build** opens the RPG character sheet, storage and full sequence on the same screen. Large Weapon / Ability / Gear / Augment / Ultimate labels, distinct art frames and neutral icons identify item type; rarity badges keep the rarity colors. One-line effects explain what the item does, and hover details retain the full mechanics. Preview text names the replacement, while primary buttons say Equip weapon, Equip helmet, Add ability, Attach to an item, or Store.
+
+Two-handed groups, same-rarity fusion, independent ultimates and the existing reward schedule remain intact. Edit after pick still controls whether equipping advances immediately. An augment can now auto-attach to its sole compatible item even when that item is stored; multiple compatible hosts still require an explicit choice. See [verification](QA/v074-verification.md).
 
 The main menu now offers **Start Run** and **Quick Tutorial**. The tutorial teaches ability selection, weapon equip, same-rarity fusion, augment sockets and sequence order using the actual drag/drop and double-click controls, then gives you a short practice fight. Starting a real run clears practice gear and restores your speed and checkpoint preferences.
 
@@ -52,7 +56,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Drag-and-drop character sheet, unlimited storage, two weapon mounts, one rig, and a separate ultimate mount. Click-to-select/destination is also supported.
 - Common, Uncommon, Rare, Epic and Legendary drops. Three identical items of the same rarity fuse to the next rarity, capped at Legendary.
 - Rarity odds: 55% / 27% / 12% / 5% / 1%. Power: 1× / 1.2× / 1.5× / 1.9× / 2.5× Common.
-- Distinct category colors and icons, labeled rarity borders, fusion previews, synergy inspection, and item-owned kill counters that follow weapons and abilities between slots.
+- Distinct category labels, shapes and neutral icons; rarity badges, fusion previews, synergy inspection, and item-owned kill counters that follow weapons and abilities between slots.
 - Combat speed: 0.5x, 1x, 2x or 4x. The angular combat HUD and checkpoint sheet share colors and icons; combat tiles retain descriptions and live stats.
 - Bodies persist for the run. Walkers push resting corpses aside without slowing down; launched bodies still cause collision damage.
 - Physical crowd collisions, ragdolls, hit-location body/limb cuts, and bounded multi-hop collision cascades. Hidden side-door/horizon creation remains enforced.

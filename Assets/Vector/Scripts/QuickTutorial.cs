@@ -146,11 +146,11 @@ namespace VectorGame
             string text;
             switch(game.TutorialLesson)
             {
-                case VectorEncounter.Lesson.Ability:text="Pick your third power.\n\nFive actions repeat in order. BASIC actions use your weapons; empty hands use fists.";break;
-                case VectorEncounter.Lesson.Weapon:text="Weapons change BASIC attacks.\n\n1H: one hand.\n2H: both hands; linked actions.\n\nArmor and rigs grant passive effects.";break;
+                case VectorEncounter.Lesson.Ability:text="Pick your third power.\n\nFive actions repeat in order. WEAPON ATTACKS use your weapons; empty hands use fists.";break;
+                case VectorEncounter.Lesson.Weapon:text="Weapons change WEAPON ATTACKS.\n\n1H: one hand.\n2H: both hands; linked actions.\n\nArmor and rigs grant passive effects.";break;
                 case VectorEncounter.Lesson.Fusion:text="You own two Common copies. Take the third.\n\n3 identical items + same rarity = next rarity.\n\nOther rarities stay separate.";break;
                 case VectorEncounter.Lesson.Augment:text="Echo adds a repeat hit.\n\nDrop it on Arc Bolt or its + socket.\n\nAugments scale with their host. They do not fuse.";break;
-                default:text="Set up your combos.\n\nMatching weapon basics fire together when adjacent.\n\n2H basics move as one locked pair.";break;
+                default:text="Set up your combos.\n\nMatching weapon attacks fire together when adjacent.\n\nTwo-handed attacks move as one locked pair.";break;
             }
             Label(new Rect(r.x+16,r.y+48,r.width-32,r.height-91),text,13,white);
             Label(new Rect(r.x+16,r.yMax-32,r.width-32,24),game.TutorialReady?"DONE  /  NEXT LESSON BELOW":"FOLLOW THE GLOWING SLOTS",11,game.TutorialReady?Accent:muted,true);
