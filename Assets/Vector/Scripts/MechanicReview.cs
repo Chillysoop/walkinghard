@@ -11,11 +11,11 @@ namespace VectorGame
     {
         public bool MechanicReview {get;private set;}
         public string ReviewLabel {get;private set;}="";
-        int reviewIndex,reviewFrame,reviewLastIndex=44;float reviewAge;bool reviewCaptures,reviewImpacts;
+        int reviewIndex,reviewFrame,reviewLastIndex=44;float reviewAge;bool reviewCaptures,reviewImpacts,reviewShared;
         float[] reviewCaptureTimes={.05f,.22f,.4f,.6f,.8f,1.05f,1.3f,1.65f,2,2.4f,3.2f,5.2f};
         void StartRequestedMechanicReview()
         {
-            var args=Environment.GetCommandLineArgs();reviewImpacts=Array.IndexOf(args,"-reviewImpacts")>=0;int at=Array.IndexOf(args,"-reviewStart");int start=at>=0?int.Parse(args[at+1]):0;at=Array.IndexOf(args,"-reviewCount");int count=at>=0?int.Parse(args[at+1]):ReviewCases.Length;
+            var args=Environment.GetCommandLineArgs();reviewImpacts=Array.IndexOf(args,"-reviewImpacts")>=0;reviewShared=Array.IndexOf(args,"-reviewSharedAugments")>=0;int at=Array.IndexOf(args,"-reviewStart");int start=at>=0?int.Parse(args[at+1]):0;at=Array.IndexOf(args,"-reviewCount");int count=at>=0?int.Parse(args[at+1]):ReviewCases.Length;
             if(start<0||start>=ReviewCases.Length||count<1)throw new ArgumentException("Invalid review case range");reviewLastIndex=Math.Min(ReviewCases.Length-1,start+count-1);
             if(Array.IndexOf(args,"-reviewDense")>=0)reviewCaptureTimes=Enumerable.Range(0,60).Select(i=>.025f+i*.1f).ToArray();StartMechanicReview(start);
         }
@@ -34,12 +34,13 @@ namespace VectorGame
             var previous=RenderTexture.active;RenderTexture.active=reviewTarget;reviewPixels.ReadPixels(new Rect(0,0,1600,900),0,0);reviewPixels.Apply();RenderTexture.active=previous;
             File.WriteAllBytes(path,reviewPixels.EncodeToPNG());
         }
-        string[] ReviewCases=>reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline","SuppressiveVolley"}).ToArray();
+        string[] ReviewCases=>reviewShared?new[]{"ForcePush-Focused","VectorTether-Focused","ConductiveBrand-FollowThrough","DrainBrand-FollowThrough","SuppressiveVolley-FollowThrough","ArcBolt-Afterfield","ReapingCut-Afterfield","DrainBrand-Afterfield","wraps-Livewire","rifle-Livewire","GravityWell-Afterfield"}:reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline","SuppressiveVolley"}).ToArray();
         public void StartMechanicReview(int index=0)
         {
             combatRandom=new System.Random(7);MechanicReview=true;reviewIndex=index;reviewAge=0;reviewFrame=0;reviewCaptures=Array.IndexOf(Environment.GetCommandLineArgs(),"-reviewCapture")>=0;WaveElapsed=0;ProbeReset();
-            var def=LoadoutCatalog.Find(ReviewCases[index%ReviewCases.Length]);LoadoutItem host;int start;
-            if(def.kind==ItemKind.Augment){host=ProbeHost(LoadoutCatalog.All.First(def.module.Fits),def.module.id);start=host.def.kind==ItemKind.Weapon?0:2;}
+            var reviewCase=ReviewCases[index%ReviewCases.Length];var def=LoadoutCatalog.Find(reviewShared?reviewCase.Split('-')[0]:reviewCase);LoadoutItem host;int start;
+            if(reviewShared){host=ProbeHost(def,(AugmentId)Enum.Parse(typeof(AugmentId),reviewCase.Split('-')[1]));start=def.kind==ItemKind.Weapon?0:2;}
+            else if(def.kind==ItemKind.Augment){host=ProbeHost(LoadoutCatalog.All.First(def.module.Fits),def.module.id);start=host.def.kind==ItemKind.Weapon?0:2;}
             else if(def.kind==ItemKind.Weapon||def.kind==ItemKind.Ability){host=ProbeHost(def);start=def.kind==ItemKind.Weapon?0:2;}
             else
             {
@@ -50,7 +51,7 @@ namespace VectorGame
                 for(int i=0;i<3;i++)Deck.Move(Deck.Acquire(LoadoutCatalog.Abilities.First(d=>d.ability.id==skills[i])),PlaceKind.Sequence,i+2);
                 if(def.signature==Signature.Amplifier||def.signature==Signature.Grounding||def.signature==Signature.Relay||def.signature==Signature.FaultLine||def.signature==Signature.Momentum)start=def.signature==Signature.FaultLine||def.signature==Signature.Momentum?3:2;
             }
-            ReviewLabel=(index%ReviewCases.Length+1)+" / "+ReviewCases.Length+" · "+def.name+(def.kind==ItemKind.Augment?" on "+host.def.name:"");
+            ReviewLabel=(index%ReviewCases.Length+1)+" / "+ReviewCases.Length+" · "+def.name+(reviewShared?" + "+host.augment.def.name:def.kind==ItemKind.Augment?" on "+host.def.name:"");
             if(!Deck.TwoHanded&&def.kind==ItemKind.Augment&&host.def.kind==ItemKind.Weapon)MoveBasicReview(Deck.Basics[1],4);
             sequencePointer=start;hero.EquipWeapons(Deck.WeaponFor(Deck.Basics[0]).def.weapon,Deck.WeaponFor(Deck.Basics[1]).def.weapon,Deck.TwoHanded);
             bool lethal=new[]{Signature.Salvager,Signature.Salvage,Signature.Recovery,Signature.Arcstep}.Contains(def.signature);
@@ -59,6 +60,8 @@ namespace VectorGame
             if(def.signature==Signature.Reactive){ProbeEnemy(-1,2,125);ProbeEnemy(1,2,125);}
             if(def.signature==Signature.Recovery)Health=200;
             if(def.module?.id==AugmentId.BreachLoad)ammunition[host]=0;
+            if(host.HasAugment(AugmentId.Livewire)){var source=Deck.Acquire(LoadoutCatalog.Find("ConductiveBrand"));foreach(var e in enemies)MarkEnemy(e,source);Deck.Move(Deck.Acquire(LoadoutCatalog.Find("grounding")),PlaceKind.Armor);}
+            if(reviewShared&&def.id=="GravityWell"){var boots=Deck.Acquire(LoadoutCatalog.Find("treads"));Deck.Move(boots,PlaceKind.Boots);Health=200;motes.Add(new Mote{point=new Vector3(1,.8f,5),heal=15,owner=boots});}
             ActiveSlot=PairSlot=-1;Preparation=recovery=0;UltimateAutomatic=def.kind==ItemKind.Ultimate;UltimateRemaining=UltimateAutomatic?0:100;State=RunState.Running;expectedSlot=Deck.NextOccupied(sequencePointer);
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;AimCamera();
         }

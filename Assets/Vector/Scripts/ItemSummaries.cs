@@ -12,10 +12,10 @@ namespace VectorGame
             if(item.def.kind==ItemKind.Basic)item=game.Deck.WeaponFor(item);
             if(item.augment!=null)switch(item.augment.def.module.id)
             {
-                case AugmentId.FollowThrough:return "Strike; next weapon hit staggers.";
-                case AugmentId.Focused:return item.def.ability.id==AbilityId.SuppressiveVolley?"Longer interrupt on one foe.":item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
+                case AugmentId.FollowThrough:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark now; next weapon marks more.":item.def.ability.id==AbilityId.DrainBrand?"Drain mark now; weapon spreads more.":"Weaker interrupt; weapon adds stagger.";
+                case AugmentId.Focused:return item.def.ability.id==AbilityId.ForcePush?"Stronger push through a narrow cone.":item.def.ability.id==AbilityId.VectorTether?"Longer pull corridor; half the width.":item.def.ability.id==AbilityId.SuppressiveVolley?"Longer interrupt on one foe.":item.def.ability.id==AbilityId.DrainBrand?"Stronger drain marks; fewer targets.":item.def.ability.id==AbilityId.ArcBolt?"Stronger lightning; fewer targets.":item.def.ability.id==AbilityId.ConductiveBrand?"Stronger marks; fewer targets.":item.def.ability.id==AbilityId.ReapingCut?"Stronger cut; narrower arc.":"Stronger stagger; narrower arc.";
                 case AugmentId.Echo:return item.def.ability.id==AbilityId.SuppressiveVolley?"Interrupt foes; repeat one hit.":item.def.ability.id==AbilityId.ArcBolt?"Chain lightning, then repeat a hit.":item.def.ability.id==AbilityId.ReapingCut?"Cleave, then repeat a weaker cut.":"Punch, then repeat a weaker hit.";
-                case AugmentId.Afterfield:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark foes in a lingering field.":item.def.ability.id==AbilityId.VectorTether?"Line foes up; leave a pull field.":"Gather foes in a lingering field.";
+                case AugmentId.Afterfield:return item.def.ability.id==AbilityId.ArcBolt?"Weaker chain; two fixed storm pulses.":item.def.ability.id==AbilityId.ReapingCut?"Weaker cut; two fixed follow-up sweeps.":item.def.ability.id==AbilityId.DrainBrand?"Weaker drain marks; a lasting field.":item.def.ability.id==AbilityId.ConductiveBrand?"Mark foes in a lingering field.":item.def.ability.id==AbilityId.VectorTether?"Line foes up; leave a pull field.":"Gather foes in a lingering field.";
                 case AugmentId.SplitPayload:return "Launch two foes with less force.";
                 case AugmentId.Backwash:return "Push foes, then pull survivors back.";
                 case AugmentId.Discharge:return "Absorb hits, then burst forward.";
@@ -27,6 +27,7 @@ namespace VectorGame
                 case AugmentId.Groundbreaker:return "Smash; ground wave staggers foes.";
                 case AugmentId.Piledriver:return "Smash; stronger primary launch.";
                 case AugmentId.BoreRounds:return "Shots pierce a line; normal timing.";
+                case AugmentId.Livewire:return "Discharge a marked survivor once.";
                 case AugmentId.BreachLoad:return "Shoot; reload arms a stagger burst.";
             }
             switch(item.def.id)
@@ -42,10 +43,10 @@ namespace VectorGame
                 case "Breaker":return "Stagger a wide cone.";
                 case "ForcePush":return "Push foes and bodies away.";
                 case "MassDriver":return "Launch a foe through the crowd.";
-                case "GravityWell":return "Pull nearby foes together.";
+                case "GravityWell":return "Gather nearby foes and repair motes.";
                 case "ArcBolt":return "Chain lightning between foes.";
                 case "ConductiveBrand":return "Mark foes for bonus lightning.";
-                case "VectorTether":return "Pull enemies into a straight line.";
+                case "VectorTether":return "Line up enemies and repair motes.";
                 case "ReapingCut":return "Slash weak foes; kills sever.";
                 case "Counterguard":return "Block hits; charge a weapon burst.";
                 case "fists":return item.rank>=3?"Double punch; stagger shockwave.":item.rank>=2?"Two quick punches that stagger.":"Quick close punch that staggers.";
@@ -78,7 +79,7 @@ namespace VectorGame
                 case "amplifier":return "Abilities charge a weapon burst.";
                 case "relay":return "Body hits discharge marked foes.";
                 case "magnet":return "Severed bodies launch into others.";
-                case "aug-FollowThrough":return "Next weapon hit gains a pulse.";
+                case "aug-FollowThrough":return "Carry stagger or marks into a weapon.";
                 case "aug-Focused":return "Stronger effect on fewer targets.";
                 case "aug-Echo":return "Weaker opening; one delayed repeat.";
                 case "aug-Afterfield":return "Weaker opening leaves a lasting field.";
@@ -93,6 +94,7 @@ namespace VectorGame
                 case "aug-Groundbreaker":return "Full launch plus a stagger wave.";
                 case "aug-Piledriver":return "Boost primary launch; keep splash.";
                 case "aug-BoreRounds":return "Shots pierce lined-up foes.";
+                case "aug-Livewire":return "Weapon hits discharge Conductive.";
                 case "aug-BreachLoad":return "Reload arms a stagger burst.";
                 default:return item.def.description;
             }

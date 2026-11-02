@@ -11,7 +11,7 @@ namespace VectorGame
         {
             if(varietyFixture)return;
             bool moduleCase=qaBuild.StartsWith("aug-");bool comparison=qaBuild.StartsWith("compare-");
-            if(!moduleCase&&!comparison&&!new[]{"pinball","pinball-separated","freight","freight-piledriver","ballet","funnel","funnel-breach","cutcarry","close","full"}.Contains(qaBuild))return;
+            if(!moduleCase&&!comparison&&!new[]{"pinball","pinball-separated","freight","freight-piledriver","ballet","funnel","funnel-breach","cutcarry","close","full","shared-pressure","shared-conductor","shared-freight","shared-sustain"}.Contains(qaBuild))return;
             varietyFixture=true;var rank=moduleCase?1:3;
             LoadoutItem Equip(string id,PlaceKind place,int index=0){var item=Deck.Acquire(LoadoutCatalog.Find(id),rank);MoveItem(item,place,index);return item;}
             void Module(LoadoutItem host,AugmentId id){Deck.Attach(Deck.Acquire(AugmentCatalog.Get(id)),host);}
@@ -25,6 +25,7 @@ namespace VectorGame
                 var host=Equip(hostDef.id,hostDef.kind==ItemKind.Weapon?PlaceKind.Weapon:PlaceKind.Sequence,hostDef.kind==ItemKind.Weapon?0:2);Module(host,id);
                 if(host.def.kind==ItemKind.Weapon&&host.def.hands!=2)MoveItem(Deck.Basics[1],PlaceKind.Sequence,4);
                 if(id==AugmentId.BreachLoad)ammunition[host]=0;
+                if(id==AugmentId.Livewire)Equip("ConductiveBrand",PlaceKind.Sequence,2);
                 Equip("loader",PlaceKind.Boots);Equip("reactive",PlaceKind.Armor);
             }
             if(comparison)
@@ -44,6 +45,10 @@ namespace VectorGame
             if(qaBuild=="cutcarry"){var sword=Equip("sword",PlaceKind.Weapon);Module(sword,AugmentId.HookedEdge);Equip("breachhammer",PlaceKind.Weapon,1);Abilities(AbilityId.ReapingCut,AbilityId.Counterguard,AbilityId.MassDriver);Equip("momentum",PlaceKind.Boots);}
             if(qaBuild=="close"){Module(Deck.Fists,AugmentId.PalmDrive);var gun=Equip("scattergun",PlaceKind.Weapon,1);Module(gun,AugmentId.BreachLoad);Abilities(AbilityId.Counterguard,AbilityId.Breaker,AbilityId.ForcePush);Equip("loader",PlaceKind.Boots);Equip("duelist",PlaceKind.Armor);}
             if(qaBuild=="full"){var hammer=Equip("hammer",PlaceKind.Weapon);Module(hammer,AugmentId.Piledriver);Abilities(AbilityId.ConductiveBrand,AbilityId.VectorTether,AbilityId.ArcBolt);Equip("relay",PlaceKind.Rig);Equip("grounding",PlaceKind.Armor);Equip("treads",PlaceKind.Boots);Equip("capacitor",PlaceKind.Helmet);Equip("tempest",PlaceKind.Ultimate);}
+            if(qaBuild=="shared-pressure"){Abilities(AbilityId.GravityWell,AbilityId.ReapingCut,AbilityId.Counterguard);Module(Deck.Slots[3],AugmentId.Afterfield);Module(Deck.Fists,AugmentId.Flurry);Equip("surveyor",PlaceKind.Helmet);Equip("plate",PlaceKind.Armor);Equip("treads",PlaceKind.Boots);Equip("amplifier",PlaceKind.Rig);}
+            if(qaBuild=="shared-conductor"){var rifle=Equip("rifle",PlaceKind.Weapon);Module(rifle,AugmentId.Livewire);Abilities(AbilityId.SuppressiveVolley,AbilityId.ConductiveBrand,AbilityId.VectorTether);Module(Deck.Slots[4],AugmentId.Focused);Equip("grounding",PlaceKind.Armor);Equip("loader",PlaceKind.Boots);Equip("overclock",PlaceKind.Rig);Equip("redline",PlaceKind.Ultimate);}
+            if(qaBuild=="shared-freight"){var hammer=Equip("hammer",PlaceKind.Weapon);Module(hammer,AugmentId.Piledriver);Abilities(AbilityId.ConductiveBrand,AbilityId.Counterguard,AbilityId.ArcBolt);Module(Deck.Slots[2],AugmentId.FollowThrough);Equip("relay",PlaceKind.Rig);Equip("grounding",PlaceKind.Armor);Equip("tempest",PlaceKind.Ultimate);}
+            if(qaBuild=="shared-sustain"){Equip("greatsword",PlaceKind.Weapon);Abilities(AbilityId.DrainBrand,AbilityId.Counterguard,AbilityId.ReapingCut);Module(Deck.Slots[2],AugmentId.Afterfield);Module(Deck.Slots[4],AugmentId.Focused);Equip("duelist",PlaceKind.Armor);Equip("predator",PlaceKind.Boots);Equip("salvager",PlaceKind.Helmet);Equip("magnet",PlaceKind.Rig);Equip("harvest",PlaceKind.Ultimate);}
         }
         [Serializable] public sealed class ContributionReport {public string item,module;public bool equipped;public int rarity,kills;public Contribution values;}
         ContributionReport[] ContributionReports()=>Deck.Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment).Select(i=>new ContributionReport{item=i.def.id,equipped=Deck.Slots.Contains(i)||Deck.Weapons.Contains(i)||Deck.Armor.Contains(i)||Deck.Rig==i||Deck.Ultimate==i||i==Deck.Fists&&Deck.Weapons.Any(w=>w==null),module=i.augment?.def.id??"",rarity=i.rank,kills=KillsFor(i),values=ContributionFor(i)}).ToArray();

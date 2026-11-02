@@ -15,7 +15,7 @@ namespace VectorGame
         void ProbeReset()
         {
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();ResetSignatures();fx.Clear();
-            Deck=new AbilityDeck(7);Health=tuning.heroHealth;heroPhysics.Motor.position=new Vector3(0,.04f,0);heroPhysics.Motor.rotation=Quaternion.identity;Physics.SyncTransforms();
+            Deck=new AbilityDeck(7);Health=tuning.heroHealth;hero.Root.position=new Vector3(0,.04f,0);hero.Root.rotation=Quaternion.identity;Physics.SyncTransforms();
             actionSerial++;actionItem=Deck.Basics[0];pairItem=Deck.Basics[1];actionWeapon=pairWeapon=null;PairSlot=-1;ActiveSlot=0;actionAge=0;salvageChain=null;
             currentCredit=new KillCredit{item=actionItem,action=actionSerial};
         }
@@ -74,7 +74,7 @@ namespace VectorGame
                 var attacker=ProbeEnemy(0,2);float before=Health;ReceiveDamage(attacker,capacity+5);
                 MechanicRequire(Mathf.Abs(Health-(before-5))<.001f&&Mathf.Abs(counterBank-Mathf.Min(capacity*.8f,45*Effect(guard)))<.001f,"Counterguard overflow and bank conversion");
             }
-            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();CheckSiphonBalance();CheckDeadeyeMechanics();CheckWaveFeedback();CheckEncounterRoutes();CheckPursuerFinale();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
+            CheckEnemyPressureMechanics();CheckImpactMechanics();CheckDefensiveBalance();CheckSiphonBalance();CheckDeadeyeMechanics();CheckSharedAugments();CheckWaveFeedback();CheckEncounterRoutes();CheckPursuerFinale();ProbeReset();Debug.Log("BUILD_VARIETY_MECHANICS: "+mechanicAssertions+" production-effect assertions passed.");
         }
     }
 }

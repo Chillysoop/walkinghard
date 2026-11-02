@@ -1,0 +1,38 @@
+{
+  "durationSeconds": 20,
+  "fps": 60,
+  "frames": 1200,
+  "width": 1920,
+  "height": 1080,
+  "gameplaySpeed": 1,
+  "fullNativeUI": true,
+  "cameraCrop": false,
+  "musicOnly": true,
+  "audioSource": "Walking-Hard-Music-20s.wav",
+  "timeline": [
+    {
+      "start": 0,
+      "end": 14.5,
+      "scene": "Previous native-UI melee, weapon choice and ability-order footage"
+    },
+    {
+      "start": 14.5,
+      "end": 17.5,
+      "scene": "Gravity Well gathering into Singularity Burst, with production impact physics"
+    },
+    {
+      "start": 17.5,
+      "end": 20,
+      "scene": "Branded pitch over continuing aftermath; edge HUD and action bar stay visible"
+    }
+  ],
+  "outro": [
+    "WALKING HARD",
+    "BUILD YOUR COMBO.",
+    "BREAK THE CROWD."
+  ],
+  "finisher": "singularity",
+  "takeKills": 9,
+  "takeImpacts": 6,
+  "capture": "Two curated native captures, normal health and offensive values, no augments or guns. Alternate ultimate ending cuts in at 14.5s; title artwork overlays only the final 2.5s."
+}

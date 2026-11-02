@@ -1,0 +1,64 @@
+{
+  "durationSeconds": 20,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 600,
+  "sourceSpeed": 1.2,
+  "shots": [
+    [
+      "freight",
+      2.2,
+      "THUNDER FREIGHT",
+      "MARK. LAUNCH. DISCHARGE."
+    ],
+    [
+      "ballet",
+      8.7,
+      "SHRAPNEL BALLET",
+      "CUT. RETRIEVE. COLLIDE."
+    ],
+    [
+      "funnel",
+      5.4,
+      "BALLISTIC FUNNEL",
+      "PULL. PIERCE. REPEAT."
+    ],
+    [
+      "close",
+      8.1,
+      "CLOSE QUARTERS",
+      "FISTS MEET FIREPOWER."
+    ],
+    [
+      "shared-pressure",
+      7.6,
+      "PERSISTENT PRESSURE",
+      "THE SECOND CUT LINGERS."
+    ],
+    [
+      "shared-conductor",
+      6.1,
+      "LIVEWIRE",
+      "TURN MARKS INTO IMPACT."
+    ],
+    [
+      "freight",
+      6.2,
+      "CHAIN REACTION",
+      "MAKE THE CROWD YOUR WEAPON."
+    ],
+    [
+      "ballet",
+      1.2,
+      "",
+      ""
+    ]
+  ],
+  "audio": {
+    "peakDbFS": -1.88,
+    "rmsDbFS": -19.09
+  },
+  "source": "Native v0.8.0 camera frames and synchronized original game SFX; staged Rare builds in wave six at 5000 capture health; normal offensive values and physics.",
+  "music": "Original synthesized 144 BPM score; authored by render.py. No third-party music."
+}

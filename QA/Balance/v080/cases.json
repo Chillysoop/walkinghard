@@ -1,0 +1,628 @@
+{
+  "cases": [
+    {
+      "id": "pressure-native-81001",
+      "context": "pressure",
+      "category": "weapon",
+      "candidate": "fists",
+      "weapons": [
+        "fists",
+        "fists"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "plate",
+      "boots": "treads",
+      "rig": "amplifier",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "basic0",
+        "basic1",
+        "Counterguard"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "pressure-shared-81001",
+      "context": "pressure",
+      "category": "weapon",
+      "candidate": "fists",
+      "weapons": [
+        "fists",
+        "fists"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "plate",
+      "boots": "treads",
+      "rig": "amplifier",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "basic0",
+        "basic1",
+        "Counterguard"
+      ],
+      "modules": [
+        "Flurry",
+        "",
+        "",
+        "Afterfield",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "pressure-native-81002",
+      "context": "pressure",
+      "category": "weapon",
+      "candidate": "fists",
+      "weapons": [
+        "fists",
+        "fists"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "plate",
+      "boots": "treads",
+      "rig": "amplifier",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "basic0",
+        "basic1",
+        "Counterguard"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "pressure-shared-81002",
+      "context": "pressure",
+      "category": "weapon",
+      "candidate": "fists",
+      "weapons": [
+        "fists",
+        "fists"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "plate",
+      "boots": "treads",
+      "rig": "amplifier",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "basic0",
+        "basic1",
+        "Counterguard"
+      ],
+      "modules": [
+        "Flurry",
+        "",
+        "",
+        "Afterfield",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "conductor-native-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "conductor-shared-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "conductor-native-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "conductor-shared-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "freight-native-81001",
+      "context": "freight",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "momentum",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "freight-shared-81001",
+      "context": "freight",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "momentum",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "modules": [
+        "Piledriver",
+        "",
+        "FollowThrough",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "freight-native-81002",
+      "context": "freight",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "momentum",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "freight-shared-81002",
+      "context": "freight",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "momentum",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ArcBolt"
+      ],
+      "modules": [
+        "Piledriver",
+        "",
+        "FollowThrough",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "sustain-native-81001",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "sustain-shared-81001",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "Afterfield",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "sustain-native-81002",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "sustain-shared-81002",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "Afterfield",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    }
+  ]
+}

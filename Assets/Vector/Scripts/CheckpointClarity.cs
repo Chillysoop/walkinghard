@@ -36,7 +36,7 @@ namespace VectorGame
         static string ItemRole(ItemDefinition def)=>def.kind==ItemKind.Weapon?(def.hands==2?"Two hands / weapon attack":"One hand / weapon attack"):def.kind==ItemKind.Basic?"Uses your equipped weapon":def.kind==ItemKind.Ability?"Action in your sequence":def.kind==ItemKind.Augment?(def.module.family<0?"Modifies an ability":"Modifies a weapon"):def.kind==ItemKind.Ultimate?"Separate recharge timer":(def.kind==ItemKind.Rig?"Rig":def.kind.ToString())+" / passive effect";
         string RewardStats(ItemDefinition def,int rank)
         {
-            if(def.kind==ItemKind.Augment)return "SCALES WITH HOST";
+            if(def.kind==ItemKind.Augment)return def.module.id==AugmentId.Livewire?"USES MARK STRENGTH":"SCALES WITH HOST";
             if(def.kind==ItemKind.Ultimate){var item=new LoadoutItem(def,rank);return LoadoutCatalog.Action(item).damage.ToString("0.#")+" DMG / "+LoadoutCatalog.Cooldown(item).ToString("0")+"s RECHARGE";}
             string text=ItemStats(def,rank);
             if(def.kind==ItemKind.Weapon)return text.Substring(5);

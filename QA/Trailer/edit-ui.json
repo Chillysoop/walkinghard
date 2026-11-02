@@ -1,0 +1,40 @@
+{
+  "durationSeconds": 20,
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "frames": 1200,
+  "gameplaySpeed": 1,
+  "fullNativeUI": true,
+  "cameraCrop": false,
+  "timeline": [
+    {
+      "start": 0,
+      "end": 4.5,
+      "scene": "Continuous native combat with action bar and normal health"
+    },
+    {
+      "start": 4.5,
+      "end": 7.5,
+      "scene": "Compare Rare scattergun, sword and hammer; drag Edge Sword to hand 1"
+    },
+    {
+      "start": 7.5,
+      "end": 12,
+      "scene": "Combat with the equipped sword and hammer"
+    },
+    {
+      "start": 12,
+      "end": 15.5,
+      "scene": "Compare new gear against a matching Gravity Well copy; third Common copy fuses the equipped ability to Uncommon"
+    },
+    {
+      "start": 15.5,
+      "end": 20,
+      "scene": "Return to combat with the upgraded ability visible in the action bar"
+    }
+  ],
+  "capture": "Native full framebuffer; curated wave-four checkpoint offers and two production drag/drop decisions; normal health, offensive values and physics. No replacement UI, speed-up or camera crop.",
+  "audio": "Synchronized native game SFX; original 144 BPM score, quieter during decisions.",
+  "peakDbFS": -3.81
+}

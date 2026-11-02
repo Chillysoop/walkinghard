@@ -49,7 +49,7 @@ namespace VectorGame
             if(d.kind==ItemKind.Augment)
             {
                 Label(new Rect(r.x+10,r.y+8,r.width-20,17),"AUGMENT / DOES NOT FUSE",11,Accent,true);
-                Label(new Rect(r.x+10,r.y+29,r.width-20,32),"Attach to a compatible weapon or ability.\nIts effect scales from that host's rarity.",11,white);return;
+                Label(new Rect(r.x+10,r.y+29,r.width-20,32),item.def.module.id==AugmentId.Livewire?"Attach to any weapon.\nDischarge damage uses the consumed mark's strength.":"Attach to a compatible weapon or ability.\nIts effect scales from that host's rarity.",11,white);return;
             }
             Label(new Rect(r.x+10,r.y+7,r.width-20,17),FusionSummary(d,item.rank,incoming),11,color,true);
             if(item.rank==5){Label(new Rect(r.x+10,r.y+29,r.width-20,32),"Already at maximum rarity. Extra copies remain separate items.",11,white);return;}

@@ -1,0 +1,9 @@
+build,variant,wins,runs,meanWave,meanHealth,meanCollisions,meanTaken
+pressure,native,2,2,8,340.0,0,55.8
+pressure,shared,2,2,8,340.0,0,49.0
+conductor,native,1,2,8,40.0,96,240.0
+conductor,shared,0,2,7,0.0,86,280.0
+freight,native,2,2,8,264.3,149,15.7
+freight,shared,2,2,8,265.8,162,14.2
+sustain,native,2,2,8,310.0,179,58.6
+sustain,shared,2,2,8,310.0,168,42.9

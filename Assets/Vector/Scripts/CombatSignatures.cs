@@ -10,7 +10,7 @@ namespace VectorGame
         [Serializable] public sealed class Contribution {public float direct,collision,control,absorption,reload,preparation,rangeWait,augment,healing;public int assists,waitEpisodes;}
         readonly Dictionary<LoadoutItem,Contribution> contributions=new Dictionary<LoadoutItem,Contribution>();
         public Contribution ContributionFor(LoadoutItem item){item=KillOwner(item);if(item==null)return new Contribution();if(!contributions.TryGetValue(item,out var c))contributions[item]=c=new Contribution();return c;}
-        sealed class Turn {public readonly HashSet<string> procs=new HashSet<string>();public readonly HashSet<int> hits=new HashSet<int>();public readonly List<Enemy> orderedHits=new List<Enemy>();public int kills;public Enemy last;public int extra=12;public float siphonHealed;}
+        sealed class Turn {public readonly HashSet<string> procs=new HashSet<string>();public readonly HashSet<int> hits=new HashSet<int>();public readonly List<Enemy> orderedHits=new List<Enemy>();public readonly HashSet<LoadoutItem> livewire=new HashSet<LoadoutItem>();public int kills;public Enemy last;public int extra=12;public float siphonHealed;}
         readonly Dictionary<int,Turn> turns=new Dictionary<int,Turn>();
         Turn CurrentTurn {get {int id=currentCredit?.action??actionSerial;if(!turns.TryGetValue(id,out var t))turns[id]=t=new Turn();return t;}}
         bool Once(string key)=>CurrentTurn.procs.Add(key);
@@ -29,16 +29,16 @@ namespace VectorGame
         public string VisiblePayoff=>Elapsed<payoffUntil?RecentPayoff:"";
         void Note(string text,bool flash=false){NotePayoff(text);InteractionNotes[text]=InteractionNotes.TryGetValue(text,out int count)?count+1:1;if(flash){RecentPayoff=text;payoffUntil=Elapsed+.7f;}}
         void SetSetup(Enemy e,LoadoutItem host){setups[e.id]=new Setup{host=host,until=Elapsed+3};}
-        sealed class Field {public LoadoutItem host;public KillCredit credit;public Vector3 origin,aim,point;public float left=2,tick;public readonly HashSet<int> hit=new HashSet<int>();}
+        sealed class Field {public LoadoutItem host;public KillCredit credit;public Vector3 origin,aim,point;public float left=2,tick,range,width,damage;public int pulses;public readonly HashSet<int> hit=new HashSet<int>();}
         readonly List<Field> fields=new List<Field>();
         sealed class AnchorCheck {public Enemy enemy;public Vector3 before;public float left=.3f,stagger;public KillCredit credit;}
         readonly List<AnchorCheck> anchors=new List<AnchorCheck>();
-        sealed class Mote {public Vector3 point;public float left=10,age,heal;public LoadoutItem owner;}
+        sealed class Mote {public Vector3 point;public float left=10,age,heal;public LoadoutItem owner,pullOwner;public Vector3 pullTarget;public float pullLeft,pulled;}
         readonly List<Mote> motes=new List<Mote>();
         public float BarrierAmount=>barriers.Sum(b=>b.left);
-        public string ArmedState=>string.Join(" · ",new[]{RecoilState,DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",followBank>0?"FOLLOW-THROUGH":"",counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
+        public string ArmedState=>string.Join(" · ",new[]{RecoilState,DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",FollowThroughReady,counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
         public bool BreachArmed(LoadoutItem host)=>host!=null&&breachArmed.Contains(host);
-        void ResetSignatures(){ResetDeadeye();ResetSynergyCues();ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
+        void ResetSignatures(){ResetDeadeye();ResetSynergyCues();ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;followMarks=0;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
         float Effect(LoadoutItem item)=>LoadoutCatalog.EffectScale(item);
         float ControlResistance(Enemy e)=>e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
         void Control(Enemy e,float seconds,Vector3 impulse)
@@ -56,10 +56,10 @@ namespace VectorGame
             m.until=Elapsed+4*Effect(source);m.power=10*ItemRarity.Power[source.rank]*potency;m.owner=source;
             fx.Symbol(e.physics.Center+Vector3.up*.9f,VisualFactory.Cyan,.3f,true);
         }
-        bool ConsumeMark(Enemy e)
+        bool ConsumeMark(Enemy e,bool announce=true)
         {
-            if(!marks.TryGetValue(e.id,out var m)||m.until<=Elapsed||m.consumed==(currentCredit?.action??actionSerial))return false;
-            Note((currentCredit?.hop??0)>0?"Body impact consumed Conductive":"Lightning consumed Conductive");m.until=0;m.consumed=currentCredit?.action??actionSerial;ContributionFor(m.owner).assists++;
+            if(e.deathAge>=0||CurrentTurn.extra<=0||!marks.TryGetValue(e.id,out var m)||m.until<=Elapsed||m.consumed==(currentCredit?.action??actionSerial))return false;
+            if(announce)Note((currentCredit?.hop??0)>0?"Body impact consumed Conductive":"Lightning consumed Conductive");m.until=0;m.consumed=currentCredit?.action??actionSerial;ContributionFor(m.owner).assists++;
             fx.Symbol(e.physics.Center,Color.white,.3f,false);DerivedHit(e,m.power,Vector3.zero,.1f,false,false,ImpactKind.Electric);return true;
         }
         void ElectricHit(Enemy e,float damage,float stagger){ConsumeMark(e);Hurt(e,damage,Vector3.zero,stagger,false,ImpactKind.Electric);if(Deck.Equipped(Signature.Grounding) is LoadoutItem g&&Once("ground"))AddBarrier(g,Mathf.Min(g.def.effect.Power(g.rank),damage*.2f*Effect(g)),4);}
@@ -129,13 +129,14 @@ namespace VectorGame
             if(t.hits.Add(e.id))t.orderedHits.Add(e);t.last=e;
             if(wasStaggered&&Deck.Equipped(Signature.Tactician) is LoadoutItem tact&&Once("tactician")){var other=enemies.FirstOrDefault(x=>x!=e&&Vector3.Distance(x.physics.Center,e.physics.Center)<tact.def.effect.Radius(tact.rank));if(other!=null){Control(other,tact.def.effect.Seconds(tact.rank),Vector3.zero);fx.Arc(e.physics.Center,other.physics.Center,VisualFactory.Cyan);}}
             if(wasStaggered&&Deck.Equipped(Signature.Capacitor) is LoadoutItem cap&&Once("capacitor"))MarkEnemy(e,cap);
+            if(currentCredit.weapon!=null){SpendFollowThrough(e.physics.Center);}
             if(currentCredit.weapon!=null&&Once("basic-payoff"))
             {
                 if(counterBank>0)Note("Counterguard empowered a weapon",true);if(amplifierBank>0)Note("Amplifier charge spent",true);float counter=counterBank,ampBank=amplifierBank,bank=counter+ampBank;float burstRadius=Deck.Equipped(Signature.Amplifier) is LoadoutItem amplifier?amplifier.def.effect.Radius(amplifier.rank):2.1f;var point=e.physics.Center;counterBank=amplifierBank=0;
                 if(bank>0){fx.Shape(point,Vector3.forward,burstRadius,180,VisualFactory.Orange,.3f);int n=0;foreach(var victim in enemies.ToArray().Where(x=>Vector3.Distance(x.physics.Center,point)<burstRadius).OrderBy(x=>BalanceOverrides.LegacyCounterBurst?0:x==e?-1:Vector3.Distance(x.physics.Center,point)).Take(5)){DerivedHit(victim,ampBank+counter*(n++==0||BalanceOverrides.LegacyCounterBurst?1:.25f),Vector3.zero,.15f);}if(counterOwner!=null)ContributionFor(counterOwner).assists++;if(Deck.Equipped(Signature.Amplifier) is LoadoutItem a)ContributionFor(a).assists++;}
-                if(followBank>0){Note("Follow-through pulse spent",true);Pulse(point,2.2f,followBank,5);followBank=0;if(followOwner!=null)ContributionFor(followOwner).assists++;}
-                if(salvagerOwner!=null){var body=corpses.Where(x=>Vector3.Distance(x.physics.Center,point)<salvagerOwner.def.effect.Radius(salvagerOwner.rank)).OrderBy(x=>Vector3.Distance(x.physics.Center,point)).FirstOrDefault();if(body!=null){var direction=point-body.physics.Center;direction.y=0;Launch(body,null,0,.6f*Effect(salvagerOwner),direction.normalized);fx.Arc(body.physics.Center,point,VisualFactory.Orange);ContributionFor(salvagerOwner).assists++;}salvagerOwner=null;}
+
             }
+            if(currentCredit.weapon!=null){TryRetrieveBody(e.physics.Center);SpendLivewire(e);}
         }
         void DeathSignatures(Enemy e,bool sever)
         {
@@ -177,8 +178,7 @@ namespace VectorGame
             if(ActiveSlot==5)return;
             currentCredit=new KillCredit{item=actionItem,weapon=actionWeapon,action=actionSerial};
             if(actionWeapon==null&&Deck.Equipped(Signature.Amplifier) is LoadoutItem amp)amplifierBank=Mathf.Min(amp.def.effect.Power(amp.rank)*3,amplifierBank+amp.def.effect.Power(amp.rank));
-            var last=CurrentTurn.orderedHits.LastOrDefault(e=>e.deathAge<0);
-            if(CurrentTurn.hits.Count>=2&&last!=null&&Deck.Equipped(Signature.Surveyor) is LoadoutItem survey&&Once("surveyor")){fx.Arc(hero.Root.position+Vector3.up,last.physics.Center,Color.white);var point=last.physics.Center;DerivedHit(last,survey.def.effect.Power(survey.rank),Vector3.zero,.1f);float radius=survey.def.effect.Radius(survey.rank);fx.Shape(point,Vector3.forward,radius,180,Color.white,.25f);foreach(var e in enemies.Where(e=>e!=last&&Vector3.Distance(e.physics.Center,point)<radius).Take(2).ToArray())DerivedHit(e,survey.def.effect.Power(survey.rank)*.35f,Vector3.zero,0);ContributionFor(survey).assists++;}
+            SurveyorEcho();
             bool wrapped=PairSlot>=0?PairSlot<ActiveSlot||PairSlot==4:ActiveSlot==4;
             // Empty trailing positions also complete a loop.
             int next=Deck.NextOccupied(((PairSlot>=0?PairSlot:ActiveSlot)+1)%5);wrapped|=next<=ActiveSlot;
@@ -207,15 +207,8 @@ namespace VectorGame
                 foreach(var m in motes)fx.Symbol(m.point,Color.green,.24f,false);
             }
             foreach(var a in anchors.ToArray()){a.left-=dt;if(a.left>0)continue;anchors.Remove(a);if(a.enemy.deathAge<0&&Vector3.Distance(a.before,a.enemy.rig.Root.position)>=.25f){currentCredit=a.credit;Control(a.enemy,a.stagger,Vector3.zero);fx.Symbol(a.enemy.physics.Center,Color.white,.3f,false);}}
-            foreach(var f in fields.ToArray())
-            {
-                f.left-=dt;f.tick-=dt;if(f.left<=0){fields.Remove(f);continue;}if(f.tick>0)continue;f.tick=.4f;currentCredit=f.credit;
-                bool corridor=f.host.def.ability.id==AbilityId.VectorTether;float width=1.8f+.1f*(f.host.rank-1);
-                if(corridor)fx.Corridor(f.origin,f.aim,8,width,VisualFactory.Cyan,.4f);else fx.Shape(f.point,Vector3.forward,2.8f,180,VisualFactory.Cyan,.4f);
-                foreach(var e in enemies.ToArray())if((f.hit.Contains(e.id)||f.hit.Count<6)&&(corridor?InCorridor(e,f.origin,f.aim,8,width):Vector3.Distance(e.rig.Root.position,f.point)<2.8f))
-                {f.hit.Add(e.id);if(f.host.def.ability.id==AbilityId.ConductiveBrand)MarkEnemy(e,f.host,.65f);else {var target=corridor?f.origin+f.aim*Mathf.Clamp(Vector3.Dot(e.rig.Root.position-f.origin,f.aim),1,8):f.point;Control(e,0,(target-e.rig.Root.position).normalized*2*Effect(f.host));SetSetup(e,f.host);}}
-            }
-            foreach(var m in motes.ToArray()){m.left-=dt;m.age+=dt;if(m.age>.3f&&Vector3.Distance(m.point,HeroPosition)<m.owner.def.effect.Radius(m.owner.rank)){float heal=Mathf.Min(MaxHealth-Health,m.heal);Health+=heal;ArmorHealing+=heal;if(heal>0){ArmPredator();Note("Repair mote restored health");}fx.Arc(m.point,HeroPosition+Vector3.up,Color.green);fx.Symbol(HeroPosition+Vector3.up*1.8f,Color.green,.5f,false);ContributionFor(m.owner).healing+=heal;motes.Remove(m);}else if(m.left<=0)motes.Remove(m);}
+            StepAfterfields(dt);
+            foreach(var m in motes.ToArray()){m.left-=dt;m.age+=dt;if(m.pullLeft>0&&m.pullOwner!=null){m.pullLeft-=dt;var previous=m.point;m.point=Vector3.MoveTowards(m.point,m.pullTarget,8*Effect(m.pullOwner)*dt);m.pulled+=Vector3.Distance(previous,m.point);}if(m.age>.3f&&Vector3.Distance(m.point,HeroPosition)<m.owner.def.effect.Radius(m.owner.rank)){float heal=Mathf.Min(MaxHealth-Health,m.heal);Health+=heal;ArmorHealing+=heal;if(heal>0){ArmPredator();Note("Repair mote restored health");}fx.Arc(m.point,HeroPosition+Vector3.up,Color.green);fx.Symbol(HeroPosition+Vector3.up*1.8f,Color.green,.5f,false);ContributionFor(m.owner).healing+=heal;if(heal>0&&m.pullOwner!=null&&m.pulled>=.25f){ContributionFor(m.pullOwner).assists++;Note("Gathered repair mote restored health");}motes.Remove(m);}else if(m.left<=0)motes.Remove(m);}
             currentCredit=saved;
         }
     }

@@ -18,6 +18,28 @@ namespace VectorGame
         static bool Launch(ItemDefinition d)=>Is(d,"MassDriver","hammer","singularity");
         static bool Sever(ItemDefinition d)=>Is(d,"sword","greatsword","siphonblade","ReapingCut","cyclone");
         static bool Mark(ItemDefinition d)=>Is(d,"ConductiveBrand","wraps","capacitor","arcstep","grounding");
+        public static bool HasConductiveSetup(AbilityDeck deck)
+        {
+            var items=Equipped(deck).Select(i=>i.def).ToArray();
+            return items.Any(d=>Is(d,"ConductiveBrand","wraps","arcstep"))||
+                items.Any(d=>Is(d,"capacitor"))&&items.Any(Stagger)||
+                items.Any(d=>Is(d,"grounding"))&&items.Any(d=>Lightning(d)||Launch(d));
+        }
+        static string ModifiedPair(AbilityDeck deck,ItemDefinition source,LoadoutItem sourceItem,ItemDefinition consumer,LoadoutItem consumerItem,out string key)
+        {
+            key="chain";
+            if(sourceItem?.HasAugment(AugmentId.FollowThrough)==true&&consumer.kind==ItemKind.Weapon)
+            {key=source.ability.id==AbilityId.DrainBrand?"siphon":source.ability.id==AbilityId.ConductiveBrand?"mark":"stagger";return "Prepared utility is delivered by the next weapon contact.";}
+            if(consumerItem?.HasAugment(AugmentId.Livewire)==true&&Mark(source)&&HasConductiveSetup(deck))
+            {key="mark";return "Conductive marks -> one weapon discharge per action.";}
+            if(sourceItem?.HasAugment(AugmentId.Livewire)==true&&Is(consumer,"grounding"))
+            {key="guard";return HasConductiveSetup(deck)?"Weapon discharges can build the barrier.":"Needs another mark source before the discharge can build a barrier.";}
+            if(sourceItem?.HasAugment(AugmentId.Afterfield)==true&&Is(consumer,"surveyor")&&Is(source,"ArcBolt","ReapingCut"))
+                return "Later field hits can complete the one multi-target echo.";
+            if(Is(source,"GravityWell","VectorTether")&&Is(consumer,"treads"))
+            {key="gather";return source.id=="GravityWell"?"Pull repair motes toward the gathering point.":"Pull repair motes onto the walking corridor.";}
+            return null;
+        }
         static string Pair(ItemDefinition source,ItemDefinition consumer,out string key)
         {
             key="chain";
@@ -51,8 +73,8 @@ namespace VectorGame
                 if((LoadoutCatalog.IsArmor(incoming.kind)||incoming.kind==ItemKind.Rig||incoming.kind==ItemKind.Ultimate)&&partner.kind==incoming.kind)continue;
                 if(incoming.kind==ItemKind.Weapon&&partner.kind==ItemKind.Weapon&&(incoming.hands==2||partner.hands==2))continue;
                 if(incoming.kind==ItemKind.Augment)
-                {if(incoming.module.Fits(partner))result.Add(new Link{partner=item,key="burst",text="Attach to modify this item's effect."});continue;}
-                string text=Pair(incoming,partner,out string key)??Pair(partner,incoming,out key);
+                {if(incoming.module.Fits(partner))result.Add(new Link{partner=item,key=incoming.module.id==AugmentId.Livewire?"mark":"burst",text=incoming.module.id==AugmentId.Livewire?(HasConductiveSetup(deck)?"Weapon hits can discharge your Conductive marks.":"Needs a Conductive source; this weapon alone cannot supply marks."):"Attach to modify this item's effect."});continue;}
+                string text=ModifiedPair(deck,incoming,incomingItem,partner,item,out string key)??ModifiedPair(deck,partner,item,incoming,incomingItem,out key)??Pair(incoming,partner,out key)??Pair(partner,incoming,out key);
                 if(text==null)continue;
                 if(partner.id=="Counterguard"&&item.HasAugment(AugmentId.Discharge)||incoming.id=="Counterguard"&&incomingItem?.HasAugment(AugmentId.Discharge)==true)continue;
                 result.Add(new Link{partner=item,key=key,text=text});

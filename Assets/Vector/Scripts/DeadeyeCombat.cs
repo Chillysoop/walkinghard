@@ -41,7 +41,7 @@ namespace VectorGame
             if(primary==null)return;
             Vector3 aim=primary.rig.Root.position-HeroPosition;aim.y=0;aim.Normalize();
             int cap=host.HasAugment(AugmentId.Focused)?1:3;
-            float stagger=LoadoutCatalog.VolleyStagger(host)*(cap==1?1.5f:1);
+            float stagger=LoadoutCatalog.VolleyStagger(host)*(cap==1?1.5f:host.HasAugment(AugmentId.FollowThrough)?.55f:1);
             foreach(var e in enemies.Where(e=>e.deathAge<0&&Reachable(e,card.range)&&InCone(e,HeroPosition,aim,card.range,12+2*(host.rank-1))).OrderBy(e=>e==primary?-1:Vector3.Distance(e.rig.Root.position,HeroPosition)).Take(cap).ToArray())
             {
                 bool interrupted=e.attack>=0;
