@@ -13,6 +13,11 @@ namespace VectorGame
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void StartTrailerIfRequested()
         {
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-trailerFinishCapture")>=0)
+            {
+                var captureGame=UnityEngine.Object.FindFirstObjectByType<VectorEncounter>();
+                captureGame.StartCoroutine(captureGame.CaptureTrailerFinish());return;
+            }
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-trailerSystemsCapture")>=0)
             {
                 var captureGame=UnityEngine.Object.FindFirstObjectByType<VectorEncounter>();

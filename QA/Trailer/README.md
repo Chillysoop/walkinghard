@@ -1,6 +1,16 @@
-# 20-second combat trailer, music-only revision
+# 20-second trailer with ultimate finale and sales-pitch outro
 
-The current revision is `Walking-Hard-Combat-Music-20s.mp4`, in the Desktop folder `Walking Hard Gameplay Trailer`. It retains the full native UI at 1920x1080 / 60 fps, exactly 1,200 frames / 20 seconds. It focuses on weapon selection, ability order, melee combos, launches, severing and an ultimate. Combat is at 1x with normal health and offensive values. This staged build contains no augments or guns.
+The current revision is `Walking-Hard-Finale-20s.mp4` in the Desktop folder `Walking Hard Gameplay Trailer`. The first 14.5 seconds retain the melee combat, weapon selection and ability-sequencing footage. A new native capture finishes with Gravity Well into **Singularity Burst**, visibly launching the gathered crowd and producing follow-up collisions. From 17.5 to 20 seconds, a centered branded panel reads **WALKING HARD / BUILD YOUR COMBO. / BREAK THE CROWD.** The aftermath keeps moving behind it; the edge HUD and action bar remain visible.
+
+The video remains 1920x1080, 60 fps, exactly 1,200 frames / 20 seconds, with normal-speed combat and the same music-only track. There are no augments or guns in either source build. The ending is a separate curated take, not a claim of one uninterrupted run. Health, damage and impact physics are production values. The ultimate delivered five direct kills; the selected 5.5-second take includes nine kills and six additional impacts in total, including gather and later follow-ups.
+
+Capture: build to `Build/TrailerFinish-v080`, then launch with `-trailerFinishCapture -seed 1741 -force-d3d11 -screen-fullscreen 0 -screen-width 1920 -screen-height 1080`. The opt-in recorder produces six-second Singularity Burst and Razor Cyclone alternatives in `FinishCapture`, with frame-level combat cues. Both completed successfully. Singularity was selected for its visible launch and collision payoff.
+
+Render with `render_finale.py singularity`. It combines the first capture with the ending, applies the outro only during the final 2.5 seconds, and uses the existing music as its sole audio input. `edit-finale.json` records the final timing and provenance. The poster and contact sheet were inspected, and both final MP4 streams decoded without errors through 20 seconds / 1,200 frames. Only optional capture and trailer tooling changed.
+
+## Previous music-only combat revision
+
+The previous revision is `Walking-Hard-Combat-Music-20s.mp4`, in the Desktop folder `Walking Hard Gameplay Trailer`. It retains the full native UI at 1920x1080 / 60 fps, exactly 1,200 frames / 20 seconds. It focuses on weapon selection, ability order, melee combos, launches, severing and an ultimate. Combat is at 1x with normal health and offensive values. This staged build contains no augments or guns.
 
 | Time | Native footage |
 | --- | --- |
