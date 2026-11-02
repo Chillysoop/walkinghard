@@ -1,0 +1,39 @@
+{
+  "durationSeconds": 20,
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "frames": 1200,
+  "fullNativeUI": true,
+  "gameplaySpeed": 1,
+  "cameraCrop": false,
+  "audio": "Original 144 BPM D-minor electronic music with melody, harmony, bass and drums. Music only; no gameplay SFX, voice or editorial effects.",
+  "timeline": [
+    {
+      "start": 0,
+      "end": 4,
+      "scene": "Sword-and-hammer combat, launches and body collisions"
+    },
+    {
+      "start": 4,
+      "end": 7,
+      "scene": "Choose a two-handed Greatsword from three melee weapon offers"
+    },
+    {
+      "start": 7,
+      "end": 10,
+      "scene": "Move Gravity Well ahead of Mass Driver using the native sequence editor"
+    },
+    {
+      "start": 10,
+      "end": 15,
+      "scene": "Gather, launch, blade attacks, severing and collision combos"
+    },
+    {
+      "start": 15,
+      "end": 20,
+      "scene": "Queue Razor Cyclone; ultimate execution and combat aftermath"
+    }
+  ],
+  "capture": "Native framebuffer and production mouse handlers; curated wave-six checkpoint, no augments or guns, normal health and offensive values. UI remains visible."
+}

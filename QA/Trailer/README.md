@@ -1,6 +1,24 @@
-# 20-second gameplay and loot trailer
+# 20-second combat trailer, music-only revision
 
-The current revision is `Walking-Hard-Gameplay-Loot-20s.mp4`, in the desktop folder `Walking Hard Gameplay Trailer`. It is 1920x1080, H.264/AAC, 60 fps, exactly 1,200 frames / 20 seconds. The full native UI stays visible. Combat runs at normal speed, with three uninterrupted 4.5-second passages and two reward decisions. There are no editorial titles, zooms or crops.
+The current revision is `Walking-Hard-Combat-Music-20s.mp4`, in the Desktop folder `Walking Hard Gameplay Trailer`. It retains the full native UI at 1920x1080 / 60 fps, exactly 1,200 frames / 20 seconds. It focuses on weapon selection, ability order, melee combos, launches, severing and an ultimate. Combat is at 1x with normal health and offensive values. This staged build contains no augments or guns.
+
+| Time | Native footage |
+| --- | --- |
+| 0–4s | Sword-and-hammer attacks, launches and collisions. |
+| 4–7s | Pick Execution Greatsword from three melee weapons and equip its locked two-handed group. |
+| 7–10s | Drag Gravity Well ahead of Mass Driver in the sequence editor. |
+| 10–15s | Gather enemies, launch them through the crowd, then cleave with the greatsword. |
+| 15–20s | Queue and execute Razor Cyclone, followed by severing and collision aftermath. |
+
+The original 144 BPM electronic track has a melodic hook, chords, bass and drums. The export reads only that music as its audio input; there are no game sounds, voice or editorial sound effects. A standalone `Walking-Hard-Music-20s.wav` is included beside the video. Its measured integrated loudness is -14.01 LUFS and true peak -1.61 dBTP before AAC encoding.
+
+Capture: build to `Build/TrailerSystems-v080`, then run with `-trailerSystemsCapture -seed 1741 -force-d3d11 -screen-fullscreen 0 -screen-width 1920 -screen-height 1080`. The opt-in recorder stages a wave-six build and a checkpoint, uses native mouse handlers for the weapon choice and ability reorder, records the full framebuffer, and writes `SystemsTrailerCapture`. It asserts the weapon was equipped, Gravity Well now precedes Mass Driver, the ultimate executed, and there were no augments attached or reloads. Normal play does not enter this path.
+
+Run `render_systems.py` with NumPy, Pillow and imageio-ffmpeg. `edit-systems.json` preserves the timing and provenance. The output folder includes the soundtrack, poster and contact sheet; large media remains outside source control. Verification: build and capture succeeded, all 1,200 frames were present, native selection/reordering and ultimate frames were inspected, and both final MP4 streams decoded without errors through 20.00 seconds. The recorder completed with one ultimate execution and zero reloads. Only capture and trailer authoring tools changed; gameplay regression checks were not repeated.
+
+## Earlier gameplay and loot revision
+
+The previous revision is `Walking-Hard-Gameplay-Loot-20s.mp4`, in the desktop folder `Walking Hard Gameplay Trailer`. It is 1920x1080, H.264/AAC, 60 fps, exactly 1,200 frames / 20 seconds. The full native UI stays visible. Combat runs at normal speed, with three uninterrupted 4.5-second passages and two reward decisions. There are no editorial titles, zooms or crops.
 
 | Time | Native footage |
 | --- | --- |
