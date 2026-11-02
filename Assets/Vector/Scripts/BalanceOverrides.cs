@@ -8,7 +8,9 @@ namespace VectorGame
     // Optional development input. No override file means the authored catalog, unchanged.
     public static class BalanceOverrides
     {
-        [Serializable] sealed class Document {public float enemyDamage,enemyHealth,heroHealth,firstSpawnInterval,finalSpawnInterval;public bool legacyWeaponAugments,legacyCounterBurst,excludeSiphon,legacySiphonBlade,legacyReclaimer,legacyRedline;public ItemPatch[] items;}
+        [Serializable] sealed class Document {public float enemyDamage,enemyHealth,heroHealth,firstSpawnInterval,finalSpawnInterval;public bool legacyWeaponAugments,legacyCounterBurst,excludeSiphon,legacySiphonBlade,legacyReclaimer,legacyRedline;public float focusedTetherWidth;public bool legacyEncounterRhythm;public ItemPatch[] items;}
+        public static float FocusedTetherWidth {get;private set;}=.7f;
+        public static bool EncounterRhythm {get;private set;}=true;
         public static bool LegacyWeaponAugments {get;private set;}
         public static bool LegacyCounterBurst {get;private set;}
         public static bool ExcludeSiphon {get;private set;}
@@ -21,7 +23,9 @@ namespace VectorGame
         static void Validate(float value,string label){if(float.IsNaN(value)||float.IsInfinity(value)||value<0||value>10)throw new ArgumentException("Balance multiplier must be 0 (default) or in (0,10]: "+label);}
         public static void Apply(string path,CombatTuning tuning)
         {
-            patches.Clear();LegacyWeaponAugments=LegacyCounterBurst=ExcludeSiphon=LegacySiphonBlade=LegacyReclaimer=LegacyRedline=false;if(string.IsNullOrEmpty(path))return;var doc=JsonUtility.FromJson<Document>(File.ReadAllText(path));if(doc==null)throw new ArgumentException("Invalid balance JSON");
+            patches.Clear();FocusedTetherWidth=.7f;EncounterRhythm=true;LegacyWeaponAugments=LegacyCounterBurst=ExcludeSiphon=LegacySiphonBlade=LegacyReclaimer=LegacyRedline=false;if(string.IsNullOrEmpty(path))return;var doc=JsonUtility.FromJson<Document>(File.ReadAllText(path));if(doc==null)throw new ArgumentException("Invalid balance JSON");
+            if(!float.IsFinite(doc.focusedTetherWidth)||doc.focusedTetherWidth<0||doc.focusedTetherWidth>=1)throw new ArgumentException("Focused Tether width must be 0 (authored) or between 0 and 1.");
+            if(doc.focusedTetherWidth>0)FocusedTetherWidth=doc.focusedTetherWidth;EncounterRhythm=!doc.legacyEncounterRhythm;
             LegacyWeaponAugments=doc.legacyWeaponAugments;LegacyCounterBurst=doc.legacyCounterBurst;ExcludeSiphon=doc.excludeSiphon;LegacySiphonBlade=doc.legacySiphonBlade;LegacyReclaimer=doc.legacyReclaimer;LegacyRedline=doc.legacyRedline;
             foreach(var value in new[]{doc.enemyDamage,doc.enemyHealth,doc.heroHealth,doc.firstSpawnInterval,doc.finalSpawnInterval})if(!float.IsFinite(value)||value<0)throw new ArgumentException("Combat overrides must be finite and non-negative; zero keeps the authored value.");
             if(doc.enemyDamage>0)tuning.enemyDamage=doc.enemyDamage;if(doc.enemyHealth>0)tuning.enemyHealth=doc.enemyHealth;if(doc.heroHealth>0)tuning.heroHealth=doc.heroHealth;

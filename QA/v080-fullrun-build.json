@@ -1,0 +1,963 @@
+{
+  "version": "0.8.0",
+  "unity": "6000.3.27f1",
+  "player": "Build/FullRun-batched/WalkingHard.exe",
+  "assemblySha256": "c54face798b626b4b3b847fb6df6f04d9b7d3fae2b5fb38a5e1997201b8ade47",
+  "sourceFiles": [
+    {
+      "path": "Assets/Resources/CombatTuning.asset",
+      "gitBlob": "4b6e8e0f664a11b37a489280e3a029a84f2c483b"
+    },
+    {
+      "path": "Assets/Resources/CombatTuning.asset.meta",
+      "gitBlob": "6dff3c7d495aa0240dcbb4ca12c19f87a0612c16"
+    },
+    {
+      "path": "Assets/Resources/EffectShader.mat",
+      "gitBlob": "f9a434485641846d93b9c73521a333cf581f7842"
+    },
+    {
+      "path": "Assets/Resources/EffectShader.mat.meta",
+      "gitBlob": "bbf70becb58766ed561aa888257abe9f9b34768f"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Actions.png",
+      "gitBlob": "4a29003a71124b07d4fbc7a89370152c50aad704"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Actions.png.meta",
+      "gitBlob": "3614dca6345c2562c4aceb913a6b4b1e6491bc8d"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Augments.png",
+      "gitBlob": "eb600cd0b11af66d622001453ed022702f62a6aa"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Augments.png.meta",
+      "gitBlob": "b355442022c6b4fb29c28fdee6c7512c096562c4"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Deadeye-recoil.png",
+      "gitBlob": "a7080266a5679cf033ff2ae619a3eec22016286b"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Deadeye-recoil.png.meta",
+      "gitBlob": "cb8475c8dbde9db2740a52d233714a1e6748e97b"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Deadeye-SuppressiveVolley.png",
+      "gitBlob": "2f9de9ce639c6338d1ca4dcd3c4139ccd9950d16"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Deadeye-SuppressiveVolley.png.meta",
+      "gitBlob": "eabbc3a4aa3d6e686d5a0a03abe475b38f4eb4a5"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Equipment.png",
+      "gitBlob": "69a28f7b7a6ae6c2b1a57fe49309eb2e14e85198"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Equipment.png.meta",
+      "gitBlob": "6e422a3924ebd20a7b7dad84bace324a11b297d3"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Livewire.png",
+      "gitBlob": "be882ce65b14e62646232b116b0c7912b077379f"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Livewire.png.meta",
+      "gitBlob": "de3dfb6d4abad81f92297f6c6389ef994e497cf7"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-DrainBrand.png",
+      "gitBlob": "19665f61d98d59a623b3b1bb94c92a55bc39d7ad"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-DrainBrand.png.meta",
+      "gitBlob": "e1a19b203bfd6e9bc6beffd8c1c95ed1856a0dc3"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-harvest.png",
+      "gitBlob": "570db974eed3e87e94012b313b62c8eb6079b059"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-harvest.png.meta",
+      "gitBlob": "bae223982c66f986e67c2a4b9d445cfc67b7ead9"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-predator.png",
+      "gitBlob": "8b237af3996a1a645d04396219067505aefaacdb"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-predator.png.meta",
+      "gitBlob": "373913a55ae27fd08c22123b237d3cfd1b46dafc"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-reclaimer.png",
+      "gitBlob": "bda98ffb41afd1688f73720f679ad9f8c7336b2a"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-reclaimer.png.meta",
+      "gitBlob": "224a8c0a5717a35af3b4ecf13f0f2e203c8a6109"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-siphonblade.png",
+      "gitBlob": "10e41910bfe30cbed3cf31602ae50e4018a2af24"
+    },
+    {
+      "path": "Assets/Resources/ItemArt/Siphon-siphonblade.png.meta",
+      "gitBlob": "6fbcf62e9a8bb9a0eaecb1ce7633b3faaf880f22"
+    },
+    {
+      "path": "Assets/Resources/ItemArt.meta",
+      "gitBlob": "cdb129d9be3f57f70b6ce6f7a98da1f82a982136"
+    },
+    {
+      "path": "Assets/Resources/SurfaceShader.mat",
+      "gitBlob": "bcfcf9679358391412d14b8ec19da009da17fcec"
+    },
+    {
+      "path": "Assets/Resources/SurfaceShader.mat.meta",
+      "gitBlob": "d486a6821473af99b848d9e304033c09ab14f74a"
+    },
+    {
+      "path": "Assets/Resources.meta",
+      "gitBlob": "a1388281f79d1383289db2378bb61dce65057fd6"
+    },
+    {
+      "path": "Assets/Settings/DefaultVolumeProfile.asset",
+      "gitBlob": "66d98de6299f53f3c079575dbc574ee63d86a5ba"
+    },
+    {
+      "path": "Assets/Settings/DefaultVolumeProfile.asset.meta",
+      "gitBlob": "53b314adfa72d5417bc331688c0b9e5f060d3e73"
+    },
+    {
+      "path": "Assets/Settings/Mobile_Renderer.asset",
+      "gitBlob": "ea246b25944b5909ccd96814d2f058f15ee54178"
+    },
+    {
+      "path": "Assets/Settings/Mobile_Renderer.asset.meta",
+      "gitBlob": "a3588b1a9b92579322c8e3256ae87087a842724d"
+    },
+    {
+      "path": "Assets/Settings/Mobile_RPAsset.asset",
+      "gitBlob": "7ceffe7ad905e8e653b70918d1cf1488075f42ba"
+    },
+    {
+      "path": "Assets/Settings/Mobile_RPAsset.asset.meta",
+      "gitBlob": "3660d1516d2a3761aee80b9e0d61a97b729fe4d8"
+    },
+    {
+      "path": "Assets/Settings/PC_Renderer.asset",
+      "gitBlob": "475b02e55788d3346367feccd62a6b7f954e944e"
+    },
+    {
+      "path": "Assets/Settings/PC_Renderer.asset.meta",
+      "gitBlob": "ddae6a5f019681e9ab98ea467b7d2ed2a61a1155"
+    },
+    {
+      "path": "Assets/Settings/PC_RPAsset.asset",
+      "gitBlob": "94462e3d62505364076844eaf62012d3843a4ae5"
+    },
+    {
+      "path": "Assets/Settings/PC_RPAsset.asset.meta",
+      "gitBlob": "e286b2fdd06e896697ca7b75af321f224ce520f2"
+    },
+    {
+      "path": "Assets/Settings/SampleSceneProfile.asset",
+      "gitBlob": "c1b0f6319bcf0c43f2e3186b375c182c5c39340a"
+    },
+    {
+      "path": "Assets/Settings/SampleSceneProfile.asset.meta",
+      "gitBlob": "b82270c5b2802668616a4cbbe2a6e46fb49e00a5"
+    },
+    {
+      "path": "Assets/Settings/UniversalRenderPipelineGlobalSettings.asset",
+      "gitBlob": "4887222d5ee6d8a15c273e8bd715d920cc18d5be"
+    },
+    {
+      "path": "Assets/Settings/UniversalRenderPipelineGlobalSettings.asset.meta",
+      "gitBlob": "81b84f2ae16ada93cf1bea3ad2f74d6d96b5b3e1"
+    },
+    {
+      "path": "Assets/Settings.meta",
+      "gitBlob": "39b94dd76ba033107fe3d6c204e91b9cdc0f8612"
+    },
+    {
+      "path": "Assets/Vector/Editor/PrototypeBuilder.cs",
+      "gitBlob": "07d9bd7587cb32a134c702cde9b188da06c55f2d"
+    },
+    {
+      "path": "Assets/Vector/Editor/PrototypeBuilder.cs.meta",
+      "gitBlob": "0b7d100c8992c418245bf09b66d39243e68fab80"
+    },
+    {
+      "path": "Assets/Vector/Editor.meta",
+      "gitBlob": "15d23d4c419d9226c7881b2ab2cb39391b308fb0"
+    },
+    {
+      "path": "Assets/Vector/Scenes/CombatStudy.unity",
+      "gitBlob": "552c17371775faaa210eb93f8ba0f5ce782def45"
+    },
+    {
+      "path": "Assets/Vector/Scenes/CombatStudy.unity.meta",
+      "gitBlob": "ff45e4632a5008046088b8c614a6e903047886fb"
+    },
+    {
+      "path": "Assets/Vector/Scenes.meta",
+      "gitBlob": "4ff952a617544dede5027217d17ae3d145298961"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AbilityDeck.cs",
+      "gitBlob": "dc227395e8573f3815e5b403692a41c03fd52e36"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AbilityDeck.cs.meta",
+      "gitBlob": "26f96f361682379cb44f335e641edc4d82d3f06a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ActionWaitFeedback.cs",
+      "gitBlob": "60003e719e253831fbbc90c78bdba92895223a79"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ActionWaitFeedback.cs.meta",
+      "gitBlob": "235670f22c500169976d4e3a3ceb999f5c8aae32"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AugmentCatalog.cs",
+      "gitBlob": "986f8c04ab7c34ec8de3ececc4d3cff31c4a8732"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AugmentCatalog.cs.meta",
+      "gitBlob": "73cc16235b68ff1b0772e086d97bffa0b06f88f4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AugmentHUD.cs",
+      "gitBlob": "66f108923ba38ec80d53ec12a5559a12ff5f83ef"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AugmentHUD.cs.meta",
+      "gitBlob": "376ddba8bcf2d13b065d222365ba1fe3abb96490"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AuthoredActions.cs",
+      "gitBlob": "623a8ad1d769bee687677428ad13c86478da0c88"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AuthoredActions.cs.meta",
+      "gitBlob": "35067ef589183c7bf644aa51f44f58574387f81d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BalanceOverrides.cs",
+      "gitBlob": "bf9c42766ab5d75291cb489dbb9586159511fa41"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BalanceOverrides.cs.meta",
+      "gitBlob": "259ac145a03a1acfe94a0a46d1d8f74dd888d7fb"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BuildSynergies.cs",
+      "gitBlob": "a0565876fbc2c65fd47412b5d8f8c5addb1899df"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BuildSynergies.cs.meta",
+      "gitBlob": "b55d824a9542da1f6d0843bccea81abf2f4871e5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BuildVarietyChecks.cs",
+      "gitBlob": "4397a3e4cceab0e55d714736d836676bdfa9397a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/BuildVarietyChecks.cs.meta",
+      "gitBlob": "286be7193b7af1a8f2435b106719cd912b8c2083"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CharacterPreview.cs",
+      "gitBlob": "3918512ec73af3b27844d97dba6277866d7c4265"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CharacterPreview.cs.meta",
+      "gitBlob": "2fe6d390009ac4e7b0a6e4af3d770921e84a77cc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarity.cs",
+      "gitBlob": "cdfe1153b41ec049790a35913f4b9bc5862e5b7f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarity.cs.meta",
+      "gitBlob": "e513a9993fc5a7324d7706fdcbbb86758f00744a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarityReview.cs",
+      "gitBlob": "1f2b08b47553a2b08ae5b87adbdda66c421e6f2d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarityReview.cs.meta",
+      "gitBlob": "c5186a41b12bd4753ddcdb6d0a7cd9a3d691f7e9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointHUD.cs",
+      "gitBlob": "f6cac1bee3e2378a8eb5cd8cb759eed2a360dac7"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointHUD.cs.meta",
+      "gitBlob": "a873b9e0673128305b118f220afd4912ace4189a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatEffects.cs",
+      "gitBlob": "3fd32555b6189344d3f497c69d5ea4c5134a0270"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatEffects.cs.meta",
+      "gitBlob": "ea7261681ee7ddb5ab5906700c97cdfa591d172f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPresentation.cs",
+      "gitBlob": "df9a8390a0d77021dd18b071609b004edde093bc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPresentation.cs.meta",
+      "gitBlob": "571172228be56149335b9e9a3345dc9cbe52d860"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreview.cs",
+      "gitBlob": "d33442b3c2446da8e6a56254176049b5748784cf"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreview.cs.meta",
+      "gitBlob": "853955815a7b6b5313c713e8d769fa6980bccae1"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreviewChecks.cs",
+      "gitBlob": "38079d1fa71301d85370a1679e8cbd49659e104b"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreviewChecks.cs.meta",
+      "gitBlob": "3c9fbee7bcc6ccf011f55969ebd441dbc97e90ad"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatSignatures.cs",
+      "gitBlob": "836a778f98f55c601a6704bc998a5ae2298fb26a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatSignatures.cs.meta",
+      "gitBlob": "cffdcdd9846cc824458ba28f460437ce231fe382"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatTuning.cs",
+      "gitBlob": "74464497264fd6c8f8e730a2b98766a97a08cb0a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatTuning.cs.meta",
+      "gitBlob": "e0ebc0e37699fc0fd6130174d932a3935f40facb"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ComboScore.cs",
+      "gitBlob": "7f23c5d0da277d0444d6e81257735aac303086e2"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ComboScore.cs.meta",
+      "gitBlob": "8e1ad6b66c972597be5610014ca22bfc23f78647"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ControlledSimulation.cs",
+      "gitBlob": "19258ddaef33a0e00e7c6109e12c141bda7c1f8e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ControlledSimulation.cs.meta",
+      "gitBlob": "cad31e6b073bebe355e4fc15fad5071f9cb5f2ba"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadeyeChecks.cs",
+      "gitBlob": "c11e8379db7e4e6e159f9259af77897b3d538cc4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadeyeChecks.cs.meta",
+      "gitBlob": "ee83a75a56db908a5c1f82337395f3c97f5d5673"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadeyeCombat.cs",
+      "gitBlob": "19b4c965ff6de4d8e7818868ee0e48f344f4f3ce"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadeyeCombat.cs.meta",
+      "gitBlob": "410ae24fb18f1f2c741c2dc179e5a05dd19eb838"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DefensiveBalanceChecks.cs",
+      "gitBlob": "9d64906523ae583f1d5f076c8b1b91e31e5f30ef"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DefensiveBalanceChecks.cs.meta",
+      "gitBlob": "ed0ca495a8b78fd2503a647b7c8149f2107fe41b"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DropGuidance.cs",
+      "gitBlob": "802560a02691128069a101fe13ce83cc6f8604d0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DropGuidance.cs.meta",
+      "gitBlob": "7190d67b50d1acfae9fc27d6d676dccfdb4e3f66"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCadence.cs",
+      "gitBlob": "8b6891df7bd1ca93ec23407c91ed9155545428be"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCadence.cs.meta",
+      "gitBlob": "c360c4b1ef539007ca32d8d67eff441de226fd58"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCombat.cs",
+      "gitBlob": "a292f54a76369e9ee8d22487f180b54a4059cf7a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCombat.cs.meta",
+      "gitBlob": "7cac0079c0a7dc49a7c7d510ce2afb6514a7306f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterQA.cs",
+      "gitBlob": "ae0c7eb5daeef4f5586f72c51197fe2683a17c3f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterQA.cs.meta",
+      "gitBlob": "976b63d898f11f242b0027fd9fbb1c9729f1c9e7"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRouteChecks.cs",
+      "gitBlob": "ef63f52e839b3ef1b01fe91a5215532b6409bd85"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRouteChecks.cs.meta",
+      "gitBlob": "3b5068e395b314051bc40ee65391cffdf4b56a36"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRoutes.cs",
+      "gitBlob": "eb83f17715d0a70012d636c01ba27c5d4a2d36f0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRoutes.cs.meta",
+      "gitBlob": "e300ea331476202d92d7fe41da495c2af3b44a91"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EnemyPressure.cs",
+      "gitBlob": "55c75c7fb2d0031153e2dab3626279ceba234dc4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EnemyPressure.cs.meta",
+      "gitBlob": "af51735dd0e4e411df0c5b251056f4cf9309bbc1"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EnemyPressureChecks.cs",
+      "gitBlob": "90c27829d6354551631d54f7fb0f811ee9d2a183"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EnemyPressureChecks.cs.meta",
+      "gitBlob": "1f426813ba18be10949c5b02a6623767b28d176c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EntryLayout.cs",
+      "gitBlob": "7c15e1f1f116ed4fa8d7885d198ff7f46027479f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EntryLayout.cs.meta",
+      "gitBlob": "bb1fc66fc954dece53d25e28337ae2dd1e8e6b18"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FastSimulationPhysics.cs",
+      "gitBlob": "7c2abcffbf361352fe40355e08c9b48ee2f8b43f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FastSimulationPhysics.cs.meta",
+      "gitBlob": "532754ebc368da12d61eac7aeab3fefcac4598c4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterImpactPhysics.cs",
+      "gitBlob": "6321518e15ff93846303abd4116f261938e5ff32"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterImpactPhysics.cs.meta",
+      "gitBlob": "7b57f45d209b0b03098337353df2b039f7343710"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterPhysics.cs",
+      "gitBlob": "d6fa349ef73b5ab5fa8fad37ecbac376e4023344"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterPhysics.cs.meta",
+      "gitBlob": "e292f0976b22dec7954126cd1c4901e20f2016f0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterPresentation.cs",
+      "gitBlob": "acc9e6cd6b66340eefa11d9790670d8b65dec180"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterPresentation.cs.meta",
+      "gitBlob": "504e01c92d6646c55fdb484b62918e64f9925bc9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterRig.cs",
+      "gitBlob": "ee415c6e3afd8dae11e1ab83142c8a9523965d1a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FighterRig.cs.meta",
+      "gitBlob": "ae392cb6707b5b9bfa0557756fda22a01212decb"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FullRunReview.cs",
+      "gitBlob": "f91a3abbfc8bfc55841ea463599cb75c7d029ce9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FullRunReview.cs.meta",
+      "gitBlob": "2e26cab12797773cdde137c56c13102b937e599a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FusionFeedback.cs",
+      "gitBlob": "7edd23b9b08a5af5becc76bff888347fd95005ae"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FusionFeedback.cs.meta",
+      "gitBlob": "59f661526c871fac3b1a70307d2725c928479937"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FusionPresentation.cs",
+      "gitBlob": "abf5090d15be704151408a01709e2ba86224ca6c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/FusionPresentation.cs.meta",
+      "gitBlob": "c6d1dadda3b2f801d42de9b65618cc6016714101"
+    },
+    {
+      "path": "Assets/Vector/Scripts/HeadlessSimulation.cs",
+      "gitBlob": "ab8c0e42cd3889e60f395e33e772b05735e5e4ec"
+    },
+    {
+      "path": "Assets/Vector/Scripts/HeadlessSimulation.cs.meta",
+      "gitBlob": "47bff860fc63cb69257dcf6064e3a3643c612cda"
+    },
+    {
+      "path": "Assets/Vector/Scripts/HUDInteractions.cs",
+      "gitBlob": "5aa5cf0a5f361f0863e7668a5f826f735d126923"
+    },
+    {
+      "path": "Assets/Vector/Scripts/HUDInteractions.cs.meta",
+      "gitBlob": "c60a4bf6a9aa842a8792a0e6c5ab4350412f3e8e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ImpactChecks.cs",
+      "gitBlob": "2549fe819a7b654671508fbeff1171b83db3a090"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ImpactChecks.cs.meta",
+      "gitBlob": "8979126f411bddd77876b9e7f9a8e9c1826c0331"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ImpactReaction.cs",
+      "gitBlob": "2f04e87613bdc9b6bac1fb0c49acebdceb3c0ba0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ImpactReaction.cs.meta",
+      "gitBlob": "bed1f0d9ccff1e6251e0cceee43fd393d834db2d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemArtwork.cs",
+      "gitBlob": "9803f7579cc68b40ced714bc2c3e8781847d9caf"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemArtwork.cs.meta",
+      "gitBlob": "d22b850a8a9d53da1ded50d479be80c7a115a919"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemIconography.cs",
+      "gitBlob": "e7346add67389ef3c455a7dfeab175612f4ab284"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemIconography.cs.meta",
+      "gitBlob": "aca8c7c98a0d02370e32367f272e2a7f8c88d88e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemPresentation.cs",
+      "gitBlob": "17a53f200dd50e02ea005a30504e0ce5a5287848"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemPresentation.cs.meta",
+      "gitBlob": "4325424289ff03b235e673729084613e899b33f8"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemRarity.cs",
+      "gitBlob": "fe48f36c09c829bd31dff6d43dfff00d78c3e3cd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemRarity.cs.meta",
+      "gitBlob": "8bf4a273b809795c3fad0ad90cda921f690d0ae6"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemSummaries.cs",
+      "gitBlob": "56ce2223252b83b74bc3dc324db83bb850a059de"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ItemSummaries.cs.meta",
+      "gitBlob": "caabd983d7adc68cac90f2458bc200eb9b7ee9dc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/LoadoutCatalog.cs",
+      "gitBlob": "6559f7dc18d66e6993104721a7bdf751a3ad75ee"
+    },
+    {
+      "path": "Assets/Vector/Scripts/LoadoutCatalog.cs.meta",
+      "gitBlob": "cd9b6e3100c6c5c3fb05fc2491b3ee4dd09af2e5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/LoadoutChecks.cs",
+      "gitBlob": "5e7e3b3c30bbe9d2e3238e41b99037e2d4c9f6fe"
+    },
+    {
+      "path": "Assets/Vector/Scripts/LoadoutChecks.cs.meta",
+      "gitBlob": "e2990bff0fe55dc43473501d610c5fad00953e33"
+    },
+    {
+      "path": "Assets/Vector/Scripts/MechanicChecks.cs",
+      "gitBlob": "0fa71ccc13d41c2736704f179c80f1a85def9a28"
+    },
+    {
+      "path": "Assets/Vector/Scripts/MechanicChecks.cs.meta",
+      "gitBlob": "57f0a30f12d83081838c427c03afae7f2f66cad8"
+    },
+    {
+      "path": "Assets/Vector/Scripts/MechanicReview.cs",
+      "gitBlob": "ed7fe785038c857ef3070964e2f52d9ab51a1ae9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/MechanicReview.cs.meta",
+      "gitBlob": "f0880f2456c830893e64d3db191f3b47718a5935"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PresentationGeometry.cs",
+      "gitBlob": "24f36f69ea853f1c6c0b817dc2c6b1e0a6420ebd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PresentationGeometry.cs.meta",
+      "gitBlob": "597b22ab764c05bc07dc751db4a5edd458f24217"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PresentationReview.cs",
+      "gitBlob": "0093e4123955e6f59a487f40295114f61e52b9ce"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PresentationReview.cs.meta",
+      "gitBlob": "79c1245f162430b39f31a46d9d9a8088fa27bf58"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs",
+      "gitBlob": "62095712c8bbe5e561202f47c8ba47ed48ff84b9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs.meta",
+      "gitBlob": "eb2c598102b63e8025b6d26a3bd01188794cb9f4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PursuerChecks.cs",
+      "gitBlob": "c5f73dfb6ccc1559556a4c80b224bb3b2ede051b"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PursuerChecks.cs.meta",
+      "gitBlob": "0f40ec5b4e72ab0fafa0cdbff21a3e142f4a5e93"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PursuerFinale.cs",
+      "gitBlob": "b577e432de035041b772317a6e2e791aa2862b54"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PursuerFinale.cs.meta",
+      "gitBlob": "300022ad5d24d70e19a2c23451e8ab325456face"
+    },
+    {
+      "path": "Assets/Vector/Scripts/QuickTutorial.cs",
+      "gitBlob": "9d89d185fc9e14ab1a522a9d05f9bfe139e57b68"
+    },
+    {
+      "path": "Assets/Vector/Scripts/QuickTutorial.cs.meta",
+      "gitBlob": "131648fe75172f198db0ac432e8ff64b74a60f1e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RearBoundary.cs",
+      "gitBlob": "2de0563cd94165e1f336c17349f24f72a0f7d415"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RearBoundary.cs.meta",
+      "gitBlob": "796dbdd00126797e882c4ab0f47e2a20844385e8"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "gitBlob": "68f2fa956a7218eccb5b9e11232516e34912ee0e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs.meta",
+      "gitBlob": "ae2b11d0a4c0316ac885d6d2b290b8410c12ce31"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SharedAugmentChecks.cs",
+      "gitBlob": "92f5362087d19d02af92080ae4bf1c814e3868f5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SharedAugmentChecks.cs.meta",
+      "gitBlob": "f7ce8d4f6a41add3712e88b835e8e6332694d3ca"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SharedAugments.cs",
+      "gitBlob": "97bee882fdbc087d87adcbb345d3b9363f22e5dd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SharedAugments.cs.meta",
+      "gitBlob": "2ec5c58052f0267f5d641e60d59ac1228e6a59de"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SiphonBalanceChecks.cs",
+      "gitBlob": "444685c65521e3bd08b34fbae9da27ffb754b493"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SiphonBalanceChecks.cs.meta",
+      "gitBlob": "9896565d18276eda664f730cd9482298a29804de"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SiphonCombat.cs",
+      "gitBlob": "f91a0277204fde9d62bdf962bd944e3ad76822ca"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SiphonCombat.cs.meta",
+      "gitBlob": "02fa5c8f579a3b51114688730aab56e6bc4b27fe"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SynergyClarity.cs",
+      "gitBlob": "f6b34136674e8bc84982f608ae8329e6160b7fc2"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SynergyClarity.cs.meta",
+      "gitBlob": "dcf8885f3bc891fc1b4fc67972d49a9391c2d2ad"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SynergyReview.cs",
+      "gitBlob": "53b21f21ac0adaf90de1de97f329d1bdd9d510cc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/SynergyReview.cs.meta",
+      "gitBlob": "274b2828990c56627df480c20b45e58600fe2616"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerCapture.cs",
+      "gitBlob": "a8f12cc140c833cdf2e716a4e3672d480cbb203d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerCapture.cs.meta",
+      "gitBlob": "cf9e774545c6e32bf5e4639a3bec8db0232c6036"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerFinishCapture.cs",
+      "gitBlob": "2637ecb54db1050dc4924d7253c7c53634749950"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerFinishCapture.cs.meta",
+      "gitBlob": "fa20ae423a298d92b1efeea8dd1643e5392eadd0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerSystemsCapture.cs",
+      "gitBlob": "1f32671074950285f657052c35a343601640ce96"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerSystemsCapture.cs.meta",
+      "gitBlob": "be47e1e284aa0bfcec7bb7474efc077ac2c71991"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerUICapture.cs",
+      "gitBlob": "2573a31210ee6a8e56757d49d04fee649a94f0f9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TrailerUICapture.cs.meta",
+      "gitBlob": "89427b126f2f2354020dc033cf8785bc789dce0a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TutorialReview.cs",
+      "gitBlob": "c431cc506056f1e0921be7934ca77205cbb90a25"
+    },
+    {
+      "path": "Assets/Vector/Scripts/TutorialReview.cs.meta",
+      "gitBlob": "ac3c008805608cb01848aa25e8c0ec667f49dd23"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VarietyQA.cs",
+      "gitBlob": "a14046d7737e2cc1d3c25f86d8013133450bce40"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VarietyQA.cs.meta",
+      "gitBlob": "403e9bec2e6fc5fce193dc04f603a781a9f9d31f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "gitBlob": "87d92424af917ac4d0b8b991f25b9e869ed783bd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs.meta",
+      "gitBlob": "6c4dbb750f6258e5b220d346dc2fd1ba639da0ea"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VisualFactory.cs",
+      "gitBlob": "fc69cb7f2a1c8600fe59c22e55608beba47eff46"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VisualFactory.cs.meta",
+      "gitBlob": "0b6d872924dc63eace47e60801982ebd925908d5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedback.cs",
+      "gitBlob": "214d8f3ceb66dc2539626831121e1062cab66936"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedback.cs.meta",
+      "gitBlob": "52cbb36acf6249c5b37a2c49a3cc918cedd6745c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedbackChecks.cs",
+      "gitBlob": "1fda5badf75d2f46b8a4d718dab8a926674c267e"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedbackChecks.cs.meta",
+      "gitBlob": "a02a006782ed14677b8440dd6b9023f79860057f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedbackHUD.cs",
+      "gitBlob": "ef66692e7b0ae8b490a537ec6ff8adc8218d7a47"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WaveFeedbackHUD.cs.meta",
+      "gitBlob": "4d18131423767819aab0a1a8f61aac91976360dd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WeaponCombat.cs",
+      "gitBlob": "cd06701dbc5d80d1efc18d4b78b1b280b597c9a2"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WeaponCombat.cs.meta",
+      "gitBlob": "daa021e5c21d909bb14985629c73d4a9ff23e0e5"
+    },
+    {
+      "path": "Assets/Vector/Scripts.meta",
+      "gitBlob": "6fffccb244f76d616b88358ea9151cb188178f51"
+    },
+    {
+      "path": "Assets/Vector.meta",
+      "gitBlob": "2377308876a66677d1b7b423078006cec2174fa3"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "gitBlob": "4939af0b75efe2562b4782d74a0050cecc25e27c"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "gitBlob": "7fce015a660f9aaa2b67f04c22c78332c1f45dea"
+    },
+    {
+      "path": "ProjectSettings/AudioManager.asset",
+      "gitBlob": "27287fec5f4e4b712cbdd5b3a6383cbfd900b940"
+    },
+    {
+      "path": "ProjectSettings/ClusterInputManager.asset",
+      "gitBlob": "e7886b266a005f4d9d80f2fef8d1649dcfd3ed2b"
+    },
+    {
+      "path": "ProjectSettings/DynamicsManager.asset",
+      "gitBlob": "fc90ab9589af00aa403b7aeb17cf53779a9aa571"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "gitBlob": "be9a0b746b69dbd806d5860ca83a40654fad3a74"
+    },
+    {
+      "path": "ProjectSettings/EditorSettings.asset",
+      "gitBlob": "1e44a0a116014cfcc9acc8462e7a8a817da1b00f"
+    },
+    {
+      "path": "ProjectSettings/GraphicsSettings.asset",
+      "gitBlob": "84b2182fe3e3bc3e639c1e90e9e979e5a2515cc2"
+    },
+    {
+      "path": "ProjectSettings/InputManager.asset",
+      "gitBlob": "b16147e954fd861c2e2db769449894d310aa7b26"
+    },
+    {
+      "path": "ProjectSettings/MemorySettings.asset",
+      "gitBlob": "5b5facecace9276319b6e497953ab0429de65b61"
+    },
+    {
+      "path": "ProjectSettings/MultiplayerManager.asset",
+      "gitBlob": "2a936644e0d87339f17484efc93de6f0de5774b1"
+    },
+    {
+      "path": "ProjectSettings/NavMeshAreas.asset",
+      "gitBlob": "3b0b7c3d183abdd300112f56965916ef11667f54"
+    },
+    {
+      "path": "ProjectSettings/PackageManagerSettings.asset",
+      "gitBlob": "be4a7974ec170d9bfa288154684b318966c43f13"
+    },
+    {
+      "path": "ProjectSettings/Physics2DSettings.asset",
+      "gitBlob": "6c5cf8a004ac48f27cb36f7cdea139eb4d3e812f"
+    },
+    {
+      "path": "ProjectSettings/PresetManager.asset",
+      "gitBlob": "67a94daefe2e6bce3ec73546ad7cda94f702ad22"
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "gitBlob": "580edd892b236b609dee170f3be5cf38db134a87"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "gitBlob": "12a7ef0fe27ea8cef7c172526552fb87b8ce6740"
+    },
+    {
+      "path": "ProjectSettings/QualitySettings.asset",
+      "gitBlob": "2248bcf6c2a7ccc8cf229c2160542f509c08a240"
+    },
+    {
+      "path": "ProjectSettings/SceneTemplateSettings.json",
+      "gitBlob": "ede5887b3a3e5e7ce4e90f0d893a1e4cdb2c7451"
+    },
+    {
+      "path": "ProjectSettings/ShaderGraphSettings.asset",
+      "gitBlob": "ce8c2432884fcc0d627b3cef54a6ea51d4f766e4"
+    },
+    {
+      "path": "ProjectSettings/TagManager.asset",
+      "gitBlob": "6413d11ff54dc0a0b364765f1d35bbd42d7d79cf"
+    },
+    {
+      "path": "ProjectSettings/TimeManager.asset",
+      "gitBlob": "558a017e1f50b2db73414a1abad3c033922774f8"
+    },
+    {
+      "path": "ProjectSettings/UnityConnectSettings.asset",
+      "gitBlob": "5ef56984d721f3673bc862fc972f5ea9c06132d4"
+    },
+    {
+      "path": "ProjectSettings/URPProjectSettings.asset",
+      "gitBlob": "08faf0336cfc52a79a9de4abb5a1cbc1babd0020"
+    },
+    {
+      "path": "ProjectSettings/VersionControlSettings.asset",
+      "gitBlob": "dca288142fc043d5a749e9058fe625505008834f"
+    },
+    {
+      "path": "ProjectSettings/VFXManager.asset",
+      "gitBlob": "3a95c98bec50cf72538061fd26eee95398f72128"
+    },
+    {
+      "path": "ProjectSettings/XRSettings.asset",
+      "gitBlob": "482590c196f7a82116679f58176b9d1aff21d7f9"
+    }
+  ],
+  "sourceVerification": "Canonical Git blobs include clean filters. Generated scene file-ID churn was reverted; scene content and references are unchanged.",
+  "hardware": "Ryzen 5 7600 / NVIDIA RTX 3080",
+  "baseCommit": "4a80ef17ee20c40dc5eb186e4803d6cdea4bcb79"
+}

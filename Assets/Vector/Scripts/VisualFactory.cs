@@ -6,8 +6,8 @@ namespace VectorGame
 {
     public static class VisualFactory
     {
-        public static bool PreviewStyle;
-        public static Material Hero, Armor, Enemy, EnemyHeavy, Joint, Skin, Glow, RedGlow, GoldGlow, Ground, Stone, Trim, Black, Fx;
+        public static bool ArmoredStyle;
+        public static Material Hero, Armor, Enemy, EnemyHeavy, Joint, Skin, Glow, RedGlow, GoldGlow, SiphonGlow, Ground, Stone, Trim, Black, Fx;
         public static readonly Color Cyan = new Color(.25f, .95f, .86f);
         public static readonly Color Orange = new Color(1f, .39f, .16f);
         public static Material Lit(string name, Color color, float metal = 0, Color? emission = null)
@@ -29,6 +29,7 @@ namespace VectorGame
             Glow = Lit("Jade field", Cyan, .25f, Cyan * 2.4f);
             RedGlow = Lit("Enemy optics", Orange, .2f, Orange * 2.4f);
             GoldGlow = Lit("Amber lights", new Color(.9f,.68f,.3f), .2f, new Color(1.6f, .72f,.16f));
+            SiphonGlow = Lit("Siphon crimson",new Color(.85f,.08f,.22f),.25f,new Color(1.8f,.1f,.25f));
             Ground = Lit("Basalt floor", new Color(.13f,.18f,.20f), .25f);
             Stone = Lit("Architectural concrete", new Color(.18f,.23f,.25f), .1f);
             Trim = Lit("Metal trims", new Color(.32f,.39f,.40f), .6f);

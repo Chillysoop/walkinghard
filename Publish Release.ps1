@@ -1,4 +1,4 @@
-param([string]$Tag='v0.7.7',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
+param([string]$Tag='v0.8.0',[switch]$SkipBuild,[string]$PlayerDirectory=(Join-Path $PSScriptRoot 'Build\Windows'))
 $ErrorActionPreference='Stop'
 $repo='Chillysoop/walkinghard';$api='https://api.github.com/repos/'+$repo
 Push-Location $PSScriptRoot
@@ -8,6 +8,15 @@ try {
     if ((& git status --porcelain).Length -gt 0) { throw 'Commit the source and validation reports before publishing.' }
     $remote=(& git ls-remote origin refs/heads/main) -split '\s+'
     if ($remote[0] -ne $commit) { throw 'Push this exact commit to main before publishing.' }
+    $capabilities=Get-Content -LiteralPath (Join-Path $PlayerDirectory 'simulation-capabilities.json') -Raw | ConvertFrom-Json
+    if($capabilities.version -ne $Tag.TrimStart('v')){throw 'Player version does not match the release tag.'}
+    $verified=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'QA\v080-fullrun-build.json') -Raw | ConvertFrom-Json
+    $assemblyHash=(Get-FileHash -LiteralPath (Join-Path $PlayerDirectory 'WalkingHard_Data\Managed\Assembly-CSharp.dll') -Algorithm SHA256).Hash
+    if($assemblyHash -ne $verified.assemblySha256){throw 'Player assembly differs from the verified release candidate.'}
+    foreach($entry in $verified.sourceFiles){
+        $sourceBlob=(& git hash-object -- $entry.path).Trim()
+        if($LASTEXITCODE -ne 0 -or $sourceBlob -ne $entry.gitBlob){throw ('Verified source changed: '+$entry.path)}
+    }
     $releases=Join-Path $PSScriptRoot 'Releases';New-Item -ItemType Directory -Path $releases -Force | Out-Null
     $stage=Join-Path $releases ('Stage-'+[Guid]::NewGuid().ToString('N'));New-Item -ItemType Directory -Path $stage -Force | Out-Null
     foreach($f in @('WalkingHard.exe','WalkingHard_Data','UnityPlayer.dll','UnityCrashHandler64.exe','MonoBleedingEdge','D3D12','simulation-capabilities.json')) {
@@ -31,9 +40,12 @@ try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v076-ui') -Destination $qaStage -Recurse
     foreach($doc in @('v077-verification.md','v077-balance-review.md','v077-verification.json')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\v077-ui') -Destination $qaStage -Recurse
+    foreach($doc in @('v080-verification.md','v080-rifle-review.md','combat-preview-verification.md','combat-preview-native.json','combat-preview-build.json','v080-fullrun-verification.md','v080-fullrun-balance.md','v080-fullrun-build.json','v080-fullrun-regression.json','v080-release-notes.md')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$doc)) -Destination $qaStage}
+    foreach($folder in @('v080-ui','combat-preview-ui','v080-fullrun-ui')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\'+$folder)) -Destination $qaStage -Recurse}
     $balanceStage=Join-Path $qaStage 'Balance';New-Item -ItemType Directory -Path $balanceStage -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\v076') -Destination $balanceStage -Recurse
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\v077') -Destination $balanceStage -Recurse
+    foreach($folder in @('v080','v080-rifle-factorial','full-run')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('QA\Balance\'+$folder)) -Destination $balanceStage -Recurse}
     $runnerStage=Join-Path $balanceStage 'controlled-siphon';New-Item -ItemType Directory -Path $runnerStage -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'QA\Balance\controlled-siphon\run.py') -Destination $runnerStage
     $zip=Join-Path $releases 'WalkingHard-Windows.zip'
@@ -48,7 +60,8 @@ try {
     $release=$null
     try{$release=Invoke-RestMethod ($api+'/releases/tags/'+[Uri]::EscapeDataString($Tag)) -Headers $headers}catch{if([int]$_.Exception.Response.StatusCode -ne 404){throw}}
     if(-not $release){
-        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Recoil Charge Preservation';draft=$true;prerelease=$false;body="Recoil Harness keeps its stored bonus when the base gun hit already kills the target. A surviving piercing or ricochet target, the other pistol, or a later attack can spend it once. Damage and kills still belong to the armor. Hover rules explain the behavior.`n`nAll item stats remain unchanged. Matched Fast and Full/PhysX comparisons are recorded in QA/v077-balance-review.md; regression and native presentation checks are recorded in QA/v077-verification.md.`n`nExtract the ZIP and run WalkingHard.exe, or use Launcher/Install.cmd for an updating shortcut. Built from $commit."} | ConvertTo-Json
+        $notes=(Get-Content -LiteralPath (Join-Path $PSScriptRoot 'QA\v080-release-notes.md') -Raw).Trim()+"`n`nBuilt from $commit."
+        $body=@{tag_name=$Tag;target_commitish=$commit;name='Walking Hard '+$Tag+' - Shared Builds and Combat Polish';draft=$true;prerelease=$false;body=$notes} | ConvertTo-Json
         $release=Invoke-RestMethod ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body $body
     }
     foreach($path in @($zip,$manifest)){

@@ -8,16 +8,16 @@ namespace VectorGame
         public bool CombatPreviewStyle {get;private set;}=true;
         public int CombatPreviewPreset {get;private set;}
         public static readonly string[] CombatPreviewNames={"FISTS","DUAL BLADES","GREATSWORD","HAMMER","CLOSE QUARTERS","RIFLE","PURSUER"};
-        bool startingCombatPreview;
+        bool startingCombatPreview,savedPreviewStyle;
         float savedPreviewSpeed;
         int savedPreviewSeed;
         public void BeginCombatPreview(int preset=0,bool newStyle=true)
         {
-            if(!CombatPreviewActive){savedPreviewSpeed=CombatSpeed;savedPreviewSeed=Seed;}
+            if(!CombatPreviewActive){savedPreviewStyle=VisualFactory.ArmoredStyle;savedPreviewSpeed=CombatSpeed;savedPreviewSeed=Seed;}
             CombatPreviewActive=true;CombatPreviewPreset=Mathf.Clamp(preset,0,CombatPreviewNames.Length-1);CombatPreviewStyle=newStyle;
-            VisualFactory.PreviewStyle=newStyle;Seed=1741;
+            VisualFactory.ArmoredStyle=newStyle;Seed=1741;
             startingCombatPreview=true;Begin(true);startingCombatPreview=false;
-            fx.PreviewStyle(newStyle);fx.PreviewReducedMotion(ReducedMotion);SetCombatSpeed(1);
+            fx.SetPresentation(newStyle);fx.SetReducedMotion(ReducedMotion);SetCombatSpeed(1);
             LoadoutItem Equip(string id,PlaceKind place,int index=0){var item=Deck.Acquire(LoadoutCatalog.Find(id),3);MoveItem(item,place,index);return item;}
             string[][] actions={
                 new[]{"GravityWell","SteelJab","MassDriver"},new[]{"GravityWell","ReapingCut","ForcePush"},
@@ -62,7 +62,7 @@ namespace VectorGame
         void EndCombatPreview()
         {
             if(!CombatPreviewActive)return;
-            CombatPreviewActive=false;VisualFactory.PreviewStyle=false;fx.PreviewStyle(false);Seed=savedPreviewSeed;SetCombatSpeed(savedPreviewSpeed);
+            CombatPreviewActive=false;VisualFactory.ArmoredStyle=savedPreviewStyle;fx.SetPresentation(savedPreviewStyle);Seed=savedPreviewSeed;SetCombatSpeed(savedPreviewSpeed);
         }
         public void ToggleCombatPreviewStyle()=>BeginCombatPreview(CombatPreviewPreset,!CombatPreviewStyle);
         void StepCombatPreview(float dt)

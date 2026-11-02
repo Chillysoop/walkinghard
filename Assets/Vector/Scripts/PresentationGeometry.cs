@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VectorGame
@@ -7,6 +8,28 @@ namespace VectorGame
     public static class PresentationGeometry
     {
         static Mesh shell;
+        static readonly Dictionary<string,Mesh> boneMeshes=new Dictionary<string,Mesh>();
+        public static void CompactBone(Transform root,string identity)
+        {
+            // Only combine decoration attached to one bone. Cuts and ragdoll joints retain
+            // their original hierarchy, colliders and independent motion.
+            var parts=root.GetComponentsInChildren<MeshFilter>();
+            foreach(var group in parts.GroupBy(p=>p.GetComponent<MeshRenderer>().sharedMaterial))
+            {
+                var source=group.ToArray();if(source.Length<2)continue;
+                string key=identity+"/"+group.Key.name;
+                if(!boneMeshes.TryGetValue(key,out var mesh))
+                {
+                    mesh=new Mesh{name="Armored bone / "+key};
+                    mesh.CombineMeshes(source.Select(p=>new CombineInstance{mesh=p.sharedMesh,transform=root.worldToLocalMatrix*p.transform.localToWorldMatrix}).ToArray(),true,true);
+                    boneMeshes.Add(key,mesh);
+                }
+                var combined=VisualFactory.Node(source[0].name,root,Vector3.zero);
+                combined.gameObject.AddComponent<MeshFilter>().sharedMesh=mesh;
+                combined.gameObject.AddComponent<MeshRenderer>().sharedMaterial=group.Key;
+                foreach(var part in source){part.gameObject.SetActive(false);Object.Destroy(part.gameObject);}
+            }
+        }
         public static Transform Plate(string name,Transform parent,Vector3 position,Vector3 size,Material material,float rotation=0)
         {
             if(shell==null)

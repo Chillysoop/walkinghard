@@ -1,0 +1,388 @@
+{
+  "cases": [
+    {
+      "id": "paired-blade-sword-84001",
+      "context": "paired-blade",
+      "category": "weapon",
+      "candidate": "sword",
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "treads",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-blade-greatsword-84001",
+      "context": "paired-blade",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "treads",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-hammer-breachhammer-84001",
+      "context": "paired-hammer",
+      "category": "weapon",
+      "candidate": "breachhammer",
+      "weapons": [
+        "breachhammer",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "treads",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-hammer-hammer-84001",
+      "context": "paired-hammer",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "treads",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-gun-pistol-84001",
+      "context": "paired-gun",
+      "category": "weapon",
+      "candidate": "pistol",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-gun-rifle-84001",
+      "context": "paired-gun",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84001
+    },
+    {
+      "id": "paired-blade-sword-84002",
+      "context": "paired-blade",
+      "category": "weapon",
+      "candidate": "sword",
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "treads",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    },
+    {
+      "id": "paired-blade-greatsword-84002",
+      "context": "paired-blade",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "treads",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "sequence": [
+        "GravityWell",
+        "ReapingCut",
+        "Counterguard",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    },
+    {
+      "id": "paired-hammer-breachhammer-84002",
+      "context": "paired-hammer",
+      "category": "weapon",
+      "candidate": "breachhammer",
+      "weapons": [
+        "breachhammer",
+        "breachhammer"
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "treads",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    },
+    {
+      "id": "paired-hammer-hammer-84002",
+      "context": "paired-hammer",
+      "category": "weapon",
+      "candidate": "hammer",
+      "weapons": [
+        "hammer",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt"
+      ],
+      "helmet": "capacitor",
+      "armor": "grounding",
+      "boots": "treads",
+      "rig": "relay",
+      "ultimate": "tempest",
+      "sequence": [
+        "ConductiveBrand",
+        "MassDriver",
+        "ArcBolt",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    },
+    {
+      "id": "paired-gun-pistol-84002",
+      "context": "paired-gun",
+      "category": "weapon",
+      "candidate": "pistol",
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    },
+    {
+      "id": "paired-gun-rifle-84002",
+      "context": "paired-gun",
+      "category": "weapon",
+      "candidate": "rifle",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "basic0",
+        "basic1"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 84002
+    }
+  ]
+}

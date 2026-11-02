@@ -9,6 +9,34 @@ namespace VectorGame
         readonly List<Renderer> originalSurfaces=new List<Renderer>();
         readonly List<Transform> presentationRoots=new List<Transform>();
         bool presentationBuilt,presentationEnabled;
+        string weaponIdentity="";
+        readonly List<Transform> identityParts=new List<Transform>();
+        public void WeaponIdentity(LoadoutItem right,LoadoutItem left)
+        {
+            if(lightweight)return;
+            string key=right.def.id+"/"+left.def.id+"/"+twoHanded+"/"+VisualFactory.ArmoredStyle;
+            if(key==weaponIdentity)return;weaponIdentity=key;
+            foreach(var part in identityParts)if(part!=null)Object.Destroy(part.gameObject);identityParts.Clear();
+            if(!VisualFactory.ArmoredStyle)return;
+            void Identity(LoadoutItem item,Transform hand,Transform weapon)
+            {
+                if(item.def.id=="wraps")
+                    for(int i=0;i<3;i++)identityParts.Add(PresentationGeometry.Plate("Conductive knuckle coil",hand,new Vector3((i-1)*.085f,-.015f,.11f),new Vector3(.035f,.21f,.09f),VisualFactory.Glow));
+                if(weapon==null)return;
+                foreach(var renderer in weapon.GetComponentsInChildren<Renderer>())
+                    if(renderer.name=="Blade channel")renderer.sharedMaterial=item.def.id=="siphonblade"?VisualFactory.SiphonGlow:VisualFactory.Glow;
+                if(item.def.id=="siphonblade")
+                    for(int side=-1;side<=1;side+=2)identityParts.Add(PresentationGeometry.Plate("Siphon blade hook",weapon,new Vector3(side*.14f,0,1.45f),new Vector3(.12f,.11f,.32f),VisualFactory.SiphonGlow,side*12));
+            }
+            Identity(right,RightHand,weaponRight);if(!twoHanded)Identity(left,LeftHand,weaponLeft);
+        }
+        public void RangedEquipment()
+        {
+            if(lightweight)return;
+            EquipWeapons(WeaponKind.Pistol,WeaponKind.Fists,false);
+            if(VisualFactory.ArmoredStyle)
+                PresentationGeometry.Plate("Ranged sight mast",Body,new Vector3(.3f,.81f,-.16f),new Vector3(.09f,.45f,.09f),VisualFactory.GoldGlow);
+        }
         Transform SkinNode(Transform bone)
         {var node=VisualFactory.Node("Presentation armor",bone,Vector3.zero);presentationRoots.Add(node);return node;}
         public void ApplyPresentation(bool enabled)
@@ -48,6 +76,7 @@ namespace VectorGame
                     PresentationGeometry.Plate("Armored boot",knee,new Vector3(0,-.39f,.11f),new Vector3(.29f,.21f,.46f),dark);
                     PresentationGeometry.Plate("Toe cap",knee,new Vector3(0,-.37f,.31f),new Vector3(.29f,.14f,.15f),armor);
                 }
+                for(int i=0;i<presentationRoots.Count;i++)PresentationGeometry.CompactBone(presentationRoots[i],(hero?"hero":presentationHeavy?"heavy":"raider")+"/"+i);
                 presentationBuilt=true;
             }
             foreach(var r in originalSurfaces)if(r!=null)r.enabled=!enabled;
@@ -60,7 +89,7 @@ namespace VectorGame
         }
         Transform MakePresentationWeapon(Transform hand,WeaponKind kind,bool two)
         {
-            var root=VisualFactory.Node("Armored "+kind,hand,Vector3.zero);
+            var root=VisualFactory.Node(kind.ToString(),hand,Vector3.zero);
             void P(string name,Vector3 p,Vector3 size,Material mat)=>PresentationGeometry.Plate(name,root,p,size,mat);
             P("Grip",new Vector3(0,-.035f,.13f),new Vector3(.14f,.19f,.38f),VisualFactory.Joint);
             if(kind==WeaponKind.Sword)

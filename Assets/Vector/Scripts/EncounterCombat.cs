@@ -88,7 +88,7 @@ namespace VectorGame
             if(desired!=heldWeapon){DelayAction(.28f*LoaderFactor,"READYING");ActionStatus="READYING / "+desired;heldWeapon=desired;}
             PrepareWeapon(actionWeapon);if(PairSlot>=0&&!Deck.TwoHanded)PrepareWeapon(pairWeapon);
             if(Preparation<=0&&borePending){DelayAction(.3f,"FOCUSING");borePending=false;}
-            if(ultimate)fx.PreviewCharge(HeroPosition,Deck.Ultimate.def.id,Preparation+nativeDuration*.44f);
+            if(ultimate)fx.UltimateCharge(HeroPosition,Deck.Ultimate.def.id,Preparation+nativeDuration*.44f);
             return true;
         }
         void StepHero(float dt)

@@ -1,0 +1,18 @@
+{
+  "assemblySha256": "849c6c941a73df684ffa674ec071a89d9fa9a148dd2cda9cd9979590f659dd0b",
+  "concurrency": "Two ordinary Full simulation workers and one regression worker ran during some initial native samples. Quiet profiles follow separately.",
+  "runs": [
+    {
+      "policy": "gun",
+      "file": "gun-initial-report.json"
+    },
+    {
+      "policy": "storm",
+      "file": "storm-initial-report.json"
+    },
+    {
+      "policy": "cutcarry",
+      "file": "cutcarry-initial-report.json"
+    }
+  ]
+}

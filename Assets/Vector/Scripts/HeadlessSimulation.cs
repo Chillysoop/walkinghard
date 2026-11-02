@@ -18,6 +18,7 @@ namespace VectorGame
         System.Random policyRandom;
         bool simulationTimedOut;float nextSimulationCheck;float simulationLimit=480,nextSimulationTrace=60;
         static readonly string[] SimulationPolicies={"random","balanced","pinball","storm","sever","gun"};
+        static readonly string[] ArchetypePolicies={"pinball","storm","sever","gun","cutcarry","close"};
         void ConfigureSimulation(string[] args)
         {
             string Arg(string key,string fallback){int at=Array.IndexOf(args,key);return at>=0&&at+1<args.Length?args[at+1]:fallback;}
@@ -25,7 +26,7 @@ namespace VectorGame
             simulationSeed=int.Parse(Arg("-seed","1"));simulationStride=Math.Max(1,int.Parse(Arg("-simStride","1")));simulationWaves=int.Parse(Arg("-simWaves","8"));
             if(simulationWaves!=3&&simulationWaves!=8)throw new ArgumentException("-simWaves must be 3 or 8");
             string mode=Arg("-simMode","Full");if(mode!="Full"&&mode!="Fast")throw new ArgumentException("Unknown simulation mode");FastSimulation=mode=="Fast";
-            simulationPolicy=Arg("-simPolicy","mixed");if(simulationPolicy!="mixed"&&!SimulationPolicies.Contains(simulationPolicy))throw new ArgumentException("Unknown simulation policy");
+            simulationPolicy=Arg("-simPolicy","mixed");if(simulationPolicy!="mixed"&&simulationPolicy!="archetypes"&&!SimulationPolicies.Contains(simulationPolicy)&&!ArchetypePolicies.Contains(simulationPolicy))throw new ArgumentException("Unknown simulation policy");
             int RouteOption(string value){if(value=="linked"||value=="alternating")return -1;if(value=="standard")return 0;if(value=="shield")return 1;if(value=="volatile")return 2;throw new ArgumentException("Unknown simulation route: "+value);}
             simulationEncounterRoute=RouteOption(Arg("-simEncounterRoute","alternating"));simulationRewardRoute=RouteOption(Arg("-simRewardRoute","linked"));
             simulationLimit=float.Parse(Arg("-simMaxSeconds","480"),System.Globalization.CultureInfo.InvariantCulture);if(!float.IsFinite(simulationLimit)||simulationLimit<120||simulationLimit>600)throw new ArgumentException("Simulation time limit must be 120–600 combat seconds");
@@ -34,7 +35,7 @@ namespace VectorGame
             if(File.Exists(simulationOutput))throw new IOException("Simulation output already exists; use a fresh output path to avoid mixing batches.");
             ConfigureControlled(Arg("-simCases",null));forcedSeed=true;tuning.seed=simulationSeed;
         }
-        string CurrentPolicy=>simulationPolicy=="mixed"?SimulationPolicies[Math.Abs(Seed)%SimulationPolicies.Length]:simulationPolicy;
+        string CurrentPolicy=>simulationPolicy=="archetypes"?ArchetypePolicies[Math.Abs(Seed)%ArchetypePolicies.Length]:simulationPolicy=="mixed"?SimulationPolicies[Math.Abs(Seed)%SimulationPolicies.Length]:simulationPolicy;
         void ValidateSimulationStep(float dt)
         {
             if(Elapsed<nextSimulationCheck)return;nextSimulationCheck=Elapsed+1;
@@ -45,11 +46,13 @@ namespace VectorGame
             if(Elapsed>=nextSimulationTrace){nextSimulationTrace+=60;var boss=enemies.FirstOrDefault(e=>e.boss);Debug.Log("SIM_PROGRESS seed="+Seed+" elapsed="+Elapsed+" wave="+Wave+" health="+Health+" enemies="+enemies.Count+" boss="+(boss==null?"none":boss.health+" at "+boss.rig.Root.position)+" action="+ActionStatus);}
             if(Elapsed>=simulationLimit){simulationTimedOut=true;State=RunState.Defeated;}
         }
-        string PolicyTags=>CurrentPolicy=="pinball"?"stagger launch collision iron hammer":CurrentPolicy=="storm"?"mark chain storm":CurrentPolicy=="sever"?"sever blade gather":CurrentPolicy=="gun"?"gun reload pierce gather":"guard sustain tempo";
+        string PolicyTags=>CurrentPolicy=="pinball"?"stagger launch collision iron hammer":CurrentPolicy=="storm"?"mark chain storm":CurrentPolicy=="sever"?"sever blade gather":CurrentPolicy=="gun"?"gun reload pierce gather":CurrentPolicy=="cutcarry"?"sever blade stagger launch hammer":CurrentPolicy=="close"?"stagger iron gun push close guard":"guard sustain tempo";
         float PolicyValue(ItemDefinition def,int rank)
         {
             float score=ItemRarity.Power[rank]*2;
             foreach(var tag in def.tags.Split(' '))if(tag.Length>0&&PolicyTags.Split(' ').Contains(tag))score+=1.6f;
+            if(CurrentPolicy=="cutcarry"&&def.kind==ItemKind.Weapon){if(def.id=="sword"||def.id=="breachhammer")score+=4;else if(def.hands==2)score-=3;}
+            if(CurrentPolicy=="close"&&def.kind==ItemKind.Weapon){if(def.id=="fists"||def.id=="wraps"||def.id=="pistol"||def.id=="scattergun")score+=4;else if(def.hands==2)score-=3;}
             if(def.kind==ItemKind.Augment)return 3+Deck.CompatibleHosts(def).Max(h=>PolicyValue(h.def,h.rank)+(h.augment==null?3:0));
             if(def.kind==ItemKind.Weapon&&Deck.Weapons.Any(w=>w==null))score+=2;
             if(LoadoutCatalog.IsArmor(def.kind)&&Deck.Armor[LoadoutCatalog.ArmorIndex(def.kind)]==null)score+=3;
@@ -69,6 +72,8 @@ namespace VectorGame
                 else
                 {
                     Deck.SuggestedPlace(offer.def,out var place,out int index);
+                    if(offer.def.kind==ItemKind.Weapon&&offer.def.hands==1&&(CurrentPolicy=="cutcarry"||CurrentPolicy=="close"))
+                    {place=PlaceKind.Weapon;index=CurrentPolicy=="cutcarry"?(offer.def.weapon==WeaponKind.Hammer?1:0):(offer.def.weapon==WeaponKind.Fists?0:1);}
                     if(Deck.Draft==DraftKind.Ability){place=PlaceKind.Sequence;index=Array.FindIndex(Deck.Slots,i=>i==null);}
                     else if(offer.def.kind==ItemKind.Ability&&place==PlaceKind.Inventory)
                     {

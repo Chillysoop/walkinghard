@@ -1,0 +1,147 @@
+{
+    "seed": 83011,
+    "wave": 8,
+    "kills": 312,
+    "itemChoices": 13,
+    "augmentChoices": 2,
+    "assertions": 47,
+    "policy": "storm",
+    "result": "Complete",
+    "health": 209.76266479492188,
+    "passed": true,
+    "performance": [
+        {
+            "wave": 1,
+            "enemies": 11,
+            "bodies": 12,
+            "frames": 121,
+            "speed": 1.0,
+            "medianMs": 16.664505004882814,
+            "p95Ms": 16.76654815673828,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 2,
+            "enemies": 9,
+            "bodies": 43,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.669273376464845,
+            "p95Ms": 16.801834106445314,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 3,
+            "enemies": 14,
+            "bodies": 73,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.912460327148439,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 4,
+            "enemies": 10,
+            "bodies": 114,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.668319702148439,
+            "p95Ms": 16.767501831054689,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 5,
+            "enemies": 14,
+            "bodies": 138,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.7236328125,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 21,
+            "bodies": 176,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.7388916015625,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 22,
+            "bodies": 181,
+            "frames": 120,
+            "speed": 0.5,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.71600341796875,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 18,
+            "bodies": 192,
+            "frames": 21,
+            "speed": 4.0,
+            "medianMs": 97.5494384765625,
+            "p95Ms": 176.73110961914063,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 7,
+            "enemies": 14,
+            "bodies": 227,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.67022705078125,
+            "p95Ms": 16.73126220703125,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 8,
+            "enemies": 35,
+            "bodies": 268,
+            "frames": 90,
+            "speed": 1.0,
+            "medianMs": 19.5159912109375,
+            "p95Ms": 29.60968017578125,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 42,
+            "bodies": 29,
+            "frames": 173,
+            "speed": 1.0,
+            "medianMs": 16.6778564453125,
+            "p95Ms": 22.94921875,
+            "reducedMotion": false,
+            "stress": true
+        },
+        {
+            "wave": 6,
+            "enemies": 42,
+            "bodies": 33,
+            "frames": 85,
+            "speed": 4.0,
+            "medianMs": 16.693115234375,
+            "p95Ms": 68.267822265625,
+            "reducedMotion": true,
+            "stress": true
+        }
+    ],
+    "measurement": "1080p wall-frame intervals, 60 FPS cap; fast-forward between real-time samples. Normal drafts/health, automatic choices and ultimates. Stress fixture is recorded separately."
+}

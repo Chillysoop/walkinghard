@@ -6,15 +6,15 @@ namespace VectorGame
     public sealed partial class CombatEffects
     {
         bool previewEnabled;PreviewParticles previewParticles;
-        public void PreviewStyle(bool enabled)
+        public void SetPresentation(bool enabled)
         {previewEnabled=enabled&&!disabled;if(previewEnabled&&previewParticles==null)previewParticles=new PreviewParticles(parent);if(!enabled)previewParticles?.Clear();}
-        public void PreviewReducedMotion(bool reduced){if(previewParticles!=null)previewParticles.ReducedMotion=reduced;}
+        public void SetReducedMotion(bool reduced){if(previewParticles!=null)previewParticles.ReducedMotion=reduced;}
         public int PreviewActive=>previewParticles?.Active??0;
-        public void PreviewGather(Vector3 origin,Vector3 aim,Vector3 center,float radius,float width,bool corridor)
+        public void GatherCue(Vector3 origin,Vector3 aim,Vector3 center,float radius,float width,bool corridor)
         {if(previewEnabled)previewParticles.Gather(origin,aim,center,radius,width,corridor);}
-        public void PreviewCharge(Vector3 center,string id,float duration)
+        public void UltimateCharge(Vector3 center,string id,float duration)
         {if(previewEnabled)previewParticles.Ultimate(center,id,duration,false);}
-        public void PreviewUltimate(Vector3 center,string id,float radius)
+        public void UltimateCue(Vector3 center,string id,float radius)
         {if(previewEnabled)previewParticles.Ultimate(center,id,Mathf.Min(radius,8),true);}
     }
     // Fixed pool, cached meshes/material and local deterministic variation: no physics or gameplay RNG.
@@ -85,18 +85,18 @@ namespace VectorGame
             if(hit.kind==ImpactKind.Crush)Emit(new Vector3(hit.point.x,.13f,hit.point.z),Vector3.zero,.3f,lethal?3.6f:2.2f,.45f,new Color(.85f,.53f,.28f,.55f),true,true);
             if(hit.kind==ImpactKind.Slash)Emit(hit.point,hit.direction*.4f,.75f,1.45f,.19f,new Color(.7f,.95f,1,.45f),false,true);
         }
-        public void Gather(Vector3 origin,Vector3 aim,Vector3 center,float radius,float width,bool corridor)
+        public void Gather(Vector3 origin,Vector3 aim,Vector3 center,float radius,float width,bool corridor,Color? tint=null)
         {
             // The native footprint owns the range. Motes show actual pull direction inside it.
-            origin.y=center.y=.45f;int count=ReducedMotion?4:10;
-            if(!corridor)Emit(center-Vector3.up*.3f,Vector3.zero,1.4f,.25f,.55f,new Color(.15f,.8f,1,.5f),true,true);
+            Color color=tint??VisualFactory.Cyan;origin.y=center.y=.45f;int count=ReducedMotion?4:10;
+            if(!corridor)Emit(center-Vector3.up*.3f,Vector3.zero,1.4f,.25f,.55f,new Color(color.r,color.g,color.b,.5f),true,true);
             Vector3 side=Vector3.Cross(Vector3.up,aim).normalized;
             for(int i=0;i<count;i++)
             {
                 float a=i*Mathf.PI*2/count;
                 Vector3 target=corridor?origin+aim*(radius*(.15f+.7f*i/count)):center;
                 Vector3 start=corridor?target+side*(i%2==0?-1:1)*width*.8f:origin+new Vector3(Mathf.Cos(a),0,Mathf.Sin(a))*radius*.85f;
-                Emit(target,start-target,.23f,.05f,.55f,VisualFactory.Cyan,false,false,true);
+                Emit(target,start-target,.23f,.05f,.55f,color,false,false,true);
             }
         }
         public void Ultimate(Vector3 center,string id,float value,bool release)
@@ -115,7 +115,7 @@ namespace VectorGame
             // Chain lightning keeps its native target-to-target arcs as the payoff.
             if(id=="tempest")
             {Emit(center+Vector3.up,Vector3.up*.5f,.9f,.2f,.3f,new Color(color.r,color.g,color.b,.6f));return;}
-            if(id=="harvest"){Gather(center,Vector3.forward,center,value,0,false);return;}
+            if(id=="harvest"){Gather(center,Vector3.forward,center,value,0,false,color);return;}
             Emit(center+Vector3.up*.14f,Vector3.zero,.6f,value*2,.65f,new Color(color.r,color.g,color.b,.65f),true,true);
             Emit(center+Vector3.up,Vector3.zero,2.3f,.2f,.18f,new Color(color.r,color.g,color.b,.6f));
             int rays=ReducedMotion?6:16;
