@@ -1,0 +1,719 @@
+{
+  "baseline-fast": {
+    "batch": {
+      "policy": "archetypes",
+      "assemblySha256": "C5CBDE046CCBAF3595DE231CB985BCB53BD2BE623AC6707486514A83B5A50820",
+      "runs": 600,
+      "waves": 8,
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-11-02T22:40:16.5688375Z",
+      "workers": 3,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-study\\WalkingHard.exe",
+      "mode": "Fast",
+      "firstSeed": 82002,
+      "completedUtc": "2026-11-02T22:42:18.6392225Z",
+      "valid": 600,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 0,
+      "balance": {
+        "focusedTetherWidth": 0.5,
+        "encounterRhythm": false
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 100,
+        "wins": 25,
+        "timeouts": 0,
+        "meanWave": 5.87,
+        "meanKills": 196.13,
+        "meanSeconds": 231.37482666015626,
+        "meanHealth": 41.577419471740725
+      },
+      {
+        "group": "cutcarry",
+        "runs": 100,
+        "wins": 20,
+        "timeouts": 0,
+        "meanWave": 5.38,
+        "meanKills": 176.07,
+        "meanSeconds": 204.6032260131836,
+        "meanHealth": 24.535849437713622
+      },
+      {
+        "group": "gun",
+        "runs": 100,
+        "wins": 14,
+        "timeouts": 0,
+        "meanWave": 4.31,
+        "meanKills": 135.53,
+        "meanSeconds": 156.13243629455567,
+        "meanHealth": 15.437874507904052
+      },
+      {
+        "group": "pinball",
+        "runs": 100,
+        "wins": 32,
+        "timeouts": 0,
+        "meanWave": 5.68,
+        "meanKills": 193.19,
+        "meanSeconds": 229.2945226287842,
+        "meanHealth": 48.520402851104734
+      },
+      {
+        "group": "sever",
+        "runs": 100,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 6.23,
+        "meanKills": 218.68,
+        "meanSeconds": 237.5406811141968,
+        "meanHealth": 70.8127624320984
+      },
+      {
+        "group": "storm",
+        "runs": 100,
+        "wins": 42,
+        "timeouts": 0,
+        "meanWave": 6.44,
+        "meanKills": 229.77,
+        "meanSeconds": 250.4196150970459,
+        "meanHealth": 93.17804548978806
+      }
+    ]
+  },
+  "presentation-control": {
+    "batch": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-candidate\\WalkingHard.exe",
+      "waves": 8,
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-11-02T22:48:05.5007339Z",
+      "workers": 2,
+      "policy": "archetypes",
+      "firstSeed": 82002,
+      "runs": 24,
+      "assemblySha256": "AFBE0D2278874EE7588E51DAD6BF4B4E5BD9A1B8C6CABF7DF1A8B903FAE8C402",
+      "mode": "Fast",
+      "completedUtc": "2026-11-02T22:48:21.0132842Z",
+      "valid": 24,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 0,
+      "balance": {
+        "focusedTetherWidth": 0.5,
+        "encounterRhythm": false
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6,
+        "meanKills": 187,
+        "meanSeconds": 218.32346725463867,
+        "meanHealth": 11.264455795288086
+      },
+      {
+        "group": "cutcarry",
+        "runs": 4,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 5.25,
+        "meanKills": 166.75,
+        "meanSeconds": 189.02865028381348,
+        "meanHealth": 0.0
+      },
+      {
+        "group": "gun",
+        "runs": 4,
+        "wins": 0,
+        "timeouts": 0,
+        "meanWave": 3,
+        "meanKills": 78.75,
+        "meanSeconds": 97.8638334274292,
+        "meanHealth": 0.0
+      },
+      {
+        "group": "pinball",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6,
+        "meanKills": 199.25,
+        "meanSeconds": 239.10188484191895,
+        "meanHealth": 78.67520141601562
+      },
+      {
+        "group": "sever",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 5.5,
+        "meanKills": 179.75,
+        "meanSeconds": 199.23126792907715,
+        "meanHealth": 76.2983627319336
+      },
+      {
+        "group": "storm",
+        "runs": 4,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 6,
+        "meanKills": 218,
+        "meanSeconds": 233.32595443725586,
+        "meanHealth": 150.4969940185547
+      }
+    ],
+    "exactMatchingGameplayFields": [
+      "policy",
+      "result",
+      "waveReached",
+      "kills",
+      "collisions",
+      "launches",
+      "reloads",
+      "score",
+      "health",
+      "itemChoices",
+      "augmentChoices",
+      "elapsed",
+      "loadout"
+    ]
+  },
+  "formation-fast": {
+    "batch": {
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-candidate\\WalkingHard.exe",
+      "waves": 8,
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-11-02T22:48:21.417687Z",
+      "workers": 2,
+      "policy": "archetypes",
+      "firstSeed": 82002,
+      "runs": 600,
+      "assemblySha256": "AFBE0D2278874EE7588E51DAD6BF4B4E5BD9A1B8C6CABF7DF1A8B903FAE8C402",
+      "mode": "Fast",
+      "completedUtc": "2026-11-02T22:51:07.8620565Z",
+      "valid": 600,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 0,
+      "balance": {
+        "focusedTetherWidth": 0.5,
+        "encounterRhythm": true
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 100,
+        "wins": 27,
+        "timeouts": 0,
+        "meanWave": 5.96,
+        "meanKills": 202.36,
+        "meanSeconds": 236.1205071258545,
+        "meanHealth": 40.330196380615234
+      },
+      {
+        "group": "cutcarry",
+        "runs": 100,
+        "wins": 21,
+        "timeouts": 0,
+        "meanWave": 5.47,
+        "meanKills": 181.11,
+        "meanSeconds": 208.95736190795898,
+        "meanHealth": 27.749128346443175
+      },
+      {
+        "group": "gun",
+        "runs": 100,
+        "wins": 15,
+        "timeouts": 0,
+        "meanWave": 4.39,
+        "meanKills": 141.28,
+        "meanSeconds": 162.54107128143312,
+        "meanHealth": 18.85666305065155
+      },
+      {
+        "group": "pinball",
+        "runs": 100,
+        "wins": 35,
+        "timeouts": 0,
+        "meanWave": 5.87,
+        "meanKills": 200.47,
+        "meanSeconds": 237.91770889282228,
+        "meanHealth": 47.745150051116944
+      },
+      {
+        "group": "sever",
+        "runs": 100,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 6.46,
+        "meanKills": 229.03,
+        "meanSeconds": 245.46233932495116,
+        "meanHealth": 77.56141923904418
+      },
+      {
+        "group": "storm",
+        "runs": 100,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 6.55,
+        "meanKills": 234.83,
+        "meanSeconds": 254.8183855819702,
+        "meanHealth": 93.42499019622802
+      }
+    ]
+  },
+  "combined-fast": {
+    "batch": {
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-11-02T22:58:21.0934714Z",
+      "assemblySha256": "849C6C941A73DF684FFA674EC071A89D9FA9A148DD2CDA9CD9979590F659DD0B",
+      "workers": 2,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-release-candidate\\WalkingHard.exe",
+      "policy": "archetypes",
+      "mode": "Fast",
+      "firstSeed": 82002,
+      "waves": 8,
+      "runs": 600,
+      "completedUtc": "2026-11-02T23:01:14.5239455Z",
+      "valid": 600,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 0,
+      "balance": {
+        "focusedTetherWidth": 0.7,
+        "legacyEncounterRhythm": false,
+        "encounterRhythm": true
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 100,
+        "wins": 27,
+        "timeouts": 0,
+        "meanWave": 5.96,
+        "meanKills": 202.36,
+        "meanSeconds": 236.1205071258545,
+        "meanHealth": 40.330196380615234
+      },
+      {
+        "group": "cutcarry",
+        "runs": 100,
+        "wins": 21,
+        "timeouts": 0,
+        "meanWave": 5.47,
+        "meanKills": 181.11,
+        "meanSeconds": 208.95736190795898,
+        "meanHealth": 27.749128346443175
+      },
+      {
+        "group": "gun",
+        "runs": 100,
+        "wins": 15,
+        "timeouts": 0,
+        "meanWave": 4.39,
+        "meanKills": 141.51,
+        "meanSeconds": 162.36928897857666,
+        "meanHealth": 18.5067733335495
+      },
+      {
+        "group": "pinball",
+        "runs": 100,
+        "wins": 35,
+        "timeouts": 0,
+        "meanWave": 5.87,
+        "meanKills": 200.47,
+        "meanSeconds": 237.91770889282228,
+        "meanHealth": 47.745150051116944
+      },
+      {
+        "group": "sever",
+        "runs": 100,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 6.46,
+        "meanKills": 229,
+        "meanSeconds": 245.42784774780273,
+        "meanHealth": 77.92768114089967
+      },
+      {
+        "group": "storm",
+        "runs": 100,
+        "wins": 41,
+        "timeouts": 0,
+        "meanWave": 6.55,
+        "meanKills": 234.83,
+        "meanSeconds": 254.8183855819702,
+        "meanHealth": 93.42499019622802
+      }
+    ],
+    "matchedOutcomes": {
+      "unchanged": 564,
+      "newWins": 21,
+      "lostWins": 15
+    }
+  },
+  "baseline-full": {
+    "batch": {
+      "policy": "archetypes",
+      "assemblySha256": "C5CBDE046CCBAF3595DE231CB985BCB53BD2BE623AC6707486514A83B5A50820",
+      "runs": 24,
+      "waves": 8,
+      "maxCombatSeconds": 600,
+      "startedUtc": "2026-11-02T22:42:20.0053282Z",
+      "workers": 2,
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-study\\WalkingHard.exe",
+      "mode": "Full",
+      "firstSeed": 83004,
+      "completedUtc": "2026-11-02T23:00:24.0028905Z",
+      "valid": 24,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 1,
+      "balance": {
+        "focusedTetherWidth": 0.5,
+        "encounterRhythm": false
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 4,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 7.25,
+        "meanKills": 234,
+        "meanSeconds": 299.11275482177734,
+        "meanHealth": 88.9024829864502
+      },
+      {
+        "group": "cutcarry",
+        "runs": 4,
+        "wins": 3,
+        "timeouts": 0,
+        "meanWave": 7.25,
+        "meanKills": 267.75,
+        "meanSeconds": 308.17304611206055,
+        "meanHealth": 139.17681121826172
+      },
+      {
+        "group": "gun",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6.5,
+        "meanKills": 221,
+        "meanSeconds": 251.64934158325195,
+        "meanHealth": 25.040016174316406
+      },
+      {
+        "group": "pinball",
+        "runs": 4,
+        "wins": 3,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 298.25,
+        "meanSeconds": 372.47401428222656,
+        "meanHealth": 78.05850267410278
+      },
+      {
+        "group": "sever",
+        "runs": 4,
+        "wins": 2,
+        "timeouts": 1,
+        "meanWave": 7.5,
+        "meanKills": 284.5,
+        "meanSeconds": 370.8993949890137,
+        "meanHealth": 167.5795316696167
+      },
+      {
+        "group": "storm",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6,
+        "meanKills": 195.75,
+        "meanSeconds": 219.976900100708,
+        "meanHealth": 47.77726745605469
+      }
+    ]
+  },
+  "combined-full": {
+    "batch": {
+      "maxCombatSeconds": 600,
+      "workers": 2,
+      "runs": 24,
+      "startedUtc": "2026-11-02T22:58:10.8253025Z",
+      "waves": 8,
+      "mode": "Full",
+      "firstSeed": 83004,
+      "assemblySha256": "849C6C941A73DF684FFA674EC071A89D9FA9A148DD2CDA9CD9979590F659DD0B",
+      "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-release-candidate\\WalkingHard.exe",
+      "policy": "archetypes",
+      "completedUtc": "2026-11-02T23:14:01.8121646Z",
+      "valid": 24,
+      "invalid": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "timeouts": 0,
+      "balance": {
+        "focusedTetherWidth": 0.7,
+        "legacyEncounterRhythm": false,
+        "encounterRhythm": true
+      }
+    },
+    "groups": [
+      {
+        "group": "close",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 7.5,
+        "meanKills": 250,
+        "meanSeconds": 297.0965805053711,
+        "meanHealth": 71.89997863769531
+      },
+      {
+        "group": "cutcarry",
+        "runs": 4,
+        "wins": 3,
+        "timeouts": 0,
+        "meanWave": 7.5,
+        "meanKills": 276,
+        "meanSeconds": 318.79128646850586,
+        "meanHealth": 155.29683685302734
+      },
+      {
+        "group": "gun",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6.5,
+        "meanKills": 224,
+        "meanSeconds": 251.70766067504883,
+        "meanHealth": 17.040014266967773
+      },
+      {
+        "group": "pinball",
+        "runs": 4,
+        "wins": 3,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 307.5,
+        "meanSeconds": 384.89598083496094,
+        "meanHealth": 64.56341350078583
+      },
+      {
+        "group": "sever",
+        "runs": 4,
+        "wins": 3,
+        "timeouts": 0,
+        "meanWave": 7.75,
+        "meanKills": 293.75,
+        "meanSeconds": 307.37324142456055,
+        "meanHealth": 219.76744079589844
+      },
+      {
+        "group": "storm",
+        "runs": 4,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 6.25,
+        "meanKills": 204.25,
+        "meanSeconds": 227.54273223876953,
+        "meanHealth": 57.147064208984375
+      }
+    ],
+    "matchedOutcomes": {
+      "unchanged": 22,
+      "newWins": 1,
+      "lostWins": 1
+    }
+  },
+  "tether-full": {
+    "batch": {
+      "mode": "Full",
+      "runs": 16,
+      "workers": 2,
+      "player": "Build/FullRun-study/WalkingHard.exe",
+      "assemblySha256": "c5cbde046ccbaf3595de231cb985bcb53bd2be623ac6707486514a83b5a50820",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-02T22:40:16Z",
+      "balance": {
+        "focusedTetherWidth": 0.7,
+        "encounterRhythm": false
+      },
+      "wallSeconds": 569.4079105000128,
+      "valid": 16,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 4,
+      "timeouts": 0,
+      "duplicates": 0
+    },
+    "groups": [
+      {
+        "group": "both",
+        "runs": 8,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 7.75,
+        "meanKills": 277.25,
+        "meanSeconds": 296.2447090148926,
+        "meanHealth": 8.314204692840576
+      },
+      {
+        "group": "focused",
+        "runs": 8,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 7.75,
+        "meanKills": 285.875,
+        "meanSeconds": 306.9525146484375,
+        "meanHealth": 7.823398470878601
+      }
+    ]
+  },
+  "paired-full": {
+    "batch": {
+      "mode": "Full",
+      "runs": 12,
+      "workers": 2,
+      "player": "Build/FullRun-candidate/WalkingHard.exe",
+      "assemblySha256": "afbe0d2278874ee7588e51dad6bf4b4e5bd9a1b8c6cabf7df1a8b903fae8c402",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-02T22:51:15Z",
+      "balance": {
+        "focusedTetherWidth": 0.5,
+        "encounterRhythm": false
+      },
+      "wallSeconds": 392.2255183000234,
+      "valid": 12,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 11,
+      "timeouts": 0,
+      "duplicates": 0
+    },
+    "groups": [
+      {
+        "group": "breachhammer",
+        "runs": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 316,
+        "meanSeconds": 334.9206848144531,
+        "meanHealth": 277.33599853515625
+      },
+      {
+        "group": "greatsword",
+        "runs": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 298.5,
+        "meanSeconds": 306.98583984375,
+        "meanHealth": 310.0
+      },
+      {
+        "group": "hammer",
+        "runs": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 317.5,
+        "meanSeconds": 358.3149719238281,
+        "meanHealth": 269.343994140625
+      },
+      {
+        "group": "pistol",
+        "runs": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 316.5,
+        "meanSeconds": 318.1581115722656,
+        "meanHealth": 131.9998779296875
+      },
+      {
+        "group": "rifle",
+        "runs": 2,
+        "wins": 1,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 283,
+        "meanSeconds": 303.53668212890625,
+        "meanHealth": 27.065303802490234
+      },
+      {
+        "group": "sword",
+        "runs": 2,
+        "wins": 2,
+        "timeouts": 0,
+        "meanWave": 8,
+        "meanKills": 308.5,
+        "meanSeconds": 316.0919494628906,
+        "meanHealth": 310.0
+      }
+    ]
+  },
+  "tether-original": [
+    {
+      "group": "both",
+      "runs": 8,
+      "wins": 0,
+      "timeouts": 0,
+      "meanWave": 7.5,
+      "meanKills": 260,
+      "meanSeconds": 278.3365821838379,
+      "meanHealth": 0.0
+    },
+    {
+      "group": "focused",
+      "runs": 8,
+      "wins": 1,
+      "timeouts": 0,
+      "meanWave": 7.375,
+      "meanKills": 256.75,
+      "meanSeconds": 278.09289360046387,
+      "meanHealth": 2.9657645225524902
+    },
+    {
+      "group": "livewire",
+      "runs": 8,
+      "wins": 6,
+      "timeouts": 0,
+      "meanWave": 8,
+      "meanKills": 308,
+      "meanSeconds": 333.1461181640625,
+      "meanHealth": 46.05293154716492
+    },
+    {
+      "group": "native",
+      "runs": 8,
+      "wins": 4,
+      "timeouts": 0,
+      "meanWave": 8,
+      "meanKills": 300.75,
+      "meanSeconds": 322.34667205810547,
+      "meanHealth": 29.06269907951355
+    }
+  ]
+}

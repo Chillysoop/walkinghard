@@ -76,6 +76,7 @@ namespace VectorGame
                     PresentationGeometry.Plate("Armored boot",knee,new Vector3(0,-.39f,.11f),new Vector3(.29f,.21f,.46f),dark);
                     PresentationGeometry.Plate("Toe cap",knee,new Vector3(0,-.37f,.31f),new Vector3(.29f,.14f,.15f),armor);
                 }
+                for(int i=0;i<presentationRoots.Count;i++)PresentationGeometry.CompactBone(presentationRoots[i],(hero?"hero":presentationHeavy?"heavy":"raider")+"/"+i);
                 presentationBuilt=true;
             }
             foreach(var r in originalSurfaces)if(r!=null)r.enabled=!enabled;

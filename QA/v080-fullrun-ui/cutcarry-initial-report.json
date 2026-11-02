@@ -1,0 +1,125 @@
+{
+    "seed": 83008,
+    "wave": 6,
+    "kills": 193,
+    "itemChoices": 10,
+    "augmentChoices": 2,
+    "assertions": 38,
+    "policy": "cutcarry",
+    "result": "Defeated",
+    "health": 0.0,
+    "passed": true,
+    "performance": [
+        {
+            "wave": 1,
+            "enemies": 13,
+            "bodies": 9,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.666889190673829,
+            "p95Ms": 16.819477081298829,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 2,
+            "enemies": 10,
+            "bodies": 43,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.664505004882814,
+            "p95Ms": 16.724586486816408,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 3,
+            "enemies": 16,
+            "bodies": 69,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.67022705078125,
+            "p95Ms": 16.794204711914064,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 4,
+            "enemies": 10,
+            "bodies": 111,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.7999267578125,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 5,
+            "enemies": 12,
+            "bodies": 141,
+            "frames": 121,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.7236328125,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 21,
+            "bodies": 175,
+            "frames": 120,
+            "speed": 1.0,
+            "medianMs": 16.67022705078125,
+            "p95Ms": 16.834259033203126,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 22,
+            "bodies": 176,
+            "frames": 120,
+            "speed": 0.5,
+            "medianMs": 16.67022705078125,
+            "p95Ms": 16.834259033203126,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 26,
+            "bodies": 193,
+            "frames": 48,
+            "speed": 4.0,
+            "medianMs": 43.491363525390628,
+            "p95Ms": 62.046051025390628,
+            "reducedMotion": false,
+            "stress": false
+        },
+        {
+            "wave": 6,
+            "enemies": 42,
+            "bodies": 26,
+            "frames": 180,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.71600341796875,
+            "reducedMotion": false,
+            "stress": true
+        },
+        {
+            "wave": 6,
+            "enemies": 42,
+            "bodies": 38,
+            "frames": 120,
+            "speed": 4.0,
+            "medianMs": 16.674041748046876,
+            "p95Ms": 17.581939697265626,
+            "reducedMotion": true,
+            "stress": true
+        }
+    ],
+    "measurement": "1080p wall-frame intervals, 60 FPS cap; fast-forward between real-time samples. Normal drafts/health, automatic choices and ultimates. Stress fixture is recorded separately."
+}

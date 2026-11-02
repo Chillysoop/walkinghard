@@ -1,0 +1,17 @@
+[
+  {
+    "report": "quiet-original-report.json",
+    "assemblySha256": "c38b9a5b26e3ac2b097e629ac2b57fc0abacee5a8a426f144424835f8bf1d549",
+    "backgroundWorkers": 0
+  },
+  {
+    "report": "quiet-armored-report.json",
+    "assemblySha256": "c38b9a5b26e3ac2b097e629ac2b57fc0abacee5a8a426f144424835f8bf1d549",
+    "backgroundWorkers": 0
+  },
+  {
+    "report": "quiet-batched-report.json",
+    "assemblySha256": "c54face798b626b4b3b847fb6df6f04d9b7d3fae2b5fb38a5e1997201b8ade47",
+    "backgroundWorkers": 0
+  }
+]

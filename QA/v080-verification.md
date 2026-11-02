@@ -1,5 +1,7 @@
 # Walking Hard 0.8.0 verification
 
+Historical milestone report. The subsequent normal-run rollout and final release gate are recorded in [full-run verification](v080-fullrun-verification.md).
+
 November 1, 2026 local time. Unity 6000.3.27f1. Feature branch only; no main merge, published release or shortcut-cache replacement.
 
 ## Changes

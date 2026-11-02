@@ -1,5 +1,7 @@
 # Playable combat presentation preview
 
+Historical milestone report. The subsequent normal-run rollout and final release gate are recorded in [full-run verification](v080-fullrun-verification.md).
+
 November 2, 2026. Opt-in visual slice on top of v0.8.0; no global art rollout, item tuning, main merge or release publication.
 
 ## Playing the slice

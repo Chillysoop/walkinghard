@@ -1,6 +1,6 @@
 # Walking Hard — art and VFX pass
 
-Plan prepared October 29, 2026; first playable preview added November 2 against the v0.8.0 branch. Unity 6000.3.27f1 / URP 17.3.0. The broader rollout remains proposed. The preview uses original faceted armor meshes on the existing articulated rig and bounded procedural effects; no third-party art has been imported and no combat values changed.
+Plan prepared October 29, 2026; first playable preview added November 2 against the v0.8.0 branch. Unity 6000.3.27f1 / URP 17.3.0. The character, weapon, effect and checkpoint-portrait rollout now appears in normal runs; environment, audio and animation replacement remain future work. The preview uses original faceted armor meshes on the existing articulated rig and bounded procedural effects; no third-party art has been imported. The separate Focused Tether and encounter pacing adjustments are documented in the full-run balance review.
 
 ## Direction
 
@@ -87,6 +87,9 @@ Check normal fights, a dense collision pile, electricity chains, all ultimates, 
 
 Deliver a **playable Combat Preview**, with the real UI, existing corridor, equipped hero, raiders/enforcers, shields/carriers and Pursuer. Switch between weapon families and the original/new presentation at a fixed seed. Show sword sever, hammer impact, electrical reactions, directional gathering and ultimate preparation/payoff. Review the look, readability and frame time before expanding it across ordinary runs. Trailer work has ended; this milestone uses still captures and the playable build.
 
-The current slice adds a 160-slot effect pool, native footprint-preserving gather cues, local Redline vents, and armor pieces parented to the eleven existing severable bones. It does not yet replace corridor assets, animation, audio or checkpoint portraits. The full-crowd performance gate and player readability review remain required before a global rollout. See [verification](QA/combat-preview-verification.md).
+The current slice adds a 160-slot effect pool, native footprint-preserving gather cues, local Redline vents, and armor pieces parented to the eleven existing severable bones. The subsequent normal-run rollout also updates the checkpoint portrait, Conductor Wraps, Siphon Blade and ranged-enemy weapon presentation. Corridor assets, animation replacement and audio remain future work. Native full-run and crowd evidence is in [rollout verification](QA/v080-fullrun-verification.md); first-time-player comprehension still requires human playtesting. The initial slice remains documented in [preview verification](QA/combat-preview-verification.md).
 
 The substantial custom work is rig/socket integration, cut meshes, ragdoll mapping and effect timing. Free assets reduce modelling effort; they do not make those integrations automatic. No paid packs, new gameplay features or changes to the approved loadout rules are required by this plan.
+
+
+Normal-run rollout verification: normal-speed 1080p samples held near 60 FPS through wave eight on the playtest machine. A late-run 4× sample remains physics-limited at roughly 26 ms median, similar to the original look. Bone-local armor batching preserves cuts and bodies; the next performance work should target accumulated-body physics with matched behavior checks. See QA/v080-fullrun-verification.md.

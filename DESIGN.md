@@ -160,7 +160,7 @@ Drag modules onto highlighted compatible equipped or stored hosts. Drag the inst
 | Module | Hosts | Benefit at Common | Persistent cost and limits |
 | --- | --- | --- | --- |
 | Follow-through | Jab, Breaker, Volley, Conductive Brand, Drain Brand | Next-weapon contact: 0.4S stagger (2.2m, max5), 3 Conductive marks, or 2/2/3/3/4 Siphon marks | Immediate stagger 55%; Brand 2 immediate marks; Drain 1. One shared preparation; replace, never stack; preserve until living targets qualify |
-| Focused | Breaker, Arc, Brand, Reaping, Drain, Volley, Push, Tether | Stronger concentrated native effect; Push force +50%; Tether reach +2m | Narrower native coverage/mark counts; Volley 1 target; Push 35-degree half arc for living enemies and corpses; Tether half width |
+| Focused | Breaker, Arc, Brand, Reaping, Drain, Volley, Push, Tether | Stronger concentrated native effect; Push force +50%; Tether reach +2m | Narrower native coverage/mark counts; Volley 1 target; Push 35-degree half arc for living enemies and corpses; Tether 30% narrower corridor |
 | Echo | Jab, Arc, Reaping, Volley | One primary-only repeat, .35S of host damage; +.22s | Opening ×.8; never repeats whole cleave/chain |
 | Afterfield | Gravity, Tether, Brand, Arc, Reaping, Drain | Fixed 2s area; six distinct targets. Support ticks every .4s; damage pulses at .65s and 1.3s for 17.5% host damage | Opening damage 65%; pull and Drain strength 65%. Arc max3 contacts/pulse; Reaping max6, native weak-target bonus/severs, no repeat stagger. One field/owned host; recast replaces |
 | Split Payload | Driver | Up to two launches, one shared six-hit/exclusion budget | Each impulse ×.65; still executes with one eligible target |
@@ -185,7 +185,7 @@ Gravity/Tether and their fields move Recovery Treads motes through the scene; he
 
 ## Encounters, information and physical rules
 
-Wave previews correspond to the actual formation mix: dense packs; ranged crossfire; heavy front; side-door flankers; ranged support behind heavies; repeated breach packs; mixed pressure; Final Stand. Shooters use a visible windup and distance check. The Pursuer has 2.5 seconds of full control susceptibility every eight seconds; otherwise displacement/stagger is reduced to 22%, not immune. Heavy enemies retain 65% control susceptibility. Boss health/control state is visible.
+Wave previews correspond to the actual formation mix: dense packs; ranged crossfire; heavy front; side-door flankers; horizon lanes with ranged support; paired side-door breach packs; mixed pressure; Final Stand. Waves have authored horizon/door patterns. Waves 4–7 schedule three intervals at 0.75× followed by one at 1.75×; the four-interval mean stays unchanged. Opening waves retain steady timing; the finale retains its own pressure rules. A brief formation banner introduces each ordinary wave. Shooters carry a visible gun and use an aimed windup and distance check. The Pursuer has 2.5 seconds of full control susceptibility every eight seconds; otherwise displacement/stagger is reduced to 22%, not immune. Heavy enemies retain 65% control susceptibility. Boss health/control state is visible.
 
 Stance changes take .28s before Loader; native reload 1.2s. Pair delays complete before attack progression. Amber tile bars show real RELOADING, READYING and WAITING FOR PAIR time. ECHO and BACKWASH show their actual extension. Weapon follow-ups fit inside the native turn and do not add a delay. Unbounded target/range waits have no invented countdown. Small armed and consumed states explain the next-basic payoffs.
 

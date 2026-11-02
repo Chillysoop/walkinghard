@@ -34,6 +34,8 @@ Use `-Waves 3` for faster early-game experiments. Use eight waves to evaluate th
 
 `mixed` cycles six drafting policies across starting seeds: random, balanced, pinball, storm, sever and gun. You can also select any one of those policies. The strategies weigh rarity, matching synergy tags, missing equipment and fusion opportunities, then arrange setup actions before their payoffs. They are simple test agents, not optimal players or estimates of human skill. They use automatic ultimates and do not spend banked rerolls or exhaustively search stored-item combinations.
 
+`archetypes` cycles all six build directions: pinball, storm, sever, gun, cutcarry and close. `cutcarry` favors a one-handed sword and breach hammer; `close` favors fists/wraps and a pistol/scattergun. Each still uses ordinary random offers and progression. The older `mixed` set remains available for historical comparisons.
+
 Seeds are unique across workers. Keep the same first seed, run count, workers, policies and wave count for comparisons. Seeded randomness helps reproducibility, but PhysX is not guaranteed to be bitwise deterministic across processes, run history or hardware. Record multiple batches when a result is close.
 
 ## Inspect results while running
@@ -109,3 +111,10 @@ A 32-game legacy control matches all 27 gameplay fields from the prior screening
 
 
 Fixed cases may optionally provide `modules`: five strings addressing weapon mounts 0/1, then the three abilities in authored input order. Empty strings leave sockets empty; at most two modules are allowed. A shared or two-handed host cannot receive two modules. `QA/Balance/v080/cases.json` compares native and augmented versions of four Rare builds at normal health across two seeds, using Full physics. These are targeted checks, not population balance estimates.
+
+
+### Full-run rollout study (0.8.0)
+
+`QA/Balance/full-run/` records six-policy ordinary-draft screens, matched Full-physics runs, an isolated Focused Tether comparison and paired/2H fixed-build checks. `focusedTetherWidth` accepts a fraction between zero and one (zero keeps the authored 0.7); `legacyEncounterRhythm: true` restores the prior round-robin entries and steady intervals. Early study binaries used the inverse `encounterRhythm` field, so saved experimental inputs carry both flags for reproduction across those builds. Assembly hashes identify the actual executable.
+
+For native full-run review, launch a visible player with `-fullRunReview -simRuns 1 -simMode Full -simPolicy gun -seed 83007 -simWaves 8 -simMaxSeconds 600 -simOutput <fresh-absolute-jsonl> -reviewOutput <absolute-directory> -force-d3d11 -screen-fullscreen 0`. It uses normal health, ordinary automatic drafts and ultimates, saves checkpoint/combat images, and samples actual frame intervals at 1080p. It fast-forwards between samples. The final crowded fixture is explicitly separate from the ordinary-run result; it does not estimate build strength. Run without competing simulation workers when measuring performance.
