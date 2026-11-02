@@ -58,7 +58,7 @@ namespace VectorGame
             CombatHeader(w,h);CombatBar(w,h);
             if(game.CombatPreviewActive)CombatPreviewControls(w);
             if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
-            if(game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Strong:Accent,true,TextAnchor.MiddleCenter);
+            if(game.EventText!=VectorEncounter.Formation(game.Wave)&&game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Strong:Accent,true,TextAnchor.MiddleCenter);
             if(game.DamageFlash>0&&!game.ReducedMotion){var c=new Color(1,.23f,.1f,game.DamageFlash*.3f);Box(new Rect(0,0,w,5),c);Box(new Rect(0,h-5,w,5),c);}
             DrawFusionFeedback(w,h);DrawItemTooltip(w,h);
         }
@@ -103,6 +103,13 @@ namespace VectorGame
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
             UltimatePanel(new Rect(x,138,310,game.Deck.Ultimate==null?76:180));
             if(game.BossFraction>0){Rect boss=game.CombatPreviewActive?new Rect(w-330,330,310,62):new Rect(w/2-200,20,400,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,boss.width-24,22),game.CombatPreviewActive?(game.BossControlOpen?"PURSUER / CONTROL WINDOW":"PURSUER / RESISTS CONTROL"):"THE PURSUER / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Strong,true);Segments(new Rect(boss.x+12,boss.y+39,boss.width-24,8),game.BossFraction,Strong,20);}
+            if(!game.CombatPreviewActive&&!game.FinaleActive&&game.WaveElapsed<3.2f)
+            {
+                var formation=VectorEncounter.Formation(game.Wave).Split('·');float center=w*.5f;
+                Panel(new Rect(center-245,20,490,68));
+                Label(new Rect(center-230,27,460,21),"WAVE "+game.Wave.ToString("00")+" / "+formation[0].Trim(),14,Accent,true,TextAnchor.MiddleCenter);
+                Label(new Rect(center-230,51,460,25),formation[1].Trim(),12,white,false,TextAnchor.MiddleCenter);
+            }
             Label(new Rect(20,365,310,45),"BARRIER "+game.BarrierAmount.ToString("0")+" / "+game.ArmedState ,11,Accent,true);CombatPayoff();
         }
         void UltimatePanel(Rect r)

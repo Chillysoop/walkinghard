@@ -3,7 +3,7 @@ param(
     [ValidateRange(1,1000000)][int]$Runs=1000,
     [ValidateRange(1,16)][int]$Workers=2,
     [ValidateRange(0,2000000000)][int]$Seed=1,
-    [ValidateSet('mixed','random','balanced','pinball','storm','sever','gun')][string]$Policy='mixed',
+    [ValidateSet('mixed','archetypes','random','balanced','pinball','storm','sever','gun','cutcarry','close')][string]$Policy='mixed',
     [ValidateSet(3,8)][int]$Waves=8,
     [ValidateSet('Full','Fast')][string]$Mode='Full',
     [ValidateRange(120,600)][int]$MaxCombatSeconds=480,

@@ -13,7 +13,7 @@ namespace VectorGame
                 var front=ProbeEnemy(0,3);var flank=ProbeEnemy(3,1);actionTarget=front;Resolve(activeCard);
                 MechanicRequire(front.health<500&&flank.health==500,"Focused push keeps side threats outside the actual cone");
                 ProbeReset();var tether=ProbeHost(LoadoutCatalog.Find("VectorTether"),AugmentId.Focused,rank);
-                front=ProbeEnemy(0,9);flank=ProbeEnemy(1.5f,4);actionTarget=front;Resolve(activeCard);
+                front=ProbeEnemy(0,9);flank=ProbeEnemy(AugmentCatalog.TetherWidth(tether)+.2f,4);actionTarget=front;Resolve(activeCard);
                 MechanicRequire(front.health<500&&flank.health==500&&activeCard.range>=10,"Focused Tether uses longer reach and a narrower corridor");
 
                 foreach(string id in new[]{"ConductiveBrand","DrainBrand"})

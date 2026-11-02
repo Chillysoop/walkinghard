@@ -114,6 +114,7 @@ namespace VectorGame
         readonly List<Flight> flights=new List<Flight>();
         readonly List<Contact> contacts=new List<Contact>();
         readonly List<int> castTrace=new List<int>();
+        bool defaultArmoredStyle;
         FighterRig hero;FighterPhysics heroPhysics;CombatEffects fx;Camera cameraRig;Transform actors;
         System.Random spawnRandom,combatRandom;
         Vector3 cameraVelocity;
@@ -153,6 +154,8 @@ namespace VectorGame
             Physics.defaultSolverIterations=12;Physics.defaultSolverVelocityIterations=8;
             Application.targetFrameRate=qa&&Application.isBatchMode?-1:60;QualitySettings.vSyncCount=qa&&Application.isBatchMode?0:1;
             VisualFactory.Initialize();
+            defaultArmoredStyle=!FastSimulation&&Array.IndexOf(args,"-originalLook")<0&&!(Application.isBatchMode&&Array.IndexOf(args,"-nographics")>=0);
+            VisualFactory.ArmoredStyle=defaultArmoredStyle;
             var world=VisualFactory.Node("Concourse and covered entry passages",transform,Vector3.zero);VisualFactory.World(world);
             actors=VisualFactory.Node("Fighters",transform,Vector3.zero);
             hero=new FighterRig("The Walker",actors,true,lightweight:FastSimulation);heroPhysics=new FighterPhysics(hero,0,this,true);
@@ -163,12 +166,14 @@ namespace VectorGame
             cameraRig.backgroundColor=new Color(.10f,.17f,.20f);cameraRig.clearFlags=CameraClearFlags.SolidColor;cameraRig.allowHDR=true;
             cameraRig.gameObject.AddComponent<AudioListener>();cameraRig.GetUniversalAdditionalCameraData().renderPostProcessing=true;
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;AimCamera();
+            fx.SetPresentation(defaultArmoredStyle);fx.SetReducedMotion(ReducedMotion);
             Health=tuning.heroHealth;hero.Pose(0,0,-1,0,0,false,0);Physics.SyncTransforms();
-            if(!simulation){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
+            if(!simulation||Array.IndexOf(args,"-fullRunReview")>=0){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
             if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
+            if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -257,8 +262,9 @@ namespace VectorGame
         }
         void BeginWave()
         {
-            routeSpawn=0;
+            routeSpawn=waveEntryBeat=0;
             hero.EquipWeapons(Deck.WeaponFor(Deck.Basics[0]).def.weapon,Deck.WeaponFor(Deck.Basics[1]).def.weapon,Deck.TwoHanded);
+            hero.WeaponIdentity(Deck.WeaponFor(Deck.Basics[0]),Deck.WeaponFor(Deck.Basics[1]));
             if(qa)QABeginWeapons();
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
@@ -270,7 +276,7 @@ namespace VectorGame
         public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
         public void RequestUltimate(){if(State==RunState.Running&&Deck.Ultimate!=null&&UltimateRemaining<=0)ultimateRequested=true;}
         public void TogglePause(){if(State==RunState.Running||State==RunState.Revealing){pausedReveal=State==RunState.Revealing;State=RunState.Paused;}else if(State==RunState.Paused)State=pausedReveal?RunState.Revealing:RunState.Running;}
-        public void ToggleMotion(){ReducedMotion=!ReducedMotion;fx.PreviewReducedMotion(ReducedMotion);}
+        public void ToggleMotion(){ReducedMotion=!ReducedMotion;fx.SetReducedMotion(ReducedMotion);}
         public void ToggleSound(){fx.muted=!fx.muted;}
         public void Quit(){Application.Quit();}
         public void QueueContact(int source,int target,float speed,Vector3 point)
@@ -342,9 +348,9 @@ namespace VectorGame
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
             {
                 if(finaleActive){for(int n=0;n<3;n++)SpawnEntry(2);}
-                else {SpawnEntry(entryTurn++%3);if((Wave==1||Wave==3||Wave==6)&&entryTurn%4==0)SpawnEntry(entryTurn++%3);}
+                else {SpawnEntry(NextFormationEntry());if((Wave==1||Wave==3||Wave==6)&&entryTurn%4==0)SpawnEntry(NextFormationEntry());}
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/tuning.waveCount;
-                spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f);
+                spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval();
             }
             long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
             StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
@@ -368,6 +374,7 @@ namespace VectorGame
             bool boss=Wave==8&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
+            if(shooter)e.rig.RangedEquipment();
             ConfigureRouteEnemy(e);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
             if(shooter)RangedSpawned++;
             if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
@@ -415,7 +422,7 @@ namespace VectorGame
                 if(canAttack&&e.engaged&&distance<(e.shooter?9:tuning.attackRadius)&&e.attack<0){e.attack=0;e.delivered=false;}
                 if(e.attack>=0)
                 {
-                    float duration=e.shooter?1.5f:e.heavy?1.25f:.95f;if(e.shooter&&!e.delivered&&e.attack>duration*.2f&&((int)(e.attack*10)!=(int)((e.attack-dt)*10)))fx.Arc(e.physics.Center,HeroPosition+Vector3.up,new Color(1,.4f,.2f));e.attack+=dt;
+                    float duration=e.shooter?1.5f:e.heavy?1.25f:.95f;if(e.shooter&&!e.delivered&&e.attack>duration*.2f&&((int)(e.attack*10)!=(int)((e.attack-dt)*10)))fx.Arc(e.rig.RightHand.position,HeroPosition+Vector3.up,new Color(1,.4f,.2f));e.attack+=dt;
                     if(!e.delivered&&e.attack>=duration*.53f)
                     {
                         e.delivered=true;
@@ -424,7 +431,7 @@ namespace VectorGame
                     }
                     if(e.attack>=duration){e.attack=-1;e.engaged=false;e.cooldown=CombatRange(e.shooter?2:.9f,e.shooter?3:1.8f);}
                 }
-                e.rig.Pose(clock,flat.magnitude/tuning.enemySpeed,e.attack>=0?1:-1,e.attack/(e.heavy?1.25f:.95f),e.react,false,0);
+                e.rig.Pose(clock,flat.magnitude/tuning.enemySpeed,e.attack>=0?(e.shooter?5:1):-1,e.attack/(e.shooter?1.5f:e.heavy?1.25f:.95f),e.react,false,0);
                 StepReaction(e,dt,true);
                 e.rig.Telegraph(e.attack>=0&&!e.delivered,e.stun>0);
                 if(e.shieldBearer)e.rig.ShieldGuard(e.shieldOpenUntil>Elapsed);

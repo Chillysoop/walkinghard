@@ -19,7 +19,7 @@ namespace VectorGame
         public void EncounterEquipment(bool shield,bool carrier)
         {
             if(lightweight)return;
-            if(VisualFactory.PreviewStyle){PresentationEncounterEquipment(shield,carrier);return;}
+            if(VisualFactory.ArmoredStyle){PresentationEncounterEquipment(shield,carrier);return;}
             if(shield)
             {
                 enemyShield=VisualFactory.Node("Stagger opens guard",Body,new Vector3(-.28f,.25f,.5f));
@@ -37,7 +37,7 @@ namespace VectorGame
         public void PursuerArmor()
         {
             if(lightweight)return;
-            if(VisualFactory.PreviewStyle){PresentationPursuerArmor();return;}
+            if(VisualFactory.ArmoredStyle){PresentationPursuerArmor();return;}
             foreach(int side in new[]{-1,1})
             {
                 VisualFactory.Part("Pursuer shoulder slab",Body,PrimitiveType.Cube,new Vector3(side*.52f,.57f,0),new Vector3(.46f,.32f,.62f),VisualFactory.Stone);
@@ -89,7 +89,7 @@ namespace VectorGame
             }
             leftThigh=Leg(-1,hips,cloth,out leftKnee);rightThigh=Leg(1,hips,cloth,out rightKnee);
             if(heavy){Root.localScale=Vector3.one*1.17f;VisualFactory.Part("Reactor",Body,PrimitiveType.Cube,new Vector3(0,.4f,.255f),new Vector3(.13f,.21f,.04f),light);}
-            presentationHeavy=heavy;ApplyPresentation(VisualFactory.PreviewStyle);
+            presentationHeavy=heavy;ApplyPresentation(VisualFactory.ArmoredStyle);
         }
         Transform Arm(int side,Transform parent,Material armor,Material light,out Transform elbow,out Transform hand)
         {
@@ -255,7 +255,7 @@ namespace VectorGame
         }
         Transform MakeWeapon(Transform hand,WeaponKind kind)
         {
-            if(VisualFactory.PreviewStyle)return MakePresentationWeapon(hand,kind,twoHanded);
+            if(VisualFactory.ArmoredStyle)return MakePresentationWeapon(hand,kind,twoHanded);
             var root=VisualFactory.Node(kind.ToString(),hand,Vector3.zero);
             if(kind==WeaponKind.Sword)
             {

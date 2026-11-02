@@ -90,14 +90,14 @@ namespace VectorGame
             samples.Sort();report.medianFrameMs=samples[samples.Count/2];report.p95FrameMs=samples[(int)(samples.Count*.95f)];
             foreach(float speed in new[]{.5f,1,4})
             {
-                BeginCombatPreview(1,true);SetCombatSpeed(speed);ReducedMotion=true;fx.PreviewReducedMotion(true);RequestUltimate();
+                BeginCombatPreview(1,true);SetCombatSpeed(speed);ReducedMotion=true;fx.SetReducedMotion(true);RequestUltimate();
                 for(int i=0;i<480;i++){AdvanceCombat(1f/60);if(i%60==0)yield return null;}
                 Require(OrderErrors==0&&Kills>0&&fx.PreviewActive<=160,"reduced motion and speed "+speed);
             }
             MainMenu();yield return null;
-            Require(!CombatPreviewActive&&!VisualFactory.PreviewStyle&&State==RunState.Ready,"exit restores ordinary main menu");
+            Require(!CombatPreviewActive&&VisualFactory.ArmoredStyle==defaultArmoredStyle&&State==RunState.Ready,"exit restores ordinary main menu");
             Begin();Require(State==RunState.Drafting&&OpeningPicks==0,"ordinary run still opens its draft");
-            Require(!hero.Root.GetComponentsInChildren<Renderer>().Any(r=>r.name=="Tapered cuirass"),"ordinary runs retain original presentation");
+            Require(hero.Root.GetComponentsInChildren<Renderer>().Any(r=>r.enabled&&r.name=="Tapered cuirass")==defaultArmoredStyle,"ordinary runs restore the selected presentation");
             report.passed=true;File.WriteAllText(Path.Combine(directory,"report.json"),JsonUtility.ToJson(report,true));
             Debug.Log("COMBAT_PREVIEW_SUCCESS / "+report.assertions+" assertions");Application.Quit(0);
         }

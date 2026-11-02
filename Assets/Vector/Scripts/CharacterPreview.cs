@@ -26,10 +26,11 @@ namespace VectorGame
                 portraitCamera.backgroundColor=Color.clear;portraitCamera.clearFlags=CameraClearFlags.SolidColor;portraitCamera.targetTexture=portraitTexture;portraitCamera.cullingMask=1<<30;portraitCamera.depth=-20;
                 Camera.main.cullingMask&=~(1<<30);
             }
-            var d=game.Deck;string key=(d.Weapons[0]?.Name??"fists")+"/"+(d.Weapons[1]?.Name??"fists")+"/"+d.TwoHanded;
+            var d=game.Deck;string key=(d.Weapons[0]?.Name??"fists")+"/"+(d.Weapons[1]?.Name??"fists")+"/"+d.TwoHanded+"/"+VisualFactory.ArmoredStyle;
             if(portraitLoadout!=key)
             {
-                portraitLoadout=key;portrait.PreviewLoadout(d.WeaponFor(d.Basics[0]).def.weapon,d.WeaponFor(d.Basics[1]).def.weapon,d.TwoHanded);
+                portraitLoadout=key;portrait.ApplyPresentation(VisualFactory.ArmoredStyle);portrait.PreviewLoadout(d.WeaponFor(d.Basics[0]).def.weapon,d.WeaponFor(d.Basics[1]).def.weapon,d.TwoHanded);
+                portrait.WeaponIdentity(d.WeaponFor(d.Basics[0]),d.WeaponFor(d.Basics[1]));
                 foreach(var t in portraitRoot.GetComponentsInChildren<Transform>(true))t.gameObject.layer=30;
             }
         }
