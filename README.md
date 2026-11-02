@@ -1,4 +1,6 @@
-# Walking Hard 0.7.7 — Recoil charge preservation
+# Walking Hard 0.8.0 - Shared augment synergies
+
+**Livewire** lets any weapon discharge Conductive. Follow-through now carries brands or suppression into a weapon contact; Focused reshapes Push/Tether; Afterfield adds stationary storm, cut and drain areas. Surveyor, Grounding, Recovery Treads and Salvager connect to those effects. Paired weapons keep full effects; two-handed/shared hosts keep one socket. Visible field footprints, prepared-action labels, native artwork and host-specific previews explain the payoff and cost. See [verification and comparisons](QA/v080-verification.md).
 
 **Recoil Harness** now saves its bonus when the base gun hit already kills the target. The next surviving target can receive it through piercing, a ricochet, the other pistol, or a later attack. The charge still fires once and credits the armor. All item stats are unchanged. See the [matched before/after comparisons](QA/v077-balance-review.md) and [verification](QA/v077-verification.md).
 
@@ -50,8 +52,8 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Five movable sequence positions: two permanent weapon attacks plus three drafted abilities. The sequence always runs automatically.
 - Matching adjacent one-handed attacks fire together with independent targets. Two-handed weapons fill both mounts and lock their basic cards into one movable group.
 - Ten weapons: two fist styles, one- and two-handed swords and hammers, pistol, rifle and scattergun. Each has an authored signature. Both equipped weapons stay in hand during casts.
-- Eleven abilities, fourteen armor pieces, five rigs and five ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
-- Sixteen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion and have no separate rarity. Weapon modules retain native attacks/timing and receive full paired effects. Before/after previews explain the single-socket choice; ability conversions retain explicit tradeoffs.
+- Twelve abilities, fifteen armor pieces, five rigs and five ultimates. Conductive marks, barriers, severing, gathering and collisions support overlapping build directions.
+- Seventeen augment modules change particular weapons and abilities. Each owned host has one socket; drag modules between compatible hosts or back to storage. Modules follow items through movement and fusion and have no separate rarity. Weapon modules retain native attacks/timing and receive full paired effects. Before/after previews explain the single-socket choice; ability conversions retain explicit tradeoffs.
 - Temporary neutral tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
 - No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
 - Eight waves with formation previews and the Pursuer final stand. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.

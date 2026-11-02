@@ -75,7 +75,7 @@ namespace VectorGame
             switch(item.def.id)
             {
                 case "siphonblade":return "+"+rate.ToString("0")+"% Lifesteal from this blade's damage. Cuts mark for another "+rate.ToString("0")+"% for "+(4*Effect(item)).ToString("0.#")+"s; one sever spread per action within "+(3*Effect(item)).ToString("0.#")+"m. "+rules;
-                case "DrainBrand":return (item.HasAugment(AugmentId.Focused)?2:3+(item.rank-1)/2)+" targets, +"+(rate*(item.HasAugment(AugmentId.Focused)?1.4f:1)).ToString("0.#")+"% Lifesteal against marked foes for "+(4*Effect(item)).ToString("0.#")+"s. "+rules;
+                case "DrainBrand":return AugmentCatalog.InitialMarks(item)+" initial targets, +"+(rate*(item.HasAugment(AugmentId.Focused)?1.4f:item.HasAugment(AugmentId.Afterfield)?.65f:1)).ToString("0.#")+"% Lifesteal against marked foes for "+(4*Effect(item)).ToString("0.#")+"s. "+rules;
                 case "reclaimer":float armorRate=LoadoutCatalog.ReclaimerRate(item.rank)*100;return "+"+armorRate.ToString("0.#")+"% global Lifesteal; armor contribution rises to "+(armorRate*LoadoutCatalog.ReclaimerLowHealthBoost).ToString("0.#")+"% below half health (1.5x). "+rules;
                 case "predator":return "Actual healing stores +"+(item.def.effect.Power(item.rank)*100).ToString("0.#")+"% speed for the next ability. One charge, no stacking; weapons and ultimates do not consume it.";
                 case "harvest":return "Drain "+(20*Effect(item)).ToString("0")+"% of actual damage; up to "+HarvestHealingLimit(item).ToString("0.#")+" HP ("+(8+item.rank-1)+"% max) per pulse. 16s recharge; no healing from overkill or corpses.";

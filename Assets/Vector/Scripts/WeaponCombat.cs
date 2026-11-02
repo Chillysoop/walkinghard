@@ -6,11 +6,11 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         void ResolveBasic(LoadoutItem weapon,AbilityCard card,Enemy target,bool left,bool followup=false)=>ResolveAuthoredBasic(weapon,card,target,left,followup);
-        void PushCorpses(float range,Cascade shared=null)
+        void PushCorpses(float range,Cascade shared=null,float halfArc=180,float force=1)
         {
             var chain=shared??new Cascade();int count=0;
             foreach(var e in corpses)
-                if(count<6&&Vector3.Distance(e.physics.Center,HeroPosition)<range){Launch(e,chain);count++;}
+                if(count<6&&Vector3.Distance(e.physics.Center,HeroPosition)<range&&Vector3.Angle(hero.Root.forward,e.rig.Root.position-HeroPosition)<=halfArc){Launch(e,chain,0,force);count++;}
         }
         void ResolveUltimate()
         {

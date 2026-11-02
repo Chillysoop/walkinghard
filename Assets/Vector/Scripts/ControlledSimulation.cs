@@ -12,7 +12,7 @@ namespace VectorGame
         [Serializable] sealed class ControlledCase
         {
             public string id,context,category,candidate,helmet,armor,boots,rig,ultimate;
-            public string[] weapons,abilities,sequence;
+            public string[] weapons,abilities,sequence,modules;
             public EncounterRoute route;
             public int seed,rank=1,baseRank=1;public bool matchedWeapons;
             public float healthFraction=1;
@@ -40,6 +40,7 @@ namespace VectorGame
                 if(c.rank<1||c.rank>5||c.baseRank<1||c.baseRank>5||c.healthFraction<=0||c.healthFraction>1||c.weapons?.Length!=2||c.abilities?.Length!=3)throw new ArgumentException("Invalid controlled case "+c.id);
                 foreach(var id in c.weapons.Concat(c.abilities).Concat(new[]{c.helmet,c.armor,c.boots,c.rig,c.ultimate}).Where(s=>!string.IsNullOrEmpty(s)))LoadoutCatalog.Find(id);
                 if(c.category!="weapon"&&c.category!="armor"&&c.category!="ultimate"&&c.category!="ability")throw new ArgumentException("Invalid controlled category");
+                if(c.modules!=null&&(c.modules.Length!=5||c.modules.Count(m=>!string.IsNullOrEmpty(m))>2))throw new ArgumentException("Controlled modules must use five host positions and at most two sockets");
                 if(c.category=="ability"&&c.abilities.Count(id=>id==c.candidate)!=1)throw new ArgumentException("Focal ability must occur once");
                 if(c.route<EncounterRoute.Standard||c.route>EncounterRoute.VolatileBreach)throw new ArgumentException("Invalid controlled route");
                 if(c.sequence!=null&&(c.sequence.Length!=5||!c.sequence.OrderBy(s=>s).SequenceEqual(c.abilities.Concat(new[]{"basic0","basic1"}).OrderBy(s=>s))))throw new ArgumentException("Controlled sequence must contain both basics and every ability once");
@@ -61,6 +62,13 @@ namespace VectorGame
                 }
                 Equip(c.weapons[0],PlaceKind.Weapon,0,c.category=="weapon"||c.matchedWeapons);Equip(c.weapons[1],PlaceKind.Weapon,1,c.matchedWeapons);
                 for(int i=0;i<3;i++)Equip(c.abilities[i],PlaceKind.Sequence,i+2,c.category=="ability"&&c.abilities[i]==c.candidate);
+                // Optional modules address weapon mounts 0/1, then the three authored abilities.
+                if(c.modules!=null)for(int i=0;i<5;i++)if(!string.IsNullOrEmpty(c.modules[i]))
+                {
+                    var host=i<2?Deck.WeaponFor(Deck.Basics[i]):Deck.Slots[i];
+                    var module=Deck.Acquire(AugmentCatalog.Get((AugmentId)Enum.Parse(typeof(AugmentId),c.modules[i])));
+                    if(host.augment!=null||!Deck.Attach(module,host))throw new ArgumentException("Invalid controlled socket: "+i);
+                }
                 Equip(c.helmet,PlaceKind.Helmet);Equip(c.armor,PlaceKind.Armor,0,c.category=="armor");Equip(c.boots,PlaceKind.Boots);Equip(c.rig,PlaceKind.Rig);
                 // Fixed setup -> paired basics -> payoff order, identical within each comparison.
                 Deck.Move(Deck.Slots[2],PlaceKind.Sequence,0);
@@ -68,6 +76,8 @@ namespace VectorGame
                 {
                     var ordered=c.sequence.Select(id=>id=="basic0"?Deck.Basics[0]:id=="basic1"?Deck.Basics[1]:Deck.Slots.Single(i=>i?.def.id==id)).ToArray();
                     if(Deck.TwoHanded&&System.Array.IndexOf(ordered,Deck.Basics[1])!=System.Array.IndexOf(ordered,Deck.Basics[0])+1)throw new ArgumentException("Two-handed basics must stay adjacent and ordered");
+                    // Move the locked block before placing abilities into its former slots.
+                    if(Deck.TwoHanded)Deck.Move(Deck.Basics[0],PlaceKind.Sequence,System.Array.IndexOf(ordered,Deck.Basics[0]));
                     for(int i=0;i<ordered.Length;i++)if(ordered[i].def.kind!=ItemKind.Basic||!Deck.TwoHanded||ordered[i]==Deck.Basics[0])Deck.Move(ordered[i],PlaceKind.Sequence,i);
                     if(!Deck.Slots.SequenceEqual(ordered))throw new InvalidOperationException("Controlled sequence placement changed order");
                 }

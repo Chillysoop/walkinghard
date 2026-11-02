@@ -41,7 +41,7 @@ namespace VectorGame
             string siphon=game.SiphonDetails(shown);if(siphon.Length>0)body+="\n"+siphon;
             string rules=EffectRules(shown);if(rules.Length>0)body+="\n"+rules;
             if(offensive)body+="\n\n"+SynergyText(shown.def);
-            if(!shown.HasAugment(AugmentId.Discharge))foreach(var fit in BuildSynergies.Find(game.Deck,shown.def).Take(3))body+="\nWith "+fit.partner.def.name+": "+fit.text;
+            if(!shown.HasAugment(AugmentId.Discharge))foreach(var fit in BuildSynergies.Find(game.Deck,shown.def,incomingItem:shown).Take(3))body+="\nWith "+fit.partner.def.name+": "+fit.text;
             body+="\n\nRARITY EFFECTS\n"+shown.def.upgrade;if(shown.Augmentable)body+="\n\n"+AugmentCatalog.Values(shown,DisplayShare(shown));
             if(offensive)body+="\n\nKills: "+game.ActionKills(item)+" (follows this item)";if(shown.def.tags.Contains("siphon"))body+="\nHealing: "+game.ContributionFor(shown).healing.ToString("0.#")+" HP";
             if(shown.def.kind==ItemKind.Augment)body=ModuleDetails(shown);
@@ -55,7 +55,7 @@ namespace VectorGame
             ActionGlyph(new Rect(r.x+14,r.y+12,60,60),shown.def,white);
             Label(new Rect(r.x+87,r.y+14,width-100,24),shown.def.name,18,white,true);
             TypeIcon(new Rect(r.x+86,r.y+42,18,18),shown.def.kind,muted);
-            Label(new Rect(r.x+111,r.y+44,width-124,17),Category(shown.def)+" / "+(shown.def.kind==ItemKind.Augment?"HOST-SCALED":ItemRarity.Names[shown.rank].ToUpperInvariant()),10,ItemEdge(shown),true);
+            Label(new Rect(r.x+111,r.y+44,width-124,17),Category(shown.def)+" / "+(shown.def.kind==ItemKind.Augment?(shown.def.module.id==AugmentId.Livewire?"MARK-STRENGTH":"HOST-SCALED"):ItemRarity.Names[shown.rank].ToUpperInvariant()),10,ItemEdge(shown),true);
             DrawSynergyChips(new Rect(r.x+16,r.y+83,width-32,18),shown.def);
             DrawFusionReadout(new Rect(r.x+16,r.y+111,width-32,86),shown,hoveredOffer);
             string identity=shown.def.id+":"+shown.rank;if(identity!=detailIdentity){detailIdentity=identity;detailScroll=Vector2.zero;}

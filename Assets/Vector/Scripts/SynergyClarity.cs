@@ -24,6 +24,13 @@ namespace VectorGame
         {
             switch(text)
             {
+                case "Livewire discharged Conductive":SynergyCue("mark","LIVEWIRE DISCHARGE","Weapon contact -> Conductive spent");break;
+                case "Weapon contact delivered Conductive":SynergyCue("mark","FOLLOW-THROUGH MARKS","Ability preparation -> weapon contact");break;
+                case "Weapon contact delivered Siphon":SynergyCue("siphon","FOLLOW-THROUGH SIPHON","Weapon contact marked nearby survivors");break;
+                case "Follow-through pulse spent":SynergyCue("stagger","FOLLOW-THROUGH STAGGER","Prepared pulse -> weapon contact");break;
+                case "Gathered repair mote restored health":SynergyCue("gather","GATHERED REPAIR","Pulled mote -> collected healing");break;
+                case "Storm afterfield hit enemies":case "Cutting afterfield hit enemies":SynergyCue("chain","AFTERFIELD FOLLOW-UP","Original area -> delayed hit");break;
+                case "Prepared retrieval pulled a body":SynergyCue("collision","BODY RETRIEVAL","Saved preparation -> actual body pull");break;
                 case "Lightning consumed Conductive":case "Body impact consumed Conductive":SynergyCue("mark","CONDUCTIVE DISCHARGE","Mark consumed → bonus lightning");break;
                 case "Gather / pull enabled a follow-up hit":SynergyCue("gather","GATHER FOLLOW-UP","A gathered foe took a follow-up hit");break;
                 case "Siphon restored health":SynergyCue("siphon","LIFESTEAL","Damage restored health");break;

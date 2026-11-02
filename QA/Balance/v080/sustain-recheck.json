@@ -1,0 +1,160 @@
+{
+  "cases": [
+    {
+      "id": "sustain-native-81001",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "sustain-shared-81001",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "Afterfield",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001
+    },
+    {
+      "id": "sustain-native-81002",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    },
+    {
+      "id": "sustain-shared-81002",
+      "context": "sustain",
+      "category": "weapon",
+      "candidate": "greatsword",
+      "weapons": [
+        "greatsword",
+        ""
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "predator",
+      "rig": "magnet",
+      "ultimate": "harvest",
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Counterguard",
+        "ReapingCut"
+      ],
+      "modules": [
+        "",
+        "",
+        "Afterfield",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002
+    }
+  ]
+}

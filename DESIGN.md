@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 17, October 30, 2026. Implementation target: 0.7.7. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Verification for Recoil charge preservation is in QA/v077-verification.md; the broader checkpoint pass is in QA/v074-verification.md.
+Revision 18, November 1, 2026. Implementation target: 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
 
 ## Deadeye additions and synergy clarity
 
@@ -153,16 +153,16 @@ A distinct owned ability or weapon (including fists) has one socket. Armor, rigs
 
 Both empty mounts reference the same starter fists: one host, one socket, one added module activation combining the two paired shares. Separate owned fists have separate sockets. Two-handed weapons receive one full module budget once. Distinct simultaneous one-handed hosts each receive their full module effect. Shared starter fists still own only one socket/effect. Native damage is preserved. Shared collision and per-origin derived-hit limits still apply.
 
-Augment drafts offer one compatible ability module, one compatible weapon module and one distinct compatible option from either. Every offer has an owned compatible host. Another copy is eligible only when compatible owned host count exceeds owned copies of that module. Matching module copies still obey pair budgets.
+Augment drafts offer one compatible ability module, one compatible weapon module and one distinct compatible option from either. Every offer has an owned compatible host. Livewire additionally requires an equipped, independently startable Conductive source; Grounding plus Livewire alone is not sufficient. Another copy is eligible only when compatible owned host count exceeds owned copies of that module. Matching module copies still obey pair budgets.
 
 Drag modules onto highlighted compatible equipped or stored hosts. Drag the installed module icon into storage to remove. Double-click attaches only with one unambiguous compatible destination; otherwise it leaves selection pending and highlights destinations. The installed module icon is also shown on the corresponding basic. Two-handed positions share the socket presentation.
 
 | Module | Hosts | Benefit at Common | Persistent cost and limits |
 | --- | --- | --- | --- |
-| Follow-through | Jab, Breaker | One next-basic 0.4S-second stagger pulse, 2.2m, max 5 | Immediate stagger × .55; one bank, replaced rather than accumulated |
-| Focused | Breaker, Arc, Conductive Brand, Reaping, Drain Brand | Breaker stagger ×1.5; Arc primary ×1.35; Brand discharge ×1.4; Reaping weak-target bonus +80%; Drain Brand bonus Lifesteal +40% | Breaker half arc 40°; Arc 1 target (2 Rare+); Brand 2 marks; Reaping half arc 42°; Drain Brand 2 targets; no execution |
-| Echo | Jab, Arc, Reaping | One primary-only repeat, .35S of host damage; +.22s | Opening ×.8; never repeats whole cleave/chain |
-| Afterfield | Gravity, Tether, Brand | 2s field, .4s ticks, six distinct targets; point vs corridor preserved | Initial strength ×.65; lingering pull/mark only, no damage loop |
+| Follow-through | Jab, Breaker, Volley, Conductive Brand, Drain Brand | Next-weapon contact: 0.4S stagger (2.2m, max5), 3 Conductive marks, or 2/2/3/3/4 Siphon marks | Immediate stagger 55%; Brand 2 immediate marks; Drain 1. One shared preparation; replace, never stack; preserve until living targets qualify |
+| Focused | Breaker, Arc, Brand, Reaping, Drain, Volley, Push, Tether | Stronger concentrated native effect; Push force +50%; Tether reach +2m | Narrower native coverage/mark counts; Volley 1 target; Push 35-degree half arc for living enemies and corpses; Tether half width |
+| Echo | Jab, Arc, Reaping, Volley | One primary-only repeat, .35S of host damage; +.22s | Opening ×.8; never repeats whole cleave/chain |
+| Afterfield | Gravity, Tether, Brand, Arc, Reaping, Drain | Fixed 2s area; six distinct targets. Support ticks every .4s; damage pulses at .65s and 1.3s for 17.5% host damage | Opening damage 65%; pull and Drain strength 65%. Arc max3 contacts/pulse; Reaping max6, native weak-target bonus/severs, no repeat stagger. One field/owned host; recast replaces |
 | Split Payload | Driver | Up to two launches, one shared six-hit/exclusion budget | Each impulse ×.65; still executes with one eligible target |
 | Backwash | Push | Surviving affected living targets return 45% toward original positions over .32s | Outward ×.65; return ends before advancement; no corpse/untouched return |
 | Discharge | Counterguard | 55% absorption converted on barrier break/expiry, cap 30S, 4m forward cone, max 5 | Replaces 80% next-basic bank; no simultaneous bank |
@@ -175,8 +175,13 @@ Drag modules onto highlighted compatible equipped or stored hosts. Drag the inst
 | Piledriver | Hammers | Primary launch gains .35S extra impulse | Native splash/additional launches retained; normal shared collision caps |
 | Bore Rounds | Guns | Bounded line penetration added to native ricochets/scatter; rifle adds penetration | No focusing delay; native scatter cone retained; line cap 2–4 (rifle max6) |
 | Breach Load | Guns | Real refill arms one .4S stagger burst, 2m + .15m per rarity step, max5 | Normal 1.2s reload before Loader; one armed burst, consumed once |
+| Livewire | All fists, swords, hammers, guns | A surviving direct-contact target discharges its existing Conductive mark at full strength; can feed Grounding | One discharge per owned weapon per action. Distinct paired hosts get one each; shared fists / two-handed host gets one. No native damage or timing penalty; needs a mark; lethal/unmarked contacts preserve eligibility |
 
 Shared next-basic payoffs, Amplifier, Overclock and gear triggers treat a pair as one turn. Sequence lead resolves first, then its partner: this stable ordering determines primary shared payoff and mark consumption. Follow-ups remain within their origin; derived effects cannot generate recursive copies of themselves. Additional derived hits share a per-origin budget of twelve. A paired reload triggers Loader once. Redline only arms Breach if it actually restores ammo.
+
+Afterfields retain the original action's attribution, twelve-derived-hit cap, and shared healing budget. They do not repeat a complete chain, grant another sequence turn, or refill Amplifier/Overclock. Arc uses the first target's original position and a 2.8m radius. Reaping retains its original cone; Drain uses a 2.8m circle. The Walker moving does not move these fields. Surveyor may complete its one multi-target echo when a later field hit reaches a second distinct target.
+
+Gravity/Tether and their fields move Recovery Treads motes through the scene; healing still requires actual pickup. Gathering earns an assist only after a moved mote restores health. Salvager keeps a preparation until a body is available, spends on an actual retrieval, and cannot rearm from that retrieval. Follow-through prioritizes unmarked neighbors, preserves ability ownership/rarity, and shows MARKS / SIPHON / STAGGER READY on the receiving weapon.
 
 ## Encounters, information and physical rules
 

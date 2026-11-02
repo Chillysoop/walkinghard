@@ -9,7 +9,7 @@ namespace VectorGame
         public static void Run()
         {
             Check(LoadoutCatalog.All.Count()==47&&LoadoutCatalog.All.Select(d=>d.id).Distinct().Count()==47,"47 unique identities");
-            Check(AugmentCatalog.All.Length==16,"16 modules");
+            Check(AugmentCatalog.All.Length==17,"17 modules");
             Check(Enumerable.Range(1,7).SelectMany(VectorEncounter.RewardsAfter).Count(d=>d!=DraftKind.Augment)+2==13,"13 item choices");
             Check(Enumerable.Range(1,7).SelectMany(VectorEncounter.RewardsAfter).Count(d=>d==DraftKind.Augment)==2,"2 augment choices");
             foreach(var module in AugmentCatalog.All)

@@ -43,8 +43,8 @@ namespace VectorGame
         string ModuleDetails(LoadoutItem module)
         {
             var hosts=game.Deck.CompatibleHosts(module.def).ToArray();string text=module.def.description+"\n"+(module.def.module.family>=0?"Socket: ":"Tradeoff: ")+module.def.tradeoff+"\n\nBEFORE → AFTER / COMPATIBLE OWNED ITEMS";
-            foreach(var host in hosts){var preview=new LoadoutItem(host.def,host.rank){augment=module};var card=LoadoutCatalog.Action(host);text+="\n"+host.Name+" ["+Category(host.def)+"]\n"+(host.augment?.def.name??"Empty socket")+" → "+module.def.name+"\n"+(card.damage*AugmentCatalog.Opening(host)).ToString("0.#")+" → "+(card.damage*AugmentCatalog.Opening(preview)).ToString("0.#")+" opening DMG; "+(card.duration+AugmentCatalog.Extension(host)).ToString("0.00")+" → "+(card.duration+AugmentCatalog.Extension(preview)).ToString("0.00")+"s\n"+AugmentCatalog.Values(preview,DisplayShare(host)).Split('\n')[0];}
-            text+="\n\nNo independent rarity or fusion. Scales once from host. Drag onto a highlighted host. Drag the installed module icon to storage to remove.";return text;
+            foreach(var host in hosts){var preview=new LoadoutItem(host.def,host.rank){augment=module};var card=LoadoutCatalog.Action(host);var after=LoadoutCatalog.Action(preview);text+="\n"+host.Name+" ["+Category(host.def)+"]\n"+(host.augment?.def.name??"Empty socket")+" → "+module.def.name+"\n"+(card.damage*AugmentCatalog.Opening(host)).ToString("0.#")+" → "+(card.damage*AugmentCatalog.Opening(preview)).ToString("0.#")+" opening DMG; "+(card.duration+AugmentCatalog.Extension(host)).ToString("0.00")+" → "+(card.duration+AugmentCatalog.Extension(preview)).ToString("0.00")+"s; reach "+card.range.ToString("0.#")+" -> "+after.range.ToString("0.#")+"m\n"+AugmentCatalog.Values(preview,DisplayShare(host)).Split('\n')[0];}
+            text+="\n\nNo independent rarity or fusion. Uses host values; Livewire uses the existing mark strength. Drag onto a highlighted host. Drag the installed module icon to storage to remove.";return text;
         }
     }
 }

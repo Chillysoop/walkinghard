@@ -65,9 +65,9 @@ namespace VectorGame
             Vector3 origin=HeroPosition,aim=hero.Root.forward,point=origin+aim*2.8f;
             var target=actionTarget?.deathAge<0&&Reachable(actionTarget,card.range)?actionTarget:Target(card.range);actionTarget=target;
             float stagger=host.HasAugment(AugmentId.FollowThrough)?.55f:1;
-            if(host.HasAugment(AugmentId.FollowThrough)){followBank=.4f*s;followOwner=host;}
+            if(host.HasAugment(AugmentId.FollowThrough))PrepareFollowThrough(host);
             if(card.id==AbilityId.SuppressiveVolley){ResolveSuppressiveVolley(host,card,target,damage);return;}
-            if(card.id==AbilityId.DrainBrand){foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(focused?2:3+(host.rank-1)/2).ToArray()){DrainMark(e,host,focused?1.4f:1);Hurt(e,damage,Vector3.zero,.1f);fx.Arc(hero.RightHand.position,e.physics.Center,SiphonColor);}return;}
+            if(card.id==AbilityId.DrainBrand){foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(AugmentCatalog.InitialMarks(host)).ToArray()){DrainMark(e,host,focused?1.4f:host.HasAugment(AugmentId.Afterfield)?.65f:1);Hurt(e,damage,Vector3.zero,.1f);fx.Arc(hero.RightHand.position,e.physics.Center,SiphonColor);}LeaveAfterfield(host,card,origin,aim,point);return;}
             if(card.id==AbilityId.Counterguard){AddBarrier(host,LoadoutCatalog.CounterguardCapacity(host),LoadoutCatalog.CounterguardDuration(host),host.HasAugment(AugmentId.Discharge));return;}
             if(card.id==AbilityId.SteelJab||card.id==AbilityId.MassDriver)
             {
@@ -78,24 +78,24 @@ namespace VectorGame
             }
             if(card.id==AbilityId.ArcBolt)
             {
-                var hit=new HashSet<int>();Vector3 from=hero.RightHand.position;int cap=focused?(host.rank>=3?2:1):3+(host.rank>=4?1:0);
-                for(int i=0;i<cap&&target!=null;i++){Vector3 p=target.physics.Center;hit.Add(target.id);fx.Lightning(from,p,Color.cyan);ElectricHit(target,damage*(i==0?(focused?1.35f:1):.65f)+(target.stun>0?8*s:0),.18f);from=p;target=enemies.Where(e=>!hit.Contains(e.id)&&Reachable(e,card.range+3)&&Vector3.Distance(e.physics.Center,p)<4.2f).OrderBy(e=>Vector3.Distance(e.physics.Center,p)).FirstOrDefault();}return;
+                Vector3 fieldPoint=target?.rig.Root.position??point;var hit=new HashSet<int>();Vector3 from=hero.RightHand.position;int cap=focused?(host.rank>=3?2:1):3+(host.rank>=4?1:0);
+                for(int i=0;i<cap&&target!=null;i++){Vector3 p=target.physics.Center;hit.Add(target.id);fx.Lightning(from,p,Color.cyan);ElectricHit(target,damage*(i==0?(focused?1.35f:1):.65f)+(target.stun>0?8*s:0),.18f);from=p;target=enemies.Where(e=>!hit.Contains(e.id)&&Reachable(e,card.range+3)&&Vector3.Distance(e.physics.Center,p)<4.2f).OrderBy(e=>Vector3.Distance(e.physics.Center,p)).FirstOrDefault();}LeaveAfterfield(host,card,origin,aim,fieldPoint);return;
             }
             if(card.id==AbilityId.ConductiveBrand)
             {
-                int cap=focused?2:5;foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(cap).ToArray()){Hurt(e,damage,Vector3.zero,.05f);MarkEnemy(e,host,focused?1.4f:1);fx.Arc(hero.RightHand.position,e.physics.Center,Color.cyan);}
+                int cap=AugmentCatalog.InitialMarks(host);foreach(var e in enemies.Where(e=>Reachable(e,card.range)).OrderBy(e=>Vector3.Distance(e.physics.Center,point)).Take(cap).ToArray()){Hurt(e,damage,Vector3.zero,.05f);MarkEnemy(e,host,focused?1.4f:1);fx.Arc(hero.RightHand.position,e.physics.Center,Color.cyan);}
             }
             else
             {
-                float arc=card.id==AbilityId.Breaker?(focused?40:100+5*(host.rank-1)):card.id==AbilityId.ReapingCut?(focused?42:70+5*(host.rank-1)):180;
-                float width=1.8f+.1f*(host.rank-1);bool corridor=card.id==AbilityId.VectorTether;
+                float arc=card.id==AbilityId.Breaker?(focused?40:100+5*(host.rank-1)):card.id==AbilityId.ReapingCut?(focused?42:70+5*(host.rank-1)):card.id==AbilityId.ForcePush&&focused?35:180;
+                float width=AugmentCatalog.TetherWidth(host);bool corridor=card.id==AbilityId.VectorTether;
                 if(corridor)fx.Corridor(origin,aim,card.range,width,Color.cyan,.55f);else if(card.id==AbilityId.GravityWell){fx.Shape(origin,Vector3.forward,card.range,180,Color.cyan,.4f);fx.Symbol(point,Color.cyan,.4f,false);}else if(card.id==AbilityId.ReapingCut)fx.Sweep(origin,aim,card.range,arc,Color.white,.3f);else fx.Shape(origin,aim,card.range,arc,VisualFactory.Cyan,.4f);
                 foreach(var e in enemies.ToArray())
                 {
                     if(corridor?!InCorridor(e,origin,aim,card.range,width):!InCone(e,origin,aim,card.range,arc)||!Reachable(e,card.range))continue;
                     Vector3 delta=e.rig.Root.position-origin;delta.y=0;Vector3 impulse=Vector3.zero;float stun=.2f*s,hitDamage=damage;
                     if(card.id==AbilityId.Breaker){stun=1*s*stagger*(focused?1.5f:1);impulse=delta.normalized*3.5f;}
-                    if(card.id==AbilityId.ForcePush){bool wash=host.HasAugment(AugmentId.Backwash);if(wash)backwash[e]=e.rig.Root.position;impulse=delta.normalized*11*s*(wash?.65f:1);stun=.45f*s;}
+                    if(card.id==AbilityId.ForcePush){bool wash=host.HasAugment(AugmentId.Backwash);if(wash)backwash[e]=e.rig.Root.position;impulse=delta.normalized*11*s*(wash?.65f:focused?1.5f:1);stun=.45f*s;}
                     if(card.id==AbilityId.GravityWell||corridor)
                     {
                         Vector3 gather=corridor?origin+aim*Mathf.Clamp(Vector3.Dot(delta,aim),1,card.range):point;var pull=gather-e.rig.Root.position;pull.y=0;impulse=pull.normalized*Mathf.Min(10,pull.magnitude*3)*s*AugmentCatalog.Opening(host)*(host.HasAugment(AugmentId.Anchor)?.7f:1);stun=0;SetSetup(e,host);
@@ -104,9 +104,10 @@ namespace VectorGame
                     if(card.id==AbilityId.ReapingCut&&e.health<e.maxHealth*(.5f+.025f*(host.rank-1)))hitDamage*=focused?1.8f+.1f*(host.rank-1):1.4f+.05f*(host.rank-1);
                     Hurt(e,hitDamage,impulse,stun,card.id==AbilityId.ReapingCut);
                 }
-                if(card.id==AbilityId.ForcePush)PushCorpses(card.range);
+                if(card.id==AbilityId.ForcePush)PushCorpses(card.range,null,focused?35:180,focused?1.5f:1);
+                if(card.id==AbilityId.GravityWell||corridor)GatherMotes(host,origin,aim,point,card.range,width,corridor);
             }
-            if(host.HasAugment(AugmentId.Afterfield))fields.Add(new Field{host=host,credit=currentCredit,origin=origin,aim=aim,point=point});fx.Play(2);
+            LeaveAfterfield(host,card,origin,aim,point);fx.Play(2);
         }
         void ResolveAuthoredBasic(LoadoutItem host,AbilityCard card,Enemy target,bool left,bool nativeFollowup=false)
         {
@@ -119,7 +120,7 @@ namespace VectorGame
             {
                 fx.Arc(origin,target.physics.Center,VisualFactory.Cyan);fx.Burst(target.physics.Center,VisualFactory.Cyan,4,2);
                 Hurt(target,damage,aim*profile.force,(profile.style==WeaponStyle.Kinetic?.45f:.18f)*s);WeaponHits[0]++;
-                if(profile.style==WeaponStyle.Conductor)MarkEnemy(target,host);
+                if(profile.style==WeaponStyle.Conductor){MarkEnemy(target,host);SpendLivewire(target);}
                 if(nativeFollowup&&host.rank>=3&&Once("kinetic-wave"+Deck.Items.IndexOf(host)))Pulse(target.physics.Center,2.4f,.5f*s,3,target);
                 if(!nativeFollowup&&!secondary&&host.HasAugment(AugmentId.PalmDrive)&&target.deathAge<0){Control(target,.12f,aim*(6+.6f*(host.rank-1))*share);fx.Corridor(target.rig.Root.position,aim,1,.35f,Color.magenta,.3f);}
                 SpendBreach(host,target,share);return;

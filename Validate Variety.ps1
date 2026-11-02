@@ -1,8 +1,8 @@
 param([string]$Player=(Join-Path $PSScriptRoot 'Build\Windows\WalkingHard.exe'),[string]$ReportPrefix='v060',[string[]]$Builds=@(),[switch]$FullRun,[int]$HeroHealth=0)
 $ErrorActionPreference='Stop'
 if($Builds.Count -eq 0){
-    $Builds=@('pinball','pinball-separated','freight','freight-piledriver','ballet','funnel','funnel-breach','cutcarry','close')
-    foreach($module in @('FollowThrough','Focused','Echo','Afterfield','SplitPayload','Backwash','Discharge','Anchor','Flurry','PalmDrive','Crosscut','HookedEdge','Groundbreaker','Piledriver','BoreRounds','BreachLoad')){$Builds+=('aug-'+$module)}
+    $Builds=@('pinball','pinball-separated','freight','freight-piledriver','ballet','funnel','funnel-breach','cutcarry','close','shared-pressure','shared-conductor','shared-freight','shared-sustain')
+    foreach($module in @('FollowThrough','Focused','Echo','Afterfield','SplitPayload','Backwash','Discharge','Anchor','Flurry','PalmDrive','Crosscut','HookedEdge','Groundbreaker','Piledriver','BoreRounds','BreachLoad','Livewire')){$Builds+=('aug-'+$module)}
     foreach($family in @('fists','sword','hammer','guns')){foreach($layout in @('paired','separate','same','single')){$Builds+=('compare-'+$family+'-'+$layout)}}
     $Builds+=@('compare-fists-shared','compare-sword-2h','compare-hammer-2h','compare-guns-2h')
 }

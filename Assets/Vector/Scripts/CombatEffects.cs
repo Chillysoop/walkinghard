@@ -12,6 +12,7 @@ namespace VectorGame
         readonly AudioSource audio;
         readonly AudioClip punch,finish,push,damage,slash,crush,electric,shot;
         public bool muted;
+        internal static System.Action<AudioClip,float> CaptureSound;
         readonly bool disabled=Application.isBatchMode&&System.Array.IndexOf(System.Environment.GetCommandLineArgs(),"-nographics")>=0;
         public CombatEffects(Transform p,bool silent)
         {
@@ -32,9 +33,10 @@ namespace VectorGame
             for(int i=0;i<count;i++){float t=(float)i/44100;float envelope=Mathf.Exp(-t*decay)*Mathf.Min(1,t*450);float tone=Mathf.Sin(2*Mathf.PI*freq*(t-t*t*.6f));data[i]=(tone*(1-noise)+((float)random.NextDouble()*2-1)*noise)*envelope*.52f;}
             var c=AudioClip.Create(name,count,1,44100,false);c.SetData(data,0);return c;
         }
-        public void Play(int kind){if(!disabled&&!muted)audio.PlayOneShot(kind==0?punch:kind==1?finish:kind==2?push:damage);}
+        void EmitSound(AudioClip clip,float gain=1){if(disabled)return;CaptureSound?.Invoke(clip,gain*.4f);if(!muted)audio.PlayOneShot(clip,gain);}
+        public void Play(int kind){EmitSound(kind==0?punch:kind==1?finish:kind==2?push:damage);}
         public void PlayImpact(ImpactKind kind)
-        {if(!disabled&&!muted)audio.PlayOneShot(kind==ImpactKind.Slash?slash:kind==ImpactKind.Crush?crush:kind==ImpactKind.Electric?electric:kind==ImpactKind.Bullet?shot:kind==ImpactKind.Force||kind==ImpactKind.Pull?push:punch,.6f);}
+        {EmitSound(kind==ImpactKind.Slash?slash:kind==ImpactKind.Crush?crush:kind==ImpactKind.Electric?electric:kind==ImpactKind.Bullet?shot:kind==ImpactKind.Force||kind==ImpactKind.Pull?push:punch,.6f);}
         public void Contact(ImpactReaction hit,bool lethal)
         {
             if(disabled)return;

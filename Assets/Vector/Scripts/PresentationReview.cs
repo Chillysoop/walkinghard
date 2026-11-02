@@ -57,6 +57,7 @@ namespace VectorGame
                 File.WriteAllText(Path.Combine(directory,"wave-feedback.json"),JsonUtility.ToJson(game.LastWaveFeedback,true));
                 Debug.Log("FEEDBACK_REVIEW_SUCCESS");Application.Quit(0);yield break;
             }
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"-sharedAugmentReview")>=0){yield return CaptureSharedAugmentReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
@@ -79,6 +80,18 @@ namespace VectorGame
             fusionDeck=game.Deck;seenFusions=0;shownFusion=null;
             yield return CapturePresentation(directory,"07-combat");
             Debug.Log("PRESENTATION_REVIEW_SUCCESS: "+LoadoutCatalog.All.Concat(AugmentCatalog.All).Count()+" mapped definitions; native UI captures saved.");Application.Quit(0);
+        }
+        IEnumerator CaptureSharedAugmentReview(string directory)
+        {
+            var d=game.Deck;
+            foreach(string id in new[]{"wraps","rifle","ReapingCut","DrainBrand","VectorTether","ConductiveBrand"})d.Acquire(LoadoutCatalog.Find(id),3);
+            game.MoveItem(d.Items.Last(i=>i.def.id=="ConductiveBrand"),PlaceKind.Sequence,2);
+            d.Open(DraftKind.Augment,false);var modules=new[]{AugmentId.Livewire,AugmentId.Afterfield,AugmentId.FollowThrough};
+            for(int i=0;i<3;i++)d.Offers[i]=new RewardOffer(AugmentCatalog.Get(modules[i]));
+            yield return CapturePresentation(directory,"34-shared-options");
+            foreach(var id in modules){presentationHover=new LoadoutItem(AugmentCatalog.Get(id));yield return CapturePresentation(directory,"35-shared-"+id);}
+            presentationHover=new LoadoutItem(AugmentCatalog.Get(AugmentId.Focused));yield return CapturePresentation(directory,"36-focused-reach");
+            presentationHover=null;Debug.Log("SHARED_AUGMENT_REVIEW_SUCCESS: module tradeoffs, native artwork and host comparisons captured.");Application.Quit(0);
         }
         IEnumerator CaptureSiphonReview(string directory)
         {

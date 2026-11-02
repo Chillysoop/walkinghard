@@ -145,7 +145,7 @@ namespace VectorGame
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Strong);}
                 EffectLine(new Rect(x+12,y+57,width-24,18),item,12);
-                if(shown!=null)DrawSynergyChips(new Rect(x+12,y+77,width-24,18),shown.def);
+                if(game.FollowThroughDestination(i)){EffectIcon(new Rect(x+12,y+77,16,16),SynergySymbol(game.FollowThroughKey),white);Label(new Rect(x+33,y+77,width-45,18),game.FollowThroughReady,10,white,true);}else if(shown!=null)DrawSynergyChips(new Rect(x+12,y+77,width-24,18),shown.def);
                 Label(new Rect(x+12,y+97,width-24,17),CombatStats(item),11,muted,true);
                 Label(new Rect(x+12,y+115,width-24,17),shown==null?"SKIPPED":"Kills: "+game.ActionKills(item)+"  /  "+ItemRarity.Names[shown.rank],11,shown==null?muted:RarityColor(shown.rank));
                 if(active&&!delayed)Box(new Rect(x+12,y+133,(width-24)*game.ActionProgress,2),Accent);
