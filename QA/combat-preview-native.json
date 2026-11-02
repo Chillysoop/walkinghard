@@ -1,0 +1,451 @@
+{
+    "passed": true,
+    "assertions": 204,
+    "productionAssertions": 1412,
+    "cases": [
+        {
+            "preset": "FISTS",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 16,
+            "severs": 0,
+            "launches": 22,
+            "collisions": 10,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                4,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "FISTS",
+            "newStyle": true,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": false,
+            "kills": 16,
+            "severs": 0,
+            "launches": 22,
+            "collisions": 10,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 58,
+            "health": 340.0,
+            "casts": [
+                4,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "FISTS",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 16,
+            "severs": 0,
+            "launches": 22,
+            "collisions": 10,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                4,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "DUAL BLADES",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 16,
+            "severs": 6,
+            "launches": 20,
+            "collisions": 10,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "DUAL BLADES",
+            "newStyle": true,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 17,
+            "severs": 7,
+            "launches": 19,
+            "collisions": 8,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 61,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "DUAL BLADES",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": true,
+            "kills": 17,
+            "severs": 7,
+            "launches": 20,
+            "collisions": 9,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "GREATSWORD",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 15,
+            "severs": 11,
+            "launches": 4,
+            "collisions": 2,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 329.2991943359375,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "GREATSWORD",
+            "newStyle": true,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": false,
+            "kills": 15,
+            "severs": 11,
+            "launches": 4,
+            "collisions": 2,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 60,
+            "health": 329.2991943359375,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "GREATSWORD",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 15,
+            "severs": 11,
+            "launches": 4,
+            "collisions": 2,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 329.2991943359375,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "HAMMER",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 21,
+            "severs": 0,
+            "launches": 15,
+            "collisions": 6,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "HAMMER",
+            "newStyle": true,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": false,
+            "kills": 21,
+            "severs": 0,
+            "launches": 15,
+            "collisions": 6,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 72,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "HAMMER",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 21,
+            "severs": 0,
+            "launches": 15,
+            "collisions": 6,
+            "ultimates": 1,
+            "paired": 3,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "CLOSE QUARTERS",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 18,
+            "severs": 0,
+            "launches": 22,
+            "collisions": 5,
+            "ultimates": 1,
+            "paired": 0,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "CLOSE QUARTERS",
+            "newStyle": true,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 17,
+            "severs": 0,
+            "launches": 23,
+            "collisions": 6,
+            "ultimates": 1,
+            "paired": 0,
+            "peakEffects": 66,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "CLOSE QUARTERS",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 18,
+            "severs": 0,
+            "launches": 22,
+            "collisions": 5,
+            "ultimates": 1,
+            "paired": 0,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "RIFLE",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 17,
+            "severs": 0,
+            "launches": 9,
+            "collisions": 4,
+            "ultimates": 1,
+            "paired": 5,
+            "peakEffects": 0,
+            "health": 337.09918212890627,
+            "casts": [
+                5,
+                5,
+                5,
+                4,
+                4
+            ]
+        },
+        {
+            "preset": "RIFLE",
+            "newStyle": true,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": false,
+            "kills": 17,
+            "severs": 0,
+            "launches": 9,
+            "collisions": 4,
+            "ultimates": 1,
+            "paired": 5,
+            "peakEffects": 34,
+            "health": 337.09918212890627,
+            "casts": [
+                5,
+                5,
+                5,
+                4,
+                4
+            ]
+        },
+        {
+            "preset": "RIFLE",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 17,
+            "severs": 0,
+            "launches": 9,
+            "collisions": 4,
+            "ultimates": 1,
+            "paired": 5,
+            "peakEffects": 0,
+            "health": 337.09918212890627,
+            "casts": [
+                5,
+                5,
+                5,
+                4,
+                4
+            ]
+        },
+        {
+            "preset": "PURSUER",
+            "newStyle": false,
+            "exactBaselineMatch": false,
+            "repeatedOriginal": false,
+            "kills": 8,
+            "severs": 2,
+            "launches": 17,
+            "collisions": 7,
+            "ultimates": 1,
+            "paired": 2,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                1,
+                1
+            ]
+        },
+        {
+            "preset": "PURSUER",
+            "newStyle": true,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": false,
+            "kills": 8,
+            "severs": 2,
+            "launches": 17,
+            "collisions": 7,
+            "ultimates": 1,
+            "paired": 2,
+            "peakEffects": 90,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                1,
+                1
+            ]
+        },
+        {
+            "preset": "PURSUER",
+            "newStyle": false,
+            "exactBaselineMatch": true,
+            "repeatedOriginal": true,
+            "kills": 8,
+            "severs": 2,
+            "launches": 17,
+            "collisions": 7,
+            "ultimates": 1,
+            "paired": 2,
+            "peakEffects": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                1,
+                1
+            ]
+        }
+    ],
+    "medianFrameMs": 16.666412353515626,
+    "p95FrameMs": 16.683578491210939,
+    "performance": "1080p, 1x, new look, normal wave; wall-frame intervals including presentation"
+}

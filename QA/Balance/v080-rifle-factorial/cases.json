@@ -1,0 +1,1284 @@
+{
+  "cases": [
+    {
+      "id": "rifle-native-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81001",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81001,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81002",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81002,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81003",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81003,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81003",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81003,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81003",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81003,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81003",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81003,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81004",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81004,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81004",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81004,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81004",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81004,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81004",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81004,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81005",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81005,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81005",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81005,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81005",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81005,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81005",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81005,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81006",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81006,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81006",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81006,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81006",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81006,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81006",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81006,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81007",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81007,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81007",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81007,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81007",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81007,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81007",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81007,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-native-81008",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "native",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81008,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-livewire-81008",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "livewire",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81008,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-focused-81008",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "focused",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81008,
+      "focalItem": "rifle"
+    },
+    {
+      "id": "rifle-both-81008",
+      "context": "conductor",
+      "category": "weapon",
+      "candidate": "both",
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "grounding",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "sequence": [
+        "SuppressiveVolley",
+        "ConductiveBrand",
+        "VectorTether",
+        "basic0",
+        "basic1"
+      ],
+      "modules": [
+        "Livewire",
+        "",
+        "",
+        "",
+        "Focused"
+      ],
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "healthFraction": 1,
+      "seed": 81008,
+      "focalItem": "rifle"
+    }
+  ]
+}

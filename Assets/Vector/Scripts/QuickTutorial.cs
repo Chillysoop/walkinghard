@@ -47,7 +47,7 @@ namespace VectorGame
             hud?.ResetTutorialUI();
         }
         public void MainMenu()
-        {Begin();State=RunState.Ready;hud?.ResetTutorialUI();}
+        {EndCombatPreview();Begin();State=RunState.Ready;hud?.ResetTutorialUI();}
         void TutorialOffers(DraftKind kind,params string[] ids)
         {
             Deck.Open(kind,false);

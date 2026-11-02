@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "native",
+    "n": 8,
+    "wins": 4,
+    "meanWave": 8,
+    "meanKills": 300.75,
+    "meanDamage": 250.93729972839355,
+    "meanSurvivalSeconds": 322.34667205810547
+  },
+  {
+    "variant": "livewire",
+    "n": 8,
+    "wins": 6,
+    "meanWave": 8,
+    "meanKills": 308,
+    "meanDamage": 233.9470672607422,
+    "meanSurvivalSeconds": 333.1461181640625
+  },
+  {
+    "variant": "focused",
+    "n": 8,
+    "wins": 1,
+    "meanWave": 7.375,
+    "meanKills": 256.75,
+    "meanDamage": 277.034236907959,
+    "meanSurvivalSeconds": 278.09289360046387
+  },
+  {
+    "variant": "both",
+    "n": 8,
+    "wins": 0,
+    "meanWave": 7.5,
+    "meanKills": 260,
+    "meanDamage": 280.0,
+    "meanSurvivalSeconds": 278.3365821838379
+  }
+]

@@ -1,6 +1,6 @@
 # Walking Hard — art and VFX pass
 
-Plan prepared October 29, 2026, against Unity 6000.3.27f1 / URP 17.3.0 and the v0.7.1 Pursuer finale. This is a proposed presentation pass; no assets have been imported or gameplay rules changed.
+Plan prepared October 29, 2026; first playable preview added November 2 against the v0.8.0 branch. Unity 6000.3.27f1 / URP 17.3.0. The broader rollout remains proposed. The preview uses original faceted armor meshes on the existing articulated rig and bounded procedural effects; no third-party art has been imported and no combat values changed.
 
 ## Direction
 
@@ -36,7 +36,7 @@ Prefer these CC0 sources for a repository friends can clone. Save each downloade
 
 Create an art-review scene using the real gameplay camera and lighting: one hero, a raider, an enforcer, shield/carrier variants, a short corridor and the Pursuer at near/far distances. Import a small asset sample, unify scale and material response, and compare silhouettes at actual gameplay size. Establish a neutral key light, cool rim light, warm doorway accents and restrained bloom. Keep the play area clear of foreground clutter.
 
-**Exit:** a 10-second screenshot/video comparison demonstrating that the hero, threat roles and equipped weapons are easy to identify. Confirm the selected models can support the required cuts before expanding the scene.
+**Exit:** a playable comparison and native screenshots demonstrating that the hero, threat roles and equipped weapons are easy to identify. Confirm the selected models can support the required cuts before expanding the scene.
 
 ### 2. Character, weapons and motion
 
@@ -85,6 +85,8 @@ Check normal fights, a dense collision pile, electricity chains, all ultimates, 
 
 ## First delivery
 
-Deliver a polished **20-second sample** before replacing everything: one corridor section, the equipped hero, two enemy silhouettes, sword sever, hammer impact, electrical jitter and a short Pursuer approach. Review the look, readability and frame time. Then expand the approved treatment across the catalogue.
+Deliver a **playable Combat Preview**, with the real UI, existing corridor, equipped hero, raiders/enforcers, shields/carriers and Pursuer. Switch between weapon families and the original/new presentation at a fixed seed. Show sword sever, hammer impact, electrical reactions, directional gathering and ultimate preparation/payoff. Review the look, readability and frame time before expanding it across ordinary runs. Trailer work has ended; this milestone uses still captures and the playable build.
+
+The current slice adds a 160-slot effect pool, native footprint-preserving gather cues, local Redline vents, and armor pieces parented to the eleven existing severable bones. It does not yet replace corridor assets, animation, audio or checkpoint portraits. The full-crowd performance gate and player readability review remain required before a global rollout. See [verification](QA/combat-preview-verification.md).
 
 The substantial custom work is rig/socket integration, cut meshes, ragdoll mapping and effect timing. Free assets reduce modelling effort; they do not make those integrations automatic. No paid packs, new gameplay features or changes to the approved loadout rules are required by this plan.

@@ -1,0 +1,17 @@
+{
+  "mode": "Full",
+  "runs": 32,
+  "workers": 2,
+  "player": "Build/TrailerFinish-v080/WalkingHard.exe",
+  "assemblySha256": "44ee99e9163582a2eeb74bcca924c4bb88e26c756e9833391d10dbb6de514253",
+  "maxCombatSeconds": 600,
+  "baseHealth": 280,
+  "startedUtc": "2026-11-02T20:50:45Z",
+  "valid": 32,
+  "invalid": 0,
+  "missing": 0,
+  "duplicateCases": 0,
+  "timeouts": 0,
+  "wins": 11,
+  "validation": "analyze.py checks IDs, seeds, health, rarity, equipped rifle and both module slots. Original runner rejected variant labels as item IDs after all simulations completed; focalItem now separates them."
+}
