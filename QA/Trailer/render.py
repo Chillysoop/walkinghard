@@ -32,7 +32,7 @@ def wav_read(path):
         assert w.getframerate() == SR and w.getnchannels() == 1
         return np.frombuffer(w.readframes(w.getnframes()), '<i2').astype(np.float32) / 32768
 
-def make_audio():
+def make_score():
     n = SR * LENGTH
     score = np.zeros(n, np.float64)
     rng = np.random.default_rng(80314)
@@ -78,6 +78,11 @@ def make_audio():
         add(cut-.3, whoosh)
         t = np.arange(int(.5*SR))/SR
         add(cut, np.sin(2*np.pi*(39*t+8*(1-np.exp(-t*22))))*np.exp(-t*9), .25)
+    return score
+
+def make_audio():
+    n = SR * LENGTH
+    score = make_score()
     native = np.zeros(n, np.float64)
     for i, (fixture, start, _, _) in enumerate(SHOTS):
         sound = wav_read(RAW/fixture/'combat.wav')

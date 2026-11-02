@@ -1,4 +1,24 @@
-# 20-second combo trailer
+# 20-second gameplay and loot trailer
+
+The current revision is `Walking-Hard-Gameplay-Loot-20s.mp4`, in the desktop folder `Walking Hard Gameplay Trailer`. It is 1920x1080, H.264/AAC, 60 fps, exactly 1,200 frames / 20 seconds. The full native UI stays visible. Combat runs at normal speed, with three uninterrupted 4.5-second passages and two reward decisions. There are no editorial titles, zooms or crops.
+
+| Time | Native footage |
+| --- | --- |
+| 0–4.5s | Fists, Breach Hammer and ability sequence in combat. |
+| 4.5–7.5s | Compare Compact Scattergun, Edge Sword and Impact Hammer; drag the sword into hand 1. |
+| 7.5–12s | Resume with the sword and hammer shown in the action bar and character model. |
+| 12–15.5s | Compare Capacitor Crown, Recovery Treads and a Gravity Well copy; take the copy and show the Common-to-Uncommon fusion. |
+| 15.5–20s | Resume combat with the upgraded ability visible in the action bar. |
+
+This is a curated wave-four capture, with checkpoints inserted for the edit and predetermined offers. Enemy movement, attacks, damage, health, equipment rules and fusion use production code. Both choices use the native drag-and-drop input handlers, with assertions confirming the equipped sword and upgraded ability. The cursor is drawn at the same coordinates as those input events because framebuffer screenshots exclude the operating-system pointer. The ordinary HUD, reward cards and fusion feedback are captured after IMGUI.
+
+Capture: build the player and launch with `-trailerUICapture -seed 1741 -force-d3d11 -screen-fullscreen 0 -screen-width 1920 -screen-height 1080`. The opt-in mode warms up combat, records frames and synchronized native SFX into `UITrailerCapture`, verifies both decisions and exits. The game window must render visibly. Ordinary play does not enter this path.
+
+Edit: run `render_ui.py` with NumPy, Pillow and imageio-ffmpeg available. It reads `Build/TrailerUI-v080/UITrailerCapture` and writes the Desktop output folder. The original 144 BPM score is quieter during rewards. `edit-ui.json` preserves the timing and provenance; the output folder also contains a poster, contact sheet, mix and metadata. Large frames and media remain outside source control.
+
+Validation: the Unity build and native capture completed successfully. All 1,200 source frames were present. Reward, drag, equipped-loadout, fusion and combat frames were visually inspected; both streams of the completed MP4 decoded without errors through exactly 20 seconds / 1,200 frames. This revision changes opt-in capture tooling only, so the gameplay regression suite was not repeated.
+
+## Earlier combo cut
 
 The finished local artifact is `Walking-Hard-Combos-20s.mp4`, in the desktop folder `Walking Hard Combo Trailer`. It is 1920x1080, H.264/AAC, 30 fps, exactly 600 frames / 20 seconds. The complete video and stereo audio decoded without errors. Representative title and combat frames were inspected. The folder also contains a poster, contact sheet, mix and edit metadata.
 
