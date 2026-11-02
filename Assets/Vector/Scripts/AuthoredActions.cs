@@ -105,7 +105,7 @@ namespace VectorGame
                     Hurt(e,hitDamage,impulse,stun,card.id==AbilityId.ReapingCut);
                 }
                 if(card.id==AbilityId.ForcePush)PushCorpses(card.range,null,focused?35:180,focused?1.5f:1);
-                if(card.id==AbilityId.GravityWell||corridor)GatherMotes(host,origin,aim,point,card.range,width,corridor);
+                if(card.id==AbilityId.GravityWell||corridor){GatherMotes(host,origin,aim,point,card.range,width,corridor);fx.PreviewGather(origin,aim,point,card.range,width,corridor);}
             }
             LeaveAfterfield(host,card,origin,aim,point);fx.Play(2);
         }

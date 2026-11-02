@@ -1,0 +1,10 @@
+{
+  "sourceBase": "b9ca597c8e3512d3287a33b835c0188fcc7870c8",
+  "branch": "feature/combat-preview",
+  "player": "Build\\CombatPreview-reviewed\\WalkingHard.exe",
+  "assemblySha256": "abdfd46e9849030b73c3ad74ee551522a6acb636f36c5deef72df0c6519b22d3",
+  "nativeOutput": "Build/CombatPreviewQA-delivery",
+  "regressionAssemblySha256": "c455d1cadc558522042988a0c7ab38318fa495c2c13c6f71c48ad87ab0822837",
+  "regressionCount": 20,
+  "postRegressionChanges": "Preview-only Pursuer health panel position/label, preview controls during reveal. Combat source unchanged."
+}

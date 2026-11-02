@@ -167,11 +167,14 @@ namespace VectorGame
             if(!simulation){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
             if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
+            if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
+            if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
         public void Begin(bool repeatSeed=false)
         {
+            if(CombatPreviewActive&&!startingCombatPreview){BeginCombatPreview(CombatPreviewPreset,CombatPreviewStyle);return;}
             EndTutorial();
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
@@ -267,7 +270,7 @@ namespace VectorGame
         public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
         public void RequestUltimate(){if(State==RunState.Running&&Deck.Ultimate!=null&&UltimateRemaining<=0)ultimateRequested=true;}
         public void TogglePause(){if(State==RunState.Running||State==RunState.Revealing){pausedReveal=State==RunState.Revealing;State=RunState.Paused;}else if(State==RunState.Paused)State=pausedReveal?RunState.Revealing:RunState.Running;}
-        public void ToggleMotion(){ReducedMotion=!ReducedMotion;}
+        public void ToggleMotion(){ReducedMotion=!ReducedMotion;fx.PreviewReducedMotion(ReducedMotion);}
         public void ToggleSound(){fx.muted=!fx.muted;}
         public void Quit(){Application.Quit();}
         public void QueueContact(int source,int target,float speed,Vector3 point)
@@ -279,6 +282,7 @@ namespace VectorGame
         {
             if(TutorialActive){StepTutorial(Time.unscaledDeltaTime);return;}
             if(MechanicReview){StepMechanicReview(Time.unscaledDeltaTime);return;}
+            if(CombatPreviewActive){StepCombatPreview(Time.unscaledDeltaTime);return;}
             if(!qa&&hud?.HandleOverlayInput()!=true)
             {
                 if(Input.GetKeyDown(KeyCode.Return)&&(State==RunState.Ready||State==RunState.Complete||State==RunState.Defeated))Begin();

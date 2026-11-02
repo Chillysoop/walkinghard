@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 namespace VectorGame
 {
-    public sealed class CombatEffects
+    public sealed partial class CombatEffects
     {
         class Effect { public Transform root; public LineRenderer line; public float age,life,radius,arc,width;public Vector3 velocity,origin,aim,normal;public Color color;public bool ring,sweep,reverse,wave;public Vector3 scale; }
         readonly List<Effect> effects=new List<Effect>();
@@ -40,6 +40,7 @@ namespace VectorGame
         public void Contact(ImpactReaction hit,bool lethal)
         {
             if(disabled)return;
+            if(previewEnabled){previewParticles.Contact(hit,lethal);if(hit.kind!=ImpactKind.Electric&&hit.kind!=ImpactKind.Pull)return;}
             var p=hit.point;float power=hit.strength;
             if(hit.kind==ImpactKind.Slash)
             {
@@ -161,6 +162,7 @@ namespace VectorGame
         }
         public void Step(float dt)
         {
+            if(previewEnabled)previewParticles.Step(dt);
             for(int i=effects.Count-1;i>=0;i--)
             {
                 var e=effects[i];e.age+=dt;float t=e.age/e.life;
@@ -175,6 +177,6 @@ namespace VectorGame
                 else{e.velocity+=Vector3.down*7*dt;e.root.position+=e.velocity*dt;e.root.localScale=e.scale*(1-t);}
             }
         }
-        public void Clear(){foreach(var e in effects)if(e.root!=null)Object.Destroy(e.root.gameObject);effects.Clear();}
+        public void Clear(){foreach(var e in effects)if(e.root!=null)Object.Destroy(e.root.gameObject);effects.Clear();previewParticles?.Clear();}
     }
 }

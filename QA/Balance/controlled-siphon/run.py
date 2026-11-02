@@ -71,7 +71,7 @@ def main():
         for r in rows:
             c=by_id[r['controlled']['id']]
             assert r['seed']==c['seed'] and r['controlled']['rank']==c['rank']
-            focal=[i for i in r['items'] if i['item']==c['candidate'] and i['rarity']==c['rank'] and i['equipped']]
+            focal=[i for i in r['items'] if i['item']==c.get('focalItem',c['candidate']) and i['rarity']==c['rank'] and i['equipped']]
             if c['category']!='ultimate' or r['waveReached']>=4: assert focal, c['id']
             assert r['controlled']['ultimateEquipWave'] in (0,4)
         meta.update(wallSeconds=time.monotonic()-start,valid=len(rows),invalid=0,missing=0,duplicateCases=0,wins=sum(r['result']=='Complete' for r in rows),timeouts=sum(r['result']=='TimedOut' for r in rows))
