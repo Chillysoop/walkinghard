@@ -1,0 +1,78 @@
+{
+  "baseCommit": "4dce44bd752fc28f1f372a0e6cfafa765a9da95d",
+  "sourceFiles": {
+    "Assets/Vector/Scripts/ActionWaitFeedback.cs": "364c2c945eb17cb7323ddfd24c7168d16e71964c",
+    "Assets/Vector/Scripts/CombatFlowChecks.cs": "82f38ff50ada09ef9c7dacc528774f85dc848e32",
+    "Assets/Vector/Scripts/CombatFlowChecks.cs.meta": "669ea721aa10a9c883f044881ec655579184573e",
+    "Assets/Vector/Scripts/CombatFlowReview.cs": "812bd3b29946fc327e6cce13c62faacbc2af7589",
+    "Assets/Vector/Scripts/CombatFlowReview.cs.meta": "92daacf830e95b8804ab4afdd2ab5dffb6bc86c5",
+    "Assets/Vector/Scripts/CombatSignatures.cs": "2a016e668f0bf91c27c6a78326a9bbc09d6eb40d",
+    "Assets/Vector/Scripts/EncounterCombat.cs": "9cae58736816b0dd6c3df4f06e775f5eb13cead0",
+    "Assets/Vector/Scripts/ItemPresentation.cs": "075815e9bd89ac9e61f98edc4782770892339682",
+    "Assets/Vector/Scripts/MechanicChecks.cs": "90314d250b43c155e5f89875b76ed7b309e53c31",
+    "Assets/Vector/Scripts/PrototypeHUD.cs": "1ec8bc696592412b7713122d0468619b0135e4b4",
+    "Assets/Vector/Scripts/PursuerChecks.cs": "93206e3f342fa4c8e548a08c725a3b059e07f983",
+    "Assets/Vector/Scripts/PursuerFinale.cs": "224a591d51b210e203a0957b9910df1427f2660c",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "e02c0c6892e8429d21090a0186df1e27e6a25dc8",
+    "Assets/Vector/Scripts/WaveFeedback.cs": "802d21f212248e095caeae6a02eeaa8831b7b3b9",
+    "Assets/Vector/Scripts/WaveFeedbackChecks.cs": "379a2682ba5d43742c12e037229b8e64ff275937",
+    "Assets/Vector/Scripts/WaveFeedbackHUD.cs": "cedeafdfef85b093dbc46d2026d5d405c3e9a297",
+    "Assets/Vector/Scripts/WeaponCombat.cs": "2075950d7da35a195fca3c9dbac274ff34f688ee"
+  },
+  "assemblies": {
+    "FullRun-batched": "c54face798b626b4b3b847fb6df6f04d9b7d3fae2b5fb38a5e1997201b8ade47",
+    "Flow-baseline": "a878ceb10cdbfa575699d15064f0bb10b8abcb748ee8684f095dd72e8c500e7d",
+    "Flow-verified": "f635b04b1cf28d174c65fe05a222d09f807dac1a066fbd5e357a6bedc6e84de2",
+    "Combat-flow": "090ec4dfe61dfe5afd18407dbd74a34b20bcbba6fbf9598eae36a038ce6814ba",
+    "Combat-flow-final": "726eb179f42855e014d7c412204f2123b19743da7da708d8d12406a13f12db5e",
+    "Combat-flow-acceptance": "d6011038a4e6b96c6b8afe103902161030fa35967e101c25090c472eea9d7943"
+  },
+  "baselineBatch": {
+    "assemblySha256": "C54FACE798B626B4B3B847FB6DF6F04D9B7D3FAE2B5FB38A5E1997201B8ADE47",
+    "maxCombatSeconds": 600,
+    "waves": 8,
+    "startedUtc": "2026-11-11T01:37:54.056362Z",
+    "mode": "Full",
+    "firstSeed": 83001,
+    "policy": "archetypes",
+    "workers": 2,
+    "runs": 12,
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\FullRun-batched\\WalkingHard.exe",
+    "completedUtc": "2026-11-11T01:43:47.9504556Z"
+  },
+  "candidateBatch": {
+    "workers": 2,
+    "firstSeed": 83001,
+    "mode": "Full",
+    "waves": 8,
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Combat-flow\\WalkingHard.exe",
+    "assemblySha256": "090EC4DFE61DFE5AFD18407DBD74A34B20BCBBA6FBF9598EAE36A038CE6814BA",
+    "policy": "archetypes",
+    "maxCombatSeconds": 600,
+    "runs": 12,
+    "startedUtc": "2026-11-11T01:43:06.9385596Z",
+    "completedUtc": "2026-11-11T01:49:03.6667564Z"
+  },
+  "acceptanceBatch": {
+    "policy": "archetypes",
+    "runs": 6,
+    "workers": 2,
+    "firstSeed": 83007,
+    "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Combat-flow-acceptance\\WalkingHard.exe",
+    "assemblySha256": "D6011038A4E6B96C6B8AFE103902161030FA35967E101C25090C472EEA9D7943",
+    "startedUtc": "2026-11-11T01:54:50.7531407Z",
+    "waves": 8,
+    "mode": "Full",
+    "maxCombatSeconds": 600,
+    "completedUtc": "2026-11-11T01:58:26.5264292Z"
+  },
+  "buildRoles": {
+    "FullRun-batched": "Published v0.8.0 ordinary-run baseline.",
+    "Flow-baseline": "v0.8.0 combat plus isolated spacing recorder; baseline report predates assertions/UI capture.",
+    "Flow-verified": "Core 15 regressions. Same combat rules; before final text, label bounds and test-loop assertion consolidation.",
+    "Combat-flow": "50 variety and 12 ordinary runs. Final gameplay; before run-summary wait-label text change.",
+    "Combat-flow-final": "Final presentation, native flow and normal full-run review, rendered tutorial and full progression; before the ultimate reach correction.",
+    "Combat-flow-acceptance": "Final source including ultimate rarity reach: repeated 15 core checks, full progression, six ordinary Full runs and native flow review."
+  },
+  "fixtureMetricCaveat": "Spacing waits are sampled from ActionStatus. A carried status can include the initial 0.15s recovery; long Steel Jab waits are unaffected by this subsecond measurement limit."
+}

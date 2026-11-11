@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 18, November 1, 2026. Implementation target: 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
+Revision 19, November 10, 2026. Includes the combat-flow development pass after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
 
 ## Deadeye additions and synergy clarity
 
@@ -43,11 +43,13 @@ The Walker advances automatically, viewed from behind and above. A run has eight
 
 The five freely reorderable positions contain two persistent weapon basics and three drafted abilities. Empty positions are skipped; an occupied action waits for a reachable target. There is no sequence Auto toggle, mana system, injury action, or longer sequence.
 
-Basic 1 uses mount 1; Basic 2 uses mount 2. Empty mounts share one owned starter-fist item. Matching adjacent one-handed families (fists, swords, hammers, guns) attack together, including position 5 → 1. Guns includes pistol and scattergun; a rifle occupies both mounts. A linked pair prefers independent targets and completes before progression. Different families execute separately. Ordinary paired weapon damage is not halved.
+Basic 1 uses mount 1; Basic 2 uses mount 2. Empty mounts share one owned starter-fist item. Matching adjacent one-handed families (fists, swords, hammers, guns) attack together, including position 5 → 1. Guns includes pistol and scattergun; a rifle occupies both mounts. A linked pair starts only when each hand can reach a target, prefers independent targets, and completes before progression. One target may serve both hands if both can reach it. Reversing pistol/scattergun order cannot spend the shorter weapon's turn out of range. Separating the basics permits independent turns and longer-range opening fire. Different families execute separately. Ordinary paired weapon damage is not halved.
 
 A two-handed item occupies both mounts, groups the two basics adjacently, and executes once. Drag either basic to move the locked group. Both attacks cannot carry separate sockets on that one item. Equipping a one-handed replacement stores the two-handed item and frees the other mount. Weapons remain visible in their mounted hands throughout ability and ultimate casts.
 
 Runs start with an empty ultimate mount. Ultimates are excluded from all early item offers and rerolls. Checkpoint three (after wave three) replaces its mixed item reward with a choose-one-of-three ultimate draft using the normal rarity odds, then retains its separate augment draft. Opening this dedicated draft unlocks ultimates in later equipment/discovery offers. Equipping the first ultimate starts its full countdown. Ultimate Auto/Manual remains separate. U toggles; F queues a ready manual ultimate. A queued ultimate waits until the current turn and preparation finish, preserves the next sequence position, and resets its timer on completion. Changing the equipped ultimate at a checkpoint starts a full countdown. Recharge periods are 12 / 16 / 15 / 18 seconds for Singularity / Tempest / Cyclone / Redline.
+
+Queued ultimate eligibility uses the item's actual rarity-scaled range. Tempest's first contact uses that same range; subsequent jumps keep their existing reach and target cap. Common ultimates do not receive higher-rarity reach.
 
 ## Rewards and checkpoint editing
 
@@ -290,9 +292,13 @@ Siphon Blade no longer grants global Lifesteal. Only damage credited to that bla
 
 Redline now accelerates six sequence turns, retaining its 18-second recharge, ammo-refill behavior and 20/23/26/29/32% haste. The ultimate activation consumes no charge; a paired action consumes one. Harvest stays at 16 seconds and an 8/9/10/11/12% max-HP pulse budget. See QA/v068-balance-review.md for isolated changes, matched controls, normal-draft retests and the limits of Fast physics.
 
-## Target-wait feedback (0.7.2)
+## Target waiting and combat flow (development after 0.8.0)
 
-Every continuous target wait of at least 0.5s counts as one pause. A checkpoint warning identifies the highest-wait item if it spent at least 3s and 10% of the wave waiting, with either two such pauses or at least 6s total wait. Wave details show elapsed waiting, pause count and the item's reach at that time. These are recorded observations, not an instruction to skip or reorder actions. Reports remain frozen while equipping, storing or fusing; cumulative wait counts merge with the owned item. No automatic sequence skipping was added.
+Every continuous target wait of at least 0.5s counts as one pause. After 0.35s, the combat bar identifies the limiting action as OUT OF REACH, PATH BLOCKED or AWAITING ENEMIES; its linked partner shows WAITING FOR PAIR. These untimed states never invent a countdown. A visible out-of-range opponent gets a quiet amber distance marker and the waiting action's reach outline. Concealed entrances and offscreen opponents receive no marker. The cue clears on action start and is hidden while paused. Reduced motion retains the same static outline.
+
+Item attribution separates actual out-of-reach time, obstruction time and arrival lulls. The existing serialized `rangeWait` remains total target waiting; `outOfReachWait` and `obstructedWait` classify it, and the remainder is arrival time. Only actual out-of-reach time can trigger a checkpoint build warning: at least 3s and 10% of the wave, plus two target-wait episodes or at least 6s out of reach. A paired wait belongs to the limiting weapon once. Snapshots remain frozen during checkpoint edits and fusion preserves the classification totals. The order always stays where the player put it.
+
+The Pursuer approaches a 2.4m stopping point (about 2.43m after full-physics floor friction), with capsule clearance and margin inside Common Steel Jab's 2.6m reach. This replaces the old 2.55m desired stop / approximately 2.58m settled gap. The stationary hero, boss attack timing, speed, control windows, displacement and authored weapon ranges are preserved. Knockback can still deliberately create a gap. This pass does not change ordinary enemy orbit radii, add automatic skips, or introduce a new combat resource.
 
 ## Onboarding and shared drop guidance (0.7.3)
 

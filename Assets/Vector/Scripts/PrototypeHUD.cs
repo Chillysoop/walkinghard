@@ -55,7 +55,7 @@ namespace VectorGame
             }
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
-            CombatHeader(w,h);CombatBar(w,h);
+            TargetWaitCombat(w,h);CombatHeader(w,h);CombatBar(w,h);
             if(game.CombatPreviewActive)CombatPreviewControls(w);
             if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
             if(game.EventText!=VectorEncounter.Formation(game.Wave)&&game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Strong:Accent,true,TextAnchor.MiddleCenter);
@@ -145,12 +145,13 @@ namespace VectorGame
                 float x=30+i*(width+10);var item=game.Deck.Slots[i];var shown=item?.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
                 bool active=i==game.ActiveSlot||i==game.PairSlot,next=!active&&i==game.NextSlot;
                 bool delayed=game.TryGetActionDelay(i,out var delay);
-                Color edge=delayed?Strong:active?Accent:next?Strong:line;
+                bool waiting=game.ShowTargetWait&&i==game.WaitingSlot,waitingPair=game.ShowTargetWait&&i==game.WaitingPairSlot;
+                Color edge=waiting||waitingPair?WaitColor:delayed?Strong:active?Accent:next?Strong:line;
                 Plate(new Rect(x,y,width,137),ink,edge,8,active?2:1);
                 if(i<4){Stroke(new Vector2(x+width,y+65),new Vector2(x+width+10,y+65),edge);Box(new Rect(x+width+3,y+63,4,4),edge);}
                 ActionGlyph(new Rect(x+10,y+10,35,35),shown?.def,delayed?Strong:active?Accent:muted);
                 if(shown!=null){Box(new Rect(x+33,y+34,17,17),ink);TypeIcon(new Rect(x+33,y+34,17,17),shown.def.kind,muted);}
-                Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"WEAPON ATTACK":"ABILITY"),10,edge,true);
+                Label(new Rect(x+54,y+9,width-65,15),(i+1).ToString("00")+"  "+(waiting?game.TargetWaitLabel:waitingPair?"WAITING FOR PAIR":delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":active?"ACTIVE":next?"NEXT":item?.def.kind==ItemKind.Basic?"WEAPON ATTACK":"ABILITY"),10,edge,true);
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Strong);}
                 EffectLine(new Rect(x+12,y+57,width-24,18),item,12);
@@ -162,7 +163,7 @@ namespace VectorGame
                 ItemTooltip(new Rect(x,y,width,137),item);
             }
             GroupOutline(30,y,width,10,137);
-            if(game.Preparation>0||game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-300,y-38,600,24),game.ActionStatus,13,Strong,true,TextAnchor.MiddleCenter);
+            if(game.Preparation>0)Label(new Rect(w/2-300,y-38,600,24),game.ActionStatus,13,Strong,true,TextAnchor.MiddleCenter);
         }
         void Pause(float w,float h)
         {
@@ -193,7 +194,7 @@ namespace VectorGame
             Label(new Rect(4,0,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
             float rowY=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}
             Label(new Rect(4,rowY,860,20),"ITEM CONTRIBUTIONS · setup assists never add kills",12,Accent,true);rowY+=25;
-            foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / range wait "+c.rangeWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
+            foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / reach "+c.outOfReachWait.ToString("0.0")+"s / arrivals "+c.ArrivalWait.ToString("0.0")+"s / blocked "+c.obstructedWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
             foreach(var note in game.InteractionNotes){Label(new Rect(4,rowY,870,18),note.Key+" × "+note.Value,11,Accent);rowY+=19;}
             GUI.EndScrollView();
             if(Button(new Rect(x+32,y+534,430,46),"NEW DRAFT [ R ]",true))game.Begin();

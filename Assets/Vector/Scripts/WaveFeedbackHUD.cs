@@ -23,8 +23,10 @@ namespace VectorGame
             if(Button(new Rect(panel.xMax-142,panel.y+18,120,27),"CLOSE [ ESC ]")){waveDetails=false;return;}
             Label(new Rect(panel.x+22,panel.y+54,panel.width-44,21),report.kills+" KILLS  ·  "+report.seconds.ToString("0.0")+"s  ·  "+report.damage.ToString("N0")+" DAMAGE  ·  "+report.healing.ToString("0.#")+" HEALED  ·  "+report.blocked.ToString("0.#")+" BLOCKED  ·  "+report.collisionKills+" COLLISION KILLS",13,Accent,true);
             Label(new Rect(panel.x+22,panel.y+82,panel.width-44,32),"Recorded before this checkpoint. Damage includes body impacts. Blocks below are item effects; passive resistance prevented another "+report.resistance.ToString("0.#")+". Paired reload timers overlap.",11,muted);
-            var wait=report.items.OrderByDescending(i=>i.values.rangeWait).FirstOrDefault();
-            string insight=wait!=null&&wait.values.rangeWait>=.5f?"TARGET WAIT: "+wait.name+" / "+wait.values.rangeWait.ToString("0.0")+"s / "+wait.values.waitEpisodes+" pauses / "+wait.range.ToString("0.0")+"m reach. Order was held. Consider longer reach or a pull before it.":"TARGET ACCESS: No item spent half a second waiting for a reachable target.";
+            var wait=report.items.OrderByDescending(i=>i.values.outOfReachWait).FirstOrDefault();
+            float arrivals=report.items.Sum(i=>i.values.ArrivalWait),blocked=report.items.Sum(i=>i.values.obstructedWait);
+            string insight=wait!=null&&wait.values.outOfReachWait>=.5f?"OUT OF REACH: "+wait.name+" / "+wait.values.outOfReachWait.ToString("0.0")+"s / "+wait.range.ToString("0.0")+"m reach. Consider a pull before it or a longer-reaching action.":"TARGET ACCESS: No item spent half a second waiting on reach.";
+            insight+=" Arrivals "+arrivals.ToString("0.0")+"s; blocked "+blocked.ToString("0.0")+"s.";
             Label(new Rect(panel.x+22,panel.y+118,panel.width-44,22),insight,12,Strong,true);
             Rect view=new Rect(panel.x+20,panel.y+153,panel.width-40,panel.height-197);
             float width=view.width-24,contentHeight=34+report.items.Length*58+64+report.triggers.Length*23;
@@ -43,7 +45,7 @@ namespace VectorGame
                 for(int i=0;i<values.Length;i++)Label(new Rect(nameWidth+i*col,y,col-6,20),values[i],12,i==5?Strong:white);
                 Label(new Rect(nameWidth+col,y+21,col-6,30),c.collision.ToString("0")+" collision",9,muted);
                 Label(new Rect(nameWidth+4*col,y+21,col-6,30),c.assists+" assists",10,muted);
-                Label(new Rect(nameWidth+5*col,y+19,col-6,34),c.rangeWait.ToString("0.0")+"s target\n"+c.preparation.ToString("0.0")+"s ready",9,muted);
+                Label(new Rect(nameWidth+5*col,y+19,col-6,34),c.outOfReachWait.ToString("0.0")+"s reach\n"+c.preparation.ToString("0.0")+"s ready",9,muted);
                 Stroke(new Vector2(0,y+53),new Vector2(width,y+53),line,1);y+=58;
             }
             Label(new Rect(3,y+8,width-6,22),"SYNERGIES THAT TRIGGERED",13,Accent,true);y+=36;

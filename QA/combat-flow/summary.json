@@ -1,0 +1,273 @@
+{
+  "date": "2026-11-10",
+  "ordinary": [
+    {
+      "seed": 83001,
+      "policy": "gun",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 6,
+        "elapsed": 222.7897186279297,
+        "kills": 198,
+        "health": 0.0
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 6,
+        "elapsed": 220.37364196777344,
+        "kills": 193,
+        "health": 0.0
+      }
+    },
+    {
+      "seed": 83002,
+      "policy": "cutcarry",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 312.76776123046875,
+        "kills": 309,
+        "health": 207.83055114746094
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 322.23211669921875,
+        "kills": 314,
+        "health": 180.42755126953125
+      }
+    },
+    {
+      "seed": 83003,
+      "policy": "close",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 4,
+        "elapsed": 144.3422088623047,
+        "kills": 117,
+        "health": 0.0
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 4,
+        "elapsed": 146.15843200683594,
+        "kills": 119,
+        "health": 0.0
+      }
+    },
+    {
+      "seed": 83004,
+      "policy": "pinball",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 384.43359375,
+        "kills": 315,
+        "health": 303.46246337890625
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 364.30517578125,
+        "kills": 313,
+        "health": 321.61474609375
+      }
+    },
+    {
+      "seed": 83005,
+      "policy": "storm",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "elapsed": 277.94293212890625,
+        "kills": 268,
+        "health": 0.0
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "elapsed": 277.459716796875,
+        "kills": 265,
+        "health": 0.0
+      }
+    },
+    {
+      "seed": 83006,
+      "policy": "sever",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 324.66485595703125,
+        "kills": 312,
+        "health": 296.8663024902344
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 330.49676513671875,
+        "kills": 313,
+        "health": 299.5683288574219
+      }
+    },
+    {
+      "seed": 83007,
+      "policy": "gun",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 348.4757080078125,
+        "kills": 315,
+        "health": 104.64005279541016
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 345.15985107421875,
+        "kills": 318,
+        "health": 61.12006759643555
+      }
+    },
+    {
+      "seed": 83008,
+      "policy": "cutcarry",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 5,
+        "elapsed": 179.18370056152344,
+        "kills": 151,
+        "health": 0.0
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 6,
+        "elapsed": 221.70664978027344,
+        "kills": 197,
+        "health": 0.0
+      }
+    },
+    {
+      "seed": 83009,
+      "policy": "close",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 405.74505615234375,
+        "kills": 281,
+        "health": 225.51983642578125
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 352.99127197265625,
+        "kills": 261,
+        "health": 294.99993896484375
+      }
+    },
+    {
+      "seed": 83010,
+      "policy": "pinball",
+      "before": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "elapsed": 299.27105712890625,
+        "kills": 273,
+        "health": 0.0
+      },
+      "after": {
+        "result": "Defeated",
+        "waveReached": 8,
+        "elapsed": 276.6265869140625,
+        "kills": 263,
+        "health": 0.0
+      }
+    },
+    {
+      "seed": 83011,
+      "policy": "storm",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 347.842529296875,
+        "kills": 317,
+        "health": 216.8147735595703
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 331.8797607421875,
+        "kills": 315,
+        "health": 232.5993194580078
+      }
+    },
+    {
+      "seed": 83012,
+      "policy": "sever",
+      "before": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 349.2755126953125,
+        "kills": 316,
+        "health": 279.0679626464844
+      },
+      "after": {
+        "result": "Complete",
+        "waveReached": 8,
+        "elapsed": 340.2777099609375,
+        "kills": 317,
+        "health": 282.14398193359375
+      }
+    }
+  ],
+  "baselineWins": 7,
+  "candidateWins": 7,
+  "baselineTimeouts": 0,
+  "candidateTimeouts": 0,
+  "finalAcceptance": [
+    {
+      "seed": 83007,
+      "policy": "gun",
+      "result": "Complete",
+      "elapsed": 346.44287109375,
+      "valid": true
+    },
+    {
+      "seed": 83008,
+      "policy": "cutcarry",
+      "result": "Defeated",
+      "elapsed": 174.91807556152344,
+      "valid": true
+    },
+    {
+      "seed": 83009,
+      "policy": "close",
+      "result": "Complete",
+      "elapsed": 372.35321044921875,
+      "valid": true
+    },
+    {
+      "seed": 83010,
+      "policy": "pinball",
+      "result": "Defeated",
+      "elapsed": 302.70355224609375,
+      "valid": true
+    },
+    {
+      "seed": 83011,
+      "policy": "storm",
+      "result": "Complete",
+      "elapsed": 339.177978515625,
+      "valid": true
+    },
+    {
+      "seed": 83012,
+      "policy": "sever",
+      "result": "Complete",
+      "elapsed": 337.6116943359375,
+      "valid": true
+    }
+  ],
+  "scope": "Two ordinary seeds per policy, Full physics, unchanged health and automated drafts. Small regression screen; not a win-rate estimate. Other test processes ran concurrently; no performance claim.",
+  "regressionScenarios": 82,
+  "nativeAssertions": 26,
+  "productionAssertions": 755
+}

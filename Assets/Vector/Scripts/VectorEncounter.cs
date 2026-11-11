@@ -174,6 +174,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
             if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
+            if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -204,7 +205,7 @@ namespace VectorGame
         }
         void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
         {
-            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;to.waitEpisodes+=from.waitEpisodes;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
+            foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;to.outOfReachWait+=from.outOfReachWait;to.obstructedWait+=from.obstructedWait;to.waitEpisodes+=from.waitEpisodes;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
             if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
         public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending)Deck.Select(index);}

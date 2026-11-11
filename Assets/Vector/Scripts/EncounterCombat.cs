@@ -65,13 +65,20 @@ namespace VectorGame
         bool Advance()
         {
             if(State!=RunState.Running||ActiveSlot>=0||recovery>0)return false;
-            bool ultimate=UltimateQueued&&Target(Deck.Ultimate.def.ability.range)!=null;
+            bool ultimate=UltimateQueued&&Target(LoadoutCatalog.Action(Deck.Ultimate).range)!=null;
             int slot=ultimate?5:NextSlot;if(slot<0)return false;
             var item=ultimate?null:Deck.Slots[slot];var card=ultimate?LoadoutCatalog.Action(Deck.Ultimate):Deck.Card(item);
-            var target=Target(card.range);if(target==null){ObserveTargetWait(item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item,1f/60);ActionStatus="WAITING FOR TARGET / "+card.name;return false;}
-            EndTargetWait();ActiveSlot=slot;PairSlot=ultimate?-1:Deck.PairAfter(slot);actionItem=item;actionWeapon=item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):null;
+            int pairedSlot=ultimate?-1:Deck.PairAfter(slot);
+            var pairedItem=pairedSlot>=0?Deck.Slots[pairedSlot]:null;var pairedCard=pairedItem!=null?Deck.Card(pairedItem):null;
+            var target=Target(card.range);
+            if(target==null){WaitForTarget(slot,pairedSlot,card);return false;}
+            var otherTarget=pairedCard==null?null:Target(pairedCard.range,target)??(Reachable(target,pairedCard.range)?target:null);
+            // A pair is one simultaneous turn. Both hands need a legal target before
+            // committing either hand, independent of which weapon is first in the bar.
+            if(pairedCard!=null&&otherTarget==null){WaitForTarget(pairedSlot,slot,pairedCard);return false;}
+            EndTargetWait();ActiveSlot=slot;PairSlot=pairedSlot;actionItem=item;actionWeapon=item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):null;
             activeCard=card;actionTarget=target;pairItem=PairSlot>=0?Deck.Slots[PairSlot]:null;pairWeapon=pairItem!=null?Deck.WeaponFor(pairItem):null;
-            pairCard=pairItem==null?null:Deck.Card(pairItem);pairTarget=pairCard==null?null:Target(pairCard.range,target)??target;
+            pairCard=pairedCard;pairTarget=otherTarget;
             actionSerial++;actionAge=0;actionDelivered=bonusDelivered=false;Preparation=0;pendingReloads.Clear();
             BeginAuthoredTurn(ultimate);
             if(ultimate){UltimateCasts++;ultimateRequested=false;ultimateTimes.Add(Elapsed);ultimateDeadlines.Add(ultimateDue);castTrace.Add(-1);}

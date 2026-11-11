@@ -6,6 +6,9 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         const float RevealDuration=6.5f;
+        // Capsule separation is about 2.31m. Leave clearance while comfortably
+        // inside the shortest common action (Steel Jab, 2.6m), including friction.
+        const float PursuerStopDistance=2.4f;
         FighterRig pursuer;
         readonly System.Collections.Generic.List<(Enemy enemy,Vector3 origin)> revealFollowers=new System.Collections.Generic.List<(Enemy,Vector3)>();
         bool finaleActive,pausedReveal;
@@ -82,7 +85,7 @@ namespace VectorGame
             Vector3 delta=HeroPosition-e.rig.Root.position;delta.y=0;float distance=delta.magnitude;
             e.stun=Mathf.Max(0,e.stun-dt);e.cooldown-=dt;e.react=Mathf.Max(0,e.react-dt*3);
             if(e.stun>0){e.attack=-1;e.delivered=false;}
-            Vector3 desired=e.stun>0||e.attack>=0?Vector3.zero:delta.normalized*Mathf.Clamp((distance-2.55f)*2,0,1.05f);
+            Vector3 desired=e.stun>0||e.attack>=0?Vector3.zero:delta.normalized*Mathf.Clamp((distance-PursuerStopDistance)*2,0,1.05f);
             var velocity=e.physics.LinearVelocity;
             // A slow desired speed still needs enough acceleration to overcome floor friction.
             var planar=new Vector3(velocity.x,0,velocity.z);

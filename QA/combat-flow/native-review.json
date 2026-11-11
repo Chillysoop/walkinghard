@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "fixture": "pursuer-idle",
+      "seconds": 44.99948501586914,
+      "damage": 0.0,
+      "waitSeconds": 0.0,
+      "longestWait": 0.0,
+      "firstHit": -1.0,
+      "minimumDistance": 2.4339518547058105,
+      "finalDistance": 2.4339518547058105,
+      "casts": 0,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-fists",
+      "seconds": 44.99948501586914,
+      "damage": 2128.0,
+      "waitSeconds": 18.98321533203125,
+      "longestWait": 3.016664505004883,
+      "firstHit": 1.4499993324279785,
+      "minimumDistance": 2.4672162532806396,
+      "finalDistance": 2.482656955718994,
+      "casts": 56,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-SteelJab",
+      "seconds": 44.99948501586914,
+      "damage": 1658.0,
+      "waitSeconds": 20.033199310302734,
+      "longestWait": 3.1666643619537354,
+      "firstHit": 1.7166657447814941,
+      "minimumDistance": 2.462217092514038,
+      "finalDistance": 2.499951124191284,
+      "casts": 52,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-breachhammer",
+      "seconds": 44.99948501586914,
+      "damage": 365.0,
+      "waitSeconds": 31.199695587158203,
+      "longestWait": 5.350014686584473,
+      "firstHit": 1.3666660785675049,
+      "minimumDistance": 2.4706995487213135,
+      "finalDistance": 3.4032881259918213,
+      "casts": 15,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-hammer",
+      "seconds": 44.99948501586914,
+      "damage": 384.0,
+      "waitSeconds": 34.849639892578125,
+      "longestWait": 7.183372497558594,
+      "firstHit": 1.1499996185302734,
+      "minimumDistance": 2.7810161113739014,
+      "finalDistance": 4.4592509269714355,
+      "casts": 8,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-sword",
+      "seconds": 44.99948501586914,
+      "damage": 795.0,
+      "waitSeconds": 16.799915313720703,
+      "longestWait": 2.833331346511841,
+      "firstHit": 0.76666659116745,
+      "minimumDistance": 2.458739995956421,
+      "finalDistance": 2.523561716079712,
+      "casts": 30,
+      "orderErrors": 0
+    },
+    {
+      "fixture": "pursuer-rifle",
+      "seconds": 44.99948501586914,
+      "damage": 1428.0,
+      "waitSeconds": 0.0,
+      "longestWait": 0.0,
+      "firstHit": 0.8333331942558289,
+      "minimumDistance": 2.6026785373687744,
+      "finalDistance": 4.488819599151611,
+      "casts": 35,
+      "orderErrors": 0
+    }
+  ],
+  "assertions": 26,
+  "productionAssertions": 755,
+  "passed": true,
+  "scope": "Isolated full-physics spacing fixtures; durable targets and high hero health. Not balance or win-rate estimates."
+}
