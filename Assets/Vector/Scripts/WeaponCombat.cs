@@ -22,7 +22,7 @@ namespace VectorGame
 
             if(Deck.Ultimate.def.id=="tempest")
             {
-                var hit=new HashSet<int>();var target=Target(12);Vector3 origin=hero.RightHand.position;
+                var hit=new HashSet<int>();var target=Target(LoadoutCatalog.Action(ult).range);Vector3 origin=hero.RightHand.position;
                 for(int i=0;i<7+(ult.rank-1)/2&&target!=null;i++)
                 {
                     Vector3 point=target.physics.Center;hit.Add(target.id);TempestHits++;fx.Lightning(origin,point,new Color(.8f,.6f,1),.22f);

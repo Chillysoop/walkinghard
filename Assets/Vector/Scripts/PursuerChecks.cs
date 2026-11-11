@@ -31,6 +31,10 @@ namespace VectorGame
             float start=boss.rig.Root.position.z;
             for(int i=0;i<120;i++){StepPursuer(boss,1f/60);Physics.SyncTransforms();Physics.Simulate(1f/60);}
             MechanicRequire(boss.rig.Root.position.z>start+1.2f,"giant really walks toward the hero under full floor friction");
+            boss.rig.Root.position=HeroPosition+Vector3.back*3.8f;boss.physics.Motor.position=boss.rig.Root.position;boss.physics.LinearVelocity=Vector3.zero;boss.attack=-1;boss.cooldown=2.2f;
+            for(int i=0;i<1200;i++){StepPursuer(boss,1f/60);Physics.SyncTransforms();Physics.Simulate(1f/60);}
+            float settled=Vector3.Distance(HeroPosition,boss.rig.Root.position);
+            MechanicRequire(settled>2.3f&&settled<2.5f&&Reachable(boss,2.6f),"giant naturally settles inside Steel Jab reach with capsule clearance under real floor friction");
             boss.rig.Root.position=HeroPosition+Vector3.back*2.55f;boss.physics.Motor.position=boss.rig.Root.position;Physics.SyncTransforms();
             MechanicRequire(Reachable(boss,Deck.Card(Deck.Basics[0]).range),"fists can reach the giant at its stopping distance");
             var head=cameraRig.WorldToViewportPoint(boss.rig.Root.position+Vector3.up*10.5f);MechanicRequire(head.y>.15f&&head.y<.85f,"giant head stays clear of the top HUD at melee range");

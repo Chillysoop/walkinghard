@@ -1,0 +1,245 @@
+{
+  "seed": 83007,
+  "wave": 8,
+  "kills": 307,
+  "itemChoices": 13,
+  "augmentChoices": 2,
+  "assertions": 55,
+  "policy": "gun",
+  "result": "Complete",
+  "health": 75.84007263183594,
+  "passed": true,
+  "armored": true,
+  "performance": [
+    {
+      "wave": 1,
+      "enemies": 14,
+      "bodies": 11,
+      "frames": 120,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.685962677001953,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.007077500224113464,
+        0.08436416834592819,
+        0.028421666473150253,
+        0.5809016823768616,
+        0.002343333326280117,
+        0.03403416648507118
+      ]
+    },
+    {
+      "wave": 2,
+      "enemies": 13,
+      "bodies": 41,
+      "frames": 120,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.694068908691406,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.007493333425372839,
+        0.1310633271932602,
+        0.01377750001847744,
+        1.2152516841888428,
+        0.0025558334309607744,
+        0.0959041640162468
+      ]
+    },
+    {
+      "wave": 3,
+      "enemies": 22,
+      "bodies": 66,
+      "frames": 120,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.68548583984375,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.008862500078976154,
+        0.1816316694021225,
+        0.015924999490380287,
+        1.587095856666565,
+        0.0025383334141224623,
+        0.14030000567436218
+      ]
+    },
+    {
+      "wave": 4,
+      "enemies": 25,
+      "bodies": 97,
+      "frames": 121,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.689300537109375,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.008863636292517185,
+        0.2361661195755005,
+        0.02058595046401024,
+        2.2343478202819824,
+        0.002951239701360464,
+        0.21218016743659973
+      ]
+    },
+    {
+      "wave": 5,
+      "enemies": 24,
+      "bodies": 130,
+      "frames": 120,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.68548583984375,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.006092499941587448,
+        0.233260840177536,
+        0.02703999914228916,
+        2.7427666187286377,
+        0.0033050000201910734,
+        0.2975183427333832
+      ]
+    },
+    {
+      "wave": 6,
+      "enemies": 31,
+      "bodies": 166,
+      "frames": 120,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.696929931640625,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.00839999970048666,
+        0.27647915482521057,
+        0.02077166736125946,
+        3.6751558780670166,
+        0.0031908333767205477,
+        0.36479583382606506
+      ]
+    },
+    {
+      "wave": 6,
+      "enemies": 32,
+      "bodies": 168,
+      "frames": 120,
+      "speed": 0.5,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.712188720703125,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.002111666603013873,
+        0.1485091596841812,
+        0.01788249984383583,
+        1.883073329925537,
+        0.0016033332794904709,
+        0.197740837931633
+      ]
+    },
+    {
+      "wave": 6,
+      "enemies": 35,
+      "bodies": 177,
+      "frames": 77,
+      "speed": 4.0,
+      "medianMs": 25.028228759765625,
+      "p95Ms": 40.431976318359375,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.05135064944624901,
+        1.1680870056152344,
+        0.1339818239212036,
+        17.430660247802734,
+        0.01518701296299696,
+        1.96161949634552
+      ]
+    },
+    {
+      "wave": 7,
+      "enemies": 25,
+      "bodies": 216,
+      "frames": 119,
+      "speed": 1.0,
+      "medianMs": 16.666412353515625,
+      "p95Ms": 16.70074462890625,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.007630252279341221,
+        0.25553780794143677,
+        0.030024370178580284,
+        4.7848100662231445,
+        0.004957142751663923,
+        0.485301673412323
+      ]
+    },
+    {
+      "wave": 8,
+      "enemies": 40,
+      "bodies": 264,
+      "frames": 109,
+      "speed": 1.0,
+      "medianMs": 16.67022705078125,
+      "p95Ms": 31.6314697265625,
+      "reducedMotion": false,
+      "stress": false,
+      "stageMs": [
+        0.008475229144096375,
+        0.4464348554611206,
+        0.030669724568724632,
+        9.02276611328125,
+        0.02417522855103016,
+        0.7181440591812134
+      ]
+    },
+    {
+      "wave": 6,
+      "enemies": 42,
+      "bodies": 29,
+      "frames": 181,
+      "speed": 1.0,
+      "medianMs": 16.67022705078125,
+      "p95Ms": 16.693115234375,
+      "reducedMotion": false,
+      "stress": true,
+      "stageMs": [
+        0.006316022016108036,
+        0.3556574583053589,
+        0.022740332409739494,
+        1.257383942604065,
+        0.008437016978859901,
+        0.09168177098035812
+      ]
+    },
+    {
+      "wave": 6,
+      "enemies": 42,
+      "bodies": 36,
+      "frames": 120,
+      "speed": 4.0,
+      "medianMs": 16.67022705078125,
+      "p95Ms": 16.7236328125,
+      "reducedMotion": true,
+      "stress": true,
+      "stageMs": [
+        0.03674999997019768,
+        0.9337883591651917,
+        0.08355750143527985,
+        4.16729736328125,
+        0.039404164999723434,
+        0.4124000072479248
+      ]
+    }
+  ],
+  "measurement": "1080p wall-frame intervals, 60 FPS cap; fast-forward between real-time samples. Normal drafts/health, automatic choices and ultimates. Stress fixture is recorded separately.",
+  "stages": "Mean CPU milliseconds per sampled frame: signatures, enemies, hero, shove+PhysX, contacts, bodies+effects+camera."
+}

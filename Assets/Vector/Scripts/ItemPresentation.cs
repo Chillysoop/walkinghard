@@ -33,7 +33,7 @@ namespace VectorGame
             if(shown.augment!=null)body+="\nBase item: "+shown.def.description;
             if(shown.def.kind==ItemKind.Weapon)
             {
-                body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching weapon attacks fire together; independent targets.");
+                body+="\n"+(shown.def.hands==2?"Two-handed: both mounts; one attack across the locked pair.":"Adjacent matching weapons attack together once both can reach a target. Separate them to act independently.");
                 if(shown==game.Deck.Fists)body+="\nEmpty mounts share this one Fists item. It counts once toward fusion.";
                 int magazine=LoadoutCatalog.Magazine(shown);if(magazine>0)body+="\n"+magazine+" rounds / "+(BalanceOverrides.LegacyWeaponAugments&&shown.HasAugment(AugmentId.BreachLoad)?"1.5":"1.2")+"s reload before Loader reduction.";
             }

@@ -22,8 +22,8 @@ namespace VectorGame
         readonly Dictionary<LoadoutItem,int> waveItemKills=new Dictionary<LoadoutItem,int>();
         readonly Dictionary<string,int> waveNotes=new Dictionary<string,int>();
         float feedbackStart,feedbackResistance;int feedbackCollisionKills,feedbackKills;
-        static Contribution CopyContribution(Contribution c)=>new Contribution{direct=c.direct,collision=c.collision,control=c.control,absorption=c.absorption,reload=c.reload,preparation=c.preparation,rangeWait=c.rangeWait,augment=c.augment,healing=c.healing,assists=c.assists,waitEpisodes=c.waitEpisodes};
-        static Contribution ContributionDelta(Contribution a,Contribution b)=>new Contribution{direct=a.direct-b.direct,collision=a.collision-b.collision,control=a.control-b.control,absorption=a.absorption-b.absorption,reload=a.reload-b.reload,preparation=a.preparation-b.preparation,rangeWait=a.rangeWait-b.rangeWait,augment=a.augment-b.augment,healing=a.healing-b.healing,assists=a.assists-b.assists,waitEpisodes=a.waitEpisodes-b.waitEpisodes};
+        static Contribution CopyContribution(Contribution c)=>new Contribution{direct=c.direct,collision=c.collision,control=c.control,absorption=c.absorption,reload=c.reload,preparation=c.preparation,rangeWait=c.rangeWait,outOfReachWait=c.outOfReachWait,obstructedWait=c.obstructedWait,augment=c.augment,healing=c.healing,assists=c.assists,waitEpisodes=c.waitEpisodes};
+        static Contribution ContributionDelta(Contribution a,Contribution b)=>new Contribution{direct=a.direct-b.direct,collision=a.collision-b.collision,control=a.control-b.control,absorption=a.absorption-b.absorption,reload=a.reload-b.reload,preparation=a.preparation-b.preparation,rangeWait=a.rangeWait-b.rangeWait,outOfReachWait=a.outOfReachWait-b.outOfReachWait,obstructedWait=a.obstructedWait-b.obstructedWait,augment=a.augment-b.augment,healing=a.healing-b.healing,assists=a.assists-b.assists,waitEpisodes=a.waitEpisodes-b.waitEpisodes};
         void ResetWaveFeedback(){LastWaveFeedback=null;EndTargetWait();waveContributions.Clear();waveItemKills.Clear();waveNotes.Clear();}
         void BeginFeedbackWave()
         {
