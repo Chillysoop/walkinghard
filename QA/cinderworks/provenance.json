@@ -1,0 +1,18 @@
+{
+  "baseCommit": "d114e5f09a97116920c2960e2a3b57c4dd69f072",
+  "assemblySha256": "d59521ee029b2548784e46f4a3d57de5bbae03984d89ad41503ebf8be4b61d43",
+  "nativeReportSha256": "5567b240109e874dfc504ac5008d176c2f1505a17192ce91792333554e1e35c2",
+  "player": "Build/Cinderworks-preview/WalkingHard.exe",
+  "nativePerformance": "Measured alone before regression workers started; practice fixtures only.",
+  "sourceNormalizedSha256": {
+    "Assets/Vector/Scripts/CombatPreview.cs": "364020d4c5d2a69ac3620822a824dc26308a40a0afab02ba9de60433d99352ec",
+    "Assets/Vector/Scripts/FighterPresentation.cs": "291781e2d65570b81740efb30c140a11f59b89ce2d8b637707bfde409cff92ef",
+    "Assets/Vector/Scripts/PrototypeHUD.cs": "519ef0cd2196c7c77cd563479e528e1fa94cc1b2c878207bcf8209e7bbae0627",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "bf0e0fa1bf8b3d6e3fe3a94e95325511b37f2704202b92f8eb40aac0c73d2fde",
+    "Assets/Vector/Scripts/VisualFactory.cs": "39226804f59688acb48c878fd5c9e74556d56a2cd40bf4d54f16fdc1223d6989",
+    "Assets/Vector/Scripts/CinderworksWorld.cs": "334d633b3be42b6cfd93a3f37bcb965a243ad8c5525a6d1d20bf06c98d6bb84d",
+    "Assets/Vector/Scripts/CinderworksWorld.cs.meta": "dffc216d4323bd273663b20bfb4657b444b60be6c215b2e7ec5a5a9ed0d6c4e6",
+    "Assets/Vector/Scripts/CinderworksReview.cs": "0efa8eca45a44822c3c3392e629285d022991ee6c28edde90c644f3cb50a2709",
+    "Assets/Vector/Scripts/CinderworksReview.cs.meta": "fb03827ef08c7c86ecbc5dd80451996e71099cb2630f7aba527c3a4bb744b52b"
+  }
+}

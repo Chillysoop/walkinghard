@@ -7,6 +7,7 @@ namespace VectorGame
     public static class VisualFactory
     {
         public static bool ArmoredStyle;
+        public static bool CinderworksStyle;
         public static Material Hero, Armor, Enemy, EnemyHeavy, Joint, Skin, Glow, RedGlow, GoldGlow, SiphonGlow, Ground, Stone, Trim, Black, Fx;
         public static readonly Color Cyan = new Color(.25f, .95f, .86f);
         public static readonly Color Orange = new Color(1f, .39f, .16f);

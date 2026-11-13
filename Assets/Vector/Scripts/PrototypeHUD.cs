@@ -71,7 +71,8 @@ namespace VectorGame
             if(Button(new Rect(x+28,y+288,414,52),"START RUN  [ ENTER ]",true))game.Begin();
             if(Button(new Rect(x+28,y+356,414,52),"QUICK TUTORIAL  [ T ]"))game.BeginTutorial();
             Label(new Rect(x+28,y+416,414,25),"Equip, fuse, augment and reorder. Hands-on practice.",12,muted);
-            if(Button(new Rect(x+28,y+454,414,42),"COMBAT PREVIEW"))game.BeginCombatPreview();
+            if(Button(new Rect(x+28,y+454,202,42),"COMBAT PREVIEW"))game.BeginCombatPreview();
+            if(Button(new Rect(x+240,y+454,202,42),"CINDERWORKS PREVIEW"))game.BeginCinderworksPreview();
             if(Button(new Rect(x+28,y+520,130,27),"QUIT"))game.Quit();
             Label(new Rect(x+180,y+524,262,22),"v"+Application.version,12,muted,false,TextAnchor.UpperRight);
         }
