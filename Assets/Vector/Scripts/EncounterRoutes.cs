@@ -20,12 +20,11 @@ namespace VectorGame
             "Shield bearers advance from the horizon. Stagger opens their guard for 2 seconds; attacks from behind bypass it.":
             "Carriers emerge from side doors. Launch one to arm its explosive pack; impact or a 1.3s flight detonates it.";
         public static RewardEmphasis RouteReward(EncounterRoute route)=>route==EncounterRoute.Standard?RewardEmphasis.None:route==EncounterRoute.ShieldLine?RewardEmphasis.Equipment:RewardEmphasis.Abilities;
-        void ResetRoutes(){RoutePending=false;SelectedRoute=EncounterRoute.Standard;routedWave=routeSpawn=0;ShieldBearersSpawned=VolatileCarriersSpawned=CarrierDetonations=0;}
+        void ResetRoutes(){ResetWalkingFork();RoutePending=false;SelectedRoute=EncounterRoute.Standard;routedWave=routeSpawn=0;ShieldBearersSpawned=VolatileCarriersSpawned=CarrierDetonations=0;}
         public bool ChooseRoute(EncounterRoute route)
         {
-            if(State!=RunState.Drafting||!RoutePending||route==EncounterRoute.Standard)return false;
-            SelectedRoute=route;routedWave=Wave+1;RoutePending=false;
-            Deck.Open(pendingDrafts.Dequeue(),true,RouteReward(simulation&&simulationRewardRoute>=0?(EncounterRoute)simulationRewardRoute:route));return true;
+            if(State!=RunState.Running||!RoutePending||(route!=EncounterRoute.ShieldLine&&route!=EncounterRoute.VolatileBreach))return false;
+            ForkChoice=route;forkVisual?.Select(route==EncounterRoute.ShieldLine?0:1);return true;
         }
         void ConfigureRouteEnemy(Enemy e)
         {
@@ -72,28 +71,6 @@ namespace VectorGame
                 }
             }
             finally {currentCredit=saved;}
-        }
-    }
-    public sealed partial class PrototypeHUD
-    {
-        void RouteChoice(float w,float h)
-        {
-            Box(new Rect(0,0,w,h),new Color(.006f,.018f,.028f,.86f));
-            float x=w*.5f-530,y=h*.5f-200;
-            Panel(new Rect(x,y,1060,400));
-            Label(new Rect(x+26,y+22,1000,32),"CHECKPOINT "+game.Wave+" / CHOOSE YOUR NEXT ENCOUNTER",24,white,true);
-            Label(new Rect(x+26,y+65,1000,42),"Applies to wave "+(game.Wave+1)+" only. Then choose your existing rewards and edit your loadout.",16,muted);
-            for(int i=0;i<2;i++)
-            {
-                var route=i==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach;
-                var r=new Rect(x+26+i*512,y+119,496,208);Color color=i==0?Accent:Strong;
-                Plate(r,ink,color,9);TypeIcon(new Rect(r.x+16,r.y+17,30,30),i==0?ItemKind.Armor:ItemKind.Ability,color);
-                Label(new Rect(r.x+58,r.y+17,r.width-74,29),VectorEncounter.RouteName(route),21,color,true);
-                Label(new Rect(r.x+18,r.y+60,r.width-36,65),VectorEncounter.RouteDescription(route),16,white);
-                Label(new Rect(r.x+18,r.y+130,r.width-36,28),"MIXED PICK: 2 "+(i==0?"EQUIPMENT":"ABILITY")+" OPTIONS + 1 WILDCARD",13,color,true);
-                if(Button(new Rect(r.x+18,r.y+165,r.width-36,29),"CHOOSE "+VectorEncounter.RouteName(route),true))game.ChooseRoute(route);
-            }
-            Label(new Rect(x+26,y+351,1000,28),"Same reward count and rarity odds. Checkpoint 3 still grants your first ultimate.",14,muted);
         }
     }
 }

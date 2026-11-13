@@ -26,15 +26,23 @@ namespace VectorGame
             {
             // Probe ordinary checkpoint rules even when the runner uses fixed experimental loadouts.
             controlledCases=null;simulation=false;
-            int oldWave=Wave;var oldState=State;
-            ProbeReset();Wave=2;OpenCheckpoint();int rolls=Deck.Rerolls;
-            MechanicRequire(RoutePending&&pendingDrafts.Count==2,"route precedes the existing checkpoint-two picks");
-            ConfirmDraft();Reroll();MechanicRequire(RoutePending&&Deck.Rerolls==rolls,"confirm and reroll cannot skip the route");
-            MechanicRequire(ChooseRoute(EncounterRoute.ShieldLine)&&Deck.Draft==DraftKind.Mixed&&pendingDrafts.Count==1&&Deck.Rerolls==rolls+1,"route opens exactly one mixed pick and grants one reroll");
+            int oldWave=Wave;var oldState=State;float oldWaveElapsed=WaveElapsed,oldSpeed=CombatSpeed;bool oldQa=qa;
+            ProbeReset();ResetRoutes();qa=false;Wave=2;WaveElapsed=20;State=RunState.Running;BeginWalkingFork();int rolls=Deck.Rerolls;
+            MechanicRequire(RoutePending&&ForkChoice==EncounterRoute.ShieldLine&&ForkSeconds==ForkDecisionSeconds,"moving fork has a visible deterministic default");
+            ConfirmDraft();Reroll();MechanicRequire(RoutePending&&Deck.Rerolls==rolls,"confirm and reroll cannot skip the moving fork");
+            MechanicRequire(ChooseRoute(EncounterRoute.VolatileBreach)&&ChooseRoute(EncounterRoute.ShieldLine)&&!ChooseRoute(EncounterRoute.Standard),"selection can change before lock and rejects invalid routes");
+            SetCombatSpeed(4);MechanicRequire(EffectiveCombatSpeed==1&&CombatSpeed==4,"fork caps actual approach speed without changing saved preference");
+            StepWalkingFork(2);float remaining=ForkSeconds;TogglePause();AdvanceCombat(.1f);StepWalkingFork(20);
+            MechanicRequire(State==RunState.Paused&&ForkSeconds==remaining,"pause freezes route deadline");TogglePause();
+            StepWalkingFork(4);MechanicRequire(!RoutePending&&SelectedRoute==EncounterRoute.ShieldLine&&State==RunState.Running,"deadline commits once while combat continues");
+            OpenCheckpoint();MechanicRequire(Deck.Draft==DraftKind.Mixed&&pendingDrafts.Count==1&&Deck.Rerolls==rolls+1,"committed route opens exactly one mixed pick and grants one reroll");
             MechanicRequire(!ChooseRoute(EncounterRoute.VolatileBreach),"route cannot be changed to reroll rewards");
             Wave=3;MechanicRequire(ActiveRoute==EncounterRoute.ShieldLine,"route applies to next wave");Wave=4;MechanicRequire(ActiveRoute==EncounterRoute.Standard,"route expires after one wave");
-            Wave=5;OpenCheckpoint();ChooseRoute(EncounterRoute.VolatileBreach);MechanicRequire(pendingDrafts.Single()==DraftKind.Augment,"checkpoint five retains its augment pick");
-            ResetRoutes();pendingDrafts.Clear();Wave=oldWave;State=oldState;
+            Wave=5;State=RunState.Running;BeginWalkingFork();StepWalkingFork(ForkDecisionSeconds);
+            MechanicRequire(SelectedRoute==EncounterRoute.ShieldLine&&!RoutePending,"no input follows the advertised path");
+            OpenCheckpoint();MechanicRequire(pendingDrafts.Single()==DraftKind.Augment,"checkpoint five retains its augment pick");
+            WaveElapsed=forkStarted+10;MechanicRequire(EffectiveCombatSpeed==4,"approach restores the preferred speed");
+            ResetRoutes();pendingDrafts.Clear();Wave=oldWave;State=oldState;WaveElapsed=oldWaveElapsed;SetCombatSpeed(oldSpeed);qa=oldQa;
             }
             finally {controlledCases=savedCases;simulation=savedSimulation;}
 
@@ -53,7 +61,8 @@ namespace VectorGame
             ProbeReset();ResetRoutes();
         }
         internal void PrepareRouteReview()
-        {Wave=2;OpeningPicks=2;OpenCheckpoint();}
+        {Wave=2;OpeningPicks=2;State=RunState.Running;BeginWalkingFork();}
+        internal void CommitRouteReview(){CommitWalkingFork();OpenCheckpoint();}
         internal void PrepareRouteActors(bool exposed=false,bool explode=false)
         {
             // Recreate the motor: a pending MovePosition from the completed wave

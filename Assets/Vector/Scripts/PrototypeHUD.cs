@@ -47,7 +47,6 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Revealing){FinaleReveal(w,h);if(game.CombatPreviewActive)CombatPreviewControls(w);return;}
             if(game.State==VectorEncounter.RunState.Drafting)
             {
-                if(game.RoutePending){RouteChoice(w,h);return;}
                 var eventType=Event.current.type;
                 bool blocked=(iconGuide||detailHovered||waveDetails)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
                 if(blocked)Event.current.type=EventType.Ignore;
@@ -56,6 +55,7 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
             TargetWaitCombat(w,h);CombatHeader(w,h);CombatBar(w,h);
+            WalkingForkControls(w,h);
             if(game.CombatPreviewActive)CombatPreviewControls(w);
             if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
             if(game.EventText!=VectorEncounter.Formation(game.Wave)&&game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Strong:Accent,true,TextAnchor.MiddleCenter);

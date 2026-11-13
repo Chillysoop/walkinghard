@@ -1,0 +1,35 @@
+{
+  "baseCommit": "ac2fd8401adcf6815c47f0fb8c40837c9080a3d2",
+  "assemblySha256": "5b37916d82333406c4a0c0edfa2e76203147740fbbc2a0290c02a75b966cb41f",
+  "nativeReportSha256": "82ac9b2d057b857e9eadba93ec50286f641f652e9f25beecd04c5b7321f009ec",
+  "player": "Build/Walking-forks/WalkingHard.exe",
+  "sourceHashNormalization": "UTF-8 without BOM; CRLF normalized to LF",
+  "sourceNormalizedSha256": {
+    "Assets/Vector/Scripts/EncounterQA.cs": "a0423d8971c1693d613efc46d8bf5e5adc7b5f1fc3b9f313c2a276a8ed46c376",
+    "Assets/Vector/Scripts/EncounterRouteChecks.cs": "5f970112e36f4beef5ccbfc9f3bd7aed726d7d1356d1fcb64aedb3ae485dd919",
+    "Assets/Vector/Scripts/EncounterRoutes.cs": "350d887f9ebca918aef8a67550bde1b525b70fef9d5cfc43daf4e09d6db181a6",
+    "Assets/Vector/Scripts/HeadlessSimulation.cs": "f97e37f24b7fbeb1f67092509d7a1b9e0c4ca90f59e4fee24d0152ff3ac6aec8",
+    "Assets/Vector/Scripts/PresentationReview.cs": "b238bcbaa1ac68787c807bb19ecc206fd516ea3b83f6018bdd49879ef5c2f93a",
+    "Assets/Vector/Scripts/PrototypeHUD.cs": "2371bf30de1c9f48987a07a1eb2595f49e5a7be1b08a8ea9e9b7b98801d0972c",
+    "Assets/Vector/Scripts/RunProgression.cs": "45dea3ed54de347ca2b07a668d586aae1e8412ba665384be36e5319d00476ef7",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "73d387d7d43bf44ca2a02b7429c5768619dc56a54a3bb02f1127647e6ecba627",
+    "Assets/Vector/Scripts/WalkingFork.cs": "a1a2807684579f052cbabf02763339e5ce94dd8a6cef5855938e12b1c975b2bc",
+    "Assets/Vector/Scripts/WalkingFork.cs.meta": "010db68f71b9e41f0598aa1600c03f96782c0bb76f17b6b1a807f246696debe8",
+    "Assets/Vector/Scripts/WalkingForkReview.cs": "5685fd7d62b757a3542ccaad486b53e1f1474817d205d49d3d46136244ee1c1d",
+    "Assets/Vector/Scripts/WalkingForkReview.cs.meta": "9f180d0868eb5d3b563c3200f98b0915b664c0b5531ea411f0045986d228a196"
+  },
+  "sourceGitBlobs": {
+    "Assets/Vector/Scripts/EncounterQA.cs": "2db586281df4863de5911dd7cc5616a8d1101c60",
+    "Assets/Vector/Scripts/EncounterRouteChecks.cs": "581067a13b7eda9297c5f422ef715c1baa6932d3",
+    "Assets/Vector/Scripts/EncounterRoutes.cs": "466e4e942b7933efe5331ce2b5d74ffe567f19a2",
+    "Assets/Vector/Scripts/HeadlessSimulation.cs": "7b9e589cdb1716d906d856b2361494415c311b30",
+    "Assets/Vector/Scripts/PresentationReview.cs": "c2a1c14f729990e088fc7dea1c6428a4bf0cadd1",
+    "Assets/Vector/Scripts/PrototypeHUD.cs": "2ee6282e81d3ce706bc9ffc63f75b396c97567eb",
+    "Assets/Vector/Scripts/RunProgression.cs": "9a1309dbc5106f3502cd533b8e1ad31c1f14ff94",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "a85efcc84cecf21c9493892d34080df578cde52d",
+    "Assets/Vector/Scripts/WalkingFork.cs": "4f8e16042e6f091fb7206a50dbaf03ef36c645f9",
+    "Assets/Vector/Scripts/WalkingFork.cs.meta": "59ca3a0a9058e094f2fd467b536b8b507bd66633",
+    "Assets/Vector/Scripts/WalkingForkReview.cs": "5015afeb0b1daf255e048c9a346c5381a78e1f6f",
+    "Assets/Vector/Scripts/WalkingForkReview.cs.meta": "71d853ed4a36bbf987340f6a4107d6de755ed7f5"
+  }
+}

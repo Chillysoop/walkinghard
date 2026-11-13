@@ -14,7 +14,7 @@ namespace VectorGame
             {
                 e.physics.IntegrateFast(dt);
                 var p=e.rig.Root.position;
-                if(!e.entering)p.x=Mathf.Clamp(p.x,-8.9f+e.physics.FastRadius,8.9f-e.physics.FastRadius);
+                if(!e.entering)p=roads.Forks.Count>0?roads.ClampFast(p,e.physics.FastRadius):new Vector3(Mathf.Clamp(p.x,-8.9f+e.physics.FastRadius,8.9f-e.physics.FastRadius),p.y,p.z);
                 var delta=p-HeroPosition;delta.y=0;
                 float separation=heroPhysics.FastRadius+e.physics.FastRadius;
                 if(delta.sqrMagnitude<separation*separation)

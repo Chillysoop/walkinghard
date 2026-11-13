@@ -241,7 +241,7 @@ namespace VectorGame
                 if(flights.Exists(f=>f.body==body))continue;
                 var bounds=body.physics.WalkingBounds();
                 bool Nearby(Vector3 p)=>p.x>=bounds.min.x&&p.x<=bounds.max.x&&p.z>=bounds.min.z&&p.z<=bounds.max.z;
-                if(!finaleActive&&Nearby(HeroPosition)&&body.physics.ShoveAside(HeroPosition,Vector3.forward*tuning.walkSpeed,dt))CorpseShoves++;
+                if(!finaleActive&&Nearby(HeroPosition)&&body.physics.ShoveAside(HeroPosition,RoadForward*tuning.walkSpeed,dt))CorpseShoves++;
                 foreach(var enemy in enemies)
                     if(enemy.stun<=0&&Nearby(enemy.rig.Root.position)&&body.physics.ShoveAside(enemy.rig.Root.position,enemy.physics.Velocity,dt))CorpseShoves++;
             }

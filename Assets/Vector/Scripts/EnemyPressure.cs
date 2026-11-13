@@ -21,7 +21,7 @@ namespace VectorGame
             return view.z>cameraRig.nearClipPlane&&view.x>.025f&&view.x<.975f&&view.y>.20f&&view.y<.98f;
         }
         bool ClearEnemyShot(Enemy e)=>FastSimulation||!Physics.Linecast(e.rig.Root.position+Vector3.up*1.2f,HeroPosition+Vector3.up*1.2f,1<<EntryLayout.WorldLayer);
-        bool EnemyCanAttack(Enemy e)=>!e.entering&&!e.repositioning&&InCombatView(e.rig.Root.position)&&(!e.shooter||ClearEnemyShot(e));
+        bool EnemyCanAttack(Enemy e)=>!e.entering&&!e.repositioning&&InCombatView(e.rig.Root.position)&&ClearEnemyShot(e);
 
         void UpdateEnemyRepositioning(Enemy e)
         {
@@ -34,8 +34,8 @@ namespace VectorGame
         Vector3 RepositionVelocity(Enemy e)
         {
             // Walk back into view through a forward flank; never warp an actor.
-            float side=e.cachedPosition.x>=HeroPosition.x?1:-1;
-            Vector3 goal=HeroPosition+Vector3.right*side*(e.shooter?4.2f:1.8f)+EncounterForward*(e.shooter?5:2.4f);
+            float side=Vector3.Dot(e.cachedPosition-HeroPosition,RoadVector(Vector3.right))>=0?1:-1;
+            Vector3 goal=HeroPosition+RoadVector(Vector3.right)*side*(e.shooter?4.2f:1.8f)+EncounterForward*(e.shooter?5:2.4f);
             Vector3 direction=goal-e.cachedPosition;direction.y=0;
             return direction.normalized*tuning.enemySpeed;
         }

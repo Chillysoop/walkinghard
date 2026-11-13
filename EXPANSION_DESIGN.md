@@ -8,6 +8,8 @@ The expansion keeps automatic forward movement, the five-position sequence, pair
 
 **Implementation status:** the first regional art milestone is available as Cinderworks Preview, with a comparison toggle, seven real combat setups and the current physics. [Verification and limitations](QA/cinderworks-verification.md) distinguish this delivery from the first act and broader campaign below.
 
+**Physical route decisions:** the current eight-wave run now contains literal Y-junctions during waves 2 and 5. Each exit is a separate road with physical floors, walls and covered enemy entrances. The two roads diverge and do not reconnect; the Walker and camera turn down the selected road. Short icon signs communicate enemy type and reward emphasis, and a six-combat-second countdown locks the highlighted road while combat continues. The next junction extends the selected road. This replaces the initial rejoining-lane implementation and preserves the existing next-wave encounter/reward rules. The complete act destination graph, service/events and checkpoint save/resume remain upcoming work. [Verification](QA/physical-forks-verification.md).
+
 ## The city and its history
 
 The city is **Veyr**. Its central engine, the **Continuance**, was built during an event called the **Stilling**. Beyond the city, reliable motion began to fail: rivers hung in broken sheets, falling structures stopped halfway to the ground, and machines lost the ability to complete a cycle. The Continuance stabilizes a small territory by drawing on recorded human intention: the impulse to finish an action. It needs both machinery and people to maintain that boundary.

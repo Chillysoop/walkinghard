@@ -16,10 +16,10 @@ namespace VectorGame
         Vector3 finaleAnchor,pursuerRevealStart;
         public bool FinaleActive=>finaleActive;
         public float RevealAge=>revealAge;
-        Vector3 EncounterForward=>finaleActive?Vector3.back:Vector3.forward;
+        Vector3 EncounterForward=>RoadForward*(finaleActive?-1:1);
         int EncounterDirection=>finaleActive?-1:1;
-        Vector3 FinaleCameraOffset=>new Vector3(0,13.5f,20);
-        Vector3 FinaleCameraLook=>new Vector3(0,3.8f,-7);
+        Vector3 FinaleCameraOffset=>RoadVector(new Vector3(0,13.5f,20));
+        Vector3 FinaleCameraLook=>RoadVector(new Vector3(0,3.8f,-7));
         void ResetFinale()
         {
             if(pursuer!=null){pursuer.Root.gameObject.SetActive(false);Destroy(pursuer.Root.gameObject);}
@@ -29,7 +29,7 @@ namespace VectorGame
         void CreatePursuer()
         {
             pursuer=new FighterRig("The Pursuer",actors,false,true,Seed^891,FastSimulation);
-            pursuer.Root.localScale=Vector3.one*4.5f;pursuer.Root.position=HeroPosition+Vector3.back*26;
+            pursuer.Root.localScale=Vector3.one*4.5f;pursuer.Root.position=HeroPosition-RoadForward*26;pursuer.Root.rotation=RoadRotation;
             pursuer.PursuerArmor();pursuer.Pose(0,0,-1,0,0,false,0);
         }
         void StartFinaleReveal()
@@ -38,11 +38,11 @@ namespace VectorGame
             if(pursuer==null)CreatePursuer();pursuerRevealStart=pursuer.Root.position;
             for(int i=0;i<12&&enemies.Count<tuning.maximumEnemies-1;i++)
             {
-                SpawnEntry(2,HeroPosition+new Vector3(-5+(i%4)*3.3f,0,-34-(i/4)*4));
+                SpawnEntry(2,HeroPosition+RoadVector(new Vector3(-5+(i%4)*3.3f,0,-34-(i/4)*4)));
                 var ally=enemies[enemies.Count-1];revealFollowers.Add((ally,ally.rig.Root.position));
             }
             // Finish the checkpoint with every actor and every combat timer frozen.
-            heroPhysics.MovePosition(finaleAnchor);heroPhysics.MoveRotation(Quaternion.identity);
+            heroPhysics.MovePosition(finaleAnchor);heroPhysics.MoveRotation(RoadRotation);
             SetRevealFrame(0);
         }
         void SetRevealFrame(float age)
@@ -51,29 +51,29 @@ namespace VectorGame
             {
                 // The pursuit is already in motion when the camera first catches him.
                 pursuerGaitClock=age*.3f;pursuerStride=.6f;
-                pursuer.Root.position=pursuerRevealStart+Vector3.forward*(age*.35f);
+                pursuer.Root.position=pursuerRevealStart+RoadForward*(age*.35f);
                 pursuer.Pose(pursuerGaitClock,pursuerStride,-1,0,0,false,0);
             }
             foreach(var follower in revealFollowers)
             {
-                Vector3 p=follower.origin+Vector3.forward*(age*.75f);follower.enemy.rig.Root.position=p;
+                Vector3 p=follower.origin+RoadForward*(age*.75f);follower.enemy.rig.Root.position=p;
                 if(!FastSimulation)follower.enemy.physics.Motor.position=p;
                 follower.enemy.rig.Pose(age,1,-1,0,0,false,0);
             }
             float turn=Mathf.SmoothStep(0,1,Mathf.Clamp01((age-.45f)/1.1f));
-            hero.Root.rotation=Quaternion.Euler(0,180*turn,0);hero.Pose(clock,0,-1,0,0,false,0);
+            hero.Root.rotation=RoadRotation*Quaternion.Euler(0,180*turn,0);hero.Pose(clock,0,-1,0,0,false,0);
             float orbit=Mathf.SmoothStep(0,1,Mathf.Clamp01((age-1.4f)/4.8f));
-            float radius=Mathf.Lerp(-tuning.cameraOffset.z,FinaleCameraOffset.z,orbit);
-            Vector3 offset=Quaternion.Euler(0,180*orbit,0)*new Vector3(0,Mathf.Lerp(tuning.cameraOffset.y,FinaleCameraOffset.y,orbit),-radius);
+            float radius=Mathf.Lerp(-tuning.cameraOffset.z,20,orbit);
+            Vector3 offset=RoadRotation*Quaternion.Euler(0,180*orbit,0)*new Vector3(0,Mathf.Lerp(tuning.cameraOffset.y,13.5f,orbit),-radius);
             cameraRig.transform.position=finaleAnchor+offset;
-            cameraRig.transform.LookAt(finaleAnchor+Vector3.Lerp(new Vector3(0,1,tuning.lookAhead),FinaleCameraLook,orbit));
+            cameraRig.transform.LookAt(finaleAnchor+Vector3.Lerp(RoadVector(new Vector3(0,1,tuning.lookAhead)),FinaleCameraLook,orbit));
         }
         void StepFinaleReveal(float dt)
         {
             if(State!=RunState.Revealing)return;
             revealAge=Mathf.Min(RevealDuration,revealAge+dt);SetRevealFrame(revealAge);
             if(revealAge<RevealDuration)return;
-            heroPhysics.MoveRotation(Quaternion.Euler(0,180,0));cameraVelocity=Vector3.zero;
+            heroPhysics.MoveRotation(RoadRotation*Quaternion.Euler(0,180,0));cameraVelocity=Vector3.zero;
             if(pursuer==null)CreatePursuer();
             var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*24*(1+.035f*(Wave-1)),cooldown=2.2f,radius=2.55f,rig=pursuer};
             e.maxHealth=e.health;e.physics=new FighterPhysics(e.rig,e.id,this,false,true);
@@ -111,10 +111,10 @@ namespace VectorGame
         Vector3 FlowAroundPursuer(Enemy ally,Vector3 desired)
         {
             var boss=enemies.FirstOrDefault(e=>e.boss);if(boss==null)return desired;
-            Vector3 toBoss=boss.rig.Root.position-ally.rig.Root.position;toBoss.y=0;
+            Vector3 toBoss=Quaternion.Inverse(RoadRotation)*(boss.rig.Root.position-ally.rig.Root.position);toBoss.y=0;
             if(toBoss.z< -1||toBoss.z>9||Mathf.Abs(toBoss.x)>3.5f)return desired;
             float side=Mathf.Abs(toBoss.x)>.3f?-Mathf.Sign(toBoss.x):ally.id%2==0?1:-1;
-            Vector3 goal=boss.rig.Root.position+new Vector3(side*3.4f,0,1.5f);
+            Vector3 goal=boss.rig.Root.position+RoadVector(new Vector3(side*3.4f,0,1.5f));
             Vector3 around=goal-ally.rig.Root.position;around.y=0;
             return around.normalized*Mathf.Max(tuning.enemySpeed,desired.magnitude);
         }

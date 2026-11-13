@@ -43,7 +43,7 @@ namespace VectorGame
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-routeReview")>=0)
             {
                 game.PrepareRouteReview();yield return CapturePresentation(directory,"21-route-choice");
-                game.ChooseRoute(EncounterRoute.ShieldLine);yield return CapturePresentation(directory,"22-route-rewards");
+                game.ChooseRoute(EncounterRoute.ShieldLine);game.CommitRouteReview();yield return CapturePresentation(directory,"22-route-rewards");
                 game.PrepareRouteActors();yield return CapturePresentation(directory,"23-route-enemies");
                 game.PrepareRouteActors(true);yield return CapturePresentation(directory,"24-shield-exposed");
                 game.PrepareRouteActors(true,true);yield return CapturePresentation(directory,"25-carrier-blast");
