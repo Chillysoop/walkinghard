@@ -142,6 +142,7 @@ namespace VectorGame
             if(tuning==null)tuning=Resources.Load<CombatTuning>("CombatTuning");
             if(tuning==null)tuning=ScriptableObject.CreateInstance<CombatTuning>();
             var args=Environment.GetCommandLineArgs();ConfigureSimulation(args);qa=simulation||Array.IndexOf(args,"-vectorQA")>=0;
+            InitializeExpeditionStorage(args);
             if(qa)Application.logMessageReceived+=(message,trace,type)=>{if(type==LogType.Exception)Application.Quit(3);};
             qaHoldCheckpoint=qa&&Array.IndexOf(args,"-qaHoldCheckpoint")>=0;
             for(int i=0;i<args.Length-1;i++)
@@ -183,6 +184,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-walkingForkReview")>=0)StartCoroutine(ReviewWalkingFork());
             if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
             if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
+            if(Array.IndexOf(args,"-expeditionReview")>=0)StartCoroutine(ReviewExpedition());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -193,7 +195,7 @@ namespace VectorGame
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
-            ResetSignatures();ResetRoutes();ResetFinale();ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new System.Random(Seed);combatRandom=new System.Random(Seed^6179);
+            ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
             CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
@@ -210,39 +212,40 @@ namespace VectorGame
             hero.Equipment(false,false);hero.EquipWeapons(WeaponKind.Fists,WeaponKind.Fists,false);hero.Pose(0,0,-1,0,0,false,0);
             cameraRig.transform.position=HeroPosition+tuning.cameraOffset;cameraVelocity=Vector3.zero;AimCamera();Physics.SyncTransforms();
             State=RunState.Drafting;PairSlot=-1;Preparation=0;Deck.Open(DraftKind.Ability,true);if(simulation)simulationClock.Restart();
+            SaveCheckpoint();
         }
         void MergeKillCounts(LoadoutItem keep,LoadoutItem[] consumed)
         {
             foreach(var item in consumed){var from=ContributionFor(item);var to=ContributionFor(keep);to.direct+=from.direct;to.collision+=from.collision;to.control+=from.control;to.absorption+=from.absorption;to.augment+=from.augment;to.healing+=from.healing;to.assists+=from.assists;to.reload+=from.reload;to.preparation+=from.preparation;to.rangeWait+=from.rangeWait;to.outOfReachWait+=from.outOfReachWait;to.obstructedWait+=from.obstructedWait;to.waitEpisodes+=from.waitEpisodes;itemKills[keep]=KillsFor(keep)+KillsFor(item);itemKills.Remove(item);fusedOwners[item]=keep;}
             if(Deck.Items.Contains(keep)&&keep.rank>1)FusionHistory.Add(new FusionResult{definition=keep.def,before=keep.rank-1,after=keep.rank});
         }
-        public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending)Deck.Select(index);}
-        public void AssignSlot(int slot){if(State==RunState.Drafting)Deck.Assign(slot);}
-        public void Reroll(){if(State==RunState.Drafting&&!RoutePending&&!TutorialActive)Deck.Reroll();}
-        public void SwapSlots(int a,int b){if(State==RunState.Drafting)Deck.Swap(a,b);}
+        public void SelectOffer(int index){if(State==RunState.Drafting&&!RoutePending&&!StopOpen)Deck.Select(index);}
+        public void AssignSlot(int slot){if(State==RunState.Drafting&&!StopOpen)Deck.Assign(slot);}
+        public void Reroll(){if(State==RunState.Drafting&&!RoutePending&&!TutorialActive&&!StopOpen){Deck.Reroll();SaveCheckpoint();}}
+        public void SwapSlots(int a,int b){if(State==RunState.Drafting&&!StopOpen){Deck.Swap(a,b);SaveCheckpoint();}}
         public bool MoveItem(LoadoutItem item,PlaceKind place,int index=0)
         {
-            if(State!=RunState.Drafting||!TutorialMoveAllowed(item,place,index))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(State!=RunState.Drafting||StopOpen||!TutorialMoveAllowed(item,place,index))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             bool moved=Deck.Move(item,place,index);
             Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
-            return moved;
+            if(moved)SaveCheckpoint();return moved;
         }
         public bool ClaimReward(int offer,PlaceKind place,int index,bool continueImmediately=true)
         {
-            if(State!=RunState.Drafting||RoutePending||!TutorialClaimAllowed(offer))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
+            if(State!=RunState.Drafting||RoutePending||StopOpen||!TutorialClaimAllowed(offer))return false;var previous=Deck.Ultimate;float maxBefore=MaxHealth;
             if(!Deck.ClaimTo(offer,place,index))return false;
             Health=Mathf.Clamp(Health+MaxHealth-maxBefore,0,MaxHealth);
             if(previous!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
-            if(continueImmediately&&!TutorialActive)ConfirmDraft();return true;
+            SaveCheckpoint();if(continueImmediately&&!TutorialActive)ConfirmDraft();return true;
         }
         public bool AutoEquip(LoadoutItem item)
         {
-            if(State!=RunState.Drafting||item==null)return false;
+            if(State!=RunState.Drafting||StopOpen||item==null)return false;
             if(item.def.kind==ItemKind.Augment)
             {
                 var hosts=System.Linq.Enumerable.ToArray(Deck.CompatibleHosts(item.def));
-                return hosts.Length==1&&TutorialAttachAllowed(hosts[0])&&Deck.Attach(item,hosts[0]);
+                bool attached=hosts.Length==1&&TutorialAttachAllowed(hosts[0])&&Deck.Attach(item,hosts[0]);if(attached)SaveCheckpoint();return attached;
             }
             Deck.SuggestedPlace(item.def,out var place,out int index);return index!=-2&&MoveItem(item,place,index);
         }
@@ -265,9 +268,9 @@ namespace VectorGame
         public void ConfirmDraft()
         {
             if(TutorialActive){TutorialNext();return;}
-            if(State!=RunState.Drafting||RoutePending)return;
-            if(!Deck.RewardClaimed){Deck.Claim();return;}
-            CompleteDraft();
+            if(State!=RunState.Drafting||RoutePending||StopOpen)return;
+            if(!Deck.RewardClaimed){Deck.Claim();SaveCheckpoint();return;}
+            SaveCheckpoint();CompleteDraft();SaveCheckpoint();
         }
         void BeginWave()
         {
@@ -298,7 +301,7 @@ namespace VectorGame
             if(TutorialActive){StepTutorial(Time.unscaledDeltaTime);return;}
             if(MechanicReview){StepMechanicReview(Time.unscaledDeltaTime);return;}
             if(CombatPreviewActive){StepCombatPreview(Time.unscaledDeltaTime);return;}
-            if(!qa&&hud?.HandleOverlayInput()!=true)
+            if(!qa&&!StopOpen&&hud?.ExpeditionOverlayOpen!=true&&hud?.HandleOverlayInput()!=true)
             {
                 if(Input.GetKeyDown(KeyCode.Return)&&(State==RunState.Ready||State==RunState.Complete||State==RunState.Defeated))Begin();
                 if(Input.GetKeyDown(KeyCode.R))Begin();
@@ -310,8 +313,8 @@ namespace VectorGame
                 if(Input.GetKeyDown(KeyCode.F8))Capture();
                 if(RoutePending)
                 {
-                    if(Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.LeftArrow))ChooseRoute(EncounterRoute.ShieldLine);
-                    if(Input.GetKeyDown(KeyCode.D)||Input.GetKeyDown(KeyCode.RightArrow))ChooseRoute(EncounterRoute.VolatileBreach);
+                    if(Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.LeftArrow))ChooseRoute(ForkLeft);
+                    if(Input.GetKeyDown(KeyCode.D)||Input.GetKeyDown(KeyCode.RightArrow))ChooseRoute(ForkRight);
                 }
                 if(State==RunState.Drafting)
                 {
@@ -335,6 +338,7 @@ namespace VectorGame
             }
             if(qa&&!qaHolding&&State==RunState.Drafting){if(simulation)SimulationDraft();else QADraft();}
             if(qa&&!reported&&(State==RunState.Complete||State==RunState.Defeated))ReportQA();
+            FinishExpeditionStorage();
             if(State==RunState.Ready){clock+=Time.deltaTime;hero.Pose(clock,0,-1,0,0,false,0);}
         }
         void AdvanceCombat(float realDelta)

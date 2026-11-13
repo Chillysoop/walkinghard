@@ -32,7 +32,7 @@ namespace VectorGame
         }
         bool MoveToRegion(LoadoutItem item,DropRegion region)
         {
-            if(item.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host&&host.Augmentable)return game.TutorialAttachAllowed(host)&&game.Deck.Attach(item,host);
+            if(item.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host&&host.Augmentable){bool attached=game.TutorialAttachAllowed(host)&&game.Deck.Attach(item,host);if(attached)game.SaveCheckpoint();return attached;}
             return game.MoveItem(item,region.place,region.index);
         }
         float DisplayShare(LoadoutItem item)

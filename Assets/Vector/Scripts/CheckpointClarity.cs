@@ -25,6 +25,7 @@ namespace VectorGame
         void CheckpointHeader(float w,bool expanded)
         {
             Label(new Rect(32,23,270,18),"WALKING HARD  /  COMBAT PAUSED",11,muted,true);
+            if(game.ExpeditionActive){Label(new Rect(320,23,310,18),"SALVAGE "+game.Salvage+"  ·  "+game.SaveMessage,11,Accent,true);if(Button(new Rect(w-600,27,180,31),"SAVE & MAIN MENU"))game.SuspendExpedition();}
             string phase=game.OpeningDraft?"OPENING PICK "+(game.OpeningPicks+1)+" / 2":"CHECKPOINT "+game.Wave.ToString("00");
             Label(new Rect(32,47,600,30),expanded?phase+" / YOUR BUILD":phase,23,white,true);
             if(expanded&&game.LastWaveFeedback!=null&&Button(new Rect(w-397,30,171,31),"LAST WAVE DETAILS",waveDetails))
