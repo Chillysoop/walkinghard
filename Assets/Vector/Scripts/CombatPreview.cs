@@ -5,19 +5,26 @@ namespace VectorGame
     public sealed partial class VectorEncounter
     {
         public bool CombatPreviewActive {get;private set;}
+        public bool CinderworksActive {get;private set;}
         public bool CombatPreviewStyle {get;private set;}=true;
         public int CombatPreviewPreset {get;private set;}
         public static readonly string[] CombatPreviewNames={"FISTS","DUAL BLADES","GREATSWORD","HAMMER","CLOSE QUARTERS","RIFLE","PURSUER"};
         bool startingCombatPreview,savedPreviewStyle;
         float savedPreviewSpeed;
         int savedPreviewSeed;
+        public void BeginCinderworksPreview()
+        {
+            EndCombatPreview();CinderworksActive=true;BeginCombatPreview();
+        }
         public void BeginCombatPreview(int preset=0,bool newStyle=true)
         {
             if(!CombatPreviewActive){savedPreviewStyle=VisualFactory.ArmoredStyle;savedPreviewSpeed=CombatSpeed;savedPreviewSeed=Seed;}
             CombatPreviewActive=true;CombatPreviewPreset=Mathf.Clamp(preset,0,CombatPreviewNames.Length-1);CombatPreviewStyle=newStyle;
-            VisualFactory.ArmoredStyle=newStyle;Seed=1741;
+            VisualFactory.ArmoredStyle=CinderworksActive||newStyle;
+            VisualFactory.CinderworksStyle=CinderworksActive&&newStyle;
+            regionalWorld.SetVisible(VisualFactory.CinderworksStyle);Seed=1741;
             startingCombatPreview=true;Begin(true);startingCombatPreview=false;
-            fx.SetPresentation(newStyle);fx.SetReducedMotion(ReducedMotion);SetCombatSpeed(1);
+            fx.SetPresentation(VisualFactory.ArmoredStyle);fx.SetReducedMotion(ReducedMotion);SetCombatSpeed(1);
             LoadoutItem Equip(string id,PlaceKind place,int index=0){var item=Deck.Acquire(LoadoutCatalog.Find(id),3);MoveItem(item,place,index);return item;}
             string[][] actions={
                 new[]{"GravityWell","SteelJab","MassDriver"},new[]{"GravityWell","ReapingCut","ForcePush"},
@@ -62,7 +69,8 @@ namespace VectorGame
         void EndCombatPreview()
         {
             if(!CombatPreviewActive)return;
-            CombatPreviewActive=false;VisualFactory.ArmoredStyle=savedPreviewStyle;fx.SetPresentation(savedPreviewStyle);Seed=savedPreviewSeed;SetCombatSpeed(savedPreviewSpeed);
+            CombatPreviewActive=CinderworksActive=false;VisualFactory.CinderworksStyle=false;regionalWorld.SetVisible(false);
+            VisualFactory.ArmoredStyle=savedPreviewStyle;fx.SetPresentation(savedPreviewStyle);Seed=savedPreviewSeed;SetCombatSpeed(savedPreviewSpeed);
         }
         public void ToggleCombatPreviewStyle()=>BeginCombatPreview(CombatPreviewPreset,!CombatPreviewStyle);
         void StepCombatPreview(float dt)
@@ -88,9 +96,19 @@ namespace VectorGame
     {
         void CombatPreviewControls(float w)
         {
+            string title=game.CinderworksActive?(game.CombatPreviewStyle?"CINDERWORKS  /  THE SHIFT NEVER ENDS":"CINDERWORKS  /  CURRENT LOOK COMPARISON"):
+                "COMBAT PREVIEW  /  "+(game.CombatPreviewStyle?"NEW ARMOR + EFFECTS":"ORIGINAL LOOK");
+            if(game.State==VectorEncounter.RunState.Revealing)
+            {
+                // Keep all preview UI in the letterbox while the camera turns.
+                Label(new Rect(20,18,w-610,23),title,13,Accent,true,TextAnchor.MiddleCenter);
+                if(Button(new Rect(w-540,14,160,28),"COMPARE LOOK [ V ]"))game.ToggleCombatPreviewStyle();
+                if(Button(new Rect(w-366,14,160,28),"EXIT PREVIEW"))game.MainMenu();
+                return;
+            }
             float x=350,width=w-700;
             Panel(new Rect(x,18,width,120));
-            Label(new Rect(x+12,25,width-24,20),"COMBAT PREVIEW  /  "+(game.CombatPreviewStyle?"NEW ARMOR + EFFECTS":"ORIGINAL LOOK"),13,Accent,true,TextAnchor.MiddleCenter);
+            Label(new Rect(x+12,25,width-24,20),title,13,Accent,true,TextAnchor.MiddleCenter);
             float step=(width-24)/7;
             for(int i=0;i<7;i++)if(Button(new Rect(x+12+i*step,52,step-3,27),VectorEncounter.CombatPreviewNames[i],game.CombatPreviewPreset==i))game.BeginCombatPreview(i,game.CombatPreviewStyle);
             if(Button(new Rect(x+12,88,width*.38f,28),"COMPARE LOOK [ V ]"))game.ToggleCombatPreviewStyle();

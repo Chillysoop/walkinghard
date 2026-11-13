@@ -46,7 +46,8 @@ namespace VectorGame
             {
                 foreach(var r in Root.GetComponentsInChildren<Renderer>(true))
                     if(r!=intentRenderer&&!r.transform.IsChildOf(LeftHand)&&!r.transform.IsChildOf(RightHand)&&r.transform!=leftCuff&&r.transform!=rightCuff)originalSurfaces.Add(r);
-                var cloth=hero?VisualFactory.Hero:presentationHeavy?VisualFactory.EnemyHeavy:VisualFactory.Enemy;
+                if(VisualFactory.CinderworksStyle)CinderworksWorld.InitializeMaterials();
+                var cloth=hero?VisualFactory.Hero:VisualFactory.CinderworksStyle?CinderworksWorld.Enamel:presentationHeavy?VisualFactory.EnemyHeavy:VisualFactory.Enemy;
                 var armor=hero?VisualFactory.Armor:cloth;var dark=VisualFactory.Joint;var light=hero?VisualFactory.Glow:VisualFactory.RedGlow;
                 var spine=SkinNode(Body);var head=SkinNode(Head);var hips=SkinNode(pelvis);
                 PresentationGeometry.Plate("Tapered cuirass",spine,new Vector3(0,.3f,0),new Vector3(hero?.72f:.62f,.63f,.47f),cloth);
@@ -76,7 +77,8 @@ namespace VectorGame
                     PresentationGeometry.Plate("Armored boot",knee,new Vector3(0,-.39f,.11f),new Vector3(.29f,.21f,.46f),dark);
                     PresentationGeometry.Plate("Toe cap",knee,new Vector3(0,-.37f,.31f),new Vector3(.29f,.14f,.15f),armor);
                 }
-                for(int i=0;i<presentationRoots.Count;i++)PresentationGeometry.CompactBone(presentationRoots[i],(hero?"hero":presentationHeavy?"heavy":"raider")+"/"+i);
+                if(VisualFactory.CinderworksStyle&&!hero)CinderworksArmor(spine,head,hips);
+                for(int i=0;i<presentationRoots.Count;i++)PresentationGeometry.CompactBone(presentationRoots[i],(VisualFactory.CinderworksStyle?"cinderworks/":"")+(hero?"hero":presentationHeavy?"heavy":"raider")+"/"+i);
                 presentationBuilt=true;
             }
             foreach(var r in originalSurfaces)if(r!=null)r.enabled=!enabled;
@@ -85,6 +87,28 @@ namespace VectorGame
             {
                 presentationEnabled=enabled;var right=displayedRight;var left=displayedLeft;bool both=twoHanded;
                 displayedRight=(WeaponKind)(-1);EquipWeapons(right,left,both);
+            }
+        }
+        void CinderworksArmor(Transform spine,Transform head,Transform hips)
+        {
+            var iron=CinderworksWorld.Iron;var ceramic=CinderworksWorld.Ceramic;
+            PresentationGeometry.Plate("Worker respirator",head,new Vector3(0,-.11f,.28f),new Vector3(.27f,.17f,.15f),ceramic);
+            PresentationGeometry.Plate("Heat apron",hips,new Vector3(0,-.2f,.25f),new Vector3(.38f,.4f,.10f),iron);
+            PresentationGeometry.Plate("Worker chest seal",spine,new Vector3(.17f,.43f,.325f),new Vector3(.11f,.2f,.04f),ceramic);
+            if(presentationHeavy)
+            {
+                // Solid counterweights distinguish a heavy from a volatile carrier's lit tanks.
+                for(int side=-1;side<=1;side+=2)
+                {
+                    PresentationGeometry.Plate("Heavy load frame",spine,new Vector3(side*.37f,.46f,-.23f),new Vector3(.16f,.88f,.24f),iron);
+                    PresentationGeometry.Plate("Heavy counterweight",spine,new Vector3(side*.27f,.45f,-.44f),new Vector3(.28f,.58f,.26f),ceramic);
+                }
+                PresentationGeometry.Plate("Heavy brow shield",head,new Vector3(0,.2f,.08f),new Vector3(.55f,.13f,.5f),ceramic);
+            }
+            else
+            {
+                PresentationGeometry.Plate("Worker neck shield",spine,new Vector3(0,.65f,-.24f),new Vector3(.61f,.17f,.19f),ceramic);
+                for(int i=0;i<3;i++)PresentationGeometry.Plate("Worker chest ribs",spine,new Vector3(0,.15f+i*.09f,.31f),new Vector3(.38f,.035f,.04f),iron);
             }
         }
         Transform MakePresentationWeapon(Transform hand,WeaponKind kind,bool two)

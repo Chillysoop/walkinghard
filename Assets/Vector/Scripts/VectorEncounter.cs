@@ -133,6 +133,7 @@ namespace VectorGame
         string qaPath,qaBuild="sequence";
         bool qaHoldCheckpoint,qaHolding;
         PrototypeHUD hud;
+        CinderworksWorld regionalWorld;
         int qaManualPhase,qaHeldCasts;
 
         void Awake()
@@ -156,7 +157,9 @@ namespace VectorGame
             VisualFactory.Initialize();
             defaultArmoredStyle=!FastSimulation&&Array.IndexOf(args,"-originalLook")<0&&!(Application.isBatchMode&&Array.IndexOf(args,"-nographics")>=0);
             VisualFactory.ArmoredStyle=defaultArmoredStyle;
+            VisualFactory.CinderworksStyle=false;
             var world=VisualFactory.Node("Concourse and covered entry passages",transform,Vector3.zero);VisualFactory.World(world);
+            regionalWorld=world.gameObject.AddComponent<CinderworksWorld>();
             actors=VisualFactory.Node("Fighters",transform,Vector3.zero);
             hero=new FighterRig("The Walker",actors,true,lightweight:FastSimulation);heroPhysics=new FighterPhysics(hero,0,this,true);
             hero.Root.position=new Vector3(0,.04f,0);
@@ -173,6 +176,8 @@ namespace VectorGame
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
+            if(Array.IndexOf(args,"-cinderworksPreview")>=0)BeginCinderworksPreview();
+            if(Array.IndexOf(args,"-cinderworksReview")>=0)StartCoroutine(ReviewCinderworks());
             if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
             if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
         }

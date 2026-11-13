@@ -4,6 +4,8 @@ Plan prepared October 29, 2026; first playable preview added November 2 against 
 
 ## Direction
 
+The first expansion milestone now has a separate **Cinderworks Preview**, accessible from the title screen. Its modular furnace bays, rails and pressure chambers decorate the existing corridor; workers have ceramic respirators and heavies have solid counterweights, distinct from volatile carriers' illuminated tanks. The original eleven-bone rig, world colliders and covered entrances remain in use. Compare against the current armored look with V. The expanded production direction and lore are in [EXPANSION_DESIGN.md](EXPANSION_DESIGN.md); this preview does not add regional encounter rules or the proposed first act.
+
 **An armored martial artist walking calmly through industrial sci-fi carnage.** Keep the angular forms and dark teal environment from the approved UI reference, but give bodies weight, equipment distinctive silhouettes, and impacts clear direction. The hero is a person in armor; robot packs supply useful armor/weapon parts and enemy candidates without silently changing that identity.
 
 Use one primary asset family, a shared material palette and consistent lighting. Hero: light teal armor and a bright readable visor. Ordinary enemies: darker rust/red. Shield bearers: a broad shield silhouette. Carriers: obvious amber canisters. The Pursuer: a unique broad, heavy silhouette with deliberate footfalls. Contrast, shape and motion identify roles as well as color.
