@@ -47,6 +47,7 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Revealing){FinaleReveal(w,h);if(game.CombatPreviewActive)CombatPreviewControls(w);return;}
             if(game.State==VectorEncounter.RunState.Drafting)
             {
+                if(game.StopOpen){ExpeditionStopScreen(w,h);return;}
                 var eventType=Event.current.type;
                 bool blocked=(iconGuide||detailHovered||waveDetails)&&(Event.current.isMouse||eventType==EventType.ScrollWheel);
                 if(blocked)Event.current.type=EventType.Ignore;
@@ -64,17 +65,19 @@ namespace VectorGame
         }
         void Intro(float w,float h)
         {
+            if(expeditionArchive){ExpeditionRecords(w,h);return;}
             float x=40,y=Mathf.Max(35,(h-570)/2);Panel(new Rect(x,y,470,570));
             Label(new Rect(x+28,y+28,414,25),"WALKING HARD",27,white,true);
             Label(new Rect(x+28,y+85,414,100),"BUILD THE ORDER.\nBREAK THE CROWD.",31,Accent,true);
             Label(new Rect(x+28,y+200,414,60),"Two weapons. Three abilities.\nYour sequence does the fighting.",18,muted);
-            if(Button(new Rect(x+28,y+288,414,52),"START RUN  [ ENTER ]",true))game.Begin();
+            if(Button(new Rect(x+28,y+288,414,52),"QUICK RUN  [ ENTER ]",true))game.Begin();
             if(Button(new Rect(x+28,y+356,414,52),"QUICK TUTORIAL  [ T ]"))game.BeginTutorial();
             Label(new Rect(x+28,y+416,414,25),"Equip, fuse, augment and reorder. Hands-on practice.",12,muted);
             if(Button(new Rect(x+28,y+454,202,42),"COMBAT PREVIEW"))game.BeginCombatPreview();
             if(Button(new Rect(x+240,y+454,202,42),"CINDERWORKS PREVIEW"))game.BeginCinderworksPreview();
             if(Button(new Rect(x+28,y+520,130,27),"QUIT"))game.Quit();
             Label(new Rect(x+180,y+524,262,22),"v"+Application.version,12,muted,false,TextAnchor.UpperRight);
+            ExpeditionIntro(w,h,y);
         }
         void CombatHeader(float w,float h)
         {
@@ -178,6 +181,7 @@ namespace VectorGame
             if(Button(new Rect(x+275,y+267,235,38),"REPEAT SEED [ T ]"))game.Begin(true);
             if(Button(new Rect(x+30,y+330,235,38),"MAIN MENU"))game.MainMenu();
             if(Button(new Rect(x+275,y+330,235,38),"QUIT"))game.Quit();
+            if(game.ExpeditionActive)Label(new Rect(x+30,y+376,480,20),"Leaving combat resumes from your last reward checkpoint.",11,muted);
         }
         Vector2 recapScroll;
         void Summary(float w,float h)

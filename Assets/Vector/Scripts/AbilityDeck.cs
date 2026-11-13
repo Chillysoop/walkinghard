@@ -98,7 +98,7 @@ namespace VectorGame
         public IEnumerable<LoadoutItem> Inventory=>Items.Where(i=>i!=Fists&&Array.IndexOf(Slots,i)<0&&Array.IndexOf(Weapons,i)<0&&Array.IndexOf(Armor,i)<0&&Rig!=i&&Ultimate!=i&&ModuleHost(i)==null);
         public AbilityDeck(int seed)
         {
-            random=new Random(seed^0x5f3759df);Fists=new LoadoutItem(LoadoutCatalog.Fists);Items.Add(Fists);
+            random=new CheckpointRandom(seed^0x5f3759df);Fists=new LoadoutItem(LoadoutCatalog.Fists);Items.Add(Fists);
             for(int i=0;i<2;i++){Basics[i]=new LoadoutItem(new ItemDefinition("basic"+i,"Basic "+(i+1),ItemKind.Basic,"Uses Weapon "+(i+1)+". Empty mounts use fists.")){mount=i};Slots[i]=Basics[i];Items.Add(Basics[i]);}
         }
         public bool Has(AbilityId id)=>Slots.Any(s=>s?.def.ability?.id==id);

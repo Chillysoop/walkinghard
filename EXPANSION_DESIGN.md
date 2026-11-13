@@ -8,7 +8,9 @@ The expansion keeps automatic forward movement, the five-position sequence, pair
 
 **Implementation status:** the first regional art milestone is available as Cinderworks Preview, with a comparison toggle, seven real combat setups and the current physics. [Verification and limitations](QA/cinderworks-verification.md) distinguish this delivery from the first act and broader campaign below.
 
-**Physical route decisions:** the current eight-wave run now contains literal Y-junctions during waves 2 and 5. Each exit is a separate road with physical floors, walls and covered enemy entrances. The two roads diverge and do not reconnect; the Walker and camera turn down the selected road. Short icon signs communicate enemy type and reward emphasis, and a six-combat-second countdown locks the highlighted road while combat continues. The next junction extends the selected road. This replaces the initial rejoining-lane implementation and preserves the existing next-wave encounter/reward rules. The complete act destination graph, service/events and checkpoint save/resume remain upcoming work. [Verification](QA/physical-forks-verification.md).
+**Physical route decisions:** the current eight-wave run contains literal Y-junctions during waves 2 and 5. Each exit is a separate road with physical floors, walls and covered enemy entrances. The roads diverge and do not reconnect; the Walker and camera turn down the selected road. Short icon signs and a six-combat-second countdown lock the highlighted road while combat continues. The next junction extends the selected road. [Verification](QA/physical-forks-verification.md).
+
+**Expedition stops slice:** a separate Expedition entry now adds checkpoint save/resume, one salvage currency, Iven's repair/copy service, and one push-your-luck event with three lore variants. First fork: Shields versus Overtime. Second fork: Salvage versus Volatiles. Events and services open at the following reward checkpoint. Recovered records persist without stat bonuses; quick runs retain both original combat-route choices. This remains the eight-wave format, not the complete act destination graph or hub. Exact implemented rules are in [DESIGN.md](DESIGN.md), with [verification](QA/expedition-stops-verification.md).
 
 ## The city and its history
 
@@ -103,13 +105,15 @@ Three ending directions are viable: place strict limits on a reformed Continuanc
 
 ## Events with actual build consequences
 
-**The unfinished shift.** A furnace crew asks for a completion seal. Releasing them opens a safer maintenance route and a repair stop; extending their shift grants access to a rare tool shipment but adds an announced elite encounter defending it. The characters react to the decision. Neither outcome secretly removes health or changes loot rules.
+Events use visible chance, changing stakes and an exit option. Their lore can become familiar, but a memorized dialogue answer must not guarantee the best payout. Generate the situation once per run, show what is certain and what is rolled, and preserve both the situation and RNG state through saves. Different health, salvage and build needs should change the decision. No concealed punishment for choosing the apparently reasonable sentence.
 
-**The name inside the helmet.** A recovered veteran's memory can be archived, opening an alternate starting loadout for later runs, or temporarily installed as a clearly described helmet for the current run. The record explains whether installation is consensual. The tradeoff is immediate strength versus future variety, not an obscure morality score.
+**Overtime — implemented first event.** The Unfinished Shift, Wages for the Dead and The Restoration Quota share a clear risk loop: start with a small free haul; bank it or open another locker. The initial odds, payout and damage vary. Each success grows the haul; further attempts worsen the odds and increase both payout and damage. Failure loses the unbanked haul and stated integrity. Up to four attempts, a separate result reveal, safe cash-out and a recovered record even on failure. It feeds Iven's later service without adding another currency or status system.
 
-**The broken lift.** Repairing a freight line costs salvage and opens the Cinderworks shortcut. Taking a recovery crew's commission instead earns salvage and leads into a collision-heavy formation. Show both routes and rewards before the player chooses.
+**The name inside the helmet — future candidate.** A damaged memory offers a rolled starting technique and a visible recovery chance. Archive the intact fragment or risk extracting another technique while endangering the temporary equipment reward. Clearly separate persistent story discovery from the current-run gamble. Avoid a fixed archive/install answer that becomes automatic once the unlock is owned.
 
-**The bell that kept ringing.** A Choir machine repeats an evacuation notice long after the district emptied. Inspecting its log reveals the Pursuer's original voice. Silencing or repurposing it changes a later encounter's support mechanic and unlocks a hub conversation. The same environmental prop delivers lore, a decision and a combat consequence.
+**The broken lift — future candidate.** A freight platform offers a rolled load and repair cost. Pay for a guaranteed safe delivery, take the recovered salvage, or overload it for a larger advertised reward with an explicit chance of damage and a collision-heavy encounter. Generate cargo, prices and odds together; preview the possible encounter before commitment.
+
+**The bell that kept ringing — future candidate.** A Choir machine repeats an evacuation notice in the Pursuer's original voice. Recover a guaranteed fragment, then decide whether to decode another broadcast at an increasing, visible chance of calling a recovery patrol. The possible support effect and patrol formation are shown. Further broadcasts vary across runs; the first story discovery does not require winning a roll.
 
 ## Deeper combat across the catalog
 

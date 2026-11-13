@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-13",
+  "unity": "6000.3.27f1",
+  "sourceBase": "0b09ff3f3a5a1f8bd0d4fe9fc122774a1a426e0d",
+  "finalPlayer": "Build/Expedition-stops-final/WalkingHard.exe",
+  "finalAssemblySha256": "504fb616c990c3b9a6085ebd5bbb9b6c387374455ca5b32dc0f83e07e03b8929",
+  "varietyPlayer": "Build/Expedition-stops/WalkingHard.exe",
+  "varietyAssemblySha256": "a8b25085fb748ccd07d28ab0535c7d97ea851667eb6adc4b862b137ab48cc364",
+  "varietyScope": "Variety suite preceded final receipt text and locked-sign label corrections. Combat code is identical. Final player separately passed native, fresh-process, full Expedition, core, progression and rendered tutorial checks.",
+  "sourceFiles": [
+    {
+      "path": "Assets/Vector/Scripts/AbilityDeck.cs",
+      "sha256": "c8c6e9fd0b685ccee6e80e8a47162f84494e02e090b97b41949592ff5c40b3a6"
+    },
+    {
+      "path": "Assets/Vector/Scripts/AugmentHUD.cs",
+      "sha256": "0e121fd9346f6a8a59241a9d79efe9b897cf89ae4ef795bea8d963c375650629"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointBodies.cs",
+      "sha256": "41c60b380d62e0f19a210de2304e4987b9278025cd8251a915d80dd73e3e90b0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointBodies.cs.meta",
+      "sha256": "08e025724bc2d6e83696d35b096ca9ce0dfd268a16192d2d61e3950cd18a9f75"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarity.cs",
+      "sha256": "3c40fb85a1422445ba3d90a2b469205f143ec13ecfad080efd25e9bf064467ca"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointGraph.cs",
+      "sha256": "a0318b25fc3bc111b94fdc607cdf74a508efd7bf14a938e8cdf69d1a8c694a90"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointGraph.cs.meta",
+      "sha256": "456b29bd136547f17332443ea9b1a8f8799508ebd8e1792ecb478e1cad46f040"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRoutes.cs",
+      "sha256": "6b0f24042918f80c97e0615b471fb8cb6b829a514518f97a6b96dd09cea32776"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionHUD.cs",
+      "sha256": "55b6db321d41e444dafb0cd8ae63ea7eebb3be7a9d1fd2517cc1559e112d4888"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionHUD.cs.meta",
+      "sha256": "c271929f9411beaa56d443a080e45d724921f1b105c6356ace8d1ed51b4877d1"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionReview.cs",
+      "sha256": "20a960171e784b62d08dbdc1c6c45e2070e2e703d9a6fce43c9c96756ef895e5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionReview.cs.meta",
+      "sha256": "ad5a289a0606e70388df469413d71b3e04b37475ed5754a93838f0b997e152b1"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs",
+      "sha256": "9f73e1964f878edd67ad56fe59c2f61c6666078575ec619bbab9d97602586fde"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs.meta",
+      "sha256": "da9cbd1b7724d7f0edfb3df0eb1093280781ad90cfa1e4468fc062900ae1c4c4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionStops.cs",
+      "sha256": "9f285d191bb0913441e3fbf06d83e324254c51db3481797cec33010a0e2bab61"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionStops.cs.meta",
+      "sha256": "0aa9cee429e861b6b44631a1515a6765e53f39e11573c88576ee390f5341d175"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs",
+      "sha256": "e91eae64d25448f959da234fc0c83ac34553fab8816eb28da7e42b29cb650f4c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/QuickTutorial.cs",
+      "sha256": "7eb7f7cfa7ed49b89e82af0766cba333f5d8d6b289740d334bc5e087e62c122c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "sha256": "e2868a9475e6926685522de380492ee1d6b71dca20226ed1a918bd4192d2038f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "sha256": "49d0a6b5b7272d2798ffe45067e3d69a151045bd408a61b7c1455015ed9fa4e3"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WalkingFork.cs",
+      "sha256": "acc2f26b61630caaf71fcaefd8002e872b6b6b488907a60f9a5bc67e86118872"
+    }
+  ]
+}
