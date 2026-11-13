@@ -6,7 +6,8 @@ namespace VectorGame
     public static class EntryLayout
     {
         public const int WorldLayer=8;
-        public sealed class Door {public int side;public float z;public Vector3 origin,exit;}
+        public sealed class Door {public int side;public float z,localZ;public Vector3 origin,exit;public RoadPiece road;}
+        public static Transform InitialRoot;
         public static readonly List<Door> Doors=new List<Door>();
         public static Transform Solid(string name,Transform parent,Vector3 center,Vector3 size,Material material)
         {
@@ -15,6 +16,7 @@ namespace VectorGame
         }
         public static void Build(Transform parent)
         {
+            parent=VisualFactory.Node("Initial road",parent,Vector3.zero);InitialRoot=parent;
             Doors.Clear();Solid("Concourse / physical floor",parent,new Vector3(0,-.27f,150),new Vector3(40,.5f,1000),VisualFactory.Ground);
             for(int z=-222;z<550;z+=6)
             {

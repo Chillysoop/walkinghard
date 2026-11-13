@@ -1,5 +1,7 @@
 # Moving road forks verification
 
+**Superseded:** this report records the initial rejoining-lane implementation. The correction to literal, separately walled roads is documented in [physical-forks-verification.md](physical-forks-verification.md).
+
 November 13, 2026. Development change on top of Cinderworks commit `ac2fd8401adcf6815c47f0fb8c40837c9080a3d2`.
 
 ## Delivered behavior

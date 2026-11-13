@@ -161,6 +161,7 @@ namespace VectorGame
             VisualFactory.CinderworksStyle=false;
             var world=VisualFactory.Node("Concourse and covered entry passages",transform,Vector3.zero);VisualFactory.World(world);
             regionalWorld=world.gameObject.AddComponent<CinderworksWorld>();
+            roads=new PhysicalRoads(world);
             actors=VisualFactory.Node("Fighters",transform,Vector3.zero);
             hero=new FighterRig("The Walker",actors,true,lightweight:FastSimulation);heroPhysics=new FighterPhysics(hero,0,this,true);
             hero.Root.position=new Vector3(0,.04f,0);
@@ -357,7 +358,7 @@ namespace VectorGame
             StepWalkingFork(dt);
             if(qaBuild=="manual"&&qa)QAManual();
             if(Deck.Ultimate!=null&&ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
-            heroPhysics.MovePosition(finaleActive?finaleAnchor:ForkWalkingPosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1),dt));
+            heroPhysics.MovePosition(finaleActive?finaleAnchor:ForkWalkingPosition(tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1)));
             spawnTimer-=dt;
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
             {
@@ -380,10 +381,12 @@ namespace VectorGame
             if(finaleActive)kind=2;
             if(ActiveRoute==EncounterRoute.ShieldLine&&routeSpawn%4==0)kind=2;
             else if(ActiveRoute==EncounterRoute.VolatileBreach&&routeSpawn%4==0)kind=entryTurn%2;
-            EntryLayout.Door door=kind<2?EntryLayout.Ahead(kind==0?-1:1,HeroPosition.z,EncounterDirection):null;
-            Vector3 p=stagedPosition??(door!=null?door.origin:EntryLayout.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6),EncounterDirection));
+            bool routed=roads.Forks.Count>0;
+            EntryLayout.Door door=kind<2||ForkAwaitingChoice?(routed?roads.Entrance(kind==0?-1:1,HeroPosition,EncounterDirection,cameraRig):EntryLayout.Ahead(kind==0?-1:1,HeroPosition.z,EncounterDirection)):null;
+            Vector3 Horizon()=>routed?roads.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6),EncounterDirection):EntryLayout.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6),EncounterDirection);
+            Vector3 p=stagedPosition??(door!=null?door.origin:Horizon());
             Physics.SyncTransforms();
-            if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=EntryLayout.Horizon(cameraRig,HeroPosition,SpawnRange(-6,6),EncounterDirection);}
+            if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=Horizon();}
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=Wave==8&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
@@ -404,7 +407,7 @@ namespace VectorGame
                 Vector3 p=e.cachedPosition,delta=HeroPosition-p;delta.y=0;float distance=delta.magnitude;Vector3 inward=distance>.01f?delta/distance:Vector3.back;
                 e.cooldown-=dt;e.stun=Mathf.Max(0,e.stun-dt);e.react=Mathf.Max(0,e.react-dt*3);
                 if(e.stun>0){e.engaged=false;e.attack=-1;}
-                if(e.entering&&Mathf.Abs(p.x)<8.2f)e.entering=false;
+                if(e.entering&&(routedDoorReached(e,p)))e.entering=false;
                 UpdateEnemyRepositioning(e);
                 bool canAttack=EnemyCanAttack(e);
                 if(!canAttack&&(e.engaged||e.attack>=0)){if(e.engaged)committed--;e.engaged=false;e.attack=-1;e.delivered=false;e.cooldown=Mathf.Max(e.cooldown,.35f);}
@@ -422,6 +425,8 @@ namespace VectorGame
                 else if(distance>e.radius+.7f)desired=inward*tuning.enemySpeed;
                 else desired=inward*Mathf.Clamp((distance-e.radius-.15f*Mathf.Sin(clock+e.phase))*2,-1.6f,1.6f)+new Vector3(-inward.z,0,inward.x)*e.orbit*.85f;
                 if(e.heavy)desired*=.82f;
+                if(!e.entering&&e.stun<=0&&roads.Forks.Count>0&&roads.Navigation(p,HeroPosition,out var waypoint))
+                {var toward=waypoint-p;toward.y=0;desired=toward.normalized*(distance>15?9:tuning.enemySpeed);e.engaged=false;e.attack=-1;}
                 if(!e.entering&&e.stun<=0)
                 {
                     foreach(var other in enemies){if(other==e)continue;Vector3 diff=p-other.cachedPosition;diff.y=0;float d=diff.magnitude;if(d>.001f&&d<1.1f)desired+=diff/d*(1.1f-d)*2;}
@@ -455,6 +460,7 @@ namespace VectorGame
         {public int wave,kills,launches,collisions,carried,hitsTaken,shooters,rangedHits;public float health,rangedDamage;public string choice="",route="";}
         void FinishWave()
         {
+            if(ForkAwaitingChoice)return;
             if(simulation)Debug.Log("SIM_WAVE seed="+Seed+" wave="+Wave+" elapsed="+Elapsed+" kills="+Kills+" enemies="+enemies.Count+" hero="+HeroPosition);
             Score.Bank();CaptureWaveFeedback();
             Waves.Add(new WaveReport{wave=Wave,route=RouteName(ActiveRoute),kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
@@ -464,11 +470,14 @@ namespace VectorGame
         }
         void UpdateCamera(float dt)
         {
-            cameraRig.transform.position=Vector3.SmoothDamp(cameraRig.transform.position,HeroPosition+(finaleActive?FinaleCameraOffset:tuning.cameraOffset),ref cameraVelocity,.20f,100,dt);
+            roadCameraRotation=Quaternion.Slerp(roadCameraRotation,RoadRotation,1-Mathf.Exp(-4*dt));
+            cameraRig.fieldOfView=Mathf.Lerp(cameraRig.fieldOfView,tuning.cameraFov+7*ForkCameraWeight,1-Mathf.Exp(-3*dt));
+            cameraRig.transform.position=Vector3.SmoothDamp(cameraRig.transform.position,HeroPosition+(finaleActive?FinaleCameraOffset:roadCameraRotation*(tuning.cameraOffset+new Vector3(0,5,-6)*ForkCameraWeight)),ref cameraVelocity,.20f,100,dt);
             if(!ReducedMotion)cameraRig.transform.position+=new Vector3(Mathf.Sin(clock*59),Mathf.Sin(clock*71),0)*shake*.12f;
             AimCamera();
         }
-        void AimCamera(){cameraRig.transform.LookAt(HeroPosition+(finaleActive?FinaleCameraLook:new Vector3(0,1,tuning.lookAhead)));}
+        bool routedDoorReached(Enemy e,Vector3 p)=>roads.Forks.Count==0?Mathf.Abs(p.x)<8.2f:Vector3.Distance(p,e.doorway)<1;
+        void AimCamera(){cameraRig.transform.LookAt(HeroPosition+(finaleActive?FinaleCameraLook:roadCameraRotation*new Vector3(0,1,tuning.lookAhead+8*ForkCameraWeight)));}
         public void Capture()
         {
             string dir=Path.Combine(Application.persistentDataPath,"Captures");Directory.CreateDirectory(dir);

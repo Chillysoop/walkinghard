@@ -1,0 +1,33 @@
+{
+  "baseCommit": "84d6abeb3587858fbe304cb7966f1cf571b6c5e7",
+  "assemblySha256": "c0ef3bfa128991565db6b25dbc577d9f65ff88a2d6aa36ba1f553fd8f34ee0bd",
+  "nativeReportSha256": "6fafcfb94f3f3438200d71cffdf553eb0ecf3d3b669973dfd3fb3aee12b5e68b",
+  "player": "Build/Physical-forks/WalkingHard.exe",
+  "sourceHashNormalization": "UTF-8 without BOM; CRLF normalized to LF",
+  "sourceNormalizedSha256": {
+    "Assets/Vector/Scripts/EncounterCombat.cs": "fd7dbc4dcbd27f8a261697f884f258a517b275dc6658cc4d18a4b34fdc5169bf",
+    "Assets/Vector/Scripts/EnemyPressure.cs": "7af5e2815508be01e352aa1f4f33d7d01bb190dc30f33e91ce44024b0f2041e6",
+    "Assets/Vector/Scripts/EntryLayout.cs": "82abce37666c2535704857757a718b07d5b6dffe621c98e5dc700c3a7d8429d7",
+    "Assets/Vector/Scripts/FastSimulationPhysics.cs": "c530b418c5df9404a41ff4e992248d70f62de7b044cbe4962c254229b6e1ad38",
+    "Assets/Vector/Scripts/PhysicalRoads.cs": "5e387a83866b50c3b3e2b60c36db5997db524456295023f40f69afba58395156",
+    "Assets/Vector/Scripts/PhysicalRoads.cs.meta": "c24b824add3f3313495b9bf567c163d0577e944f9a33b20b1f294eacaa737503",
+    "Assets/Vector/Scripts/PursuerFinale.cs": "2f48cd459e773bef6b25ff14efe327ee3299041fc927b5d2d24de32f673a72ca",
+    "Assets/Vector/Scripts/RearBoundary.cs": "9c74ffc695bba0fd7ccad8d894c0ba24eb1ef631c838e219de204906989fc986",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "3cce7fa77e0f40722b5974561de1e15f3abcfa412e400b42a86a7c0ec9634399",
+    "Assets/Vector/Scripts/WalkingFork.cs": "a47cc5f655ef8dfde7bf3f78455f74637ee001090db0f1cf89ca9cb7408c58ab",
+    "Assets/Vector/Scripts/WalkingForkReview.cs": "deefcd668e35678dca5f94db4d3425b3e30a3ef69a02fbabdbb0e45993e0f081"
+  },
+  "sourceGitBlobs": {
+    "Assets/Vector/Scripts/EncounterCombat.cs": "c778ebb557344ce79badc3d20f44fbdef47dcb20",
+    "Assets/Vector/Scripts/EnemyPressure.cs": "97ec74728b3c7f67e8fd0712dbe9d1fa0222dba2",
+    "Assets/Vector/Scripts/EntryLayout.cs": "548703a9fff781d8652f135ea36ce1ecf19f8f91",
+    "Assets/Vector/Scripts/FastSimulationPhysics.cs": "e616880cd3e0edc2aff4a342fce374abb447850f",
+    "Assets/Vector/Scripts/PhysicalRoads.cs": "29dc6c9bff25b9cfb3a1d93d2a1c1a1e1331f54e",
+    "Assets/Vector/Scripts/PhysicalRoads.cs.meta": "f9aa503ae5f1571ee5e23ba26471fb1de067b8a9",
+    "Assets/Vector/Scripts/PursuerFinale.cs": "b3f10bfcbb80597d27271f1cf054d9e9b50a5d64",
+    "Assets/Vector/Scripts/RearBoundary.cs": "b3c399c1dcb7f884e93ab91ca4fa15e65d9a803f",
+    "Assets/Vector/Scripts/VectorEncounter.cs": "70b6ce789d55380859e48421a3574f75aa913c02",
+    "Assets/Vector/Scripts/WalkingFork.cs": "40f7ba0c5cc52927c7f55c55334c10123db81fd2",
+    "Assets/Vector/Scripts/WalkingForkReview.cs": "a50b810a80f9609c169628a44850a6ec47af9c37"
+  }
+}

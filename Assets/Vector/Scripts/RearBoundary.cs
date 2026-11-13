@@ -6,14 +6,15 @@ namespace VectorGame
     {
         public int RearBoundaryKills {get;private set;}
         public int EnvironmentalKills {get;private set;}
-        public float RearBoundaryZ
+        public float RearBoundaryZ=>RearBoundaryPoint.z;
+        Vector3 RearBoundaryPoint
         {
             get
             {
                 var ray=cameraRig.ViewportPointToRay(new Vector3(.5f,0,0));
                 var ground=new Plane(Vector3.up,Vector3.zero);
-                float bottom=ground.Raycast(ray,out float distance)?ray.GetPoint(distance).z:HeroPosition.z-7;
-                return finaleActive?Mathf.Max(HeroPosition.z+8,bottom+3):Mathf.Min(HeroPosition.z-8,bottom-3);
+                float bottom=ground.Raycast(ray,out float distance)?Vector3.Dot(ray.GetPoint(distance)-HeroPosition,RoadForward):-7;
+                return HeroPosition+RoadForward*(finaleActive?Mathf.Max(8,bottom+3):Mathf.Min(-8,bottom-3));
             }
         }
         bool BodyInCamera(Enemy e)
@@ -34,10 +35,10 @@ namespace VectorGame
         }
         void ResolveRearBoundary()
         {
-            float line=RearBoundaryZ;
+            Vector3 line=RearBoundaryPoint;
             foreach(var e in enemies.ToArray())
             {
-                if(e.entering||e.deathAge>=0||finaleActive&&e.boss||EncounterDirection*(e.rig.Root.position.z-line)>=0||BodyInCamera(e))continue;
+                if(e.entering||e.deathAge>=0||finaleActive&&e.boss||Vector3.Dot(e.rig.Root.position-line,EncounterForward)>=0||BodyInCamera(e))continue;
                 var saved=currentCredit;currentCredit=e.lastPushCredit;
                 e.health=0;KillEnemy(e,Vector3.zero,false);RearBoundaryKills++;currentCredit=saved;
             }
