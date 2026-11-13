@@ -24,7 +24,14 @@ namespace VectorGame
         public static string Formation(int wave)=>new[]{"DENSE PACK · horizon rush with side-door reinforcements","CROSSFIRE · spaced shooters behind a light screen","HEAVY FRONT · enforcers protect a dense pack","FLANKERS · alternating side doors with brief gaps","FUNNEL · horizon lanes with ranged support","BREACH · repeated door packs with reinforcements","MIXED PRESSURE · shooters, frontliners and flanking arrivals","FINAL STAND · prepare your full loadout"}[Mathf.Clamp(wave-1,0,7)];
         public string EncounterPreview=>routedWave==Wave+1?RouteName(SelectedRoute):Formation(OpeningDraft?1:Mathf.Min(8,Wave+1));
         void OpenCheckpoint()
-        {pendingDrafts.Clear();foreach(var kind in RewardsAfter(Wave))pendingDrafts.Enqueue(kind);State=RunState.Drafting;RoutePending=(Wave==2||Wave==5)&&Controlled==null;if(!RoutePending)Deck.Open(pendingDrafts.Dequeue(),true);}
+        {
+            // Finish a selected route before opening rewards. The fallback also supports
+            // fixtures that jump directly to a checkpoint without simulating its approach.
+            if(IsForkWave&&routedWave!=Wave+1){if(!RoutePending)BeginWalkingFork();CommitWalkingFork();}
+            pendingDrafts.Clear();foreach(var kind in RewardsAfter(Wave))pendingDrafts.Enqueue(kind);State=RunState.Drafting;
+            var emphasis=routedWave==Wave+1?RouteReward(simulation&&simulationRewardRoute>=0?(EncounterRoute)simulationRewardRoute:SelectedRoute):RewardEmphasis.None;
+            Deck.Open(pendingDrafts.Dequeue(),true,emphasis);
+        }
         void CompleteDraft()
         {
             if(Deck.Draft==DraftKind.Augment)AugmentChoices++;else ItemChoices++;

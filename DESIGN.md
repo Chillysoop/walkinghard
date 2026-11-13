@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 19, November 10, 2026. Includes the combat-flow development pass after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
+Revision 20, November 13, 2026. Includes the combat-flow and walking-fork development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
 
 ## Deadeye additions and synergy clarity
 
@@ -28,7 +28,11 @@ This replaces the ordinary Warden spawn in wave eight. Checkpoint previews say "
 
 ## Branching encounters
 
-After waves 2 and 5, a required route choice precedes that checkpoint's existing mixed pick. Shield Line emphasizes equipment (weapons, armor or rigs); Volatile Breach emphasizes abilities. Two distinct offers match the emphasis and the third is an unlocked wildcard. An owned upgrade bundle is preferred in the emphasized pair when available. Rerolls retain the emphasis and ordinary rarity odds. The choice grants no additional item picks or rerolls. Other checkpoint drafts remain unchanged: 13 item picks and two augment picks per completed run, with the first ultimate drafted after wave 3.
+During waves 2 and 5, a fork appears on the road ten combat seconds before arrivals end (20 seconds into the wave with current tuning). Walking and fighting continue. Two lane-attached signs show simple icons and **Shields / More gear** or **Volatiles / More abilities**. A/D, left/right arrows or a click changes the highlighted path until the six-combat-second deadline. The left path starts highlighted and is taken automatically if no input is given. Selection can be changed freely before the deadline; the lock is final and cannot reroll rewards.
+
+The chosen lane lights up and the Walker physically follows it with bounded lateral movement. These first forks are flat bypass lanes that rejoin the existing corridor; they add no colliders. They establish the moving decision interaction inside the current eight-wave run, not the proposed multi-act route graph. During the ten-second approach, 2x/4x play temporarily runs at 1x; the saved speed resumes afterward. 0.5x and pause remain available, and pause freezes the deadline. Hitstop also pauses combat time. Practice and tutorial encounters do not offer forks.
+
+At the following reward checkpoint, Shield Line emphasizes equipment (weapons, armor or rigs); Volatile Breach emphasizes abilities. Two distinct offers match the emphasis and the third is an unlocked wildcard. An owned upgrade bundle is preferred in the emphasized pair when available. Rerolls retain the emphasis and ordinary rarity odds. The choice grants no additional item picks or rerolls. Other checkpoint drafts remain unchanged: 13 item picks and two augment picks per completed run, with the first ultimate drafted after wave 3.
 
 The route affects the upcoming wave only (3 or 6), then ordinary formations return. Roughly one in four eligible non-shooter arrivals becomes the route's enemy type. Shield-line special arrivals favor the horizon; volatile arrivals favor side doors. All actors still enter concealed; shooter frequency and base spawn cadence are unchanged.
 

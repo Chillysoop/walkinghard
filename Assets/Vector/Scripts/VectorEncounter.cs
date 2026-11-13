@@ -41,6 +41,7 @@ namespace VectorGame
         public int KillsFor(LoadoutItem item){item=KillOwner(item);return item!=null&&itemKills.TryGetValue(item,out int value)?value:0;}
         public int ActionKills(LoadoutItem item)=>KillsFor(item?.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item);
         public float CombatSpeed {get;private set;}=1;
+        public float EffectiveCombatSpeed=>ForkApproach?Mathf.Min(1,CombatSpeed):CombatSpeed;
         public int CorpseShoves {get;private set;}
         public int ArmorBonusHits {get;private set;}
         public float ArmorPreventedDamage {get;private set;}
@@ -178,6 +179,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
             if(Array.IndexOf(args,"-cinderworksPreview")>=0)BeginCinderworksPreview();
             if(Array.IndexOf(args,"-cinderworksReview")>=0)StartCoroutine(ReviewCinderworks());
+            if(Array.IndexOf(args,"-walkingForkReview")>=0)StartCoroutine(ReviewWalkingFork());
             if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
             if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
         }
@@ -305,6 +307,11 @@ namespace VectorGame
                 if(Input.GetKeyDown(KeyCode.F))RequestUltimate();
                 if(Input.GetKeyDown(KeyCode.M))ToggleSound();
                 if(Input.GetKeyDown(KeyCode.F8))Capture();
+                if(RoutePending)
+                {
+                    if(Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.LeftArrow))ChooseRoute(EncounterRoute.ShieldLine);
+                    if(Input.GetKeyDown(KeyCode.D)||Input.GetKeyDown(KeyCode.RightArrow))ChooseRoute(EncounterRoute.VolatileBreach);
+                }
                 if(State==RunState.Drafting)
                 {
                     if(Input.GetKeyDown(KeyCode.Alpha1))SelectOffer(0);
@@ -332,7 +339,7 @@ namespace VectorGame
         void AdvanceCombat(float realDelta)
         {
             if(State!=RunState.Running)return;
-            float budget=Mathf.Min(realDelta,.1f)*CombatSpeed;
+            float budget=Mathf.Min(realDelta,.1f)*EffectiveCombatSpeed;
             if(hitStop>0){float used=Mathf.Min(hitStop,budget);hitStop-=used;budget-=used;}
             accumulator+=budget;
             const float dt=1f/60;
@@ -347,9 +354,10 @@ namespace VectorGame
             if(Controlled!=null&&controlledMetrics!=null){controlledMetrics.missingHealthSeconds+=(MaxHealth-Health)*dt;if(Health<MaxHealth*.5f)controlledMetrics.lowHealthSeconds+=dt;}
             float restored=Mathf.Min(MaxHealth-Health,Deck.Regeneration*dt);Health+=restored;ArmorHealing+=restored;
             Score.Step(dt);clock+=dt;Elapsed+=dt;WaveElapsed+=dt;EventAge+=dt;flash=Mathf.Max(0,flash-dt*2);shake=Mathf.Max(0,shake-dt*2);heroReact=Mathf.Max(0,heroReact-dt*4);
+            StepWalkingFork(dt);
             if(qaBuild=="manual"&&qa)QAManual();
             if(Deck.Ultimate!=null&&ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
-            heroPhysics.MovePosition(finaleActive?finaleAnchor:HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1));
+            heroPhysics.MovePosition(finaleActive?finaleAnchor:ForkWalkingPosition(HeroPosition+Vector3.forward*tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1),dt));
             spawnTimer-=dt;
             if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
             {

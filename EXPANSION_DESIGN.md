@@ -8,6 +8,8 @@ The expansion keeps automatic forward movement, the five-position sequence, pair
 
 **Implementation status:** the first regional art milestone is available as Cinderworks Preview, with a comparison toggle, seven real combat setups and the current physics. [Verification and limitations](QA/cinderworks-verification.md) distinguish this delivery from the first act and broader campaign below.
 
+**Moving route decisions:** the current eight-wave run now presents two road lanes during waves 2 and 5. Short icon signs communicate enemy type and reward emphasis; a six-combat-second countdown locks the highlighted path while combat continues. The Walker follows the selected lane. These bypass lanes rejoin the existing corridor and reuse the existing next-wave encounter/reward rules. This delivers the in-game fork interaction; the complete act graph, service/event destinations and checkpoint save/resume remain upcoming work. [Verification](QA/walking-forks-verification.md).
+
 ## The city and its history
 
 The city is **Veyr**. Its central engine, the **Continuance**, was built during an event called the **Stilling**. Beyond the city, reliable motion began to fail: rivers hung in broken sheets, falling structures stopped halfway to the ground, and machines lost the ability to complete a cycle. The Continuance stabilizes a small territory by drawing on recorded human intention: the impulse to finish an action. It needs both machinery and people to maintain that boundary.

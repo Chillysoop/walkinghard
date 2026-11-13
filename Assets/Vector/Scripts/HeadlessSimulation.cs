@@ -63,7 +63,6 @@ namespace VectorGame
         {
             if(Controlled!=null){ControlledDraft();return;}
             if(policyRandom==null)policyRandom=new System.Random(Seed^0x371e);
-            if(RoutePending){ChooseRoute(simulationEncounterRoute>0?(EncounterRoute)simulationEncounterRoute:(Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);return;}
             if(!Deck.RewardClaimed)
             {
                 int pick=CurrentPolicy=="random"?policyRandom.Next(Deck.Offers.Length):Enumerable.Range(0,Deck.Offers.Length).OrderByDescending(i=>PolicyValue(Deck.Offers[i].def,Deck.Offers[i].rank)+(Deck.Copies(Deck.Offers[i].def,Deck.Offers[i].rank)+Deck.Offers[i].copies>=3?2:0)).First();
