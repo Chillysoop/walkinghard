@@ -1,0 +1,24 @@
+{
+    "passed": true,
+    "assertions": 7,
+    "productionAssertions": 0,
+    "repairs": 8,
+    "throws": 9,
+    "retrievals": 8,
+    "kills": 318,
+    "wave": 8,
+    "itemChoices": 13,
+    "augmentChoices": 2,
+    "health": 222.13986206054688,
+    "result": "Complete",
+    "scope": "Normal-health eight-wave Expedition with ordinary offers and automated pinball choices; one functional run, not balance evidence.",
+    "checks": [
+        "real checkpoint resumes at wave 3",
+        "real checkpoint resumes at wave 3",
+        "real checkpoint resumes at wave 5",
+        "real checkpoint resumes at wave 5",
+        "normal sequence entry and identity invariants",
+        "all three roles occur through normal concealed spawning",
+        "full reward and finale gates survive regional crews"
+    ]
+}

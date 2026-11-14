@@ -9,8 +9,8 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=1;
-        public string rules="expedition-stops-1",tuning;
+        public int schema=2;
+        public string rules="cinderworks-crews-1",tuning;
         public int wave;
         public SavedGraph graph;
         public SavedBody hero;
@@ -79,7 +79,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
         {
             var info=new FileInfo(SavePath);if(info.Length>32000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||data.schema!=1||data.rules!="expedition-stops-1"||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1")||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
             return data;
         }
         CheckpointGraph GraphCodec()
@@ -106,7 +106,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph);
+                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();
                 if(savedEnemies.Length!=saved.actors.Count||savedEnemies.Select(e=>e.id).Distinct().Count()!=savedEnemies.Length||saved.actors.Select(e=>e.id).Distinct().Count()!=saved.actors.Count||savedEnemies.Any(e=>!saved.actors.Any(a=>a.id==e.id)))throw new InvalidOperationException("Invalid actor references");
@@ -115,17 +115,19 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
                     bool Finite(Vector3 v)=>float.IsFinite(v.x)&&float.IsFinite(v.y)&&float.IsFinite(v.z)&&v.sqrMagnitude<10000000;
                     if(body.bones==null||body.bones.Length!=11||!Finite(body.position)||!Finite(body.velocity)||body.bones.Any(b=>!Finite(b.position)||!Finite(b.velocity))||body.caps.Any(c=>c.bone<0||c.bone>=11))throw new InvalidOperationException("Invalid body snapshot");
                 }
-                replacing=true;loadingCheckpoint=true;ExpeditionActive=false;Begin(true);JsonUtility.FromJsonOverwrite(saved.tuning,tuning);codec.Apply(this);
+                replacing=true;loadingCheckpoint=true;ExpeditionActive=true;Begin(true);JsonUtility.FromJsonOverwrite(saved.tuning,tuning);codec.Apply(this);
                 foreach(var map in saved.roads){var fork=roads.Split(map.origin,0);roads.Follow(fork,map.side);forkVisual=fork;}
+                RefreshExpeditionRoads();
                 Deck.Fused+=MergeKillCounts;
                 hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);hero.EquipWeapons(Deck.WeaponFor(Deck.Basics[0]).def.weapon,Deck.WeaponFor(Deck.Basics[1]).def.weapon,Deck.TwoHanded);hero.WeaponIdentity(Deck.WeaponFor(Deck.Basics[0]),Deck.WeaponFor(Deck.Basics[1]));heroPhysics.RestoreBody(saved.hero);
                 foreach(var e in enemies.Concat(corpses))
                 {
                     var body=saved.actors.Single(b=>b.id==e.id);e.rig=new FighterRig(body.name,actors,false,e.heavy,e.id^Seed);e.rig.Root.localScale=body.scale;
                     if(e.shooter)e.rig.RangedEquipment();if(e.boss&&body.scale.x>3)e.rig.PursuerArmor();e.rig.EncounterEquipment(e.shieldBearer,e.volatileCarrier);
+                    e.rig.CrewEquipment(e.crew);
                     e.physics=new FighterPhysics(e.rig,e.id,this,false,e.heavy);e.physics.RestoreBody(body);
                 }
-                foreach(var body in corpses)SetBodyWalkCollision(body,flights.Any(f=>f.body==body));
+                foreach(var body in corpses)SetBodyWalkCollision(body,body.freightLeft>0||flights.Any(f=>f.body==body));
                 cameraRig.transform.position=saved.cameraPosition;cameraRig.transform.rotation=saved.cameraRotation;cameraRig.fieldOfView=saved.cameraFov;fx.muted=saved.muted;fx.SetReducedMotion(ReducedMotion);
                 ShowStopProp();Physics.SyncTransforms();checkpointEnded=false;loadingCheckpoint=false;SaveMessage="Checkpoint restored";return true;
             }

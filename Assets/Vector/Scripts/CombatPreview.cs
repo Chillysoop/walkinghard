@@ -22,7 +22,7 @@ namespace VectorGame
             CombatPreviewActive=true;CombatPreviewPreset=Mathf.Clamp(preset,0,CombatPreviewNames.Length-1);CombatPreviewStyle=newStyle;
             VisualFactory.ArmoredStyle=CinderworksActive||newStyle;
             VisualFactory.CinderworksStyle=CinderworksActive&&newStyle;
-            regionalWorld.SetVisible(VisualFactory.CinderworksStyle);Seed=1741;
+            regionalWorld.ResetRoads();regionalWorld.SetVisible(VisualFactory.CinderworksStyle);Seed=1741;
             startingCombatPreview=true;Begin(true);startingCombatPreview=false;
             fx.SetPresentation(VisualFactory.ArmoredStyle);fx.SetReducedMotion(ReducedMotion);SetCombatSpeed(1);
             LoadoutItem Equip(string id,PlaceKind place,int index=0){var item=Deck.Acquire(LoadoutCatalog.Find(id),3);MoveItem(item,place,index);return item;}
