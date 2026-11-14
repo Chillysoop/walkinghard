@@ -5,9 +5,10 @@ namespace VectorGame
 {
     // Regional visuals decorate the existing covered corridor. They never create
     // a collider, change an entrance, consume combat RNG or move an actor.
-    public sealed class CinderworksWorld : MonoBehaviour
+    public sealed partial class CinderworksWorld : MonoBehaviour
     {
         public static Material Enamel,Iron,Ceramic,Floor,Heat;
+        static List<(Mesh mesh,Material material)> bayMeshes;
         readonly List<(Renderer renderer,Material original)> surfaces=new List<(Renderer,Material)>();
         Transform decoration;
         public bool Visible {get;private set;}
@@ -47,9 +48,16 @@ namespace VectorGame
             foreach(var r in GetComponentsInChildren<MeshRenderer>())surfaces.Add((r,r.sharedMaterial));
             decoration=VisualFactory.Node("Cinderworks / visual architecture",transform,Vector3.zero);
             // Shared, material-batched modules cover both directions of the boss camera.
-            for(int z=-225;z<540;z+=18)
-            {
-                var bay=VisualFactory.Node("Furnace bay",decoration,new Vector3(0,0,z));
+            for(int z=-225;z<540;z+=18)BuildBay(decoration,z);
+        }
+        internal static Transform BuildBay(Transform parent,int z)
+        {
+                var bay=VisualFactory.Node("Furnace bay",parent,new Vector3(0,0,z));
+                if(bayMeshes!=null)
+                {
+                    foreach(var part in bayMeshes){var t=VisualFactory.Node("Batched furnace architecture",bay,Vector3.zero);t.gameObject.AddComponent<MeshFilter>().sharedMesh=part.mesh;t.gameObject.AddComponent<MeshRenderer>().sharedMaterial=part.material;}
+                    return bay;
+                }
                 void Box(string name,Vector3 p,Vector3 size,Material material)=>VisualFactory.Part(name,bay,PrimitiveType.Cube,p,size,material);
                 Transform Drum(string name,Vector3 p,Vector3 size,Material material)=>VisualFactory.Part(name,bay,PrimitiveType.Cylinder,p,size,material);
                 for(int side=-1;side<=1;side+=2)
@@ -77,8 +85,9 @@ namespace VectorGame
                     Box("Door lintel stencil",new Vector3(side*9.02f,4.12f,0),new Vector3(.07f,.25f,2.8f),Enamel);
                 }
                 // No cross-lane beam: the finale camera rises and turns through this volume.
-                PresentationGeometry.CompactBone(bay,"cinderworks/bay/v1");
-            }
+                PresentationGeometry.CompactBone(bay,"cinderworks/bay/v1");bayMeshes=new List<(Mesh,Material)>();
+                foreach(var mesh in bay.GetComponentsInChildren<MeshFilter>())if(mesh.gameObject.activeSelf)bayMeshes.Add((mesh.sharedMesh,mesh.GetComponent<MeshRenderer>().sharedMaterial));
+                return bay;
         }
     }
 }

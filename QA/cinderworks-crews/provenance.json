@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-13",
+  "unity": "6000.3.27f1",
+  "sourceBase": "aa726d0330c30fb9e92a1cbb67164a4dda514b79",
+  "player": "Build/Cinderworks-crews-delivery/WalkingHard.exe",
+  "assemblySha256": "e029b718ab13e50c53c3815075d93c2704d5b2f238e8e8056ec49feb795e63c8",
+  "corePlayer": "Build/Cinderworks-crews-final/WalkingHard.exe",
+  "coreAssemblySha256": "a50c1e963f87940a148c4a0fa0cac57b6f1cf8ad2ea305904ca48ed89fcc2a73",
+  "coreScope": "The 15 core and full progression scenarios precede only the preview material-reset fix and its native regression assertion. Combat, enemies, roads, saves and HUD code are identical. Delivery player separately passed crew, Expedition, fresh-process, legacy and normal-health full-run checks.",
+  "legacyCheckpointSha256": "e4b2f64dcaabce2d72e53fa6cf8fad154a3c1663d93014d51a85349feddd2439",
+  "legacySchema": "1 / expedition-stops-1",
+  "sourceFiles": [
+    {
+      "path": "Assets/Vector/Scripts/CheckpointGraph.cs",
+      "sha256": "3a7723ecab15c7a11a0f36b19edae3c198fe024cd5988c119458e8906ffbf1cc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksCrews.cs",
+      "sha256": "9eb16459ec8810b8ec6fbaff51b6b50a2e2583c074d593bfd922fdbc7795b511"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksCrews.cs.meta",
+      "sha256": "e9ad6f4736710ef98d112b56d68dbf81c0bac133d14f9898c1473d1d001b9ef3"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksExpedition.cs",
+      "sha256": "2be7243adb640d8d2a3efff544ed5d8a98a2e5c1f7c278686d65f2c469c41a44"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksExpedition.cs.meta",
+      "sha256": "5af8bf169f0ed3d78ef29a3d7d6b630936ae9f7e2deecf4342d36f68548a1531"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksReview.cs",
+      "sha256": "7166274d5019d5e6bf83a78fa3d821f8e9927e37f3d0dac0f59908ea7503ebb4"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksWorld.cs",
+      "sha256": "053db347186a1c39c6fee973da0960c6ca91f60ec91e5cb9caf97df110b840cb"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreview.cs",
+      "sha256": "504d89f6126bbe1fd8e280cefcd4bc1e98cebe99a3ce9a2eb368513b7ee66da0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatSignatures.cs",
+      "sha256": "624a8b7964242e1c0283bbec86db81705a08b841abaec40bed6bec3512c1120d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewPresentation.cs",
+      "sha256": "920e33db2e09972623c97377f3620ac25a9d52f06a64ceb80cf6077fc1007fd7"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewPresentation.cs.meta",
+      "sha256": "b7470ca35c058df0fc619ab5a1cdee944add907e4941b342bdfd89812664d39a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewReview.cs",
+      "sha256": "b7b4ca3ae232d351e2b7c974bbbc9569472cb4f88671250c9fba2b135b4728e6"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewReview.cs.meta",
+      "sha256": "b351541f760e5db74a8825788a2936ea496aaa8b573cca09ca28d302f331745f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCombat.cs",
+      "sha256": "810962e0e05a8fe3c04e86aa1781ba44171ba7228f42599928142ffedd85dc1a"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs",
+      "sha256": "36da60dd73f838fdbeffeccdf808654bc7b7c41613452cfcdc3f03b96e4e36c5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionStops.cs",
+      "sha256": "c87fb1a5a66dce9dbb0461490dd24d178863800dbee6e0c025d76cff2d7cee85"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs",
+      "sha256": "0e46cf36298d37b23c8dffb412a72cd0ea625cc6f00e4604bfbbfee21de9938b"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "sha256": "4cd49db855f9748f3d3fd7a9cce7485f9b6faa3524e4dd3f782fe5f60b271094"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "sha256": "3c0c86f714aa47bd1ba828ab50cb7edeb0c9c325aee1ae7f0c7ae1791b053ec2"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WalkingFork.cs",
+      "sha256": "c871964bb799e1d3bfc95499cd9fc1638b85fd806f76ab7e6ac90c54e8d43db8"
+    }
+  ],
+  "nativeTestedAssemblySha256": "37fa3b2d0b19154d17627b5ae5a92cd6e0f28026d521a8a109192a0694e224b2",
+  "nativeScope": "Crew, event, fresh-process, legacy-process and normal-health full-run reports precede only the CinderworksReview setup correction. All production code and their own review code are identical. The final player separately verifies the corrected preview review.",
+  "previewScope": "Final assembly passed 181 regional preview assertions and 1522 production-effect assertions, with all seven practice setups in both appearances and sequential live performance samples."
+}

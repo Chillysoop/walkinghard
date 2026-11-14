@@ -85,7 +85,10 @@ namespace VectorGame
             }
             foreach(bool regional in new[]{false,true})
             {
-                BeginCombatPreview(0,regional);yield return null;mechanicAssertions=0;CheckCombatMechanics();
+                BeginCombatPreview(0,regional);yield return null;mechanicAssertions=0;
+                // Core probes exercise ordinary route rules. Keep the chosen art, but
+                // suspend the practice-only rule that deliberately disables forks.
+                CombatPreviewActive=false;try{CheckCombatMechanics();}finally{CombatPreviewActive=true;}
                 Require(mechanicAssertions>=755,"production effects and combat-flow checks in both looks");report.productionAssertions+=mechanicAssertions;
                 foreach(float speed in new[]{.5f,1f,4f})
                 {

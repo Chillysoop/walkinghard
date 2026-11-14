@@ -58,6 +58,20 @@ namespace VectorGame
             VisualFactory.Part("Station plinth",stopProp,PrimitiveType.Cube,new Vector3(0,.3f,0),new Vector3(3,.6f,2),VisualFactory.Stone);
             for(int i=0;i<3;i++)VisualFactory.Part("Recovery locker",stopProp,PrimitiveType.Cube,new Vector3(-1+i,1.15f,0),new Vector3(.8f,1.1f,1.2f),VisualFactory.Trim);
             VisualFactory.Part("Station signal",stopProp,PrimitiveType.Cube,new Vector3(0,2,0),new Vector3(2.5f,.14f,.2f),Stop.kind==EncounterRoute.SalvageStop?VisualFactory.Glow:VisualFactory.GoldGlow);
+            CinderworksWorld.InitializeMaterials();
+            if(Stop.kind==EncounterRoute.SalvageStop)
+            {
+                VisualFactory.Part("Iven's white canopy",stopProp,PrimitiveType.Cube,new Vector3(0,2.8f,0),new Vector3(3.8f,.18f,2.8f),CinderworksWorld.Ceramic);
+                foreach(int side in new[]{-1,1})VisualFactory.Part("Salvage canopy leg",stopProp,PrimitiveType.Cube,new Vector3(side*1.7f,1.4f,.8f),new Vector3(.12f,2.8f,.12f),CinderworksWorld.Iron);
+                VisualFactory.Part("Repair sign upright",stopProp,PrimitiveType.Cube,new Vector3(0,3.5f,0),new Vector3(.23f,1,.18f),VisualFactory.Glow);
+                VisualFactory.Part("Repair sign arms",stopProp,PrimitiveType.Cube,new Vector3(0,3.5f,0),new Vector3(1,.23f,.18f),VisualFactory.Glow);
+            }
+            else
+            {
+                foreach(int side in new[]{-1,1})VisualFactory.Part("Overtime press piston",stopProp,PrimitiveType.Cylinder,new Vector3(side*1.6f,2,0),new Vector3(.5f,2,.5f),CinderworksWorld.Enamel);
+                VisualFactory.Part("Overtime press head",stopProp,PrimitiveType.Cube,new Vector3(0,4,0),new Vector3(4,.8f,2.3f),CinderworksWorld.Iron);
+                for(int i=0;i<4;i++)VisualFactory.Part("Overtime pressure lamp",stopProp,PrimitiveType.Cube,new Vector3(-1.2f+i*.8f,4,-1.18f),new Vector3(.4f,.26f,.08f),CinderworksWorld.Heat);
+            }
         }
         public int RepairAmount=>Mathf.CeilToInt(MaxHealth*.25f);
         public static int CopyCost(int rarity)=>new[]{0,12,18,26,36,99}[Mathf.Clamp(rarity,0,5)];

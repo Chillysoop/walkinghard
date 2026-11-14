@@ -101,6 +101,12 @@ namespace VectorGame
             public float pressure,lastDamageTime=-1000,previousDamageTime=-1000;
             public KillCredit lastPushCredit;
             public Vector3 doorway,cachedPosition;
+            public CrewRole crew;
+            public float crewClock,crewCooldown,crewVfx,crewNotice,crewGuard,crewGuardUntil,freightLeft;
+            public int crewTarget,crewUses,freightSource;
+            public Vector3 crewAim,crewOrigin,freightPrevious;
+            public bool freightHitHero;
+            public List<int> freightHits;
         }
         sealed class Flight
         {
@@ -185,6 +191,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-fullRunReview")>=0)StartCoroutine(ReviewFullRun());
             if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
             if(Array.IndexOf(args,"-expeditionReview")>=0)StartCoroutine(ReviewExpedition());
+            if(Array.IndexOf(args,"-crewReview")>=0)StartCoroutine(ReviewCrews());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -195,7 +202,7 @@ namespace VectorGame
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
-            ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
+            ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();ResetExpeditionAppearance();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
             CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
@@ -372,7 +379,7 @@ namespace VectorGame
                 spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval();
             }
             long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
-            StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
+            StepFreightBodies(dt);StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
             if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
@@ -393,12 +400,13 @@ namespace VectorGame
             if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=Horizon();}
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=Wave==8&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
+            var crew=boss?CrewRole.None:NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             if(shooter)e.rig.RangedEquipment();
-            ConfigureRouteEnemy(e);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
+            e.crew=crew;e.crewCooldown=1.5f;if(crew==CrewRole.None)ConfigureRouteEnemy(e);else e.rig.CrewEquipment(crew);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
             if(shooter)RangedSpawned++;
-            if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,!flights.Exists(f=>f.body==body));
+            if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,body.freightLeft<=0&&!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
             if(!EntryLayout.Concealed(cameraRig,p))VisibleSpawns++;
         }
@@ -414,6 +422,7 @@ namespace VectorGame
                 if(e.entering&&(routedDoorReached(e,p)))e.entering=false;
                 UpdateEnemyRepositioning(e);
                 bool canAttack=EnemyCanAttack(e);
+                bool wasCommitted=e.engaged;bool crewBusy=StepCrew(e,dt);if(wasCommitted&&!e.engaged)committed--;if(crewBusy)canAttack=false;
                 if(!canAttack&&(e.engaged||e.attack>=0)){if(e.engaged)committed--;e.engaged=false;e.attack=-1;e.delivered=false;e.cooldown=Mathf.Max(e.cooldown,.35f);}
                 if(canAttack&&!e.engaged&&e.stun<=0&&e.cooldown<=0&&distance<(e.shooter?9:3.3f)&&committed<tuning.simultaneousAttackers)
                 {
@@ -421,7 +430,7 @@ namespace VectorGame
                     if(opening){e.engaged=true;committed++;}
                 }
                 Vector3 desired;
-                if(e.stun>0)desired=Vector3.zero;
+                if(e.stun>0||crewBusy)desired=Vector3.zero;
                 else if(e.entering){var toward=e.doorway-p;toward.y=0;desired=toward.normalized*4.5f;}
                 else if(e.repositioning)desired=RepositionVelocity(e);
                 else if(distance>15)desired=inward*9f;

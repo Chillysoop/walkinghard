@@ -38,7 +38,7 @@ namespace VectorGame
             if(Deck.Draft==DraftKind.Augment)AugmentChoices++;else ItemChoices++;
             if(OpeningPicks<2){OpeningPicks++;if(OpeningPicks<2){Deck.Open(DraftKind.Ability,false);return;}}
             else {if(pendingDrafts.Count>0){Deck.Open(pendingDrafts.Dequeue(),false);return;}Waves[Waves.Count-1].choice=Deck.Loadout;Wave++;}
-            hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);BeginWave();Announce(Formation(Wave));
+            hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);BeginWave();Announce(WaveFormation);
         }
         public bool ClaimAugmentToHost(int offer,LoadoutItem host,bool continueImmediately)
         {

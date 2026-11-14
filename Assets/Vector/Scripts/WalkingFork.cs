@@ -41,6 +41,7 @@ namespace VectorGame
             if(!IsForkWave||forkWave==Wave)return;
             forkWave=Wave;forkStarted=-1;forkAge=forkLockedAge=0;
             forkVisual=roads.Split(HeroPosition,16);forkOrigin=forkVisual.Origin;
+            RefreshExpeditionRoads();
         }
         void BeginWalkingFork()
         {
