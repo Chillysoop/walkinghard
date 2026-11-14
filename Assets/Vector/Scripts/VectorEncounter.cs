@@ -182,7 +182,7 @@ namespace VectorGame
             fx.SetPresentation(defaultArmoredStyle);fx.SetReducedMotion(ReducedMotion);
             Health=tuning.heroHealth;hero.Pose(0,0,-1,0,0,false,0);Physics.SyncTransforms();
             if(!simulation||Array.IndexOf(args,"-fullRunReview")>=0){hud=gameObject.AddComponent<PrototypeHUD>();hud.game=this;}
-            if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}Begin();}
+            if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}if(simulationExpedition)ExpeditionActive=true;Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
@@ -194,6 +194,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-expeditionReview")>=0)StartCoroutine(ReviewExpedition());
             if(Array.IndexOf(args,"-crewReview")>=0)StartCoroutine(ReviewCrews());
             if(Array.IndexOf(args,"-foremanReview")>=0)StartCoroutine(ReviewForeman());
+            if(Array.IndexOf(args,"-varietyReview")>=0)StartCoroutine(ReviewExpeditionVariety());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -405,7 +406,7 @@ namespace VectorGame
             if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=Horizon();}
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=Wave==8&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
-            var crew=boss?CrewRole.None:forcedCrew??NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}
+            var crew=boss?CrewRole.None:forcedCrew??NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}if(!boss)RegionalArrival(crew,ref heavy,ref shooter);
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             if(shooter)e.rig.RangedEquipment();

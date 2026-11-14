@@ -11,7 +11,7 @@ namespace VectorGame
         public bool FastSimulation {get;private set;}
         readonly long[] simulationProfile=new long[6];
         void ProfileSim(int stage,ref long stamp){long now=System.Diagnostics.Stopwatch.GetTimestamp();simulationProfile[stage]+=now-stamp;stamp=now;}
-        bool simulation;int simulationRuns,simulationIndex,simulationSeed,simulationStride=1,simulationWaves=8;
+        bool simulation,simulationExpedition;int simulationRuns,simulationIndex,simulationSeed,simulationStride=1,simulationWaves=8;
         string simulationPolicy="mixed",simulationOutput;
         int simulationEncounterRoute=-1,simulationRewardRoute=-1;
         readonly System.Diagnostics.Stopwatch simulationClock=new System.Diagnostics.Stopwatch();
@@ -26,6 +26,8 @@ namespace VectorGame
             simulationSeed=int.Parse(Arg("-seed","1"));simulationStride=Math.Max(1,int.Parse(Arg("-simStride","1")));simulationWaves=int.Parse(Arg("-simWaves","8"));
             if(simulationWaves!=3&&simulationWaves!=8)throw new ArgumentException("-simWaves must be 3 or 8");
             string mode=Arg("-simMode","Full");if(mode!="Full"&&mode!="Fast")throw new ArgumentException("Unknown simulation mode");FastSimulation=mode=="Fast";
+            simulationExpedition=Array.IndexOf(args,"-simExpedition")>=0;legacyExpeditionReview=Array.IndexOf(args,"-simLegacyExpedition")>=0;
+            if(simulationExpedition&&(FastSimulation||simulationWaves!=8||Array.IndexOf(args,"-saveDirectory")<0))throw new ArgumentException("Expedition simulations require Full mode, eight waves and an isolated save directory");
             simulationPolicy=Arg("-simPolicy","mixed");if(simulationPolicy!="mixed"&&simulationPolicy!="archetypes"&&!SimulationPolicies.Contains(simulationPolicy)&&!ArchetypePolicies.Contains(simulationPolicy))throw new ArgumentException("Unknown simulation policy");
             int RouteOption(string value){if(value=="linked"||value=="alternating")return -1;if(value=="standard")return 0;if(value=="shield")return 1;if(value=="volatile")return 2;throw new ArgumentException("Unknown simulation route: "+value);}
             simulationEncounterRoute=RouteOption(Arg("-simEncounterRoute","alternating"));simulationRewardRoute=RouteOption(Arg("-simRewardRoute","linked"));
@@ -61,6 +63,7 @@ namespace VectorGame
         }
         void SimulationDraft()
         {
+            if(StopOpen){SimulationExpeditionStop();return;}
             if(Controlled!=null){ControlledDraft();return;}
             if(policyRandom==null)policyRandom=new System.Random(Seed^0x371e);
             if(!Deck.RewardClaimed)
@@ -102,6 +105,7 @@ namespace VectorGame
         }
         [Serializable] sealed class SimulationResult
         {
+            public bool expedition;public ExpeditionPlan itinerary;public int repairs,throws,retrievals,foremanVents;public float salvage;
             public ControlledMetrics controlled;public int rangedSpawned,rangedHits,rearBoundaryKills,environmentalKills;public float rangedDamage;
             public int shieldBearers,volatileCarriers,carrierDetonations;
             public string schema="walkinghard-sim-1",version,mode,policy,result,loadout;public int seed,waves,waveReached,kills,spawned,collisions,launches,reloads,score,itemChoices,augmentChoices;public float elapsed,health;public double wallSeconds;public bool valid;public string[] errors;public ContributionReport[] items;public WaveReport[] waveReports;
@@ -116,6 +120,7 @@ namespace VectorGame
             if(State==RunState.Complete&&(Kills==0||AbilityCasts==0))errors.Add("completed without combat");
             if(Controlled!=null&&(Deck.Loadout!=controlledLoadout||controlledMetrics.ultimateEquipWave!=0&&controlledMetrics.ultimateEquipWave!=4))errors.Add("controlled loadout/gating changed");
             var result=new SimulationResult{controlled=FinishControlled(),version=Application.version,mode=FastSimulation?"Fast":"Full",policy=CurrentPolicy,result=simulationTimedOut?"TimedOut":State.ToString(),loadout=Deck.Loadout,seed=Seed,waves=Waves.Count,waveReached=Wave,kills=Kills,spawned=Spawned,collisions=CollisionHits,launches=Launches,reloads=Reloads,score=Score.Banked,itemChoices=ItemChoices,augmentChoices=AugmentChoices,elapsed=Elapsed,health=Health,wallSeconds=simulationClock.Elapsed.TotalSeconds,valid=errors.Count==0,errors=errors.ToArray(),items=ContributionReports(),waveReports=Waves.ToArray()};
+            result.expedition=ExpeditionActive;if(ExpeditionActive){result.itinerary=expeditionPlan;result.salvage=Salvage;result.repairs=CrewUses(CrewRole.Repair);result.throws=CrewUses(CrewRole.Freight);result.retrievals=CrewUses(CrewRole.Reclaimer);result.foremanVents=enemies.Concat(corpses).Where(e=>e.foreman!=null).Sum(e=>e.foreman.vents);if(State==RunState.Complete&&!corpses.Any(e=>e.foreman!=null))errors.Add("regional boss missing");result.valid=errors.Count==0;result.errors=errors.ToArray();}
             result.rangedSpawned=RangedSpawned;result.rangedHits=RangedHits;result.rangedDamage=RangedDamage;
             result.shieldBearers=ShieldBearersSpawned;result.volatileCarriers=VolatileCarriersSpawned;result.carrierDetonations=CarrierDetonations;
             result.rearBoundaryKills=RearBoundaryKills;result.environmentalKills=EnvironmentalKills;

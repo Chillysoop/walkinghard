@@ -5,6 +5,7 @@ namespace VectorGame
     public sealed partial class PrototypeHUD
     {
         bool expeditionArchive;
+        int archivePage;
         public bool ExpeditionOverlayOpen=>expeditionArchive;
         bool ExpeditionButton(Rect rect,string text,bool available,bool primary=false)
         {
@@ -16,11 +17,11 @@ namespace VectorGame
             float x=540,width=w-x-40;Panel(new Rect(x,y,width,570));
             Label(new Rect(x+28,y+28,width-56,25),"CINDERWORKS / EXPEDITION",22,Accent,true);
             Label(new Rect(x+28,y+82,width-56,72),"The factory remembers your orders.\nIt has forgotten who gave them.",23,white,true);
-            Label(new Rect(x+28,y+177,width-56,94),"Eight waves. Choose roads while you walk.\nRisk salvage at the overtime lockers, then spend it on repairs or matching gear at a salvage stop.",17,muted);
+            Label(new Rect(x+28,y+177,width-56,94),"Eight waves. Choose roads while you walk.\nBid for gear, tap unstable machinery or rescue workers. Every expedition offers different roads; salvage can buy repairs or matching gear.",17,muted);
             if(Button(new Rect(x+28,y+288,width-56,52),"NEW EXPEDITION",true))game.BeginExpedition();
             Label(new Rect(x+28,y+344,width-56,30),game.HasCheckpoint?"Starting a new expedition replaces your stored run.":"Saves at reward checkpoints. Combat resumes from the last checkpoint.",11,muted);
             if(ExpeditionButton(new Rect(x+28,y+389,width-56,45),game.HasCheckpoint?game.ResumeLabel:"NO SAVED EXPEDITION",game.HasCheckpoint))game.ResumeExpedition();
-            if(Button(new Rect(x+28,y+454,width-56,42),"RECOVERED RECORDS  ·  "+game.ArchiveCount+" / 3"))expeditionArchive=true;
+            if(Button(new Rect(x+28,y+454,width-56,42),"RECOVERED RECORDS  ·  "+game.ArchiveCount+" / 6"))expeditionArchive=true;
             Label(new Rect(x+28,y+514,width-56,40),game.SaveMessage,12,muted);
             if(expeditionArchive)ExpeditionRecords(w,h);
         }
@@ -28,17 +29,19 @@ namespace VectorGame
         {
             Box(new Rect(0,0,w,h),new Color(0,0,0,.86f));float x=(w-900)/2,y=(h-560)/2;Panel(new Rect(x,y,900,560));
             Label(new Rect(x+28,y+25,820,35),"RECOVERED RECORDS",25,Accent,true);
-            Label(new Rect(x+28,y+70,820,40),"Fragments recovered from overtime stops. Kept between expeditions; no combat bonuses.",14,muted);
+            Label(new Rect(x+28,y+70,820,40),"Fragments recovered from factory stops. Kept between expeditions; no combat bonuses.",14,muted);
             for(int i=0;i<3;i++)
             {
-                float top=y+130+i*115;bool found=game.HasOvertimeRecord(i);
-                Label(new Rect(x+28,top,820,25),found?VectorEncounter.OvertimeRecordTitle(i):"SEALED RECORD",17,found?white:muted,true);
-                Label(new Rect(x+28,top+33,820,65),found?VectorEncounter.OvertimeRecord(i):"Recover this fragment by leaving an overtime event, whether you bank the haul or lose it.",15,muted);
+                int record=i+archivePage*3;float top=y+130+i*115;bool found=game.HasOvertimeRecord(record);
+                Label(new Rect(x+28,top,820,25),found?VectorEncounter.OvertimeRecordTitle(record):"SEALED RECORD",17,found?white:muted,true);
+                Label(new Rect(x+28,top+33,820,65),found?VectorEncounter.OvertimeRecord(record):"Recover this fragment by leaving its factory event. Both successful and failed visits preserve the story.",15,muted);
             }
-            if(Button(new Rect(x+28,y+493,844,40),"BACK"))expeditionArchive=false;
+            if(Button(new Rect(x+28,y+493,260,40),archivePage==0?"MORE RECORDS →":"← EARLIER RECORDS"))archivePage=1-archivePage;
+            if(Button(new Rect(x+308,y+493,564,40),"BACK"))expeditionArchive=false;
         }
         void ExpeditionStopScreen(float w,float h)
         {
+            if(RegionalEncounters.IsNewEvent(game.Stop.kind)){RegionalEventScreen(w,h);return;}
             float x=(w-1120)/2,y=(h-600)/2;var stop=game.Stop;bool overtime=stop.kind==EncounterRoute.Overtime;
             Box(new Rect(0,0,w,h),new Color(0,0,0,.64f));Panel(new Rect(x,y,1120,600));
             Label(new Rect(x+26,y+22,650,30),overtime?game.OvertimeTitle:"IVEN'S SALVAGE BENCH",24,Accent,true);

@@ -1,0 +1,92 @@
+{
+  "valid": 18,
+  "note": "Full mode uses PhysX. Fast mode reuses combat rules with approximate single-body movement and swept-circle collisions; results must be calibrated against Full mode. Policy and end-loadout item win rates are observational, not causal. Small samples have wide uncertainty. Use identical seed lists and worker settings for comparisons.",
+  "requested": 18,
+  "completed": 18,
+  "invalid": 0,
+  "gamesPerMinute": 1.0363596352041529,
+  "policies": [
+    {
+      "policy": "close",
+      "games": 3,
+      "wins": 3,
+      "timedOut": 0,
+      "winPercent": 100.0,
+      "ci95Low": 43.85,
+      "ci95High": 100.0,
+      "meanWave": 8.0,
+      "meanKills": 283.3,
+      "meanScore": 287467.0,
+      "meanSeconds": 118.64
+    },
+    {
+      "policy": "cutcarry",
+      "games": 3,
+      "wins": 2,
+      "timedOut": 0,
+      "winPercent": 66.67,
+      "ci95Low": 20.77,
+      "ci95High": 93.85,
+      "meanWave": 8.0,
+      "meanKills": 291.0,
+      "meanScore": 291500.0,
+      "meanSeconds": 137.91
+    },
+    {
+      "policy": "gun",
+      "games": 3,
+      "wins": 3,
+      "timedOut": 0,
+      "winPercent": 100.0,
+      "ci95Low": 43.85,
+      "ci95High": 100.0,
+      "meanWave": 8.0,
+      "meanKills": 287.7,
+      "meanScore": 287867.0,
+      "meanSeconds": 117.19
+    },
+    {
+      "policy": "pinball",
+      "games": 3,
+      "wins": 3,
+      "timedOut": 0,
+      "winPercent": 100.0,
+      "ci95Low": 43.85,
+      "ci95High": 100.0,
+      "meanWave": 8.0,
+      "meanKills": 287.3,
+      "meanScore": 287600.0,
+      "meanSeconds": 116.24
+    },
+    {
+      "policy": "sever",
+      "games": 3,
+      "wins": 2,
+      "timedOut": 0,
+      "winPercent": 66.67,
+      "ci95Low": 20.77,
+      "ci95High": 93.85,
+      "meanWave": 8.0,
+      "meanKills": 288.7,
+      "meanScore": 283200.0,
+      "meanSeconds": 90.37
+    },
+    {
+      "policy": "storm",
+      "games": 3,
+      "wins": 3,
+      "timedOut": 0,
+      "winPercent": 100.0,
+      "ci95Low": 43.85,
+      "ci95High": 100.0,
+      "meanWave": 8.0,
+      "meanKills": 291.7,
+      "meanScore": 285700.0,
+      "meanSeconds": 109.07
+    }
+  ],
+  "missing": 0,
+  "duplicateSeeds": 0,
+  "batchSeconds": 1042.1092865,
+  "mode": "Full"
+}

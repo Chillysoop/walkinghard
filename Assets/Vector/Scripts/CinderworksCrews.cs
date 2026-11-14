@@ -16,6 +16,8 @@ namespace VectorGame
         public int CrewSpawned(CrewRole role)=>enemies.Concat(corpses).Count(e=>e.crew==role);
         CrewRole NextCrew()
         {
+            if(!crewBaseline&&RegionalWave is RegionalEncounter encounter&&encounter.crew!=CrewRole.None&&Spawned%6==3&&enemies.Count(e=>e.crew!=CrewRole.None)<3)return encounter.crew;
+            if(RegionalWave!=null)return CrewRole.None;
             if(crewBaseline||!ExpeditionActive||Wave<2||Wave==8||Spawned%7!=3||enemies.Count(e=>e.crew!=CrewRole.None)>=3)return CrewRole.None;
             return Wave==2?CrewRole.Repair:Wave==3?CrewRole.Freight:Wave==4?CrewRole.Reclaimer:(CrewRole)(1+(Spawned/7+Wave)%3);
         }

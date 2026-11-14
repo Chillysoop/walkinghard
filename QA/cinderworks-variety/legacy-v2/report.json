@@ -1,0 +1,19 @@
+{
+    "passed": true,
+    "assertions": 5,
+    "productionAssertions": 0,
+    "result": "",
+    "wave": 0,
+    "itemChoices": 0,
+    "augmentChoices": 0,
+    "kills": 0,
+    "health": 0.0,
+    "scope": "Native checkpoint, risk, purchase and physical-road fixtures. Elevated fixture health is not a difficulty estimate.",
+    "checks": [
+        "fresh process restores checkpoint from disk",
+        "fresh process preserves spent service purchases",
+        "fresh process restores roads severed bodies and flight",
+        "fresh process cannot duplicate purchases",
+        "native capture 12-fresh-process"
+    ]
+}

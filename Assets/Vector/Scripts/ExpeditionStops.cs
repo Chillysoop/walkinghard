@@ -9,6 +9,7 @@ namespace VectorGame
     {
         public EncounterRoute kind;
         public int variant,stash,attempt,chance,gain,harm,roll;
+        public int price,repair,rescued;
         public bool reveal,failed,closed,repaired,boughtCopy;
         public string result="";
         public RewardOffer[] stock=Array.Empty<RewardOffer>();
@@ -22,23 +23,24 @@ namespace VectorGame
         CheckpointRandom eventRandom;
         int salvageWave;
         Transform stopProp;
-        public EncounterRoute ForkLeft=>ExpeditionActive&&(forkWave>0?forkWave:Wave)==5?EncounterRoute.SalvageStop:EncounterRoute.ShieldLine;
-        public EncounterRoute ForkRight=>ExpeditionActive&&(forkWave>0?forkWave:Wave)==2?EncounterRoute.Overtime:EncounterRoute.VolatileBreach;
-        public static string ForkLabel(EncounterRoute route)=>route==EncounterRoute.SalvageStop?"SALVAGE":route==EncounterRoute.Overtime?"OVERTIME":route==EncounterRoute.ShieldLine?"SHIELDS":"VOLATILES";
-        public static string ForkBenefit(EncounterRoute route)=>route==EncounterRoute.SalvageStop?"HEAL OR COPY":route==EncounterRoute.Overtime?"RISK & SALVAGE":route==EncounterRoute.ShieldLine?"MORE GEAR":"MORE ABILITIES";
+        public EncounterRoute ForkLeft=>PlanFork(0);
+        public EncounterRoute ForkRight=>PlanFork(1);
+        public static string ForkLabel(EncounterRoute route)=>RegionalEncounters.Find(route)?.label??(route==EncounterRoute.SalvageStop?"SALVAGE":route==EncounterRoute.Overtime?"OVERTIME":route==EncounterRoute.ShieldLine?"SHIELDS":"VOLATILES");
+        public static string ForkBenefit(EncounterRoute route)=>RegionalEncounters.Find(route)?.benefit??(route==EncounterRoute.SalvageStop?"HEAL OR COPY":route==EncounterRoute.Overtime?"RISK & SALVAGE":route==EncounterRoute.ShieldLine?"MORE GEAR":"MORE ABILITIES");
         public void BeginExpedition(){ExpeditionActive=true;Begin();}
         void ResetExpeditionRun()
         {
-            Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);
+            Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=ExpeditionPlan.Create(Seed,legacyExpeditionReview);
             if(stopProp!=null){stopProp.gameObject.SetActive(false);Destroy(stopProp.gameObject);stopProp=null;}
         }
         void OpenExpeditionStop()
         {
             if(!ExpeditionActive)return;
-            if(Wave>salvageWave){Salvage+=4;salvageWave=Wave;}
-            if(routedWave!=Wave+1||SelectedRoute!=EncounterRoute.SalvageStop&&SelectedRoute!=EncounterRoute.Overtime)return;
+            if(Wave>salvageWave){Salvage+=4+(ActiveRoute==EncounterRoute.EliteShift?6:0);salvageWave=Wave;}
+            if(routedWave!=Wave+1||!RegionalEncounters.IsStop(SelectedRoute))return;
             Stop=new ExpeditionStop{kind=SelectedRoute};
-            if(Stop.kind==EncounterRoute.Overtime)
+            if(RegionalEncounters.IsNewEvent(Stop.kind))PrepareRegionalEvent();
+            else if(Stop.kind==EncounterRoute.Overtime)
             {
                 Stop.variant=eventRandom.Next(3);Stop.stash=eventRandom.Next(6,13);Stop.chance=eventRandom.Next(74,89);
                 Stop.gain=eventRandom.Next(10,19);Stop.harm=Mathf.CeilToInt(MaxHealth*(.03f+(float)eventRandom.NextDouble()*.025f));
@@ -59,6 +61,7 @@ namespace VectorGame
             for(int i=0;i<3;i++)VisualFactory.Part("Recovery locker",stopProp,PrimitiveType.Cube,new Vector3(-1+i,1.15f,0),new Vector3(.8f,1.1f,1.2f),VisualFactory.Trim);
             VisualFactory.Part("Station signal",stopProp,PrimitiveType.Cube,new Vector3(0,2,0),new Vector3(2.5f,.14f,.2f),Stop.kind==EncounterRoute.SalvageStop?VisualFactory.Glow:VisualFactory.GoldGlow);
             CinderworksWorld.InitializeMaterials();
+            if(RegionalEncounters.IsNewEvent(Stop.kind)){RegionalStopProp();return;}
             if(Stop.kind==EncounterRoute.SalvageStop)
             {
                 VisualFactory.Part("Iven's white canopy",stopProp,PrimitiveType.Cube,new Vector3(0,2.8f,0),new Vector3(3.8f,.18f,2.8f),CinderworksWorld.Ceramic);
@@ -107,6 +110,7 @@ namespace VectorGame
         {
             if(!StopOpen)return false;
             if(Stop.kind==EncounterRoute.Overtime){Salvage+=Stop.stash;Stop.stash=0;RecordOvertime(Stop.variant);}
+            if(RegionalEncounters.IsNewEvent(Stop.kind)){if(Stop.kind==EncounterRoute.PressureWorks){Salvage+=Stop.stash;Stop.stash=0;}RecordOvertime(Stop.kind==EncounterRoute.Auction?3:Stop.kind==EncounterRoute.PressureWorks?4:5);}
             Stop.closed=true;SaveCheckpoint();return true;
         }
         public string OvertimeTitle=>new[]{"THE UNFINISHED SHIFT","WAGES FOR THE DEAD","THE RESTORATION QUOTA"}[Stop?.variant??0];

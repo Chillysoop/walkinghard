@@ -17,7 +17,7 @@ namespace VectorGame
         }
         IEnumerator ReviewCrews()
         {
-            enabled=false;qa=false;fx.muted=true;SetCombatSpeed(1);
+            enabled=false;qa=false;fx.muted=true;legacyExpeditionReview=true;SetCombatSpeed(1);
             Application.logMessageReceived+=(m,t,type)=>{if(type==LogType.Exception)Application.Quit(3);};
             QualitySettings.vSyncCount=0;Application.targetFrameRate=60;Screen.SetResolution(1920,1080,false);
             var args=Environment.GetCommandLineArgs();int at=Array.IndexOf(args,"-reviewOutput");string directory=at>=0?args[at+1]:Path.Combine(Application.dataPath,"..","CrewReview");Directory.CreateDirectory(directory);

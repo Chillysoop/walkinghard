@@ -1,0 +1,460 @@
+{
+  "scope": "36 normal-health Full-physics Expeditions, matched seeds and draft policies; 18 per ruleset, three per policy.",
+  "limits": "Descriptive screening only. Different destinations, enemies, event spending and later offers all contribute. Policies use ordinary drafts, automated ultimates and simple route/event heuristics. Final integrity is not normalized for gear maximum and includes defeats. Combat time is simulated time, not a performance benchmark. No inference of equal build strength or causal win-rate improvement; Full physics is not bit-identical across sessions.",
+  "settings": {
+    "mode": "Full",
+    "runs": 18,
+    "workers": 2,
+    "firstSeed": 91500,
+    "policy": "archetypes",
+    "waves": 8,
+    "maxCombatSeconds": 600,
+    "assemblySha256": "29158B0B68D37AF48816B29F65994316245972A434419C85D80B4AAB4AD5B99B",
+    "expedition": true
+  },
+  "baseline": {
+    "runs": 18,
+    "complete": 15,
+    "defeated": 3,
+    "meanFinalIntegrity": 164.17,
+    "meanCombatSeconds": 358.4,
+    "meanKills": 273.83,
+    "crewRepairs": 95,
+    "crewThrows": 173,
+    "crewRetrievals": 119,
+    "foremanVents": 40
+  },
+  "candidate": {
+    "runs": 18,
+    "complete": 16,
+    "defeated": 2,
+    "meanFinalIntegrity": 166.9,
+    "meanCombatSeconds": 379.05,
+    "meanKills": 288.28,
+    "crewRepairs": 104,
+    "crewThrows": 124,
+    "crewRetrievals": 147,
+    "foremanVents": 43
+  },
+  "bothComplete": 13,
+  "lossToWin": 3,
+  "winToLoss": 2,
+  "policies": [
+    {
+      "policy": "close",
+      "baseline": {
+        "runs": 3,
+        "complete": 1,
+        "defeated": 2,
+        "meanFinalIntegrity": 100.0,
+        "meanCombatSeconds": 357.31,
+        "meanKills": 272,
+        "crewRepairs": 23,
+        "crewThrows": 31,
+        "crewRetrievals": 20,
+        "foremanVents": 7
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 157.32,
+        "meanCombatSeconds": 374.63,
+        "meanKills": 283.33,
+        "crewRepairs": 29,
+        "crewThrows": 13,
+        "crewRetrievals": 21,
+        "foremanVents": 7
+      }
+    },
+    {
+      "policy": "cutcarry",
+      "baseline": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 201.24,
+        "meanCombatSeconds": 360.43,
+        "meanKills": 284,
+        "crewRepairs": 13,
+        "crewThrows": 23,
+        "crewRetrievals": 21,
+        "foremanVents": 5
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 2,
+        "defeated": 1,
+        "meanFinalIntegrity": 171.9,
+        "meanCombatSeconds": 390.1,
+        "meanKills": 291,
+        "crewRepairs": 10,
+        "crewThrows": 19,
+        "crewRetrievals": 24,
+        "foremanVents": 5
+      }
+    },
+    {
+      "policy": "gun",
+      "baseline": {
+        "runs": 3,
+        "complete": 2,
+        "defeated": 1,
+        "meanFinalIntegrity": 109.37,
+        "meanCombatSeconds": 297.22,
+        "meanKills": 233.67,
+        "crewRepairs": 14,
+        "crewThrows": 29,
+        "crewRetrievals": 15,
+        "foremanVents": 6
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 175.8,
+        "meanCombatSeconds": 373.54,
+        "meanKills": 287.67,
+        "crewRepairs": 19,
+        "crewThrows": 36,
+        "crewRetrievals": 22,
+        "foremanVents": 9
+      }
+    },
+    {
+      "policy": "pinball",
+      "baseline": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 201.98,
+        "meanCombatSeconds": 389.78,
+        "meanKills": 283.33,
+        "crewRepairs": 19,
+        "crewThrows": 36,
+        "crewRetrievals": 21,
+        "foremanVents": 9
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 156.48,
+        "meanCombatSeconds": 406.57,
+        "meanKills": 287.33,
+        "crewRepairs": 22,
+        "crewThrows": 17,
+        "crewRetrievals": 30,
+        "foremanVents": 9
+      }
+    },
+    {
+      "policy": "sever",
+      "baseline": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 262.24,
+        "meanCombatSeconds": 382.38,
+        "meanKills": 281.33,
+        "crewRepairs": 15,
+        "crewThrows": 27,
+        "crewRetrievals": 24,
+        "foremanVents": 7
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 2,
+        "defeated": 1,
+        "meanFinalIntegrity": 200.17,
+        "meanCombatSeconds": 368.68,
+        "meanKills": 288.67,
+        "crewRepairs": 10,
+        "crewThrows": 23,
+        "crewRetrievals": 29,
+        "foremanVents": 7
+      }
+    },
+    {
+      "policy": "storm",
+      "baseline": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 110.17,
+        "meanCombatSeconds": 363.27,
+        "meanKills": 288.67,
+        "crewRepairs": 11,
+        "crewThrows": 27,
+        "crewRetrievals": 18,
+        "foremanVents": 6
+      },
+      "candidate": {
+        "runs": 3,
+        "complete": 3,
+        "defeated": 0,
+        "meanFinalIntegrity": 139.76,
+        "meanCombatSeconds": 360.77,
+        "meanKills": 291.67,
+        "crewRepairs": 14,
+        "crewThrows": 16,
+        "crewRetrievals": 21,
+        "foremanVents": 6
+      }
+    }
+  ],
+  "cases": [
+    {
+      "seed": 91500,
+      "policy": "pinball",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 235.8,
+      "candidateIntegrity": 137.77,
+      "candidateDestinations": [
+        5,
+        4
+      ]
+    },
+    {
+      "seed": 91501,
+      "policy": "storm",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 59.6,
+      "candidateIntegrity": 69.88,
+      "candidateDestinations": [
+        6,
+        3
+      ]
+    },
+    {
+      "seed": 91502,
+      "policy": "sever",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 320.0,
+      "candidateIntegrity": 269.52,
+      "candidateDestinations": [
+        5,
+        3
+      ]
+    },
+    {
+      "seed": 91503,
+      "policy": "gun",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 298.75,
+      "candidateIntegrity": 299.35,
+      "candidateDestinations": [
+        7,
+        3
+      ]
+    },
+    {
+      "seed": 91504,
+      "policy": "cutcarry",
+      "baselineResult": "Complete",
+      "candidateResult": "Defeated",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 181.34,
+      "candidateIntegrity": 0.0,
+      "candidateDestinations": [
+        6,
+        3
+      ]
+    },
+    {
+      "seed": 91505,
+      "policy": "close",
+      "baselineResult": "Defeated",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 0.0,
+      "candidateIntegrity": 1.52,
+      "candidateDestinations": [
+        4,
+        3
+      ]
+    },
+    {
+      "seed": 91506,
+      "policy": "pinball",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 268.19,
+      "candidateIntegrity": 264.95,
+      "candidateDestinations": [
+        7,
+        3
+      ]
+    },
+    {
+      "seed": 91507,
+      "policy": "storm",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 132.44,
+      "candidateIntegrity": 210.32,
+      "candidateDestinations": [
+        4,
+        3
+      ]
+    },
+    {
+      "seed": 91508,
+      "policy": "sever",
+      "baselineResult": "Complete",
+      "candidateResult": "Defeated",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 143.93,
+      "candidateIntegrity": 0.0,
+      "candidateDestinations": [
+        7,
+        6
+      ]
+    },
+    {
+      "seed": 91509,
+      "policy": "gun",
+      "baselineResult": "Defeated",
+      "candidateResult": "Complete",
+      "baselineWave": 4,
+      "candidateWave": 8,
+      "baselineIntegrity": 0.0,
+      "candidateIntegrity": 192.79,
+      "candidateDestinations": [
+        5,
+        3
+      ]
+    },
+    {
+      "seed": 91510,
+      "policy": "cutcarry",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 111.86,
+      "candidateIntegrity": 198.2,
+      "candidateDestinations": [
+        7,
+        3
+      ]
+    },
+    {
+      "seed": 91511,
+      "policy": "close",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 300.0,
+      "candidateIntegrity": 273.59,
+      "candidateDestinations": [
+        5,
+        3
+      ]
+    },
+    {
+      "seed": 91512,
+      "policy": "pinball",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 101.95,
+      "candidateIntegrity": 66.71,
+      "candidateDestinations": [
+        8,
+        10
+      ]
+    },
+    {
+      "seed": 91513,
+      "policy": "storm",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 138.46,
+      "candidateIntegrity": 139.09,
+      "candidateDestinations": [
+        1,
+        2
+      ]
+    },
+    {
+      "seed": 91514,
+      "policy": "sever",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 322.79,
+      "candidateIntegrity": 330.98,
+      "candidateDestinations": [
+        9,
+        11
+      ]
+    },
+    {
+      "seed": 91515,
+      "policy": "gun",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 29.37,
+      "candidateIntegrity": 35.27,
+      "candidateDestinations": [
+        8,
+        10
+      ]
+    },
+    {
+      "seed": 91516,
+      "policy": "cutcarry",
+      "baselineResult": "Complete",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 310.52,
+      "candidateIntegrity": 317.5,
+      "candidateDestinations": [
+        1,
+        4
+      ]
+    },
+    {
+      "seed": 91517,
+      "policy": "close",
+      "baselineResult": "Defeated",
+      "candidateResult": "Complete",
+      "baselineWave": 8,
+      "candidateWave": 8,
+      "baselineIntegrity": 0.0,
+      "candidateIntegrity": 196.84,
+      "candidateDestinations": [
+        1,
+        11
+      ]
+    }
+  ]
+}

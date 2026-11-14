@@ -1,0 +1,139 @@
+{
+  "recordedUtc": "2026-11-14T07:21:17.1901444Z",
+  "baseCommit": "2c0918de4876273642fb659d6e3395286dcdf762",
+  "unity": "6000.3.27f1",
+  "branch": "feature/cinderworks-variety",
+  "sources": [
+    {
+      "path": "Assets/Vector/Editor/PrototypeBuilder.cs",
+      "sha256": "7D22E6214AD4668F651A0ED9324C28AA40DFD302D4A05F9DE7C2C7DBCD5E609C"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointGraph.cs",
+      "sha256": "647F378BDBFA49B9A2AB696D117DB9661FE58158702A82DCA09EB3150E852942"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksCrews.cs",
+      "sha256": "71B86E034CA629AD96E5DC4C7132B73B83C5E845FE9CCC70360D77BBF9B86550"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksExpedition.cs",
+      "sha256": "93423CECA0F82F4769E063755BFB3159CEECE00BAD2DFB471B7678DF002AA0E3"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewReview.cs",
+      "sha256": "E6D1C8BDCB7830AAC26916C0E3BCECA07CE033E47A1F21ABC0250209964DA165"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCadence.cs",
+      "sha256": "942E151DEE07456802919BB162526FF0A382220D9A4A6D88F9121865790DED37"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterRoutes.cs",
+      "sha256": "C0ECBDE1C5F7F822271DBF0689C48BF7AE3A8649AC2C81DD8CFDC30CBC5F3FA0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEncounters.cs",
+      "sha256": "A2B18E5529170554B707E08CA485AC05C011A6EACE1155FC71C067CA6BD56E0E"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEncounters.cs.meta",
+      "sha256": "E4CDC8A5356658AE9CDD72C94867CE958245E7D055597B1A1C099E37D44C6034"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventChoices.cs",
+      "sha256": "C9AB600263833688F091171CDBBB4A02BD821934E0092B1DD089E6787511238C"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventChoices.cs.meta",
+      "sha256": "4E4E92DF852A74D25A9258E9E684D9282798FB042B6A41BEDC1B239EC538740F"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventPresentation.cs",
+      "sha256": "A7318E3EB3D4BC7D92BD03CA5004A85D8140797521ECF9A8D733DA952D01AFEB"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventPresentation.cs.meta",
+      "sha256": "DB6B4105C1058C6CCEFF38B1B8018EB0D7FBD4B093D528A6A2A63F958386A01B"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionHUD.cs",
+      "sha256": "721D59E19A6C14AC7F1F75CC13105EB0C55ADB61D28105CA1042770395044D0E"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionReview.cs",
+      "sha256": "61921D514FF3EA68C9CF44FB3344585C03DA2646FF1E47C286677EB468BC5342"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs",
+      "sha256": "7BE2B3C1F280ABA9361102E0ADF80338906886D4D58AF0D2769D33735E777732"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionStops.cs",
+      "sha256": "E842C242AE27347A2D7C871A10AF354E55949758A8BA9CCFDCE99CE83A046C3C"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionVarietyReview.cs",
+      "sha256": "543AE8175BF871755C97D40F86E5B2EF32D551BB2D7B649534567A155E602287"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionVarietyReview.cs.meta",
+      "sha256": "B9CDBDF7381F402C6E3C4221C4E7606F8494BA3296EC7FC5AB73D36197186C1F"
+    },
+    {
+      "path": "Assets/Vector/Scripts/HeadlessSimulation.cs",
+      "sha256": "3F424CBC3E5BA3927B980F79B75D8253B81EC0A8E182EDBF43541A0365493E8A"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "sha256": "B8D1E9800D5F472B524A501E29C8817F67A1E4302A129E852DEAB0ABFB8BC917"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ShiftForeman.cs",
+      "sha256": "EB10D30C75F4B7EB71C8D52C6C316E6B9E71FA58C7D67DF47575640D5463D649"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "sha256": "26C360F591B9DD01EAB5005E0E7D9FE84AF309975F80C98362BCFC11F9BA4DF6"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WalkingFork.cs",
+      "sha256": "F4088C476098E06A9AF8F58406C9CF398CF80795C1294E262F7709AAF57AF7AF"
+    },
+    {
+      "path": "Run Simulations.ps1",
+      "sha256": "BCA3F19CED735F3277F4D1F7B745FE21629BA863E36AE863D9BD0E02C6725136"
+    }
+  ],
+  "players": [
+    {
+      "folder": "Build/Cinderworks-Variety-candidate",
+      "evidence": "36 ordinary-draft comparison runs",
+      "changesAfter": "Corrected native review Crosscut lookup; brighter event cost copy and hover; clearer combat-route labels. No combat/save change.",
+      "assemblySha256": "29158B0B68D37AF48816B29F65994316245972A434419C85D80B4AAB4AD5B99B",
+      "executableSha256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "folder": "Build/Cinderworks-Variety-tested",
+      "evidence": "15 core scenarios; normal-health full Expedition; fresh schema-4 and actual schema-1/2/3 resume",
+      "changesAfter": "Brighter event cost copy and hover; clearer combat-route labels. No combat/save change.",
+      "assemblySha256": "3B3089ADDE11E8D4572DF17AA1378E60B72425CB504024778953AC9A6CFEEAE8",
+      "executableSha256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "folder": "Build/Cinderworks-Variety-delivery",
+      "evidence": "Eight-wave Quick Run progression; event/save, crew and Foreman regressions",
+      "changesAfter": "Clearer combat-route labels only.",
+      "assemblySha256": "B9D805B18F5AA91469C82BAE098CF937F3108F9FC0D1CE7EE9891204AA31C4A3",
+      "executableSha256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "folder": "Build/Cinderworks-Variety-release-candidate",
+      "evidence": "Final native itinerary/event/formation/save/ownership review and 720p/1080p captures",
+      "changesAfter": "Documentation and evidence packaging only.",
+      "assemblySha256": "2018E682413FBC6C054E195CB08A34B1131A6EE1D1B52B18F22A0B1689580DD7",
+      "executableSha256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    }
+  ],
+  "notes": "Actual old checkpoints were copied to isolated profiles. Generated scene object-ID churn was restored. No published launcher update."
+}

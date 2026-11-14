@@ -12,7 +12,7 @@ namespace VectorGame
         {
             int ordinal=entryTurn++;
             if(!BalanceOverrides.EncounterRhythm)return ordinal%3;
-            var pattern=EntryPatterns[Mathf.Clamp(Wave-1,0,7)];return pattern[ordinal%pattern.Length];
+            var pattern=RegionalWave?.entries??EntryPatterns[Mathf.Clamp(Wave-1,0,7)];return pattern[ordinal%pattern.Length];
         }
         float FormationInterval()
         {

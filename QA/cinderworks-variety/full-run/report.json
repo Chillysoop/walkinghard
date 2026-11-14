@@ -1,0 +1,53 @@
+{
+    "passed": true,
+    "assertions": 14,
+    "productionAssertions": 0,
+    "kills": 292,
+    "wave": 8,
+    "itemChoices": 13,
+    "augmentChoices": 2,
+    "health": 161.34007263183595,
+    "scope": "Normal-health ordinary-offer Expedition with automated pinball and route/event choices. One functional run; not a population difficulty estimate.",
+    "result": "Complete",
+    "itinerary": {
+        "legacy": false,
+        "waves": [
+            0,
+            8,
+            9,
+            10,
+            10,
+            0,
+            8,
+            0
+        ],
+        "left": [
+            4,
+            7
+        ],
+        "right": [
+            9,
+            3
+        ],
+        "chosen": [
+            4,
+            7
+        ]
+    },
+    "checks": [
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "ordinary checkpoint preserves itinerary and event/reward state",
+        "full-run combat and physical identity contracts",
+        "complete ordinary run retains all rewards and both bosses"
+    ]
+}
