@@ -107,6 +107,7 @@ namespace VectorGame
             public Vector3 crewAim,crewOrigin,freightPrevious;
             public bool freightHitHero;
             public List<int> freightHits;
+            public ForemanState foreman;
         }
         sealed class Flight
         {
@@ -192,6 +193,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-combatFlowReview")>=0)StartCoroutine(ReviewCombatFlow());
             if(Array.IndexOf(args,"-expeditionReview")>=0)StartCoroutine(ReviewExpedition());
             if(Array.IndexOf(args,"-crewReview")>=0)StartCoroutine(ReviewCrews());
+            if(Array.IndexOf(args,"-foremanReview")>=0)StartCoroutine(ReviewForeman());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -289,6 +291,7 @@ namespace VectorGame
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
             waveRangedSpawned=RangedSpawned;waveRangedHits=RangedHits;waveRangedDamage=RangedDamage;
             BeginFeedbackWave();State=RunState.Running;
+            if(ForemanWave){StartForeman();return;}
             if(Wave==8&&!bossSpawned){StartFinaleReveal();return;}
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
         }
@@ -369,9 +372,10 @@ namespace VectorGame
             StepWalkingFork(dt);
             if(qaBuild=="manual"&&qa)QAManual();
             if(Deck.Ultimate!=null&&ActiveSlot!=5)UltimateRemaining=Mathf.Max(0,UltimateRemaining-dt);
-            heroPhysics.MovePosition(finaleActive?finaleAnchor:ForkWalkingPosition(tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1)));
+            heroPhysics.MovePosition(finaleActive?finaleAnchor:Foreman is Enemy foreman?foreman.foreman.anchor:ForkWalkingPosition(tuning.walkSpeed*dt*(ActiveSlot>=0?.62f:1)));
             spawnTimer-=dt;
-            if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
+            if(ForemanWave)ForemanReinforcements();
+            else if(spawnTimer<=0&&!CleaningUp&&enemies.Count<tuning.maximumEnemies)
             {
                 if(finaleActive){for(int n=0;n<3;n++)SpawnEntry(2);}
                 else {SpawnEntry(NextFormationEntry());if((Wave==1||Wave==3||Wave==6)&&entryTurn%4==0)SpawnEntry(NextFormationEntry());}
@@ -384,9 +388,10 @@ namespace VectorGame
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
             if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
             else if(finaleActive&&bossSpawned&&!enemies.Exists(e=>e.boss))FinishWave();
-            else if(CleaningUp&&(enemies.Count==0||WaveElapsed>=tuning.waveArrivals+tuning.cleanupWindow)&&!(Wave==8&&enemies.Exists(e=>e.boss)))FinishWave();
+            else if(ForemanWave&&corpses.Exists(e=>e.foreman!=null))FinishWave();
+            else if(CleaningUp&&(enemies.Count==0||WaveElapsed>=tuning.waveArrivals+tuning.cleanupWindow)&&!ForemanPresent&&!(Wave==8&&enemies.Exists(e=>e.boss)))FinishWave();
         }
-        void SpawnEntry(int kind,Vector3? stagedPosition=null)
+        void SpawnEntry(int kind,Vector3? stagedPosition=null,CrewRole? forcedCrew=null)
         {
             if(enemies.Count>=tuning.maximumEnemies)return;
             if(finaleActive)kind=2;
@@ -400,7 +405,7 @@ namespace VectorGame
             if(!EntryLayout.Concealed(cameraRig,p)){door=null;p=Horizon();}
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=Wave==8&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<ShooterChance(Wave);if(boss)bossSpawned=true;
-            var crew=boss?CrewRole.None:NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}
+            var crew=boss?CrewRole.None:forcedCrew??NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:heavy?1.9f:1)*(1+.035f*(Wave-1)),cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             if(shooter)e.rig.RangedEquipment();
@@ -415,6 +420,7 @@ namespace VectorGame
             int committed=0;foreach(var e in enemies){e.cachedPosition=e.rig.Root.position;if(e.engaged)committed++;}
             foreach(var e in enemies.ToArray())
             {
+                if(e.foreman!=null){StepForeman(e,dt);continue;}
                 if(finaleActive&&e.boss){StepPursuer(e,dt);continue;}
                 Vector3 p=e.cachedPosition,delta=HeroPosition-p;delta.y=0;float distance=delta.magnitude;Vector3 inward=distance>.01f?delta/distance:Vector3.back;
                 e.cooldown-=dt;e.stun=Mathf.Max(0,e.stun-dt);e.react=Mathf.Max(0,e.react-dt*3);
@@ -444,6 +450,7 @@ namespace VectorGame
                 {
                     foreach(var other in enemies){if(other==e)continue;Vector3 diff=p-other.cachedPosition;diff.y=0;float d=diff.magnitude;if(d>.001f&&d<1.1f)desired+=diff/d*(1.1f-d)*2;}
                     if(finaleActive)desired=FlowAroundPursuer(e,desired);
+                    else if(ForemanPresent&&!crewBusy)desired=FlowAroundForeman(e,desired);
                 }
                 Vector3 velocity=e.physics.LinearVelocity;
                 Vector3 flat=new Vector3(velocity.x,0,velocity.z);

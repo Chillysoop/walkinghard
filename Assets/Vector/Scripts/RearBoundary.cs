@@ -38,7 +38,7 @@ namespace VectorGame
             Vector3 line=RearBoundaryPoint;
             foreach(var e in enemies.ToArray())
             {
-                if(e.entering||e.deathAge>=0||finaleActive&&e.boss||Vector3.Dot(e.rig.Root.position-line,EncounterForward)>=0||BodyInCamera(e))continue;
+                if(e.entering||e.deathAge>=0||e.foreman!=null||finaleActive&&e.boss||Vector3.Dot(e.rig.Root.position-line,EncounterForward)>=0||BodyInCamera(e))continue;
                 var saved=currentCredit;currentCredit=e.lastPushCredit;
                 e.health=0;KillEnemy(e,Vector3.zero,false);RearBoundaryKills++;currentCredit=saved;
             }

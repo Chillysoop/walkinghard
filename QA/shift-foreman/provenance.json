@@ -1,0 +1,102 @@
+{
+  "sources": [
+    {
+      "path": "Assets/Vector/Scripts/CheckpointGraph.cs",
+      "sha256": "60C5E2108C4E45557645A90566162117981DC9A95CC6CA92E87F11CF535F4D8F"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksCrews.cs",
+      "sha256": "1B1BF7535714EF14A97891387E13D6D9A388F46630674EB78CB3BC0C8226C61A"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CinderworksExpedition.cs",
+      "sha256": "CB8E99DAB9B7201F1E48C73F92F7AAE7BD250A2EEA807AA18DC815BFC88E598A"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatPreview.cs",
+      "sha256": "FA5651C963F5AEFFE134543F5DF5025BAEBBF9B3048076FBFA0B313BE32FCAD0"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CombatSignatures.cs",
+      "sha256": "85E1475C23BE159A2D655502C98782C9FFC05E74525CED0253135533592CB237"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewReview.cs",
+      "sha256": "95F6458AA58FF3896746A008CDBCE7A8591D38C7328124E8E5A53B7267C29EBE"
+    },
+    {
+      "path": "Assets/Vector/Scripts/EncounterCombat.cs",
+      "sha256": "6128C070A0F438B05BC7EC15027FC9A94BB3632A056AE4938DABD4FA20BF76D8"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs",
+      "sha256": "B490F80CC4AAAB3FA43FDC4FBC678EB6ED785A9F450C5CE30BFD7D5FD1537351"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ForemanPresentation.cs",
+      "sha256": "614FCFF2459925430FECF9402A48CD992DD9EB3CFD8A614EEC85A17FF0F8C49F"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ForemanPresentation.cs.meta",
+      "sha256": "32483553754DE790B56D038361FD1CB5324B3DFD6BA1624FC62B49331201B444"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ForemanReview.cs",
+      "sha256": "43257F371D8D58FBE83E64162E664F330829F6A2A9B14A3B84810480EB7FAE24"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ForemanReview.cs.meta",
+      "sha256": "CA6C6F52DA7ECACDD24074ECD0D56D134CC9516FA2D5CCAC5DED9F092478BA74"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs",
+      "sha256": "909ACB9343CE711B8FAFC1B499A4F7AD279756C7A266A94EB63E9EE84531CA20"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RearBoundary.cs",
+      "sha256": "DAC2D67331BF784EACC506928C3C3831C52747553B93E4615CA287533C37A45F"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "sha256": "419B88B4CDC47994E1CCBC77968B89B5BDE0C0E4148C55D83A011F61A8505043"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ShiftForeman.cs",
+      "sha256": "1C18563B0F5BF3EBE7C6D1506DA072F8F05B1BC54CAF49BC9170128FF9528FBF"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ShiftForeman.cs.meta",
+      "sha256": "0E62FD531C9E14136B31E84A359A60E29202627F58ADD6BD0EA74378CD8F1F78"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "sha256": "33F3C511290DE5D779BF7EAFB15AEF04BE1DAD9427A294CB420800A1260CFE1C"
+    }
+  ],
+  "base": "1c9d1a7a9b6e158be6835bc31d569e73658cbb6e",
+  "player": "Windows Mono",
+  "binaries": [
+    {
+      "assemblySHA256": "58439FD2365E9D642C2BB17FF8786E387515D796DF48A9C822CAC668F6C37028",
+      "directory": "Build/Shift-Foreman",
+      "exeSHA256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "assemblySHA256": "3CC5C1A6A97DD89C0D8019E8BA1B79AFBDC832BCDB49827FC0957D383297E98F",
+      "directory": "Build/Shift-Foreman-final",
+      "exeSHA256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "assemblySHA256": "3773EEC9A124785A5A7FF460A66026882E34FA0B1977E17594671C7AFF791794",
+      "directory": "Build/Shift-Foreman-delivery",
+      "exeSHA256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    },
+    {
+      "assemblySHA256": "B73BB931E0F9ECF695B739D3C156D3BEECD230394EF4E56B27B9B3CEC24C6AF0",
+      "directory": "Build/Shift-Foreman-tested",
+      "exeSHA256": "F083B0E879A9298CDCF9933A8F3B4F2B013E13F7D3E51221FC0D756B79E28807"
+    }
+  ],
+  "branch": "feature/shift-foreman",
+  "unity": "6000.3.27f1"
+}

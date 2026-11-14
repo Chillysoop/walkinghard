@@ -52,6 +52,7 @@ namespace VectorGame
         public string WaveFormation=>DescribeExpeditionFormation(Wave);
         string DescribeExpeditionFormation(int wave)
         {
+            if(ExpeditionActive&&wave==6)return "SHIFT FOREMAN · stagger and impacts build pressure";
             if(!ExpeditionActive||wave<2||wave==8)return Formation(wave);
             return wave==2?"REPAIR CREW · stagger or launch interrupts protection":wave==3?"FREIGHT BRUTE · interrupt the throw or launch its body first":wave==4?"RECLAIMERS · retrieval tethers move bodies away from you":"CINDERWORKS CREWS · interrupt repairs, throws and retrieval";
         }

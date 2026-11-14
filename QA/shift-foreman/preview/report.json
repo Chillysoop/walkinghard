@@ -1,0 +1,370 @@
+{
+    "passed": true,
+    "assertions": 203,
+    "productionAssertions": 1522,
+    "worldColliders": 507,
+    "decorationRenderers": 258,
+    "measurement": "1080p / 60 FPS cap / sequential native samples. Matching practice setup, actual body counts recorded. No full-run or general hardware performance claim.",
+    "cases": [
+        {
+            "preset": "FISTS",
+            "regional": false,
+            "kills": 15,
+            "severs": 0,
+            "collisions": 9,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 15,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "FISTS",
+            "regional": true,
+            "kills": 15,
+            "severs": 0,
+            "collisions": 11,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 15,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "DUAL BLADES",
+            "regional": false,
+            "kills": 18,
+            "severs": 8,
+            "collisions": 8,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 18,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                4,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "DUAL BLADES",
+            "regional": true,
+            "kills": 18,
+            "severs": 9,
+            "collisions": 9,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 18,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                4,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "GREATSWORD",
+            "regional": false,
+            "kills": 19,
+            "severs": 13,
+            "collisions": 4,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 19,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                3
+            ]
+        },
+        {
+            "preset": "GREATSWORD",
+            "regional": true,
+            "kills": 17,
+            "severs": 12,
+            "collisions": 4,
+            "paired": 3,
+            "ultimates": 1,
+            "bodies": 17,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                3,
+                3,
+                3,
+                2
+            ]
+        },
+        {
+            "preset": "HAMMER",
+            "regional": false,
+            "kills": 18,
+            "severs": 0,
+            "collisions": 7,
+            "paired": 2,
+            "ultimates": 1,
+            "bodies": 18,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "HAMMER",
+            "regional": true,
+            "kills": 17,
+            "severs": 0,
+            "collisions": 8,
+            "paired": 2,
+            "ultimates": 1,
+            "bodies": 17,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                3,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "CLOSE QUARTERS",
+            "regional": false,
+            "kills": 20,
+            "severs": 0,
+            "collisions": 3,
+            "paired": 0,
+            "ultimates": 1,
+            "bodies": 20,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                2,
+                2
+            ]
+        },
+        {
+            "preset": "CLOSE QUARTERS",
+            "regional": true,
+            "kills": 19,
+            "severs": 0,
+            "collisions": 7,
+            "paired": 0,
+            "ultimates": 1,
+            "bodies": 19,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                2,
+                1
+            ]
+        },
+        {
+            "preset": "RIFLE",
+            "regional": false,
+            "kills": 14,
+            "severs": 0,
+            "collisions": 6,
+            "paired": 5,
+            "ultimates": 1,
+            "bodies": 14,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                5,
+                5,
+                5,
+                4,
+                4
+            ]
+        },
+        {
+            "preset": "RIFLE",
+            "regional": true,
+            "kills": 15,
+            "severs": 0,
+            "collisions": 5,
+            "paired": 5,
+            "ultimates": 1,
+            "bodies": 15,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                5,
+                5,
+                5,
+                4,
+                4
+            ]
+        },
+        {
+            "preset": "PURSUER",
+            "regional": false,
+            "kills": 11,
+            "severs": 5,
+            "collisions": 8,
+            "paired": 2,
+            "ultimates": 1,
+            "bodies": 11,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                1,
+                1
+            ]
+        },
+        {
+            "preset": "PURSUER",
+            "regional": true,
+            "kills": 11,
+            "severs": 5,
+            "collisions": 8,
+            "paired": 2,
+            "ultimates": 1,
+            "bodies": 11,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                2,
+                2,
+                1,
+                1
+            ]
+        },
+        {
+            "preset": "FOREMAN",
+            "regional": false,
+            "kills": 2,
+            "severs": 0,
+            "collisions": 1,
+            "paired": 1,
+            "ultimates": 1,
+            "bodies": 2,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                1,
+                1,
+                1,
+                1
+            ]
+        },
+        {
+            "preset": "FOREMAN",
+            "regional": true,
+            "kills": 2,
+            "severs": 0,
+            "collisions": 1,
+            "paired": 1,
+            "ultimates": 1,
+            "bodies": 2,
+            "visibleSpawns": 0,
+            "health": 340.0,
+            "casts": [
+                2,
+                1,
+                1,
+                1,
+                1
+            ]
+        }
+    ],
+    "performance": [
+        {
+            "regional": false,
+            "speed": 0.5,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.702651977539064,
+            "frames": 180,
+            "enemies": 15,
+            "bodies": 30
+        },
+        {
+            "regional": false,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.689300537109376,
+            "frames": 180,
+            "enemies": 16,
+            "bodies": 31
+        },
+        {
+            "regional": false,
+            "speed": 4.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.70074462890625,
+            "frames": 180,
+            "enemies": 17,
+            "bodies": 43
+        },
+        {
+            "regional": true,
+            "speed": 0.5,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.68548583984375,
+            "frames": 180,
+            "enemies": 14,
+            "bodies": 33
+        },
+        {
+            "regional": true,
+            "speed": 1.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.693115234375,
+            "frames": 180,
+            "enemies": 14,
+            "bodies": 33
+        },
+        {
+            "regional": true,
+            "speed": 4.0,
+            "medianMs": 16.666412353515626,
+            "p95Ms": 16.68548583984375,
+            "frames": 180,
+            "enemies": 17,
+            "bodies": 45
+        }
+    ]
+}

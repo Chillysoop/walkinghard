@@ -155,20 +155,21 @@ namespace VectorGame
             if(e.deathAge>=0)return;
             damage=ShieldDamage(e,damage,impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
-            damage=CrewProtection(e,damage);
+            damage=ForemanDamage(e,CrewProtection(e,damage));
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             if(dealt>0&&(currentCredit?.hop??0)>0)SynergyCue("collision","COLLISION CHAIN","Launched body → impact damage");
-            ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0)e.attack=-1;
+            ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0&&!ForemanBraced(e))e.attack=-1;
             RememberDisplacement(e,impulse);
             var impact=DescribeImpact(e,impulse,sever,reactionKind);e.reaction=impact;
             if(e.health<=0)KillEnemy(e,impulse,sever);
-            else e.physics.Impulse(impulse*ControlResistance(e));
+            else e.physics.Impulse(impulse*(e.foreman==null?ControlResistance(e):.18f));
             PresentImpact(e,impact,e.deathAge>=0);
             DirectSignatures(e,damage,staggered);
         }
         void Launch(Enemy body,Cascade chain=null,int hop=0,float energy=1,Vector3? forcedDirection=null)
         {
             body.freightLeft=0;CancelCrew(body);
+            AddForemanPressure(body,.28f);
             for(int i=flights.Count-1;i>=0;i--)if(flights[i].body==body)flights.RemoveAt(i);
             Vector3 origin=body.physics.Center;Vector3 direction=origin-(HeroPosition+Vector3.up);direction.y=0;direction.Normalize();float nearest=7;
             foreach(var e in enemies)
@@ -180,8 +181,8 @@ namespace VectorGame
             if(direction.sqrMagnitude<.1f)direction=hero.Root.forward;
             RememberDisplacement(body,direction);
             OnLaunch(body);
-            energy*=ControlResistance(body);body.physics.Impulse(direction*(body.heavy?11:15)*energy+Vector3.up*1.5f-body.physics.Velocity);
-            body.stun=1.2f*ControlResistance(body);body.engaged=false;body.attack=-1;
+            energy*=body.foreman==null||body.deathAge>=0?ControlResistance(body):.18f;body.physics.Impulse(direction*(body.heavy?11:15)*energy+Vector3.up*(body.foreman==null?1.5f:.25f)-body.physics.Velocity);
+            body.stun=1.2f*ControlResistance(body);body.engaged=false;if(!ForemanBraced(body))body.attack=-1;
             ExposeShield(body,body.stun);
             if(chain==null)chain=new Cascade();if(chain.credit==null)chain.credit=currentCredit;chain.hit.Add(body.id);
             flights.Add(new Flight{body=body,previous=origin,chain=chain,hop=hop,energy=energy});Launches++;MaxCascadeHop=Mathf.Max(MaxCascadeHop,hop);
