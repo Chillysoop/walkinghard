@@ -56,7 +56,7 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Paused){Pause(w,h);return;}
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
             TargetWaitCombat(w,h);CombatHeader(w,h);CombatBar(w,h);
-            if(game.ExpeditionActive)CrewCombatLabels(w,h);
+            if(game.ExpeditionActive||game.ForemanPractice)CrewCombatLabels(w,h);
             WalkingForkControls(w,h);
             if(game.CombatPreviewActive)CombatPreviewControls(w);
             if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
@@ -100,15 +100,16 @@ namespace VectorGame
             Segments(new Rect(38,343,202,5),game.Score.Remaining/ComboScore.Window,Strong,10);
             float x=w-330;
             Panel(new Rect(x,18,310,108));
-            Label(new Rect(x+20,34,190,23),game.FinaleActive?"FINAL STAND":game.CombatPreviewActive?"PRACTICE":game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
-            Label(new Rect(x+212,29,80,40),game.FinaleActive?Mathf.CeilToInt(game.BossFraction*100)+"%":Mathf.CeilToInt(game.WaveRemaining)+"s",game.FinaleActive?24:31,white,true,TextAnchor.UpperRight);
+            Label(new Rect(x+20,34,190,23),game.FinaleActive?"FINAL STAND":game.ForemanPresent?"FOREMAN":game.CombatPreviewActive?"PRACTICE":game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
+            Label(new Rect(x+212,29,80,40),game.FinaleActive||game.ForemanPresent?Mathf.CeilToInt(game.BossFraction*100)+"%":Mathf.CeilToInt(game.WaveRemaining)+"s",game.FinaleActive||game.ForemanPresent?24:31,white,true,TextAnchor.UpperRight);
             Stroke(new Vector2(x+20,64),new Vector2(x+290,64),line,1);
             string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
             string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
             UltimatePanel(new Rect(x,138,310,game.Deck.Ultimate==null?76:180));
-            if(game.BossFraction>0){Rect boss=game.CombatPreviewActive?new Rect(w-330,330,310,62):new Rect(w/2-200,20,400,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,boss.width-24,22),game.CombatPreviewActive?(game.BossControlOpen?"PURSUER / CONTROL WINDOW":"PURSUER / RESISTS CONTROL"):"THE PURSUER / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Strong,true);Segments(new Rect(boss.x+12,boss.y+39,boss.width-24,8),game.BossFraction,Strong,20);}
-            if(!game.CombatPreviewActive&&!game.FinaleActive&&game.WaveElapsed<3.2f)
+            if(game.ForemanPresent)ForemanPanel(w);
+            else if(game.BossFraction>0){Rect boss=game.CombatPreviewActive?new Rect(w-330,330,310,62):new Rect(w/2-200,20,400,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,boss.width-24,22),game.CombatPreviewActive?(game.BossControlOpen?"PURSUER / CONTROL WINDOW":"PURSUER / RESISTS CONTROL"):"THE PURSUER / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Strong,true);Segments(new Rect(boss.x+12,boss.y+39,boss.width-24,8),game.BossFraction,Strong,20);}
+            if(!game.CombatPreviewActive&&!game.FinaleActive&&!game.ForemanPresent&&game.WaveElapsed<3.2f)
             {
                 var formation=game.WaveFormation.Split('·');float center=w*.5f;
                 Panel(new Rect(center-245,20,490,68));

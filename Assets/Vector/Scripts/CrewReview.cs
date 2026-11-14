@@ -12,7 +12,7 @@ namespace VectorGame
         [Serializable] sealed class CrewReport
         {
             public bool passed;public int assertions,productionAssertions;public int repairs,throws,retrievals;
-            public int kills,wave,itemChoices,augmentChoices;public float health;public string result,scope;
+            public int kills,wave,itemChoices,augmentChoices,foremanVents,foremanSlams;public float health;public string result,scope;
             public List<string> checks=new List<string>();
         }
         IEnumerator ReviewCrews()
@@ -42,7 +42,7 @@ namespace VectorGame
                     if(State==RunState.Drafting)
                     {
                         if(StopOpen){if(Stop.kind==EncounterRoute.SalvageStop){BuyRepair();for(int i=0;i<Stop.stock.Length;i++)if(BuyCopy(i))break;}CashOutStop();}
-                        if(Wave==3||Wave==5){Require(SaveCheckpoint()&&ResumeExpedition(),"real checkpoint resumes at wave "+Wave);restored++;}
+                        if(Wave==3||Wave==5||Wave==6){Require(SaveCheckpoint()&&ResumeExpedition(),"real checkpoint resumes at wave "+Wave);restored++;}
                         SimulationDraft();yield return null;
                     }
                     else if(State==RunState.Revealing){StepFinaleReveal(RevealDuration);yield return null;}
@@ -54,7 +54,12 @@ namespace VectorGame
                 }
                 Require(OrderErrors==0&&VisibleSpawns==0&&Spawned==Kills+enemies.Count&&corpses.Count==Kills,"normal sequence entry and identity invariants");
                 Require(Enum.GetValues(typeof(CrewRole)).Cast<CrewRole>().Where(r=>r!=CrewRole.None).All(r=>CrewSpawned(r)>0),"all three roles occur through normal concealed spawning");
-                if(State==RunState.Complete)Require(ItemChoices==13&&AugmentChoices==2&&bossSpawned&&restored>=2,"full reward and finale gates survive regional crews");
+                if(State==RunState.Complete)
+                {
+                    Require(ItemChoices==13&&AugmentChoices==2&&bossSpawned&&restored>=3,"full reward and finale gates survive regional crews");
+                    var foreman=corpses.SingleOrDefault(e=>e.foreman!=null);Require(foreman!=null&&foreman.foreman.vents>0,"Foreman fought, defeated and retained through finale and checkpoint resume");
+                    report.foremanVents=foreman.foreman.vents;report.foremanSlams=foreman.foreman.slams;
+                }
                 report.repairs=CrewUses(CrewRole.Repair);report.throws=CrewUses(CrewRole.Freight);report.retrievals=CrewUses(CrewRole.Reclaimer);report.result=State.ToString();report.wave=Wave;report.kills=Kills;report.health=Health;report.itemChoices=ItemChoices;report.augmentChoices=AugmentChoices;
                 FinishExpeditionStorage();yield return Shot("run-result");
             }

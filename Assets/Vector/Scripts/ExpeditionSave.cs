@@ -9,8 +9,8 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=2;
-        public string rules="cinderworks-crews-1",tuning;
+        public int schema=3;
+        public string rules="shift-foreman-1",tuning;
         public int wave;
         public SavedGraph graph;
         public SavedBody hero;
@@ -79,7 +79,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
         {
             var info=new FileInfo(SavePath);if(info.Length>32000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1")||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1")||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
             return data;
         }
         CheckpointGraph GraphCodec()
@@ -106,7 +106,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1);
+                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();
                 if(savedEnemies.Length!=saved.actors.Count||savedEnemies.Select(e=>e.id).Distinct().Count()!=savedEnemies.Length||saved.actors.Select(e=>e.id).Distinct().Count()!=saved.actors.Count||savedEnemies.Any(e=>!saved.actors.Any(a=>a.id==e.id)))throw new InvalidOperationException("Invalid actor references");
@@ -125,6 +125,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
                     var body=saved.actors.Single(b=>b.id==e.id);e.rig=new FighterRig(body.name,actors,false,e.heavy,e.id^Seed);e.rig.Root.localScale=body.scale;
                     if(e.shooter)e.rig.RangedEquipment();if(e.boss&&body.scale.x>3)e.rig.PursuerArmor();e.rig.EncounterEquipment(e.shieldBearer,e.volatileCarrier);
                     e.rig.CrewEquipment(e.crew);
+                    if(e.foreman!=null){e.rig.ForemanEquipment();e.rig.ForemanPose(e.foreman.stage==1,e.foreman.stage==2,e.foreman.pressure);}
                     e.physics=new FighterPhysics(e.rig,e.id,this,false,e.heavy);e.physics.RestoreBody(body);
                 }
                 foreach(var body in corpses)SetBodyWalkCollision(body,body.freightLeft>0||flights.Any(f=>f.body==body));

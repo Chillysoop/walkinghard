@@ -1,6 +1,18 @@
 # Walking Hard — build-variety contract
 
-Revision 23, November 13, 2026. Includes the combat-flow, physical-fork, Expedition stops and Cinderworks crew development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
+Revision 24, November 13, 2026. Includes the combat-flow, physical-fork, Expedition stops, Cinderworks crews and Shift Foreman development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
+
+## Shift Foreman encounter
+
+Expedition wave six is a regional boss encounter after the second route/service choice. The Walker holds position while the Foreman approaches through a concealed entrance. Wave seven and the wave-eight Pursuer follow normally; the thirteen item choices and two augment choices are unchanged. Quick Run retains its original sixth wave. FOREMAN is the eighth practice encounter.
+
+The Foreman wears a furnace suit on the existing eleven-bone skeleton. Planted supports and closed shutters indicate bracing; pressure lamps fill amber. At full pressure the shutters open, exposing a cyan core for four seconds. The HUD labels health, damage reduction/bonus, pressure and the current vent/slam countdown. A floor warning precedes his press slam. Reduced Motion retains the shutters, footprint and written cues.
+
+Bracing takes 65% ordinary damage; an open vent takes 135%. Pressure fills naturally in nine visible braced seconds. Stagger adds 0.06 + 0.12 per stun second, capped at 0.22 per originating action. Launch/body-impact pressure is 0.28. Simultaneous hands, follow-ups and collision descendants share the maximum contribution of their originating action; a later impact upgrades an earlier stagger contribution. Pressure breaks cancel the slam. Braced control does not cancel it by itself; attacks and damage still work. The Foreman resists displacement and closes physics-created gaps so short melee actions can reach him. He cannot be removed by the rear boundary.
+
+Initial tuning: 752 health at default enemy health; 1.5-second slam warning, 2.1-second total action, 2.2-second recovery, and 2.5x ordinary enemy damage within 3.8m. Visibility and wall checks gate attacks. Reinforcements enter every 1.25 seconds for up to 30 seconds with at most twelve living enemies including the boss. Repair, freight and reclaimer roles replace ordinary arrivals after 4/12/20 seconds, respecting the three-crew cap. Killing the Foreman opens the existing wave-six rewards; other bodies and surviving enemies retain their identities.
+
+Schema 3 stores Foreman phases, anchor, timers and pressure attribution. Schema-1 and schema-2 checkpoints migrate with no Foreman on previously saved actors. The loader also restores nested impact-reaction values before assigning them to actors. Five-seed matched Full-physics tests cover eight equipped builds, with/without crews in ordinary and boss encounters. This establishes functional coverage, not balanced draft win rates; damage pressure remains a playtesting question. See QA/shift-foreman-verification.md.
 
 ## Cinderworks roads and work crews
 
@@ -16,11 +28,11 @@ Three enemy roles replace some ordinary arrivals during Expedition waves 2–7. 
 
 Channels require a visible, nearby, unobstructed source and target; entering/offscreen workers cannot begin them. Two workers cannot reserve the same corpse, and player-controlled flights are unavailable to them. Interrupted channels wait 2.5 seconds before trying again. Workers pause their normal movement and attack while channeling, then resume ordinary combat. No manual aiming or dodge input is required. Countdown labels expand only during actions or interruption feedback; idle role labels stay compact, with overlap avoidance and leader lines where needed. Color is paired with silhouettes, names, target links and a throw footprint.
 
-Checkpoint schema 2 preserves crew roles, target reservations, protection, channel clocks and hostile payload ownership/hit budgets. Existing schema-1 Expedition checkpoints remain loadable; previously saved enemies receive neutral crew defaults. The longer act graph, Foreman and persistent hub remain proposed. Verification and limitations: QA/cinderworks-crews-verification.md.
+Checkpoint data preserves crew roles, target reservations, protection, channel clocks and hostile payload ownership/hit budgets. Existing schema-1 Expedition checkpoints remain loadable; previously saved enemies receive neutral crew defaults. The longer act graph and persistent hub remain proposed. Original crew verification and limitations: QA/cinderworks-crews-verification.md.
 
 ## Expedition stops and checkpoint saves
 
-The title screen keeps Quick Run and adds New Expedition / Resume. This first Expedition slice uses the existing eight waves, thirteen item choices, two augment choices and Pursuer finale. The longer act structure, Foreman, hub and additional catalog remain proposals in EXPANSION_DESIGN.md.
+The title screen keeps Quick Run and adds New Expedition / Resume. This Expedition slice uses eight waves, thirteen item choices, two augment choices, the wave-six Foreman and the Pursuer finale. The longer act structure, hub and additional catalog remain proposals in EXPANSION_DESIGN.md.
 
 Expedition begins with 8 salvage and grants 4 once per completed nonfinal wave. During wave 2, the physical fork offers Shields / More gear versus Overtime / Risk & salvage. During wave 5, it offers Salvage / Heal or copy versus Volatiles / More abilities. Choosing a stop opens it at the following frozen reward checkpoint, before ordinary picks. The special routes have an unbiased mixed reward; the combat routes retain their two emphasized offers. Quick Run retains its original two combat choices at both forks. No extra timed decision is added to a stopped event.
 

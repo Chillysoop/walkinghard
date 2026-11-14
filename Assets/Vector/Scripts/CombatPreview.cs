@@ -8,7 +8,7 @@ namespace VectorGame
         public bool CinderworksActive {get;private set;}
         public bool CombatPreviewStyle {get;private set;}=true;
         public int CombatPreviewPreset {get;private set;}
-        public static readonly string[] CombatPreviewNames={"FISTS","DUAL BLADES","GREATSWORD","HAMMER","CLOSE QUARTERS","RIFLE","PURSUER"};
+        public static readonly string[] CombatPreviewNames={"FISTS","DUAL BLADES","GREATSWORD","HAMMER","CLOSE QUARTERS","RIFLE","PURSUER","FOREMAN"};
         bool startingCombatPreview,savedPreviewStyle;
         float savedPreviewSpeed;
         int savedPreviewSeed;
@@ -30,10 +30,10 @@ namespace VectorGame
                 new[]{"GravityWell","SteelJab","MassDriver"},new[]{"GravityWell","ReapingCut","ForcePush"},
                 new[]{"GravityWell","ReapingCut","MassDriver"},new[]{"ConductiveBrand","Breaker","MassDriver"},
                 new[]{"Counterguard","Breaker","ForcePush"},new[]{"VectorTether","ConductiveBrand","SuppressiveVolley"},
-                new[]{"GravityWell","ReapingCut","MassDriver"}};
-            string[] right={"fists","sword","greatsword","hammer","fists","rifle","greatsword"};
-            string[] left={"fists","sword","","","scattergun","",""};
-            string[] ultimates={"singularity","cyclone","cyclone","tempest","singularity","redline","singularity"};
+                new[]{"GravityWell","ReapingCut","MassDriver"},new[]{"ConductiveBrand","Breaker","MassDriver"}};
+            string[] right={"fists","sword","greatsword","hammer","fists","rifle","greatsword","hammer"};
+            string[] left={"fists","sword","","","scattergun","","",""};
+            string[] ultimates={"singularity","cyclone","cyclone","tempest","singularity","redline","singularity","tempest"};
             int p=CombatPreviewPreset;
             if(right[p]!="fists")Equip(right[p],PlaceKind.Weapon,0);
             if(left[p]!=""&&left[p]!="fists")Equip(left[p],PlaceKind.Weapon,1);
@@ -48,7 +48,7 @@ namespace VectorGame
             OpeningPicks=2;Wave=p==6?8:6;Health=MaxHealth;
             SelectedRoute=p==3||p==4?EncounterRoute.VolatileBreach:EncounterRoute.ShieldLine;routedWave=Wave;
             BeginWave();UltimateAutomatic=false;UltimateRemaining=0;
-            if(p!=6)
+            if(p<6)
             {
                 // A visible practice formation, followed by the ordinary wave's covered entries.
                 for(int i=0;i<9;i++)
@@ -83,8 +83,8 @@ namespace VectorGame
                 if(Input.GetKeyDown(KeyCode.M))ToggleSound();
                 if(Input.GetKeyDown(KeyCode.R))BeginCombatPreview(CombatPreviewPreset,CombatPreviewStyle);
                 if(Input.GetKeyDown(KeyCode.V))ToggleCombatPreviewStyle();
-                if(Input.GetKeyDown(KeyCode.LeftArrow))BeginCombatPreview((CombatPreviewPreset+6)%7,CombatPreviewStyle);
-                if(Input.GetKeyDown(KeyCode.RightArrow))BeginCombatPreview((CombatPreviewPreset+1)%7,CombatPreviewStyle);
+                if(Input.GetKeyDown(KeyCode.LeftArrow))BeginCombatPreview((CombatPreviewPreset+CombatPreviewNames.Length-1)%CombatPreviewNames.Length,CombatPreviewStyle);
+                if(Input.GetKeyDown(KeyCode.RightArrow))BeginCombatPreview((CombatPreviewPreset+1)%CombatPreviewNames.Length,CombatPreviewStyle);
             }
             if(State==RunState.Revealing)StepFinaleReveal(dt);
             else if(State==RunState.Running)AdvanceCombat(dt);
@@ -109,8 +109,8 @@ namespace VectorGame
             float x=350,width=w-700;
             Panel(new Rect(x,18,width,120));
             Label(new Rect(x+12,25,width-24,20),title,13,Accent,true,TextAnchor.MiddleCenter);
-            float step=(width-24)/7;
-            for(int i=0;i<7;i++)if(Button(new Rect(x+12+i*step,52,step-3,27),VectorEncounter.CombatPreviewNames[i],game.CombatPreviewPreset==i))game.BeginCombatPreview(i,game.CombatPreviewStyle);
+            float step=(width-24)/VectorEncounter.CombatPreviewNames.Length;
+            for(int i=0;i<VectorEncounter.CombatPreviewNames.Length;i++)if(Button(new Rect(x+12+i*step,52,step-3,27),VectorEncounter.CombatPreviewNames[i],game.CombatPreviewPreset==i))game.BeginCombatPreview(i,game.CombatPreviewStyle);
             if(Button(new Rect(x+12,88,width*.38f,28),"COMPARE LOOK [ V ]"))game.ToggleCombatPreviewStyle();
             if(Button(new Rect(x+width*.4f+6,88,width*.31f,28),"RESTART [ R ]"))game.BeginCombatPreview(game.CombatPreviewPreset,game.CombatPreviewStyle);
             if(Button(new Rect(x+width*.73f,88,width*.27f-12,28),"EXIT PREVIEW"))game.MainMenu();

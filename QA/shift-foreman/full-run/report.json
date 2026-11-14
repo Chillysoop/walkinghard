@@ -1,0 +1,29 @@
+{
+    "passed": true,
+    "assertions": 10,
+    "productionAssertions": 0,
+    "repairs": 8,
+    "throws": 11,
+    "retrievals": 7,
+    "kills": 285,
+    "wave": 8,
+    "itemChoices": 13,
+    "augmentChoices": 2,
+    "foremanVents": 4,
+    "foremanSlams": 1,
+    "health": 250.93983459472657,
+    "result": "Complete",
+    "scope": "Normal-health eight-wave Expedition with ordinary offers and automated pinball choices; one functional run, not balance evidence.",
+    "checks": [
+        "real checkpoint resumes at wave 3",
+        "real checkpoint resumes at wave 3",
+        "real checkpoint resumes at wave 5",
+        "real checkpoint resumes at wave 5",
+        "real checkpoint resumes at wave 6",
+        "real checkpoint resumes at wave 6",
+        "normal sequence entry and identity invariants",
+        "all three roles occur through normal concealed spawning",
+        "full reward and finale gates survive regional crews",
+        "Foreman fought, defeated and retained through finale and checkpoint resume"
+    ]
+}

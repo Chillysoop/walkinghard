@@ -14,7 +14,7 @@ namespace VectorGame
         public string PendingDraft=>pendingDrafts.Count>0?"NEXT: "+pendingDrafts.Peek().ToString().ToUpperInvariant()+" PICK":"LET'S FIGHT";
         bool bossSpawned;
         public float BossFraction=>enemies.FirstOrDefault(e=>e.boss) is Enemy boss?Mathf.Clamp01(boss.health/boss.maxHealth):0;
-        public bool BossControlOpen=>WaveElapsed%8<2.5f;
+        public bool BossControlOpen=>Foreman is Enemy f?f.foreman.stage==2:WaveElapsed%8<2.5f;
         public static DraftKind[] RewardsAfter(int wave)
         {
             var rewards=new List<DraftKind>();if(wave>=8)return rewards.ToArray();
@@ -22,7 +22,7 @@ namespace VectorGame
             else {rewards.Add(wave==3?DraftKind.Ultimate:DraftKind.Mixed);if(wave==2||wave==4||wave==6)rewards.Add(DraftKind.Equipment);if(wave==3||wave==5)rewards.Add(DraftKind.Augment);}return rewards.ToArray();
         }
         public static string Formation(int wave)=>new[]{"DENSE PACK · horizon rush with side-door reinforcements","CROSSFIRE · spaced shooters behind a light screen","HEAVY FRONT · enforcers protect a dense pack","FLANKERS · alternating side doors with brief gaps","FUNNEL · horizon lanes with ranged support","BREACH · repeated door packs with reinforcements","MIXED PRESSURE · shooters, frontliners and flanking arrivals","FINAL STAND · prepare your full loadout"}[Mathf.Clamp(wave-1,0,7)];
-        public string EncounterPreview=>routedWave==Wave+1?RouteName(SelectedRoute):Formation(OpeningDraft?1:Mathf.Min(8,Wave+1));
+        public string EncounterPreview=>ExpeditionActive&&Wave==5?"SHIFT FOREMAN · stagger and impacts expose his vent":routedWave==Wave+1?RouteName(SelectedRoute):Formation(OpeningDraft?1:Mathf.Min(8,Wave+1));
         void OpenCheckpoint()
         {
             // Finish a selected route before opening rewards. The fallback also supports

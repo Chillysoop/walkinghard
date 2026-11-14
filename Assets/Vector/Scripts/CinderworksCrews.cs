@@ -7,6 +7,8 @@ namespace VectorGame
     public enum CrewRole { None, Repair, Freight, Reclaimer }
     public sealed partial class VectorEncounter
     {
+        // Only set by matched development fixtures; ordinary play always enables crews.
+        bool crewBaseline;
         public static string CrewName(CrewRole role)=>role==CrewRole.Repair?"REPAIR CREW":role==CrewRole.Freight?"FREIGHT BRUTE":"RECLAIMER";
         public static Color CrewColor(CrewRole role)=>role==CrewRole.Repair?new Color(.45f,1,.65f):role==CrewRole.Freight?new Color(1,.55f,.22f):new Color(.8f,.65f,1);
         static float CrewDuration(CrewRole role)=>role==CrewRole.Repair?1.4f:role==CrewRole.Freight?1.3f:2f;
@@ -14,7 +16,7 @@ namespace VectorGame
         public int CrewSpawned(CrewRole role)=>enemies.Concat(corpses).Count(e=>e.crew==role);
         CrewRole NextCrew()
         {
-            if(!ExpeditionActive||Wave<2||Wave==8||Spawned%7!=3||enemies.Count(e=>e.crew!=CrewRole.None)>=3)return CrewRole.None;
+            if(crewBaseline||!ExpeditionActive||Wave<2||Wave==8||Spawned%7!=3||enemies.Count(e=>e.crew!=CrewRole.None)>=3)return CrewRole.None;
             return Wave==2?CrewRole.Repair:Wave==3?CrewRole.Freight:Wave==4?CrewRole.Reclaimer:(CrewRole)(1+(Spawned/7+Wave)%3);
         }
         bool CrewLine(Vector3 a,Vector3 b)=>FastSimulation||!Physics.Linecast(a+Vector3.up*.5f,b+Vector3.up*.5f,1<<EntryLayout.WorldLayer);
@@ -81,7 +83,7 @@ namespace VectorGame
         {p.y=a.y=b.y=0;var line=b-a;return Vector3.Distance(p,a+line*Mathf.Clamp01(Vector3.Dot(p-a,line)/Mathf.Max(.001f,line.sqrMagnitude)));}
         void StepFreightBodies(float dt)
         {
-            if(!ExpeditionActive)return;
+            if(!ExpeditionActive&&!ForemanPractice)return;
             foreach(var body in corpses.ToArray())
             {
                 if(body.freightLeft<=0)continue;
