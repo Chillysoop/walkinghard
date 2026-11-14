@@ -66,7 +66,7 @@ namespace VectorGame
         {
             var boss=Foreman;if(boss==null||spawnTimer>0||WaveElapsed>=30||enemies.Count>=12)return;
             var f=boss.foreman;var role=CrewRole.None;
-            if(!crewBaseline&&f.crewCalls<3&&WaveElapsed>=4+f.crewCalls*8&&enemies.Count(e=>e.crew!=CrewRole.None)<3){role=(CrewRole)(1+f.crewCalls);f.crewCalls++;}
+            if(!crewBaseline&&f.crewCalls<3&&WaveElapsed>=4+f.crewCalls*8&&enemies.Count(e=>e.crew!=CrewRole.None)<3){role=RegionalWave?.crew??(CrewRole)(1+f.crewCalls);if(role==CrewRole.None)role=(CrewRole)(1+f.crewCalls);f.crewCalls++;}
             SpawnEntry(NextFormationEntry(),null,role);spawnTimer=1.25f;
         }
         void StepForeman(Enemy e,float dt)

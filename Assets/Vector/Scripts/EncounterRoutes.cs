@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum EncounterRoute { Standard, ShieldLine, VolatileBreach, SalvageStop, Overtime }
+    public enum EncounterRoute { Standard, ShieldLine, VolatileBreach, SalvageStop, Overtime, Auction, PressureWorks, Rescue, RepairLine, FreightYard, Reclaimers, EliteShift }
     public enum RewardEmphasis { None, Equipment, Abilities }
     public sealed partial class VectorEncounter
     {
@@ -14,12 +14,12 @@ namespace VectorGame
         public int ShieldBearersSpawned {get;private set;}
         public int VolatileCarriersSpawned {get;private set;}
         public int CarrierDetonations {get;private set;}
-        public EncounterRoute ActiveRoute=>Wave==routedWave&&(SelectedRoute==EncounterRoute.ShieldLine||SelectedRoute==EncounterRoute.VolatileBreach)?(simulation&&Controlled==null&&simulationEncounterRoute==0?EncounterRoute.Standard:SelectedRoute):EncounterRoute.Standard;
-        public static string RouteName(EncounterRoute route)=>route==EncounterRoute.SalvageStop?"SALVAGE STOP":route==EncounterRoute.Overtime?"OVERTIME LOCKERS":route==EncounterRoute.ShieldLine?"SHIELD LINE":route==EncounterRoute.VolatileBreach?"VOLATILE BREACH":"STANDARD";
-        public static string RouteDescription(EncounterRoute route)=>route==EncounterRoute.Overtime?"Risk the unbanked haul at overtime lockers, or leave safely with what you have.":route==EncounterRoute.SalvageStop?"Spend salvage on a repair or a matching equipment copy.":route==EncounterRoute.ShieldLine?
+        public EncounterRoute ActiveRoute=>Wave==routedWave&&!RegionalEncounters.IsStop(SelectedRoute)?(simulation&&!ExpeditionActive&&Controlled==null&&simulationEncounterRoute==0?EncounterRoute.Standard:SelectedRoute):EncounterRoute.Standard;
+        public static string RouteName(EncounterRoute route)=>RegionalEncounters.Find(route)?.name??(route==EncounterRoute.SalvageStop?"SALVAGE STOP":route==EncounterRoute.Overtime?"OVERTIME LOCKERS":route==EncounterRoute.ShieldLine?"SHIELD LINE":route==EncounterRoute.VolatileBreach?"VOLATILE BREACH":"STANDARD");
+        public static string RouteDescription(EncounterRoute route)=>RegionalEncounters.Find(route)?.description??(route==EncounterRoute.Overtime?"Risk the unbanked haul at overtime lockers, or leave safely with what you have.":route==EncounterRoute.SalvageStop?"Spend salvage on a repair or a matching equipment copy.":route==EncounterRoute.ShieldLine?
             "Shield bearers advance from the horizon. Stagger opens their guard for 2 seconds; attacks from behind bypass it.":
-            "Carriers emerge from side doors. Launch one to arm its explosive pack; impact or a 1.3s flight detonates it.";
-        public static RewardEmphasis RouteReward(EncounterRoute route)=>route==EncounterRoute.ShieldLine?RewardEmphasis.Equipment:route==EncounterRoute.VolatileBreach?RewardEmphasis.Abilities:RewardEmphasis.None;
+            "Carriers emerge from side doors. Launch one to arm its explosive pack; impact or a 1.3s flight detonates it.");
+        public static RewardEmphasis RouteReward(EncounterRoute route)=>RegionalEncounters.Find(route)?.reward??(route==EncounterRoute.ShieldLine?RewardEmphasis.Equipment:route==EncounterRoute.VolatileBreach?RewardEmphasis.Abilities:RewardEmphasis.None);
         void ResetRoutes(){ResetWalkingFork();RoutePending=false;SelectedRoute=EncounterRoute.Standard;routedWave=routeSpawn=0;ShieldBearersSpawned=VolatileCarriersSpawned=CarrierDetonations=0;}
         public bool ChooseRoute(EncounterRoute route)
         {
@@ -28,9 +28,9 @@ namespace VectorGame
         }
         void ConfigureRouteEnemy(Enemy e)
         {
-            if(ActiveRoute==EncounterRoute.Standard||e.boss||e.shooter)return;
+            if((ActiveRoute!=EncounterRoute.ShieldLine&&ActiveRoute!=EncounterRoute.VolatileBreach&&ActiveRoute!=EncounterRoute.EliteShift)||e.boss||e.shooter)return;
             if(routeSpawn++%4!=0)return;
-            e.shieldBearer=ActiveRoute==EncounterRoute.ShieldLine;
+            e.shieldBearer=ActiveRoute==EncounterRoute.ShieldLine||ActiveRoute==EncounterRoute.EliteShift;
             e.volatileCarrier=ActiveRoute==EncounterRoute.VolatileBreach;
             if(e.shieldBearer)ShieldBearersSpawned++;else VolatileCarriersSpawned++;
             e.rig.EncounterEquipment(e.shieldBearer,e.volatileCarrier);

@@ -18,7 +18,7 @@ namespace VectorGame
         }
         IEnumerator ReviewExpedition()
         {
-            enabled=false;qa=false;fx.muted=true;
+            enabled=false;qa=false;fx.muted=true;legacyExpeditionReview=true;
             Application.logMessageReceived+=(message,trace,type)=>{if(type==LogType.Exception)Application.Quit(3);};
             QualitySettings.vSyncCount=0;Application.targetFrameRate=60;Screen.SetResolution(1920,1080,false);
             var args=Environment.GetCommandLineArgs();int at=Array.IndexOf(args,"-reviewOutput");

@@ -1,0 +1,15 @@
+{
+  "workers": 2,
+  "waves": 8,
+  "startedUtc": "2026-11-14T07:00:59.5586543Z",
+  "expedition": true,
+  "player": "C:\\Users\\conne\\Documents\\VectorPrototype\\Build\\Cinderworks-Variety-candidate\\WalkingHard.exe",
+  "legacyExpedition": true,
+  "assemblySha256": "29158B0B68D37AF48816B29F65994316245972A434419C85D80B4AAB4AD5B99B",
+  "mode": "Full",
+  "maxCombatSeconds": 600,
+  "policy": "archetypes",
+  "firstSeed": 91500,
+  "runs": 18,
+  "completedUtc": "2026-11-14T07:17:11.7316406Z"
+}

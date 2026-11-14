@@ -1,0 +1,28 @@
+{
+    "passed": true,
+    "assertions": 4,
+    "productionAssertions": 0,
+    "kills": 0,
+    "wave": 0,
+    "itemChoices": 0,
+    "augmentChoices": 0,
+    "health": 0.0,
+    "scope": "Controlled native itinerary, event, ownership and save fixtures; not balance evidence.",
+    "result": "",
+    "itinerary": {
+        "legacy": false,
+        "waves": [],
+        "left": [],
+        "right": [],
+        "chosen": [
+            0,
+            0
+        ]
+    },
+    "checks": [
+        "fresh process restores new checkpoint",
+        "new itinerary and resolved auction persist",
+        "fresh process cannot bid twice",
+        "fresh process preserves complete state graph"
+    ]
+}

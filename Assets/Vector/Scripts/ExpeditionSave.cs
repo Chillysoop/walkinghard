@@ -9,8 +9,9 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=3;
-        public string rules="shift-foreman-1",tuning;
+        public int schema=4;
+        public string rules="cinderworks-variety-1",tuning;
+        public ExpeditionPlan itinerary;
         public int wave;
         public SavedGraph graph;
         public SavedBody hero;
@@ -45,11 +46,14 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
         ExpeditionArchive archive=new ExpeditionArchive();
         public int ArchiveCount=>archive.records.Count;
         public bool HasOvertimeRecord(int index)=>archive.records.Contains(index);
-        public static string OvertimeRecordTitle(int index)=>new[]{"THE UNFINISHED SHIFT","WAGES FOR THE DEAD","THE RESTORATION QUOTA"}[index];
+        public static string OvertimeRecordTitle(int index)=>new[]{"THE UNFINISHED SHIFT","WAGES FOR THE DEAD","THE RESTORATION QUOTA","THE UNCLAIMED LOT","THE PRESSURE DIVIDEND","THE LAST ATTENDANCE"}[index];
         public static string OvertimeRecord(int index)=>new[]{
             "The crew's final request was for a shorter shift. The Continuance granted it by dividing each worker into smaller assignments. The attendance ledger has never recorded an absence.",
             "The payroll office was ordered to keep wages flowing after the evacuation. When no workers remained, it began paying the furnaces. Every cylinder bears the name of someone still listed as employed.",
-            "Restoration was measured in returned tools, not returned people. The bay learned to satisfy its quota by dismantling the patients. Someone scratched a new instruction into the shutters: BRING THEM HOME WHOLE."
+            "Restoration was measured in returned tools, not returned people. The bay learned to satisfy its quota by dismantling the patients. Someone scratched a new instruction into the shutters: BRING THEM HOME WHOLE.",
+            "A tool is declared abandoned when its owner misses three collection appointments. The Registry schedules every appointment during mandatory work. Iven has been buying back names as well as equipment.",
+            "The furnace's emergency valves were once paid for by a public fund. Their recoverable brass now counts toward private production targets. The repair crew keeps opening them anyway. Heat reaches the homes because someone ignores the ledger.",
+            "The attendance register has no field for evacuation. Freed workers remain marked absent until their next shift. One of them carries a completion plate with its date still blank. There used to be a way to finish."
         }[index];
         string SaveDirectory=>saveDirectoryOverride??Path.Combine(Application.persistentDataPath,"Expedition");
         string SavePath=>Path.Combine(SaveDirectory,"checkpoint.json");
@@ -59,7 +63,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
             int at=Array.IndexOf(args,"-saveDirectory");if(at>=0&&at+1<args.Length)saveDirectoryOverride=Path.GetFullPath(args[at+1]);
             try{string path=Path.Combine(SaveDirectory,"archive.json");if(File.Exists(path))archive=JsonUtility.FromJson<ExpeditionArchive>(File.ReadAllText(path))??new ExpeditionArchive();}
             catch(Exception){archive=new ExpeditionArchive();}
-            archive.records=(archive.records??new List<int>()).Where(i=>i>=0&&i<3).Distinct().ToList();
+            archive.records=(archive.records??new List<int>()).Where(i=>i>=0&&i<6).Distinct().ToList();
             RefreshResumeLabel();
         }
         void RefreshResumeLabel()
@@ -79,7 +83,8 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
         {
             var info=new FileInfo(SavePath);if(info.Length>32000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1")||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1")||data.wave<1||data.wave>7||data.actors.Count>3000||data.roads.Count>2)throw new InvalidOperationException("Unsupported checkpoint");
+            if(data.schema==4&&(data.itinerary==null||!data.itinerary.Valid()))throw new InvalidOperationException("Invalid expedition itinerary");
             return data;
         }
         CheckpointGraph GraphCodec()
@@ -90,7 +95,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
         ExpeditionCheckpoint CaptureCheckpoint()
         {
             if(State!=RunState.Drafting||!ExpeditionActive||FastSimulation)throw new InvalidOperationException("Save requires an expedition checkpoint");
-            var saved=new ExpeditionCheckpoint{wave=Wave,tuning=JsonUtility.ToJson(tuning),graph=GraphCodec().Capture(this),hero=heroPhysics.CaptureBody(),cameraPosition=cameraRig.transform.position,cameraRotation=cameraRig.transform.rotation,cameraFov=cameraRig.fieldOfView,muted=fx.muted};
+            var saved=new ExpeditionCheckpoint{wave=Wave,itinerary=expeditionPlan,tuning=JsonUtility.ToJson(tuning),graph=GraphCodec().Capture(this),hero=heroPhysics.CaptureBody(),cameraPosition=cameraRig.transform.position,cameraRotation=cameraRig.transform.rotation,cameraFov=cameraRig.fieldOfView,muted=fx.muted};
             foreach(var e in enemies.Concat(corpses))saved.actors.Add(e.physics.CaptureBody());
             foreach(var fork in roads.Forks)saved.roads.Add(new SavedRoadFork{origin=fork.Origin,side=roads.Path.Contains(fork.Left)?0:1});
             return saved;
@@ -106,7 +111,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3);
+                var saved=ReadCheckpoint();var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();
                 if(savedEnemies.Length!=saved.actors.Count||savedEnemies.Select(e=>e.id).Distinct().Count()!=savedEnemies.Length||saved.actors.Select(e=>e.id).Distinct().Count()!=saved.actors.Count||savedEnemies.Any(e=>!saved.actors.Any(a=>a.id==e.id)))throw new InvalidOperationException("Invalid actor references");
@@ -115,7 +120,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
                     bool Finite(Vector3 v)=>float.IsFinite(v.x)&&float.IsFinite(v.y)&&float.IsFinite(v.z)&&v.sqrMagnitude<10000000;
                     if(body.bones==null||body.bones.Length!=11||!Finite(body.position)||!Finite(body.velocity)||body.bones.Any(b=>!Finite(b.position)||!Finite(b.velocity))||body.caps.Any(c=>c.bone<0||c.bone>=11))throw new InvalidOperationException("Invalid body snapshot");
                 }
-                replacing=true;loadingCheckpoint=true;ExpeditionActive=true;Begin(true);JsonUtility.FromJsonOverwrite(saved.tuning,tuning);codec.Apply(this);
+                replacing=true;loadingCheckpoint=true;ExpeditionActive=true;Begin(true);JsonUtility.FromJsonOverwrite(saved.tuning,tuning);codec.Apply(this);expeditionPlan=saved.itinerary??ExpeditionPlan.Create(Seed,true);
                 foreach(var map in saved.roads){var fork=roads.Split(map.origin,0);roads.Follow(fork,map.side);forkVisual=fork;}
                 RefreshExpeditionRoads();
                 Deck.Fused+=MergeKillCounts;

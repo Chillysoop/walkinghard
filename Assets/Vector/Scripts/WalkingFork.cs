@@ -47,12 +47,13 @@ namespace VectorGame
         {
             PrepareWalkingFork();forkAge=0;forkStarted=WaveElapsed;forkLockedAge=0;
             ForkChoice=ForkLeft;RoutePending=true;
-            if(qa)ChooseRoute(simulation&&simulationEncounterRoute>0?(EncounterRoute)simulationEncounterRoute:(Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);
+            if(qa)ChooseRoute(ExpeditionActive?SimulationExpeditionRoute():simulation&&simulationEncounterRoute>0?(EncounterRoute)simulationEncounterRoute:(Seed+Wave)%2==0?EncounterRoute.ShieldLine:EncounterRoute.VolatileBreach);
         }
         void CommitWalkingFork()
         {
             if(!RoutePending)return;
             SelectedRoute=ForkChoice;routedWave=Wave+1;RoutePending=false;forkLockedAge=2;
+            if(ExpeditionActive&&expeditionPlan!=null)expeditionPlan.chosen[Wave==5?1:0]=ForkChoice;
             roads.Follow(forkVisual,ForkChoice==ForkLeft?0:1);
         }
         void StepWalkingFork(float dt)
@@ -101,7 +102,8 @@ namespace VectorGame
                 var r=ForkChoiceRect(side,w,h);bool selected=game.ForkChoice==route;Color color=selected?Accent:Strong;
                 Plate(r,ink,color,9,selected?2:1);
                 var symbol=r.position+new Vector2(27,30);
-                if(route==EncounterRoute.Overtime)
+                if(DrawRegionalRouteGlyph(route,symbol,color)){}
+                else if(route==EncounterRoute.Overtime)
                 {Plate(new Rect(symbol.x-12,symbol.y-12,24,24),ink,color,2);foreach(var d in new[]{new Vector2(-5,-5),new Vector2(5,-5),new Vector2(-5,5),new Vector2(5,5)})Ring(symbol+d,1.5f,color);}
                 else if(route==EncounterRoute.SalvageStop)
                 {Stroke(symbol+new Vector2(-11,0),symbol+new Vector2(11,0),color,5);Stroke(symbol+new Vector2(0,-11),symbol+new Vector2(0,11),color,5);}

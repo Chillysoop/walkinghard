@@ -6,6 +6,8 @@ param(
     [ValidateSet('mixed','archetypes','random','balanced','pinball','storm','sever','gun','cutcarry','close')][string]$Policy='mixed',
     [ValidateSet(3,8)][int]$Waves=8,
     [ValidateSet('Full','Fast')][string]$Mode='Full',
+    [switch]$Expedition,
+    [switch]$LegacyExpedition,
     [ValidateRange(120,600)][int]$MaxCombatSeconds=480,
     [string]$BalanceFile,
     [ValidateRange(60,3600)][int]$GameTimeoutSeconds=600,
@@ -17,13 +19,15 @@ if([long]$Seed+$Runs-1 -gt [int]::MaxValue){throw 'The requested seed range exce
 $capabilities=Join-Path ([IO.Path]::GetDirectoryName($playerPath)) 'simulation-capabilities.json'
 if(-not (Test-Path -LiteralPath $capabilities)){throw 'This player has no simulation support manifest. Build the current source with Build Windows.ps1, then point -Player to that build.'}
 if((Get-Content -LiteralPath $capabilities -Raw | ConvertFrom-Json).schema -ne 1){throw 'Unsupported simulation runner schema.'}
+if($LegacyExpedition -and -not $Expedition){throw '-LegacyExpedition requires -Expedition.'}
+if($Expedition -and ($Mode -ne 'Full' -or $Waves -ne 8 -or -not (Get-Content -LiteralPath $capabilities -Raw | ConvertFrom-Json).expeditionVariety)){throw 'Expedition comparisons require Full mode, eight waves and a player with expeditionVariety support.'}
 if(Test-Path -LiteralPath $OutputDirectory){throw 'Choose a new output directory; batches are never silently mixed or overwritten.'}
 if($Mode -eq 'Fast' -and (Get-Content -LiteralPath $capabilities -Raw | ConvertFrom-Json).modes -notcontains 'Fast'){throw 'This player does not support Fast balance mode.'}
 $Workers=[Math]::Min($Workers,$Runs)
 $null=New-Item -ItemType Directory -Path $OutputDirectory
 $OutputDirectory=(Resolve-Path -LiteralPath $OutputDirectory).Path
 $assembly=Join-Path ([IO.Path]::GetDirectoryName($playerPath)) 'WalkingHard_Data\Managed\Assembly-CSharp.dll'
-@{mode=$Mode;runs=$Runs;workers=$Workers;firstSeed=$Seed;policy=$Policy;waves=$Waves;maxCombatSeconds=$MaxCombatSeconds;startedUtc=[DateTime]::UtcNow.ToString('o');assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;player=$playerPath} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $OutputDirectory 'batch.json') -Encoding UTF8
+@{mode=$Mode;expedition=[bool]$Expedition;legacyExpedition=[bool]$LegacyExpedition;runs=$Runs;workers=$Workers;firstSeed=$Seed;policy=$Policy;waves=$Waves;maxCombatSeconds=$MaxCombatSeconds;startedUtc=[DateTime]::UtcNow.ToString('o');assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;player=$playerPath} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $OutputDirectory 'batch.json') -Encoding UTF8
 if($BalanceFile){$balanceSource=(Resolve-Path -LiteralPath $BalanceFile).Path;Copy-Item -LiteralPath $balanceSource -Destination (Join-Path $OutputDirectory 'balance.json')}
 $processes=@();$outputs=@();$timer=[Diagnostics.Stopwatch]::StartNew();$failed=$false;$nextProgress=30
 try {
@@ -34,6 +38,7 @@ try {
         $log=Join-Path $OutputDirectory ('worker-'+$worker+'.log')
         $arguments='-batchmode -nographics -simMode '+$Mode+' -simRuns '+$count+' -seed '+($Seed+$worker)+' -simStride '+$Workers+' -simPolicy '+$Policy+' -simWaves '+$Waves+' -simMaxSeconds '+$MaxCombatSeconds+' -simOutput "'+$output+'" -logFile "'+$log+'"'
         if($BalanceFile){$arguments+=' -simBalance "'+(Join-Path $OutputDirectory 'balance.json')+'"'}
+        if($Expedition){$arguments+=' -simExpedition -saveDirectory "'+(Join-Path $OutputDirectory ('profile-'+$worker))+'"';if($LegacyExpedition){$arguments+=' -simLegacyExpedition'}}
         $processes+=Start-Process -FilePath $playerPath -ArgumentList $arguments -WindowStyle Hidden -PassThru
     }
     Write-Host ('Running '+$Runs+' '+$Mode+' engine games across '+$Workers+' workers. Results stream to '+$OutputDirectory)
