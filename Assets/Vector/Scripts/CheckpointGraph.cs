@@ -88,9 +88,9 @@ namespace VectorGame
             return id;
         }
         object Ref(int id){if(id== -1)return null;if(id<0||id>=values.Length)throw new InvalidOperationException("Invalid checkpoint reference");return values[id];}
-        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false)
+        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false,bool legacySpecialists=false)
         {
-            if(data==null||data.objects==null||data.objects.Count>120000||data.roots.Count!=roots.Count||data.roots.Select(x=>x.name).Distinct().Count()!=roots.Count)throw new InvalidOperationException("Invalid checkpoint graph");
+            if(data==null||data.objects==null||data.objects.Count>256000||data.roots.Count!=roots.Count||data.roots.Select(x=>x.name).Distinct().Count()!=roots.Count)throw new InvalidOperationException("Invalid checkpoint graph");
             graph=data;values=new object[data.objects.Count];
             foreach(var root in data.roots)if(!roots.ContainsKey(root.name))throw new InvalidOperationException("Unsupported checkpoint field");
             for(int i=0;i<values.Length;i++)
@@ -113,7 +113,7 @@ namespace VectorGame
                 var n=data.objects[i];var t=types[n.type];if(filled[i]||Atomic(t)||t==typeof(ItemDefinition)||t==typeof(CheckpointRandom)||Container(t))return;
                 filled[i]=true;
                 var fields=Fields(t);
-                bool Optional(FieldInfo f)=>legacyEvents&&t==typeof(ExpeditionStop)&&new[]{"price","repair","rescued"}.Contains(f.Name)||t.FullName=="VectorGame.VectorEncounter+Enemy"&&(legacyForeman&&f.Name=="foreman"||legacyCrews&&new[]{"crew","crewClock","crewCooldown","crewVfx","crewNotice","crewGuard","crewGuardUntil","freightLeft","crewTarget","crewUses","freightSource","crewAim","crewOrigin","freightPrevious","freightHitHero","freightHits"}.Contains(f.Name));
+                bool Optional(FieldInfo f)=>legacyEvents&&t==typeof(ExpeditionStop)&&new[]{"price","repair","rescued"}.Contains(f.Name)||t.FullName=="VectorGame.VectorEncounter+Enemy"&&(legacySpecialists&&f.Name=="specialist"||legacyForeman&&f.Name=="foreman"||legacyCrews&&new[]{"crew","crewClock","crewCooldown","crewVfx","crewNotice","crewGuard","crewGuardUntil","freightLeft","crewTarget","crewUses","freightSource","crewAim","crewOrigin","freightPrevious","freightHitHero","freightHits"}.Contains(f.Name));
                 if(n.fields.Any(x=>!fields.Any(f=>f.Name==x.name))||n.fields.Select(x=>x.name).Distinct().Count()!=n.fields.Count)throw new InvalidOperationException("Checkpoint version differs");
                 foreach(var f in fields)
                 {

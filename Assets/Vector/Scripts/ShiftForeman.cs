@@ -16,7 +16,7 @@ namespace VectorGame
         }
         Enemy Foreman=>enemies.FirstOrDefault(e=>e.foreman!=null);
         public bool ForemanPractice=>CombatPreviewActive&&CombatPreviewPreset==7;
-        bool ForemanWave=>(ExpeditionActive&&!CombatPreviewActive&&(ChapterActive?ChapterEncounter.boss:Wave==6))||ForemanPractice;
+        bool ForemanWave=>(ExpeditionActive&&!CombatPreviewActive&&(ChapterActive?ChapterEncounter.boss&&!PursuerWave:Wave==6))||ForemanPractice;
         public bool ForemanPresent=>Foreman!=null;
         public float ForemanPressureFraction=>Foreman?.foreman.pressure??0;
         public float ForemanVentRemaining=>Foreman is Enemy e&&e.foreman.stage==2?e.foreman.ventLeft:0;
@@ -29,11 +29,11 @@ namespace VectorGame
             var planes=GeometryUtility.CalculateFrustumPlanes(cameraRig);
             for(int i=0;i<70&&GeometryUtility.TestPlanesAABB(planes,new Bounds(position+Vector3.up*2.7f,new Vector3(5,6,5)));i++)position+=RoadForward*3;
             if(GeometryUtility.TestPlanesAABB(planes,new Bounds(position+Vector3.up*2.7f,new Vector3(5,6,5))))throw new InvalidOperationException("No concealed Foreman entrance");
-            var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*16*(1+.035f*5),cooldown=2,radius=2.2f,foreman=new ForemanState{anchor=HeroPosition}};
-            e.maxHealth=e.health;e.rig=new FighterRig("Shift Foreman",actors,false,true,e.id^Seed,FastSimulation);e.rig.Root.localScale=Vector3.one*2.2f;e.rig.Root.position=position;e.rig.Root.rotation=RoadRotation*Quaternion.Euler(0,180,0);e.rig.ForemanEquipment();
+            var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*(JourneyActive?District==1?27:20:16)*(JourneyActive?EnemyHealthScale:1+.035f*5),cooldown=2,radius=2.2f,foreman=new ForemanState{anchor=HeroPosition}};
+            e.maxHealth=e.health;e.rig=new FighterRig(JourneyBossName,actors,false,true,e.id^Seed,FastSimulation);e.rig.Root.localScale=Vector3.one*2.2f;e.rig.Root.position=position;e.rig.Root.rotation=RoadRotation*Quaternion.Euler(0,180,0);e.rig.ForemanEquipment();if(JourneyActive&&District==1)e.rig.SpecialistEquipment(CrewRole.Bellkeeper);
             e.physics=new FighterPhysics(e.rig,e.id,this,false,true);enemies.Add(e);byId.Add(e.id,e);Spawned++;HorizonEntries++;
-            if(!FastSimulation)foreach(var body in corpses)body.physics.IgnoreWalker(e.physics,body.freightLeft<=0&&!flights.Any(f=>f.body==body));
-            Physics.SyncTransforms();Announce("SHIFT FOREMAN / BREAK THE PRESSURE");
+            if(!FastSimulation)foreach(var body in corpses)if(body.rig.Root.gameObject.activeSelf)body.physics.IgnoreWalker(e.physics,body.freightLeft<=0&&!flights.Any(f=>f.body==body));
+            Physics.SyncTransforms();Announce(JourneyBossName+" / BREAK THE PRESSURE");
         }
         void OpenForemanVent(Enemy e,bool forced)
         {
@@ -64,9 +64,10 @@ namespace VectorGame
         }
         void ForemanReinforcements()
         {
-            var boss=Foreman;if(boss==null||spawnTimer>0||WaveElapsed>=30||enemies.Count>=12)return;
+            var boss=Foreman;if(boss==null||spawnTimer>0||WaveElapsed>=(JourneyActive?45:30)||enemies.Count>=12)return;
             var f=boss.foreman;var role=CrewRole.None;
             if(!crewBaseline&&f.crewCalls<3&&WaveElapsed>=4+f.crewCalls*8&&enemies.Count(e=>e.crew!=CrewRole.None)<3){role=RegionalWave?.crew??(CrewRole)(1+f.crewCalls);if(role==CrewRole.None)role=(CrewRole)(1+f.crewCalls);f.crewCalls++;}
+            if(JourneyActive&&District==1&&role!=CrewRole.None)role=f.crewCalls%2==0?CrewRole.Linebreaker:CrewRole.Bellkeeper;
             SpawnEntry(NextFormationEntry(),null,role);spawnTimer=1.25f;
         }
         void StepForeman(Enemy e,float dt)
@@ -117,7 +118,7 @@ namespace VectorGame
         {
             var r=game.CombatPreviewActive?new Rect(w-330,330,310,132):new Rect(w/2-245,18,490,122);Panel(r);
             var color=game.ForemanVentRemaining>0?Accent:new Color(1,.64f,.3f);
-            Label(new Rect(r.x+12,r.y+8,r.width-24,20),"SHIFT FOREMAN",16,white,true,TextAnchor.MiddleCenter);
+            Label(new Rect(r.x+12,r.y+8,r.width-24,20),game.JourneyBossName,16,white,true,TextAnchor.MiddleCenter);
             Segments(new Rect(r.x+15,r.y+34,r.width-30,8),game.BossFraction,white,24);
             Label(new Rect(r.x+12,r.y+48,r.width-24,17),game.ForemanPhaseLabel,11,color,true,TextAnchor.MiddleCenter);
             Segments(new Rect(r.x+15,r.y+70,r.width-30,6),game.ForemanVentRemaining>0?game.ForemanVentRemaining/4:game.ForemanPressureFraction,color,18);

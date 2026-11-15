@@ -12,19 +12,6 @@ namespace VectorGame
             if(available)return Button(rect,text,primary);
             Plate(rect,ink,line,5);Label(rect,text,12,muted,true,TextAnchor.MiddleCenter);return false;
         }
-        void ExpeditionIntro(float w,float h,float y)
-        {
-            float x=540,width=w-x-40;Panel(new Rect(x,y,width,570));
-            Label(new Rect(x+28,y+28,width-56,25),"CINDERWORKS / DEAD LETTER OFFICE",22,Accent,true);
-            Label(new Rect(x+28,y+82,width-56,72),"The factory remembers your orders.\nIt has forgotten who gave them.",23,white,true);
-            Label(new Rect(x+28,y+177,width-56,94),"Six encounters, ending at the Foreman. Choose roads while you walk.\nBid for gear, tap unstable machinery or rescue workers. Every expedition offers different roads; salvage can buy repairs or matching gear.",17,muted);
-            if(Button(new Rect(x+28,y+288,width-56,52),"DEAD LETTER OFFICE · "+game.Sparks+" SPARKS",true))game.OpenOffice();
-            Label(new Rect(x+28,y+344,width-56,30),game.HasCheckpoint?"Starting a new expedition replaces your stored run.":"Saves at reward checkpoints. Combat resumes from the last checkpoint.",11,muted);
-            if(ExpeditionButton(new Rect(x+28,y+389,width-56,45),game.HasCheckpoint?game.ResumeLabel:"NO SAVED EXPEDITION",game.HasCheckpoint))game.ResumeExpedition();
-            if(Button(new Rect(x+28,y+454,width-56,42),"RECOVERED RECORDS  ·  "+game.ArchiveCount+" / 6"))expeditionArchive=true;
-            Label(new Rect(x+28,y+514,width-56,40),game.SaveMessage,12,muted);
-            if(expeditionArchive)ExpeditionRecords(w,h);
-        }
         void ExpeditionRecords(float w,float h)
         {
             Box(new Rect(0,0,w,h),new Color(0,0,0,.86f));float x=(w-900)/2,y=(h-560)/2;Panel(new Rect(x,y,900,560));

@@ -23,7 +23,7 @@ namespace VectorGame
                 foreach(var r in road.Root.GetComponentsInChildren<MeshRenderer>(true))
                 {
                     // Branch selection remains cyan, independent of the region's furnace glow.
-                    if(r.name=="Branch edge light"||roadMaterials.ContainsKey(r))continue;
+                    if(r.name=="Branch edge light"||r.name=="Selected road arrow"||roadMaterials.ContainsKey(r))continue;
                     var m=r.sharedMaterial;roadMaterials.Add(r,m);
                     r.sharedMaterial=m==VisualFactory.Ground?Floor:m==VisualFactory.Stone?Iron:m==VisualFactory.Trim?Ceramic:m==VisualFactory.Glow?Heat:m;
                 }
@@ -43,6 +43,7 @@ namespace VectorGame
         void ResetExpeditionAppearance()
         {
             regionalWorld.ResetRoads();
+            roads.ForwardOnly=JourneyActive;
             if(CombatPreviewActive)return;
             regionalWorld.SetVisible(false);VisualFactory.CinderworksStyle=ExpeditionActive;
             if(ExpeditionActive){VisualFactory.ArmoredStyle=true;regionalWorld.DecorateRoads(roads);}
@@ -52,6 +53,7 @@ namespace VectorGame
         public string WaveFormation=>DescribeExpeditionFormation(Wave);
         string DescribeExpeditionFormation(int wave)
         {
+            if(JourneyActive)return JourneyPreview(wave);
             if(ExpeditionActive&&wave==6)return "SHIFT FOREMAN · stagger and impacts build pressure";
             if(VariedExpedition&&RegionalEncounters.Find(RegionalRoute(wave)) is RegionalEncounter encounter)return encounter.name+" · "+encounter.description;
             if(!ExpeditionActive||wave<2||wave==8)return Formation(wave);

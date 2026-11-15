@@ -33,7 +33,7 @@ namespace VectorGame
         }
         public void BeginTutorial()
         {
-            Begin();tutorialSavedHold=HoldCheckpointAfterPick;tutorialSavedSpeed=CombatSpeed;
+            ExpeditionActive=false;chapterRequested=false;Begin();tutorialSavedHold=HoldCheckpointAfterPick;tutorialSavedSpeed=CombatSpeed;
             TutorialActive=true;TutorialLesson=Lesson.Ability;HoldCheckpointAfterPick=true;SetCombatSpeed(1);
             OpeningPicks=2;Wave=1;TutorialHint="";
             Deck.Move(Deck.Acquire(LoadoutCatalog.Find("ArcBolt")),PlaceKind.Sequence,3);
@@ -57,7 +57,7 @@ namespace VectorGame
         {
             if(!TutorialActive||!TutorialReady)return;
             TutorialHint="";hud?.ResetTutorialUI();
-            if(TutorialLesson==Lesson.Finished){Begin();return;}
+            if(TutorialLesson==Lesson.Finished){Play();return;}
             TutorialLesson++;
             switch(TutorialLesson)
             {
@@ -170,7 +170,7 @@ namespace VectorGame
                 Label(new Rect(x+30,y+25,560,40),"YOU'RE READY.",34,Accent,true);
                 Label(new Rect(x+30,y+88,560,180),"Choose one of three rewards.\nEquip weapons and abilities in their matching slots.\nFuse three identical items at the same rarity.\nAttach augments to compatible + sockets.\nDrag the five actions into the order you want.",18,white);
                 Label(new Rect(x+30,y+265,560,58),"Your ultimate unlocks after wave 3 and has its own recharge.\nPractice items reset when you start a real run.",14,muted);
-                if(Button(new Rect(x+30,y+340,560,46),"START RUN [ ENTER ]",true)){game.Begin();GUIUtility.ExitGUI();}
+                if(Button(new Rect(x+30,y+340,560,46),"CONTINUE TO OFFICE [ ENTER ]",true)){game.Play();GUIUtility.ExitGUI();}
                 if(Button(new Rect(x+30,y+399,560,32),"MAIN MENU")){game.MainMenu();GUIUtility.ExitGUI();}
                 return;
             }

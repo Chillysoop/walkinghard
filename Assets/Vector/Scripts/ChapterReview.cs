@@ -13,7 +13,7 @@ namespace VectorGame
         {public bool passed;public int assertions,productionAssertions,wave,kills,itemChoices,augmentChoices,sparks,workers;public float health;public string result,scope;public List<string> checks=new List<string>();}
         IEnumerator ReviewChapter()
         {
-            enabled=false;qa=false;fx.muted=true;SetCombatSpeed(1);
+            legacyChapterReview=true;enabled=false;qa=false;fx.muted=true;SetCombatSpeed(1);
             Application.logMessageReceived+=(m,t,type)=>{if(type==LogType.Exception)Application.Quit(3);};
             var args=Environment.GetCommandLineArgs();bool render=!args.Contains("-nographics"),full=args.Contains("-chapterFullRun"),resume=args.Contains("-chapterResumeOnly"),legacy=args.Contains("-chapterLegacyResume");
             string Arg(string key,string fallback){int at=Array.IndexOf(args,key);return at<0?fallback:args[at+1];}

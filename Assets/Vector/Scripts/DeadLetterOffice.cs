@@ -41,11 +41,11 @@ namespace VectorGame
                 bool buy=requirement.StartsWith("UNLOCK ·");Plate(button,buy&&button.Contains(Pointer)?new Color(.07f,.18f,.21f,.98f):ink,buy?Accent:line,4);
                 Label(button,requirement,12,owned?Accent:buy?white:muted,true,TextAnchor.MiddleCenter);
             }
-            Label(new Rect(x+24,y+548,1092,23),game.OfficeMessage.Length>0?game.OfficeMessage:"Earn 1 Spark per encounter cleared; 4 for the Foreman. Banked immediately, kept on defeat. Tier 2 needs its earlier star and the seal.",12,white);
-            if(Button(new Rect(x+24,y+581,352,45),"START CINDERWORKS · 6 ENCOUNTERS",true))game.StartChapter();
+            Label(new Rect(x+24,y+548,1092,23),game.OfficeMessage.Length>0?game.OfficeMessage:game.SaveMessage.StartsWith("Earlier")?game.SaveMessage:"Earn 1 Spark per encounter cleared; 4 per district boss. Banked immediately, kept on defeat. Tier 2 needs its earlier star and the seal.",12,white);
+            if(Button(new Rect(x+24,y+581,352,45),"START JOURNEY · ~30 MIN",true))game.StartChapter();
             if(ExpeditionButton(new Rect(x+394,y+581,352,45),game.HasCheckpoint?game.ResumeLabel:"NO SAVED EXPEDITION",game.HasCheckpoint)){if(game.ResumeExpedition())game.CloseOffice();}
             if(Button(new Rect(x+764,y+581,352,45),"BACK TO MAIN MENU"))game.CloseOffice();
-            Label(new Rect(x+24,y+634,1092,18),game.HasCheckpoint?"A new chapter replaces your saved run. Purchases apply to the next new chapter.":"Six encounters · two walking forks · Foreman finale · safe checkpoints. Salvage is spent during the run; Sparks are spent here.",11,muted);
+            Label(new Rect(x+24,y+634,1092,18),game.HasCheckpoint?"A new chapter replaces your saved run. Purchases apply to the next new chapter.":"3 districts · 21 encounters · 9 road choices · 3 bosses · checkpoints. About 30 minutes at 1x, including decisions.",11,muted);
         }
     }
 }

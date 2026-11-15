@@ -4,21 +4,22 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum CrewRole { None, Repair, Freight, Reclaimer }
+    public enum CrewRole { None, Repair, Freight, Reclaimer, Linebreaker, Cinderlobber, Bellkeeper }
     public sealed partial class VectorEncounter
     {
         // Only set by matched development fixtures; ordinary play always enables crews.
         bool crewBaseline;
-        public static string CrewName(CrewRole role)=>role==CrewRole.Repair?"REPAIR CREW":role==CrewRole.Freight?"FREIGHT BRUTE":"RECLAIMER";
-        public static Color CrewColor(CrewRole role)=>role==CrewRole.Repair?new Color(.45f,1,.65f):role==CrewRole.Freight?new Color(1,.55f,.22f):new Color(.8f,.65f,1);
-        static float CrewDuration(CrewRole role)=>role==CrewRole.Repair?1.4f:role==CrewRole.Freight?1.3f:2f;
+        public static string CrewName(CrewRole role)=>role==CrewRole.Linebreaker?"LINEBREAKER":role==CrewRole.Cinderlobber?"CINDERLOBBER":role==CrewRole.Bellkeeper?"BELLKEEPER":role==CrewRole.Repair?"REPAIR CREW":role==CrewRole.Freight?"FREIGHT BRUTE":"RECLAIMER";
+        public static Color CrewColor(CrewRole role)=>role==CrewRole.Linebreaker?new Color(1,.2f,.35f):role==CrewRole.Cinderlobber?new Color(1,.55f,.15f):role==CrewRole.Bellkeeper?new Color(1,.9f,.35f):role==CrewRole.Repair?new Color(.45f,1,.65f):role==CrewRole.Freight?new Color(1,.55f,.22f):new Color(.8f,.65f,1);
+        static float CrewDuration(CrewRole role)=>role==CrewRole.Linebreaker?1.2f:role==CrewRole.Cinderlobber?1.7f:role==CrewRole.Bellkeeper?1.8f:role==CrewRole.Repair?1.4f:role==CrewRole.Freight?1.3f:2f;
         public int CrewUses(CrewRole role)=>enemies.Concat(corpses).Where(e=>e.crew==role).Sum(e=>e.crewUses);
         public int CrewSpawned(CrewRole role)=>enemies.Concat(corpses).Count(e=>e.crew==role);
         CrewRole NextCrew()
         {
+            var specialist=NextSpecialist();if(specialist!=CrewRole.None)return specialist;
             if(!crewBaseline&&RegionalWave is RegionalEncounter encounter&&encounter.crew!=CrewRole.None&&Spawned%6==3&&enemies.Count(e=>e.crew!=CrewRole.None)<3)return encounter.crew;
             if(RegionalWave!=null)return CrewRole.None;
-            if(crewBaseline||!ExpeditionActive||Wave<2||Wave==8||Spawned%7!=3||enemies.Count(e=>e.crew!=CrewRole.None)>=3)return CrewRole.None;
+            if(crewBaseline||!ExpeditionActive||Wave<2||PursuerWave||Spawned%7!=3||enemies.Count(e=>e.crew!=CrewRole.None)>=3)return CrewRole.None;
             return Wave==2?CrewRole.Repair:Wave==3?CrewRole.Freight:Wave==4?CrewRole.Reclaimer:(CrewRole)(1+(Spawned/7+Wave)%3);
         }
         bool CrewLine(Vector3 a,Vector3 b)=>FastSimulation||!Physics.Linecast(a+Vector3.up*.5f,b+Vector3.up*.5f,1<<EntryLayout.WorldLayer);
@@ -30,11 +31,12 @@ namespace VectorGame
         }
         bool CrewTargetValid(Enemy e,Enemy target)=>target!=null&&(e.crew==CrewRole.Repair?target.deathAge<0&&!target.entering&&target.crewGuard<=0&&!flights.Any(f=>f.body==target)&&InCombatView(target.rig.Root.position)&&Vector3.Distance(target.physics.Center,e.physics.Center)<7&&CrewLine(e.physics.Center,target.physics.Center):CrewBodyAvailable(e,target));
         void CancelCrew(Enemy e)
-        {if(e.crewClock<=0)return;e.crewClock=0;e.crewTarget=0;e.crewCooldown=2.5f;e.crewNotice=Elapsed+1.1f;}
+        {if(IsSpecialist(e.crew)){CancelSpecialist(e);return;}if(e.crewClock<=0)return;e.crewClock=0;e.crewTarget=0;e.crewCooldown=2.5f;e.crewNotice=Elapsed+1.1f;}
         bool StepCrew(Enemy e,float dt)
         {
             if(e.crewGuard>0&&e.crewGuardUntil<=Elapsed)e.crewGuard=0;
             if(e.crew==CrewRole.None)return false;
+            if(IsSpecialist(e.crew))return StepSpecialist(e,dt);
             e.crewCooldown=Mathf.Max(0,e.crewCooldown-dt);
             bool can=EnemyCanAttack(e)&&e.stun<=0&&Vector3.Distance(e.rig.Root.position,HeroPosition)<12&&!flights.Any(f=>f.body==e);
             if(!can){CancelCrew(e);return false;}
@@ -113,7 +115,7 @@ namespace VectorGame
         {
             foreach(var e in enemies)
             {
-                if(e.crew!=CrewRole.None&&InCombatView(e.rig.Root.position))yield return new CrewReadout{role=e.crew,position=e.rig.Root.position+Vector3.up*2.6f,progress=e.crewClock/CrewDuration(e.crew),detailed=e.crewClock>0||e.crewNotice>Elapsed,state=e.crewNotice>Elapsed?"INTERRUPTED":(e.crew==CrewRole.Repair?"REPAIRING ":e.crew==CrewRole.Freight?"THROWING ":"RETRIEVING ")+Mathf.Max(0,CrewDuration(e.crew)-e.crewClock).ToString("0.0")+"s"};
+                if(e.crew!=CrewRole.None&&InCombatView(e.rig.Root.position))yield return new CrewReadout{role=e.crew,position=e.rig.Root.position+Vector3.up*(IsSpecialist(e.crew)?3.5f:2.6f),progress=e.crewClock/CrewDuration(e.crew),detailed=e.crewClock>0||e.crewNotice>Elapsed,state=e.crewNotice>Elapsed?"INTERRUPTED":(e.crew==CrewRole.Linebreaker?e.specialist?.stage==2?"CHARGING ":"CHARGE IN ":e.crew==CrewRole.Cinderlobber?"BLAST IN ":e.crew==CrewRole.Bellkeeper?"RALLY IN ":e.crew==CrewRole.Repair?"REPAIRING ":e.crew==CrewRole.Freight?"THROWING ":"RETRIEVING ")+Mathf.Max(0,CrewDuration(e.crew)-e.crewClock).ToString("0.0")+"s"};
                 else if(e.crewGuard>0&&e.crewGuardUntil>Elapsed&&InCombatView(e.rig.Root.position))yield return new CrewReadout{role=CrewRole.Repair,position=e.rig.Root.position+Vector3.up*2.4f,state="PATCHED "+e.crewGuard.ToString("0"),progress=-1};
             }
         }
@@ -124,11 +126,13 @@ namespace VectorGame
         void CrewCombatLabels(float w,float h)
         {
             var occupied=new List<Rect>();
+            if(game.ForemanPresent)occupied.Add(game.CombatPreviewActive?new Rect(w-330,330,310,132):new Rect(w/2-245,18,490,130));
+            if(game.ShowForkSigns){occupied.Add(new Rect(w/2-215,22,430,66));occupied.Add(ForkChoiceRect(0,w,h));occupied.Add(ForkChoiceRect(1,w,h));}
             foreach(var view in game.CrewReadouts().OrderByDescending(v=>v.detailed))
             {
                 var p=game.CrewViewport(view.position);if(p.z<=0)continue;float x=Mathf.Clamp(p.x*w,350,w-350),y=Mathf.Clamp((1-p.y)*h,135,h-245);var color=VectorEncounter.CrewColor(view.role);
                 var rect=new Rect(x-100,y-21,200,view.detailed?49:24);var origin=rect.position;
-                foreach(var offset in new[]{Vector2.zero,new Vector2(0,-55),new Vector2(0,55),new Vector2(-206,0),new Vector2(206,0),new Vector2(-206,-55),new Vector2(206,-55),new Vector2(0,-110),new Vector2(0,110)})
+                foreach(var offset in new[]{Vector2.zero,new Vector2(0,-55),new Vector2(0,55),new Vector2(-206,0),new Vector2(206,0),new Vector2(-206,-55),new Vector2(206,-55),new Vector2(0,-110),new Vector2(0,110),new Vector2(0,165)})
                 {rect.position=new Vector2(Mathf.Clamp(origin.x+offset.x,250,w-450),Mathf.Clamp(origin.y+offset.y,114,h-245));if(!occupied.Any(r=>r.Overlaps(rect)))break;}
                 occupied.Add(new Rect(rect.x-2,rect.y-2,rect.width+4,rect.height+4));
                 if((rect.position-origin).sqrMagnitude>16)Stroke(new Vector2(p.x*w,(1-p.y)*h),new Vector2(rect.center.x,rect.yMax),color,1);

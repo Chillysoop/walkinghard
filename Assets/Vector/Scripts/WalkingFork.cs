@@ -55,6 +55,7 @@ namespace VectorGame
             SelectedRoute=ForkChoice;routedWave=Wave+1;RoutePending=false;forkLockedAge=2;
             if(ExpeditionActive&&expeditionPlan!=null)expeditionPlan.chosen[ChapterActive?ChapterEncounter.fork:Wave==5?1:0]=ForkChoice;
             roads.Follow(forkVisual,ForkChoice==ForkLeft?0:1);
+            RefreshExpeditionRoads();
         }
         void StepWalkingFork(float dt)
         {
@@ -68,7 +69,15 @@ namespace VectorGame
         {
             return roads.Forks.Count==0?HeroPosition+Vector3.forward*distance:roads.Walk(HeroPosition,distance);
         }
-        public Vector3 ForkSignViewport(int side)=>cameraRig.WorldToViewportPoint(forkOrigin+forkVisual.Rotation*new Vector3(side==0?-7.5f:7.5f,.15f,12));
+        public Vector3 ForkSignViewport(int side)=>cameraRig.WorldToViewportPoint((side==0?forkVisual.Left:forkVisual.Right).Point(16)+Vector3.up*.15f);
+        public bool ChooseForkRoad(Vector2 viewport)
+        {
+            if(State!=RunState.Running||!RoutePending||forkVisual==null||viewport.x<0||viewport.x>1||viewport.y<0||viewport.y>1)return false;
+            if(!Physics.Raycast(cameraRig.ViewportPointToRay(viewport),out var hit,180,1<<EntryLayout.WorldLayer))return false;
+            foreach(var road in new[]{forkVisual.Left,forkVisual.Right})
+                if(hit.transform.IsChildOf(road.Root)&&road.Local(hit.point).z>=8)return ChooseRoute(road==forkVisual.Left?ForkLeft:ForkRight);
+            return false;
+        }
     }
 
     public sealed partial class PrototypeHUD
@@ -85,7 +94,9 @@ namespace VectorGame
             if(type!=EventType.MouseDown||!game.RoutePending||game.State!=VectorEncounter.RunState.Running)return false;
             for(int side=0;side<2;side++)if(ForkChoiceRect(side,w,h).Contains(pointer))
                 return game.ChooseRoute(side==0?game.ForkLeft:game.ForkRight);
-            return false;
+            // UI has first refusal; a click on an unobscured physical branch selects it.
+            if(pointer.y<110||pointer.y>h-230||pointer.x<335||pointer.x>w-335||detailHovered||iconGuide||waveDetails)return false;
+            return game.ChooseForkRoad(new Vector2(pointer.x/w,1-pointer.y/h));
         }
         void WalkingForkControls(float w,float h)
         {
@@ -95,7 +106,7 @@ namespace VectorGame
             var banner=new Rect(w/2-215,22,430,66);Panel(banner);
             string title=game.RoutePending?"FORK AHEAD  /  "+game.ForkSeconds.ToString("0.0")+"s":"PATH LOCKED";
             Label(new Rect(banner.x+10,banner.y+8,410,24),title,19,white,true,TextAnchor.MiddleCenter);
-            Label(new Rect(banner.x+10,banner.y+36,410,20),game.RoutePending?"A / D or click  ·  highlighted path is automatic":"NEXT: "+VectorEncounter.RouteName(game.ForkChoice),12,muted,false,TextAnchor.MiddleCenter);
+            Label(new Rect(banner.x+10,banner.y+36,410,20),game.RoutePending?"Click road or A / D · highlight = your route":"NEXT: "+VectorEncounter.RouteName(game.ForkChoice),12,muted,false,TextAnchor.MiddleCenter);
             for(int side=0;side<2;side++)
             {
                 var route=side==0?game.ForkLeft:game.ForkRight;

@@ -9,18 +9,19 @@ namespace VectorGame
     [Serializable] public sealed class SavedCutCap
     {public int bone;public string name;public Vector3 position,scale;public Quaternion rotation;}
     [Serializable] public sealed class SavedBody
-    {public int id;public string name;public Vector3 position,scale,velocity,angular,force,torque;public Quaternion rotation;public bool ragdoll,severed;public int lastCut;public SavedBone[] bones;public List<SavedCutCap> caps=new List<SavedCutCap>();}
+    {public int id;public string name;public Vector3 position,scale,velocity,angular,force,torque;public Quaternion rotation;public bool ragdoll,severed,dormant;public int lastCut;public SavedBone[] bones;public List<SavedCutCap> caps=new List<SavedCutCap>();}
     public sealed partial class FighterPhysics
     {
         public SavedBody CaptureBody()
         {
             var saved=new SavedBody{id=owner,name=rig.Root.name,position=rig.Root.position,rotation=rig.Root.rotation,scale=rig.Root.localScale,velocity=LinearVelocity,angular=Motor.angularVelocity,ragdoll=Ragdoll,severed=Severed,lastCut=LastCutBone,bones=new SavedBone[rig.PhysicsBones.Length]};
+            saved.dormant=!rig.Root.gameObject.activeSelf;
             if(!Motor.isKinematic){saved.force=Motor.GetAccumulatedForce(1f/60);saved.torque=Motor.GetAccumulatedTorque(1f/60);}
             for(int i=0;i<saved.bones.Length;i++)
             {
                 var bone=rig.PhysicsBones[i];var body=Ragdoll?bodies[i]:null;var joint=bone.GetComponent<CharacterJoint>();
                 saved.bones[i]=new SavedBone{position=bone.position,rotation=bone.rotation,cut=cutJoints[i],velocity=body==null?Vector3.zero:body.linearVelocity,angular=body==null?Vector3.zero:body.angularVelocity,sleeping=body!=null&&body.IsSleeping(),anchor=joint==null?Vector3.zero:joint.anchor,connectedAnchor=joint==null?Vector3.zero:joint.connectedAnchor};
-                if(body!=null){saved.bones[i].force=body.GetAccumulatedForce(1f/60);saved.bones[i].torque=body.GetAccumulatedTorque(1f/60);}
+                if(body!=null&&!saved.dormant){saved.bones[i].force=body.GetAccumulatedForce(1f/60);saved.bones[i].torque=body.GetAccumulatedTorque(1f/60);}
                 foreach(Transform child in bone)if(child.name=="Severed surface"||child.name=="Exposed surface")saved.caps.Add(new SavedCutCap{bone=i,name=child.name,position=child.localPosition,rotation=child.localRotation,scale=child.localScale});
             }
             return saved;
@@ -41,6 +42,7 @@ namespace VectorGame
             foreach(var cap in saved.caps){var t=VisualFactory.Part(cap.name,rig.PhysicsBones[cap.bone],PrimitiveType.Cylinder,cap.position,cap.scale,VisualFactory.RedGlow);t.localRotation=cap.rotation;}
             Severed=saved.severed;LastCutBone=saved.lastCut;
             if(!Motor.isKinematic){Motor.linearVelocity=saved.velocity;Motor.angularVelocity=saved.angular;if(saved.force!=Vector3.zero)Motor.AddForce(saved.force,ForceMode.Force);if(saved.torque!=Vector3.zero)Motor.AddTorque(saved.torque,ForceMode.Force);}
+            if(saved.dormant)rig.Root.gameObject.SetActive(false);
         }
     }
 }
