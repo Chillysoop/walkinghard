@@ -1,0 +1,30 @@
+{
+    "passed": true,
+    "assertions": 8,
+    "wave": 21,
+    "kills": 1039,
+    "spawns": 1046,
+    "forks": 9,
+    "items": 20,
+    "augments": 5,
+    "sparks": 30,
+    "dormantBodies": 814,
+    "health": 300.0828552246094,
+    "combatSeconds": 1203.4498291015625,
+    "estimatedMinutes": 32.140830993652347,
+    "result": "Complete",
+    "scope": "Late-checkpoint continuation; timing excludes earlier hit stop and is not a full-run pacing measurement.",
+    "checks": [
+        "independent process restores late journey",
+        "late checkpoint writes / 20",
+        "late checkpoint restores exact graph / 20",
+        "ordered actions, concealed spawns and persistent body identity throughout run",
+        "normal-health run reaches and defeats final boss",
+        "all nine forks keep roads forward without loops",
+        "defined rewards and banked progression across all districts",
+        "all three specialist types appear in ordinary encounters"
+    ],
+    "milestones": [
+        "Encounter 20 / HP 304 / kills 942 / time 1080"
+    ]
+}

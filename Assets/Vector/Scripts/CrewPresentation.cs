@@ -4,8 +4,10 @@ namespace VectorGame
 {
     public sealed partial class FighterRig
     {
+        static bool IsSpecialistRole(CrewRole role)=>role>=CrewRole.Linebreaker;
         public void CrewEquipment(CrewRole role)
         {
+            if(IsSpecialistRole(role)){SpecialistEquipment(role);return;}
             if(lightweight||role==CrewRole.None)return;CinderworksWorld.InitializeMaterials();
             var root=VisualFactory.Node("Crew / "+role,Body,Vector3.zero);
             var iron=CinderworksWorld.Iron;var ceramic=CinderworksWorld.Ceramic;

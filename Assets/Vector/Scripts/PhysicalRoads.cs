@@ -12,6 +12,7 @@ namespace VectorGame
         public RoadPiece Parent;
         public float Start,End=300,Min;
         public readonly List<Renderer> Guides=new List<Renderer>();
+        public readonly List<Renderer> SelectionMarks=new List<Renderer>();
         public Vector3 Local(Vector3 p)=>Root.InverseTransformPoint(p);
         public Vector3 Point(float z,float x=0)=>Root.TransformPoint(new Vector3(x,0,z));
         public Quaternion Rotation=>Root.rotation;
@@ -28,11 +29,14 @@ namespace VectorGame
         {
             foreach(var r in Left.Guides)r.sharedMaterial=side==0?VisualFactory.Glow:VisualFactory.Trim;
             foreach(var r in Right.Guides)r.sharedMaterial=side==1?VisualFactory.Glow:VisualFactory.Trim;
+            foreach(var r in Left.SelectionMarks)r.enabled=side==0;
+            foreach(var r in Right.SelectionMarks)r.enabled=side==1;
         }
     }
     public sealed class PhysicalRoads
     {
         public const float Turn=32;
+        public bool ForwardOnly;
         readonly Transform world;
         readonly RoadPiece initial;
         readonly List<(Transform t,Vector3 position,Vector3 scale,bool active)> originals=new List<(Transform,Vector3,Vector3,bool)>();
@@ -77,6 +81,20 @@ namespace VectorGame
         {
             var selected=side==0?fork.Left:fork.Right;
             if(!Path.Contains(selected))Path.Add(selected);fork.Select(side);
+            // Nine choices must not curl the route back through its own walls.
+            // Unchosen corridors end beyond the visible junction, before the next fork.
+            if(ForwardOnly)TrimRoad(side==0?fork.Right:fork.Left,45);
+        }
+        static void TrimRoad(RoadPiece road,float end)
+        {
+            road.End=end;
+            foreach(Transform t in road.Root)
+            {
+                if(t.GetComponent<MeshRenderer>()==null)continue;
+                float low=t.localPosition.z-t.localScale.z*.5f,high=t.localPosition.z+t.localScale.z*.5f;
+                if(low>=end){t.gameObject.SetActive(false);continue;}
+                if(high>end){var size=t.localScale;size.z=end-low;t.localScale=size;var p=t.localPosition;p.z=(low+end)*.5f;t.localPosition=p;}
+            }
         }
         public RoadFork Split(Vector3 hero,float ahead)
         {
@@ -98,8 +116,8 @@ namespace VectorGame
             Forks.Add(fork);Pieces.Add(fork.Left);Pieces.Add(fork.Right);
             foreach(int side in new[]{-1,1})
             {
-                float angle=Turn*Mathf.Deg2Rad;float outerStart=9.5f*Mathf.Tan(angle);
-                Vector3 outer=Quaternion.Euler(0,side*Turn,0)*new Vector3(side*9.5f,0,outerStart);
+                float degrees=BranchAngle(parent,side);float outerStart=9.5f*Mathf.Abs(Mathf.Tan(degrees*Mathf.Deg2Rad));
+                Vector3 outer=Quaternion.Euler(0,degrees,0)*new Vector3(side*9.5f,0,outerStart);
                 WallBetween(root,new Vector3(side*9.5f,0,-3),outer);
             }
             fork.Select(0);Physics.SyncTransforms();return fork;
@@ -111,8 +129,13 @@ namespace VectorGame
         }
         RoadPiece Branch(Transform junction,RoadPiece parent,float distance,int side)
         {
-            var root=VisualFactory.Node(side<0?"Left road / independent corridor":"Right road / independent corridor",junction,Vector3.zero);root.localRotation=Quaternion.Euler(0,side*Turn,0);
+            var root=VisualFactory.Node(side<0?"Left road / independent corridor":"Right road / independent corridor",junction,Vector3.zero);float angle=BranchAngle(parent,side);root.localRotation=Quaternion.Euler(0,angle,0);
             var road=new RoadPiece{Root=root,Parent=parent,Start=distance};
+            for(int z=12;z<=30;z+=6)foreach(int arm in new[]{-1,1})
+            {
+                var arrow=VisualFactory.Part("Selected road arrow",root,PrimitiveType.Cube,new Vector3(arm*.48f,.035f,z-.48f),new Vector3(.2f,.035f,1.5f),VisualFactory.Glow);
+                arrow.localRotation=Quaternion.Euler(0,-arm*45,0);road.SelectionMarks.Add(arrow.GetComponent<Renderer>());
+            }
             EntryLayout.Solid("Branch / physical floor",root,new Vector3(0,-.27f,150),new Vector3(19.7f,.5f,300),VisualFactory.Ground);
             for(int z=3;z<300;z+=6)
             {
@@ -126,7 +149,7 @@ namespace VectorGame
             }
             foreach(int edge in new[]{-1,1})
             {
-                float previous=edge==side?9.5f*Mathf.Tan(Turn*Mathf.Deg2Rad):9.5f/Mathf.Tan(Turn*Mathf.Deg2Rad);
+                float previous=edge==side?9.5f*Mathf.Abs(Mathf.Tan(angle*Mathf.Deg2Rad)):9.5f/Mathf.Tan(Turn*Mathf.Deg2Rad);
                 for(int z=54;z<285;z+=18)
                 {
                     EntryLayout.Solid("Branch wall",root,new Vector3(edge*9.5f,2.3f,(previous+z-2)*.5f),new Vector3(.7f,4.7f,z-2-previous),VisualFactory.Stone);
@@ -144,6 +167,7 @@ namespace VectorGame
             }
             return road;
         }
+        float BranchAngle(RoadPiece parent,int side)=>side*Turn-(ForwardOnly?Mathf.DeltaAngle(0,parent.Root.eulerAngles.y):0);
         public EntryLayout.Door Entrance(int side,Vector3 hero,int direction,Camera camera)
         {
             float at=Progress(hero);

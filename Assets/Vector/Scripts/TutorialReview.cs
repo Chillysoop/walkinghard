@@ -94,7 +94,7 @@ namespace VectorGame
                 ReviewCheck(!game.AutoEquip(game.TutorialArc.augment),path+"augment auto-equip cannot change a running fight");
                 for(int step=0;step<180&&game.TutorialLesson==VectorEncounter.Lesson.Practice;step++)game.AdvanceTutorialPractice(.1f);
                 ReviewCheck(game.TutorialLesson==VectorEncounter.Lesson.Finished&&game.AbilityCasts>=3,path+"practice uses production combat and completes");
-                game.TutorialNext();ReviewCheck(!game.TutorialActive&&game.OpeningPicks==0&&game.Deck.Count==0&&game.Deck.Weapons.All(i=>i==null)&&game.Deck.Ultimate==null&&game.FusionHistory.Count==0,path+"real run is clean");
+                game.TutorialNext();ReviewCheck(!game.TutorialActive&&game.OfficeOpen&&game.State==VectorEncounter.RunState.Ready&&game.OpeningPicks==0&&game.Deck.Count==0&&game.Deck.Weapons.All(i=>i==null)&&game.Deck.Ultimate==null&&game.FusionHistory.Count==0,path+"real run is clean");
                 ReviewCheck(game.HoldCheckpointAfterPick==hold&&game.CombatSpeed==(hold?4:.5f),path+"preferences restored");
                 game.MainMenu();ReviewCheck(game.State==VectorEncounter.RunState.Ready,path+"return to main menu");yield return null;
             }
@@ -125,6 +125,7 @@ namespace VectorGame
                 ReviewCheck(game.Elapsed==elapsed,"practice pause freezes combat");game.TogglePause();
                 while(game.TutorialLesson==VectorEncounter.Lesson.Practice)yield return null;
                 yield return CapturePresentation(directory,"09-ready");game.TutorialNext();
+                ReviewCheck(game.OfficeOpen,"tutorial returns to the only Play destination");game.StartChapter();SetManageBuild(true);yield return null;
                 yield return CapturePresentation(directory,"10-normal-ability-guidance");
                 foreach(string id in new[]{"sword","hammer","visor","plate","treads","faultline","ArcBolt","aug-Echo","aug-Crosscut","singularity"})
                 {

@@ -21,7 +21,7 @@ namespace VectorGame
             for(int i=0;i<2;i++)if(random.Next(2)==0){var swap=plan.left[i];plan.left[i]=plan.right[i];plan.right[i]=swap;}
             return plan;
         }
-        public bool Valid()=>waves!=null&&waves.Length==8&&left!=null&&right!=null&&left.Length==2&&right.Length==2&&chosen!=null&&chosen.Length==2&&waves.Concat(left).Concat(right).Concat(chosen).All(r=>Enum.IsDefined(typeof(EncounterRoute),r))&&left.Zip(right,(a,b)=>a!=b&&a!=EncounterRoute.Standard&&b!=EncounterRoute.Standard).All(v=>v);
+        public bool Valid()=>waves!=null&&(waves.Length==8||waves.Length==LongJourney.Count)&&left!=null&&right!=null&&left.Length==(waves.Length==8?2:LongJourney.Forks)&&right.Length==left.Length&&chosen!=null&&chosen.Length==left.Length&&waves.Concat(left).Concat(right).Concat(chosen).All(r=>Enum.IsDefined(typeof(EncounterRoute),r))&&left.Zip(right,(a,b)=>a!=b&&a!=EncounterRoute.Standard&&b!=EncounterRoute.Standard).All(v=>v);
     }
     public sealed class RegionalEncounter
     {
@@ -53,11 +53,11 @@ namespace VectorGame
         // Retained only for reproducible comparisons and old fixture coverage.
         bool legacyExpeditionReview;
         bool VariedExpedition=>ExpeditionActive&&!CombatPreviewActive&&expeditionPlan!=null&&!expeditionPlan.legacy;
-        EncounterRoute RegionalRoute(int wave)=>routedWave==wave&&RegionalEncounters.Find(SelectedRoute)?.Combat==true?SelectedRoute:expeditionPlan.waves[Mathf.Clamp(wave-1,0,7)];
+        EncounterRoute RegionalRoute(int wave)=>routedWave==wave&&RegionalEncounters.Find(SelectedRoute)?.Combat==true?SelectedRoute:expeditionPlan.waves[Mathf.Clamp(wave-1,0,expeditionPlan.waves.Length-1)];
         RegionalEncounter RegionalWave=>VariedExpedition?RegionalEncounters.Find(RegionalRoute(Wave)):null;
         EncounterRoute PlanFork(int side)
         {
-            int wave=forkWave>0?forkWave:Wave,index=ChapterActive?Mathf.Max(0,CinderworksChapter.Encounters[Mathf.Clamp(wave-1,0,5)].fork):wave==5?1:0;
+            int wave=forkWave>0?forkWave:Wave,index=ChapterActive?Mathf.Max(0,ChapterEncounters[Mathf.Clamp(wave-1,0,ChapterEncounters.Length-1)].fork):wave==5?1:0;
             if(VariedExpedition)return side==0?expeditionPlan.left[index]:expeditionPlan.right[index];
             return side==0?(ExpeditionActive&&wave==5?EncounterRoute.SalvageStop:EncounterRoute.ShieldLine):(ExpeditionActive&&wave==2?EncounterRoute.Overtime:EncounterRoute.VolatileBreach);
         }
@@ -68,6 +68,7 @@ namespace VectorGame
         }
         string RegionalPreview(int wave)
         {
+            if(JourneyActive)return JourneyPreview(wave);
             if(wave==6)return "SHIFT FOREMAN · "+(routedWave==6&&!RegionalEncounters.IsStop(SelectedRoute)?RouteName(SelectedRoute)+" reinforcements":"stagger and impacts expose his vent");
             var definition=VariedExpedition?RegionalEncounters.Find(RegionalRoute(wave)):null;
             return definition==null?DescribeExpeditionFormation(wave):definition.name+" · "+definition.description;

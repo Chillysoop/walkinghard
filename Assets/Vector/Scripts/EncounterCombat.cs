@@ -220,6 +220,7 @@ namespace VectorGame
             for(int i=corpses.Count-1;i>=0;i--)
             {
                 var e=corpses[i];e.deathAge+=dt;
+                if(DistantBody(e))continue;
                 StepReaction(e,dt,false);
                 if(!FastSimulation&&!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
             }
@@ -241,6 +242,7 @@ namespace VectorGame
         {
             foreach(var body in corpses)
             {
+                if(!body.rig.Root.gameObject.activeSelf)continue;
                 if(body.freightLeft>0||flights.Exists(f=>f.body==body))continue;
                 var bounds=body.physics.WalkingBounds();
                 bool Nearby(Vector3 p)=>p.x>=bounds.min.x&&p.x<=bounds.max.x&&p.z>=bounds.min.z&&p.z<=bounds.max.z;

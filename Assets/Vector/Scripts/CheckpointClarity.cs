@@ -27,7 +27,7 @@ namespace VectorGame
             Label(new Rect(32,23,270,18),"WALKING HARD  /  COMBAT PAUSED",11,muted,true);
             if(game.ExpeditionActive){Label(new Rect(320,23,310,18),"SALVAGE "+game.Salvage+"  ·  "+(game.ChapterActive?game.ChapterSparks+" SPARKS BANKED":game.SaveMessage),11,Accent,true);if(Button(new Rect(w-600,27,180,31),game.ChapterActive?"SAVE & OFFICE":"SAVE & MAIN MENU"))game.SuspendExpedition();}
             string phase=game.OpeningDraft?"OPENING PICK "+(game.OpeningPicks+1)+" / 2":"CHECKPOINT "+game.Wave.ToString("00");
-            Label(new Rect(32,47,600,30),expanded?phase+" / YOUR BUILD":phase,23,white,true);
+            Label(new Rect(32,47,600,30),expanded?phase+" / YOUR BUILD":game.JourneyActive?"DISTRICT "+(game.District+1)+" / "+phase:phase,23,white,true);
             if(expanded&&game.LastWaveFeedback!=null&&Button(new Rect(w-397,30,171,31),"LAST WAVE DETAILS",waveDetails))
             {waveDetails=!waveDetails;detailItem=null;iconGuide=false;}
             if(Button(new Rect(w-210,27,178,39),expanded?"CLOSE BUILD":"MANAGE BUILD",expanded))
@@ -137,7 +137,7 @@ namespace VectorGame
             AddSocketRegions();if(!iconGuide&&!detailHovered&&!waveDetails)HandleLoadoutInput();
             CheckpointHeader(w,false);
             Label(new Rect(32,99,w-400,37),d.RewardClaimed?"Ready when you are.":"Choose 1 "+(d.Draft==DraftKind.Ability?"ability":d.Draft==DraftKind.Weapon?"weapon":d.Draft==DraftKind.Augment?"augment":d.Draft==DraftKind.Ultimate?"ultimate":"reward")+".",29,white,true);
-            Label(new Rect(32,139,w-64,20),d.RewardClaimed?"Manage your build, or continue.":"Pick a card. Its matching slots light up.",13,muted);
+            Label(new Rect(32,139,w-64,20),game.JourneyActive&&(game.OpeningDraft||game.Wave%7==0)?game.JourneyStory:d.RewardClaimed?"Manage your build, or continue.":"Pick a card. Its matching slots light up.",13,muted);
             Label(new Rect(w-340,108,308,22),"1 PICK  /  2 EQUIP  /  3 CONTINUE",11,muted,true,TextAnchor.UpperRight);
             if(!d.RewardClaimed)for(int i=0;i<3;i++)RewardCard(new Rect(32+i*(cardWidth+10),cardY,cardWidth,210),i);
             else ClaimedCard(new Rect(32,cardY,w-64,210));

@@ -75,7 +75,7 @@ namespace VectorGame
             if(revealAge<RevealDuration)return;
             heroPhysics.MoveRotation(RoadRotation*Quaternion.Euler(0,180,0));cameraVelocity=Vector3.zero;
             if(pursuer==null)CreatePursuer();
-            var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*24*(1+.035f*(Wave-1)),cooldown=2.2f,radius=2.55f,rig=pursuer};
+            var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*24*EnemyHealthScale,cooldown=2.2f,radius=2.55f,rig=pursuer};
             e.maxHealth=e.health;e.physics=new FighterPhysics(e.rig,e.id,this,false,true);
             enemies.Add(e);byId.Add(e.id,e);Spawned++;bossSpawned=true;pursuer=null;
             revealFollowers.Clear();Physics.SyncTransforms();State=RunState.Running;Announce("THE PURSUER");

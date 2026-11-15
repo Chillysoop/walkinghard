@@ -9,6 +9,8 @@ namespace VectorGame
         bool fusionPinned;
         VectorEncounter.FusionResult shownFusion;
         AbilityDeck fusionDeck;
+        internal void RestoreFusionFeedback()
+        {fusionDeck=game.Deck;seenFusions=game.FusionHistory.Count;shownFusion=null;fusionPinned=false;fusionStarted=-10;}
         void DrawFusionFeedback(float w,float h)
         {
             if(fusionDeck!=game.Deck){fusionDeck=game.Deck;seenFusions=0;shownFusion=null;fusionPinned=false;fusionStarted=-10;}

@@ -31,7 +31,7 @@ namespace VectorGame
         void BeginLegacyExpedition(){chapterRequested=false;ExpeditionActive=true;Begin();}
         void ResetExpeditionRun()
         {
-            ResetChapterRun();Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=ExpeditionPlan.Create(Seed,legacyExpeditionReview);
+            ResetChapterRun();Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=JourneyActive?LongJourney.Plan(Seed):ExpeditionPlan.Create(Seed,legacyExpeditionReview);
             if(stopProp!=null){stopProp.gameObject.SetActive(false);Destroy(stopProp.gameObject);stopProp=null;}
         }
         void OpenExpeditionStop()

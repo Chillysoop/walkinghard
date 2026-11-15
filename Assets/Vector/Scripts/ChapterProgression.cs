@@ -25,10 +25,10 @@ namespace VectorGame
     }
     [Serializable] public sealed class ChapterRun
     {
-        public string definition=CinderworksChapter.Id,id;public List<string> unlocks=new List<string>();public int cleared,rescued;public bool complete;
-        public bool Valid()=>definition==CinderworksChapter.Id&&Guid.TryParse(id,out _)&&unlocks!=null&&unlocks.All(x=>Constellation.Nodes.Any(n=>n.item==x))&&cleared>=0&&cleared<=CinderworksChapter.Encounters.Length&&rescued>=0&&rescued<=3&&(!complete||cleared==CinderworksChapter.Encounters.Length);
+        public string definition=LongJourney.Id,id;public List<string> unlocks=new List<string>();public int cleared,rescued;public bool complete;
+        public bool Valid()=>(definition==CinderworksChapter.Id||definition==LongJourney.Id)&&Guid.TryParse(id,out _)&&unlocks!=null&&unlocks.All(x=>Constellation.Nodes.Any(n=>n.item==x))&&cleared>=0&&cleared<=(definition==LongJourney.Id?21:6)&&rescued>=0&&rescued<=27&&(!complete||cleared==(definition==LongJourney.Id?21:6));
     }
-    [Serializable] public sealed class ChapterReceipt {public string id;public int cleared,rescued;public bool complete;}
+    [Serializable] public sealed class ChapterReceipt {public string id;public int cleared,rescued;public bool complete,seal;}
     [Serializable] public sealed class OfficeProfile
     {
         public int schema=1,sparks,rescued,victories;public bool seal;public List<string> unlocks=new List<string>();public List<ChapterReceipt> receipts=new List<ChapterReceipt>();
@@ -52,8 +52,8 @@ namespace VectorGame
         public int Sparks=>office.sparks;
         public int RescuedWorkers=>office.rescued;
         public bool CompletionSeal=>office.seal;
-        public int ChapterSparks=>chapterRun==null?0:CinderworksChapter.Encounters.Take(chapterRun.cleared).Sum(e=>e.sparks);
-        ChapterEncounter ChapterEncounter=>ChapterActive?CinderworksChapter.Encounters[Mathf.Clamp(Wave-1,0,CinderworksChapter.Encounters.Length-1)]:null;
+        public int ChapterSparks=>chapterRun==null?0:ChapterEncounters.Take(chapterRun.cleared).Sum(e=>e.sparks);
+        ChapterEncounter ChapterEncounter=>ChapterActive?ChapterEncounters[Mathf.Clamp(Wave-1,0,ChapterEncounters.Length-1)]:null;
         string OfficePath=>Path.Combine(SaveDirectory,"office.json");
         void LoadOffice()
         {
@@ -64,7 +64,7 @@ namespace VectorGame
                 try
                 {
                     var p=JsonUtility.FromJson<OfficeProfile>(File.ReadAllText(path));
-                    if(p==null||p.schema!=1||p.sparks<0||p.rescued<0||p.victories<0||p.unlocks==null||p.receipts==null||p.unlocks.Distinct().Count()!=p.unlocks.Count||p.unlocks.Any(x=>!Constellation.Nodes.Any(n=>n.item==x))||p.receipts.Any(r=>!Guid.TryParse(r.id,out _)||r.cleared<0||r.cleared>6||r.rescued<0||r.rescued>3)||p.receipts.Select(r=>r.id).Distinct().Count()!=p.receipts.Count)throw new InvalidOperationException("Invalid Office profile");
+                    if(p==null||p.schema!=1||p.sparks<0||p.rescued<0||p.victories<0||p.unlocks==null||p.receipts==null||p.unlocks.Distinct().Count()!=p.unlocks.Count||p.unlocks.Any(x=>!Constellation.Nodes.Any(n=>n.item==x))||p.receipts.Any(r=>!Guid.TryParse(r.id,out _)||r.cleared<0||r.cleared>21||r.rescued<0||r.rescued>27)||p.receipts.Select(r=>r.id).Distinct().Count()!=p.receipts.Count)throw new InvalidOperationException("Invalid Office profile");
                     office=p;if(path!=OfficePath)OfficeMessage="Recovered Office progress from backup.";return;
                 }
                 catch(Exception){ }
@@ -90,7 +90,7 @@ namespace VectorGame
         void ResetChapterRun()
         {
             OfficeOpen=false;if(loadingCheckpoint)return;
-            chapterRun=ExpeditionActive&&chapterRequested?new ChapterRun{id=Guid.NewGuid().ToString("N"),unlocks=new List<string>(office.unlocks)}:null;
+            chapterRun=ExpeditionActive&&chapterRequested?new ChapterRun{definition=legacyChapterReview?CinderworksChapter.Id:LongJourney.Id,id=Guid.NewGuid().ToString("N"),unlocks=new List<string>(office.unlocks)}:null;
         }
         bool ChapterRewardAllowed(ItemDefinition item)=>!ChapterActive||!Constellation.Nodes.Any(n=>n.item==item.id)||chapterRun.unlocks.Contains(item.id);
         void BindChapterRewards(){Deck.RewardFilter=ChapterRewardAllowed;}
@@ -100,17 +100,18 @@ namespace VectorGame
             var next=CopyOffice();var receipt=next.receipts.FirstOrDefault(r=>r.id==chapterRun.id);
             if(receipt==null){receipt=new ChapterReceipt{id=chapterRun.id};next.receipts.Add(receipt);}
             if(receipt.cleared>=chapterRun.cleared&&receipt.rescued>=chapterRun.rescued&&(!chapterRun.complete||receipt.complete))return true;
-            for(int i=receipt.cleared;i<chapterRun.cleared;i++)next.sparks+=CinderworksChapter.Encounters[i].sparks;
+            for(int i=receipt.cleared;i<chapterRun.cleared;i++)next.sparks+=ChapterEncounters[i].sparks;
             next.rescued+=Math.Max(0,chapterRun.rescued-receipt.rescued);
             receipt.cleared=Math.Max(receipt.cleared,chapterRun.cleared);receipt.rescued=Math.Max(receipt.rescued,chapterRun.rescued);
-            if(chapterRun.complete&&!receipt.complete){receipt.complete=true;next.seal=true;next.victories++;}
+            if(chapterRun.cleared>=(JourneyActive?7:6)){receipt.seal=true;next.seal=true;}
+            if(chapterRun.complete&&!receipt.complete){receipt.complete=true;next.victories++;}
             return SaveOffice(next);
         }
         void ClearChapterEncounter()
         {
-            if(!ChapterActive)return;chapterRun.cleared=Math.Max(chapterRun.cleared,Wave);chapterRun.complete=ChapterEncounter.boss;SyncChapterProgress();
+            if(!ChapterActive)return;chapterRun.cleared=Math.Max(chapterRun.cleared,Wave);chapterRun.complete=Wave>=WaveCount;SyncChapterProgress();
         }
-        void RecordChapterRescue(){if(ChapterActive){chapterRun.rescued=Math.Max(chapterRun.rescued,Stop.rescued);SyncChapterProgress();}}
+        void RecordChapterRescue(){if(ChapterActive){chapterRun.rescued++;SyncChapterProgress();}}
         public void OpenOffice()
         {
             if(ChapterActive&&!SyncChapterProgress())return;
