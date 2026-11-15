@@ -195,17 +195,19 @@ namespace VectorGame
             if(Array.IndexOf(args,"-crewReview")>=0)StartCoroutine(ReviewCrews());
             if(Array.IndexOf(args,"-foremanReview")>=0)StartCoroutine(ReviewForeman());
             if(Array.IndexOf(args,"-varietyReview")>=0)StartCoroutine(ReviewExpeditionVariety());
+            if(Array.IndexOf(args,"-chapterReview")>=0)StartCoroutine(ReviewChapter());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
         public void Begin(bool repeatSeed=false)
         {
+            if(ChapterActive&&!loadingCheckpoint&&!SyncChapterProgress())return;
             if(CombatPreviewActive&&!startingCombatPreview){BeginCombatPreview(CombatPreviewPreset,CombatPreviewStyle);return;}
             EndTutorial();
             foreach(var e in enemies)DisposeEnemy(e);foreach(var e in corpses)DisposeEnemy(e);
             enemies.Clear();corpses.Clear();byId.Clear();flights.Clear();contacts.Clear();castTrace.Clear();Waves.Clear();fx.Clear();
             if(!repeatSeed)Seed=qa||forcedSeed?tuning.seed:new System.Random(Environment.TickCount).Next(1,int.MaxValue);
-            ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();ResetExpeditionAppearance();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
+            ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();ResetExpeditionAppearance();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);BindChapterRewards();Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
             CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
@@ -312,7 +314,7 @@ namespace VectorGame
             if(TutorialActive){StepTutorial(Time.unscaledDeltaTime);return;}
             if(MechanicReview){StepMechanicReview(Time.unscaledDeltaTime);return;}
             if(CombatPreviewActive){StepCombatPreview(Time.unscaledDeltaTime);return;}
-            if(!qa&&!StopOpen&&hud?.ExpeditionOverlayOpen!=true&&hud?.HandleOverlayInput()!=true)
+            if(!qa&&!OfficeOpen&&!StopOpen&&hud?.ExpeditionOverlayOpen!=true&&hud?.HandleOverlayInput()!=true)
             {
                 if(Input.GetKeyDown(KeyCode.Return)&&(State==RunState.Ready||State==RunState.Complete||State==RunState.Defeated))Begin();
                 if(Input.GetKeyDown(KeyCode.R))Begin();
@@ -380,7 +382,7 @@ namespace VectorGame
             {
                 if(finaleActive){for(int n=0;n<3;n++)SpawnEntry(2);}
                 else {SpawnEntry(NextFormationEntry());if((Wave==1||Wave==3||Wave==6)&&entryTurn%4==0)SpawnEntry(NextFormationEntry());}
-                float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/tuning.waveCount;
+                float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/tuning.waveArrivals))/WaveCount;
                 spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval();
             }
             long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
@@ -486,7 +488,8 @@ namespace VectorGame
             Score.Bank();CaptureWaveFeedback();
             Waves.Add(new WaveReport{wave=Wave,route=RouteName(ActiveRoute),kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});
             accumulator=0;ActiveSlot=PairSlot=-1;Preparation=0;
-            if(Wave>=tuning.waveCount){State=RunState.Complete;return;}
+            ClearChapterEncounter();
+            if(Wave>=WaveCount){State=RunState.Complete;return;}
             OpenCheckpoint();
         }
         void UpdateCamera(float dt)

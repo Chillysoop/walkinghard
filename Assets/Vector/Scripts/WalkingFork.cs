@@ -11,7 +11,7 @@ namespace VectorGame
         public float ForkSeconds=>RoutePending?Mathf.Max(0,ForkDecisionSeconds-forkAge):0;
         public bool ForkApproach=>forkWave==Wave&&forkStarted>=0&&WaveElapsed<forkStarted+10;
         public bool ShowForkSigns=>State==RunState.Running&&(RoutePending||forkLockedAge>0);
-        public bool IsForkWave=>(Wave==2||Wave==5)&&Wave<tuning.waveCount&&Controlled==null&&!CombatPreviewActive&&!TutorialActive;
+        public bool IsForkWave=>(ChapterActive?ChapterEncounter.fork>=0:Wave==2||Wave==5)&&Wave<WaveCount&&Controlled==null&&!CombatPreviewActive&&!TutorialActive;
         int forkWave;
         float forkAge,forkStarted,forkLockedAge;
         Vector3 forkOrigin;
@@ -53,7 +53,7 @@ namespace VectorGame
         {
             if(!RoutePending)return;
             SelectedRoute=ForkChoice;routedWave=Wave+1;RoutePending=false;forkLockedAge=2;
-            if(ExpeditionActive&&expeditionPlan!=null)expeditionPlan.chosen[Wave==5?1:0]=ForkChoice;
+            if(ExpeditionActive&&expeditionPlan!=null)expeditionPlan.chosen[ChapterActive?ChapterEncounter.fork:Wave==5?1:0]=ForkChoice;
             roads.Follow(forkVisual,ForkChoice==ForkLeft?0:1);
         }
         void StepWalkingFork(float dt)

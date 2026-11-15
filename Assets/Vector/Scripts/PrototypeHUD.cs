@@ -42,6 +42,7 @@ namespace VectorGame
             detailHovered=!dragging&&detailValid&&detailPanel.Contains(Pointer);
             if(detailHovered)detailLastHover=Time.realtimeSinceStartup;
             hoveredItem=detailHovered?detailItem:null;hoveredOffer=detailHovered?detailOffer:null;
+            if(game.OfficeOpen){DeadLetterOffice(w,h);return;}
             if(game.State==VectorEncounter.RunState.Ready){Intro(w,h);return;}
             if(game.TutorialActive&&game.TutorialLesson>=VectorEncounter.Lesson.Practice){TutorialCombat(w,h);return;}
             if(game.State==VectorEncounter.RunState.Revealing){FinaleReveal(w,h);if(game.CombatPreviewActive)CombatPreviewControls(w);return;}
@@ -100,7 +101,7 @@ namespace VectorGame
             Segments(new Rect(38,343,202,5),game.Score.Remaining/ComboScore.Window,Strong,10);
             float x=w-330;
             Panel(new Rect(x,18,310,108));
-            Label(new Rect(x+20,34,190,23),game.FinaleActive?"FINAL STAND":game.ForemanPresent?"FOREMAN":game.CombatPreviewActive?"PRACTICE":game.CleaningUp?"CLEANUP":"WAVE  "+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
+            Label(new Rect(x+20,34,190,23),game.FinaleActive?"FINAL STAND":game.ForemanPresent?"FOREMAN":game.CombatPreviewActive?"PRACTICE":game.CleaningUp?"CLEANUP":(game.ChapterActive?"ENCOUNTER  ":"WAVE  ")+game.Wave.ToString("00")+" / "+game.WaveCount.ToString("00"),17,white,true);
             Label(new Rect(x+212,29,80,40),game.FinaleActive||game.ForemanPresent?Mathf.CeilToInt(game.BossFraction*100)+"%":Mathf.CeilToInt(game.WaveRemaining)+"s",game.FinaleActive||game.ForemanPresent?24:31,white,true,TextAnchor.UpperRight);
             Stroke(new Vector2(x+20,64),new Vector2(x+290,64),line,1);
             string[] values={game.Kills.ToString(),game.EnemyCount.ToString(),game.CollisionHits.ToString()};
@@ -190,7 +191,7 @@ namespace VectorGame
         {
             Box(new Rect(0,0,w,h),new Color(.015f,.035f,.045f,.87f));float x=w/2-480,y=h/2-305;Panel(new Rect(x,y,960,610));
             bool win=game.State==VectorEncounter.RunState.Complete;
-            Label(new Rect(x+32,y+24,896,22),game.CombatPreviewActive?(win?"PRACTICE COMPLETE":"PRACTICE ENDED"):win?game.WaveCount+" WAVES SURVIVED":"OVERRUN IN WAVE "+game.Wave,15,Accent,true);
+            Label(new Rect(x+32,y+24,896,22),game.CombatPreviewActive?(win?"PRACTICE COMPLETE":"PRACTICE ENDED"):win?(game.ChapterActive?"CINDERWORKS COMPLETE · +4 SPARKS · COMPLETION SEAL":game.WaveCount+" WAVES SURVIVED"):"OVERRUN IN WAVE "+game.Wave,15,Accent,true);
             Label(new Rect(x+32,y+66,896,60),"YOUR ORDER. YOUR FIGHT.",40,white,true);
             Label(new Rect(x+32,y+137,896,40),game.Deck.Loadout,17,muted);
             string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
@@ -204,7 +205,7 @@ namespace VectorGame
             foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / reach "+c.outOfReachWait.ToString("0.0")+"s / arrivals "+c.ArrivalWait.ToString("0.0")+"s / blocked "+c.obstructedWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
             foreach(var note in game.InteractionNotes){Label(new Rect(4,rowY,870,18),note.Key+" × "+note.Value,11,Accent);rowY+=19;}
             GUI.EndScrollView();
-            if(Button(new Rect(x+32,y+534,430,46),"NEW DRAFT [ R ]",true))game.Begin();
+            if(Button(new Rect(x+32,y+534,430,46),game.ChapterActive?"RETURN TO OFFICE · "+game.ChapterSparks+" SPARKS EARNED":"NEW DRAFT [ R ]",true)){if(game.ChapterActive)game.OpenOffice();else game.Begin();}
             if(Button(new Rect(x+478,y+534,290,46),"REPEAT SEED [ T ]"))game.Begin(true);
             if(Button(new Rect(x+784,y+534,144,46),"MAIN MENU"))game.MainMenu();
         }

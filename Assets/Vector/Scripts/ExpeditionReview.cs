@@ -41,7 +41,7 @@ namespace VectorGame
             for(int i=0;i<10;i++)yield return null;
             if(Array.IndexOf(args,"-expeditionFullRun")>=0)
             {
-                simulationPolicy="pinball";BeginExpedition();int drafts=0,events=0,services=0;float wallStart=Time.realtimeSinceStartup;
+                simulationPolicy="pinball";BeginLegacyExpedition();int drafts=0,events=0,services=0;float wallStart=Time.realtimeSinceStartup;
                 report.scope="Native eight-wave Expedition with normal health, ordinary offers, automated pinball preferences and real physics. Restores each reward checkpoint. One functional run, not an economy balance estimate.";
                 var sampled=new HashSet<int>();
                 while(State!=RunState.Complete&&State!=RunState.Defeated)
@@ -95,7 +95,7 @@ namespace VectorGame
                     var restored=new CheckpointRandom(tracked.Seed,tracked.Draws);Require(restored.Next()==tracked.Next(),"RNG resumes at saved draw "+seed);
                 }
                 ExpeditionActive=false;Begin(true);State=RunState.Ready;yield return Snapshot("01-menu");
-                BeginExpedition();Require(SaveCheckpoint(),"opening draft saves");string opening=File.ReadAllText(SavePath);string offers=string.Join("|",Deck.Offers.Select(o=>o.def.id+"/"+o.rank));
+                BeginLegacyExpedition();Require(SaveCheckpoint(),"opening draft saves");string opening=File.ReadAllText(SavePath);string offers=string.Join("|",Deck.Offers.Select(o=>o.def.id+"/"+o.rank));
                 Require(ResumeExpedition()&&offers==string.Join("|",Deck.Offers.Select(o=>o.def.id+"/"+o.rank)),"opening offers preserved");
                 Reroll();int rerolls=Deck.Rerolls;offers=string.Join("|",Deck.Offers.Select(o=>o.def.id+"/"+o.rank));
                 Require(ResumeExpedition()&&Deck.Rerolls==rerolls&&offers==string.Join("|",Deck.Offers.Select(o=>o.def.id+"/"+o.rank)),"reroll consumption and resulting offers preserved");

@@ -1,8 +1,24 @@
 # Walking Hard — build-variety contract
 
-Revision 25, November 13, 2026. Includes the combat-flow, physical-fork, Expedition stops, Cinderworks crews, Shift Foreman and encounter-variety development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
+Revision 26, November 14, 2026. Includes the combat-flow, physical-fork, Expedition stops, Cinderworks crews, Shift Foreman and encounter-variety development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Shared-augment verification and measured limitations are in QA/v080-verification.md. Earlier Recoil and checkpoint evidence remains in QA/v077-verification.md and QA/v074-verification.md.
 
-## Cinderworks destination and event variety
+## Cinderworks chapter, Office and constellation
+
+New Expeditions enter the Dead Letter Office and run a six-encounter Cinderworks chapter ending with the Shift Foreman. Explicit chapter definitions own stable encounter IDs, fork positions, reward lists and Spark payouts. Moving Y-junctions remain at encounters two and five; events resolve at the following checkpoint and combat choices modify the next fight. Two opening picks and rewards after encounters one through five yield ten ordinary item choices and two augment choices. The chapter stops after the Foreman; Quick Run and existing eight-wave saves retain their Pursuer finale.
+
+The Office is a compact between-run interface with Mara, Iven, rescued-worker attendance lamps and a visible constellation. One persistent currency, **Sparks**, is banked immediately: one per ordinary encounter cleared and four for the Foreman, nine for a full chapter. Defeat preserves banked Sparks. Salvage remains the separate in-run currency. The first Foreman victory recovers a persistent completion seal and opens the outer tier. Successful rescues persist immediately, even if the chapter later fails.
+
+| Branch | Inner star: 3 Sparks | Outer star: 5 Sparks |
+| --- | --- | --- |
+| Equipment | Conductor Wraps | Execution Greatsword |
+| Passives (equippable gear) | Relay Coil | Salvage Magnet |
+| Ultimates | Harvest | Redline |
+
+Each outer star requires its inner star and the completion seal. Unlocking adds an existing authored identity to future chapter drafts; it does not equip it or grant permanent damage/health. The six identities keep their original effects and artwork. All other eligible items remain available in new chapters, including three distinct initial ultimate choices. Quick Run and legacy Expeditions retain their full pools. Costs, prerequisites, effects, balance and purchase feedback are visible before commitment. The first constellation costs 24 Sparks in total; payouts and prices are initial economy tuning.
+
+Schema 5 saves chapter identity, a unique run ID and the starting unlock snapshot alongside the complete combat checkpoint. Buying a node cannot change an already-saved run's pool. Office profile schema 1 records currency, unlocks, seal, victories, rescued workers and per-run receipts. Atomic profile writes and monotonic receipts prevent repeated payment from duplicate clicks or replaying earlier checkpoints. Schemas 1–4 resume their original eight-wave format. Corrupt Office saves fall back to a valid backup; if both fail, purchases/new chapters are blocked and the files are preserved. See [chapter verification](QA/cinderworks-chapter-verification.md).
+
+## Cinderworks destination and event variety (previous eight-wave pass)
 
 New Expeditions generate and save an itinerary from an independent seeded RNG. At the wave-two physical fork, a shield/repair/freight combat route competes with an auction, pressure, rescue or existing Overtime event. At the wave-five fork, salvage service competes with an elite, reclaimer, volatile or different event destination. Sides vary; a service is always offered, and the same event type is not offered twice. Existing six-combat-second selection, automatic highlighted choice, pause behavior and independent walled roads remain. Events/services resolve at the reward stop after the selection wave; combat routes modify the following wave. The selected road's small icon, name and short benefit identify the choice.
 

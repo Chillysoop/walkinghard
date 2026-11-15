@@ -28,12 +28,12 @@ namespace VectorGame
             void Advance(int frames){for(int i=0;i<frames&&State==RunState.Running;i++)AdvanceCombat(1f/60);}
             void Until(Func<bool> done,string rule){for(int i=0;i<6000&&!done();i++)Advance(1);Require(done(),rule);}
             void Event(EncounterRoute kind,int seed)
-            {tuning.heroHealth=280;forcedSeed=true;tuning.seed=seed;BeginExpedition();Salvage=100;Health=180;Wave=2;routedWave=3;SelectedRoute=kind;OpenExpeditionStop();}
+            {tuning.heroHealth=280;forcedSeed=true;tuning.seed=seed;BeginLegacyExpedition();Salvage=100;Health=180;Wave=2;routedWave=3;SelectedRoute=kind;OpenExpeditionStop();}
             void Roll(bool win){int seed=Enumerable.Range(1,500).First(s=>win?new System.Random(s).Next(1,101)<=5:new System.Random(s).Next(1,101)>95);eventRandom=new CheckpointRandom(seed);}
             QualitySettings.vSyncCount=0;Application.targetFrameRate=render?60:-1;if(render)Screen.SetResolution(1920,1080,false);for(int i=0;i<8;i++)yield return null;
             if(full)
             {
-                simulationPolicy="pinball";BeginExpedition();float start=Time.realtimeSinceStartup;var shots=new HashSet<string>();
+                simulationPolicy="pinball";BeginLegacyExpedition();float start=Time.realtimeSinceStartup;var shots=new HashSet<string>();
                 while(State!=RunState.Complete&&State!=RunState.Defeated)
                 {
                     if(Time.realtimeSinceStartup-start>300)throw new InvalidOperationException("Variety full run wall timeout");
@@ -76,7 +76,7 @@ namespace VectorGame
                     distinct.Add(string.Join(",",a.left.Concat(a.right)));foreach(var route in a.left.Concat(a.right))offered.Add(route);
                 }
                 Require(distinct.Count>=20&&RegionalEncounters.All.All(e=>offered.Contains(e.id)),"seeds expose all new destinations and at least twenty fork combinations");
-                tuning.heroHealth=10000;BeginExpedition();OpeningPicks=2;Wave=2;tuning.waveArrivals=120;BeginWave();spawnTimer=10000;
+                tuning.heroHealth=10000;BeginLegacyExpedition();OpeningPicks=2;Wave=2;tuning.waveArrivals=120;BeginWave();spawnTimer=10000;
                 Until(()=>RoutePending,"new itinerary produces a walking fork");var left=ForkLeft;var right=ForkRight;
                 Require(forkVisual.Left.Root.GetComponentsInChildren<BoxCollider>().Length>20&&forkVisual.Right.Root.GetComponentsInChildren<BoxCollider>().Length>20,"two independent walled roads remain physical");
                 Require(hud.HandleForkPointer(EventType.MouseDown,hud.ForkChoiceRect(1,1600,900).center,1600,900)&&ForkChoice==right,"road sign pointer selects generated destination");yield return Shot("01-generated-fork");
@@ -118,7 +118,7 @@ namespace VectorGame
                 Event(EncounterRoute.Rescue,45);Screen.SetResolution(1280,720,false);ReducedMotion=true;fx.SetReducedMotion(true);for(int i=0;i<8;i++)yield return null;yield return Shot("rescue-720p");
                 foreach(var route in new[]{EncounterRoute.RepairLine,EncounterRoute.FreightYard,EncounterRoute.Reclaimers,EncounterRoute.EliteShift})
                 {
-                    tuning.heroHealth=10000;BeginExpedition();EquipForemanKit("hammer");Wave=7;expeditionPlan.waves[6]=route;BeginWave();spawnTimer=10000;
+                    tuning.heroHealth=10000;BeginLegacyExpedition();EquipForemanKit("hammer");Wave=7;expeditionPlan.waves[6]=route;BeginWave();spawnTimer=10000;
                     for(int i=0;i<18;i++)SpawnEntry(NextFormationEntry());
                     Require(enemies.Any(e=>e.crew==RegionalEncounters.Find(route).crew)&&enemies.Count(e=>e.crew!=CrewRole.None)<=3&&VisibleSpawns==0,"authored concealed formation and crew cap / "+route);
                     if(route==EncounterRoute.RepairLine||route==EncounterRoute.EliteShift)Require(enemies.Count(e=>e.heavy)>=3,"heavy screen / "+route);

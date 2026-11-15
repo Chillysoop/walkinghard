@@ -15,10 +15,10 @@ namespace VectorGame
         void ExpeditionIntro(float w,float h,float y)
         {
             float x=540,width=w-x-40;Panel(new Rect(x,y,width,570));
-            Label(new Rect(x+28,y+28,width-56,25),"CINDERWORKS / EXPEDITION",22,Accent,true);
+            Label(new Rect(x+28,y+28,width-56,25),"CINDERWORKS / DEAD LETTER OFFICE",22,Accent,true);
             Label(new Rect(x+28,y+82,width-56,72),"The factory remembers your orders.\nIt has forgotten who gave them.",23,white,true);
-            Label(new Rect(x+28,y+177,width-56,94),"Eight waves. Choose roads while you walk.\nBid for gear, tap unstable machinery or rescue workers. Every expedition offers different roads; salvage can buy repairs or matching gear.",17,muted);
-            if(Button(new Rect(x+28,y+288,width-56,52),"NEW EXPEDITION",true))game.BeginExpedition();
+            Label(new Rect(x+28,y+177,width-56,94),"Six encounters, ending at the Foreman. Choose roads while you walk.\nBid for gear, tap unstable machinery or rescue workers. Every expedition offers different roads; salvage can buy repairs or matching gear.",17,muted);
+            if(Button(new Rect(x+28,y+288,width-56,52),"DEAD LETTER OFFICE · "+game.Sparks+" SPARKS",true))game.OpenOffice();
             Label(new Rect(x+28,y+344,width-56,30),game.HasCheckpoint?"Starting a new expedition replaces your stored run.":"Saves at reward checkpoints. Combat resumes from the last checkpoint.",11,muted);
             if(ExpeditionButton(new Rect(x+28,y+389,width-56,45),game.HasCheckpoint?game.ResumeLabel:"NO SAVED EXPEDITION",game.HasCheckpoint))game.ResumeExpedition();
             if(Button(new Rect(x+28,y+454,width-56,42),"RECOVERED RECORDS  ·  "+game.ArchiveCount+" / 6"))expeditionArchive=true;
@@ -46,7 +46,7 @@ namespace VectorGame
             Box(new Rect(0,0,w,h),new Color(0,0,0,.64f));Panel(new Rect(x,y,1120,600));
             Label(new Rect(x+26,y+22,650,30),overtime?game.OvertimeTitle:"IVEN'S SALVAGE BENCH",24,Accent,true);
             Label(new Rect(x+26,y+64,680,24),"BANKED SALVAGE  "+game.Salvage+"     ·     INTEGRITY  "+Mathf.CeilToInt(game.Health)+" / "+Mathf.RoundToInt(game.MaxHealth),15,white,true);
-            if(Button(new Rect(x+855,y+22,239,36),"SAVE & MAIN MENU"))game.SuspendExpedition();
+            if(Button(new Rect(x+855,y+22,239,36),game.ChapterActive?"SAVE & OFFICE":"SAVE & MAIN MENU"))game.SuspendExpedition();
             Stroke(new Vector2(x+26,y+108),new Vector2(x+1094,y+108),line,1);
             Label(new Rect(x+26,y+135,305,190),overtime?game.OvertimeStory:"Iven sorts useful parts from the factory's wreckage. The Continuance calls this theft. Iven calls it returning equipment to the living.",18,white);
             Label(new Rect(x+26,y+353,305,112),overtime?"Each attempt risks the whole unbanked haul. The odds fall and the stakes rise. Banked salvage is safe.\n\nUp to four attempts. You can leave with the starting haul.":"One repair and one matching copy per visit. Stock is reserved from your current build.\n\nThree copies of the same item and rarity fuse automatically.",15,muted);

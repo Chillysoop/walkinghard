@@ -55,7 +55,7 @@ namespace VectorGame
             DrawRegionalRouteGlyph(stop.kind,new Vector2(x+40,y+39),Accent);
             Label(new Rect(x+70,y+24,710,32),VectorEncounter.RouteName(stop.kind),24,Accent,true);
             Label(new Rect(x+26,y+71,800,24),"SALVAGE  "+game.Salvage+"     ·     INTEGRITY  "+Mathf.CeilToInt(game.Health)+" / "+Mathf.RoundToInt(game.MaxHealth),15,white,true);
-            if(Button(new Rect(x+855,y+22,239,36),"SAVE & MAIN MENU"))game.SuspendExpedition();
+            if(Button(new Rect(x+855,y+22,239,36),game.ChapterActive?"SAVE & OFFICE":"SAVE & MAIN MENU"))game.SuspendExpedition();
             Stroke(new Vector2(x+26,y+108),new Vector2(x+1094,y+108),line,1);
             Label(new Rect(x+26,y+135,305,205),game.RegionalEventStory,18,white);
             string rule=auction?"One bid. The displayed item is guaranteed only if you win. Your bid is spent on either outcome. Leaving costs nothing.":rescue?"Three rescue attempts. Each success secures salvage and repair immediately. Earlier rewards cannot be lost. Tools cost salvage; forcing a lock risks injury.":"Four taps at most. Each tap risks the entire unbanked haul. A rupture ends the event. Your banked salvage is safe. You may bank the starting haul.";

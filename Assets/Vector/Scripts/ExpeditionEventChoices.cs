@@ -46,7 +46,7 @@ namespace VectorGame
             {Health-=harm;Stop.result="RESCUE FAILED · "+(price>0?price+" salvage spent.":harm+" integrity lost.")+"\nEarlier rescues and rewards are secure.";}
             else
             {
-                float repair=Mathf.Min(MaxHealth-Health,Stop.repair);Health+=repair;Salvage+=gain;Stop.rescued++;
+                float repair=Mathf.Min(MaxHealth-Health,Stop.repair);Health+=repair;Salvage+=gain;Stop.rescued++;RecordChapterRescue();
                 Stop.result="WORKER FREED · +"+gain+" salvage, +"+Mathf.RoundToInt(repair)+" integrity.\n"+(price>0?price+" salvage spent on tools. ":"")+"Rewards secured immediately.";
             }
             Stop.result+="\n"+roll;SaveCheckpoint();return true;

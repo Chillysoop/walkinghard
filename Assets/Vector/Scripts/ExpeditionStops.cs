@@ -27,10 +27,11 @@ namespace VectorGame
         public EncounterRoute ForkRight=>PlanFork(1);
         public static string ForkLabel(EncounterRoute route)=>RegionalEncounters.Find(route)?.label??(route==EncounterRoute.SalvageStop?"SALVAGE":route==EncounterRoute.Overtime?"OVERTIME":route==EncounterRoute.ShieldLine?"SHIELDS":"VOLATILES");
         public static string ForkBenefit(EncounterRoute route)=>RegionalEncounters.Find(route)?.benefit??(route==EncounterRoute.SalvageStop?"HEAL OR COPY":route==EncounterRoute.Overtime?"RISK & SALVAGE":route==EncounterRoute.ShieldLine?"MORE GEAR":"MORE ABILITIES");
-        public void BeginExpedition(){ExpeditionActive=true;Begin();}
+        public void BeginExpedition(){if(!officeStorageReady)return;chapterRequested=true;ExpeditionActive=true;Begin();}
+        void BeginLegacyExpedition(){chapterRequested=false;ExpeditionActive=true;Begin();}
         void ResetExpeditionRun()
         {
-            Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=ExpeditionPlan.Create(Seed,legacyExpeditionReview);
+            ResetChapterRun();Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=ExpeditionPlan.Create(Seed,legacyExpeditionReview);
             if(stopProp!=null){stopProp.gameObject.SetActive(false);Destroy(stopProp.gameObject);stopProp=null;}
         }
         void OpenExpeditionStop()
