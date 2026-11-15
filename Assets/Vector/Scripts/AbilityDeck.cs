@@ -52,7 +52,7 @@ namespace VectorGame
         public RewardOffer(ItemDefinition def,int copies=1,int rank=1){this.def=def;this.copies=copies;this.rank=rank;}
         public string Name=>def.name+(copies>1?" ×"+copies:"");
     }
-    public sealed class AbilityDeck
+    public sealed partial class AbilityDeck
     {
         public const int SequenceSize=5;
         public Func<ItemDefinition,bool> RewardFilter;

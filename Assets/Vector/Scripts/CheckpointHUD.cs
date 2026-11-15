@@ -168,7 +168,13 @@ namespace VectorGame
         }
         void ClearLoadoutGesture()
         {
+            loadoutHover=null;comparisonKey="";comparisonScroll=Vector2.zero;
             dragging=false;detailItem=null;detailHovered=false;dragItem=selectedItem=lastClickItem=null;dragOffer=lastClickOffer=-1;lastClickOffers=null;lastClickTime=-10;GUIUtility.hotControl=0;loadoutFeedback="";
+        }
+        void StoredTarget(LoadoutItem item,DropRegion hit,out PlaceKind place,out int index)
+        {
+            place=hit.place;index=hit.index;
+            if(place==PlaceKind.Sequence&&item.def.kind==ItemKind.Weapon&&hit.item?.def.kind==ItemKind.Basic){place=PlaceKind.Weapon;index=hit.item.mount;}
         }
         void RewardTarget(int offer,DropRegion hit,out PlaceKind place,out int index)
         {
@@ -177,6 +183,7 @@ namespace VectorGame
         }
         void DropReward(int offer,DropRegion hit)
         {
+            if(!OfferFitsRegion(offer,hit)){loadoutFeedback="Does not fit. Use a glowing slot or the Store area.";return;}
             if(game.Deck.Offers[offer].def.kind==ItemKind.Augment&&Host(hit) is LoadoutItem host&&host.Augmentable){if(game.ClaimAugmentToHost(offer,host,!editAfterPick)){ClearLoadoutGesture();GUIUtility.ExitGUI();}loadoutFeedback="Choose a compatible highlighted host.";return;}
             RewardTarget(offer,hit,out var place,out int index);
             if(game.ClaimReward(offer,place,index,!editAfterPick)){ClearLoadoutGesture();GUIUtility.ExitGUI();}
@@ -184,7 +191,9 @@ namespace VectorGame
         }
         void HandleLoadoutInput()
         {
-            var e=TakeReviewMouse()??Event.current;DropRegion hit=dropRegions.Find(r=>r.rect.Contains(e.mousePosition));
+            var e=TakeReviewMouse()??Event.current;
+            if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){ClearLoadoutGesture();e.Use();return;}
+            DropRegion hit=dropRegions.Find(r=>r.rect.Contains(e.mousePosition));
             if(e.type==EventType.MouseDown&&e.button==0&&hit!=null)
             {dragStart=e.mousePosition;dragItem=hit.item;dragOffer=hit.offer;dragging=false;e.Use();}
             if(e.type==EventType.MouseDrag&&(dragItem!=null||dragOffer>=0)&&Vector2.Distance(e.mousePosition,dragStart)>6){dragging=true;e.Use();}
@@ -193,7 +202,7 @@ namespace VectorGame
             {
                 if(hit!=null&&hit.offer<0)
                 {
-                    if(dragItem!=null){var moving=dragItem;string fusionFeedback=MoveFeedback(moving,hit);bool moved=MoveToRegion(moving,hit);loadoutFeedback=moved&&fusionFeedback.Length>0?fusionFeedback:game.Deck.MoveMessage;}
+                    if(dragItem!=null){var moving=dragItem;string fusionFeedback=MoveFeedback(moving,hit);bool moved=MoveToRegion(moving,hit);loadoutFeedback=!moved?"Does not fit. Use a glowing slot or the Store area.":fusionFeedback.Length>0?fusionFeedback:game.Deck.MoveMessage;}
                     else if(dragOffer>=0)DropReward(dragOffer,hit);
                 }
                 lastClickTime=-10;GUIUtility.hotControl=0;selectedItem=null;e.Use();
@@ -202,10 +211,10 @@ namespace VectorGame
             {
                 bool twice=Time.realtimeSinceStartup-lastClickTime<.4f&&lastClickOffers==game.Deck.Offers&&lastClickOffer==hit.offer&&lastClickItem==hit.item;
                 lastClickTime=Time.realtimeSinceStartup;lastClickOffer=hit.offer;lastClickItem=hit.item;lastClickOffers=game.Deck.Offers;
-                if(twice&&hit.offer>=0){game.SelectOffer(hit.offer);game.AcceptSelectedReward(!editAfterPick);if(game.Deck.Draft==DraftKind.Augment&&!game.Deck.RewardClaimed){loadoutFeedback="Choose a highlighted host to attach.";}else{ClearLoadoutGesture();GUIUtility.ExitGUI();}}
+                if(twice&&hit.offer>=0&&!UnifiedCheckpoint){game.SelectOffer(hit.offer);game.AcceptSelectedReward(!editAfterPick);if(game.Deck.Draft==DraftKind.Augment&&!game.Deck.RewardClaimed){loadoutFeedback="Choose a highlighted host to attach.";}else{ClearLoadoutGesture();GUIUtility.ExitGUI();}}
                 else if(twice&&hit.item!=null){bool equipped=game.AutoEquip(hit.item);selectedItem=!equipped&&hit.item.def.kind==ItemKind.Augment?hit.item:null;loadoutFeedback=game.Deck.MoveMessage;}
                 else if(hit.offer>=0){game.SelectOffer(hit.offer);selectedItem=null;}
-                else if(selectedItem!=null&&hit.item!=selectedItem){var moving=selectedItem;string fusionFeedback=MoveFeedback(moving,hit);bool moved=MoveToRegion(moving,hit);selectedItem=null;loadoutFeedback=moved&&fusionFeedback.Length>0?fusionFeedback:game.Deck.MoveMessage;}
+                else if(selectedItem!=null&&hit.item!=selectedItem){var moving=selectedItem;string fusionFeedback=MoveFeedback(moving,hit);bool moved=MoveToRegion(moving,hit);selectedItem=null;loadoutFeedback=!moved?"Does not fit. Use a glowing slot or the Store area.":fusionFeedback.Length>0?fusionFeedback:game.Deck.MoveMessage;}
                 else if(hit.place==PlaceKind.Inventory&&hit.item!=null&&!hit.socket&&
                     !(game.Deck.Selected>=0&&!game.Deck.RewardClaimed&&game.Deck.Offers[game.Deck.Selected].def.kind==ItemKind.Augment&&OfferFitsRegion(game.Deck.Selected,hit)))
                     selectedItem=selectedItem==hit.item?null:hit.item;
