@@ -10,7 +10,7 @@ namespace VectorGame
         readonly Queue<DraftKind> pendingDrafts=new Queue<DraftKind>();
         public int ItemChoices {get;private set;}
         public int AugmentChoices {get;private set;}
-        public int WaveCount=>tuning.waveCount;
+        public int WaveCount=>ChapterActive?CinderworksChapter.Encounters.Length:tuning.waveCount;
         public string PendingDraft=>pendingDrafts.Count>0?"NEXT: "+pendingDrafts.Peek().ToString().ToUpperInvariant()+" PICK":"LET'S FIGHT";
         bool bossSpawned;
         public float BossFraction=>enemies.FirstOrDefault(e=>e.boss) is Enemy boss?Mathf.Clamp01(boss.health/boss.maxHealth):0;
@@ -28,7 +28,7 @@ namespace VectorGame
             // Finish a selected route before opening rewards. The fallback also supports
             // fixtures that jump directly to a checkpoint without simulating its approach.
             if(IsForkWave&&routedWave!=Wave+1){if(!RoutePending)BeginWalkingFork();CommitWalkingFork();}
-            pendingDrafts.Clear();foreach(var kind in RewardsAfter(Wave))pendingDrafts.Enqueue(kind);State=RunState.Drafting;
+            pendingDrafts.Clear();foreach(var kind in ChapterEncounter?.rewards??RewardsAfter(Wave))pendingDrafts.Enqueue(kind);State=RunState.Drafting;
             var emphasis=routedWave==Wave+1?RouteReward(simulation&&simulationRewardRoute>=0?(EncounterRoute)simulationRewardRoute:SelectedRoute):RewardEmphasis.None;
             Deck.Open(pendingDrafts.Dequeue(),true,emphasis);
             OpenExpeditionStop();SaveCheckpoint();

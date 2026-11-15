@@ -35,7 +35,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-crewFullRun")>=0)
             {
                 report.scope="Normal-health eight-wave Expedition with ordinary offers and automated pinball choices; one functional run, not balance evidence.";
-                simulationPolicy="pinball";BeginExpedition();int restored=0;float start=Time.realtimeSinceStartup;var shot=new HashSet<int>();
+                simulationPolicy="pinball";BeginLegacyExpedition();int restored=0;float start=Time.realtimeSinceStartup;var shot=new HashSet<int>();
                 while(State!=RunState.Complete&&State!=RunState.Defeated)
                 {
                     if(Time.realtimeSinceStartup-start>300)throw new InvalidOperationException("Crew full run timed out");
@@ -67,7 +67,7 @@ namespace VectorGame
             {
                 CheckCombatMechanics();report.productionAssertions=mechanicAssertions;ExpeditionActive=false;Begin(true);
                 var colliders=regionalWorld.GetComponentsInChildren<Collider>().Select(c=>(c.GetInstanceID(),c.bounds.center,c.bounds.size)).ToArray();
-                tuning.heroHealth=10000;BeginExpedition();yield return null;
+                tuning.heroHealth=10000;BeginLegacyExpedition();yield return null;
                 Require(colliders.SequenceEqual(regionalWorld.GetComponentsInChildren<Collider>().Select(c=>(c.GetInstanceID(),c.bounds.center,c.bounds.size))),"region changes no original collision geometry");
                 Require(VisualFactory.CinderworksStyle&&regionalWorld.RoadDecoration.GetComponentsInChildren<Collider>(true).Length==0,"expedition architecture has no added colliders");
                 Reset();var repair=Crew(CrewRole.Repair,-2,5);var target=ProbeEnemy(0,5,500);StepCrew(repair,.25f);
@@ -104,7 +104,7 @@ namespace VectorGame
                 var legacy=CaptureCheckpoint();legacy.schema=1;legacy.rules="expedition-stops-1";
                 foreach(var node in legacy.graph.objects.Where(n=>n.type=="VectorGame.VectorEncounter+Enemy"))node.fields.RemoveAll(f=>f.name.StartsWith("crew")||f.name.StartsWith("freight"));
                 File.WriteAllText(SavePath,JsonUtility.ToJson(legacy));Require(ResumeExpedition()&&enemies.All(e=>e.crew==CrewRole.None),"previous expedition save schema migrates without adding retroactive roles");
-                BeginExpedition();OpeningPicks=2;Wave=2;Health=MaxHealth;BeginWave();spawnTimer=10000;tuning.waveArrivals=300;
+                BeginLegacyExpedition();OpeningPicks=2;Wave=2;Health=MaxHealth;BeginWave();spawnTimer=10000;tuning.waveArrivals=300;
                 Until(()=>RoutePending,"first fork becomes selectable");ChooseRoute(EncounterRoute.Overtime);yield return Shot("05-regional-fork");Until(()=>!RoutePending,"first road selected");Until(()=>roads.Progress(HeroPosition)>forkVisual.Distance+28,"walker enters decorated right road");yield return Shot("06-regional-right-road");
                 Require(regionalWorld.RoadDecoration.GetComponentsInChildren<Collider>(true).Length==0&&VisibleSpawns==0,"branch decorations retain concealed-entry physics");
                 Wave=5;WaveElapsed=0;PrepareWalkingFork();Until(()=>RoutePending,"second fork becomes selectable");ChooseRoute(EncounterRoute.VolatileBreach);Until(()=>!RoutePending,"second road selected");Until(()=>roads.Progress(HeroPosition)>forkVisual.Distance+28,"walker follows second rotated road");yield return Shot("07-second-road");
@@ -113,7 +113,7 @@ namespace VectorGame
                 State=RunState.Running;ReducedMotion=true;fx.SetReducedMotion(true);Screen.SetResolution(1280,720,false);for(int i=0;i<8;i++)yield return null;yield return Shot("08-720p-reduced-motion");
                 ExpeditionActive=false;Begin(true);State=RunState.Ready;yield return null;Require(!VisualFactory.CinderworksStyle&&regionalWorld.RoadDecoration==null,"quick run restores ordinary world and actor appearance");
                 yield return Shot("09-quick-run-restored");
-                BeginExpedition();SuspendExpedition();BeginCinderworksPreview();ToggleCombatPreviewStyle();yield return null;
+                BeginLegacyExpedition();SuspendExpedition();BeginCinderworksPreview();ToggleCombatPreviewStyle();yield return null;
                 Require(!ExpeditionActive&&!VisualFactory.CinderworksStyle&&roads.Pieces[0].Root.GetComponentsInChildren<MeshRenderer>().All(r=>r.sharedMaterial!=CinderworksWorld.Floor),"suspended expedition enters preview with a clean original-look comparison");MainMenu();
             }
             report.passed=true;File.WriteAllText(Path.Combine(directory,"report.json"),JsonUtility.ToJson(report,true));Debug.Log("CREW_REVIEW_SUCCESS / "+report.assertions+" assertions");Application.Quit(0);

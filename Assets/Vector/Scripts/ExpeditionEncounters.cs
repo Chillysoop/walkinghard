@@ -57,7 +57,7 @@ namespace VectorGame
         RegionalEncounter RegionalWave=>VariedExpedition?RegionalEncounters.Find(RegionalRoute(Wave)):null;
         EncounterRoute PlanFork(int side)
         {
-            int wave=forkWave>0?forkWave:Wave,index=wave==5?1:0;
+            int wave=forkWave>0?forkWave:Wave,index=ChapterActive?Mathf.Max(0,CinderworksChapter.Encounters[Mathf.Clamp(wave-1,0,5)].fork):wave==5?1:0;
             if(VariedExpedition)return side==0?expeditionPlan.left[index]:expeditionPlan.right[index];
             return side==0?(ExpeditionActive&&wave==5?EncounterRoute.SalvageStop:EncounterRoute.ShieldLine):(ExpeditionActive&&wave==2?EncounterRoute.Overtime:EncounterRoute.VolatileBreach);
         }

@@ -55,6 +55,8 @@ namespace VectorGame
     public sealed class AbilityDeck
     {
         public const int SequenceSize=5;
+        public Func<ItemDefinition,bool> RewardFilter;
+        bool RewardAvailable(ItemDefinition def)=>LoadoutCatalog.RewardEnabled(def)&&(RewardFilter==null||RewardFilter(def));
         readonly Random random;
         public LoadoutItem[] Slots {get;}=new LoadoutItem[SequenceSize];
         public LoadoutItem[] Weapons {get;}=new LoadoutItem[2];
@@ -115,21 +117,21 @@ namespace VectorGame
         }
         public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
         public void Open(DraftKind kind,bool grantReroll,RewardEmphasis emphasis=RewardEmphasis.None){Draft=kind;Emphasis=kind==DraftKind.Mixed?emphasis:RewardEmphasis.None;if(kind==DraftKind.Ultimate)UltimatesUnlocked=true;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
-        bool UnlockedReward(ItemDefinition def)=>LoadoutCatalog.RewardEnabled(def)&&(def.kind!=ItemKind.Ultimate||UltimatesUnlocked);
+        bool UnlockedReward(ItemDefinition def)=>RewardAvailable(def)&&(def.kind!=ItemKind.Ultimate||UltimatesUnlocked);
         void Shuffle<T>(List<T> list){for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
         void Roll()
         {
             Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
             if(Draft==DraftKind.Ability)
-            {foreach(var def in LoadoutCatalog.Abilities.Where(LoadoutCatalog.RewardEnabled))if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            {foreach(var def in LoadoutCatalog.Abilities.Where(RewardAvailable))if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
             else if(Draft==DraftKind.Ultimate)
-            {choices.AddRange(LoadoutCatalog.Ultimates.Where(LoadoutCatalog.RewardEnabled).Select(d=>new RewardOffer(d)));Shuffle(choices);}
+            {choices.AddRange(LoadoutCatalog.Ultimates.Where(RewardAvailable).Select(d=>new RewardOffer(d)));Shuffle(choices);}
             else if(Draft==DraftKind.Augment)
             {choices.AddRange(AugmentCatalog.Offers(this,random).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Equipment)
             {var pool=LoadoutCatalog.Equipment.Where(UnlockedReward).ToList();Shuffle(pool);var empty=Enumerable.Range(0,3).FirstOrDefault(i=>Armor[i]==null);if(Armor[empty]==null){var wanted=pool.First(d=>LoadoutCatalog.ArmorIndex(d.kind)==empty);choices.Add(new RewardOffer(wanted));pool.Remove(wanted);}choices.AddRange(pool.Take(3-choices.Count).Select(d=>new RewardOffer(d)));}
             else if(Draft==DraftKind.Weapon)
-            {foreach(var def in LoadoutCatalog.Weapons.Where(LoadoutCatalog.RewardEnabled))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            {foreach(var def in LoadoutCatalog.Weapons.Where(RewardAvailable))choices.Add(new RewardOffer(def));Shuffle(choices);}
             else if(Emphasis!=RewardEmphasis.None)
             {
                 bool Wanted(ItemDefinition d)=>Emphasis==RewardEmphasis.Abilities?d.kind==ItemKind.Ability:d.kind==ItemKind.Weapon||d.kind==ItemKind.Rig||LoadoutCatalog.IsArmor(d.kind);
@@ -144,7 +146,7 @@ namespace VectorGame
                 var owned=Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&i.rank<5&&UnlockedReward(i.def)).ToList();Shuffle(owned);
                 if(owned.Count>0){var item=owned[0];choices.Add(new RewardOffer(item.def,2));}
                 else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
-                var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def&&LoadoutCatalog.RewardEnabled(d)).ToList();Shuffle(support);
+                var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def&&RewardAvailable(d)).ToList();Shuffle(support);
                 var tags=string.Join(" ",Slots.Where(i=>i!=null).Select(i=>(i.def.kind==ItemKind.Basic?WeaponFor(i):i).def.tags));
                 var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
                 var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful&&UnlockedReward(d)).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));

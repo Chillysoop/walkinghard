@@ -47,7 +47,7 @@ namespace VectorGame
             hud?.ResetTutorialUI();
         }
         public void MainMenu()
-        {if(ExpeditionActive&&State==RunState.Drafting&&!SaveCheckpoint())return;ExpeditionActive=false;EndCombatPreview();Begin();State=RunState.Ready;hud?.ResetTutorialUI();}
+        {if(ChapterActive&&!SyncChapterProgress())return;if(ExpeditionActive&&State==RunState.Drafting&&!SaveCheckpoint())return;ExpeditionActive=false;EndCombatPreview();Begin();State=RunState.Ready;hud?.ResetTutorialUI();}
         void TutorialOffers(DraftKind kind,params string[] ids)
         {
             Deck.Open(kind,false);

@@ -1,0 +1,4 @@
+TUTORIAL_REVIEW_SUCCESS: 174 assertions; model checks
+TUTORIAL_REVIEW_SUCCESS: 1375 assertions; native mouse handlers and captures
+BUILD_VARIETY_MECHANICS: 761 production-effect assertions passed.
+PRESENTATION_REVIEW_SUCCESS: 64 mapped definitions; native UI captures saved.

@@ -77,7 +77,7 @@ namespace VectorGame
             }
             else
             {
-                CheckCombatMechanics();report.productionAssertions=mechanicAssertions;tuning.heroHealth=10000;BeginExpedition();OpeningPicks=2;Wave=6;BeginWave();spawnTimer=10000;
+                CheckCombatMechanics();report.productionAssertions=mechanicAssertions;tuning.heroHealth=10000;BeginLegacyExpedition();OpeningPicks=2;Wave=6;BeginWave();spawnTimer=10000;
                 var boss=Foreman;Require(boss!=null&&VisibleSpawns==0&&boss.rig.PhysicsBones.Length==11,"Foreman enters concealed on the original skeleton");yield return Shot("01-approach");
                 boss.physics.Motor.position=HeroPosition+RoadForward*2.25f;boss.foreman.stage=1;boss.health=boss.maxHealth=10000;Physics.SyncTransforms();BossFrames(boss,8);
                 Require(boss.rig.Root.GetComponentsInChildren<Collider>().Count(c=>c.enabled)==1,"Foreman art adds no active colliders");yield return Shot("02-braced");
@@ -102,11 +102,11 @@ namespace VectorGame
                 State=RunState.Running;Screen.SetResolution(1280,720,false);ReducedMotion=true;fx.SetReducedMotion(true);for(int i=0;i<8;i++)yield return null;yield return Shot("05-vent-720p");
                 foreach(string build in new[]{"fists","swords","greatsword","hammer"})
                 {
-                    BeginExpedition();EquipForemanKit(build);Wave=6;BeginWave();spawnTimer=10000;boss=Foreman;boss.physics.Motor.position=HeroPosition+RoadForward*2.3f;boss.foreman.stage=1;boss.health=boss.maxHealth=10000;Physics.SyncTransforms();var anchor=HeroPosition;
+                    BeginLegacyExpedition();EquipForemanKit(build);Wave=6;BeginWave();spawnTimer=10000;boss=Foreman;boss.physics.Motor.position=HeroPosition+RoadForward*2.3f;boss.foreman.stage=1;boss.health=boss.maxHealth=10000;Physics.SyncTransforms();var anchor=HeroPosition;
                     Advance(1800);Require((HeroPosition-anchor).magnitude<.05f&&WeaponHits.Sum()>4&&OrderErrors==0,"stationary melee contact and sequence / "+build);
                     Require(contributions.Values.Sum(v=>v.outOfReachWait)<4,"short melee actions retain contact / "+build);yield return null;
                 }
-                BeginExpedition();EquipForemanKit("hammer");Wave=6;BeginWave();boss=Foreman;boss.health=1;currentCredit=new KillCredit{item=Deck.Basics[0],action=++actionSerial};Hurt(boss,10,Vector3.zero,0);Advance(1);
+                BeginLegacyExpedition();EquipForemanKit("hammer");Wave=6;BeginWave();boss=Foreman;boss.health=1;currentCredit=new KillCredit{item=Deck.Basics[0],action=++actionSerial};Hurt(boss,10,Vector3.zero,0);Advance(1);
                 Require(State==RunState.Drafting&&Wave==6&&corpses.Count(e=>e.foreman!=null)==1,"Foreman defeat opens existing wave-six rewards once");
                 while(State==RunState.Drafting)SimulationDraft();Require(Wave==7&&!ForemanPresent,"ordinary seventh wave follows the regional boss");
                 MainMenu();BeginCinderworksPreview();BeginCombatPreview(7,true);Require(ForemanPractice&&ForemanPresent&&!ExpeditionActive,"Foreman practice is directly available");MainMenu();Require(!ForemanPresent&&!ForemanPractice,"leaving practice clears the boss");

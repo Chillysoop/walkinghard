@@ -16,7 +16,7 @@ namespace VectorGame
         }
         Enemy Foreman=>enemies.FirstOrDefault(e=>e.foreman!=null);
         public bool ForemanPractice=>CombatPreviewActive&&CombatPreviewPreset==7;
-        bool ForemanWave=>(ExpeditionActive&&!CombatPreviewActive&&Wave==6)||ForemanPractice;
+        bool ForemanWave=>(ExpeditionActive&&!CombatPreviewActive&&(ChapterActive?ChapterEncounter.boss:Wave==6))||ForemanPractice;
         public bool ForemanPresent=>Foreman!=null;
         public float ForemanPressureFraction=>Foreman?.foreman.pressure??0;
         public float ForemanVentRemaining=>Foreman is Enemy e&&e.foreman.stage==2?e.foreman.ventLeft:0;

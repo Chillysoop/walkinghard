@@ -1,0 +1,147 @@
+{
+  "baseCommit": "a3c4ee382b516f4a2fb33ae282c7f28c84e7f08d",
+  "unity": "6000.3.27f1",
+  "sources": [
+    {
+      "path": "Assets/Vector/Scripts/AbilityDeck.cs",
+      "sha256": "a25a9494eed28afd2fa9d7f558eb77f1719b6998840bbc84de4b8b5e84f6daca"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ChapterProgression.cs",
+      "sha256": "a230c774f6c83c18f24d9484ccfae558e757d4090f79ebd0ff0c4e94928f7a25"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ChapterProgression.cs.meta",
+      "sha256": "11a64ef5f21a9ac84fe693c2460c81526131cc5d0d2e5dd5c4bf67cb937c578f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ChapterReview.cs",
+      "sha256": "64522b197a7dc63231958284be134c8ac59ee55e42ecd92a4353fdfdc293cd14"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ChapterReview.cs.meta",
+      "sha256": "e6d6f221c27322f882fe092755c4639cefdfd7cfb8abec125a8e0ae2c064368c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CheckpointClarity.cs",
+      "sha256": "d008ea0c4c4e00ba1ccabe7b236f56bb20331aad861e038cedc0d13952da56aa"
+    },
+    {
+      "path": "Assets/Vector/Scripts/CrewReview.cs",
+      "sha256": "f2783708198b97de98601848f48f554d51538a28edf804d3b09da888e2b44aa7"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadLetterOffice.cs",
+      "sha256": "a742176fd530f89fee874190138a959280f0dc2074e02f8d18dde5e3edeedce6"
+    },
+    {
+      "path": "Assets/Vector/Scripts/DeadLetterOffice.cs.meta",
+      "sha256": "186af6bdcbaa5ad64b01f1447c3416db6e6ce841490eb5f3d7adfd36180b6605"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEncounters.cs",
+      "sha256": "e0c8ba33bc2ab8baf4808d4717c24dee5170428dbdd4be2bbd333158b7297033"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventChoices.cs",
+      "sha256": "34e5378ed000130a58f8b7fb0ad706fc7d176c9f1ca420e794b6386d0e05bd6b"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionEventPresentation.cs",
+      "sha256": "8e321629a7924ebd48b97ef54c4bc152440afce73e69729afec26a98ee2a7a4f"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionHUD.cs",
+      "sha256": "c5479cb9ae4f7675c39a77318b56e8255ead434ce4cbb5e6f2c167b6c18280cc"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionReview.cs",
+      "sha256": "0fb2170af2426a9b90044a5780613b36e3b632f8a972cf21e0d7e53a1c270f67"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionSave.cs",
+      "sha256": "21f13471c786ca438fd0ebc016bc1c08bf668549cee67976023d3265ecaaecf9"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionStops.cs",
+      "sha256": "3a9a4ee43ea0cd0252f29cc23c12be647e63cdbe3c4ea99cb589d7ff10bcafec"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ExpeditionVarietyReview.cs",
+      "sha256": "293c4877a5bff92b8784fa9561d3da2ba9a93539df18f720ffd754326dc78abd"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ForemanReview.cs",
+      "sha256": "ca412c5f7e2084d1456595c8ddc5b235f01d8fa042303cbc3836e7de9236d64c"
+    },
+    {
+      "path": "Assets/Vector/Scripts/PrototypeHUD.cs",
+      "sha256": "160313700f2eb0a3a991eb67a5a4242ae74d81d2abcbe9410b8cc60d00d3be2d"
+    },
+    {
+      "path": "Assets/Vector/Scripts/QuickTutorial.cs",
+      "sha256": "2d4657996a7cb201394084da313cf97c672f93377b0403e3760247d3b2150d89"
+    },
+    {
+      "path": "Assets/Vector/Scripts/RunProgression.cs",
+      "sha256": "8da3ddc115c1fb3fa7a124810e518aef6604f8f5f9f8e9246bcf4300350162b7"
+    },
+    {
+      "path": "Assets/Vector/Scripts/ShiftForeman.cs",
+      "sha256": "3730fba08e369744d26e19aace4de22251ddb3e8192a22e9aac915e0d3d9f4d5"
+    },
+    {
+      "path": "Assets/Vector/Scripts/VectorEncounter.cs",
+      "sha256": "568dc192452c8bceb48b83ec743772cbb2e7306d2f6595979a097947738e1022"
+    },
+    {
+      "path": "Assets/Vector/Scripts/WalkingFork.cs",
+      "sha256": "fbda7b97b89c1b3fed4545a1a594dc10bf8e59080d3c773a4382bb658413abda"
+    }
+  ],
+  "players": [
+    {
+      "folder": "Build/Chapter-tested",
+      "evidence": "15 core scenarios; 50 variety fixtures; eight-wave full progression",
+      "changesAfter": "Explicit chapter-mode save flag; corrected legacy itinerary migration; chapter fixture expansion and UI copy/counter changes. No Quick Run combat or item changes.",
+      "assemblySha256": "6e4b4543491d6aa424298bc857fd91f38ca6195580f07b4f2dcb843a8e80e31a",
+      "executableSha256": "f083b0e879a9298cdcf9933a8f3b4f2b013e13f7d3e51221fc0d756b79e28807"
+    },
+    {
+      "folder": "Build/Cinderworks-Chapter",
+      "evidence": "Normal-health chapter; 174 model and 1375 rendered tutorial assertions",
+      "changesAfter": "Only pre-schema-4 itinerary migration correction.",
+      "assemblySha256": "2b8cf51321dd47eac8f54bbd51fafa74008ceaa56180b697a691326bbb7f7e2f",
+      "executableSha256": "f083b0e879a9298cdcf9933a8f3b4f2b013e13f7d3e51221fc0d756b79e28807"
+    },
+    {
+      "folder": "Build/Cinderworks-Chapter-final",
+      "evidence": "232 native plus 761 production checks; new-process schema-5; actual schema-1/2/3/4 migration; legacy event/variety/crew/Foreman suites; presentation captures",
+      "changesAfter": "Documentation and evidence packaging only.",
+      "assemblySha256": "0f84f2d41a943fd5fc41e250a76e522c9cb98e0cd70947862c51d51d43c3a741",
+      "executableSha256": "f083b0e879a9298cdcf9933a8f3b4f2b013e13f7d3e51221fc0d756b79e28807"
+    }
+  ],
+  "migrationInputs": [
+    {
+      "path": "Build/Expedition-evidence/profile-delivery/checkpoint.json",
+      "sha256": "e4b2f64dcaabce2d72e53fa6cf8fad154a3c1663d93014d51a85349feddd2439",
+      "schema": 1
+    },
+    {
+      "path": "Build/Crew-evidence/profile-expedition-regression/checkpoint.json",
+      "sha256": "d9674698706f0b624e93cb45bf6ea822a94cbd38a721e1428724801ec3d203a3",
+      "schema": 2
+    },
+    {
+      "path": "Build/Foreman-evidence/profile-expedition/checkpoint.json",
+      "sha256": "c5effc621ad79e903971054ca157ae32b1b21004bff6c3082e0d9df8ccfbb06f",
+      "schema": 3
+    },
+    {
+      "path": "Build/Variety-evidence/profile-native-release/checkpoint.json",
+      "sha256": "b06698d8fdc50208207a7ef53a207d45220c57aa7065b22f5dc49ab74c6d33f7",
+      "schema": 4
+    }
+  ]
+}
