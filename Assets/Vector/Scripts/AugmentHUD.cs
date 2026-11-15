@@ -32,8 +32,9 @@ namespace VectorGame
         }
         bool MoveToRegion(LoadoutItem item,DropRegion region)
         {
+            if(!StoredFitsRegion(item,region)){loadoutFeedback="Does not fit. Use a glowing slot or the Store area.";return false;}
             if(item.def.kind==ItemKind.Augment&&Host(region) is LoadoutItem host&&host.Augmentable){bool attached=game.TutorialAttachAllowed(host)&&game.Deck.Attach(item,host);if(attached)game.SaveCheckpoint();return attached;}
-            return game.MoveItem(item,region.place,region.index);
+            StoredTarget(item,region,out var place,out int index);return game.MoveItem(item,place,index);
         }
         float DisplayShare(LoadoutItem item)
         {

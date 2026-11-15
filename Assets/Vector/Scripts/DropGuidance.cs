@@ -16,7 +16,7 @@ namespace VectorGame
         string RewardHeading=>game.Deck.Draft==DraftKind.Ability?"ABILITY / SEQUENCE SLOT":game.Deck.Draft==DraftKind.Weapon?"WEAPON / HAND SLOT":game.Deck.Draft==DraftKind.Equipment?"EQUIPMENT / MATCHING SLOT":game.Deck.Draft==DraftKind.Augment?"AUGMENT / + SOCKET":game.Deck.Draft==DraftKind.Ultimate?"ULTIMATE / SEPARATE SLOT":"REWARD OPTIONS";
         int FocusedReward()
         {
-            if(FocusedCheckpoint)return PreviewOffer();
+            if(UnifiedCheckpoint)return ResolveLoadoutHover().offerIndex;
             if(game.Deck.RewardClaimed)return -1;
             if(dragItem!=null)return -1;
             if(dragOffer>=0)return dragOffer;
@@ -40,7 +40,7 @@ namespace VectorGame
             if(item.def.kind==ItemKind.Augment&&Host(r) is LoadoutItem host&&host.Augmentable)return game.TutorialAttachAllowed(host)&&item.def.module.Fits(host.def);
             if(!game.TutorialMoveAllowed(item,r.place,r.index))return false;
             if(r.place==PlaceKind.Inventory&&!r.socket)return r.index==-1&&!game.Deck.Inventory.Contains(item)&&game.Deck.CanMove(item,PlaceKind.Inventory);
-            return !r.socket&&game.Deck.CanMove(item,r.place,r.index);
+            StoredTarget(item,r,out var place,out int index);return !r.socket&&game.Deck.CanMove(item,place,index);
         }
         string DestinationName(ItemDefinition def)=>def.kind==ItemKind.Ability?"SEQUENCE":def.kind==ItemKind.Weapon?(def.hands==2?"BOTH HANDS":"HAND SLOT"):def.kind==ItemKind.Augment?"COMPATIBLE + SOCKET":def.kind==ItemKind.Rig?"RIG SLOT":def.kind==ItemKind.Ultimate?"ULTIMATE SLOT":def.kind.ToString().ToUpperInvariant()+" SLOT";
         string RewardHint
@@ -60,7 +60,7 @@ namespace VectorGame
             if(offer<0&&item==null&&!categoryPreview){if(game.TutorialActive)TutorialHighlights();return;}
             var def=offer>=0?game.Deck.Offers[offer].def:item?.def;
             bool ability=def?.kind==ItemKind.Ability||(categoryPreview&&game.Deck.Draft==DraftKind.Ability);
-            if(ability)DestinationGlow(FocusedCheckpoint?focusedSequence:new Rect(20,sequenceY-24,w-290,124),Accent,false);
+            if(ability)DestinationGlow(new Rect(20,sequenceY-24,w-290,124),Accent,false);
             foreach(var r in dropRegions)
             {
                 bool valid=offer>=0?OfferFitsRegion(offer,r):item!=null?StoredFitsRegion(item,r):Enumerable.Range(0,game.Deck.Offers.Length).Any(i=>OfferFitsRegion(i,r));

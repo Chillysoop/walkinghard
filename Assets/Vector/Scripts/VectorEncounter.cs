@@ -341,7 +341,7 @@ namespace VectorGame
                     if(Input.GetKeyDown(KeyCode.D))AssignSlot(3);
                     if(Input.GetKeyDown(KeyCode.C))AssignSlot(4);
                     if(Input.GetKeyDown(KeyCode.Tab))Reroll();
-                    if(Input.GetKeyDown(KeyCode.Return))AcceptSelectedReward(!HoldCheckpointAfterPick);
+                    if(Input.GetKeyDown(KeyCode.Return)){if(hud==null||!hud.ConfirmWorkbench())AcceptSelectedReward(!HoldCheckpointAfterPick);}
                 }
             }
             if(State==RunState.Revealing)StepFinaleReveal(qa&&Application.isBatchMode?RevealDuration:Time.unscaledDeltaTime);

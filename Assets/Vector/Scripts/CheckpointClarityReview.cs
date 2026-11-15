@@ -10,8 +10,8 @@ namespace VectorGame
         {
             Screen.SetResolution(1280,720,false);game.Begin();game.HoldCheckpointAfterPick=true;
             yield return null;yield return null;
-            ReviewCheck(FocusedCheckpoint,"ordinary checkpoints start focused");
-            ReviewCheck(dropRegions.All(r=>r.offer>=0||r.place==PlaceKind.Sequence),"ability opening hides unrelated gear and storage");
+            ReviewCheck(UnifiedCheckpoint,"ordinary checkpoints start in unified workbench");
+            ReviewCheck(dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Sequence&&!r.socket)==5&&dropRegions.Any(r=>r.place==PlaceKind.Helmet)&&dropRegions.Any(r=>r.place==PlaceKind.Inventory),"ability opening retains character, storage and sequence");
             ReviewCheck(CheckpointActionLabel()=="CHOOSE A REWARD","empty selection explains required action");
             yield return CapturePresentation(directory,"20-focused-opening");
             foreach(string id in new[]{"sword","hammer","visor","plate","treads","faultline","ArcBolt","singularity"})
@@ -27,7 +27,7 @@ namespace VectorGame
                 ReviewCheck(game.Deck.RewardClaimed&&game.State==VectorEncounter.RunState.Drafting,"focused drop equips and honors edit-after-pick: "+id);
             }
             SetManageBuild(true);yield return null;yield return null;
-            ReviewCheck(dropRegions.Any(r=>r.place==PlaceKind.Inventory&&r.index==-1)&&dropRegions.Count(r=>r.place==PlaceKind.Sequence&&!r.socket)==5,"Manage build exposes storage and all five actions");
+            ReviewCheck(dropRegions.Any(r=>r.place==PlaceKind.Inventory&&r.index==-1)&&dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Sequence&&!r.socket)==5,"Manage build exposes storage and all five actions");
             yield return CapturePresentation(directory,"21-manage-build");SetManageBuild(false);yield return null;
             game.Begin();game.HoldCheckpointAfterPick=true;
             var stored=game.Deck.Acquire(LoadoutCatalog.Find("sword"));game.Deck.Open(DraftKind.Augment,false);

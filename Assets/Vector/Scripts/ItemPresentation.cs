@@ -20,6 +20,7 @@ namespace VectorGame
         }
         void DrawItemTooltip(float w,float h)
         {
+            if(UnifiedCheckpoint){detailItem=null;detailOffer=null;detailHovered=false;return;}
             var item=hoveredItem;bool retained=item==null&&detailValid&&Time.realtimeSinceStartup-detailLastHover<.2f;
             if(retained){item=detailItem;hoveredOffer=detailOffer;}
             if(item==null||dragging||iconGuide){detailItem=null;pendingTooltipIdentity="";return;}

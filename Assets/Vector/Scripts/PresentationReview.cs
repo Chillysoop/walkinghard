@@ -16,6 +16,7 @@ namespace VectorGame
         IEnumerator Start()
         {
             var args=Environment.GetCommandLineArgs();
+            if(Array.IndexOf(args,"-loadoutReview")>=0||Array.IndexOf(args,"-loadoutChecks")>=0){yield return RunLoadoutReview(Array.IndexOf(args,"-loadoutReview")>=0);yield break;}
             if(Array.IndexOf(args,"-tutorialReview")>=0||Array.IndexOf(args,"-tutorialChecks")>=0){yield return RunTutorialReview(Array.IndexOf(args,"-tutorialReview")>=0);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-presentationReview")<0)yield break;
             string directory=Path.Combine(Application.dataPath,"..","PresentationReview");Directory.CreateDirectory(directory);

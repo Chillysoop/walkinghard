@@ -39,7 +39,7 @@ namespace VectorGame
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
             ReviewTextFit();
             detailValid=detailItem!=null&&(detailOffer!=null?game.State==VectorEncounter.RunState.Drafting&&System.Array.IndexOf(game.Deck.Offers,detailOffer)>=0:game.Deck.Items.Contains(detailItem));
-            detailHovered=!dragging&&detailValid&&detailPanel.Contains(Pointer);
+            detailHovered=!UnifiedCheckpoint&&!dragging&&detailValid&&detailPanel.Contains(Pointer);
             if(detailHovered)detailLastHover=Time.realtimeSinceStartup;
             hoveredItem=detailHovered?detailItem:null;hoveredOffer=detailHovered?detailOffer:null;
             if(game.OfficeOpen){DeadLetterOffice(w,h);return;}

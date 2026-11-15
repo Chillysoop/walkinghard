@@ -17,7 +17,7 @@ Start a new journey or resume from the Office. Quit during combat to return to t
 Reward previews identify an equipped combo partner and explain the payoff in one line. The matching item gets a white effect badge; short combat cues confirm actual synergies. **Suppressive Volley** interrupts distant groups without pushing them away. **Recoil Harness** turns a reload into one block, then a stronger gun hit. Both have dedicated card art, rarity scaling and full hover rules. The [initial controlled comparisons](QA/v076-balance-review.md) document the evidence behind the Recoil change.
 
 
-Ordinary checkpoints now open with three focused reward cards and the relevant equip destinations. **Manage build** opens the RPG character sheet, storage and full sequence on the same screen. Large Weapon / Ability / Gear / Augment / Ultimate labels, distinct art frames and neutral icons identify item type; full card outlines and rarity badges use the rarity colors, including on selected cards. One-line effects explain what the item does, and hover details retain the full mechanics. Preview text names the replacement, while primary buttons say Equip weapon, Equip helmet, Add ability, Attach to an item, or Store. An explicit **Add to storage** button beside Equip takes the selected reward without replacing equipped items; rewards can also be dragged onto it. It follows Edit after pick. The opening ability picks still require an empty sequence slot. See [outline and storage verification](QA/v075-verification.md).
+Ordinary checkpoints now keep the **walker and equipment slots, storage, five-action sequence and ultimate visible together**. Hover a reward or stored item to light compatible destinations and see a fixed before/after comparison. Select the item, then click a glowing slot or drag it there; the preview names what replaces each affected slot and what goes to storage. Two-handed comparisons include both existing weapons. Storage has category filters, named cells and full rarity labels. The Store area is an explicit alternative to equipping. Rarity upgrades get a final-tier preview and a merge animation in the comparison panel, including chained fusions. Full effects, socket changes and synergies remain available by scrolling that panel. See [workbench verification](QA/unified-loadout/verification.md).
 
 Two-handed groups, same-rarity fusion, independent ultimates and the existing reward schedule remain intact. Edit after pick still controls whether equipping advances immediately. An augment can now auto-attach to its sole compatible item even when that item is stored; multiple compatible hosts still require an explicit choice. See [verification](QA/v074-verification.md).
 
@@ -67,7 +67,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 - Temporary neutral tile bars explain RELOADING, READYING and WAITING FOR PAIR with remaining combat seconds. They disappear when the delay completes.
 - No starting ultimate. Checkpoint three offers three distinct ultimates with normal rarity rolls; early offers and rerolls exclude them. Equipped ultimates have 12–18 second countdowns, automatic queuing or manual activation, and preserved sequence order.
 - Eight waves with formation previews and the Pursuer final stand. Thirteen item choices include opening abilities, the third ability and a weapon after wave one, mixed rewards, the checkpoint-three ultimate choice and extra equipment drafts. Two separate augment drafts arrive after waves three and five.
-- Drop a reward directly into a compatible slot to equip and advance; double-click auto-equips. Edit after pick keeps the character sheet open for rearranging until Let's fight.
+- Select a reward and click a glowing slot, or drag it directly to the destination. Reward double-clicks select without silently equipping. Keep editing / Continue after pick retains your preferred checkpoint pace.
 - RPG character sheet with live Walker preview, surrounding gear mounts, an icon storage grid, full hover cards and animated before/after fusion feedback.
 - Helmets, armor and boots grant rarity-scaled stats plus effects such as repair motes, reload pulses, barriers, mark setup and next-action haste.
 - Drag-and-drop character sheet, unlimited storage, two weapon mounts, one rig, and a separate ultimate mount. Click-to-select/destination is also supported.
@@ -83,18 +83,19 @@ If main has no matching release, the launcher can build it in an isolated cache 
 
 | Input | Action |
 | --- | --- |
-| Enter | Begin / auto-equip selected reward and advance / continue after editing |
+| Enter | Play / perform the shown checkpoint action / continue after editing |
 | 1 / 2 / 3 | Select draft offer |
 | Q / W / E / D / C | Assign draft ability to an empty sequence position |
 | Drag, or click then click destination | Reorder, equip, or store an item |
-| Double-click reward or stored item | Auto-equip (unrelated abilities are stored if the loop is full) |
+| Click reward | Select; hover a glowing destination to compare, then click it to equip |
+| Double-click stored item | Quick equip (unrelated abilities are stored if the loop is full) |
 | Speed buttons | 0.5x / 1x / 2x / 4x combat simulation |
 | Tab | Spend a banked reroll |
 | U | Toggle ultimate Auto/Manual |
 | F | Queue a ready ultimate |
 | Space / Escape | Pause or resume |
 | R | New run |
-| T | Repeat seed |
+| T | How to Play from the title screen |
 | M | Mute |
 | F8 | Save screenshot |
 

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-15",
+  "branch": "feature/unified-loadout",
+  "base": "feab967533086ba351970b707efdf157c497f478",
+  "unity": "6000.3.27f1",
+  "player": "Build/UnifiedLoadout/WalkingHard.exe",
+  "assemblySHA256": "a106a06cfbbf994e59810dbacd9f81f5e2d63af75a64b6caffaaa040b5045c07",
+  "workbenchNativeAssertions": 1163,
+  "projectionModelAssertions": 312,
+  "tutorialModelAssertions": 174,
+  "resolutions": [
+    "1280x720",
+    "1920x1080",
+    "2560x1080"
+  ],
+  "tutorialNativeAssertions": 1482,
+  "presentationMappedDefinitions": 64,
+  "coreScenariosPassed": 15
+}
