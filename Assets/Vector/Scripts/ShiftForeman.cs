@@ -21,7 +21,7 @@ namespace VectorGame
         public float ForemanPressureFraction=>Foreman?.foreman.pressure??0;
         public float ForemanVentRemaining=>Foreman is Enemy e&&e.foreman.stage==2?e.foreman.ventLeft:0;
         public string ForemanPhaseLabel=>Foreman?.foreman.stage==2?"VENTING / +35% DAMAGE":Foreman?.foreman.stage==1?"BRACED / 35% LESS DAMAGE":"APPROACHING";
-        public string ForemanCue=>Foreman is Enemy e&&e.attack>=0&&!e.delivered?"PRESS SLAM · "+Mathf.Max(0,1.5f-e.attack).ToString("0.0")+"s":ForemanVentRemaining>0?"VENT OPEN · "+ForemanVentRemaining.ToString("0.0")+"s":"PRESSURE "+Mathf.RoundToInt(ForemanPressureFraction*100)+"% · Stagger + impacts";
+        public string ForemanCue=>Foreman is Enemy e&&e.attack>=0&&!e.delivered?(e.journeyBoss?.phase==1?"DOUBLE PRESS · "+(e.journeyBoss.beats+1)+"/2 · ":"PRESS SLAM · ")+Mathf.Max(0,(e.journeyBoss?.phase==1&&e.journeyBoss.beats==1?2.25f:1.5f)-e.attack).ToString("0.0")+"s":ForemanVentRemaining>0?"VENT OPEN · "+ForemanVentRemaining.ToString("0.0")+"s":"PRESSURE "+Mathf.RoundToInt(ForemanPressureFraction*100)+"% · Stagger + impacts";
         static bool ForemanBraced(Enemy e)=>e.foreman!=null&&e.foreman.stage==1;
         void StartForeman()
         {
@@ -30,10 +30,12 @@ namespace VectorGame
             for(int i=0;i<70&&GeometryUtility.TestPlanesAABB(planes,new Bounds(position+Vector3.up*2.7f,new Vector3(5,6,5)));i++)position+=RoadForward*3;
             if(GeometryUtility.TestPlanesAABB(planes,new Bounds(position+Vector3.up*2.7f,new Vector3(5,6,5))))throw new InvalidOperationException("No concealed Foreman entrance");
             var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*(JourneyActive?District==1?27:20:16)*(JourneyActive?EnemyHealthScale:1+.035f*5),cooldown=2,radius=2.2f,foreman=new ForemanState{anchor=HeroPosition}};
-            e.maxHealth=e.health;e.rig=new FighterRig(JourneyBossName,actors,false,true,e.id^Seed,FastSimulation);e.rig.Root.localScale=Vector3.one*2.2f;e.rig.Root.position=position;e.rig.Root.rotation=RoadRotation*Quaternion.Euler(0,180,0);e.rig.ForemanEquipment();if(JourneyActive&&District==1)e.rig.SpecialistEquipment(CrewRole.Bellkeeper);
+            if(JourneyActive)e.journeyBoss=new JourneyBossState{kind=District==1?1:0};
+            e.maxHealth=e.health;e.rig=new FighterRig(JourneyBossName,actors,false,true,e.id^Seed,FastSimulation);e.rig.Root.localScale=Vector3.one*2.2f;e.rig.Root.position=position;e.rig.Root.rotation=RoadRotation*Quaternion.Euler(0,180,0);
+            if(e.journeyBoss?.kind==1)e.rig.JourneyBossEquipment(1);else e.rig.ForemanEquipment();
             e.physics=new FighterPhysics(e.rig,e.id,this,false,true);enemies.Add(e);byId.Add(e.id,e);Spawned++;HorizonEntries++;
             if(!FastSimulation)foreach(var body in corpses)if(body.rig.Root.gameObject.activeSelf)body.physics.IgnoreWalker(e.physics,body.freightLeft<=0&&!flights.Any(f=>f.body==body));
-            Physics.SyncTransforms();Announce(JourneyBossName+" / BREAK THE PRESSURE");
+            Physics.SyncTransforms();Announce(JourneyBossName+(e.journeyBoss?.kind==1?" / BREAK THE COMMAND":" / BREAK THE PRESSURE"));
         }
         void OpenForemanVent(Enemy e,bool forced)
         {
@@ -46,6 +48,7 @@ namespace VectorGame
         }
         void AddForemanPressure(Enemy e,float amount)
         {
+            if(e.journeyBoss?.kind==1){AddBellDisruption(e,amount);return;}
             if(!ForemanBraced(e)||e.deathAge>=0)return;var f=e.foreman;
             int action=currentCredit?.action??actionSerial;
             f.actionPressure.TryGetValue(action,out float contributed);
@@ -58,6 +61,7 @@ namespace VectorGame
         {
             if(e.foreman==null)return damage;
             if((currentCredit?.hop??0)>0)AddForemanPressure(e,.28f);
+            if(e.journeyBoss?.kind==1)return damage;
             float result=damage*(e.foreman.stage==1?.65f:e.foreman.stage==2?1.35f:1);
             if(e.foreman.stage==1)e.foreman.bracedDamage+=Mathf.Min(e.health,result);else if(e.foreman.stage==2)e.foreman.ventDamage+=Mathf.Min(e.health,result);
             return result;
@@ -72,6 +76,7 @@ namespace VectorGame
         }
         void StepForeman(Enemy e,float dt)
         {
+            if(e.journeyBoss?.kind==1){StepBellForeman(e,dt);return;}
             var f=e.foreman;var delta=HeroPosition-e.rig.Root.position;delta.y=0;float distance=delta.magnitude;
             e.cooldown-=dt;e.stun=Mathf.Max(0,e.stun-dt);e.react=Mathf.Max(0,e.react-dt*3);f.vfx-=dt;
             bool visible=EnemyCanAttack(e);
@@ -85,20 +90,23 @@ namespace VectorGame
             if(e.attack>=0||distance<=2.2f)desired=Vector3.zero;
             var velocity=e.physics.LinearVelocity;var flat=Vector3.MoveTowards(new Vector3(velocity.x,0,velocity.z),desired,14*dt);
             e.physics.LinearVelocity=new Vector3(flat.x,velocity.y,flat.z);if(delta.sqrMagnitude>.01f)e.physics.MoveRotation(Quaternion.LookRotation(delta));
-            if(visible&&f.stage==1&&e.attack<0&&e.cooldown<=0&&distance<3.2f){e.attack=0;e.delivered=false;}
+            if(visible&&f.stage==1&&e.attack<0&&e.cooldown<=0&&distance<3.2f){e.attack=0;e.delivered=false;if(e.journeyBoss!=null){var b=e.journeyBoss;b.phase=e.health<e.maxHealth*.5f||b.cycles%2==1?1:0;b.beats=0;b.cycles++;}}
             if(e.attack>=0)
             {
                 e.attack+=dt;
                 if(!e.delivered&&f.vfx<=0){fx.Shape(e.rig.Root.position,e.rig.Root.forward,3.8f,60,new Color(1,.55f,.2f),.22f);f.vfx=.18f;}
-                if(!e.delivered&&e.attack>=1.5f)
+                bool doublePress=e.journeyBoss?.phase==1;float due=doublePress&&e.journeyBoss.beats==1?2.25f:1.5f;
+                if(!e.delivered&&e.attack>=due)
                 {
-                    e.delivered=true;f.slams++;
-                    if(distance<3.8f&&visible)ReceiveDamage(e,tuning.enemyDamage*2.5f);
+                    if(e.journeyBoss!=null){e.journeyBoss.beats++;e.journeyBoss.strikes++;}
+                    e.delivered=!doublePress||e.journeyBoss.beats>=2;f.slams++;
+                    if(distance<3.8f&&visible)ReceiveDamage(e,tuning.enemyDamage*(doublePress?1.25f:2.5f));
                     fx.Ring(e.rig.Root.position+e.rig.Root.forward*1.5f,2.3f,VisualFactory.Orange,.4f);fx.PlayImpact(ImpactKind.Crush);
                 }
-                if(e.attack>=2.1f){e.attack=-1;e.cooldown=2.2f;}
+                if(e.attack>=(doublePress?2.9f:2.1f)){e.attack=-1;e.cooldown=2.2f;}
             }
-            e.rig.Pose(clock*.65f,flat.magnitude/3,e.attack>=0?2:-1,e.attack/2.1f,e.react,false,0);StepReaction(e,dt,true);
+            float pressPose=e.journeyBoss?.phase==1&&e.attack>=1.7f?(e.attack-1.7f)/1.2f:e.attack/2.1f;
+            e.rig.Pose(clock*.65f,flat.magnitude/3,e.attack>=0?2:-1,pressPose,e.react,false,0);StepReaction(e,dt,true);
             e.rig.ForemanPose(f.stage==1&&distance<3.2f,f.stage==2,f.pressure);
             e.rig.Telegraph(e.attack>=0&&!e.delivered,e.stun>0);
         }

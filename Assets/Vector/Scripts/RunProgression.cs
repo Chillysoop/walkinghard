@@ -14,7 +14,7 @@ namespace VectorGame
         public string PendingDraft=>pendingDrafts.Count>0?"NEXT: "+pendingDrafts.Peek().ToString().ToUpperInvariant()+" PICK":"LET'S FIGHT";
         bool bossSpawned;
         public float BossFraction=>enemies.FirstOrDefault(e=>e.boss) is Enemy boss?Mathf.Clamp01(boss.health/boss.maxHealth):0;
-        public bool BossControlOpen=>Foreman is Enemy f?f.foreman.stage==2:WaveElapsed%8<2.5f;
+        public bool BossControlOpen=>JourneyBoss is Enemy j&&j.journeyBoss.kind>0?JourneyBossOpen(j):Foreman is Enemy f?f.foreman.stage==2:WaveElapsed%8<2.5f;
         public static DraftKind[] RewardsAfter(int wave)
         {
             var rewards=new List<DraftKind>();if(wave>=8)return rewards.ToArray();

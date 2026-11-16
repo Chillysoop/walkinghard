@@ -76,12 +76,14 @@ namespace VectorGame
             heroPhysics.MoveRotation(RoadRotation*Quaternion.Euler(0,180,0));cameraVelocity=Vector3.zero;
             if(pursuer==null)CreatePursuer();
             var e=new Enemy{id=++nextId,boss=true,heavy=true,health=tuning.enemyHealth*24*EnemyHealthScale,cooldown=2.2f,radius=2.55f,rig=pursuer};
+            if(JourneyActive){e.journeyBoss=new JourneyBossState{kind=2};e.rig.JourneyBossEquipment(2);}
             e.maxHealth=e.health;e.physics=new FighterPhysics(e.rig,e.id,this,false,true);
             enemies.Add(e);byId.Add(e.id,e);Spawned++;bossSpawned=true;pursuer=null;
             revealFollowers.Clear();Physics.SyncTransforms();State=RunState.Running;Announce("THE PURSUER");
         }
         void StepPursuer(Enemy e,float dt)
         {
+            if(e.journeyBoss?.kind==2){StepJourneyPursuer(e,dt);return;}
             Vector3 delta=HeroPosition-e.rig.Root.position;delta.y=0;float distance=delta.magnitude;
             e.stun=Mathf.Max(0,e.stun-dt);e.cooldown-=dt;e.react=Mathf.Max(0,e.react-dt*3);
             if(e.stun>0){e.attack=-1;e.delivered=false;}

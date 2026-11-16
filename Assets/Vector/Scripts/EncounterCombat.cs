@@ -155,7 +155,7 @@ namespace VectorGame
             if(e.deathAge>=0)return;
             damage=ShieldDamage(e,damage,impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
-            damage=ChampionDamage(e,ForemanDamage(e,CrewProtection(e,damage)));
+            damage=JourneyBossDamage(e,ChampionDamage(e,ForemanDamage(e,CrewProtection(e,damage))));
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             if(dealt>0&&(currentCredit?.hop??0)>0)SynergyCue("collision","COLLISION CHAIN","Launched body → impact damage");
             ObserveDurabilityHit(e,dealt);ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;if(!ChampionBraced(e))e.engaged=false;if(stun>0&&!ResistsInterrupt(e))e.attack=-1;
@@ -182,7 +182,7 @@ namespace VectorGame
             RememberDisplacement(body,direction);
             OnLaunch(body);
             energy*=body.foreman==null||body.deathAge>=0?ControlResistance(body):.18f;body.physics.Impulse(direction*(body.heavy?11:15)*energy+Vector3.up*(body.foreman==null?1.5f:.25f)-body.physics.Velocity);
-            body.stun=1.2f*ControlResistance(body);body.engaged=false;if(!ForemanBraced(body))body.attack=-1;
+            body.stun=1.2f*ControlResistance(body);body.engaged=false;if(!ResistsInterrupt(body))body.attack=-1;
             ExposeShield(body,body.stun);
             if(chain==null)chain=new Cascade();if(chain.credit==null)chain.credit=currentCredit;chain.hit.Add(body.id);
             flights.Add(new Flight{body=body,previous=origin,chain=chain,hop=hop,energy=energy});Launches++;MaxCascadeHop=Mathf.Max(MaxCascadeHop,hop);

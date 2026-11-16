@@ -1,4 +1,8 @@
-# Walking Hard 0.8.3 - Weapon discovery
+# Walking Hard 0.8.4 - Districts and bosses
+
+The three districts now have different encounter mixes, arrival rhythms and scenery: freight packs among Cinderworks furnaces, coordinated groups beneath the Bell Foundry galleries, and ranged cross traffic through the Last Dispatch's blue registry stacks. Dispatch arrivals can use nearby covered rear entrances. Physical road choices and walls are retained.
+
+Each boss has its own counterplay. Break the **Shift Foreman's** pressure to interrupt its double press. Clear the **Bell Foreman's** gold-linked escorts, or disrupt its command with damage and stagger, to silence the toll. The **Pursuer** commits to a sweep, then opens its chest for a damage and control window; body impacts extend that recovery. Countdown labels, attack shapes and changing equipment show the phases. [Verification and limits](QA/district-bosses/verification.md).
 
 At checkpoints **2, 9 and 16**, the third reward card is **WEAPON DISCOVERY**: one unlocked weapon that has appeared less recently in this run's reward choices. Individual fist styles, one-handed weapons and two-handed weapons each have their own history. The other two cards keep their normal rules; reward counts, rarity odds, fusion and combat values are unchanged. History persists through saves and rerolls. [Verification and measured tradeoffs](QA/weapon-discovery/verification.md).
 

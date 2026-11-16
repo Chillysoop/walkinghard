@@ -38,7 +38,8 @@ namespace VectorGame
         {
             var occupied=new List<Rect>();
             if(liveStatsOpen){var stats=LiveStatsRect(hudWidth,hudHeight);float factor=w/hudWidth;occupied.Add(new Rect(stats.x*factor,stats.y*factor,stats.width*factor,stats.height*factor));}
-            if(game.ForemanPresent)occupied.Add(game.CombatPreviewActive?new Rect(w-330,330,310,132):new Rect(w/2-245,18,490,130));
+            if(game.ForemanPresent||game.JourneyBossPanelVisible)occupied.Add(game.CombatPreviewActive?new Rect(w-330,330,310,132):new Rect(w/2-250,18,500,130));
+            if(game.BossSilhouetteViewport is Rect bossArea)occupied.Add(new Rect(bossArea.x*w-8,bossArea.y*h-8,bossArea.width*w+16,bossArea.height*h+16));
             if(game.ShowForkSigns){occupied.Add(new Rect(w/2-215,22,430,66));for(int side=0;side<2;side++){var choice=ForkChoiceRect(side,hudWidth,hudHeight);float factor=w/hudWidth;occupied.Add(new Rect(choice.x*factor,choice.y*factor,choice.width*factor,choice.height*factor));}}
             int count=0;
             foreach(var view in game.ThreatReadouts().OrderByDescending(v=>v.champion).ThenByDescending(v=>v.urgent).ThenByDescending(v=>v.damaged))
@@ -47,7 +48,7 @@ namespace VectorGame
                 bool health=view.damaged||view.champion;float height=24+(health?18:0)+(view.state.Length>0?18:0)+(view.protection.Length>0?18:0)+(view.guard>0?17:0)+(view.champion&&!view.exposed?12:0);
                 float x=Mathf.Clamp(p.x*w,350,w-350),y=Mathf.Clamp((1-p.y)*h,120,h-245);
                 var rect=new Rect(x-96,y-height,192,height);var origin=rect.position;bool fits=false;
-                foreach(var offset in new[]{Vector2.zero,new Vector2(0,-80),new Vector2(0,80),new Vector2(-198,0),new Vector2(198,0),new Vector2(-198,-80),new Vector2(198,-80),new Vector2(0,-160),new Vector2(0,160)})
+                foreach(var offset in new[]{Vector2.zero,new Vector2(0,-80),new Vector2(0,80),new Vector2(-198,0),new Vector2(198,0),new Vector2(-198,-80),new Vector2(198,-80),new Vector2(0,-160),new Vector2(0,160),new Vector2(-396,0),new Vector2(396,0)})
                 {rect.position=new Vector2(Mathf.Clamp(origin.x+offset.x,330,w-530),Mathf.Clamp(origin.y+offset.y,110,h-225-height));if(!occupied.Any(r=>r.Overlaps(rect))){fits=true;break;}}
                 if(!fits&&!view.champion)continue;
                 occupied.Add(new Rect(rect.x-3,rect.y-3,rect.width+6,rect.height+6));

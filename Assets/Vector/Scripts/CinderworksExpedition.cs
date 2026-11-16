@@ -14,9 +14,9 @@ namespace VectorGame
             foreach(var p in roadMaterials)if(p.Key!=null)p.Key.sharedMaterial=p.Value;roadMaterials.Clear();roadBays.Clear();
             if(roadDecoration!=null){roadDecoration.gameObject.SetActive(false);Destroy(roadDecoration.gameObject);roadDecoration=null;}
         }
-        public void DecorateRoads(PhysicalRoads roads)
+        public void DecorateRoads(PhysicalRoads roads,int district=0)
         {
-            InitializeMaterials();
+            InitializeDistrictMaterials();if(roadDistrict!=district){ResetRoads();roadDistrict=district;}DistrictAtmosphere(district);
             if(roadDecoration==null)roadDecoration=VisualFactory.Node("Cinderworks / branching architecture",transform,Vector3.zero);
             foreach(var road in roads.Pieces)
             {
@@ -25,14 +25,14 @@ namespace VectorGame
                     // Branch selection remains cyan, independent of the region's furnace glow.
                     if(r.name=="Branch edge light"||r.name=="Selected road arrow"||roadMaterials.ContainsKey(r))continue;
                     var m=r.sharedMaterial;roadMaterials.Add(r,m);
-                    r.sharedMaterial=m==VisualFactory.Ground?Floor:m==VisualFactory.Stone?Iron:m==VisualFactory.Trim?Ceramic:m==VisualFactory.Glow?Heat:m;
+                    r.sharedMaterial=DistrictMaterial(m,district);
                 }
                 if(!roadBays.TryGetValue(road,out var bays))
                 {
                     bays=new List<(int,Transform)>();roadBays.Add(road,bays);
                     var root=VisualFactory.Node("Road furnace modules",roadDecoration,road.Root.position);root.rotation=road.Rotation;
                     // The first 36m of a branch stay free of large machinery at the Y.
-                    for(int z=road.Parent==null?-225:36;z+18<road.End-3;z+=18)bays.Add((z,BuildBay(root,z)));
+                    for(int z=road.Parent==null?-225:36;z+18<road.End-3;z+=18)bays.Add((z,BuildDistrictBay(root,z,district)));
                 }
                 foreach(var bay in bays)bay.bay.gameObject.SetActive(bay.z+18<road.End-3);
             }
@@ -46,10 +46,10 @@ namespace VectorGame
             roads.ForwardOnly=JourneyActive;
             if(CombatPreviewActive)return;
             regionalWorld.SetVisible(false);VisualFactory.CinderworksStyle=ExpeditionActive;
-            if(ExpeditionActive){VisualFactory.ArmoredStyle=true;regionalWorld.DecorateRoads(roads);}
-            else VisualFactory.ArmoredStyle=defaultArmoredStyle;
+            if(ExpeditionActive){VisualFactory.ArmoredStyle=true;regionalWorld.DecorateRoads(roads,JourneyActive?District:0);}
+            else {VisualFactory.ArmoredStyle=defaultArmoredStyle;RenderSettings.fogColor=new Color(.10f,.17f,.20f);RenderSettings.ambientSkyColor=new Color(.48f,.59f,.63f);RenderSettings.ambientEquatorColor=new Color(.27f,.36f,.37f);}
         }
-        void RefreshExpeditionRoads(){if(ExpeditionActive)regionalWorld.DecorateRoads(roads);}
+        void RefreshExpeditionRoads(){if(ExpeditionActive)regionalWorld.DecorateRoads(roads,JourneyActive?District:0);}
         public string WaveFormation=>DescribeExpeditionFormation(Wave);
         string DescribeExpeditionFormation(int wave)
         {

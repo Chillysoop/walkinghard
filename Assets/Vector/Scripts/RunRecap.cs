@@ -30,7 +30,7 @@ namespace VectorGame
             var row=RunHistory.encounters.LastOrDefault(r=>r.wave==Wave);if(row==null)return;
             row.end=Mathf.Max(0,Health);row.lowest=Mathf.Min(row.lowest,row.end);row.finished=finished;row.survivors=enemies.Count;
         }
-        static string IncomingName(Enemy e)=>e==null?"Environment":e.durability?.champion==true?"Freight Champion":e.boss?(e.foreman!=null?"Shift Foreman":"Pursuer"):e.crew!=CrewRole.None?e.crew==CrewRole.Freight?"Freight Brute":e.crew==CrewRole.Repair?"Repair Crew":e.crew.ToString():e.shooter?"Ranged Raider":e.heavy?"Enforcer":e.shieldBearer?"Shield Bearer":e.volatileCarrier?"Volatile Carrier":"Raider";
+        static string IncomingName(Enemy e)=>e==null?"Environment":e.durability?.champion==true?"Freight Champion":e.boss?(e.journeyBoss?.kind==1?"Bell Foreman":e.foreman!=null?"Shift Foreman":"Pursuer"):e.crew!=CrewRole.None?e.crew==CrewRole.Freight?"Freight Brute":e.crew==CrewRole.Repair?"Repair Crew":e.crew.ToString():e.shooter?"Ranged Raider":e.heavy?"Enforcer":e.shieldBearer?"Shield Bearer":e.volatileCarrier?"Volatile Carrier":"Raider";
         void RecordIncoming(string source,float amount)
         {
             float actual=Mathf.Min(Mathf.Max(0,Health),Mathf.Max(0,amount));if(actual<=0)return;
