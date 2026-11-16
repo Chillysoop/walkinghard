@@ -88,9 +88,9 @@ namespace VectorGame
             return id;
         }
         object Ref(int id){if(id== -1)return null;if(id<0||id>=values.Length)throw new InvalidOperationException("Invalid checkpoint reference");return values[id];}
-        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false,bool legacySpecialists=false)
+        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false,bool legacySpecialists=false,bool legacyProgression=false)
         {
-            if(data==null||data.objects==null||data.objects.Count>256000||data.roots.Count!=roots.Count||data.roots.Select(x=>x.name).Distinct().Count()!=roots.Count)throw new InvalidOperationException("Invalid checkpoint graph");
+            if(data==null||data.objects==null||data.roots==null||data.objects.Count>256000||data.roots.Select(x=>x.name).Distinct().Count()!=data.roots.Count||roots.Keys.Except(data.roots.Select(x=>x.name)).Any(name=>!legacyProgression||name!="RunHistory"))throw new InvalidOperationException("Invalid checkpoint graph");
             graph=data;values=new object[data.objects.Count];
             foreach(var root in data.roots)if(!roots.ContainsKey(root.name))throw new InvalidOperationException("Unsupported checkpoint field");
             for(int i=0;i<values.Length;i++)

@@ -1,0 +1,13 @@
+[
+  {
+    "seed": 4319,
+    "policy": "pinball",
+    "drafter": "projected",
+    "pool": "unlocked",
+    "result": "EngineException",
+    "message": "Existing ragdoll stability guard, after fight-5 heartbeat; original build did not identify bone or velocity.",
+    "assemblySha256": "0EF2628435B2A438BBBB67FE6C168B4AC7A28C21491D1BCD638D6C8C583188BD",
+    "followup": "Checkpoint continuation and an independent fresh full journey completed. No physics fix claimed. Fresh confirmation is included once among the 14 recorded projected-policy outcomes.",
+    "evidence": "physics-incident.txt"
+  }
+]

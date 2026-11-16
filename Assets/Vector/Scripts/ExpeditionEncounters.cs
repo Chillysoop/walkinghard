@@ -85,7 +85,16 @@ namespace VectorGame
         {
             if(!StopOpen)return;
             if(Stop.kind==EncounterRoute.SalvageStop)
-            {BuyRepair();foreach(int i in Enumerable.Range(0,Stop.stock.Length).OrderByDescending(i=>Deck.Copies(Stop.stock[i].def,Stop.stock[i].rank)))if(BuyCopy(i))break;CashOutStop();return;}
+            {
+                BuyRepair();var stock=Enumerable.Range(0,Stop.stock.Length);
+                if(legacyDraftPolicy)stock=stock.OrderByDescending(i=>Deck.Copies(Stop.stock[i].def,Stop.stock[i].rank));
+                else
+                {
+                    float current=AutomatedLoadoutPolicy.Score(Deck,CurrentPolicy);
+                    stock=stock.Where(i=>AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],CurrentPolicy).score>current+.05f).OrderByDescending(i=>(AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],CurrentPolicy).score-current)/CopyCost(Stop.stock[i].rank));
+                }
+                foreach(int i in stock)if(BuyCopy(i))break;CashOutStop();if(!legacyDraftPolicy)EquipSimulationStorage();return;
+            }
             if(Stop.kind==EncounterRoute.Overtime){if(Stop.attempt==0&&Health>Stop.harm+MaxHealth*.15f)PushOvertime();CashOutStop();return;}
             if(Stop.reveal){if(Stop.kind==EncounterRoute.Rescue&&Stop.attempt<2)ContinueRegionalEvent();else CashOutStop();return;}
             int choice=(Seed/6)%3==2?1:0;

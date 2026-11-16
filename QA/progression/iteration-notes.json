@@ -1,0 +1,12 @@
+{
+  "pilot": "First heuristic undervalued rarity-based ricochets and crowded-area actions. Excluded from final comparisons.",
+  "iteration1": "Two completed pinball pilots exposed duplicate-damage convergence and unfilled slots after fusion; retained separately as iteration-1-samples.jsonl, excluded from comparison.",
+  "policyCorrections": [
+    "Native rarity milestones in contact estimates",
+    "Explicit build preferences and producer/consumer links",
+    "Fill available utility slots after fusion",
+    "Evaluate coordinated one-handed partner changes when leaving 2H",
+    "Retain higher-rarity identical equipped items unless the actual resulting loadout improves"
+  ],
+  "physicsIncident": "See physics-incident.txt. Added diagnostic details, not an unproven physics fix. Checkpoint continuation and fresh full-run confirmation are separate evidence."
+}

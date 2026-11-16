@@ -140,6 +140,12 @@ namespace VectorGame
             foreach(var body in bodies)if(!FiniteVector(body.position)||body.position.y< -4||body.linearVelocity.sqrMagnitude>10000)return false;
             return true;
         }
+        public string InstabilityDetails()
+        {
+            for(int i=0;i<bodies.Count;i++)
+            {var b=bodies[i];if(!FiniteVector(b.position)||b.position.y< -4||b.linearVelocity.sqrMagnitude>10000)return "bone="+i+" position="+b.position+" velocity="+b.linearVelocity+" angular="+b.angularVelocity+" severed="+Severed;}
+            return "center="+Center+" velocity="+Velocity;
+        }
         static bool FiniteVector(Vector3 v)=>float.IsFinite(v.x)&&float.IsFinite(v.y)&&float.IsFinite(v.z);
     }
 }

@@ -1,0 +1,2382 @@
+{
+  "scope": "Fixed seeds, 1x time including hit stop, normal health, Full PhysX. Policies are preferences, not fixed loadouts; inspect final_equipped for pivots. Upgrade/defense opportunity uses a heuristic, not measured combat benefit. Gaps count completed encounters and are survival-censored. Unfinished fatal encounters are included only in incoming-damage records.",
+  "initial_incidents": [
+    {
+      "seed": 4319,
+      "policy": "pinball",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "result": "EngineException",
+      "message": "Existing ragdoll stability guard, after fight-5 heartbeat; original build did not identify bone or velocity.",
+      "assemblySha256": "0EF2628435B2A438BBBB67FE6C168B4AC7A28C21491D1BCD638D6C8C583188BD",
+      "followup": "Checkpoint continuation and an independent fresh full journey completed. No physics fix claimed. Fresh confirmation is included once among the 14 recorded projected-policy outcomes.",
+      "evidence": "physics-incident.txt"
+    }
+  ],
+  "groups": [
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "close",
+      "n": 2,
+      "valid": true,
+      "wins": 1,
+      "mean_encounters_cleared": 20.5,
+      "mean_fusions": 6,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 8,
+          "mean_integrity_out": 219.18
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 17.5,
+          "mean_integrity_out": 248.85
+        },
+        {
+          "district": 3,
+          "encounters": 13,
+          "mean_carried": 24.85,
+          "mean_integrity_out": 183.31
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "n": 2,
+      "valid": true,
+      "wins": 0,
+      "mean_encounters_cleared": 16.5,
+      "mean_fusions": 4,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 7.36,
+          "mean_integrity_out": 182.95
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 7.79,
+          "mean_integrity_out": 130.87
+        },
+        {
+          "district": 3,
+          "encounters": 5,
+          "mean_carried": 11.6,
+          "mean_integrity_out": 59.08
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "gun",
+      "n": 2,
+      "valid": true,
+      "wins": 0,
+      "mean_encounters_cleared": 7.5,
+      "mean_fusions": 0.5,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 11,
+          "mean_carried": 9.36,
+          "mean_integrity_out": 203.43
+        },
+        {
+          "district": 2,
+          "encounters": 4,
+          "mean_carried": 8.5,
+          "mean_integrity_out": 145.68
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "n": 2,
+      "valid": true,
+      "wins": 2,
+      "mean_encounters_cleared": 21,
+      "mean_fusions": 6,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 8.57,
+          "mean_integrity_out": 253.28
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 9.86,
+          "mean_integrity_out": 280.81
+        },
+        {
+          "district": 3,
+          "encounters": 14,
+          "mean_carried": 17.21,
+          "mean_integrity_out": 238.21
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "sever",
+      "n": 2,
+      "valid": true,
+      "wins": 0,
+      "mean_encounters_cleared": 4.5,
+      "mean_fusions": 0.5,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 9,
+          "mean_carried": 6.67,
+          "mean_integrity_out": 159.96
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "n": 2,
+      "valid": true,
+      "wins": 2,
+      "mean_encounters_cleared": 21,
+      "mean_fusions": 6.5,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 10.86,
+          "mean_integrity_out": 280.25
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 16.21,
+          "mean_integrity_out": 283.13
+        },
+        {
+          "district": 3,
+          "encounters": 14,
+          "mean_carried": 20.43,
+          "mean_integrity_out": 307.93
+        }
+      ]
+    },
+    {
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "storm",
+      "n": 2,
+      "valid": true,
+      "wins": 0,
+      "mean_encounters_cleared": 11,
+      "mean_fusions": 3.5,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 11,
+          "mean_carried": 8.45,
+          "mean_integrity_out": 211.52
+        },
+        {
+          "district": 2,
+          "encounters": 7,
+          "mean_carried": 6.14,
+          "mean_integrity_out": 331.97
+        },
+        {
+          "district": 3,
+          "encounters": 4,
+          "mean_carried": 17.5,
+          "mean_integrity_out": 239.93
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "close",
+      "n": 2,
+      "valid": true,
+      "wins": 1,
+      "mean_encounters_cleared": 16.5,
+      "mean_fusions": 3,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 7.29,
+          "mean_integrity_out": 198.1
+        },
+        {
+          "district": 2,
+          "encounters": 12,
+          "mean_carried": 7.5,
+          "mean_integrity_out": 160.68
+        },
+        {
+          "district": 3,
+          "encounters": 7,
+          "mean_carried": 14.86,
+          "mean_integrity_out": 161.79
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "n": 2,
+      "valid": true,
+      "wins": 1,
+      "mean_encounters_cleared": 18.5,
+      "mean_fusions": 3,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 7,
+          "mean_integrity_out": 217.25
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 8.5,
+          "mean_integrity_out": 169.49
+        },
+        {
+          "district": 3,
+          "encounters": 9,
+          "mean_carried": 13.89,
+          "mean_integrity_out": 153.77
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "gun",
+      "n": 2,
+      "valid": true,
+      "wins": 1,
+      "mean_encounters_cleared": 16,
+      "mean_fusions": 3,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 6.64,
+          "mean_integrity_out": 196.79
+        },
+        {
+          "district": 2,
+          "encounters": 11,
+          "mean_carried": 7,
+          "mean_integrity_out": 226.13
+        },
+        {
+          "district": 3,
+          "encounters": 7,
+          "mean_carried": 14.57,
+          "mean_integrity_out": 279.57
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "n": 2,
+      "valid": true,
+      "wins": 2,
+      "mean_encounters_cleared": 21,
+      "mean_fusions": 4,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 13.36,
+          "mean_integrity_out": 227.21
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 20.5,
+          "mean_integrity_out": 196.01
+        },
+        {
+          "district": 3,
+          "encounters": 14,
+          "mean_carried": 22.71,
+          "mean_integrity_out": 204.79
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "sever",
+      "n": 2,
+      "valid": true,
+      "wins": 1,
+      "mean_encounters_cleared": 17,
+      "mean_fusions": 3,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 8.21,
+          "mean_integrity_out": 234.37
+        },
+        {
+          "district": 2,
+          "encounters": 13,
+          "mean_carried": 10.15,
+          "mean_integrity_out": 179.77
+        },
+        {
+          "district": 3,
+          "encounters": 7,
+          "mean_carried": 16.43,
+          "mean_integrity_out": 200.06
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "n": 2,
+      "valid": true,
+      "wins": 2,
+      "mean_encounters_cleared": 21,
+      "mean_fusions": 4,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 6.79,
+          "mean_integrity_out": 245.23
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 6.64,
+          "mean_integrity_out": 298.55
+        },
+        {
+          "district": 3,
+          "encounters": 14,
+          "mean_carried": 12.14,
+          "mean_integrity_out": 303.01
+        }
+      ]
+    },
+    {
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "storm",
+      "n": 2,
+      "valid": true,
+      "wins": 2,
+      "mean_encounters_cleared": 21,
+      "mean_fusions": 4,
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 14,
+          "mean_carried": 7.93,
+          "mean_integrity_out": 226.13
+        },
+        {
+          "district": 2,
+          "encounters": 14,
+          "mean_carried": 10,
+          "mean_integrity_out": 232.83
+        },
+        {
+          "district": 3,
+          "encounters": 14,
+          "mean_carried": 15,
+          "mean_integrity_out": 286.99
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "close",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 20.18,
+      "fusions": 6,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 8,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 5,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 295.9718017578125,
+          "hits": 53
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 157.18392944335938,
+          "hits": 50
+        },
+        {
+          "name": "Raider",
+          "damage": 118.73277282714844,
+          "hits": 38
+        }
+      ],
+      "final_loadout": "1: Vector Tether \u00b7 Uncommon > 2: Breaker \u00b7 Uncommon > 3: Counterguard \u00b7 Uncommon > 4: Basic 1 \u00b7 Kinetic Fists \u00b7 Rare > 5: Basic 2 \u00b7 Compact Scattergun \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 3
+        },
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "VectorTether",
+          "rarity": 2
+        },
+        {
+          "item": "scattergun",
+          "rarity": 2
+        },
+        {
+          "item": "redline",
+          "rarity": 1
+        },
+        {
+          "item": "visor",
+          "rarity": 1
+        },
+        {
+          "item": "momentum",
+          "rarity": 1
+        },
+        {
+          "item": "overclock",
+          "rarity": 1
+        },
+        {
+          "item": "Counterguard",
+          "rarity": 2
+        },
+        {
+          "item": "recoil",
+          "rarity": 4
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "close",
+      "seed": 4319,
+      "result": "Defeated",
+      "wave": 21,
+      "combat_minutes": 18.35,
+      "fusions": 6,
+      "weapon_offer_gap": 5,
+      "weapon_upgrade_gap": 10,
+      "matching_copy_gap": 8,
+      "defense_offer_gap": 9,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 496.000732421875,
+          "hits": 155
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 156.02008056640625,
+          "hits": 31
+        },
+        {
+          "name": "Linebreaker",
+          "damage": 46.71999740600586,
+          "hits": 9
+        }
+      ],
+      "final_loadout": "1: Steel Jab \u00b7 Epic > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Uncommon > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Uncommon > 5: Suppressive Volley \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 2
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 2
+        },
+        {
+          "item": "momentum",
+          "rarity": 2
+        },
+        {
+          "item": "SuppressiveVolley",
+          "rarity": 4
+        },
+        {
+          "item": "redline",
+          "rarity": 4
+        },
+        {
+          "item": "fists",
+          "rarity": 2
+        },
+        {
+          "item": "SteelJab",
+          "rarity": 4
+        },
+        {
+          "item": "reactive",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 17,
+      "combat_minutes": 15.78,
+      "fusions": 3,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 6,
+      "matching_copy_gap": 11,
+      "defense_offer_gap": 13,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 264.95989990234375,
+          "hits": 46
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 233.28005981445312,
+          "hits": 73
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 138.24002075195312,
+          "hits": 27
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Edge Sword \u00b7 Uncommon > 3: Basic 2 \u00b7 Breach Hammer \u00b7 Common > 4: Reaping Cut \u00b7 Epic > 5: Suppressive Volley \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 4
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "singularity",
+          "rarity": 2
+        },
+        {
+          "item": "predator",
+          "rarity": 5
+        },
+        {
+          "item": "surveyor",
+          "rarity": 3
+        },
+        {
+          "item": "breachhammer",
+          "rarity": 1
+        },
+        {
+          "item": "recoil",
+          "rarity": 2
+        },
+        {
+          "item": "SuppressiveVolley",
+          "rarity": 4
+        },
+        {
+          "item": "sword",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "seed": 4319,
+      "result": "Defeated",
+      "wave": 18,
+      "combat_minutes": 16.23,
+      "fusions": 5,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 5,
+      "matching_copy_gap": 5,
+      "defense_offer_gap": 3,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 251.42391967773438,
+          "hits": 54
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 211.9998016357422,
+          "hits": 91
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 132.83203125,
+          "hits": 32
+        }
+      ],
+      "final_loadout": "1: Gravity Well \u00b7 Common > 2: Steel Jab \u00b7 Rare > 3: Breaker \u00b7 Epic > 4: Basic 1 \u00b7 Edge Sword \u00b7 Uncommon > 5: Basic 2 \u00b7 Kinetic Fists \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 2
+        },
+        {
+          "item": "SteelJab",
+          "rarity": 3
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "magnet",
+          "rarity": 1
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "momentum",
+          "rarity": 1
+        },
+        {
+          "item": "visor",
+          "rarity": 5
+        },
+        {
+          "item": "sword",
+          "rarity": 2
+        },
+        {
+          "item": "GravityWell",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "gun",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 5,
+      "combat_minutes": 4.08,
+      "fusions": 1,
+      "weapon_offer_gap": 1,
+      "weapon_upgrade_gap": 2,
+      "matching_copy_gap": 4,
+      "defense_offer_gap": 4,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 264.95989990234375,
+          "hits": 46
+        },
+        {
+          "name": "Raider",
+          "damage": 175.99990844726562,
+          "hits": 55
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 48.00000762939453,
+          "hits": 15
+        }
+      ],
+      "final_loadout": "1: Vector Tether \u00b7 Rare > 2: Conductive Brand \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Drain Brand \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "DrainBrand",
+          "rarity": 2
+        },
+        {
+          "item": "VectorTether",
+          "rarity": 3
+        },
+        {
+          "item": "ConductiveBrand",
+          "rarity": 2
+        },
+        {
+          "item": "rifle",
+          "rarity": 3
+        },
+        {
+          "item": "redline",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "gun",
+      "seed": 4319,
+      "result": "Defeated",
+      "wave": 12,
+      "combat_minutes": 10.31,
+      "fusions": 0,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 6,
+      "matching_copy_gap": 11,
+      "defense_offer_gap": 4,
+      "top_damage": [
+        {
+          "name": "Raider",
+          "damage": 158.26402282714844,
+          "hits": 51
+        },
+        {
+          "name": "Enforcer",
+          "damage": 156.09597778320312,
+          "hits": 28
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 148.47994995117188,
+          "hits": 50
+        }
+      ],
+      "final_loadout": "1: Vector Tether \u00b7 Rare > 2: Steel Jab \u00b7 Epic > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Rare > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Rare > 5: Mass Driver \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "SteelJab",
+          "rarity": 4
+        },
+        {
+          "item": "MassDriver",
+          "rarity": 4
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 4
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "VectorTether",
+          "rarity": 3
+        },
+        {
+          "item": "loader",
+          "rarity": 2
+        },
+        {
+          "item": "hammer",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 22.83,
+      "fusions": 7,
+      "weapon_offer_gap": 6,
+      "weapon_upgrade_gap": 6,
+      "matching_copy_gap": 5,
+      "defense_offer_gap": 5,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 51.63520431518555,
+          "hits": 17
+        },
+        {
+          "name": "Pursuer",
+          "damage": 34.19135665893555,
+          "hits": 7
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 28.712961196899414,
+          "hits": 6
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Uncommon > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Uncommon > 5: Mass Driver \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 3
+        },
+        {
+          "item": "Counterguard",
+          "rarity": 3
+        },
+        {
+          "item": "MassDriver",
+          "rarity": 2
+        },
+        {
+          "item": "singularity",
+          "rarity": 2
+        },
+        {
+          "item": "visor",
+          "rarity": 2
+        },
+        {
+          "item": "treads",
+          "rarity": 1
+        },
+        {
+          "item": "amplifier",
+          "rarity": 1
+        },
+        {
+          "item": "plate",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 21.4,
+      "fusions": 5,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 8,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 278.8199157714844,
+          "hits": 49
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 211.1998748779297,
+          "hits": 66
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 87.04000854492188,
+          "hits": 17
+        }
+      ],
+      "final_loadout": "1: Counterguard \u00b7 Rare > 2: Steel Jab \u00b7 Rare > 3: Breaker \u00b7 Common > 4: Basic 1 \u00b7 Impact Hammer \u00b7 Common > 5: Basic 2 \u00b7 Impact Hammer \u00b7 Common",
+      "final_equipped": [
+        {
+          "item": "SteelJab",
+          "rarity": 3
+        },
+        {
+          "item": "reactive",
+          "rarity": 2
+        },
+        {
+          "item": "singularity",
+          "rarity": 1
+        },
+        {
+          "item": "visor",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 1
+        },
+        {
+          "item": "loader",
+          "rarity": 2
+        },
+        {
+          "item": "Breaker",
+          "rarity": 1
+        },
+        {
+          "item": "overclock",
+          "rarity": 5
+        },
+        {
+          "item": "Counterguard",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "sever",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 6,
+      "combat_minutes": 4.18,
+      "fusions": 1,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 4,
+      "matching_copy_gap": 3,
+      "defense_offer_gap": 5,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 225.4807891845703,
+          "hits": 40
+        },
+        {
+          "name": "Raider",
+          "damage": 118.39995574951172,
+          "hits": 37
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 48.00000762939453,
+          "hits": 15
+        }
+      ],
+      "final_loadout": "1: Vector Tether \u00b7 Common > 2: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 3: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Drain Brand \u00b7 Uncommon > 5: Reaping Cut \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "DrainBrand",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "VectorTether",
+          "rarity": 1
+        },
+        {
+          "item": "rifle",
+          "rarity": 2
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "sever",
+      "seed": 4319,
+      "result": "Defeated",
+      "wave": 5,
+      "combat_minutes": 3.49,
+      "fusions": 0,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 4,
+      "matching_copy_gap": 4,
+      "defense_offer_gap": 1,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 115.20000457763672,
+          "hits": 20
+        },
+        {
+          "name": "Raider",
+          "damage": 108.79996490478516,
+          "hits": 34
+        },
+        {
+          "name": "Freight Brute",
+          "damage": 42.23999786376953,
+          "hits": 8
+        }
+      ],
+      "final_loadout": "1: Gravity Well \u00b7 Common > 2: Steel Jab \u00b7 Epic > 3: Basic 1 \u00b7 Edge Sword \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Mass Driver \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 1
+        },
+        {
+          "item": "GravityWell",
+          "rarity": 1
+        },
+        {
+          "item": "SteelJab",
+          "rarity": 4
+        },
+        {
+          "item": "MassDriver",
+          "rarity": 4
+        },
+        {
+          "item": "sword",
+          "rarity": 1
+        },
+        {
+          "item": "magnet",
+          "rarity": 1
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 4
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 21.13,
+      "fusions": 7,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 8,
+      "matching_copy_gap": 5,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 201.59994506835938,
+          "hits": 35
+        },
+        {
+          "name": "Raider",
+          "damage": 105.59996795654297,
+          "hits": 33
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 73.5999984741211,
+          "hits": 23
+        }
+      ],
+      "final_loadout": "1: Conductive Brand \u00b7 Rare > 2: Counterguard \u00b7 Rare > 3: Basic 1 \u00b7 Compact Scattergun \u00b7 Epic > 4: Basic 2 \u00b7 Siphon Blade \u00b7 Uncommon > 5: Drain Brand \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "DrainBrand",
+          "rarity": 2
+        },
+        {
+          "item": "Counterguard",
+          "rarity": 3
+        },
+        {
+          "item": "ConductiveBrand",
+          "rarity": 3
+        },
+        {
+          "item": "reactive",
+          "rarity": 2
+        },
+        {
+          "item": "amplifier",
+          "rarity": 1
+        },
+        {
+          "item": "scattergun",
+          "rarity": 4
+        },
+        {
+          "item": "redline",
+          "rarity": 3
+        },
+        {
+          "item": "surveyor",
+          "rarity": 1
+        },
+        {
+          "item": "momentum",
+          "rarity": 3
+        },
+        {
+          "item": "siphonblade",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.22,
+      "fusions": 6,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 8,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 230.3998565673828,
+          "hits": 72
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 110.72001647949219,
+          "hits": 22
+        },
+        {
+          "name": "Enforcer",
+          "damage": 80.6399917602539,
+          "hits": 14
+        }
+      ],
+      "final_loadout": "1: Gravity Well \u00b7 Epic > 2: Steel Jab \u00b7 Epic > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Epic > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Epic > 5: Reaping Cut \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "SteelJab",
+          "rarity": 4
+        },
+        {
+          "item": "GravityWell",
+          "rarity": 4
+        },
+        {
+          "item": "reactive",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 4
+        },
+        {
+          "item": "amplifier",
+          "rarity": 1
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 4
+        },
+        {
+          "item": "treads",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "legacy-1741/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "storm",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 5,
+      "combat_minutes": 3.96,
+      "fusions": 0,
+      "weapon_offer_gap": 2,
+      "weapon_upgrade_gap": 3,
+      "matching_copy_gap": 4,
+      "defense_offer_gap": 4,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 236.159912109375,
+          "hits": 41
+        },
+        {
+          "name": "Raider",
+          "damage": 153.5999298095703,
+          "hits": 48
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 38.40000534057617,
+          "hits": 12
+        }
+      ],
+      "final_loadout": "1: Vector Tether \u00b7 Rare > 2: Conductive Brand \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 5: Arc Bolt \u00b7 Common",
+      "final_equipped": [
+        {
+          "item": "VectorTether",
+          "rarity": 3
+        },
+        {
+          "item": "ConductiveBrand",
+          "rarity": 2
+        },
+        {
+          "item": "rifle",
+          "rarity": 2
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "singularity",
+          "rarity": 2
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "legacy-4319/samples.jsonl",
+      "drafter": "legacy",
+      "pool": "unlocked",
+      "policy": "storm",
+      "seed": 4319,
+      "result": "Defeated",
+      "wave": 19,
+      "combat_minutes": 16.25,
+      "fusions": 7,
+      "weapon_offer_gap": 5,
+      "weapon_upgrade_gap": 7,
+      "matching_copy_gap": 3,
+      "defense_offer_gap": 14,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 242.84144592285156,
+          "hits": 49
+        },
+        {
+          "name": "Raider",
+          "damage": 144.71676635742188,
+          "hits": 51
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 119.30782318115234,
+          "hits": 43
+        }
+      ],
+      "final_loadout": "1: Conductive Brand \u00b7 Uncommon > 2: Steel Jab \u00b7 Uncommon > 3: Basic 1 \u00b7 Conductor Wraps \u00b7 Rare > 4: Basic 2 \u00b7 Conductor Wraps \u00b7 Uncommon > 5: Arc Bolt \u00b7 Common",
+      "final_equipped": [
+        {
+          "item": "SteelJab",
+          "rarity": 2
+        },
+        {
+          "item": "wraps",
+          "rarity": 3
+        },
+        {
+          "item": "tempest",
+          "rarity": 1
+        },
+        {
+          "item": "plate",
+          "rarity": 4
+        },
+        {
+          "item": "surveyor",
+          "rarity": 2
+        },
+        {
+          "item": "ConductiveBrand",
+          "rarity": 2
+        },
+        {
+          "item": "arcstep",
+          "rarity": 2
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 1
+        },
+        {
+          "item": "wraps",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-close/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "close",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 13,
+      "combat_minutes": 11.35,
+      "fusions": 2,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 6,
+      "matching_copy_gap": 5,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 237.5518035888672,
+          "hits": 58
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 140.7999725341797,
+          "hits": 53
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 123.39202880859375,
+          "hits": 28
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Compact Scattergun \u00b7 Epic > 3: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 4: Arc Bolt \u00b7 Uncommon > 5: Reaping Cut \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 4
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "redline",
+          "rarity": 1
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 2
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "visor",
+          "rarity": 1
+        },
+        {
+          "item": "scattergun",
+          "rarity": 4
+        },
+        {
+          "item": "loader",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-close-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "close",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.58,
+      "fusions": 4,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 366.5683898925781,
+          "hits": 131
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 192.62716674804688,
+          "hits": 43
+        },
+        {
+          "name": "Linebreaker",
+          "damage": 94.48240661621094,
+          "hits": 23
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Basic 1 \u00b7 Impact Hammer \u00b7 Epic > 3: Basic 2 \u00b7 Impact Hammer \u00b7 Epic > 4: Arc Bolt \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 4
+        },
+        {
+          "item": "duelist",
+          "rarity": 3
+        },
+        {
+          "item": "relay",
+          "rarity": 1
+        },
+        {
+          "item": "arcstep",
+          "rarity": 1
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-cutcarry-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 17,
+      "combat_minutes": 16.01,
+      "fusions": 2,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 7,
+      "matching_copy_gap": 5,
+      "defense_offer_gap": 9,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 385.17999267578125,
+          "hits": 176
+        },
+        {
+          "name": "Enforcer",
+          "damage": 195.2639617919922,
+          "hits": 51
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 161.0239715576172,
+          "hits": 40
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Impact Hammer \u00b7 Uncommon > 3: Basic 2 \u00b7 Impact Hammer \u00b7 Uncommon > 4: Reaping Cut \u00b7 Rare > 5: Reaping Cut \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "hammer",
+          "rarity": 2
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 1
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "salvager",
+          "rarity": 2
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "momentum",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-cutcarry-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "cutcarry",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.52,
+      "fusions": 4,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 320.5841369628906,
+          "hits": 116
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 156.62081909179688,
+          "hits": 35
+        },
+        {
+          "name": "Enforcer",
+          "damage": 123.14881896972656,
+          "hits": 23
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Epic > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 4
+        },
+        {
+          "item": "duelist",
+          "rarity": 3
+        },
+        {
+          "item": "relay",
+          "rarity": 1
+        },
+        {
+          "item": "arcstep",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-gun/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "gun",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 12,
+      "combat_minutes": 10.34,
+      "fusions": 2,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 10,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 297.24639892578125,
+          "hits": 67
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 108.48001861572266,
+          "hits": 42
+        },
+        {
+          "name": "Raider",
+          "damage": 81.11998748779297,
+          "hits": 33
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 3: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Arc Bolt \u00b7 Uncommon > 5: Reaping Cut \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "rifle",
+          "rarity": 2
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "redline",
+          "rarity": 1
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 2
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "visor",
+          "rarity": 1
+        },
+        {
+          "item": "loader",
+          "rarity": 3
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-gun-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "gun",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 18.49,
+      "fusions": 4,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 8,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 87.48802947998047,
+          "hits": 28
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 55.53401184082031,
+          "hits": 12
+        },
+        {
+          "name": "Linebreaker",
+          "damage": 25.920001983642578,
+          "hits": 6
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Basic 1 \u00b7 Conductor Wraps \u00b7 Epic > 3: Basic 2 \u00b7 Conductor Wraps \u00b7 Epic > 4: Arc Bolt \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "grounding",
+          "rarity": 2
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 4
+        },
+        {
+          "item": "treads",
+          "rarity": 2
+        },
+        {
+          "item": "tempest",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-pinball-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.24,
+      "fusions": 4,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 21,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 388.5079345703125,
+          "hits": 129
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 156.6172332763672,
+          "hits": 33
+        },
+        {
+          "name": "Enforcer",
+          "damage": 61.94693374633789,
+          "hits": 13
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Rare > 2: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 3: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 4: Reaping Cut \u00b7 Legendary > 5: Reaping Cut \u00b7 Legendary",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 3
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 5
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "surveyor",
+          "rarity": 3
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 5
+        },
+        {
+          "item": "cyclone",
+          "rarity": 2
+        },
+        {
+          "item": "reclaimer",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-pinball-confirmation/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "pinball",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.53,
+      "fusions": 4,
+      "weapon_offer_gap": 3,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 7,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 286.3600158691406,
+          "hits": 104
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 123.43043518066406,
+          "hits": 28
+        },
+        {
+          "name": "Enforcer",
+          "damage": 100.49761199951172,
+          "hits": 19
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Epic > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "hammer",
+          "rarity": 4
+        },
+        {
+          "item": "duelist",
+          "rarity": 3
+        },
+        {
+          "item": "relay",
+          "rarity": 1
+        },
+        {
+          "item": "arcstep",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-sever/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "sever",
+      "seed": 1741,
+      "result": "Defeated",
+      "wave": 14,
+      "combat_minutes": 12.74,
+      "fusions": 1,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 13,
+      "matching_copy_gap": 4,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 368.4963684082031,
+          "hits": 160
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 128.76805114746094,
+          "hits": 31
+        },
+        {
+          "name": "Enforcer",
+          "damage": 100.22398376464844,
+          "hits": 21
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 3: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 4: Reaping Cut \u00b7 Rare > 5: Reaping Cut \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 1
+        },
+        {
+          "item": "ReapingCut",
+          "rarity": 3
+        },
+        {
+          "item": "salvager",
+          "rarity": 3
+        },
+        {
+          "item": "duelist",
+          "rarity": 1
+        },
+        {
+          "item": "momentum",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-sever-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "sever",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 19.18,
+      "fusions": 5,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 14,
+      "matching_copy_gap": 12,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 218.27674865722656,
+          "hits": 76
+        },
+        {
+          "name": "Enforcer",
+          "damage": 115.77005004882812,
+          "hits": 23
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 109.9563217163086,
+          "hits": 24
+        }
+      ],
+      "final_loadout": "1: Gravity Well \u00b7 Epic > 2: Breaker \u00b7 Epic > 3: Breaker \u00b7 Epic > 4: Basic 1 \u00b7 Execution Greatsword \u00b7 Rare > 5: Basic 2 \u00b7 Execution Greatsword \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "GravityWell",
+          "rarity": 4
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 4
+        },
+        {
+          "item": "greatsword",
+          "rarity": 3
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "arcstep",
+          "rarity": 1
+        },
+        {
+          "item": "plate",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-siphon-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 20.41,
+      "fusions": 4,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 10,
+      "matching_copy_gap": 9,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Enforcer",
+          "damage": 308.0909118652344,
+          "hits": 58
+        },
+        {
+          "name": "Ranged Raider",
+          "damage": 293.14581298828125,
+          "hits": 99
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 133.03807067871094,
+          "hits": 28
+        }
+      ],
+      "final_loadout": "1: Drain Brand \u00b7 Rare > 2: Breaker \u00b7 Uncommon > 3: Basic 1 \u00b7 Siphon Blade \u00b7 Common > 4: Basic 2 \u00b7 Siphon Blade \u00b7 Common > 5: Arc Bolt \u00b7 Rare",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 2
+        },
+        {
+          "item": "magnet",
+          "rarity": 3
+        },
+        {
+          "item": "cyclone",
+          "rarity": 1
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 3
+        },
+        {
+          "item": "plate",
+          "rarity": 2
+        },
+        {
+          "item": "visor",
+          "rarity": 1
+        },
+        {
+          "item": "DrainBrand",
+          "rarity": 3
+        },
+        {
+          "item": "treads",
+          "rarity": 2
+        },
+        {
+          "item": "siphonblade",
+          "rarity": 1
+        },
+        {
+          "item": "siphonblade",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-siphon-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "siphon",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 18.74,
+      "fusions": 4,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 8,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 72.44801330566406,
+          "hits": 23
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 55.091209411621094,
+          "hits": 11
+        },
+        {
+          "name": "Linebreaker",
+          "damage": 25.920001983642578,
+          "hits": 6
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Basic 1 \u00b7 Conductor Wraps \u00b7 Epic > 3: Basic 2 \u00b7 Conductor Wraps \u00b7 Epic > 4: Arc Bolt \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "grounding",
+          "rarity": 2
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 4
+        },
+        {
+          "item": "treads",
+          "rarity": 2
+        },
+        {
+          "item": "tempest",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "source": "projected-1741-storm-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "storm",
+      "seed": 1741,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 20.04,
+      "fusions": 4,
+      "weapon_offer_gap": 5,
+      "weapon_upgrade_gap": 21,
+      "matching_copy_gap": 10,
+      "defense_offer_gap": 6,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 416.96038818359375,
+          "hits": 151
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 253.43992614746094,
+          "hits": 54
+        },
+        {
+          "name": "Enforcer",
+          "damage": 184.60794067382812,
+          "hits": 37
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Rare > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Arc Bolt \u00b7 Uncommon",
+      "final_equipped": [
+        {
+          "item": "fists",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 3
+        },
+        {
+          "item": "magnet",
+          "rarity": 2
+        },
+        {
+          "item": "cyclone",
+          "rarity": 1
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 2
+        },
+        {
+          "item": "arcstep",
+          "rarity": 1
+        },
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "visor",
+          "rarity": 3
+        },
+        {
+          "item": "reclaimer",
+          "rarity": 2
+        }
+      ]
+    },
+    {
+      "source": "projected-4319-storm-final/samples.jsonl",
+      "drafter": "projected",
+      "pool": "unlocked",
+      "policy": "storm",
+      "seed": 4319,
+      "result": "Complete",
+      "wave": 21,
+      "combat_minutes": 18.52,
+      "fusions": 4,
+      "weapon_offer_gap": 4,
+      "weapon_upgrade_gap": 17,
+      "matching_copy_gap": 8,
+      "defense_offer_gap": 8,
+      "top_damage": [
+        {
+          "name": "Ranged Raider",
+          "damage": 75.45601654052734,
+          "hits": 24
+        },
+        {
+          "name": "Cinderlobber",
+          "damage": 55.091209411621094,
+          "hits": 11
+        },
+        {
+          "name": "Linebreaker",
+          "damage": 25.920001983642578,
+          "hits": 6
+        }
+      ],
+      "final_loadout": "1: Breaker \u00b7 Epic > 2: Basic 1 \u00b7 Conductor Wraps \u00b7 Epic > 3: Basic 2 \u00b7 Conductor Wraps \u00b7 Epic > 4: Arc Bolt \u00b7 Epic > 5: Arc Bolt \u00b7 Epic",
+      "final_equipped": [
+        {
+          "item": "Breaker",
+          "rarity": 4
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "wraps",
+          "rarity": 4
+        },
+        {
+          "item": "grounding",
+          "rarity": 2
+        },
+        {
+          "item": "ArcBolt",
+          "rarity": 4
+        },
+        {
+          "item": "capacitor",
+          "rarity": 4
+        },
+        {
+          "item": "treads",
+          "rarity": 2
+        },
+        {
+          "item": "tempest",
+          "rarity": 5
+        }
+      ]
+    }
+  ]
+}

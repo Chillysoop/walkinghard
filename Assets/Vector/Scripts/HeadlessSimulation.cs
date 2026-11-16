@@ -18,9 +18,11 @@ namespace VectorGame
         System.Random policyRandom;
         bool simulationTimedOut;float nextSimulationCheck;float simulationLimit=480,nextSimulationTrace=60;
         static readonly string[] SimulationPolicies={"random","balanced","pinball","storm","sever","gun"};
-        static readonly string[] ArchetypePolicies={"pinball","storm","sever","gun","cutcarry","close"};
+        static readonly string[] ArchetypePolicies={"pinball","storm","sever","gun","cutcarry","close","siphon"};
+        bool legacyDraftPolicy;
         void ConfigureSimulation(string[] args)
         {
+            legacyDraftPolicy=args.Contains("-legacyDraftPolicy");
             string Arg(string key,string fallback){int at=Array.IndexOf(args,key);return at>=0&&at+1<args.Length?args[at+1]:fallback;}
             simulationRuns=int.Parse(Arg("-simRuns","0"));simulation=simulationRuns>0;if(!simulation)return;
             simulationSeed=int.Parse(Arg("-seed","1"));simulationStride=Math.Max(1,int.Parse(Arg("-simStride","1")));simulationWaves=int.Parse(Arg("-simWaves","8"));
@@ -65,6 +67,17 @@ namespace VectorGame
         {
             if(StopOpen){SimulationExpeditionStop();return;}
             if(Controlled!=null){ControlledDraft();return;}
+            if(!legacyDraftPolicy&&CurrentPolicy!="random")
+            {
+                if(!Deck.RewardClaimed)
+                {
+                    RecordDraftOpportunity();var choice=AutomatedLoadoutPolicy.Choose(Deck,CurrentPolicy);
+                    bool claimed=choice.host!=null?ClaimAugmentToHost(choice.offer,choice.host,false):ClaimReward(choice.offer,choice.place,choice.index,false);
+                    if(!claimed)throw new InvalidOperationException("Projected draft choice was rejected");
+                }
+                EquipSimulationStorage();FinishDraftRecord();ConfirmDraft();return;
+            }
+            if(!Deck.RewardClaimed)RecordDraftOpportunity();
             if(policyRandom==null)policyRandom=new System.Random(Seed^0x371e);
             if(!Deck.RewardClaimed)
             {
@@ -90,7 +103,7 @@ namespace VectorGame
                     if(!ClaimReward(pick,place,index,false))throw new InvalidOperationException("Simulation policy chose an illegal destination");
                 }
             }
-            if(Deck.RewardClaimed){ArrangeSimulationSequence();ConfirmDraft();}
+            if(Deck.RewardClaimed){ArrangeSimulationSequence();FinishDraftRecord();ConfirmDraft();}
         }
         void ArrangeSimulationSequence()
         {
