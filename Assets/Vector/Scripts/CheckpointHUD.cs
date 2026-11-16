@@ -149,15 +149,19 @@ namespace VectorGame
             bool highlight=chosen||item!=null&&item==selectedItem;
             var shown=item?.def.kind==ItemKind.Basic?game.Deck.WeaponFor(item):item;
             ItemKind kind=item?.def.kind??emptyKind;Color tint=TypeColor(kind);
-            Plate(r,highlight?new Color(.05f,.15f,.19f):ink,highlight?Accent:line,8,highlight?2:1);
-            if(shown!=null)Stroke(new Vector2(r.x+10,r.y+1),new Vector2(r.xMax-10,r.y+1),RarityColor(shown.rank),2);
+            if(UnifiedCheckpoint)TabletCell(r,kind==ItemKind.Ultimate?new Color(.17f,.23f,.30f):TabletBlue,shown==null?line:RarityColor(shown.rank),highlight,r.Contains(Pointer));
+            else
+            {
+                Plate(r,highlight?new Color(.05f,.15f,.19f):ink,highlight?Accent:line,8,highlight?2:1);
+                if(shown!=null)Stroke(new Vector2(r.x+10,r.y+1),new Vector2(r.xMax-10,r.y+1),RarityColor(shown.rank),2);
+            }
             Label(new Rect(r.x+10,r.y+9,r.width-20,15),heading,9,tint,true);
             if(r.height<70)
             {
                 if(shown!=null)ActionGlyph(new Rect(r.x+10,r.y+26,20,20),shown.def,muted);
                 Label(new Rect(r.x+38,r.y+28,r.width-48,20),shown?.def.name??name,13,white,true);ItemTooltip(r,item);return;
             }
-            if(shown!=null)ActionGlyph(new Rect(r.x+10,r.y+30,36,36),shown.def,muted);
+            if(shown!=null){if(UnifiedCheckpoint)TabletArtWell(new Rect(r.x+8,r.y+28,40,40));ActionGlyph(new Rect(r.x+10,r.y+30,36,36),shown.def,muted);}
             Label(new Rect(r.x+54,r.y+30,r.width-64,22),shown?.def.name??name,r.width<200?12:14,white,true);
             if(shown!=null)
             {

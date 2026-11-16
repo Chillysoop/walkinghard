@@ -1,0 +1,15 @@
+Generated with the built-in image_gen tool on 2026-11-15.
+Production asset: Assets/Resources/TabletUI/PanelMaterials.png
+Layout: 2 x 2 atlas; graphite, teal diagnostic glass, warm cargo weave, blue control metal.
+Runtime draws nine slices per panel; no baked text, icons, controls, or layouts.
+
+Use case: ui-mockup
+Asset type: production texture atlas for a responsive in-universe cyberpunk tablet loadout screen in a game.
+Primary request: a clean, restrained industrial tablet UI material kit. Four completely EMPTY rectangular panel surfaces in a precise 2 by 2 grid filling a square image, each tile exactly one quarter of the image. The game will overlay live text, item art and buttons. This is the actual panel material asset, not a screenshot or scene.
+Composition: front-on orthographic, flat 2D, no perspective. Each quadrant is a square, with identical narrow engineered perimeter bevels occupying only the outer 5 percent of the tile. The inner 90 percent is quiet, nearly uniform empty material suitable behind small readable white text. Tile boundaries at exactly 50 percent of canvas width and height. No margins or gaps between tiles.
+Top-left: charcoal graphite tablet chassis, fine satin polymer grain, extremely subtle wear on its thin rim.
+Top-right: desaturated petrol teal diagnostic glass for the equipped character sheet, faint etched microgrid in the material, crisp thin darker edge.
+Bottom-left: warm desaturated slate gray cargo/storage metal, a soft fine woven technical texture, thin machined edge.
+Bottom-right: desaturated midnight blue sequencing control surface, finely brushed horizontal material, thin machined edge.
+Style: polished and practical cyberpunk industrial hardware, restrained tactile richness, moderate tonal variation, very subtle textures, clean flat empty centers. Rich colored fills appreciably different from each other. Avoid black voids. Overall each fill should be dark enough for white text but clearly visible.
+Constraints: absolutely no text, letters, digits, logos, icons, fake UI charts, controls, buttons, characters, item pictures, perspective, hands, dramatic reflections, bright glows or large scratches. No additional subdivisions within any of the four panels. Corners and borders will be nine-sliced by the game to adapt to different screen sizes. Opaque background.

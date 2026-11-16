@@ -105,6 +105,7 @@ namespace VectorGame
             if(rendered)
             {
                 Screen.SetResolution(1280,720,false);WorkbenchFixture();workbenchTextAudit=true;for(int i=0;i<12;i++)yield return null;
+                ReviewCheck(tabletMaterials!=null&&tabletMaterials.width==tabletMaterials.height,"generated tablet material atlas is included in the player");
                 ReviewCheck(dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Sequence&&!r.socket)==5&&dropRegions.Count(r=>r.place==PlaceKind.Weapon&&!r.socket)==2&&dropRegions.Any(r=>r.place==PlaceKind.Helmet)&&dropRegions.Any(r=>r.place==PlaceKind.Inventory&&r.index==-1),"full build remains visible before choosing a reward");
                 ReviewCheck(!inlineComparisonVisible&&comparisonRect==Rect.zero,"idle workbench has no suggestion panel or reserved comparison column");
                 ReviewCheck(dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket)==12,"expanded storage shows twelve named items");
@@ -178,14 +179,25 @@ namespace VectorGame
                 reviewPointer=new Vector2(-200,-200);yield return null;yield return null;
                 ReviewCheck(loadoutHover.target.index==2&&loadoutHover.projection.after.Slots[2]?.def.id=="ArcBolt","owned ability preview ignores a different pending reward keyboard slot");
                 ConfirmWorkbench();ReviewCheck(game.Deck.Slots[2]==ownedArc&&game.Deck.Slots[4]==null&&!game.Deck.RewardClaimed,"owned ability primary action matches preview with pending reward slot selected");
-                foreach(int width in new[]{1280,1920,2560})
+                foreach(var resolution in new[]{new Vector2Int(1280,720),new Vector2Int(1440,900),new Vector2Int(1600,1200),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})
                 {
-                    Screen.SetResolution(width,width==1280?720:1080,false);WorkbenchFixture();workbenchTextAudit=true;for(int i=0;i<12;i++)yield return null;
-                    game.SelectOffer(1);reviewPointer=ReviewRegion(PlaceKind.Weapon,0).rect.center;yield return CapturePresentation(directory,"08-layout-"+width);
-                    ReviewCheck(dropRegions.Where(r=>r.offer>=0).All(r=>r.rect.yMax<comparisonRect.y)&&dropRegions.Where(r=>r.offer<0&&r.place==PlaceKind.Sequence).All(r=>r.rect.y>comparisonRect.yMax),"transient comparison fits between rewards and sequence at "+width);
-                    ReviewCheck(!dropRegions.Any(r=>r.rect.Overlaps(comparisonRect)),"hover details clear every interaction target at "+width);
-                    ReviewCheck(dropRegions.Where(r=>r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket).All(r=>r.rect.width>=120),"storage names have readable space at "+width);
+                    string size=resolution.x+"x"+resolution.y;
+                    Screen.SetResolution(resolution.x,resolution.y,false);WorkbenchFixture();workbenchTextAudit=true;for(int i=0;i<12;i++)yield return null;
+                    game.SelectOffer(1);reviewPointer=ReviewRegion(PlaceKind.Weapon,0).rect.center;yield return CapturePresentation(directory,"08-layout-"+size);
+                    ReviewCheck(Screen.width==resolution.x&&Screen.height==resolution.y,"native render uses requested resolution "+size);
+                    ReviewCheck(dropRegions.Where(r=>r.offer>=0).All(r=>r.rect.yMax<comparisonRect.y)&&dropRegions.Where(r=>r.offer<0&&r.place==PlaceKind.Sequence).All(r=>r.rect.y>comparisonRect.yMax),"transient comparison fits between rewards and sequence at "+size);
+                    ReviewCheck(!dropRegions.Any(r=>r.rect.Overlaps(comparisonRect)),"hover details clear every interaction target at "+size);
+                    ReviewCheck(dropRegions.Where(r=>r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket).All(r=>r.rect.width>=120),"storage names have readable space at "+size);
+                    if(resolution.y==1200)ReviewCheck(dropRegions.Count(r=>r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket)==game.Deck.Inventory.Count(),"tall tablet uses extra height to expose the entire nineteen-item fixture inventory");
+                    float uiScale=Mathf.Min(Screen.width/1280f,Screen.height/720f);
+                    ReviewCheck(dropRegions.All(r=>r.rect.x>=0&&r.rect.y>=0&&r.rect.xMax<=Screen.width/uiScale&&r.rect.yMax<=Screen.height/uiScale),"all tablet interaction targets remain on screen at "+size);
                 }
+                // Resize a live, retained comparison instead of recreating the fixture.
+                reviewPointer=comparisonRect.center;yield return null;yield return null;
+                ReviewCheck(inlineComparisonVisible,"comparison is retained before live resize");
+                string resizeBefore=LoadoutShape(game.Deck);Screen.SetResolution(1280,720,false);for(int i=0;i<12;i++)yield return null;
+                ReviewCheck(game.Deck.Selected==1&&LoadoutShape(game.Deck)==resizeBefore,"live tablet resize preserves selection and the complete build");
+                ReviewCheck(!inlineComparisonVisible||!dropRegions.Any(r=>r.rect.Overlaps(comparisonRect)),"live resize invalidates stale hover geometry before it can cover an item");
             }
             File.WriteAllText(Path.Combine(directory,rendered?"rendered-checks.txt":"model-checks.txt"),string.Join("\n",tutorialChecks));
             Debug.Log("LOADOUT_REVIEW_SUCCESS: "+tutorialChecks.Count+" assertions; "+(rendered?"native input and visual capture":"model projections"));Application.Quit(0);

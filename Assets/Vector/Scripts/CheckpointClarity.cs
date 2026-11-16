@@ -59,7 +59,13 @@ namespace VectorGame
             var d=game.Deck;var offer=d.Offers[index];var def=offer.def;bool selected=d.Selected==index;
             var previousColor=GUI.color;if(d.RewardClaimed&&!selected)GUI.color=new Color(1,1,1,.38f);
             Color edge=def.kind==ItemKind.Augment?ModuleEdge:RarityColor(offer.rank);
-            Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,edge,9,selected?3:2);
+            if(UnifiedCheckpoint)
+            {
+                TabletCell(r,new Color(.12f,.17f,.21f),edge,selected,r.Contains(Pointer));
+                Box(new Rect(r.x+7,r.y+6,r.width-14,32),new Color(.03f,.06f,.08f,.40f));
+                if(selected)Outline(new Rect(r.x-1,r.y-1,r.width+2,r.height+2),Accent,6,2);
+            }
+            else Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,edge,9,selected?3:2);
             TypeIcon(new Rect(r.x+14,r.y+13,21,21),def.kind,white);
             Label(new Rect(r.x+43,r.y+13,r.width-150,24),(selected?"✓ ":"")+ItemType(def),compact?15:18,white,true);
             if(def.kind!=ItemKind.Augment)
@@ -68,9 +74,10 @@ namespace VectorGame
                 Label(badge,ItemRarity.Names[offer.rank].ToUpperInvariant(),10,RarityColor(offer.rank),true,TextAnchor.MiddleCenter);
             }
             float size=compact?59:78,top=compact?45:54,left=r.x+size+30;
+            if(UnifiedCheckpoint)TabletArtWell(new Rect(r.x+12,r.y+top-2,size+4,size+4));
             CategoryArt(new Rect(r.x+14,r.y+top,size,size),def);
             Label(new Rect(left,r.y+top,r.xMax-left-14,compact?36:48),offer.Name,compact?17:22,white,true);
-            Label(new Rect(left,r.y+top+(compact?38:52),r.xMax-left-14,19),ItemRole(def),10,muted);
+            Label(new Rect(left,r.y+top+(compact?38:52),r.xMax-left-14,19),ItemRole(def),10,UnifiedCheckpoint?TabletText:muted);
             EffectLine(new Rect(r.x+14,r.y+(compact?123:145),r.width-28,compact?18:25),new LoadoutItem(def,offer.rank),compact?11:14);
             bool fusion=def.kind!=ItemKind.Augment&&offer.rank<5&&d.Copies(def,offer.rank)>0;
             var forecast=!d.RewardClaimed&&fusion?d.PreviewChange(offer,null,PlaceKind.Inventory):null;
@@ -78,7 +85,7 @@ namespace VectorGame
             string bottom=d.RewardClaimed?(selected?"TAKEN":"PASSED"):upgrades?"↑ FUSES → "+ItemRarity.Names[resultRank].ToUpperInvariant():fusion?FusionSummary(def,offer.rank,offer.copies):RewardStats(def,offer.rank);
             if(upgrades){float pulse=game.ReducedMotion?1:.8f+.2f*Mathf.Sin(Time.unscaledTime*3);Outline(new Rect(r.x-2,r.y-2,r.width+4,r.height+4),RarityColor(resultRank)*new Color(1,1,1,pulse),9,2);}
             Rect bottomRect=compact?new Rect(left,r.y+103,r.xMax-left-14,16):new Rect(r.x+14,r.yMax-26,r.width-28,19);
-            Label(bottomRect,bottom,compact?10:11,upgrades?RarityColor(resultRank):fusion?RarityColor(offer.rank):muted,fusion);
+            Label(bottomRect,bottom,compact?10:11,upgrades?RarityColor(resultRank):fusion?RarityColor(offer.rank):UnifiedCheckpoint?TabletText:muted,fusion);
             ItemTooltip(r,new LoadoutItem(def,offer.rank),offer);GUI.color=previousColor;
         }
         string CheckpointActionLabel()

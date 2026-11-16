@@ -1,5 +1,11 @@
 # Walking Hard item artwork
 
+## Field tablet materials
+
+The ordinary loadout screen uses [PanelMaterials.png](../Assets/Resources/TabletUI/PanelMaterials.png), generated with the **built-in image_gen tool**. The complete prompt is saved in [tablet-panels-prompt.txt](tablet-panels-prompt.txt). This is an unmodified 1254x1254 source atlas: top-left graphite chassis, top-right teal diagnostic glass, bottom-left warm cargo weave, bottom-right blue control metal. `TabletUI.cs` samples each tile with a half-pixel inset and nine-slices its 6% perimeter into fixed-size UI corners. All text, item artwork, controls, highlights and responsive layout are live code. Texture import preserves the original dimensions, uses bilinear clamp sampling, and disables mipmaps and compression.
+
+The material colors identify sections, never rarity or compatibility. Rarity rails and labels retain the existing five colors; cyan indicates interaction. Taller displays reveal additional storage rows instead of stretching twelve item cells. No generated text or rasterized screen layout is used.
+
 The built-in image_gen tool created three original atlases in the existing dark science-fiction style. The complete prompts are saved in [ItemArt-prompts.json](ItemArt-prompts.json).
 
 | Atlas | Layout | Definitions |
