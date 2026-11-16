@@ -23,10 +23,10 @@ namespace VectorGame
             {
                 if((currentCredit?.hop??0)>0)kind=ImpactKind.Crush;
                 else if(weapon==WeaponKind.Hammer||id=="Breaker")kind=ImpactKind.Crush;
-                else if(id=="ArcBolt"||id=="ConductiveBrand"||id=="tempest"||id=="wraps"||def?.signature==Signature.Relay)kind=ImpactKind.Electric;
-                else if(weapon==WeaponKind.Pistol||weapon==WeaponKind.Rifle||weapon==WeaponKind.Shotgun)kind=ImpactKind.Bullet;
-                else if(id=="GravityWell"||id=="VectorTether"||id=="DrainBrand"||id=="harvest")kind=ImpactKind.Pull;
-                else if(id=="ForcePush"||id=="MassDriver"||id=="singularity")kind=ImpactKind.Force;
+                else if(id=="ArcBolt"||id=="ConductiveBrand"||id=="StormLash"||id=="tempest"||id=="wraps"||def?.signature==Signature.Relay)kind=ImpactKind.Electric;
+                else if(id=="BreachSalvo"||weapon==WeaponKind.Pistol||weapon==WeaponKind.Rifle||weapon==WeaponKind.Shotgun)kind=ImpactKind.Bullet;
+                else if(id=="GravityWell"||id=="VectorTether"||id=="DrainBrand"||id=="harvest"||id=="bloodcircuit"||id=="ReclaimPulse"||id=="VectorSling")kind=ImpactKind.Pull;
+                else if(id=="ForcePush"||id=="MassDriver"||id=="singularity"||id=="freighttrain")kind=ImpactKind.Force;
             }
             if(overrideKind.HasValue)kind=overrideKind.Value;
             Vector3 aim=e.physics.Center-(HeroPosition+Vector3.up);aim.y=0;if(aim.sqrMagnitude<.01f)aim=hero.Root.forward;aim.Normalize();

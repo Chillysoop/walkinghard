@@ -19,3 +19,6 @@ __pycache__/
 /QA/v087-*
 
 /QA/v088-*
+
+# Local constellation review batches; curated evidence is in QA/constellation-expansion.
+/QA/v090-*

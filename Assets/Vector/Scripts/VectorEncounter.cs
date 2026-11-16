@@ -186,6 +186,7 @@ namespace VectorGame
             if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}if(simulationExpedition)ExpeditionActive=true;Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
+            if(Array.IndexOf(args,"-constellationReview")>=0)StartCoroutine(ReviewConstellation());
             if(Array.IndexOf(args,"-combatFeelReview")>=0)StartCoroutine(ReviewCombatFeel());
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
             if(Array.IndexOf(args,"-cinderworksPreview")>=0)BeginCinderworksPreview();

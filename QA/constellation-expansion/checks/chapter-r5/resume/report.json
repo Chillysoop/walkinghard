@@ -1,0 +1,22 @@
+{
+    "passed": true,
+    "assertions": 6,
+    "productionAssertions": 0,
+    "wave": 0,
+    "kills": 0,
+    "itemChoices": 0,
+    "augmentChoices": 0,
+    "sparks": 1,
+    "workers": 1,
+    "health": 0.0,
+    "result": "",
+    "scope": "Controlled chapter/Office/constellation/save fixtures. Not balance evidence.",
+    "checks": [
+        "fresh process restores checkpoint",
+        "saved run retains its chapter or legacy format",
+        "restored checkpoint saves in current schema",
+        "exact graph survives another resume",
+        "profile unlock and run reward pool survive process restart",
+        "resume cannot repay banked Sparks"
+    ]
+}

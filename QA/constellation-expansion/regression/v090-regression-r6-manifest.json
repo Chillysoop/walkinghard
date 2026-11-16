@@ -1,0 +1,5 @@
+{
+  "assemblySha256": "0AB12FB987403B8C9BB2B9D4F0D56D2EE273F72E4D0CF45880F6BDEE6FE9336C",
+  "heroHealth": 5000,
+  "scope": "Final eight-wave regression and native 501-check review; r5 production behavior unchanged. r6 updates tooltip copy and capture fixture meshes/timing."
+}

@@ -1,4 +1,10 @@
-# Walking Hard 0.8.8 - Combat feel
+# Walking Hard 0.9.0 - Constellation expansion
+
+The Dead Letter Office now holds **36 permanent item unlocks**, up from six. Six new branches add **30 playable identities**: six weapons, six abilities, fourteen passive equipment pieces and four ultimates. Impact, Storm, Sever, Ballistics, Siphon and Guard each open with a weapon and split into complementary choices. The original six patterns remain in Foundations with their existing prices and ownership.
+
+The Office shows connected prerequisites, affordable stars, short effect descriptions and Common-to-Legendary previews in the existing tablet design. Select a star to inspect it; the explicit unlock button spends Sparks. Each new branch costs 34 Sparks, for 228 across all 36 stars. Purchases expand future loot pools; they do not equip items or change an existing journey's saved reward pool. Existing currency, seals, unlocks and saves are retained.
+
+New combinations include **Pile Knuckles → Counterweight Boots → Freight Train**, **Storm Lash → Arc Carbine → Switchboard Helm**, and **Leech Grips → Reclaim Pulse → Reservoir Coat**. Weapons retain family rarity milestones, one socket per owned host, simultaneous matching one-handed attacks and locked two-handed grouping. Expanded ability drafts retain an ordinary attack option; mixed rewards prefer a concrete interaction with equipped items. [Design](DESIGN.md#constellation-expansion-090) · [Verification](QA/constellation-expansion/verification.md).
 
 Combat has distinct weapon-impact sounds, prioritized boss warnings and ultimate charge/release cues. Actual combo payoffs underline their source in the sequence; ultimates name their charging, release and recovery phases. Boss/champion danger boundaries remain visible through bodies and effects. Reusable effect pools and sound limits keep large chains bounded. Combat rules and persistent bodies are preserved. [Verification](QA/combat-feel/verification.md).
 
