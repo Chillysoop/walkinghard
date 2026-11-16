@@ -1,0 +1,11 @@
+{
+  "weaponOffers": "discovery",
+  "policy": "sever",
+  "pool": "unlocked",
+  "drafter": "projected",
+  "originalArrivals": false,
+  "seed": 4319,
+  "committed": false,
+  "originalBell": false,
+  "assemblySha256": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0"
+}

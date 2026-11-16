@@ -21,7 +21,7 @@ namespace VectorGame
         void ObserveTargetWait(LoadoutItem item,float dt,TargetWaitReason reason=TargetWaitReason.OutOfReach)
         {
             if(waitingItem!=item){EndTargetWait();waitingItem=item;}
-            var c=ContributionFor(item);c.rangeWait+=dt;waitingAge+=dt;
+            RecordPressureWait(dt,reason);var c=ContributionFor(item);c.rangeWait+=dt;waitingAge+=dt;
             if(reason==TargetWaitReason.OutOfReach)c.outOfReachWait+=dt;
             else if(reason==TargetWaitReason.Obstructed)c.obstructedWait+=dt;
             if(!countedWait&&waitingAge>=.5f){c.waitEpisodes++;countedWait=true;}

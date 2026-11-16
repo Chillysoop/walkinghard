@@ -1,0 +1,11 @@
+{
+  "seed": 1741,
+  "pool": "fresh",
+  "policy": "pinball",
+  "committed": false,
+  "weaponOffers": "discovery",
+  "drafter": "projected",
+  "originalBell": false,
+  "originalArrivals": false,
+  "assemblySha256": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0"
+}

@@ -1,5 +1,13 @@
 # Headless balance simulations
 
+## Journey pacing comparisons (0.8.5)
+
+`Validate Progression.ps1 -OriginalBellThreshold -OriginalArrivalPacing` selects the former Bell damage threshold and ordinary reinforcement spacing in the same binary. Omit either switch to isolate its candidate behavior. Use fresh output directories and identical seeds, policies and unlock pools; each manifest and sample records the switches. `Validate Districts.ps1 -Mode Balance -OriginalBellThreshold` isolates the boss threshold with fixed kits. PhysX trajectories can still vary, so a single outcome change is not a win-rate estimate.
+
+Samples include `pacing.encounters`: actual generated formation, simulation seconds, unique sequence target wait (arrival/blocked subsets), cleanup seconds, incoming damage, largest rolling five-second damage burst, peak nearby/alive foes, arrivals and carryover. Bell break counters identify the finishing contribution—damage, control or clearing the linked escorts—not an exclusive cause when contributions combine. Simulation seconds exclude hit stop; the existing review `seconds` includes the 1x combat clock and boss reveal. Automated records explicitly leave human decision time unmeasured.
+
+`-progressionChecks` and the district mechanics suite check timing categories, snapshot ownership, schema 9 migration to partial timing, invalid-save preservation, actual formation labels and event/combat separation. Rendered progression checks show **synthetic** timing values at 720p, 1080p and ultrawide to verify layout. Live saved timing excludes time between sessions and discarded attempts rolled back to a checkpoint. The normal player writes `journey-timing-latest.json` beside its expedition checkpoint after victory or defeat; this stays local.
+
 ## Districts and bosses (0.8.4)
 
 `Validate Districts.ps1 -Mode Mechanics -OutputDirectory <fresh-directory>` checks boss phase transitions, per-action control budgets, physical rear arrivals on straight/left/right roads, paused clocks, visibility, schema-8 migration and unchanged scenery collision geometry. `-Mode Rendered` adds 1080p/720p captures with reduced motion. Both mechanics fixtures use elevated health and staged positions; they are not balance samples.

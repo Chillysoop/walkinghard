@@ -1,4 +1,8 @@
-# Walking Hard 0.8.4 - Districts and bosses
+# Walking Hard 0.8.5 - Journey pacing
+
+The Bell Foreman's command now needs more focused damage to silence. Clearing his linked escorts and building stagger/impact disruption remain effective counters. Ordinary Foundry and Dispatch reinforcements arrive slightly farther apart, giving existing groups more time to resolve while keeping each district's formation rhythm.
+
+The results screen separates **actual combat and travel time, equipment decisions, and events/services**. Pauses and time away are excluded from active play; road decisions overlap combat. Timing continues from checkpoints, with older saves clearly marked as partial. The latest finished journey's timing and encounter pressure are also saved locally. Automated combat times still do not establish a 30-minute human playthrough. [Verification and measured limits](QA/journey-pacing/verification.md).
 
 The three districts now have different encounter mixes, arrival rhythms and scenery: freight packs among Cinderworks furnaces, coordinated groups beneath the Bell Foundry galleries, and ranged cross traffic through the Last Dispatch's blue registry stacks. Dispatch arrivals can use nearby covered rear entrances. Physical road choices and walls are retained.
 

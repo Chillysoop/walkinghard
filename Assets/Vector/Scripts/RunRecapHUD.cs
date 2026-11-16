@@ -7,7 +7,7 @@ namespace VectorGame
     {
         float DrawIntegrityRecap(float y)
         {
-            var log=game.RunHistory;
+            y=DrawJourneyTiming(y);var log=game.RunHistory;
             Label(new Rect(4,y,866,20),game.FinalHitText,12,Accent,true);y+=27;
             bool defeat=game.State==VectorEncounter.RunState.Defeated;
             string[] titles={log.complete?"DAMAGE TAKEN":"DAMAGE SINCE SAVE UPGRADE",defeat?"FINAL ENCOUNTER":"BIGGEST INTEGRITY DROP",defeat?"FINAL FIGHT DAMAGE":"RUN SEQUENCE DAMAGE"};

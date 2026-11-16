@@ -1,0 +1,573 @@
+{
+  "scope": "Four matched pairs in the same binary; full PhysX, ordinary automated drafts. Ordinary district rows exclude boss fights. Defeat censors the final encounter. Not human timing or win-rate estimates.",
+  "runs": [
+    {
+      "cohort": "journey-baseline",
+      "policy": "gun",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1119.3299560546875,
+      "health": 280.0,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 4,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 3,
+          "strikes": 3,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 112.64000701904297,
+          "meanCarry": 4.166666666666667,
+          "peakNear": 11,
+          "maxBurst5": 14.720000267028809,
+          "targetWait": 133.5323257446289,
+          "arrivalWait": 21.933214128017426,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 20.153600931167603,
+          "meanCarry": 7.166666666666667,
+          "peakNear": 13,
+          "maxBurst5": 11.129600524902344,
+          "targetWait": 101.8494610786438,
+          "arrivalWait": 0.0,
+          "arrivals": 292
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 23.303601503372192,
+          "meanCarry": 9.5,
+          "peakNear": 10,
+          "maxBurst5": 13.836800575256348,
+          "targetWait": 106.94939804077148,
+          "arrivalWait": 0.0,
+          "arrivals": 412
+        }
+      ]
+    },
+    {
+      "cohort": "journey-baseline",
+      "policy": "pinball",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Defeated",
+      "wave": 20,
+      "seconds": 1094.818603515625,
+      "health": 0.0,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 1,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 4,
+          "strikes": 0,
+          "breaks": 4,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 142.40000247955322,
+          "meanCarry": 4.833333333333333,
+          "peakNear": 13,
+          "maxBurst5": 14.719999313354492,
+          "targetWait": 96.39949655532837,
+          "arrivalWait": 2.949998527765274,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 233.48720932006836,
+          "meanCarry": 3.0,
+          "peakNear": 12,
+          "maxBurst5": 21.119998931884766,
+          "targetWait": 111.81599044799805,
+          "arrivalWait": 0.0,
+          "arrivals": 292
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 385.9999465942383,
+          "meanCarry": 9.333333333333334,
+          "peakNear": 16,
+          "maxBurst5": 29.439998626708984,
+          "targetWait": 74.2498345375061,
+          "arrivalWait": 0.0,
+          "arrivals": 396
+        }
+      ]
+    },
+    {
+      "cohort": "journey-baseline",
+      "policy": "sever",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1155.1854248046875,
+      "health": 310.0,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 3,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 4,
+          "strikes": 4,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 142.72000789642334,
+          "meanCarry": 4.0,
+          "peakNear": 10,
+          "maxBurst5": 16.959999084472656,
+          "targetWait": 123.54914474487305,
+          "arrivalWait": 20.716566026210785,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 163.8927936553955,
+          "meanCarry": 5.666666666666667,
+          "peakNear": 11,
+          "maxBurst5": 23.03999900817871,
+          "targetWait": 84.16638803482056,
+          "arrivalWait": 1.0833330154418945,
+          "arrivals": 291
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 350.36480712890625,
+          "meanCarry": 10.166666666666666,
+          "peakNear": 13,
+          "maxBurst5": 28.799999237060547,
+          "targetWait": 66.68321752548218,
+          "arrivalWait": 0.0,
+          "arrivals": 416
+        }
+      ]
+    },
+    {
+      "cohort": "journey-candidate",
+      "policy": "gun",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1127.0897216796875,
+      "health": 280.0,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 4,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 5,
+          "strikes": 5,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 112.64000701904297,
+          "meanCarry": 4.166666666666667,
+          "peakNear": 11,
+          "maxBurst5": 14.720000267028809,
+          "targetWait": 133.5323257446289,
+          "arrivalWait": 21.933214128017426,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 15.040000438690186,
+          "meanCarry": 7.0,
+          "peakNear": 8,
+          "maxBurst5": 6.016000270843506,
+          "targetWait": 119.74920272827148,
+          "arrivalWait": 0.0,
+          "arrivals": 271
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 36.53880310058594,
+          "meanCarry": 6.166666666666667,
+          "peakNear": 10,
+          "maxBurst5": 8.564400672912598,
+          "targetWait": 123.33248138427734,
+          "arrivalWait": 1.183332920074463,
+          "arrivals": 357
+        }
+      ]
+    },
+    {
+      "cohort": "journey-candidate",
+      "policy": "pinball",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1175.103271484375,
+      "health": 74.80715942382812,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 1,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 4,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 5,
+          "strikes": 5,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 142.40000247955322,
+          "meanCarry": 4.833333333333333,
+          "peakNear": 13,
+          "maxBurst5": 14.719999313354492,
+          "targetWait": 96.39949655532837,
+          "arrivalWait": 2.949998527765274,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 115.41440439224243,
+          "meanCarry": 2.8333333333333335,
+          "peakNear": 11,
+          "maxBurst5": 12.15999984741211,
+          "targetWait": 104.5161018371582,
+          "arrivalWait": 0.2666666805744171,
+          "arrivals": 269
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 345.6408042907715,
+          "meanCarry": 9.166666666666666,
+          "peakNear": 13,
+          "maxBurst5": 24.31999969482422,
+          "targetWait": 100.38283157348633,
+          "arrivalWait": 0.4833335280418396,
+          "arrivals": 357
+        }
+      ]
+    },
+    {
+      "cohort": "journey-candidate",
+      "policy": "sever",
+      "seed": 4319,
+      "pool": "unlocked",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1157.6939697265625,
+      "health": 310.0,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 3,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 5,
+          "strikes": 4,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 142.72000789642334,
+          "meanCarry": 4.0,
+          "peakNear": 10,
+          "maxBurst5": 16.959999084472656,
+          "targetWait": 123.54914474487305,
+          "arrivalWait": 20.716566026210785,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 158.37439346313477,
+          "meanCarry": 5.5,
+          "peakNear": 8,
+          "maxBurst5": 13.910399436950684,
+          "targetWait": 84.64965534210205,
+          "arrivalWait": 2.8666653633117676,
+          "arrivals": 271
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 305.2992172241211,
+          "meanCarry": 9.833333333333334,
+          "peakNear": 13,
+          "maxBurst5": 19.84000015258789,
+          "targetWait": 86.58288288116455,
+          "arrivalWait": 1.7166662514209747,
+          "arrivals": 357
+        }
+      ]
+    },
+    {
+      "cohort": "fresh-baseline",
+      "policy": "pinball",
+      "seed": 1741,
+      "pool": "fresh",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1168.51416015625,
+      "health": 250.5220947265625,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 3,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 6,
+          "strikes": 6,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 194.90401077270508,
+          "meanCarry": 5.833333333333333,
+          "peakNear": 12,
+          "maxBurst5": 24.0,
+          "targetWait": 107.09933567047119,
+          "arrivalWait": 6.833363443613052,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 194.2143955230713,
+          "meanCarry": 5.666666666666667,
+          "peakNear": 14,
+          "maxBurst5": 23.03999900817871,
+          "targetWait": 78.4330472946167,
+          "arrivalWait": 0.0,
+          "arrivals": 294
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 217.42409133911133,
+          "meanCarry": 11.5,
+          "peakNear": 15,
+          "maxBurst5": 17.464801788330078,
+          "targetWait": 106.03274536132812,
+          "arrivalWait": 0.9666664004325867,
+          "arrivals": 410
+        }
+      ]
+    },
+    {
+      "cohort": "fresh-candidate",
+      "policy": "pinball",
+      "seed": 1741,
+      "pool": "fresh",
+      "result": "Complete",
+      "wave": 21,
+      "seconds": 1172.3104248046875,
+      "health": 263.703857421875,
+      "assembly": "04BF53F1A7E3EB4129206BDD321967A87BA358FA7B1972372B3DEF0D0B1CFDA0",
+      "bosses": [
+        {
+          "kind": 0,
+          "cycles": 2,
+          "strikes": 2,
+          "breaks": 1,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "cycles": 3,
+          "strikes": 0,
+          "breaks": 3,
+          "rallies": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "cycles": 6,
+          "strikes": 6,
+          "breaks": 0,
+          "rallies": 0,
+          "defeated": true
+        }
+      ],
+      "districts": [
+        {
+          "district": 1,
+          "encounters": 6,
+          "damage": 197.19520568847656,
+          "meanCarry": 5.333333333333333,
+          "peakNear": 13,
+          "maxBurst5": 24.0,
+          "targetWait": 103.69932413101196,
+          "arrivalWait": 6.833363443613052,
+          "arrivals": 249
+        },
+        {
+          "district": 2,
+          "encounters": 6,
+          "damage": 109.30880355834961,
+          "meanCarry": 4.0,
+          "peakNear": 13,
+          "maxBurst5": 9.600000381469727,
+          "targetWait": 89.58291816711426,
+          "arrivalWait": 0.0,
+          "arrivals": 269
+        },
+        {
+          "district": 3,
+          "encounters": 6,
+          "damage": 191.88680839538574,
+          "meanCarry": 10.666666666666666,
+          "peakNear": 15,
+          "maxBurst5": 17.09280014038086,
+          "targetWait": 98.66619110107422,
+          "arrivalWait": 0.0,
+          "arrivals": 356
+        }
+      ]
+    }
+  ]
+}
