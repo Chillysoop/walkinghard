@@ -3,7 +3,7 @@ param(
     [string]$OutputDirectory=(Join-Path $PSScriptRoot ('QA\progression-'+(Get-Date -Format 'yyyyMMdd-HHmmss'))),
     [int[]]$Seeds=@(1741,4319),
     [string[]]$Policies=@('pinball','storm','sever','gun','cutcarry','close','siphon'),
-    [ValidateSet('fresh','unlocked')][string]$Pool='unlocked',
+    [ValidateSet('fresh','legacy','unlocked')][string]$Pool='unlocked',
     [ValidateRange(1,6)][int]$Workers=4,
     [ValidatePattern('^[a-z0-9-]*$')][string]$RunLabel='',
     [switch]$Legacy,
@@ -12,6 +12,7 @@ param(
     [switch]$OriginalBellThreshold,
     [switch]$OriginalArrivalPacing,
     [switch]$OriginalChampions,
+    [switch]$OriginalPatternOffers,
     [switch]$OriginalEvents
 )
 $ErrorActionPreference='Stop'
@@ -35,11 +36,12 @@ try {
         while($pending.Count -gt 0 -and $active.Count -lt $Workers){
             $case=$pending.Dequeue();New-Item -ItemType Directory -Path $case.Directory -Force | Out-Null
             $assembly=Join-Path (Split-Path -Parent $Player) 'WalkingHard_Data\Managed\Assembly-CSharp.dll'
-            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode;weaponOffers=$offers;committed=[bool]$CommittedWeapons;originalBell=[bool]$OriginalBellThreshold;originalArrivals=[bool]$OriginalArrivalPacing;originalChampions=[bool]$OriginalChampions;originalEvents=[bool]$OriginalEvents} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
+            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode;weaponOffers=$offers;committed=[bool]$CommittedWeapons;originalBell=[bool]$OriginalBellThreshold;originalArrivals=[bool]$OriginalArrivalPacing;originalChampions=[bool]$OriginalChampions;originalEvents=[bool]$OriginalEvents;originalPatternOffers=[bool]$OriginalPatternOffers} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
             $arguments='-batchmode -nographics -progressionReview -seeds '+$case.Seed+' -journeyPolicy '+$case.Policy+' -pool '+$Pool+' -saveDirectory "'+$case.Directory+'\profile" -reviewOutput "'+$case.Directory+'" -logFile "'+$case.Directory+'\player.log"'
             if($OriginalBellThreshold){$arguments+=' -originalBellThreshold'}
             if($OriginalArrivalPacing){$arguments+=' -originalArrivalPacing'}
             if($OriginalChampions){$arguments+=' -originalChampions'}
+            if($OriginalPatternOffers){$arguments+=' -originalPatternOffers'}
             if($OriginalEvents){$arguments+=' -originalEvents'}
             if($Legacy){$arguments+=' -legacyDraftPolicy'}
             if($CommittedWeapons){$arguments+=' -committedWeapons'}

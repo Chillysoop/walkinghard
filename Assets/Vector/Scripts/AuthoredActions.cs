@@ -34,7 +34,7 @@ namespace VectorGame
             if(actionWeapon==null)
             {
                 currentCredit=new KillCredit{item=actionItem,action=actionSerial,augment=true};
-                if(actionItem.HasAugment(AugmentId.Echo)&&step==1&&actionTarget?.deathAge<0&&Reachable(actionTarget,activeCard.range)){fx.Arc(hero.RightHand.position,actionTarget.physics.Center,Color.magenta);fx.FollowupContact(actionTarget.physics.Center,true);fx.Burst(actionTarget.physics.Center,Color.magenta,3,1);DerivedHit(actionTarget,activeCard.damage*.35f*Effect(actionItem)*Deck.Damage,Vector3.zero,.1f,activeCard.id==AbilityId.ReapingCut,true);}
+                if(actionItem.HasAugment(AugmentId.Echo)&&step==1&&actionTarget?.deathAge<0&&Reachable(actionTarget,activeCard.range)){fx.Arc(hero.RightHand.position,actionTarget.physics.Center,Color.magenta);fx.FollowupContact(actionTarget.physics.Center,true);fx.Burst(actionTarget.physics.Center,Color.magenta,3,1);DerivedHit(actionTarget,activeCard.damage*.35f*Effect(actionItem)*Deck.Damage,Vector3.zero,.1f,(activeCard.id==AbilityId.ReapingCut||activeCard.id==AbilityId.RazorFan),true);}
 
                 return;
             }
@@ -64,6 +64,7 @@ namespace VectorGame
             var host=actionItem;float s=Effect(host),damage=card.damage*Deck.Damage*AugmentCatalog.Opening(host);bool focused=host.HasAugment(AugmentId.Focused);
             Vector3 origin=HeroPosition,aim=hero.Root.forward,point=origin+aim*2.8f;
             var target=actionTarget?.deathAge<0&&Reachable(actionTarget,card.range)?actionTarget:Target(card.range);actionTarget=target;
+            if(ResolveConstellationAbility(host,card,target,damage))return;
             float stagger=host.HasAugment(AugmentId.FollowThrough)?.55f:1;
             if(host.HasAugment(AugmentId.FollowThrough))PrepareFollowThrough(host);
             if(card.id==AbilityId.SuppressiveVolley){ResolveSuppressiveVolley(host,card,target,damage);return;}
@@ -119,6 +120,7 @@ namespace VectorGame
             if(host.def.weapon==WeaponKind.Fists)
             {
                 fx.Arc(origin,target.physics.Center,VisualFactory.Cyan);fx.Burst(target.physics.Center,VisualFactory.Cyan,4,2);
+                if(host.def.id=="leechgrips")DrainMark(target,host);
                 Hurt(target,damage,aim*profile.force,(profile.style==WeaponStyle.Kinetic?.45f:.18f)*s);WeaponHits[0]++;
                 if(profile.style==WeaponStyle.Conductor){MarkEnemy(target,host);SpendLivewire(target);}
                 if(nativeFollowup&&host.rank>=3&&Once("kinetic-wave"+Deck.Items.IndexOf(host)))Pulse(target.physics.Center,2.4f,.5f*s,3,target);

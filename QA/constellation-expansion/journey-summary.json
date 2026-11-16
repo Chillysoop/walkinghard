@@ -1,0 +1,1870 @@
+[
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "close",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 5,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Gravity Well \u00b7 Uncommon > 3: Basic 1 \u00b7 Pulse Pistol \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 14,
+        "values": {
+          "direct": 869.2800903320312,
+          "collision": 0.0,
+          "control": 6.172501087188721,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "cutcarry",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Common > 2: Basic 1 \u00b7 Impact Hammer \u00b7 Common > 3: Basic 2 \u00b7 Impact Hammer \u00b7 Common > 4: Razor Fan \u00b7 Uncommon > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "RazorFan",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 36,
+        "values": {
+          "direct": 2790.46484375,
+          "collision": 0.0,
+          "control": 4.534162998199463,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 47.649444580078125,
+          "outOfReachWait": 30.583038330078125,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 8
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 352.6814270019531,
+          "collision": 0.0,
+          "control": 2.2874999046325684,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "gun",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 5,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Suppressive Volley \u00b7 Common > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 357.5849609375,
+          "collision": 0.0,
+          "control": 2.1449997425079346,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "pinball",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Common > 2: Suppressive Volley \u00b7 Common > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Common > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Common > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 357.5849609375,
+          "collision": 0.0,
+          "control": 2.1449997425079346,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "sever",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 19,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Legendary > 2: Gravity Well \u00b7 Legendary > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Rare",
+    "health": 0.0,
+    "fusions": 4,
+    "newItems": [
+      {
+        "item": "RazorFan",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 30,
+        "values": {
+          "direct": 1904.772216796875,
+          "collision": 0.0,
+          "control": 3.352498769760132,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 45.249481201171875,
+          "outOfReachWait": 28.183074951171875,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 7
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 352.6814270019531,
+          "collision": 0.0,
+          "control": 2.2874999046325684,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "RazorFan",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "rangefinder",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 23.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "guillotine",
+        "equipped": true,
+        "rarity": 1,
+        "kills": 24,
+        "values": {
+          "direct": 1365.0772705078125,
+          "collision": 0.0,
+          "control": 14.393336296081543,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "siphon",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Gravity Well \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 357.5849609375,
+          "collision": 0.0,
+          "control": 2.1449997425079346,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-unlocked",
+    "assembly": "BB797DD4B9EEB9EC27CEEBF00D4E3A0F95BF981836B1944FC332AD9870497EC3",
+    "seed": 1741,
+    "policy": "storm",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 5,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Gravity Well \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 357.5849609375,
+          "collision": 0.0,
+          "control": 2.1449997425079346,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-fresh",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 1741,
+    "policy": "gun",
+    "pool": "fresh",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Rare > 2: Basic 1 \u00b7 Pulse Pistol \u00b7 Legendary > 3: Basic 2 \u00b7 Pulse Pistol \u00b7 Legendary > 4: Arc Bolt \u00b7 Uncommon > 5: Arc Bolt \u00b7 Uncommon",
+    "health": 280.0,
+    "fusions": 4,
+    "newItems": []
+  },
+  {
+    "cohort": "v090-progress-fresh",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 1741,
+    "policy": "pinball",
+    "pool": "fresh",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Rare > 2: Breaker \u00b7 Common > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Rare > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Rare > 5: Reaping Cut \u00b7 Epic",
+    "health": 44.81578826904297,
+    "fusions": 7,
+    "newItems": []
+  },
+  {
+    "cohort": "v090-progress-legacy",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 1741,
+    "policy": "gun",
+    "pool": "legacy",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Uncommon > 2: Basic 1 \u00b7 Rail Rifle \u00b7 Uncommon > 3: Basic 2 \u00b7 Rail Rifle \u00b7 Uncommon > 4: Arc Bolt \u00b7 Common > 5: Reaping Cut \u00b7 Rare",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": []
+  },
+  {
+    "cohort": "v090-progress-legacy",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 1741,
+    "policy": "pinball",
+    "pool": "legacy",
+    "result": "Defeated",
+    "wave": 14,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Rare > 2: Breaker \u00b7 Uncommon > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Reaping Cut \u00b7 Epic",
+    "health": 0.0,
+    "fusions": 3,
+    "newItems": []
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "close",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 19,
+    "valid": true,
+    "loadout": "1: Vector Tether \u00b7 Legendary > 2: Counterguard \u00b7 Uncommon > 3: Basic 1 \u00b7 Pulse Pistol \u00b7 Legendary > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 5: Breach Salvo \u00b7 Legendary",
+    "health": 0.0,
+    "fusions": 4,
+    "newItems": [
+      {
+        "item": "counterweight",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 8.960000038146973,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "returnspring",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 11.343000411987305,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": true,
+        "rarity": 5,
+        "kills": 66,
+        "values": {
+          "direct": 6164.9501953125,
+          "collision": 0.0,
+          "control": 13.824488639831543,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "executionhood",
+        "equipped": true,
+        "rarity": 1,
+        "kills": 13,
+        "values": {
+          "direct": 798.0260009765625,
+          "collision": 0.0,
+          "control": 1.6300002336502075,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "cutcarry",
+    "pool": "unlocked",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Counterguard \u00b7 Epic > 2: Counterguard \u00b7 Epic > 3: Steel Jab \u00b7 Rare > 4: Basic 1 \u00b7 Edge Sword \u00b7 Rare > 5: Basic 2 \u00b7 Edge Sword \u00b7 Rare",
+    "health": 317.00738525390625,
+    "fusions": 2,
+    "newItems": [
+      {
+        "item": "counterweight",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 196.1616973876953,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "rangefinder",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bastionmaul",
+        "equipped": false,
+        "rarity": 3,
+        "kills": 14,
+        "values": {
+          "direct": 1298.748291015625,
+          "collision": 395.5120544433594,
+          "control": 27.867082595825195,
+          "absorption": 21.880001068115234,
+          "reload": 0.0,
+          "preparation": 0.28333336114883423,
+          "rangeWait": 3.066664457321167,
+          "outOfReachWait": 3.066664457321167,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 2
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "gun",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Counterguard \u00b7 Uncommon > 2: Basic 1 \u00b7 Pulse Pistol \u00b7 Common > 3: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 4: Storm Lash \u00b7 Epic > 5: Breach Salvo \u00b7 Rare",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "StormLash",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 48,
+        "values": {
+          "direct": 3963.88818359375,
+          "collision": 0.0,
+          "control": 6.887495040893555,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 1,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 35,
+        "values": {
+          "direct": 2236.41796875,
+          "collision": 0.0,
+          "control": 10.004993438720703,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "guillotine",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 17,
+        "values": {
+          "direct": 1280.818115234375,
+          "collision": 0.0,
+          "control": 12.300002098083496,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": true,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "pinball",
+    "pool": "unlocked",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Counterguard \u00b7 Legendary > 2: Basic 1 \u00b7 Edge Sword \u00b7 Rare > 3: Basic 2 \u00b7 Edge Sword \u00b7 Legendary > 4: Mass Driver \u00b7 Epic > 5: Mass Driver \u00b7 Epic",
+    "health": 272.9983215332031,
+    "fusions": 6,
+    "newItems": [
+      {
+        "item": "freighttrain",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 93,
+        "values": {
+          "direct": 8439.62109375,
+          "collision": 1568.271240234375,
+          "control": 115.62857818603516,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "rangefinder",
+        "equipped": false,
+        "rarity": 3,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "freighttrain",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bastionmaul",
+        "equipped": false,
+        "rarity": 3,
+        "kills": 44,
+        "values": {
+          "direct": 2631.784912109375,
+          "collision": 716.7249755859375,
+          "control": 52.74040985107422,
+          "absorption": 34.68000030517578,
+          "reload": 0.0,
+          "preparation": 8.216712951660156,
+          "rangeWait": 9.366695404052734,
+          "outOfReachWait": 9.366695404052734,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 4
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "sever",
+    "pool": "unlocked",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 2: Basic 2 \u00b7 Kinetic Fists \u00b7 Common > 3: Arc Bolt \u00b7 Rare > 4: Arc Bolt \u00b7 Rare > 5: Reaping Cut \u00b7 Legendary",
+    "health": 259.0989990234375,
+    "fusions": 4,
+    "newItems": [
+      {
+        "item": "executionhood",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 78,
+        "values": {
+          "direct": 2641.625244140625,
+          "collision": 0.0,
+          "control": 0.625,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "guillotine",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 72,
+        "values": {
+          "direct": 6316.85693359375,
+          "collision": 0.0,
+          "control": 49.157962799072266,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "siphon",
+    "pool": "unlocked",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Vector Tether \u00b7 Legendary > 2: Basic 1 \u00b7 Edge Sword \u00b7 Rare > 3: Basic 2 \u00b7 Edge Sword \u00b7 Epic > 4: Arc Bolt \u00b7 Rare > 5: Arc Bolt \u00b7 Rare",
+    "health": 314.37994384765625,
+    "fusions": 4,
+    "newItems": [
+      {
+        "item": "counterweight",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 346.7001037597656,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bastionmaul",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "stormcapacitor",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 1.5207499265670776,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bastionmaul",
+        "equipped": false,
+        "rarity": 3,
+        "kills": 17,
+        "values": {
+          "direct": 1418.8968505859375,
+          "collision": 337.3611145019531,
+          "control": 25.665912628173828,
+          "absorption": 25.600000381469727,
+          "reload": 0.0,
+          "preparation": 0.28333336114883423,
+          "rangeWait": 2.4333317279815674,
+          "outOfReachWait": 2.4333317279815674,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-progress-4319",
+    "assembly": "28D8FBBC9038BA90902D22B6F5EED8FC66C49CD38C00654A5A098553EDF325E5",
+    "seed": 4319,
+    "policy": "storm",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 19,
+    "valid": true,
+    "loadout": "1: Basic 1 \u00b7 Arc Carbine \u00b7 Rare > 2: Basic 2 \u00b7 Arc Carbine \u00b7 Rare > 3: Storm Lash \u00b7 Uncommon > 4: Storm Lash \u00b7 Epic > 5: Storm Lash \u00b7 Epic",
+    "health": 0.0,
+    "fusions": 3,
+    "newItems": [
+      {
+        "item": "StormLash",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 166,
+        "values": {
+          "direct": 15454.1826171875,
+          "collision": 0.0,
+          "control": 33.63856506347656,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 47.59944534301758,
+          "outOfReachWait": 36.34961700439453,
+          "obstructedWait": 0.0,
+          "augment": 2030.664794921875,
+          "healing": 0.0,
+          "assists": 27,
+          "waitEpisodes": 5
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 3,
+        "kills": 75,
+        "values": {
+          "direct": 4846.75,
+          "collision": 0.0,
+          "control": 21.014970779418945,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 6.550030708312988,
+          "outOfReachWait": 6.550030708312988,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      },
+      {
+        "item": "guillotine",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 105,
+        "values": {
+          "direct": 7297.2607421875,
+          "collision": 0.0,
+          "control": 72.36858367919922,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 17,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "counterweight",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 600.6204223632812,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "StormLash",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 83,
+        "values": {
+          "direct": 8565.173828125,
+          "collision": 0.0,
+          "control": 18.85899543762207,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 10.383346557617188,
+          "outOfReachWait": 10.366680145263672,
+          "obstructedWait": 0.0,
+          "augment": 1255.880859375,
+          "healing": 0.0,
+          "assists": 29,
+          "waitEpisodes": 3
+        }
+      },
+      {
+        "item": "arccarbine",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 175,
+        "values": {
+          "direct": 12343.2275390625,
+          "collision": 3832.000732421875,
+          "control": 119.41775512695312,
+          "absorption": 0.0,
+          "reload": 36.49961471557617,
+          "preparation": 0.7833332419395447,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "staticshroud",
+        "equipped": true,
+        "rarity": 4,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 64,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "StormLash",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 17,
+        "values": {
+          "direct": 2436.53125,
+          "collision": 0.0,
+          "control": 5.1349992752075195,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 3,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "StormLash",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 6,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "leechgrips",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "StormLash",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "StormLash",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-baseline-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "gun",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Suppressive Volley \u00b7 Common > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 321.70538330078125,
+          "collision": 0.0,
+          "control": 1.9949997663497925,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-baseline-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "pinball",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 5,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Common > 2: Suppressive Volley \u00b7 Common > 3: Basic 1 \u00b7 Impact Hammer \u00b7 Common > 4: Basic 2 \u00b7 Impact Hammer \u00b7 Common > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 7,
+        "values": {
+          "direct": 275.17254638671875,
+          "collision": 0.0,
+          "control": 1.6949998140335083,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 1.9333322048187256,
+          "outOfReachWait": 1.9333322048187256,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 1
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-baseline-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "sever",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 6,
+    "valid": true,
+    "loadout": "1: Gravity Well \u00b7 Uncommon > 2: Gravity Well \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Reaping Cut \u00b7 Uncommon",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "RazorFan",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 30,
+        "values": {
+          "direct": 1904.778564453125,
+          "collision": 0.0,
+          "control": 3.352498769760132,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 45.249481201171875,
+          "outOfReachWait": 28.183074951171875,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 7
+        }
+      },
+      {
+        "item": "BreachSalvo",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 6,
+        "values": {
+          "direct": 353.3641357421875,
+          "collision": 0.0,
+          "control": 2.2874999046325684,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-curated-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "gun",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 13,
+    "valid": true,
+    "loadout": "1: Steel Jab \u00b7 Uncommon > 2: Breaker \u00b7 Uncommon > 3: Basic 1 \u00b7 Rail Rifle \u00b7 Rare > 4: Basic 2 \u00b7 Rail Rifle \u00b7 Rare > 5: Arc Bolt \u00b7 Epic",
+    "health": 0.0,
+    "fusions": 0,
+    "newItems": [
+      {
+        "item": "bloodcircuit",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 60,
+        "values": {
+          "direct": 4007.619384765625,
+          "collision": 0.0,
+          "control": 26.641647338867188,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 185.78146362304688,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "reservoir",
+        "equipped": true,
+        "rarity": 3,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 23.63424301147461,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-curated-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "pinball",
+    "pool": "unlocked",
+    "result": "Defeated",
+    "wave": 13,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Common > 2: Breaker \u00b7 Uncommon > 3: Breaker \u00b7 Common > 4: Basic 1 \u00b7 Impact Hammer \u00b7 Common > 5: Basic 2 \u00b7 Impact Hammer \u00b7 Common",
+    "health": 0.0,
+    "fusions": 1,
+    "newItems": [
+      {
+        "item": "spurtreads",
+        "equipped": true,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 7.550000190734863,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "switchboard",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "wardenvisor",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.5849999785423279,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "returnspring",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  },
+  {
+    "cohort": "v090-pattern-curated-r5",
+    "assembly": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+    "seed": 1741,
+    "policy": "sever",
+    "pool": "unlocked",
+    "result": "Complete",
+    "wave": 21,
+    "valid": true,
+    "loadout": "1: Breaker \u00b7 Epic > 2: Steel Jab \u00b7 Rare > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Rare > 4: Basic 2 \u00b7 Kinetic Fists \u00b7 Rare > 5: Reaping Cut \u00b7 Rare",
+    "health": 303.1434020996094,
+    "fusions": 7,
+    "newItems": [
+      {
+        "item": "bloodcircuit",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 72,
+        "values": {
+          "direct": 8476.9091796875,
+          "collision": 0.0,
+          "control": 51.61991882324219,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 245.7025604248047,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "spurtreads",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 7.199998378753662,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bloodcircuit",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bloodcircuit",
+        "equipped": false,
+        "rarity": 1,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "rangefinder",
+        "equipped": true,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      },
+      {
+        "item": "bloodcircuit",
+        "equipped": false,
+        "rarity": 2,
+        "kills": 0,
+        "values": {
+          "direct": 0.0,
+          "collision": 0.0,
+          "control": 0.0,
+          "absorption": 0.0,
+          "reload": 0.0,
+          "preparation": 0.0,
+          "rangeWait": 0.0,
+          "outOfReachWait": 0.0,
+          "obstructedWait": 0.0,
+          "augment": 0.0,
+          "healing": 0.0,
+          "assists": 0,
+          "waitEpisodes": 0
+        }
+      }
+    ]
+  }
+]

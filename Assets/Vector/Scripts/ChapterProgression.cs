@@ -40,7 +40,7 @@ namespace VectorGame
     }
     public static class Constellation
     {
-        public static readonly ConstellationNode[] Nodes={new ConstellationNode("wraps",0,3),new ConstellationNode("greatsword",0,5,"wraps"),new ConstellationNode("relay",1,3),new ConstellationNode("magnet",1,5,"relay"),new ConstellationNode("harvest",2,3),new ConstellationNode("redline",2,5,"harvest")};
+        public static readonly ConstellationNode[] Nodes=new[]{new ConstellationNode("wraps",0,3),new ConstellationNode("greatsword",0,5,"wraps"),new ConstellationNode("relay",1,3),new ConstellationNode("magnet",1,5,"relay"),new ConstellationNode("harvest",2,3),new ConstellationNode("redline",2,5,"harvest")}.Concat(Enumerable.Range(1,6).SelectMany(b=>{var ids=ConstellationContent.BranchItems[b];return new[]{new ConstellationNode(ids[0],b+2,4),new ConstellationNode(ids[1],b+2,6,ids[0]),new ConstellationNode(ids[2],b+2,6,ids[0]),new ConstellationNode(ids[3],b+2,8,ids[1]),new ConstellationNode(ids[4],b+2,10,ids[2])};})).ToArray();
     }
     public sealed partial class VectorEncounter
     {
@@ -50,6 +50,8 @@ namespace VectorGame
         public string OfficeMessage {get;private set;}="";
         public bool ChapterActive=>ExpeditionActive&&chapterRun!=null;
         public int Sparks=>office.sparks;
+        public int ConstellationOwned=>office.unlocks.Count;
+        public int JourneyVictories=>office.victories;
         public int RescuedWorkers=>office.rescued;
         public bool CompletionSeal=>office.seal;
         public int ChapterSparks=>chapterRun==null?0:ChapterEncounters.Take(chapterRun.cleared).Sum(e=>e.sparks);
@@ -85,7 +87,7 @@ namespace VectorGame
             var node=Constellation.Nodes.FirstOrDefault(n=>n.item==item);
             if(!OfficeOpen||node==null||HasConstellation(item)||!officeStorageReady||Sparks<node.cost||node.NeedsSeal&&(!CompletionSeal||!HasConstellation(node.parent)))return false;
             var next=CopyOffice();next.sparks-=node.cost;next.unlocks.Add(item);if(!SaveOffice(next))return false;
-            OfficeMessage=LoadoutCatalog.Find(item).name+" unlocked for future chapter rewards. Current saved runs keep their original pool.";return true;
+            OfficeMessage=LoadoutCatalog.Find(item).name+" unlocked for future chapter rewards. Your current saved journey keeps its original pool.";return true;
         }
         void ResetChapterRun()
         {

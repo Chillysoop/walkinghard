@@ -89,9 +89,9 @@ namespace VectorGame
                 seen.Clear();for(int seed=0;seed<80;seed++){var deck=new AbilityDeck(seed){RewardFilter=ChapterRewardAllowed};deck.Open(DraftKind.Weapon,false);foreach(var offer in deck.Offers)seen.Add(offer.def.id);}
                 Require(seen.Contains("wraps")&&seen.Contains("greatsword"),"purchased equipment actually appears in new offers");
                 var snapshot=new List<string>(chapterRun.unlocks);chapterRun.unlocks=Constellation.Nodes.Select(n=>n.item).ToList();seen.Clear();
-                foreach(int seed in Enumerable.Range(1,100))foreach(var kind in new[]{DraftKind.Equipment,DraftKind.Ultimate,DraftKind.Mixed}){var d=new AbilityDeck(seed){RewardFilter=ChapterRewardAllowed};d.Open(kind,false);foreach(var o in d.Offers)seen.Add(o.def.id);}
-                Require(Constellation.Nodes.All(n=>seen.Contains(n.item)),"all six unlocked identities can enter equipment, ultimate and mixed pools");chapterRun.unlocks=snapshot;
-                var profileBefore=JsonUtility.ToJson(office);OpenOffice();var funded=CopyOffice();funded.sparks=30;Require(SaveOffice(funded),"controlled purchase fixture persists funding");
+                foreach(int seed in Enumerable.Range(1,400))foreach(var kind in new[]{DraftKind.Ability,DraftKind.Equipment,DraftKind.Ultimate,DraftKind.Mixed}){var d=new AbilityDeck(seed){RewardFilter=ChapterRewardAllowed};d.Open(kind,false);foreach(var o in d.Offers)seen.Add(o.def.id);}
+                Require(Constellation.Nodes.All(n=>seen.Contains(n.item)),"all constellation identities can enter equipment, ultimate and mixed pools");chapterRun.unlocks=snapshot;
+                var profileBefore=JsonUtility.ToJson(office);OpenOffice();var funded=CopyOffice();funded.sparks=Constellation.Nodes.Sum(n=>n.cost);Require(SaveOffice(funded),"controlled purchase fixture persists funding");
                 foreach(var node in Constellation.Nodes.Where(n=>!HasConstellation(n.item))){int wallet=Sparks;Require(BuyConstellation(node.item)&&Sparks==wallet-node.cost&&!BuyConstellation(node.item),"each remaining star charges exactly once / "+node.item);}
                 AtomicWrite(OfficePath,profileBefore);LoadOffice();
                 string good=JsonUtility.ToJson(office);File.WriteAllText(OfficePath,"broken");File.WriteAllText(OfficePath+".bak","broken");LoadOffice();Require(!officeStorageReady&&!StartChapter()&&!BuyConstellation("relay"),"unreadable profile blocks purchases and new chapters without overwriting files");AtomicWrite(OfficePath,good);LoadOffice();StartChapter();

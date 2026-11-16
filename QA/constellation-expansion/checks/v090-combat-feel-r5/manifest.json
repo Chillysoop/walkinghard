@@ -1,0 +1,9 @@
+{
+  "assemblySha256": "2C12900D74F909581FE8AD52E8829A58AFD142D9DCAB87B2E65B4855F179FC02",
+  "seed": 1741,
+  "unpooled": false,
+  "mode": "Fixtures",
+  "verifyWalkingSnapshot": false,
+  "policy": "pinball",
+  "originalBodyScan": false
+}

@@ -55,7 +55,7 @@ namespace VectorGame
             if(heal<=0)return;
             turn.siphonHealed+=heal;Health+=heal;LifestealHealing+=heal;ArmorHealing+=heal;
             foreach(var source in sources)ContributionFor(source.Key).healing+=heal*source.Value/rate;
-            ArmPredator();fx.Arc(enemy.physics.Center,HeroPosition+Vector3.up,SiphonColor);Note("Siphon restored health");
+            ArmPredator();ExpansionHealing(heal);fx.Arc(enemy.physics.Center,HeroPosition+Vector3.up,SiphonColor);Note("Siphon restored health");
         }
         void ResolveHarvest(LoadoutItem item)
         {

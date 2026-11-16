@@ -1,0 +1,8 @@
+Diagnostic excerpt. Unabridged original retained locally under Logs/qa-v090-core-sequence-1741.log.
+Host, network, licensing and unrelated engine startup details omitted.
+
+InvalidOperationException: Combat mechanic: ability drives a real hit reaction: Repulsor Guard
+  at VectorGame.VectorEncounter.MechanicRequire (System.Boolean okay, System.String rule) [0x0000e] in <aca8d683439d40958c31d0dfb182e232>:0
+  at VectorGame.VectorEncounter.CheckImpactMechanics () [0x005e5] in <aca8d683439d40958c31d0dfb182e232>:0
+  at VectorGame.VectorEncounter.CheckCombatMechanics () [0x00a1a] in <aca8d683439d40958c31d0dfb182e232>:0
+  at VectorGame.VectorEncounter.Awake () [0x004b7] in <aca8d683439d40958c31d0dfb182e232>:0

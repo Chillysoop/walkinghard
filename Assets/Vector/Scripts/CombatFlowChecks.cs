@@ -47,7 +47,7 @@ namespace VectorGame
                 MechanicRequire(Advance()&&ActiveSlot==5&&PairSlot<0,"ready ultimate uses its actual rarity-scaled reach: "+def.id);
                 MechanicRequire(NextSlot==0,"starting a ready ultimate preserves the next sequence action: "+def.id);
                 Preparation=0;StepHero(.6f);
-                MechanicRequire(def.id=="redline"?redlineTurns==6:target.health<target.maxHealth,"ultimate delivers its effect inside added rarity reach: "+def.id);
+                MechanicRequire(def.id=="redline"?redlineTurns==6:def.id=="lastbastion"?BarrierAmount>0:target.health<target.maxHealth,"ultimate delivers its effect inside added rarity reach: "+def.id);
             }
             Reset();Deck.Move(Deck.Acquire(LoadoutCatalog.Find("tempest")),PlaceKind.Ultimate);UltimateRemaining=0;UltimateAutomatic=true;ProbeEnemy(0,12.3f);
             MechanicRequire(!Advance()&&ActiveSlot<0,"Common ultimate does not inherit higher-rarity reach");

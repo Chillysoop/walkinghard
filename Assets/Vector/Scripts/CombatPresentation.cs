@@ -102,7 +102,7 @@ namespace VectorGame
         }
         public void Ultimate(Vector3 center,string id,float value,bool release)
         {
-            Color color=id=="singularity"?new Color(.72f,.4f,1):id=="cyclone"?new Color(.68f,.9f,1):id=="tempest"?Color.cyan:id=="harvest"?new Color(1,.12f,.28f):new Color(1,.45f,.1f);
+            Color color=ConstellationContent.IsNew(id)?ConstellationContent.ColorFor(ConstellationContent.Branch(id)):id=="singularity"?new Color(.72f,.4f,1):id=="cyclone"?new Color(.68f,.9f,1):id=="tempest"?Color.cyan:id=="harvest"?new Color(1,.12f,.28f):new Color(1,.45f,.1f);
             if(!release)
             {
                 Emit(center+Vector3.up*.13f,Vector3.zero,3.2f,.9f,Mathf.Max(.2f,value),color*.7f,true,true);
@@ -114,7 +114,7 @@ namespace VectorGame
             if(id=="redline")
             {for(int i=-1;i<=1;i+=2)Emit(center+new Vector3(i*.55f,1,0),Vector3.up*1.7f,.6f,.1f,.45f,color);return;}
             // Chain lightning keeps its native target-to-target arcs as the payoff.
-            if(id=="tempest")
+            if(id=="tempest"||id=="bloodcircuit"||id=="freighttrain"||id=="guillotine"||id=="lastbastion")
             {Emit(center+Vector3.up,Vector3.up*.5f,.9f,.2f,.3f,new Color(color.r,color.g,color.b,.6f));return;}
             if(id=="harvest"){Gather(center,Vector3.forward,center,value,0,false,color);return;}
             Emit(center+Vector3.up*.14f,Vector3.zero,.6f,value*2,.65f,new Color(color.r,color.g,color.b,.65f),true,true);
