@@ -14,6 +14,7 @@ Final native verification:
 - Loadout model: 312 assertions; rendered review: 1,586 assertions, including those model checks, real placement handlers, text metrics, five resolutions, live resizing and non-overlap with every interactive target.
 - Tutorial model: 174 assertions; rendered review: 1,482 assertions, including model checks and the actual journey opening checkpoint.
 - Presentation fixture: 64 mapped item definitions, with rarity mismatch, fusion, augment, icon-key and combat captures inspected.
+- Final combat regression suite: 15/15 scenarios passed, with 761 production-effect assertions per scenario, zero visible spawns and zero order errors. [Results](regressions.json).
 - Review saves used isolated directories. Generated scene-ID churn was restored; `git diff --check` passed.
 
 These checks establish rendering and interaction correctness; player feedback is still needed to judge usability.
