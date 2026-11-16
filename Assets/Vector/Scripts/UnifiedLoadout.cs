@@ -7,7 +7,9 @@ namespace VectorGame
     public sealed partial class PrototypeHUD
     {
         bool UnifiedCheckpoint=>game.State==VectorEncounter.RunState.Drafting&&!game.TutorialActive&&!game.StopOpen;
-        Rect comparisonRect;
+        Rect comparisonRect,workbenchBody,portraitSpace;
+        bool inlineComparisonVisible;
+        float workbenchWidth;
         Vector2 comparisonScroll;
         string comparisonKey="";
         int storageFilter;
@@ -38,7 +40,7 @@ namespace VectorGame
         LoadoutHover ResolveLoadoutHover()
         {
             var d=game.Deck;
-            if(!dragging&&comparisonRect.Contains(Pointer)&&loadoutHover?.Def!=null&&(loadoutHover.source==null||d.Items.Contains(loadoutHover.source))&&(loadoutHover.offer==null||!d.RewardClaimed&&System.Array.IndexOf(d.Offers,loadoutHover.offer)>=0))return loadoutHover;
+            if(inlineComparisonVisible&&!dragging&&comparisonRect.Contains(Pointer)&&loadoutHover?.Def!=null&&(loadoutHover.source==null||d.Items.Contains(loadoutHover.source))&&(loadoutHover.offer==null||!d.RewardClaimed&&System.Array.IndexOf(d.Offers,loadoutHover.offer)>=0))return loadoutHover;
             var p=new LoadoutHover();var hit=dropRegions.FirstOrDefault(r=>r.rect.Contains(Pointer));
             if(presentationHover!=null){p.offer=presentationOffer;p.offerIndex=p.offer==null?-1:Array.IndexOf(d.Offers,p.offer);p.source=p.offer==null?presentationHover:null;}
             else if(dragItem!=null)p.source=dragItem;
@@ -64,7 +66,7 @@ namespace VectorGame
             if(p.Def.kind==ItemKind.Weapon&&p.Def.hands==2&&place==PlaceKind.Weapon&&!d.TwoHanded)p.beforeSecond=d.WeaponFor(d.Basics[1-index]);
             p.after=host!=null?p.projection.Copy(host):p.projection.incoming;
             if(p.after?.def.kind==ItemKind.Basic)p.after=p.projection.after.WeaponFor(p.after);
-            p.heading=(p.explicitTarget?"CLICK SLOT → ":"SUGGESTED → ")+(p.Def.kind==ItemKind.Weapon&&p.Def.hands==2&&place==PlaceKind.Weapon?"BOTH HANDS":PlaceLabel(target));
+            p.heading=(p.explicitTarget?(place==PlaceKind.Inventory&&host==null?"STORE → ":host!=null?"ATTACH → ":"EQUIP → "):"COMPARE → ")+(p.Def.kind==ItemKind.Weapon&&p.Def.hands==2&&place==PlaceKind.Weapon?"BOTH HANDS":PlaceLabel(target));
             var after=p.projection.after;
             var stored=d.Items.Where(i=>!d.Inventory.Contains(i)&&after.Inventory.Contains(p.projection.Copy(i))).Select(i=>i.def.name).Distinct().ToArray();
             var consumed=d.Items.Where(i=>!after.Items.Contains(p.projection.Copy(i))).ToArray();
@@ -81,17 +83,19 @@ namespace VectorGame
         {
             var d=game.Deck;Box(new Rect(0,0,w,h),new Color(.006f,.018f,.028f,.94f));
             if(selectedItem!=null&&!d.Items.Contains(selectedItem))selectedItem=null;
-            float middleY=250,middleH=h-424,characterW=(w-56)*.36f,storageW=(w-56)*.27f;
+            workbenchWidth=w;
+            float middleY=250,middleH=h-424,characterW=(w-52)*.55f,storageW=w-52-characterW;
             Rect character=new Rect(20,middleY,characterW,middleH),storage=new Rect(character.xMax+12,middleY,storageW,middleH);
-            comparisonRect=new Rect(storage.xMax+12,middleY,w-storage.xMax-32,middleH);
+            workbenchBody=new Rect(20,middleY,w-40,middleH);
             float cardW=(w-60)/3,sequenceY=h-143,seqW=(w-300)/5;
-            Rect[] mounts=new Rect[6];float mountW=character.width*.285f;
+            Rect[] mounts=new Rect[6];float mountW=character.width*.25f;
+            portraitSpace=new Rect(character.x+mountW+28,character.y+10,character.width-2*mountW-56,character.height-20);
             for(int i=0;i<6;i++)mounts[i]=new Rect(i%2==0?character.x+10:character.xMax-mountW-10,character.y+34+(i/2)*83,mountW,76);
             var inventory=d.Inventory.OrderBy(i=>i.def.kind).ThenBy(i=>i.def.name).ThenBy(i=>i.rank).Where(StorageVisible).ToArray();
-            int pages=Mathf.Max(1,Mathf.CeilToInt(inventory.Length/9f));inventoryScroll.y=Mathf.Clamp(Mathf.Round(inventoryScroll.y),0,pages-1);
+            int pages=Mathf.Max(1,Mathf.CeilToInt(inventory.Length/12f));inventoryScroll.y=Mathf.Clamp(Mathf.Round(inventoryScroll.y),0,pages-1);
             Rect inventoryRect=new Rect(storage.x+10,storage.y+63,storage.width-20,storage.height-111),storeRect=new Rect(storage.x+10,storage.yMax-33,storage.width-20,24);
             if(Event.current.type==EventType.ScrollWheel&&inventoryRect.Contains(Pointer)){inventoryScroll.y=Mathf.Clamp(inventoryScroll.y+Mathf.Sign(Event.current.delta.y),0,pages-1);Event.current.Use();}
-            float cellW=(inventoryRect.width-10)/3,cellH=(inventoryRect.height-10)/3;int first=(int)inventoryScroll.y*9;
+            float cellW=(inventoryRect.width-15)/4,cellH=(inventoryRect.height-10)/3;int first=(int)inventoryScroll.y*12;
             dropRegions.Clear();
             if(!d.RewardClaimed)for(int i=0;i<3;i++)dropRegions.Add(new DropRegion{rect=new Rect(20+i*(cardW+10),94,cardW,144),offer=i});
             for(int i=0;i<5;i++)dropRegions.Add(new DropRegion{rect=new Rect(20+i*(seqW+8),sequenceY,seqW,87),place=PlaceKind.Sequence,index=i,item=d.Slots[i]});
@@ -99,7 +103,7 @@ namespace VectorGame
             LoadoutItem[] worn={d.Armor[0],d.Armor[1],d.Weapons[0],d.Weapons[1],d.Rig,d.Armor[2]};
             for(int i=0;i<6;i++)dropRegions.Add(new DropRegion{rect=mounts[i],place=places[i],index=i==3?1:0,item=worn[i]});
             Rect ultRect=new Rect(w-240,sequenceY,220,87);dropRegions.Add(new DropRegion{rect=ultRect,place=PlaceKind.Ultimate,item=d.Ultimate});
-            for(int i=0;i<Mathf.Min(9,inventory.Length-first);i++)dropRegions.Add(new DropRegion{rect=new Rect(inventoryRect.x+i%3*(cellW+5),inventoryRect.y+i/3*(cellH+5),cellW,cellH),place=PlaceKind.Inventory,item=inventory[first+i]});
+            for(int i=0;i<Mathf.Min(12,inventory.Length-first);i++)dropRegions.Add(new DropRegion{rect=new Rect(inventoryRect.x+i%4*(cellW+5),inventoryRect.y+i/4*(cellH+5),cellW,cellH),place=PlaceKind.Inventory,item=inventory[first+i]});
             dropRegions.Add(new DropRegion{rect=storeRect,place=PlaceKind.Inventory,index=-1});
             AddSocketRegions();AuditWorkbenchText(mountW,cellW,cellH,cardW);
             if(!iconGuide&&!waveDetails)HandleLoadoutInput();
@@ -108,7 +112,7 @@ namespace VectorGame
             string phase=game.OpeningDraft?"Opening pick "+(game.OpeningPicks+1)+" / 2":"Checkpoint "+game.Wave.ToString("00");
             if(game.JourneyActive)phase="District "+(game.District+1)+" / "+phase;
             Label(new Rect(20,36,750,32),phase+" · "+(d.RewardClaimed?"Reward taken":"Choose one reward"),24,white,true);
-            Label(new Rect(20,72,w-40,18),d.RewardClaimed?"Your build is ready. Rearrange items, or continue.":"Hover to compare. Select a reward, then click a glowing slot — or drag it there.",12,muted);
+            Label(new Rect(20,72,w-40,18),d.RewardClaimed?"Your build is ready. Rearrange items, or continue.":"Select an item, then hover a slot to compare. Click the slot or drag to equip.",12,muted);
             if(game.ExpeditionActive&&Button(new Rect(w-185,15,165,30),"SAVE & OFFICE"))game.SuspendExpedition();
             if(game.LastWaveFeedback!=null&&Button(new Rect(w-355,15,158,30),"LAST WAVE DETAILS",waveDetails))waveDetails=!waveDetails;
             if(game.ExpeditionActive)Label(new Rect(w-450,50,430,20),game.Salvage+" SALVAGE / "+game.ChapterSparks+" SPARKS BANKED",11,muted,false,TextAnchor.UpperRight);
