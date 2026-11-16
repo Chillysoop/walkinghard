@@ -8,6 +8,33 @@ namespace VectorGame
     // Every candidate uses the same receive/fusion/move rules as the tablet preview.
     internal static class AutomatedLoadoutPolicy
     {
+        internal static bool Committed(string style)=>style.StartsWith("committed:",StringComparison.Ordinal);
+        static string Preference(string style)=>Committed(style)?style.Substring(10):style;
+        internal static bool Allowed(AbilityDeck deck,string style)
+        {
+            if(!Committed(style))return true;
+            style=Preference(style);
+            for(int hand=0;hand<2;hand++)
+            {
+                var d=deck.WeaponFor(deck.Basics[hand]).def;
+                // Starter fists remain legal until the requested component drops.
+                if(d==LoadoutCatalog.Fists)continue;
+                if(style=="gun"&&d.profile?.magazine>0)continue;
+                if(style=="cutcarry"&&d.hands==1&&d.weapon==(hand==0?WeaponKind.Sword:WeaponKind.Hammer))continue;
+                if(style=="close"&&d.hands==1&&(hand==0?d.weapon==WeaponKind.Fists:d.profile?.magazine>0))continue;
+                return false;
+            }
+            return true;
+        }
+        internal static int Components(AbilityDeck deck,string style)
+        {
+            style=Preference(style);
+            var a=deck.WeaponFor(deck.Basics[0]).def;var b=deck.WeaponFor(deck.Basics[1]).def;
+            if(style=="gun")return a.profile?.magazine>0||b.profile?.magazine>0?1:0;
+            if(style=="cutcarry")return (a.hands==1&&a.weapon==WeaponKind.Sword?1:0)+(b.hands==1&&b.weapon==WeaponKind.Hammer?1:0);
+            if(style=="close")return a.weapon==WeaponKind.Fists&&b.hands==1&&b.profile?.magazine>0?1:0;
+            return 0;
+        }
         internal sealed class Choice
         {
             public int offer,index;public PlaceKind place;public LoadoutItem host,partner;
@@ -34,6 +61,7 @@ namespace VectorGame
         }
         public static float Score(AbilityDeck deck,string style)
         {
+            bool committed=Committed(style);int components=Components(deck,style);style=Preference(style);
             // Count a locked 2H attack once, paired 1H damage twice with one duration,
             // and mismatched families as two turns. Reload cost is amortized per shot.
             float value=0,seconds=0;var seen=new HashSet<int>();
@@ -84,7 +112,7 @@ namespace VectorGame
             if(style=="cutcarry")score+=(deck.Weapons.Any(w=>w?.def.weapon==WeaponKind.Sword)?25:0)+(deck.Weapons.Any(w=>w?.def.weapon==WeaponKind.Hammer)?25:0);
             if(style=="close")score+=(gun&&fist?50:0)+(Has("Counterguard")?8:0);
             if(style=="siphon")score+=(Has("DrainBrand")?16:0)+(Has("siphonblade")?12:0)+(Has("reclaimer","harvest")?8:0);
-            return score;
+            return score+(committed?components*1000:0);
         }
         static IEnumerable<Choice> Destinations(AbilityDeck deck,ItemDefinition def)
         {
@@ -103,7 +131,7 @@ namespace VectorGame
             {
                 if(opening&&(c.place!=PlaceKind.Sequence||deck.Slots[c.index]!=null))continue;
                 var p=deck.PreviewChange(offer,null,c.place,c.index,c.host);if(!p.valid)continue;
-                FillAbilitySlots(p.after,style);Arrange(p.after,style);if(c.place==PlaceKind.Weapon&&!p.after.TwoHanded)ImproveOtherHand(p.after,c.index,style);c.projection=p;c.score=Score(p.after,style);
+                FillAbilitySlots(p.after,style);Arrange(p.after,style);if(c.place==PlaceKind.Weapon&&!p.after.TwoHanded)ImproveOtherHand(p.after,c.index,style);if(!Allowed(p.after,style))continue;c.projection=p;c.score=Score(p.after,style);
                 // A useful spare has small, bounded future value; fusion itself is
                 // already reflected in the projected equipped ranks and sockets.
                 c.score+=Math.Min(2,p.after.Inventory.Count(i=>BuildSynergies.Equipped(p.after).Any(e=>e.def==i.def&&e.rank==i.rank)))*.15f;
@@ -130,7 +158,7 @@ namespace VectorGame
                     if(c.place==PlaceKind.Inventory&&c.host==null)continue;
                     var p=deck.PreviewChange(null,item,c.place,c.index,c.host);if(!p.valid)continue;Arrange(p.after,style);
                     if(c.place==PlaceKind.Weapon&&!p.after.TwoHanded){var partner=ImproveOtherHand(p.after,c.index,style);c.partner=p.copies.FirstOrDefault(kv=>kv.Value==partner).Key;}
-                    float candidate=Score(p.after,style);
+                    if(!Allowed(p.after,style))continue;float candidate=Score(p.after,style);
                     if(candidate<=score+.01f)continue;score=candidate;best=c;source=item;
                 }
                 if(best==null)break;
@@ -161,7 +189,7 @@ namespace VectorGame
             foreach(var item in deck.Inventory.Append(deck.Fists).Where(i=>i.def.kind==ItemKind.Weapon&&i.def.hands==1).Distinct())
             {
                 if(item==deck.Weapons[lockedHand])continue;
-                var p=deck.PreviewChange(null,item,PlaceKind.Weapon,1-lockedHand);if(!p.valid)continue;Arrange(p.after,style);float next=Score(p.after,style);
+                var p=deck.PreviewChange(null,item,PlaceKind.Weapon,1-lockedHand);if(!p.valid||!Allowed(p.after,style))continue;Arrange(p.after,style);float next=Score(p.after,style);
                 if(next<=score+.01f)continue;score=next;best=item;
             }
             if(best!=null)deck.Move(best,PlaceKind.Weapon,1-lockedHand);return best;

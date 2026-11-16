@@ -1,0 +1,41 @@
+state=Running wave=4 waveTime=119.4444 elapsed=263.4631 health=85.76006 hero=(-24.81, 0.04, 101.52) action=WAITING FOR TARGET / Steel Jab waiting=Steel Jab · reach 2.8m · sequence held
+elite=True blocked=True championDue=False forkWaiting=False pending=False route=EliteShift loadout=1: Steel Jab · Uncommon > 2: Breaker · Epic > 3: Basic 1 · Kinetic Fists · Common > 4: Basic 2 · Pulse Pistol · Common > 5: Arc Bolt · Common
+id=130 role=Champion health=236.5 p=(-17.59, -0.02, 97.10) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-18.02, 1.18, 97.47) distance=0.03714654
+id=127 role=Raider health=43 p=(-19.81, -0.02, 95.10) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=128 role=Enforcer health=129 p=(-19.11, -0.02, 95.62) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=129 role=Shooter health=43 p=(-18.61, -0.02, 96.33) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=132 role=Enforcer health=129 p=(-15.15, -0.02, 96.98) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Entry passage front parent=Left road / independent corridor point=(0.00, 0.00, 0.00) distance=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-19.64, 1.18, 95.80) distance=4.379537
+id=133 role=Raider health=43 p=(-17.08, -0.02, 97.91) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=134 role=Linebreaker health=34 p=(-21.19, -0.02, 95.34) velocity=(0.00, 0.00, 0.00) entering=False doorway=(-22.00, 0.05, 94.37) reposition=True canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+id=135 role=Raider health=43 p=(-16.86, -0.02, 96.55) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-19.44, 1.18, 96.01) distance=2.37266
+id=136 role=Enforcer health=129 p=(-37.39, -0.02, 84.74) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-35.23, 0.05, 86.10) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=138 role=Raider health=43 p=(-16.56, -0.02, 98.44) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=139 role=Raider health=43 p=(-16.69, -0.02, 97.28) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-18.68, 1.18, 96.78) distance=1.825039
+id=140 role=Shooter health=43 p=(-16.71, -0.02, 95.84) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Entry passage front parent=Left road / independent corridor point=(0.00, 0.00, 0.00) distance=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-20.01, 1.18, 95.42) distance=3.013461
+id=141 role=Enforcer health=129 p=(-38.24, -0.02, 84.21) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-35.23, 0.05, 86.10) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-36.97, 1.18, 85.03) distance=0.959206
+id=142 role=Enforcer health=129 p=(-15.87, -0.02, 98.96) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=False waypoint=(-24.81, 0.04, 101.52) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(0.00, 0.00, 0.00) distance=0
+id=143 role=Raider health=43 p=(-15.96, -0.02, 97.30) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-19.11, 1.18, 96.34) distance=3.064838
+id=144 role=Raider health=43 p=(-15.22, -0.02, 97.84) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-18.93, 1.18, 96.53) distance=3.728883
+id=145 role=Raider health=43 p=(-15.92, -0.02, 98.07) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-22.00, 0.05, 94.37) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-18.14, 1.18, 97.34) distance=2.134197
+id=146 role=Enforcer health=129 p=(-39.10, -0.02, 83.68) velocity=(0.00, 0.00, 0.00) entering=True doorway=(-35.23, 0.05, 86.10) reposition=False canAttack=False navigation=True waypoint=(-30.24, 0.00, 92.83) stun=0
+  entry block=Junction outer wall parent=Physical Y junction point=(-36.97, 1.18, 85.03) distance=1.965205
+fork=(0.00, 0.00, 44.44) angle=(0.00, 0.00, 0.00) parentEnd=44.44323
+fork=(-30.24, 0.00, 92.83) angle=(0.00, 328.00, 0.00) parentEnd=57.06005

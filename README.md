@@ -1,4 +1,8 @@
-# Walking Hard 0.8.2 - Combat records and full-journey evaluation
+# Walking Hard 0.8.3 - Weapon discovery
+
+At checkpoints **2, 9 and 16**, the third reward card is **WEAPON DISCOVERY**: one unlocked weapon that has appeared less recently in this run's reward choices. Individual fist styles, one-handed weapons and two-handed weapons each have their own history. The other two cards keep their normal rules; reward counts, rarity odds, fusion and combat values are unchanged. History persists through saves and rerolls. [Verification and measured tradeoffs](QA/weapon-discovery/verification.md).
+
+New forks also keep enemy entrance rooms clear. A reproduced champion encounter stall came from a junction wall sealing an entrance; fork placement now preserves occupied rooms, and arrivals only use passages with full-height clearance. The six-second road choice is unchanged.
 
 The results screen now explains the final hit, leading incoming threats, integrity changes and damage dealt in the fatal fight. It includes the unfinished encounter, keeps existing per-item totals, and carries the record through checkpoints. Older saves retain their progress and clearly label partial history.
 

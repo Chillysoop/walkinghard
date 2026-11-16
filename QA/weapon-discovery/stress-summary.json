@@ -1,0 +1,13 @@
+{
+  "assemblySha256": "34ED78616DEB432C1120A581F1EA8D32DBB92CB0C4F5DDC04D9213EF36339051",
+  "fixtures": 56,
+  "passed": true,
+  "launches": 2295,
+  "detached_parts": 1152,
+  "world_contacts": 449457,
+  "collision_hits": 279,
+  "simulated_steps": 40320,
+  "peak_bone_speed": 56.7721061706543,
+  "lowest_bone_y": -0.0998687893152237,
+  "scope": "Eight seeds across open launches, wide severs, both walls, fork nose and both branches. 12 actors, 12 seconds each. Repeated six-body launches share production collision budgets. Entrance/fork fix included. No physics settings or clamps changed. Passing does not establish that the previous rare instability is fixed."
+}

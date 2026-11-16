@@ -1,0 +1,21 @@
+[
+  {
+    "kind": "progression softlock",
+    "seed": 4319,
+    "policy": "close",
+    "committed": true,
+    "source": "cohort/projected-4319-close-discovery-committed/samples.jsonl",
+    "assemblySha256": "A3E35A6450AF72A91CAC797C62B1B7721E69BA3586E27D86497A4D09DE9BB397",
+    "wave": 4,
+    "seconds": 2101.04,
+    "countedAsDefeat": false,
+    "diagnosis": "Junction outer walls crossed two existing entry rooms. Champion id 130 and other arrivals remained entering indefinitely; the champion completion gate correctly refused to advance.",
+    "reproductions": [
+      "timeout-replay/timeout-state.txt",
+      "timeout-fresh/timeout-state.txt",
+      "entry-trace/timeout-state.txt"
+    ],
+    "fix": "Place new forks beyond complete occupied rooms and six metres clear of entry centers. Capsule-test spawn passages, including unchanged geometry reconstructed from older saves.",
+    "confirmation": "replay-fixed/samples.jsonl: cleared encounter 4, defeated normally in encounter 5; continuation timing is excluded from full-run comparisons."
+  }
+]

@@ -71,7 +71,7 @@ namespace VectorGame
             {
                 if(!Deck.RewardClaimed)
                 {
-                    RecordDraftOpportunity();var choice=AutomatedLoadoutPolicy.Choose(Deck,CurrentPolicy);
+                    RecordDraftOpportunity();var choice=AutomatedLoadoutPolicy.Choose(Deck,ProgressionPolicy);
                     bool claimed=choice.host!=null?ClaimAugmentToHost(choice.offer,choice.host,false):ClaimReward(choice.offer,choice.place,choice.index,false);
                     if(!claimed)throw new InvalidOperationException("Projected draft choice was rejected");
                 }

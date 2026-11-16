@@ -1,0 +1,86 @@
+{
+  "version": "0.8.3",
+  "unity": "6000.3.27f1",
+  "branch": "feature/weapon-discovery",
+  "baseBranch": "feature/run-progression",
+  "baseCommit": "e9c140c376f38a091ae9d897128b4987ce814a9c",
+  "assemblySha256": "17352C03FB8F3A50B0E0B4D2BFC02FA6C1034EE48D2C186F69469AB4840CA80B",
+  "builds": [
+    {
+      "assemblySha256": "A3E35A6450AF72A91CAC797C62B1B7721E69BA3586E27D86497A4D09DE9BB397",
+      "scope": "Initial discovery production code before entrance fix",
+      "reports": [
+        "cohort",
+        "fresh",
+        "checks",
+        "rendered",
+        "progression",
+        "journey",
+        "stress",
+        "../discovery-final-*.json",
+        "../discovery-variety-*.json"
+      ],
+      "outcome": "Main cohort: 35 valid outcomes and one champion-entry softlock out of 36 attempts. Fresh smoke: three valid outcomes. Regression checks passed."
+    },
+    {
+      "assemblySha256": "F1A19106502219D0EA5A38BA690E1E60F17C037618216D5C1D95EF2FF5A66CA5",
+      "scope": "Diagnostic-only trace and shorter timeout controls; same production gameplay as initial cohort",
+      "reports": [
+        "timeout-replay",
+        "timeout-fresh"
+      ],
+      "outcome": "Intentionally capped reproductions of entry stall, not combat defeats."
+    },
+    {
+      "assemblySha256": null,
+      "scope": "Diagnostic-only spherecast blocker trace; build hash not captured",
+      "reports": [
+        "entry-trace"
+      ],
+      "outcome": "Both entrance routes blocked by Junction outer wall."
+    },
+    {
+      "assemblySha256": "34ED78616DEB432C1120A581F1EA8D32DBB92CB0C4F5DDC04D9213EF36339051",
+      "scope": "Final production gameplay including entrance/fork fix; rendered geometry fixture still incorrectly left Drafting state",
+      "reports": [
+        "acceptance-final",
+        "progression-final",
+        "journey-final",
+        "stress-final",
+        "fork-final",
+        "confirmation",
+        "replay-fixed",
+        "../discovery-fix-final-*.json",
+        "../discovery-fix-variety-*.json",
+        "../discovery-fix-full-full-1741.json"
+      ],
+      "outcome": "Headless checks passed. Original failing checkpoint and fresh close-quarters run clear encounter 4; natural defeats at 5. Committed gun and sword/hammer each complete 21. Headless fork screenshots are black; rendered-final failed fixture-only HUD access and is excluded. Fifteen core, fifty weapon/augment variety cases and the eight-encounter full regression all passed."
+    },
+    {
+      "assemblySha256": "17352C03FB8F3A50B0E0B4D2BFC02FA6C1034EE48D2C186F69469AB4840CA80B",
+      "scope": "Final assembly; only difference is isolated geometry fixture holds Running state while yielding",
+      "reports": [
+        "rendered-acceptance",
+        "fork-rendered-final",
+        "../discovery-acceptance-*.json"
+      ],
+      "outcome": "Rendered discovery and fork assertions passed; discovery at 720p/1080p/ultrawide and fork highlights/directions visually inspected. Core regression results recorded separately. All fifteen final core regressions passed with 761 mechanic assertions each."
+    }
+  ],
+  "cohort": "Three seeds x three preferences x adaptive/committed x original/discovery; fully unlocked; normal health. Pre-entrance-fix exploratory results.",
+  "freshSmoke": "Seed 1741 x three committed preferences; starting unlock pool; normal health. No matched original-offer fresh cohort.",
+  "confirmation": "Seed 4319 x three committed preferences with final production gameplay; fully unlocked; normal health. Separate from original cohort.",
+  "resumeConfirmation": "replay-fixed reports only continuation from the original failing checkpoint and is excluded from full-run averages.",
+  "excludedAcceptance": [
+    "checks-pilot: incorrect harness assumption",
+    "stress-pilot: earlier pilot, repeated later",
+    "rendered-final: fixture-only HUD exception, fixed and repeated",
+    "fork-final PNGs: headless black frames"
+  ],
+  "rarityRulesChanged": false,
+  "combatValuesChanged": false,
+  "ragdollPhysicsChanged": false,
+  "roadPlacementChanged": true,
+  "blockedEntranceSelectionChanged": true,
+  "rareRagdollOutlierResolved": false
+}

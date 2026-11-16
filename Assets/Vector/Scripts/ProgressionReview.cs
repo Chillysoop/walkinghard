@@ -12,23 +12,25 @@ namespace VectorGame
         [Serializable] sealed class DraftOpportunity
         {
             public int wave,pick;public string kind,before,after;public string[] offers;
-            public bool weaponOffered,weaponUpgrade,copyOffered,defenseOffered;public float gain;
+            public bool weaponOffered,weaponUpgrade,copyOffered,defenseOffered,discovery;public float gain;public string[] offerIds;
         }
         [Serializable] sealed class ProgressionSample
         {
-            public string version,policy,drafter,pool,result,loadout;public int seed,wave,kills,fusions,orderErrors,visibleSpawns;
+            public string version,policy,drafter,pool,result,loadout,weaponOffers;public int seed,wave,kills,fusions,orderErrors,visibleSpawns;public bool committed;
             public float seconds,health;public bool valid;public string[] errors;
-            public WaveReport[] encounters;public DraftOpportunity[] drafts;public RunHistoryData integrity;public ContributionReport[] items;
+            public WaveReport[] encounters;public DraftOpportunity[] drafts;public RunHistoryData integrity;public ContributionReport[] items;public WeaponJourneyEncounter[] weaponEncounters;
         }
         List<DraftOpportunity> progressionDrafts;
+        bool reviewOriginalWeaponOffers,reviewCommittedWeapons;
+        string ProgressionPolicy=>reviewCommittedWeapons?"committed:"+CurrentPolicy:CurrentPolicy;
         void RecordDraftOpportunity()
         {
             if(progressionDrafts==null)return;
-            var row=new DraftOpportunity{wave=Wave,kind=Deck.Draft.ToString(),before=Deck.Loadout,offers=Deck.Offers.Select(o=>o.Name+" / "+ItemRarity.Names[o.rank]).ToArray()};
-            float before=AutomatedLoadoutPolicy.Score(Deck,CurrentPolicy);
+            var row=new DraftOpportunity{wave=Wave,kind=Deck.Draft.ToString(),before=Deck.Loadout,offers=Deck.Offers.Select(o=>o.Name+" / "+ItemRarity.Names[o.rank]).ToArray(),offerIds=Deck.Offers.Select(o=>o.def.id).ToArray(),discovery=Deck.WeaponDiscovery};
+            float before=AutomatedLoadoutPolicy.Score(Deck,ProgressionPolicy);
             foreach(var offer in Deck.Offers)
             {
-                var p=AutomatedLoadoutPolicy.Evaluate(Deck,offer,CurrentPolicy,Deck.Draft==DraftKind.Ability);float gain=p==null?0:p.score-before;row.gain=Math.Max(row.gain,gain);
+                var p=AutomatedLoadoutPolicy.Evaluate(Deck,offer,ProgressionPolicy,Deck.Draft==DraftKind.Ability);float gain=p==null?0:p.score-before;row.gain=Math.Max(row.gain,gain);
                 if(offer.def.kind==ItemKind.Weapon){row.weaponOffered=true;row.weaponUpgrade|=gain>.5f;}
                 row.copyOffered|=BuildSynergies.Equipped(Deck).Any(i=>i.def==offer.def&&i.rank==offer.rank&&i.rank<5);
                 row.defenseOffered|=gain>.5f&&(offer.def.kind==ItemKind.Armor||offer.def.id=="Counterguard"||offer.def.id=="DrainBrand"||offer.def.id=="treads"||offer.def.id=="harvest");
@@ -39,7 +41,7 @@ namespace VectorGame
         {if(progressionDrafts?.Count>0){var row=progressionDrafts.Last();row.pick=Deck.Selected;row.after=Deck.Loadout;}}
         void EquipSimulationStorage()
         {
-            float max=MaxHealth;var ultimate=Deck.Ultimate;AutomatedLoadoutPolicy.EquipStored(Deck,CurrentPolicy);
+            float max=MaxHealth;var ultimate=Deck.Ultimate;AutomatedLoadoutPolicy.EquipStored(Deck,ProgressionPolicy);
             Health=Mathf.Clamp(Health+MaxHealth-max,0,MaxHealth);
             if(ultimate!=Deck.Ultimate){UltimateRemaining=UltimateCooldown;ultimateDue=Elapsed+UltimateCooldown;ultimateRequested=false;}
         }
@@ -51,35 +53,56 @@ namespace VectorGame
             if(string.IsNullOrEmpty(saveDirectoryOverride))throw new InvalidOperationException("Progression review requires an isolated profile");
             string output=Path.GetFullPath(Arg("-reviewOutput","ProgressionReview"));Directory.CreateDirectory(output);
             QualitySettings.vSyncCount=0;Application.targetFrameRate=-1;for(int i=0;i<4;i++)yield return null;
+            if(args.Contains("-weaponDiscoveryChecks")){yield return CheckWeaponDiscovery(output,!args.Contains("-nographics"));Application.Quit(0);yield break;}
+            if(args.Contains("-ragdollStress")){yield return ReviewRagdollStress(output);Application.Quit(0);yield break;}
             if(args.Contains("-progressionChecks")){yield return CheckProgression(output,!args.Contains("-nographics"));Application.Quit(0);yield break;}
             string samples=Path.Combine(output,"samples.jsonl");if(File.Exists(samples))throw new IOException("Use a fresh progression output directory");
             var policies=Arg("-journeyPolicy","all")=="all"?ArchetypePolicies:new[]{Arg("-journeyPolicy","all")};
             if(policies.Any(p=>!ArchetypePolicies.Contains(p)))throw new ArgumentException("Unknown progression style");
             var seeds=Arg("-seeds","1741,4319,6229").Split(',').Select(int.Parse).ToArray();bool unlocked=Arg("-pool","unlocked")=="unlocked";
             legacyDraftPolicy=args.Contains("-legacyDraftPolicy");forcedSeed=true;
+            reviewOriginalWeaponOffers=args.Contains("-originalWeaponOffers");reviewCommittedWeapons=args.Contains("-committedWeapons");
+            float reviewSeconds=float.Parse(Arg("-progressionSeconds","2100"),System.Globalization.CultureInfo.InvariantCulture);if(!float.IsFinite(reviewSeconds)||reviewSeconds<60||reviewSeconds>2100)throw new ArgumentException("Review seconds must be 60..2100");
+            if(reviewCommittedWeapons&&(legacyDraftPolicy||policies.Any(p=>!new[]{"gun","cutcarry","close"}.Contains(p))))throw new ArgumentException("Committed trials require the projected gun, cutcarry or close policy");
             foreach(int seed in seeds)foreach(string policy in policies)
             {
                 office=new OfficeProfile{seal=unlocked,unlocks=unlocked?Constellation.Nodes.Select(n=>n.item).ToList():new List<string>()};
-                tuning.seed=seed;simulationPolicy=policy;policyRandom=null;progressionDrafts=new List<DraftOpportunity>();
+                tuning.seed=seed;simulationPolicy=policy;policyRandom=null;progressionDrafts=new List<DraftOpportunity>();weaponJourneyEncounters=new List<WeaponJourneyEncounter>();
                 if(args.Contains("-progressionResume")){if(seeds.Length!=1||policies.Length!=1||!ResumeExpedition())throw new InvalidOperationException("Diagnostic replay requires one seed, one policy and a valid checkpoint");}else StartChapter();
                 float seconds=0,start=Time.realtimeSinceStartup;bool timeout=false;int heartbeat=0;
                 while(State!=RunState.Complete&&State!=RunState.Defeated)
                 {
-                    if(seconds>2100||Time.realtimeSinceStartup-start>1200){timeout=true;break;}
+                    if(seconds>reviewSeconds||Time.realtimeSinceStartup-start>1200){timeout=true;break;}
                     if(State==RunState.Drafting){if(StopOpen)SimulationExpeditionStop();else SimulationDraft();}
                     else if(State==RunState.Revealing){StepFinaleReveal(RevealDuration);seconds+=RevealDuration;}
                     else for(int i=0;i<90&&State==RunState.Running;i++){AdvanceCombat(1f/60);seconds+=1f/60;if(RoutePending)ChooseRoute(SimulationExpeditionRoute());}
-                    if((int)seconds/120>heartbeat){heartbeat=(int)seconds/120;Debug.Log("PROGRESSION_PROGRESS "+policy+" seed="+seed+" wave="+Wave+" health="+Health);}
+                    if((int)seconds/120>heartbeat){heartbeat=(int)seconds/120;Debug.Log("PROGRESSION_PROGRESS "+policy+" seed="+seed+" wave="+Wave+" health="+Health);if(args.Contains("-progressionTrace"))WriteProgressionState(Path.Combine(output,"state-"+heartbeat+".txt"));}
                     yield return null;
                 }
-                var errors=new List<string>();if(timeout)errors.Add("timeout");if(OrderErrors!=0)errors.Add("sequence order");if(VisibleSpawns!=0)errors.Add("visible spawn");if(Spawned!=Kills+enemies.Count||corpses.Count!=Kills||itemKills.Sum(p=>p.Value)+EnvironmentalKills!=Kills)errors.Add("actor/kill identity");
+                var errors=new List<string>();if(timeout)errors.Add("timeout");if(OrderErrors!=0)errors.Add("sequence order");if(VisibleSpawns!=0)errors.Add("visible spawn");if(Spawned!=Kills+enemies.Count||corpses.Count!=Kills||itemKills.Sum(p=>p.Value)+EnvironmentalKills!=Kills)errors.Add("actor/kill identity");if(reviewCommittedWeapons&&!AutomatedLoadoutPolicy.Allowed(Deck,ProgressionPolicy))errors.Add("committed weapon constraint");
+                if(timeout)
+                {
+                    WriteProgressionState(Path.Combine(output,"timeout-state.txt"));
+                    if(!args.Contains("-nographics")){yield return new WaitForEndOfFrame();var capture=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(output,"timeout.png"),capture.EncodeToPNG());Destroy(capture);}
+                }
                 if(State==RunState.Complete&&(Wave!=21||Waves.Count!=21||ItemChoices!=20||AugmentChoices!=5))errors.Add("journey completion contract");
                 if(!float.IsFinite(Health)||!float.IsFinite(HeroPosition.z))errors.Add("non-finite state");
                 var result=new ProgressionSample{version=Application.version,policy=policy,drafter=legacyDraftPolicy?"legacy":"projected",pool=unlocked?"unlocked":"fresh",seed=seed,result=timeout?"TimedOut":State.ToString(),wave=Wave,kills=Kills,fusions=Deck.Fusions,health=Health,seconds=seconds,loadout=Deck.Loadout,valid=errors.Count==0,errors=errors.ToArray(),orderErrors=OrderErrors,visibleSpawns=VisibleSpawns,encounters=Waves.ToArray(),drafts=progressionDrafts.ToArray(),integrity=RunHistory,items=ContributionReports()};
+                result.committed=reviewCommittedWeapons;result.weaponOffers=reviewOriginalWeaponOffers?"original":"discovery";result.weaponEncounters=weaponJourneyEncounters.ToArray();
                 File.AppendAllText(samples,JsonUtility.ToJson(result)+Environment.NewLine);Debug.Log("PROGRESSION_RESULT "+policy+" seed="+seed+" "+result.result+" wave="+Wave+" valid="+result.valid);
                 if(!result.valid){Application.Quit(4);yield break;}
             }
             progressionDrafts=null;Application.Quit(0);
+        }
+        void WriteProgressionState(string path)
+        {
+            var text=new System.Text.StringBuilder();text.AppendLine("state="+State+" wave="+Wave+" waveTime="+WaveElapsed+" elapsed="+Elapsed+" health="+Health+" hero="+HeroPosition+" action="+ActionStatus+" waiting="+TargetWaitDetail);
+            text.AppendLine("elite="+EliteEncounter+" blocked="+EliteBlocked+" championDue="+ChampionDue+" forkWaiting="+ForkAwaitingChoice+" pending="+RoutePending+" route="+RegionalRoute(Wave)+" loadout="+Deck.Loadout);
+            foreach(var e in enemies.OrderByDescending(e=>e.durability?.champion==true))
+            {bool nav=roads.Navigation(e.rig.Root.position,HeroPosition,out var waypoint);text.AppendLine("id="+e.id+" role="+DurabilityRole(e)+" health="+e.health+" p="+e.rig.Root.position+" velocity="+e.physics.LinearVelocity+" entering="+e.entering+" doorway="+e.doorway+" reposition="+e.repositioning+" canAttack="+EnemyCanAttack(e)+" navigation="+nav+" waypoint="+waypoint+" stun="+e.stun);
+                if(e.entering){var delta=e.doorway-e.rig.Root.position;delta.y=0;foreach(var hit in Physics.SphereCastAll(e.rig.Root.position+Vector3.up*1.2f,.55f,delta.normalized,delta.magnitude,1<<EntryLayout.WorldLayer))text.AppendLine("  entry block="+hit.collider.name+" parent="+hit.transform.parent.name+" point="+hit.point+" distance="+hit.distance);}}
+            foreach(var fork in roads.Forks)text.AppendLine("fork="+fork.Origin+" angle="+fork.Rotation.eulerAngles+" parentEnd="+fork.Parent.End);
+            File.WriteAllText(path,text.ToString());
         }
         IEnumerator CheckProgression(string output,bool render)
         {

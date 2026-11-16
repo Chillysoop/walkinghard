@@ -116,7 +116,7 @@ namespace VectorGame
             return a?.def.kind==ItemKind.Basic&&b?.def.kind==ItemKind.Basic&&LoadoutCatalog.Family(WeaponFor(a).def.weapon)==LoadoutCatalog.Family(WeaponFor(b).def.weapon)?next:-1;
         }
         public int Copies(ItemDefinition def,int rank)=>Items.Count(i=>i.def.id==def.id&&i.rank==rank);
-        public void Open(DraftKind kind,bool grantReroll,RewardEmphasis emphasis=RewardEmphasis.None){Draft=kind;Emphasis=kind==DraftKind.Mixed?emphasis:RewardEmphasis.None;if(kind==DraftKind.Ultimate)UltimatesUnlocked=true;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
+        public void Open(DraftKind kind,bool grantReroll,RewardEmphasis emphasis=RewardEmphasis.None,bool weaponDiscovery=false){Draft=kind;Emphasis=kind==DraftKind.Mixed?emphasis:RewardEmphasis.None;this.weaponDiscovery??=new WeaponDiscoveryState();this.weaponDiscovery.active=weaponDiscovery&&kind==DraftKind.Mixed;if(kind==DraftKind.Ultimate)UltimatesUnlocked=true;RewardClaimed=false;Receipt="";MoveMessage="";if(grantReroll)Rerolls++;Roll();}
         bool UnlockedReward(ItemDefinition def)=>RewardAvailable(def)&&(def.kind!=ItemKind.Ultimate||UltimatesUnlocked);
         void Shuffle<T>(List<T> list){for(int i=list.Count-1;i>0;i--){int j=random.Next(i+1);T temp=list[i];list[i]=list[j];list[j]=temp;}}
         void Roll()
@@ -151,7 +151,9 @@ namespace VectorGame
                 var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
                 var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful&&UnlockedReward(d)).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));
             }
+            weaponDiscovery??=new WeaponDiscoveryState();weaponDiscovery.roll++;CurateWeaponDiscovery(choices);
             Offers=choices.Take(3).Select(o=>new RewardOffer(o.def,o.copies,o.def.kind==ItemKind.Augment?1:ItemRarity.Roll(random))).ToArray();
+            RememberWeaponOffers();
             foreach(var offer in Offers)offer.owned=Copies(offer.def,offer.rank);
         }
         public void Select(int index){if(!RewardClaimed&&index>=0&&index<Offers.Length)Selected=index;}

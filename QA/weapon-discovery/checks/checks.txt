@@ -1,0 +1,21 @@
+105514 assertions passed
+one existing mixed checkpoint per district
+discovery keeps all three mixed reward cards and other draft counts
+identical acquisition stream keeps every rarity roll unchanged
+owned/support and route-biased choices remain unchanged
+discovery preserves unique cards and constellation gating
+discovery picks a least-recently-offered exact weapon identity
+tiny pool falls back safely when first two consume all weapons
+committed gun assembles its components despite tempting legendary alternatives
+committed gun keeps its weapon contract through acquisition and fusion
+committed cutcarry assembles its components despite tempting legendary alternatives
+committed cutcarry keeps its weapon contract through acquisition and fusion
+committed close assembles its components despite tempting legendary alternatives
+committed close keeps its weapon contract through acquisition and fusion
+discovery checkpoint saves
+history and marked card restore exactly
+reroll charges normally and retains the discovery slot
+resume and reroll reproduce the same discovery result
+schema 7 resumes existing offers without inventing old history
+migrated run starts history on its next reward
+current schema rejects missing discovery state
