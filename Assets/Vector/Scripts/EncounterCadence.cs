@@ -12,11 +12,12 @@ namespace VectorGame
         {
             int ordinal=entryTurn++;
             if(!BalanceOverrides.EncounterRhythm)return ordinal%3;
-            var pattern=RegionalWave?.entries??EntryPatterns[JourneyActive?(Wave-1)%7:Mathf.Clamp(Wave-1,0,7)];return pattern[ordinal%pattern.Length];
+            var pattern=RegionalWave?.entries??EntryPatterns[JourneyActive?(Wave-1)%7:Mathf.Clamp(Wave-1,0,7)];return DistrictEntry(pattern[ordinal%pattern.Length],ordinal);
         }
         float FormationInterval()
         {
             if(!BalanceOverrides.EncounterRhythm||Wave<4||!JourneyActive&&Wave>=8)return 1;
+            if(JourneyActive)return DistrictEncounters.Gap(District,waveEntryBeat++);
             // Three shorter gaps and one breath: mean interval remains exactly one.
             return ++waveEntryBeat%4==0?1.75f:.75f;
         }

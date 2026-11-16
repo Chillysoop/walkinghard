@@ -30,13 +30,12 @@ namespace VectorGame
         public static ExpeditionPlan Plan(int seed)
         {
             var random=new System.Random(seed^0x52ac71);
-            var combats=new[]{EncounterRoute.ShieldLine,EncounterRoute.VolatileBreach,EncounterRoute.RepairLine,EncounterRoute.FreightYard,EncounterRoute.Reclaimers,EncounterRoute.EliteShift};
             var events=new[]{EncounterRoute.Auction,EncounterRoute.Rescue,EncounterRoute.PressureWorks,EncounterRoute.Overtime};
             var p=new ExpeditionPlan{waves=new EncounterRoute[Count],left=new EncounterRoute[Forks],right=new EncounterRoute[Forks],chosen=new EncounterRoute[Forks]};
             for(int act=0;act<3;act++)
             {
-                // Shuffle a complete roster: each district has a legible identity without
-                // a memorized combat order. Route choices can replace the next roster.
+                var combats=DistrictEncounters.Rosters[act];
+                // Weight existing formations by district, then shuffle their order.
                 var roster=combats.OrderBy(_=>random.Next()).ToArray();
                 if(act==0){int elite=Array.IndexOf(roster,EncounterRoute.EliteShift);if(elite<2){roster[elite]=roster[2];roster[2]=EncounterRoute.EliteShift;}}
                 for(int step=0;step<6;step++)p.waves[act*7+step]=roster[step];
@@ -67,8 +66,8 @@ namespace VectorGame
         string JourneyPreview(int wave)
         {
             int district=Mathf.Clamp((wave-1)/7,0,2);var encounter=LongJourney.Encounters[Mathf.Clamp(wave-1,0,20)];
-            if(encounter.boss)return encounter.name.ToUpperInvariant()+" · "+(wave==21?"deliver the final order":wave==14?"rally calls + press slams · break pressure":"stagger + impacts expose the vent");
-            return LongJourney.Districts[district]+" · "+(RegionalEncounters.Find(RegionalRoute(wave))?.name??"GATE PATROL")+" · "+SpecialistPreview(wave);
+            if(encounter.boss)return encounter.name.ToUpperInvariant()+" · "+(wave==21?"committed sweep → exposed recovery":wave==14?"break the rally or clear linked escorts":"pressure opens the furnace · interrupt double presses");
+            return (RegionalEncounters.Find(RegionalRoute(wave))?.name??"GATE PATROL")+" · "+DistrictEncounters.Cue(district);
         }
         void JourneyIntermission()
         {

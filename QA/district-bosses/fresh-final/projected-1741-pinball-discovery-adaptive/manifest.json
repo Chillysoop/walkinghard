@@ -1,0 +1,9 @@
+{
+  "policy": "pinball",
+  "seed": 1741,
+  "pool": "fresh",
+  "drafter": "projected",
+  "committed": false,
+  "assemblySha256": "5169C26FCE65696FCF9BB598818FAEA130DD4A81EC3D710A583B657C5A83FB07",
+  "weaponOffers": "discovery"
+}

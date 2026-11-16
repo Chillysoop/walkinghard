@@ -1,0 +1,30 @@
+105558 assertions passed
+fork stays six metres beyond nearby entry rooms on either road
+both full-height champion entry passages remain clear at fork offset -5
+champion-sized actor physically walks out of the retained entrance
+both full-height champion entry passages remain clear at fork offset 0
+both full-height champion entry passages remain clear at fork offset 3.06
+both full-height champion entry passages remain clear at fork offset 5.9
+pending arrivals keep their complete room and exit when a new fork is prepared
+regression reproduces the old junction wall blocking both entrances
+old saved geometry cannot offer a blocked spawn passage
+one existing mixed checkpoint per district
+discovery keeps all three mixed reward cards and other draft counts
+identical acquisition stream keeps every rarity roll unchanged
+owned/support and route-biased choices remain unchanged
+discovery preserves unique cards and constellation gating
+discovery picks a least-recently-offered exact weapon identity
+tiny pool falls back safely when first two consume all weapons
+committed gun assembles its components despite tempting legendary alternatives
+committed gun keeps its weapon contract through acquisition and fusion
+committed cutcarry assembles its components despite tempting legendary alternatives
+committed cutcarry keeps its weapon contract through acquisition and fusion
+committed close assembles its components despite tempting legendary alternatives
+committed close keeps its weapon contract through acquisition and fusion
+discovery checkpoint saves
+history and marked card restore exactly
+reroll charges normally and retains the discovery slot
+resume and reroll reproduce the same discovery result
+schema 7 resumes existing offers without inventing old history
+migrated run starts history on its next reward
+current schema rejects missing discovery state

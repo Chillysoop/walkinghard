@@ -29,7 +29,7 @@ namespace VectorGame
         }
         bool EliteBlocked=>!durabilityBaseline&&EliteEncounter&&(ChampionDue||ChampionPresent);
         bool ChampionBraced(Enemy e)=>e.durability?.champion==true&&e.durability.exposedUntil<=Elapsed;
-        bool ResistsInterrupt(Enemy e)=>ForemanBraced(e)||ChampionBraced(e);
+        bool ResistsInterrupt(Enemy e)=>ForemanBraced(e)||ChampionBraced(e)||JourneyBossCommitted(e);
         void InitializeDurability(Enemy e,bool champion=false)
         {
             e.durability=new DurabilityState{champion=champion,wave=Wave,healthBeforeHit=e.health};

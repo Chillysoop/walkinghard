@@ -19,6 +19,7 @@ namespace VectorGame
             public string version,policy,drafter,pool,result,loadout,weaponOffers;public int seed,wave,kills,fusions,orderErrors,visibleSpawns;public bool committed;
             public float seconds,health;public bool valid;public string[] errors;
             public WaveReport[] encounters;public DraftOpportunity[] drafts;public RunHistoryData integrity;public ContributionReport[] items;public WeaponJourneyEncounter[] weaponEncounters;
+            public JourneyBossObservation[] bosses;
         }
         List<DraftOpportunity> progressionDrafts;
         bool reviewOriginalWeaponOffers,reviewCommittedWeapons;
@@ -88,7 +89,7 @@ namespace VectorGame
                 if(State==RunState.Complete&&(Wave!=21||Waves.Count!=21||ItemChoices!=20||AugmentChoices!=5))errors.Add("journey completion contract");
                 if(!float.IsFinite(Health)||!float.IsFinite(HeroPosition.z))errors.Add("non-finite state");
                 var result=new ProgressionSample{version=Application.version,policy=policy,drafter=legacyDraftPolicy?"legacy":"projected",pool=unlocked?"unlocked":"fresh",seed=seed,result=timeout?"TimedOut":State.ToString(),wave=Wave,kills=Kills,fusions=Deck.Fusions,health=Health,seconds=seconds,loadout=Deck.Loadout,valid=errors.Count==0,errors=errors.ToArray(),orderErrors=OrderErrors,visibleSpawns=VisibleSpawns,encounters=Waves.ToArray(),drafts=progressionDrafts.ToArray(),integrity=RunHistory,items=ContributionReports()};
-                result.committed=reviewCommittedWeapons;result.weaponOffers=reviewOriginalWeaponOffers?"original":"discovery";result.weaponEncounters=weaponJourneyEncounters.ToArray();
+                result.committed=reviewCommittedWeapons;result.weaponOffers=reviewOriginalWeaponOffers?"original":"discovery";result.weaponEncounters=weaponJourneyEncounters.ToArray();result.bosses=ObserveJourneyBosses();
                 File.AppendAllText(samples,JsonUtility.ToJson(result)+Environment.NewLine);Debug.Log("PROGRESSION_RESULT "+policy+" seed="+seed+" "+result.result+" wave="+Wave+" valid="+result.valid);
                 if(!result.valid){Application.Quit(4);yield break;}
             }

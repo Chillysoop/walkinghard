@@ -17,8 +17,7 @@ namespace VectorGame
         CrewRole NextSpecialist()
         {
             if(!JourneyActive||enemies.Count(e=>IsSpecialist(e.crew))>=2||Spawned%8!=5)return CrewRole.None;
-            int count=Wave<=3?1:Wave<=7?2:3;
-            return (CrewRole)((int)CrewRole.Linebreaker+(Spawned/8+Wave)%count);
+            return DistrictEncounters.Specialist(Wave,Spawned/8+Wave);
         }
         void CancelSpecialist(Enemy e)
         {

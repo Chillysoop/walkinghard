@@ -40,7 +40,7 @@ namespace VectorGame
         public bool BreachArmed(LoadoutItem host)=>host!=null&&breachArmed.Contains(host);
         void ResetSignatures(){ResetDeadeye();ResetSynergyCues();ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;followMarks=0;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
         float Effect(LoadoutItem item)=>LoadoutCatalog.EffectScale(item);
-        float ControlResistance(Enemy e)=>e.foreman!=null?(ForemanBraced(e)?.35f:.65f):e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
+        float ControlResistance(Enemy e)=>e.journeyBoss?.kind>0?(JourneyBossOpen(e)?1:.22f):e.foreman!=null?(ForemanBraced(e)?.35f:.65f):e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
         void Control(Enemy e,float seconds,Vector3 impulse)
         {
             if(e.deathAge>=0)return;if(seconds>0){AddForemanPressure(e,Mathf.Clamp(.06f+seconds*.12f,.06f,.22f));ChampionPressure(e,Mathf.Clamp(.06f+seconds*.25f,.06f,.4f));}float r=ControlResistance(e);float effective=ChampionBraced(e)?0:seconds*r;

@@ -110,7 +110,8 @@ namespace VectorGame
             string[] names={"TAKEDOWNS","INCOMING","IMPACTS"};
             for(int i=0;i<3;i++){Label(new Rect(x+20+i*96,75,90,24),values[i],18,white,true);Label(new Rect(x+20+i*96,101,90,16),names[i],10,muted,true);}
             UltimatePanel(new Rect(x,138,310,game.Deck.Ultimate==null?76:180));
-            if(game.ForemanPresent)ForemanPanel(w);
+            if(game.JourneyBossPanelVisible)JourneyBossPanel(w);
+            else if(game.ForemanPresent)ForemanPanel(w);
             else if(game.BossFraction>0){Rect boss=game.CombatPreviewActive?new Rect(w-330,330,310,62):new Rect(w/2-200,20,400,62);Panel(boss);Label(new Rect(boss.x+12,boss.y+9,boss.width-24,22),game.CombatPreviewActive?(game.BossControlOpen?"PURSUER / CONTROL WINDOW":"PURSUER / RESISTS CONTROL"):"THE PURSUER / "+(game.BossControlOpen?"CONTROL WINDOW":"BRACED · REDUCED CONTROL"),12,game.BossControlOpen?Accent:Strong,true);Segments(new Rect(boss.x+12,boss.y+39,boss.width-24,8),game.BossFraction,Strong,20);}
             if(!game.JourneyActive&&!game.CombatPreviewActive&&!game.FinaleActive&&!game.ForemanPresent&&game.WaveElapsed<3.2f)
             {

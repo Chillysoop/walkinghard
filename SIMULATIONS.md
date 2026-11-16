@@ -1,5 +1,13 @@
 # Headless balance simulations
 
+## Districts and bosses (0.8.4)
+
+`Validate Districts.ps1 -Mode Mechanics -OutputDirectory <fresh-directory>` checks boss phase transitions, per-action control budgets, physical rear arrivals on straight/left/right roads, paused clocks, visibility, schema-8 migration and unchanged scenery collision geometry. `-Mode Rendered` adds 1080p/720p captures with reduced motion. Both mechanics fixtures use elevated health and staged positions; they are not balance samples.
+
+`-Mode Balance -Seed 1741` runs eight fixed kits against each of the three journey bosses with full PhysX, normal health, Rare weapons, Uncommon supports/ultimate and no augments. Real approaches and reinforcement budgets remain active. Defeat is a valid outcome; timeouts and invariant failures fail the review. Manifests retain the tested assembly hash. Boss cycle counts mean attempted strikes, including misses or absorbed hits; incoming health damage is reported separately.
+
+Use ordinary `Validate Progression.ps1` runs for the whole 21-encounter journey and inspect both completed and fatal encounters. Its `bosses` records preserve cycles, strikes, forced pressure/command breaks and completed rallies (kind 0 = Shift Foreman, 1 = Bell Foreman, 2 = Pursuer). Fixed-kit clear times and automated combat time do not establish human difficulty or a 30-minute human playtime. See `QA/district-bosses/verification.md` for initial results and limitations.
+
 ## Weapon-discovery comparisons (0.8.3)
 
 `Validate Progression.ps1 -Policies gun,cutcarry,close -Seeds 1741,4319,6229 -CommittedWeapons -Workers 3 -OutputDirectory <fresh-directory>` runs committed weapon policies. Omit `-CommittedWeapons` for adaptive drafts. Add `-OriginalWeaponOffers` for the same binary's original reward rules. Match pools and seeds. Output names distinguish offer rules and commitment; manifests record both and the assembly hash. Direct player flags are `-committedWeapons` / `-originalWeaponOffers` with `-progressionReview`. The old item-tag drafter cannot be combined with committed mode.
