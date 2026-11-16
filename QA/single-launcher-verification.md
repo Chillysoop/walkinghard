@@ -1,0 +1,13 @@
+# Single playable installation
+
+November 15, 2026. The local inventory found 188 `WalkingHard.exe` files: 138 development players, 26 release-stage players, 22 launcher versions and two versions in a retired application cache. Consolidation leaves one at `%USERPROFILE%/Games/WalkingHard/Current/WalkingHard.exe`. It retains the verified tablet UI assembly, SHA-256 `658b0259b5b4540879dbf62cb9b1ba429a9507ddc902a3fe0b2ff6c56fe8d2d4`, from the source delivered at `0ccb42642ec3ebfff903ad9ec865f196e1352ae4`.
+
+The desktop **Walking Hard** shortcut invokes the installed updater. A live online check found main behind the installed feature build and retained the newer player. Launching the shortcut started the canonical executable and its Walking Hard window. Offline checks also retained it. The game binary was copied and verified, not rebuilt or retuned.
+
+Launcher validation passed 22 assertions under Windows PowerShell 5.1 and PowerShell 7: complete player validation, archive traversal rejection, checksum rejection, failed-promotion rollback, cache containment, forward updates, rejection of older/divergent main, removal of source-build and downloaded-player staging, one executable after successful/failed updates, offline fallback, and one updating desktop shortcut. The installed game additionally passed its 312 loadout model assertions. PowerShell parsing and whitespace checks passed.
+
+The local delivery helper was exercised with the actual verified player: it checked the assembly hash, installed to Current, retained the updating shortcut, and removed all staged runtime files with `-RemoveSourcePlayer`. It retains QA captures/reports in the source build directory. CONTRIBUTING now requires this delivery path for future validated builds.
+
+Cleanup preflight recorded every absolute target, verified containment, rejected directory links, and checked the current assembly before and after removal. Old development runtime payloads, release staging, retired version caches and downloaded archives were removed: 26,313,965,646 bytes (24.51 GiB). Project source, QA artifacts, trailers and player-save directories were not cleanup targets. A final user-profile executable inventory found exactly one WalkingHard player. Local detailed inventories and deletion manifests remain under ignored `Logs/`.
+
+Transient staging and rollback copies exist while installing an update; successful updates remove them. Updates that cannot be downloaded or built keep the installed player. Main must descend from the installed commit; validated local feature builds are delivered with the install helper until main catches up.

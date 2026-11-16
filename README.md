@@ -55,7 +55,7 @@ A Unity autobattler: one fighter walks forward through a physical crowd, seen fr
 
 ## Play
 
-Download the Windows ZIP from [Releases](https://github.com/Chillysoop/walkinghard/releases/latest), extract the whole archive, and run WalkingHard.exe. For an updating desktop shortcut, run Launcher/Install.cmd. **Walking Hard (Main)** checks main, verifies the published ZIP checksum, and launches it. Its files and log live in %USERPROFILE%/Games/WalkingHard.
+Use the single **Walking Hard** desktop shortcut for update checks and play. Install it with `Launcher/Install.cmd`. The player lives at `%USERPROFILE%/Games/WalkingHard/Current/WalkingHard.exe`; the shortcut runs the updater before opening it. Updates verify the release checksum, replace Current with rollback on installation failure, and remove temporary runtime copies. Offline or failed updates keep the working game. A newer tested development build is preserved until main includes its changes, so an older release cannot replace it. Launcher files and logs live in `%USERPROFILE%/Games/WalkingHard`.
 
 If main has no matching release, the launcher can build it in an isolated cache using Git and Unity 6000.3.27f1. Offline or failed updates retain the last working build. It never resets your development checkout.
 
