@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VectorGame
@@ -40,7 +41,7 @@ namespace VectorGame
         {
             if(!IsForkWave||forkWave==Wave)return;
             forkWave=Wave;forkStarted=-1;forkAge=forkLockedAge=0;
-            forkVisual=roads.Split(HeroPosition,16);forkOrigin=forkVisual.Origin;
+            forkVisual=roads.Split(HeroPosition,roads.SafeForkAhead(HeroPosition,16,enemies.Where(e=>e.entering).Select(e=>e.doorway)));forkOrigin=forkVisual.Origin;
             RefreshExpeditionRoads();
         }
         void BeginWalkingFork()

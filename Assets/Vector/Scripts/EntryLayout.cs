@@ -9,6 +9,14 @@ namespace VectorGame
         public sealed class Door {public int side;public float z,localZ;public Vector3 origin,exit;public RoadPiece road;}
         public static Transform InitialRoot;
         public static readonly List<Door> Doors=new List<Door>();
+        public static bool PassageClear(Door door)
+        {
+            // A new junction can invalidate a covered room from an older road.
+            // Test clearance for the champion's capsule before choosing a spawn.
+            Vector3 a=door.origin+Vector3.up*.65f,b=door.origin+Vector3.up*2.1f,delta=door.exit-door.origin;delta.y=0;
+            return !Physics.CheckCapsule(a,b,.6f,1<<WorldLayer,QueryTriggerInteraction.Ignore)&&
+                !Physics.CapsuleCast(a,b,.6f,delta.normalized,delta.magnitude,1<<WorldLayer,QueryTriggerInteraction.Ignore);
+        }
         public static Transform Solid(string name,Transform parent,Vector3 center,Vector3 size,Material material)
         {
             var t=VisualFactory.Part(name,parent,PrimitiveType.Cube,center,size,material);

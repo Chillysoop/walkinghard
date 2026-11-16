@@ -49,6 +49,7 @@ namespace VectorGame
                 damage=rows.Sum(r=>r.values.direct+r.values.collision),healing=rows.Sum(r=>r.values.healing),resistance=resistance,blocked=resistance+rows.Sum(r=>r.values.absorption),
                 items=rows.OrderByDescending(r=>r.values.direct+r.values.collision).ThenBy(r=>r.name).ToArray(),
                 triggers=InteractionNotes.Select(p=>new WaveTriggerFeedback{name=p.Key,count=p.Value-(waveNotes.TryGetValue(p.Key,out int n)?n:0)}).Where(t=>t.count>0).OrderByDescending(t=>t.count).ThenBy(t=>t.name).ToArray()};
+            RecordWeaponJourneyEncounter();
         }
     }
 }

@@ -116,7 +116,7 @@ namespace VectorGame
             string phase=game.OpeningDraft?"Opening pick "+(game.OpeningPicks+1)+" / 2":"Checkpoint "+game.Wave.ToString("00");
             if(game.JourneyActive)phase="District "+(game.District+1)+" / "+phase;
             Label(new Rect(20,36,750,32),phase+" · "+(d.RewardClaimed?"Reward taken":"Choose one reward"),24,white,true);
-            Label(new Rect(20,72,w-40,18),d.RewardClaimed?"Your build is ready. Rearrange items, or continue.":"Select an item, then hover a slot to compare. Click the slot or drag to equip.",12,TabletText);
+            Label(new Rect(20,72,w-40,18),d.RewardClaimed?"Your build is ready. Rearrange items, or continue.":d.WeaponDiscovery?"Third card: a less recently offered weapon. Select a reward, then hover a slot to compare.":"Select an item, then hover a slot to compare. Click the slot or drag to equip.",12,TabletText);
             if(game.ExpeditionActive&&Button(new Rect(w-185,15,165,30),"SAVE & OFFICE"))game.SuspendExpedition();
             if(game.LastWaveFeedback!=null&&Button(new Rect(w-355,15,158,30),"LAST WAVE DETAILS",waveDetails))waveDetails=!waveDetails;
             if(game.ExpeditionActive)Label(new Rect(w-450,50,430,20),game.Salvage+" SALVAGE / "+game.ChapterSparks+" SPARKS BANKED",11,muted,false,TextAnchor.UpperRight);

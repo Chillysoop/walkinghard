@@ -1,6 +1,20 @@
 # Headless balance simulations
 
-## Current 21-encounter progression review (0.8.2)
+## Weapon-discovery comparisons (0.8.3)
+
+`Validate Progression.ps1 -Policies gun,cutcarry,close -Seeds 1741,4319,6229 -CommittedWeapons -Workers 3 -OutputDirectory <fresh-directory>` runs committed weapon policies. Omit `-CommittedWeapons` for adaptive drafts. Add `-OriginalWeaponOffers` for the same binary's original reward rules. Match pools and seeds. Output names distinguish offer rules and commitment; manifests record both and the assembly hash. Direct player flags are `-committedWeapons` / `-originalWeaponOffers` with `-progressionReview`. The old item-tag drafter cannot be combined with committed mode.
+
+Committed guns allow ranged weapons and starter-fist placeholders; sword/hammer requires a 1H sword in hand 1 and a 1H hammer in hand 2; close quarters requires fists in hand 1 and a 1H gun in hand 2. Missing components are prioritized when available. Gear, abilities and ultimates still adapt, so these are natural-loot builds, not controlled equal-rarity comparisons. No items are injected. Inspect `weaponEncounters` for actual equipment, ranks, paired/2H layout, damage, target waits, reload time, healing and health, including the fatal encounter. Encounter seconds use the active simulation clock and exclude hit stop, reveal and decisions; the run-level `seconds` also includes hit stop/reveal. Contribution seconds for two paired weapons can overlap.
+
+`python "Analyze Weapon Discovery.py" <cohort-directory> --output <summary.json>` groups actual outcomes and surfaces attempts without a result. It reports availability, assembly, damage and waiting; it does not infer human win rates. General progression analysis also separates commitment and offer rules when rejecting duplicates.
+
+`-weaponDiscoveryChecks -saveDirectory <isolated-profile> -reviewOutput <fresh-directory>` checks offer invariants across 1,024 shadow reward sequences, both unlock pools, committed mounts, fusion and save migration. Shadow decks take the unchanged first card to isolate reward composition; they are not combat runs. Add `-batchmode -nographics` for assertions only, or `-force-d3d11 -screen-fullscreen 0` for 720p/1080p/ultrawide captures. `-ragdollStress` with the same profile/output arguments runs 56 Full PhysX launch, sever, wall and fork fixtures. Failures preserve the case, step and existing bone diagnostic; passing cannot prove a rare outlier is fixed.
+
+The discovery suite also reproduces the old junction/entrance collision, tests both fork sides at several offsets, retains occupied entry rooms, and walks champion-sized actors out through the retained passages (44 additional assertions). Rendered fixtures hold Running state while their isolated deck has no offers.
+
+For progression stalls, add `-progressionTrace` to save state every 120 review seconds. `-progressionSeconds <60..2100>` can shorten a diagnostic reproduction; the normal limit remains 2100. A timeout writes live actors, entry paths and collider blockers to `timeout-state.txt` and captures the scene when rendered. `-progressionResume` uses an isolated checkpoint with one seed/policy; its reported seconds and encounter samples cover only the continuation, so do not mix it into full-run cohort summaries. Diagnostic time caps are not valid combat defeats.
+
+## Current 21-encounter progression review (0.8.2 onward)
 
 The public Play path is the long journey. Older Quick Run / eight-wave commands below are regression fixtures, not additional player modes. For natural progression use the Windows player with:
 

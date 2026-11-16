@@ -199,7 +199,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-journeyReview")>=0)StartCoroutine(ReviewJourney());
             if(Array.IndexOf(args,"-chapterReview")>=0)StartCoroutine(ReviewChapter());
             if(Array.IndexOf(args,"-durabilityReview")>=0)StartCoroutine(ReviewDurability());
-            if(Array.IndexOf(args,"-progressionReview")>=0||Array.IndexOf(args,"-progressionChecks")>=0)StartCoroutine(ReviewProgression());
+            if(Array.IndexOf(args,"-progressionReview")>=0||Array.IndexOf(args,"-progressionChecks")>=0||Array.IndexOf(args,"-weaponDiscoveryChecks")>=0||Array.IndexOf(args,"-ragdollStress")>=0)StartCoroutine(ReviewProgression());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}

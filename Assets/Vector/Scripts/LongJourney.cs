@@ -9,6 +9,7 @@ namespace VectorGame
     {
         public const string Id="continuance-1";
         public const int Count=21,Forks=9;
+        public static bool WeaponDiscoveryAfter(int wave)=>wave==2||wave==9||wave==16;
         public static readonly string[] Districts={"CINDERWORKS","THE BELL FOUNDRY","THE LAST DISPATCH"};
         public static readonly string[] Stories={
             "Mara needs the Foreman's seal. The factory still counts the dead as workers.",

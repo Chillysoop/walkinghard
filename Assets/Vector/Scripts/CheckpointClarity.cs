@@ -67,7 +67,8 @@ namespace VectorGame
             }
             else Plate(r,selected?new Color(.035f,.13f,.17f,.98f):ink,edge,9,selected?3:2);
             TypeIcon(new Rect(r.x+14,r.y+13,21,21),def.kind,white);
-            Label(new Rect(r.x+43,r.y+13,r.width-150,24),(selected?"✓ ":"")+ItemType(def),compact?15:18,white,true);
+            bool discovery=d.WeaponDiscovery&&index==2;
+            Label(new Rect(r.x+43,r.y+13,r.width-150,24),(selected?"✓ ":"")+(discovery?"WEAPON DISCOVERY":ItemType(def)),discovery?11:compact?15:18,discovery?Accent:white,true);
             if(def.kind!=ItemKind.Augment)
             {
                 Rect badge=new Rect(r.xMax-101,r.y+12,87,23);Plate(badge,ink,RarityColor(offer.rank),4);

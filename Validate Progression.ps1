@@ -6,16 +6,21 @@ param(
     [ValidateSet('fresh','unlocked')][string]$Pool='unlocked',
     [ValidateRange(1,6)][int]$Workers=4,
     [ValidatePattern('^[a-z0-9-]*$')][string]$RunLabel='',
-    [switch]$Legacy
+    [switch]$Legacy,
+    [switch]$CommittedWeapons,
+    [switch]$OriginalWeaponOffers
 )
 $ErrorActionPreference='Stop'
 $Player=(Resolve-Path -LiteralPath $Player).Path
 $OutputDirectory=[IO.Path]::GetFullPath($OutputDirectory)
 $mode=if($Legacy){'legacy'}else{'projected'}
+if($CommittedWeapons -and ($Legacy -or @($Policies | Where-Object {$_ -notin @('gun','cutcarry','close')}).Count -gt 0)){throw 'Committed trials require projected gun, cutcarry, or close policies.'}
+$offers=if($OriginalWeaponOffers){'original'}else{'discovery'}
+$commitment=if($CommittedWeapons){'committed'}else{'adaptive'}
 $pending=[Collections.Generic.Queue[object]]::new()
 foreach($seed in $Seeds){foreach($policy in $Policies){
     if($policy -notin @('pinball','storm','sever','gun','cutcarry','close','siphon')){throw "Unknown policy: $policy"}
-    $suffix=if($RunLabel){"-$RunLabel"}else{''};$directory=Join-Path $OutputDirectory "$mode-$seed-$policy$suffix"
+    $suffix=if($RunLabel){"-$RunLabel"}else{''};$directory=Join-Path $OutputDirectory "$mode-$seed-$policy-$offers-$commitment$suffix"
     if(Test-Path -LiteralPath $directory){throw "Use fresh output paths: $directory"}
     $pending.Enqueue(@{Seed=$seed;Policy=$policy;Directory=$directory})
 }}
@@ -26,9 +31,11 @@ try {
         while($pending.Count -gt 0 -and $active.Count -lt $Workers){
             $case=$pending.Dequeue();New-Item -ItemType Directory -Path $case.Directory -Force | Out-Null
             $assembly=Join-Path (Split-Path -Parent $Player) 'WalkingHard_Data\Managed\Assembly-CSharp.dll'
-            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
+            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode;weaponOffers=$offers;committed=[bool]$CommittedWeapons} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
             $arguments='-batchmode -nographics -progressionReview -seeds '+$case.Seed+' -journeyPolicy '+$case.Policy+' -pool '+$Pool+' -saveDirectory "'+$case.Directory+'\profile" -reviewOutput "'+$case.Directory+'" -logFile "'+$case.Directory+'\player.log"'
             if($Legacy){$arguments+=' -legacyDraftPolicy'}
+            if($CommittedWeapons){$arguments+=' -committedWeapons'}
+            if($OriginalWeaponOffers){$arguments+=' -originalWeaponOffers'}
             $case.Process=Start-Process -FilePath $Player -ArgumentList $arguments -WindowStyle Hidden -PassThru
             $active.Add($case)
         }

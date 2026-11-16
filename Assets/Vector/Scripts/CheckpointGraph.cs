@@ -88,7 +88,7 @@ namespace VectorGame
             return id;
         }
         object Ref(int id){if(id== -1)return null;if(id<0||id>=values.Length)throw new InvalidOperationException("Invalid checkpoint reference");return values[id];}
-        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false,bool legacySpecialists=false,bool legacyProgression=false)
+        public void Decode(SavedGraph data,bool legacyCrews=false,bool legacyForeman=false,bool legacyEvents=false,bool legacySpecialists=false,bool legacyProgression=false,bool legacyDiscovery=false)
         {
             if(data==null||data.objects==null||data.roots==null||data.objects.Count>256000||data.roots.Select(x=>x.name).Distinct().Count()!=data.roots.Count||roots.Keys.Except(data.roots.Select(x=>x.name)).Any(name=>!legacyProgression||name!="RunHistory"))throw new InvalidOperationException("Invalid checkpoint graph");
             graph=data;values=new object[data.objects.Count];
@@ -117,7 +117,7 @@ namespace VectorGame
                 if(n.fields.Any(x=>!fields.Any(f=>f.Name==x.name))||n.fields.Select(x=>x.name).Distinct().Count()!=n.fields.Count)throw new InvalidOperationException("Checkpoint version differs");
                 foreach(var f in fields)
                 {
-                    var saved=n.fields.SingleOrDefault(x=>x.name==f.Name);if(saved==null){if(Optional(f)||t.FullName=="VectorGame.VectorEncounter+Enemy"&&f.Name=="durability")continue;throw new InvalidOperationException("Checkpoint version differs");}
+                    var saved=n.fields.SingleOrDefault(x=>x.name==f.Name);if(saved==null){if(Optional(f)||t.FullName=="VectorGame.VectorEncounter+Enemy"&&f.Name=="durability"||legacyDiscovery&&t==typeof(AbilityDeck)&&f.Name=="weaponDiscovery")continue;throw new InvalidOperationException("Checkpoint version differs");}
                     var value=Ref(saved.value);
                     // Struct fields copy their boxed value. Hydrate that value before
                     // assigning it to its owner, including active impact reactions.

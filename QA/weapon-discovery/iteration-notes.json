@@ -1,0 +1,16 @@
+[
+  {
+    "stage": "checks-pilot",
+    "result": "harness assertion failed",
+    "cause": "Shadow audit incorrectly required three cards for every draft kind, including augment drafts after synthetic inventory acquisition. The changed mixed rewards are always three; unrelated draft kinds are now compared against the identical original shadow deck.",
+    "change": "Corrected the audit invariant; no game reward behavior changed.",
+    "final": "1024 shadow sequences and save/commitment checks passed."
+  },
+  {
+    "stage": "rendered-final",
+    "result": "fixture-only HUD exception",
+    "cause": "The new geometry fixture reset the deck to zero offers while retaining Drafting state, so rendered OnGUI attempted to draw absent reward cards. Headless checks did not draw the HUD.",
+    "change": "Keep the isolated geometry fixture in Running state while yielding frames; production gameplay is unchanged.",
+    "final": "Rendered discovery suite passed all 105,558 assertions on assembly 17352C03FB8F3A50B0E0B4D2BFC02FA6C1034EE48D2C186F69469AB4840CA80B; all three resolution captures inspected. Rendered walking-fork review passed 45 assertions plus 761 production assertions."
+  }
+]

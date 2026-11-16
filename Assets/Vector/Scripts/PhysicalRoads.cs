@@ -96,6 +96,17 @@ namespace VectorGame
                 if(high>end){var size=t.localScale;size.z=end-low;t.localScale=size;var p=t.localPosition;p.z=(low+end)*.5f;t.localPosition=p;}
             }
         }
+        public float SafeForkAhead(Vector3 hero,float ahead,IEnumerable<Vector3> occupiedEntrances)
+        {
+            var parent=Path[Path.Count-1];float at=parent.Local(hero).z,cut=at+ahead;
+            var doors=EntryLayout.Doors.Where(d=>d.road==parent).OrderBy(d=>d.localZ).ToArray();var occupied=occupiedEntrances.ToArray();
+            // Preserve rooms that already contain arrivals; never build a wall
+            // through their exit. Six metres also keeps the complete 4.6m room
+            // behind the junction's outer wall, which starts 3m before the split.
+            foreach(var door in doors)if(occupied.Any(p=>(p-door.exit).sqrMagnitude<.01f))cut=Mathf.Max(cut,door.localZ+6);
+            foreach(var door in doors)if(cut>door.localZ-6&&cut<door.localZ+6)cut=door.localZ+6;
+            return cut-at;
+        }
         public RoadFork Split(Vector3 hero,float ahead)
         {
             var parent=Path[Path.Count-1];float cut=parent.Local(hero).z+ahead;
@@ -171,7 +182,7 @@ namespace VectorGame
         public EntryLayout.Door Entrance(int side,Vector3 hero,int direction,Camera camera)
         {
             float at=Progress(hero);
-            var doors=EntryLayout.Doors.Where(d=>d.side==side&&Path.Contains(d.road)&&d.localZ<d.road.End-3&&EntryLayout.Concealed(camera,d.origin));
+            var doors=EntryLayout.Doors.Where(d=>d.side==side&&Path.Contains(d.road)&&d.localZ<d.road.End-3&&EntryLayout.PassageClear(d)&&EntryLayout.Concealed(camera,d.origin));
             // Before the choice locks, use covered entrances on the approach.
             // This also lets existing enemies walk out of the unselected road.
             return doors.OrderBy(d=>direction*(d.road.Start+d.localZ-at)>3?0:1).ThenBy(d=>Mathf.Abs(d.road.Start+d.localZ-at)).FirstOrDefault();

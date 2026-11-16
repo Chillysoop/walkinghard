@@ -1,0 +1,390 @@
+{
+  "scope": "Normal-health natural-reward Full PhysX journeys. Adaptive preferences may pivot. Committed policies restrict weapon mounts and prioritize acquiring their components; abilities/gear still adapt. Small fixed-seed samples are not human win rates or equal-rarity weapon benchmarks. Fight seconds use the active simulation clock, excluding hit stop/reveal/decisions. Weapon wait/reload are summed item contribution seconds (paired items may overlap). Encounters include fatal fights; offer exposure is survival-censored and excludes shops. No failed attempt is counted as a defeat.",
+  "failures": [],
+  "groups": [
+    {
+      "pool": "unlocked",
+      "offers": "discovery",
+      "committed": true,
+      "policy": "close",
+      "n": 1,
+      "wins": 0,
+      "mean_cleared": 4,
+      "breach_offered_runs": 0,
+      "assembled_runs": 1,
+      "wins_with_complete_weapons": 0,
+      "weapon_damage_per_fight_second": 8.04,
+      "weapon_damage_share": 0.184,
+      "weapon_wait_per_fight_second": 0.196,
+      "all_valid": true,
+      "runs": [
+        {
+          "source": "projected-4319-close-discovery-committed/samples.jsonl",
+          "seed": 4319,
+          "valid": true,
+          "result": "Defeated",
+          "cleared": 4,
+          "breach_offered": false,
+          "first_assembled": 3,
+          "assembled_encounters": 3,
+          "encounters_observed": 5,
+          "final_assembled": true,
+          "weapon_changes": 1,
+          "fusions": 0,
+          "constraints_held": true,
+          "final_weapons": [
+            "fists",
+            "pistol"
+          ],
+          "final_ranks": [
+            1,
+            1
+          ],
+          "final_loadout": "1: Steel Jab \u00b7 Uncommon > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Kinetic Fists \u00b7 Common > 4: Basic 2 \u00b7 Pulse Pistol \u00b7 Common > 5: Arc Bolt \u00b7 Common",
+          "equipped": [
+            {
+              "item": "fists",
+              "rank": 1
+            },
+            {
+              "item": "SteelJab",
+              "rank": 2
+            },
+            {
+              "item": "Breaker",
+              "rank": 4
+            },
+            {
+              "item": "ArcBolt",
+              "rank": 1
+            },
+            {
+              "item": "pistol",
+              "rank": 1
+            },
+            {
+              "item": "tempest",
+              "rank": 1
+            },
+            {
+              "item": "visor",
+              "rank": 4
+            }
+          ],
+          "weapon_damage": 1773.642822265625,
+          "all_damage": 9615.541809082031,
+          "weapon_wait": 43.18284606933594,
+          "weapon_reload": 3.6499972343444824,
+          "fight_seconds": 220.60691833496094,
+          "incoming": 313.2800455093384,
+          "healing": 0.0,
+          "weapon_assists": 0,
+          "weapon_healing": 0.0,
+          "weapon_control": 20.549158573150635,
+          "districts": [
+            {
+              "district": 1,
+              "fights": 5,
+              "weapon_damage": 1773.642822265625,
+              "weapon_wait": 43.18284606933594,
+              "weapon_reload": 3.6499972343444824,
+              "seconds": 220.60691833496094,
+              "final_weapons": [
+                "fists",
+                "pistol"
+              ],
+              "final_ranks": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pool": "unlocked",
+      "offers": "discovery",
+      "committed": true,
+      "policy": "cutcarry",
+      "n": 1,
+      "wins": 1,
+      "mean_cleared": 21,
+      "breach_offered_runs": 1,
+      "assembled_runs": 1,
+      "wins_with_complete_weapons": 1,
+      "weapon_damage_per_fight_second": 24.93,
+      "weapon_damage_share": 0.309,
+      "weapon_wait_per_fight_second": 0.166,
+      "all_valid": true,
+      "runs": [
+        {
+          "source": "projected-4319-cutcarry-discovery-committed/samples.jsonl",
+          "seed": 4319,
+          "valid": true,
+          "result": "Complete",
+          "cleared": 21,
+          "breach_offered": true,
+          "first_assembled": 10,
+          "assembled_encounters": 12,
+          "encounters_observed": 21,
+          "final_assembled": true,
+          "weapon_changes": 3,
+          "fusions": 4,
+          "constraints_held": true,
+          "final_weapons": [
+            "sword",
+            "breachhammer"
+          ],
+          "final_ranks": [
+            4,
+            1
+          ],
+          "final_loadout": "1: Breaker \u00b7 Epic > 2: Breaker \u00b7 Epic > 3: Basic 1 \u00b7 Edge Sword \u00b7 Epic > 4: Basic 2 \u00b7 Breach Hammer \u00b7 Common > 5: Arc Bolt \u00b7 Rare",
+          "equipped": [
+            {
+              "item": "Breaker",
+              "rank": 4
+            },
+            {
+              "item": "ArcBolt",
+              "rank": 3
+            },
+            {
+              "item": "cyclone",
+              "rank": 4
+            },
+            {
+              "item": "sword",
+              "rank": 4
+            },
+            {
+              "item": "amplifier",
+              "rank": 2
+            },
+            {
+              "item": "breachhammer",
+              "rank": 1
+            },
+            {
+              "item": "visor",
+              "rank": 4
+            },
+            {
+              "item": "loader",
+              "rank": 3
+            },
+            {
+              "item": "reclaimer",
+              "rank": 3
+            },
+            {
+              "item": "Breaker",
+              "rank": 4
+            }
+          ],
+          "weapon_damage": 28192.38214111328,
+          "all_damage": 91203.08056640625,
+          "weapon_wait": 188.28991794586182,
+          "weapon_reload": 0.0,
+          "fight_seconds": 1130.9249267578125,
+          "incoming": 914.9953737258911,
+          "healing": 338.87664794921875,
+          "weapon_assists": 41,
+          "weapon_healing": 0.0,
+          "weapon_control": 323.610013961792,
+          "districts": [
+            {
+              "district": 1,
+              "fights": 7,
+              "weapon_damage": 4678.518127441406,
+              "weapon_wait": 55.94949817657471,
+              "weapon_reload": 0.0,
+              "seconds": 347.52593994140625,
+              "final_weapons": [
+                "sword",
+                "fists"
+              ],
+              "final_ranks": [
+                4,
+                1
+              ]
+            },
+            {
+              "district": 2,
+              "fights": 7,
+              "weapon_damage": 8225.912719726562,
+              "weapon_wait": 95.23324203491211,
+              "weapon_reload": 0.0,
+              "seconds": 380.69036865234375,
+              "final_weapons": [
+                "sword",
+                "breachhammer"
+              ],
+              "final_ranks": [
+                4,
+                1
+              ]
+            },
+            {
+              "district": 3,
+              "fights": 7,
+              "weapon_damage": 15287.951293945312,
+              "weapon_wait": 37.107177734375,
+              "weapon_reload": 0.0,
+              "seconds": 402.7086181640625,
+              "final_weapons": [
+                "sword",
+                "breachhammer"
+              ],
+              "final_ranks": [
+                4,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pool": "unlocked",
+      "offers": "discovery",
+      "committed": true,
+      "policy": "gun",
+      "n": 1,
+      "wins": 1,
+      "mean_cleared": 21,
+      "breach_offered_runs": 1,
+      "assembled_runs": 1,
+      "wins_with_complete_weapons": 1,
+      "weapon_damage_per_fight_second": 9.09,
+      "weapon_damage_share": 0.115,
+      "weapon_wait_per_fight_second": 0.136,
+      "all_valid": true,
+      "runs": [
+        {
+          "source": "projected-4319-gun-discovery-committed/samples.jsonl",
+          "seed": 4319,
+          "valid": true,
+          "result": "Complete",
+          "cleared": 21,
+          "breach_offered": true,
+          "first_assembled": 3,
+          "assembled_encounters": 19,
+          "encounters_observed": 21,
+          "final_assembled": true,
+          "weapon_changes": 3,
+          "fusions": 7,
+          "constraints_held": true,
+          "final_weapons": [
+            "pistol",
+            "pistol"
+          ],
+          "final_ranks": [
+            2,
+            1
+          ],
+          "final_loadout": "1: Breaker \u00b7 Epic > 2: Basic 1 \u00b7 Pulse Pistol \u00b7 Uncommon > 3: Basic 2 \u00b7 Pulse Pistol \u00b7 Common > 4: Arc Bolt \u00b7 Legendary > 5: Arc Bolt \u00b7 Rare",
+          "equipped": [
+            {
+              "item": "Breaker",
+              "rank": 4
+            },
+            {
+              "item": "ArcBolt",
+              "rank": 3
+            },
+            {
+              "item": "pistol",
+              "rank": 2
+            },
+            {
+              "item": "visor",
+              "rank": 4
+            },
+            {
+              "item": "grounding",
+              "rank": 3
+            },
+            {
+              "item": "momentum",
+              "rank": 3
+            },
+            {
+              "item": "ArcBolt",
+              "rank": 5
+            },
+            {
+              "item": "tempest",
+              "rank": 2
+            },
+            {
+              "item": "pistol",
+              "rank": 1
+            }
+          ],
+          "weapon_damage": 10358.321533203125,
+          "all_damage": 89787.99450683594,
+          "weapon_wait": 155.57516431808472,
+          "weapon_reload": 38.1162748336792,
+          "fight_seconds": 1139.7550048828125,
+          "incoming": 370.0581245422363,
+          "healing": 0.0,
+          "weapon_assists": 0,
+          "weapon_healing": 0.0,
+          "weapon_control": 218.85290658473969,
+          "districts": [
+            {
+              "district": 1,
+              "fights": 7,
+              "weapon_damage": 2737.9945068359375,
+              "weapon_wait": 81.26576948165894,
+              "weapon_reload": 8.516708374023438,
+              "seconds": 348.15911865234375,
+              "final_weapons": [
+                "pistol",
+                "fists"
+              ],
+              "final_ranks": [
+                1,
+                1
+              ]
+            },
+            {
+              "district": 2,
+              "fights": 7,
+              "weapon_damage": 2905.2664794921875,
+              "weapon_wait": 43.52227783203125,
+              "weapon_reload": 13.783123016357422,
+              "seconds": 386.3389892578125,
+              "final_weapons": [
+                "pistol",
+                "fists"
+              ],
+              "final_ranks": [
+                1,
+                1
+              ]
+            },
+            {
+              "district": 3,
+              "fights": 7,
+              "weapon_damage": 4715.060546875,
+              "weapon_wait": 30.78711700439453,
+              "weapon_reload": 15.81644344329834,
+              "seconds": 405.25689697265625,
+              "final_weapons": [
+                "pistol",
+                "pistol"
+              ],
+              "final_ranks": [
+                2,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

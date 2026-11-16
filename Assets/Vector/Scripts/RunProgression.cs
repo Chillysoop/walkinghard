@@ -31,7 +31,7 @@ namespace VectorGame
             JourneyIntermission();
             pendingDrafts.Clear();foreach(var kind in ChapterEncounter?.rewards??RewardsAfter(Wave))pendingDrafts.Enqueue(kind);State=RunState.Drafting;
             var emphasis=routedWave==Wave+1?RouteReward(simulation&&simulationRewardRoute>=0?(EncounterRoute)simulationRewardRoute:SelectedRoute):RewardEmphasis.None;
-            Deck.Open(pendingDrafts.Dequeue(),true,emphasis);
+            Deck.Open(pendingDrafts.Dequeue(),true,emphasis,JourneyActive&&LongJourney.WeaponDiscoveryAfter(Wave)&&!reviewOriginalWeaponOffers);
             OpenExpeditionStop();SaveCheckpoint();
         }
         void CompleteDraft()

@@ -90,8 +90,8 @@ namespace VectorGame
                 if(legacyDraftPolicy)stock=stock.OrderByDescending(i=>Deck.Copies(Stop.stock[i].def,Stop.stock[i].rank));
                 else
                 {
-                    float current=AutomatedLoadoutPolicy.Score(Deck,CurrentPolicy);
-                    stock=stock.Where(i=>AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],CurrentPolicy).score>current+.05f).OrderByDescending(i=>(AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],CurrentPolicy).score-current)/CopyCost(Stop.stock[i].rank));
+                    float current=AutomatedLoadoutPolicy.Score(Deck,ProgressionPolicy);
+                    stock=stock.Where(i=>AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],ProgressionPolicy).score>current+.05f).OrderByDescending(i=>(AutomatedLoadoutPolicy.Evaluate(Deck,Stop.stock[i],ProgressionPolicy).score-current)/CopyCost(Stop.stock[i].rank));
                 }
                 foreach(int i in stock)if(BuyCopy(i))break;CashOutStop();if(!legacyDraftPolicy)EquipSimulationStorage();return;
             }

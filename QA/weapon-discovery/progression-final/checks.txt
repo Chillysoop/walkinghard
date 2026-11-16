@@ -1,0 +1,118 @@
+117 assertions passed
+Rare pistol is retained over a Common two-handed rifle
+lower-rarity identical ability cannot replace its stronger equipped copy
+paired-weapon fusion accounts for losing the consumed second weapon
+projection leaves original ranks and mounts unchanged
+Drain Brand precedes weapon damage
+pinball legal opening pick 0
+pinball legal opening pick 1
+pinball legal opening pick 2
+pinball legal Weapon
+pinball maintains both basic turns / Weapon
+pinball legal Equipment
+pinball maintains both basic turns / Equipment
+pinball legal Mixed
+pinball maintains both basic turns / Mixed
+pinball legal Ultimate
+pinball maintains both basic turns / Ultimate
+pinball legal Augment
+pinball maintains both basic turns / Augment
+storm legal opening pick 0
+storm legal opening pick 1
+storm legal opening pick 2
+storm legal Weapon
+storm maintains both basic turns / Weapon
+storm legal Equipment
+storm maintains both basic turns / Equipment
+storm legal Mixed
+storm maintains both basic turns / Mixed
+storm legal Ultimate
+storm maintains both basic turns / Ultimate
+storm legal Augment
+storm maintains both basic turns / Augment
+sever legal opening pick 0
+sever legal opening pick 1
+sever legal opening pick 2
+sever legal Weapon
+sever maintains both basic turns / Weapon
+sever legal Equipment
+sever maintains both basic turns / Equipment
+sever legal Mixed
+sever maintains both basic turns / Mixed
+sever legal Ultimate
+sever maintains both basic turns / Ultimate
+sever legal Augment
+sever maintains both basic turns / Augment
+gun legal opening pick 0
+gun legal opening pick 1
+gun legal opening pick 2
+gun legal Weapon
+gun maintains both basic turns / Weapon
+gun legal Equipment
+gun maintains both basic turns / Equipment
+gun legal Mixed
+gun maintains both basic turns / Mixed
+gun legal Ultimate
+gun maintains both basic turns / Ultimate
+gun legal Augment
+gun maintains both basic turns / Augment
+cutcarry legal opening pick 0
+cutcarry legal opening pick 1
+cutcarry legal opening pick 2
+cutcarry legal Weapon
+cutcarry maintains both basic turns / Weapon
+cutcarry legal Equipment
+cutcarry maintains both basic turns / Equipment
+cutcarry legal Mixed
+cutcarry maintains both basic turns / Mixed
+cutcarry legal Ultimate
+cutcarry maintains both basic turns / Ultimate
+cutcarry legal Augment
+cutcarry maintains both basic turns / Augment
+close legal opening pick 0
+close legal opening pick 1
+close legal opening pick 2
+close legal Weapon
+close maintains both basic turns / Weapon
+close legal Equipment
+close maintains both basic turns / Equipment
+close legal Mixed
+close maintains both basic turns / Mixed
+close legal Ultimate
+close maintains both basic turns / Ultimate
+close legal Augment
+close maintains both basic turns / Augment
+siphon legal opening pick 0
+siphon legal opening pick 1
+siphon legal opening pick 2
+siphon legal Weapon
+siphon maintains both basic turns / Weapon
+siphon legal Equipment
+siphon maintains both basic turns / Equipment
+siphon legal Mixed
+siphon maintains both basic turns / Mixed
+siphon legal Ultimate
+siphon maintains both basic turns / Ultimate
+siphon legal Augment
+siphon maintains both basic turns / Augment
+pinball fills available utility slots
+pinball preference keeps a body launcher when available
+storm fills available utility slots
+sever fills available utility slots
+gun fills available utility slots
+gun preference actually equips a gun when available
+cutcarry fills available utility slots
+cut-and-carry retains both weapon families when available
+close fills available utility slots
+close-quarters preference retains a fist and a gun when available
+siphon fills available utility slots
+siphon preference keeps a drain source when available
+seven preferences produce at least five distinct builds from the same equal-rarity catalog
+incoming damage records actual integrity after mitigation
+fully absorbed attacks do not appear as integrity loss
+fatal damage excludes overkill
+defeat includes unfinished encounter and its contributions
+recap saves
+recap checkpoint graph restores exactly
+previous save version resumes with explicitly partial recap
+migration still rejects missing required combat state
