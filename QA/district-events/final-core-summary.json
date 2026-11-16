@@ -1,0 +1,152 @@
+[
+  {
+    "build": "armed",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4923.8720703125,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "armor",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 5041.95654296875,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "fast",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4919.09716796875,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "half",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4916.01318359375,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "hammer",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4918.49267578125,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "manual",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4943.501953125,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "quick",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4898.1318359375,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "reload",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4929.34228515625,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "reroll",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4870.53466796875,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "rifle",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4916.01318359375,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "sequence",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4916.01318359375,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "sequence",
+    "seed": 4319,
+    "passed": true,
+    "waves": 3,
+    "health": 4892.4775390625,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "sword",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4850.41259765625,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "tempest",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4957.0751953125,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  },
+  {
+    "build": "twin",
+    "seed": 1741,
+    "passed": true,
+    "waves": 3,
+    "health": 4970.76708984375,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "mechanicAssertions": 761
+  }
+]

@@ -37,3 +37,6 @@ For weapon-offer changes, use `-weaponDiscoveryChecks` for both-pool shadow audi
 For district/boss changes, run `Validate Districts.ps1` in Mechanics, Rendered and Balance modes using separate output directories. Inspect the screenshots, including reduced-motion 720p, and use `Validate Progression.ps1` for ordinary-loot journeys. The fixed kits establish weapon access, not human difficulty or pacing. Preserve initial failures and compare manifests before attributing results to code changes.
 
 For district champion changes, also run `Validate Champions.ps1` in Mechanics, Rendered and Balance modes. Check physical-junction charges, escort protection, interrupted attacks, old-save identity and accurate champion/reward sign text. `-OriginalChampions` on champion/progression runners isolates the former all-Freight roster.
+
+
+For district-event changes, run `Validate Events.ps1` in Mechanics, Rendered and Economy modes, plus Resume against a prior fixture profile. Inspect odds, spend-on-failure terms, input consumption, fusion/mount outcomes and scaled screens. Use `Validate Progression.ps1 -OriginalEvents` for a matched legacy-event baseline. Preserve exchanged-item attribution and open legacy events when changing saved state. All review profiles must be isolated from the player.

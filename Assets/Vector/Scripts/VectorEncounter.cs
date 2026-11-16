@@ -199,6 +199,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-journeyReview")>=0)StartCoroutine(ReviewJourney());
             if(Array.IndexOf(args,"-districtReview")>=0)StartCoroutine(ReviewDistrictBosses());
             if(Array.IndexOf(args,"-championReview")>=0)StartCoroutine(ReviewDistrictChampions());
+            if(Array.IndexOf(args,"-districtEventReview")>=0)StartCoroutine(ReviewDistrictEvents());
             if(Array.IndexOf(args,"-chapterReview")>=0)StartCoroutine(ReviewChapter());
             if(Array.IndexOf(args,"-durabilityReview")>=0)StartCoroutine(ReviewDurability());
             if(Array.IndexOf(args,"-progressionReview")>=0||Array.IndexOf(args,"-progressionChecks")>=0||Array.IndexOf(args,"-weaponDiscoveryChecks")>=0||Array.IndexOf(args,"-ragdollStress")>=0)StartCoroutine(ReviewProgression());

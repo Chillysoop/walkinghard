@@ -1,0 +1,13 @@
+{
+  "originalChampions": false,
+  "policy": "pinball",
+  "committed": false,
+  "pool": "fresh",
+  "drafter": "projected",
+  "weaponOffers": "discovery",
+  "originalEvents": false,
+  "seed": 1741,
+  "originalArrivals": false,
+  "originalBell": false,
+  "assemblySha256": "E5950772517455568918BAC571C777C4CFD142C477E84DD3F4AD31313AA13DFE"
+}

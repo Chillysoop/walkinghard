@@ -39,13 +39,15 @@ namespace VectorGame
             new RegionalEncounter(EncounterRoute.FreightYard,"FREIGHT YARD","FREIGHT CREW","MORE ABILITIES","Door packs supply bodies. Interrupt amber throws or launch the payload first.",new[]{0,0,2,1,1,2},CrewRole.Freight,0,RewardEmphasis.Abilities),
             new RegionalEncounter(EncounterRoute.Reclaimers,"RECOVERY DETAIL","RECLAIMERS","MORE GEAR","Reclaimers pull bodies behind the line. Break their purple tethers.",new[]{2,0,2,1,2,2},CrewRole.Reclaimer,0,RewardEmphasis.Equipment),
             new RegionalEncounter(EncounterRoute.EliteShift,"ELITE SHIFT","CHAMPION","+6 SALVAGE","Defeat a braced Freight Champion for +6 salvage. Control builds pressure; launch breaks its brace. Repair escort + fragile raiders.",new[]{2,2,0,2,1},CrewRole.Repair,2,RewardEmphasis.Equipment),
+            new RegionalEncounter(EncounterRoute.Reclamation,"THE RECLAMATION PRESS","EXCHANGE","TRADE STORED GEAR","Trade a selected stored item for one of two visible replacements.",null),
+            new RegionalEncounter(EncounterRoute.DeadLetter,"THE DEAD LETTER CACHE","DEAD LETTER","RISK FOR GEAR","Bank the salvage or risk it for displayed equipment.",null),
             new RegionalEncounter(EncounterRoute.Auction,"THE UNCLAIMED LOT","AUCTION","BID FOR GEAR","Pay a visible bid for a chance at the displayed item. Losing bids are spent.",null),
             new RegionalEncounter(EncounterRoute.PressureWorks,"THE PRESSURE DIVIDEND","PRESSURE","RISK & SALVAGE","Choose a safer tap or a dangerous override. Bank the haul before a rupture.",null),
             new RegionalEncounter(EncounterRoute.Rescue,"THE LAST ATTENDANCE","RESCUE","SAVE WORKERS","Spend tools or risk injury to free workers. Each success secures salvage and repair.",null)
         };
         public static RegionalEncounter Find(EncounterRoute id)=>All.FirstOrDefault(e=>e.id==id);
         public static bool IsNewEvent(EncounterRoute id)=>id==EncounterRoute.Auction||id==EncounterRoute.PressureWorks||id==EncounterRoute.Rescue;
-        public static bool IsStop(EncounterRoute id)=>id==EncounterRoute.Overtime||id==EncounterRoute.SalvageStop||IsNewEvent(id);
+        public static bool IsStop(EncounterRoute id)=>id==EncounterRoute.Overtime||id==EncounterRoute.SalvageStop||id==EncounterRoute.Reclamation||id==EncounterRoute.DeadLetter||IsNewEvent(id);
     }
     public sealed partial class VectorEncounter
     {
@@ -84,6 +86,7 @@ namespace VectorGame
         void SimulationExpeditionStop()
         {
             if(!StopOpen)return;
+            if(DistrictEventOpen){SimulationDistrictEvent();if(!legacyDraftPolicy&&Stop.closed)EquipSimulationStorage();return;}
             if(Stop.kind==EncounterRoute.SalvageStop)
             {
                 BuyRepair();var stock=Enumerable.Range(0,Stop.stock.Length);

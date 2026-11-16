@@ -1,0 +1,13 @@
+{
+    "passed": true,
+    "assertions": 4,
+    "failure": "",
+    "scope": "Production event acquisition, payments, storage consumption, fusion, reward filters, saved randomness, legacy migration and pointer/text-layout fixtures. Controlled outcomes are functional evidence, not difficulty evidence.",
+    "checks": [
+        "independent process restores resolved exchange",
+        "independent process cannot replay or resurrect the surrendered item",
+        "independent process preserves surrendered-item history",
+        "independent-process graph round trip"
+    ],
+    "economy": []
+}

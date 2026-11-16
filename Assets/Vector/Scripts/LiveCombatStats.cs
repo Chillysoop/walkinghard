@@ -12,6 +12,8 @@ namespace VectorGame
             public LoadoutItem item;public string label,positions;public int kills,assists;public float damage,healing;
         }
         public bool IsolatedProfile=>saveDirectoryOverride!=null;
+        // Exchanged items keep their own history; fusion predecessors are already included in their keeper.
+        public LoadoutItem[] RecordedItems=>Deck.Items.Concat(contributions.Keys).Concat(itemKills.Keys).Distinct().Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment&&KillOwner(i)==i).ToArray();
         LiveStatRow ItemStat(LoadoutItem item,string positions)
         {
             var c=ContributionFor(item);
@@ -43,7 +45,7 @@ namespace VectorGame
         }
         public LiveStatRow LiveOtherStats(List<LiveStatRow> sequence)
         {
-            var total=LiveTotals();return new LiveStatRow{label="GEAR + STORED",positions="+",kills=Mathf.Max(0,total.kills-EnvironmentalKills-sequence.Sum(r=>r.kills)),damage=Mathf.Max(0,total.damage-sequence.Sum(r=>r.damage)),healing=Mathf.Max(0,total.healing-sequence.Sum(r=>r.healing)),assists=Mathf.Max(0,total.assists-sequence.Sum(r=>r.assists))};
+            var total=LiveTotals();return new LiveStatRow{label="GEAR + OTHER",positions="+",kills=Mathf.Max(0,total.kills-EnvironmentalKills-sequence.Sum(r=>r.kills)),damage=Mathf.Max(0,total.damage-sequence.Sum(r=>r.damage)),healing=Mathf.Max(0,total.healing-sequence.Sum(r=>r.healing)),assists=Mathf.Max(0,total.assists-sequence.Sum(r=>r.assists))};
         }
     }
     public sealed partial class PrototypeHUD

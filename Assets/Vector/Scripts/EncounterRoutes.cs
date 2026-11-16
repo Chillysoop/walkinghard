@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum EncounterRoute { Standard, ShieldLine, VolatileBreach, SalvageStop, Overtime, Auction, PressureWorks, Rescue, RepairLine, FreightYard, Reclaimers, EliteShift }
+    public enum EncounterRoute { Standard, ShieldLine, VolatileBreach, SalvageStop, Overtime, Auction, PressureWorks, Rescue, RepairLine, FreightYard, Reclaimers, EliteShift, Reclamation, DeadLetter }
     public enum RewardEmphasis { None, Equipment, Abilities }
     public sealed partial class VectorEncounter
     {

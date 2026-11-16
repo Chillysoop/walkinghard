@@ -38,7 +38,7 @@ namespace VectorGame
         {
             if(game==null)return;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f)*(game.State==VectorEncounter.RunState.Running?.8f:1),w=Screen.width/scale,h=Screen.height/scale;
             GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
-            ReviewTextFit();ReviewChampionPreviewText();
+            ReviewTextFit();ReviewChampionPreviewText();ReviewEventText();
             detailValid=detailItem!=null&&(detailOffer!=null?game.State==VectorEncounter.RunState.Drafting&&System.Array.IndexOf(game.Deck.Offers,detailOffer)>=0:game.Deck.Items.Contains(detailItem));
             detailHovered=!UnifiedCheckpoint&&!dragging&&detailValid&&detailPanel.Contains(Pointer);
             if(detailHovered)detailLastHover=Time.realtimeSinceStartup;
@@ -79,7 +79,7 @@ namespace VectorGame
             if(Event.current.button==0&&HandlePlayPointer(Event.current.type,Pointer,w,h))Event.current.Use();
             Label(new Rect(x+40,y+350,500,38),game.HasCheckpoint?"Your journey is saved. Continue from the Dead Letter Office.":"Begin in the Dead Letter Office. Sparks and unlocks persist.",14,muted);
             if(Button(new Rect(x+40,y+407,500,42),"HOW TO PLAY  [ T ]"))game.BeginTutorial();
-            if(Button(new Rect(x+40,y+465,500,42),"RECOVERED RECORDS · "+game.ArchiveCount+" / 6"))expeditionArchive=true;
+            if(Button(new Rect(x+40,y+465,500,42),"RECOVERED RECORDS · "+game.ArchiveCount+" / 8"))expeditionArchive=true;
             if(Button(new Rect(x+40,y+531,180,38),"QUIT"))game.Quit();
             Label(new Rect(x+242,y+537,298,25),"v"+Application.version,12,muted,false,TextAnchor.UpperRight);
         }
@@ -200,12 +200,12 @@ namespace VectorGame
             string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
             string[] labels={"SCORE","KILLS","BEST COMBO","COLLISION HITS"};
             for(int i=0;i<4;i++){Label(new Rect(x+32+i*226,y+194,212,42),values[i],33,white,true);Label(new Rect(x+32+i*226,y+241,212,20),labels[i],13,muted);}
-            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=(game.JourneyActive?130:0)+240+game.RunHistory.encounters.Count*23+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
+            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=(game.JourneyActive?130:0)+240+game.RunHistory.encounters.Count*23+game.Waves.Count*23+game.RecordedItems.Length*41+game.InteractionNotes.Count*19+25;
             recapScroll=GUI.BeginScrollView(viewport,recapScroll,new Rect(0,0,880,contentHeight));
             float rowY=DrawIntegrityRecap(0);Label(new Rect(4,rowY,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
             rowY+=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}
             Label(new Rect(4,rowY,860,20),"ITEM CONTRIBUTIONS · setup assists never add kills",12,Accent,true);rowY+=25;
-            foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / reach "+c.outOfReachWait.ToString("0.0")+"s / arrivals "+c.ArrivalWait.ToString("0.0")+"s / blocked "+c.obstructedWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
+            foreach(var item in game.RecordedItems){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+(game.Deck.Items.Contains(item)?"":" [EXCHANGED]")+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / reach "+c.outOfReachWait.ToString("0.0")+"s / arrivals "+c.ArrivalWait.ToString("0.0")+"s / blocked "+c.obstructedWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
             foreach(var note in game.InteractionNotes){Label(new Rect(4,rowY,870,18),note.Key+" × "+note.Value,11,Accent);rowY+=19;}
             GUI.EndScrollView();
             if(Button(new Rect(x+32,y+534,430,46),game.ChapterActive?"RETURN TO OFFICE · "+game.ChapterSparks+" SPARKS EARNED":"DEAD LETTER OFFICE",true))game.Play();

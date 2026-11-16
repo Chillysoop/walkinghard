@@ -14,3 +14,6 @@
 *.user
 *.tmp
 __pycache__/
+
+# Local event-review working directories; curated evidence is in QA/district-events.
+/QA/v087-*

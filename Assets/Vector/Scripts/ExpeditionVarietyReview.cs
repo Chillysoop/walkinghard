@@ -75,7 +75,7 @@ namespace VectorGame
                     Require(a.left[1]==EncounterRoute.SalvageStop||a.right[1]==EncounterRoute.SalvageStop,"service always offered / "+seed);
                     distinct.Add(string.Join(",",a.left.Concat(a.right)));foreach(var route in a.left.Concat(a.right))offered.Add(route);
                 }
-                Require(distinct.Count>=20&&RegionalEncounters.All.All(e=>offered.Contains(e.id)),"seeds expose all new destinations and at least twenty fork combinations");
+                Require(distinct.Count>=20&&RegionalEncounters.All.Where(e=>e.id!=EncounterRoute.Reclamation&&e.id!=EncounterRoute.DeadLetter).All(e=>offered.Contains(e.id)),"seeds expose all new destinations and at least twenty fork combinations");
                 tuning.heroHealth=10000;BeginLegacyExpedition();OpeningPicks=2;Wave=2;tuning.waveArrivals=120;BeginWave();spawnTimer=10000;
                 Until(()=>RoutePending,"new itinerary produces a walking fork");var left=ForkLeft;var right=ForkRight;
                 Require(forkVisual.Left.Root.GetComponentsInChildren<BoxCollider>().Length>20&&forkVisual.Right.Root.GetComponentsInChildren<BoxCollider>().Length>20,"two independent walled roads remain physical");

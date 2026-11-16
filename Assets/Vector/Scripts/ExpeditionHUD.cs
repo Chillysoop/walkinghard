@@ -19,15 +19,16 @@ namespace VectorGame
             Label(new Rect(x+28,y+70,820,40),"Fragments recovered from factory stops. Kept between expeditions; no combat bonuses.",14,muted);
             for(int i=0;i<3;i++)
             {
-                int record=i+archivePage*3;float top=y+130+i*115;bool found=game.HasOvertimeRecord(record);
+                int record=i+archivePage*3;if(record>=8)break;float top=y+130+i*115;bool found=game.HasOvertimeRecord(record);
                 Label(new Rect(x+28,top,820,25),found?VectorEncounter.OvertimeRecordTitle(record):"SEALED RECORD",17,found?white:muted,true);
                 Label(new Rect(x+28,top+33,820,65),found?VectorEncounter.OvertimeRecord(record):"Recover this fragment by leaving its factory event. Both successful and failed visits preserve the story.",15,muted);
             }
-            if(Button(new Rect(x+28,y+493,260,40),archivePage==0?"MORE RECORDS →":"← EARLIER RECORDS"))archivePage=1-archivePage;
+            if(Button(new Rect(x+28,y+493,260,40),archivePage<2?"MORE RECORDS →":"← FIRST RECORDS"))archivePage=(archivePage+1)%3;
             if(Button(new Rect(x+308,y+493,564,40),"BACK"))expeditionArchive=false;
         }
         void ExpeditionStopScreen(float w,float h)
         {
+            if(game.DistrictEventOpen){DistrictEventScreen(w,h);return;}
             if(RegionalEncounters.IsNewEvent(game.Stop.kind)){RegionalEventScreen(w,h);return;}
             float x=(w-1120)/2,y=(h-600)/2;var stop=game.Stop;bool overtime=stop.kind==EncounterRoute.Overtime;
             Box(new Rect(0,0,w,h),new Color(0,0,0,.64f));Panel(new Rect(x,y,1120,600));

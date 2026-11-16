@@ -37,7 +37,7 @@ namespace VectorGame
         {
             // Snapshot before any reward, storage move or fusion mutates the loadout.
             var rows=new List<WaveItemFeedback>();
-            foreach(var item in Deck.Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment))
+            foreach(var item in RecordedItems)
             {
                 var delta=ContributionDelta(ContributionFor(item),waveContributions.TryGetValue(item,out var before)?before:new Contribution());
                 int kills=KillsFor(item)-(waveItemKills.TryGetValue(item,out int n)?n:0);

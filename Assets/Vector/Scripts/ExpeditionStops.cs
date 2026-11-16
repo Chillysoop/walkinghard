@@ -8,6 +8,7 @@ namespace VectorGame
     [Serializable] public sealed class ExpeditionStop
     {
         public EncounterRoute kind;
+        public DistrictEventState districtEvent;
         public int variant,stash,attempt,chance,gain,harm,roll;
         public int price,repair,rescued;
         public bool reveal,failed,closed,repaired,boughtCopy;
@@ -31,7 +32,7 @@ namespace VectorGame
         void BeginLegacyExpedition(){chapterRequested=false;ExpeditionActive=true;Begin();}
         void ResetExpeditionRun()
         {
-            ResetChapterRun();Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=JourneyActive?LongJourney.Plan(Seed):ExpeditionPlan.Create(Seed,legacyExpeditionReview);
+            ResetChapterRun();eventAudits.Clear();Stop=null;Salvage=ExpeditionActive?8:0;salvageWave=0;eventRandom=new CheckpointRandom(Seed^0x1247a31);expeditionPlan=JourneyActive?LongJourney.Plan(Seed,originalEvents):ExpeditionPlan.Create(Seed,legacyExpeditionReview);
             if(stopProp!=null){stopProp.gameObject.SetActive(false);Destroy(stopProp.gameObject);stopProp=null;}
         }
         void OpenExpeditionStop()
@@ -40,7 +41,8 @@ namespace VectorGame
             AwardEncounterSalvage();
             if(routedWave!=Wave+1||!RegionalEncounters.IsStop(SelectedRoute))return;
             Stop=new ExpeditionStop{kind=SelectedRoute};
-            if(RegionalEncounters.IsNewEvent(Stop.kind))PrepareRegionalEvent();
+            if(JourneyActive&&!originalEvents&&Stop.kind!=EncounterRoute.SalvageStop)PrepareDistrictEvent();
+            else if(RegionalEncounters.IsNewEvent(Stop.kind))PrepareRegionalEvent();
             else if(Stop.kind==EncounterRoute.Overtime)
             {
                 Stop.variant=eventRandom.Next(3);Stop.stash=eventRandom.Next(6,13);Stop.chance=eventRandom.Next(74,89);
@@ -62,6 +64,7 @@ namespace VectorGame
             for(int i=0;i<3;i++)VisualFactory.Part("Recovery locker",stopProp,PrimitiveType.Cube,new Vector3(-1+i,1.15f,0),new Vector3(.8f,1.1f,1.2f),VisualFactory.Trim);
             VisualFactory.Part("Station signal",stopProp,PrimitiveType.Cube,new Vector3(0,2,0),new Vector3(2.5f,.14f,.2f),Stop.kind==EncounterRoute.SalvageStop?VisualFactory.Glow:VisualFactory.GoldGlow);
             CinderworksWorld.InitializeMaterials();
+            if(Stop.kind==EncounterRoute.Reclamation||Stop.kind==EncounterRoute.DeadLetter||Stop.kind==EncounterRoute.Overtime&&Stop.districtEvent!=null){DistrictStopProp();return;}
             if(RegionalEncounters.IsNewEvent(Stop.kind)){RegionalStopProp();return;}
             if(Stop.kind==EncounterRoute.SalvageStop)
             {
@@ -94,7 +97,7 @@ namespace VectorGame
         }
         public bool PushOvertime()
         {
-            if(!StopOpen||Stop.kind!=EncounterRoute.Overtime||Stop.reveal||Stop.failed||Stop.attempt>=4||Health<=Stop.harm)return false;
+            if(DistrictEventOpen||!StopOpen||Stop.kind!=EncounterRoute.Overtime||Stop.reveal||Stop.failed||Stop.attempt>=4||Health<=Stop.harm)return false;
             Stop.roll=eventRandom.Next(1,101);Stop.attempt++;Stop.reveal=true;
             if(Stop.roll<=Stop.chance){Stop.stash+=Stop.gain;Stop.result="SUCCESS · rolled "+Stop.roll+" / needed "+Stop.chance+" or lower\nRecovered +"+Stop.gain+" salvage. Your haul is still at risk.";}
             else {RecordIncoming("Locker collapse",Stop.harm);Health-=Stop.harm;Stop.failed=true;Stop.result="LOCKERS COLLAPSED · rolled "+Stop.roll+" / needed "+Stop.chance+" or lower\nLost the "+Stop.stash+" salvage haul and "+Stop.harm+" integrity. Banked salvage is safe.";Stop.stash=0;}
@@ -102,7 +105,7 @@ namespace VectorGame
         }
         public bool ContinueOvertime()
         {
-            if(!StopOpen||Stop.kind!=EncounterRoute.Overtime||!Stop.reveal)return false;
+            if(DistrictEventOpen||!StopOpen||Stop.kind!=EncounterRoute.Overtime||!Stop.reveal)return false;
             if(Stop.failed||Stop.attempt>=4)return CashOutStop();
             Stop.reveal=false;Stop.chance=Mathf.Max(25,Stop.chance-eventRandom.Next(9,16));Stop.gain+=eventRandom.Next(4,10);
             Stop.harm+=Mathf.CeilToInt(MaxHealth*(.015f+(float)eventRandom.NextDouble()*.01f));SaveCheckpoint();return true;
@@ -110,6 +113,7 @@ namespace VectorGame
         public bool CashOutStop()
         {
             if(!StopOpen)return false;
+            if(DistrictEventOpen)return CashOutDistrictEvent();
             if(Stop.kind==EncounterRoute.Overtime){Salvage+=Stop.stash;Stop.stash=0;RecordOvertime(Stop.variant);}
             if(RegionalEncounters.IsNewEvent(Stop.kind)){if(Stop.kind==EncounterRoute.PressureWorks){Salvage+=Stop.stash;Stop.stash=0;}RecordOvertime(Stop.kind==EncounterRoute.Auction?3:Stop.kind==EncounterRoute.PressureWorks?4:5);}
             Stop.closed=true;SaveCheckpoint();return true;

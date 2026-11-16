@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "assertions": 9000,
+  "failure": "",
+  "scope": "Deterministic production-event sample: 1000 seeds per event/option. Common equipped sword; spare Uncommon pistol; full unlocks; 280 max / 180 current integrity; one attempt then cashout. Item value uses shop copy price, not an equivalent currency payout or human preference.",
+  "economy": [
+    {
+      "kind": "PressureWorks",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 792,
+      "items": 0,
+      "salvageNet": 6.74399995803833,
+      "integrityNet": -2.2829999923706055,
+      "copyPriceValue": 0.0,
+      "ranks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "PressureWorks",
+      "policy": "option 1 then bank",
+      "samples": 1000,
+      "wins": 594,
+      "items": 0,
+      "salvageNet": 8.322999954223633,
+      "integrityNet": -8.9399995803833,
+      "copyPriceValue": 0.0,
+      "ranks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Rescue",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 867,
+      "items": 0,
+      "salvageNet": -2.390000104904175,
+      "integrityNet": 16.22800064086914,
+      "copyPriceValue": 0.0,
+      "ranks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Rescue",
+      "policy": "option 1 then bank",
+      "samples": 1000,
+      "wins": 567,
+      "items": 0,
+      "salvageNet": 1.7050000429153442,
+      "integrityNet": 5.574999809265137,
+      "copyPriceValue": 0.0,
+      "ranks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Auction",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 452,
+      "items": 452,
+      "salvageNet": -6.001999855041504,
+      "integrityNet": 0.0,
+      "copyPriceValue": 6.77400016784668,
+      "ranks": [
+        0,
+        227,
+        225,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Auction",
+      "policy": "option 1 then bank",
+      "samples": 1000,
+      "wins": 697,
+      "items": 697,
+      "salvageNet": -10.503000259399414,
+      "integrityNet": 0.0,
+      "copyPriceValue": 10.46399974822998,
+      "ranks": [
+        0,
+        347,
+        350,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Reclamation",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 1000,
+      "items": 1000,
+      "salvageNet": -3.0,
+      "integrityNet": 0.0,
+      "copyPriceValue": 18.0,
+      "ranks": [
+        0,
+        0,
+        1000,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "Overtime",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 775,
+      "items": 775,
+      "salvageNet": 0.0,
+      "integrityNet": -14.487000465393066,
+      "copyPriceValue": 11.633999824523926,
+      "ranks": [
+        0,
+        386,
+        389,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "DeadLetter",
+      "policy": "option 0 then bank",
+      "samples": 1000,
+      "wins": 600,
+      "items": 600,
+      "salvageNet": 0.0,
+      "integrityNet": 0.0,
+      "copyPriceValue": 12.008000373840332,
+      "ranks": [
+        0,
+        0,
+        449,
+        151,
+        0,
+        0
+      ]
+    }
+  ],
+  "checksOmittedFromSummary": 9000,
+  "rawLocalDirectory": "QA\\v087-events-release-economy"
+}
