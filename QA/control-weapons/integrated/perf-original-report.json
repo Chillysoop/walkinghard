@@ -1,0 +1,77 @@
+{
+    "version": "0.9.1",
+    "assembly": "8C5C129564349EB60522730396ECAB3A3F48E819586FC4FDC75E1F73F4B1CD3E",
+    "mode": "journey",
+    "result": "Complete",
+    "assertions": 5,
+    "wave": 21,
+    "kills": 962,
+    "orderErrors": 0,
+    "visibleSpawns": 0,
+    "passed": true,
+    "unpooled": false,
+    "originalBodyScan": false,
+    "originalBodyFilters": true,
+    "verifiedWalkingCenters": 0,
+    "startWave": 20,
+    "checkpointSha256": "6F42A243CBE6FF3778F5FF67FB325EE08310ADCC1CAC0AB5E1018BE10DB8ED1A",
+    "health": 234.73599243164063,
+    "frames": [
+        {
+            "wave": 21,
+            "enemies": 36,
+            "bodies": 937,
+            "activeBodies": 155,
+            "frames": 180,
+            "effectObjects": 95,
+            "speed": 1.0,
+            "medianMs": 16.66736602783203,
+            "p95Ms": 16.68834686279297,
+            "stageMs": [
+                0.007098333444446325,
+                0.710141122341156,
+                0.016201112419366838,
+                3.139378547668457,
+                0.004900555592030287,
+                0.7570472359657288
+            ],
+            "bodyMs": [
+                1.029890537261963,
+                0.002735000103712082,
+                2.10664439201355
+            ]
+        },
+        {
+            "wave": 21,
+            "enemies": 42,
+            "bodies": 940,
+            "activeBodies": 158,
+            "frames": 31,
+            "effectObjects": 99,
+            "speed": 4.0,
+            "medianMs": 115.1876449584961,
+            "p95Ms": 129.61387634277345,
+            "stageMs": [
+                0.0945451632142067,
+                15.685690879821778,
+                0.29960644245147707,
+                58.4425048828125,
+                0.18048064410686494,
+                15.722658157348633
+            ],
+            "bodyMs": [
+                12.417244911193848,
+                0.04064193740487099,
+                45.981773376464847
+            ]
+        }
+    ],
+    "checks": [
+        "performance run must render",
+        "restored actual saved journey",
+        "strict order and concealed arrivals across journey",
+        "persistent identities and kill attribution",
+        "21 encounters / ordinary reward budgets"
+    ],
+    "measurement": "Native 1080p 60 FPS cap, Full PhysX. Continuation from a recorded ordinary-loot checkpoint; identical source save for both filter policies. Not a new full journey or human pacing estimate."
+}

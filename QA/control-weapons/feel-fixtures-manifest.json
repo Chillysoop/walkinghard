@@ -1,0 +1,10 @@
+{
+  "seed": 1741,
+  "unpooled": false,
+  "policy": "pinball",
+  "originalBodyFilters": false,
+  "mode": "Fixtures",
+  "originalBodyScan": false,
+  "verifyWalkingSnapshot": false,
+  "assemblySha256": "EE39146728B6925803158ED078FA73D2F31E8A0C1FA6ABDC646F4B9D999DFFC9"
+}

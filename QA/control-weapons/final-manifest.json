@@ -1,0 +1,21 @@
+{
+  "version": "0.9.1",
+  "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+  "controlWeaponsCommit": "b62caf5",
+  "constellationCommit": "9ea1ff6ac4ee3641ed6f57dfaceeae0ee95919e2",
+  "integration": "Preserves 36 constellation unlocks and adds two base control weapons; 79 non-module plus 17 augment identities.",
+  "authoredBalanceChangedSinceComparison": false,
+  "speedToggleChanged": false,
+  "reviewProfiles": "isolated; player profile not funded or rewritten",
+  "confirmation": "20 Fast fixed kits match pre-integration result, wave, health and elapsed exactly",
+  "finalValidation": {
+    "core": 15,
+    "variety": 50,
+    "mechanicAssertionsPerCase": 869,
+    "normalHealthEightWave": "passed",
+    "constellationHeadless": 449,
+    "constellationRendered": 501,
+    "sameCaseFastConfirmation": 20,
+    "isolatedLateGameContinuations": 2
+  }
+}

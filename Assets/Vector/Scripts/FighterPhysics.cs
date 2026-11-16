@@ -10,7 +10,7 @@ namespace VectorGame
         void OnCollisionStay(Collision hit){if(hit.relativeVelocity.sqrMagnitude>1)Report(hit);}
         void Report(Collision hit)
         {
-            var other=hit.collider.GetComponentInParent<ContactRelay>();
+            hit.collider.TryGetComponent<ContactRelay>(out var other);
             if(other!=null&&other.owner==owner)return;
             encounter.QueueContact(owner,other==null?-1:other.owner,hit.relativeVelocity.magnitude,hit.contactCount>0?hit.GetContact(0).point:transform.position);
         }
@@ -48,6 +48,7 @@ namespace VectorGame
         public FighterPhysics(FighterRig rig,int owner,VectorEncounter encounter,bool hero=false,bool heavy=false)
         {
             this.rig=rig;this.owner=owner;this.encounter=encounter;fast=encounter.FastSimulation;heroBody=hero;FastRadius=(heavy?.43f:.37f)*rig.Root.lossyScale.x;if(fast)return;
+            if(!OriginalBodyFilters){ConfigureBodyLayers();rig.Root.gameObject.layer=hero?HeroLayer:LivingLayer;}
             capsule=rig.Root.gameObject.AddComponent<CapsuleCollider>();capsule.center=Vector3.up;capsule.height=2;capsule.radius=heavy?.43f:.37f;
             Motor=rig.Root.gameObject.AddComponent<Rigidbody>();Motor.mass=hero?180:heavy?100:65;
             Motor.constraints=RigidbodyConstraints.FreezeRotation;Motor.isKinematic=hero;Motor.useGravity=!hero;
@@ -65,11 +66,12 @@ namespace VectorGame
         }
         public void IgnoreWalker(FighterPhysics walker,bool ignore)
         {
+            if(!OriginalBodyFilters)return; // New walkers inherit the shared layer policy.
             foreach(var collider in colliders)Physics.IgnoreCollision(collider,walker.capsule,ignore);
         }
         public bool IgnoresWalker(FighterPhysics walker)
         {
-            foreach(var collider in colliders)if(!Physics.GetIgnoreCollision(collider,walker.capsule))return false;return true;
+            foreach(var collider in colliders)if(!Physics.GetIgnoreCollision(collider,walker.capsule)&&!Physics.GetIgnoreLayerCollision(collider.gameObject.layer,walker.capsule.gameObject.layer))return false;return true;
         }
         Vector3[] walkingCenters=new Vector3[11];
         internal static bool VerifyWalkingSnapshot;
@@ -142,7 +144,7 @@ namespace VectorGame
                 bodies.Add(body);Relay(bone);
             }
             for(int i=0;i<colliders.Count;i++)for(int j=i+1;j<colliders.Count;j++)Physics.IgnoreCollision(colliders[i],colliders[j]);
-            Ragdoll=true;rig.Telegraph(false,false);
+            Ragdoll=true;SetProjectileFilter(false);rig.Telegraph(false,false);
         }
         public void Sever()=>Sever(new ImpactReaction(ImpactKind.Slash,fast?Center:rig.Body.position,Vector3.right));
         public bool Finite()

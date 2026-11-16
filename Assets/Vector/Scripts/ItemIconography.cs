@@ -14,9 +14,9 @@ namespace VectorGame
             if(Input.GetKeyDown(KeyCode.Escape))iconGuide=false;
             return true;
         }
-        static readonly string[] synergyKeys={"stagger","launch","collision","sever","mark","chain","gather","pierce","reload","guard","sustain","tempo","burst","push","close","siphon"};
-        static string SynergyLabel(string key)=>key=="mark"?"CONDUCTIVE":key=="sustain"?"HEALING":key.ToUpperInvariant();
-        static int SynergySymbol(string key)=>key=="siphon"?15:key=="stagger"?0:key=="launch"?1:key=="collision"?2:key=="gather"?3:key=="chain"?4:key=="sever"?5:key=="pierce"?6:key=="guard"?7:key=="mark"?8:key=="reload"?9:key=="sustain"?10:key=="tempo"?11:key=="burst"?12:key=="push"?13:14;
+        static readonly string[] synergyKeys={"stagger","launch","collision","sever","mark","chain","gather","pierce","reload","guard","sustain","tempo","burst","push","close","siphon","slow"};
+        static string SynergyLabel(string key)=>key=="mark"?"CONDUCTIVE":key=="sustain"?"HEALING":key=="slow"?"MOVE SLOW":key.ToUpperInvariant();
+        static int SynergySymbol(string key)=>key=="slow"?16:key=="siphon"?15:key=="stagger"?0:key=="launch"?1:key=="collision"?2:key=="gather"?3:key=="chain"?4:key=="sever"?5:key=="pierce"?6:key=="guard"?7:key=="mark"?8:key=="reload"?9:key=="sustain"?10:key=="tempo"?11:key=="burst"?12:key=="push"?13:14;
         void DrawSynergyChips(Rect r,ItemDefinition def)
         {
             if(def.kind==ItemKind.Augment)

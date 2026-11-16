@@ -1,0 +1,338 @@
+[
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 0.0833333358168602,
+    "actionAge": 0.0,
+    "delay": 0.1966666579246521,
+    "phase": "READYING / Sword",
+    "targets": [
+      "1 pos=(0.00, 1.00, 3.58) velocity=(0.00, -0.82, -1.22) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.69, 1.00, 4.69) velocity=(-0.18, -0.82, -1.20) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.79, 1.00, 5.79) velocity=(0.16, -0.82, -1.20) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.69, 1.00, 6.88) velocity=(-0.12, -0.82, -1.21) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.79, 1.00, 7.98) velocity=(0.12, -0.82, -1.21) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 0.23333333432674408,
+    "actionAge": 0.0,
+    "delay": 0.046666666865348816,
+    "phase": "READYING / Sword",
+    "targets": [
+      "1 pos=(0.00, 0.98, 3.41) velocity=(0.00, 0.00, -1.41) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.66, 0.98, 4.51) velocity=(-0.21, 0.00, -1.39) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.77, 0.98, 5.61) velocity=(0.19, 0.00, -1.39) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.68, 0.98, 6.71) velocity=(-0.14, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.78, 0.98, 7.81) velocity=(0.14, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 0.40000012516975403,
+    "actionAge": 0.11666666716337204,
+    "delay": 0.0,
+    "phase": "HOOKBLADE \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 3.14) velocity=(0.00, 0.00, -1.72) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.63, 0.98, 4.24) velocity=(-0.25, 0.00, -1.70) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.73, 0.98, 5.34) velocity=(0.23, 0.00, -1.70) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.65, 0.98, 6.44) velocity=(-0.17, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.75, 0.98, 7.54) velocity=(0.17, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 0.6000000834465027,
+    "actionAge": 0.31666672229766846,
+    "delay": 0.0,
+    "phase": "HOOKBLADE \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 2.78) velocity=(0.00, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.57, 0.98, 3.89) velocity=(-0.27, 0.00, -1.80) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.68, 0.98, 4.99) velocity=(0.25, 0.00, -1.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.61, 0.98, 6.08) velocity=(-0.18, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.71, 0.98, 7.18) velocity=(0.18, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 0.8166665434837341,
+    "actionAge": 0.5333334803581238,
+    "delay": 0.0,
+    "phase": "HOOKBLADE \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 1.52) velocity=(0.00, 0.00, -4.46) hp=97.0 stun=0.20 severed=False parts=0 cut=-1 reaction=Strike reacting=0.12 slow=0 slowLeft=0",
+      "2 pos=(0.51, 0.98, 3.49) velocity=(-0.27, 0.00, -1.83) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.63, 0.98, 4.59) velocity=(0.25, 0.00, -1.83) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.57, 0.98, 5.69) velocity=(-0.19, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.67, 0.98, 6.79) velocity=(0.18, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 1.0666663646697998,
+    "actionAge": 0.7499999403953552,
+    "delay": 0.0,
+    "phase": "HOOKBLADE \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.75) velocity=(0.00, 0.00, -2.25) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.45, 0.98, 3.04) velocity=(-0.27, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.57, 0.98, 4.13) velocity=(0.25, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.53, 0.98, 5.23) velocity=(-0.19, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.63, 0.98, 6.33) velocity=(0.18, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 1.3166661262512207,
+    "actionAge": 0.0,
+    "delay": 0.09666666388511658,
+    "phase": "READYING / Fists",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.74) velocity=(0.00, 0.00, 0.00) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.38, 0.98, 2.58) velocity=(-0.27, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.50, 0.98, 3.67) velocity=(0.25, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.48, 0.98, 4.76) velocity=(-0.19, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.58, 0.98, 5.86) velocity=(0.18, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 1.66666579246521,
+    "actionAge": 0.25,
+    "delay": 0.0,
+    "phase": "KINETIC FISTS \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.79) velocity=(0.00, 0.00, 0.24) hp=78.0 stun=0.37 severed=False parts=0 cut=-1 reaction=Strike reacting=0.24 slow=0 slowLeft=0",
+      "2 pos=(0.28, 0.98, 1.93) velocity=(-0.27, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.41, 0.98, 3.03) velocity=(0.25, 0.00, -1.84) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.41, 0.98, 4.12) velocity=(-0.19, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.52, 0.98, 5.22) velocity=(0.18, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 2.016665458679199,
+    "actionAge": 0.0,
+    "delay": 0.14666666090488434,
+    "phase": "READYING / Sword",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.79) velocity=(0.00, 0.00, 0.00) hp=78.0 stun=0.02 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.23, 0.98, 1.55) velocity=(0.00, 0.00, -0.23) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.33, 0.98, 2.38) velocity=(0.24, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.35, 0.98, 3.47) velocity=(-0.19, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.45, 0.98, 4.57) velocity=(0.18, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 2.4166650772094727,
+    "actionAge": 0.25,
+    "delay": 0.0,
+    "phase": "HOOKBLADE \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.74) velocity=(0.00, 0.00, 0.00) hp=78.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.29, 0.98, 1.43) velocity=(0.33, 0.00, -0.36) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.30, 0.98, 1.87) velocity=(-0.06, 0.00, -0.88) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.28, 0.98, 2.73) velocity=(-0.17, 0.00, -1.83) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.38, 0.98, 3.83) velocity=(0.18, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 3.2166643142700195,
+    "actionAge": 0.0,
+    "delay": 0.07999999821186066,
+    "phase": "READYING / Fists",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.74) velocity=(0.00, 0.00, 0.00) hp=50.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.34, 0.98, 1.39) velocity=(0.01, 0.00, 0.00) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.33, 0.98, 1.69) velocity=(-0.15, 0.00, -0.35) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.31, 0.98, 2.13) velocity=(0.02, 0.00, -0.06) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.33, 0.98, 2.51) velocity=(-0.12, 0.00, -1.15) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "51 / 52 \u00c2\u00b7 Hookblade",
+    "time": 5.200012683868408,
+    "actionAge": 0.01666666753590107,
+    "delay": 0.0,
+    "phase": "KINETIC FISTS \u00c2\u00b7 COMMON",
+    "targets": [
+      "1 pos=(0.00, 0.98, 0.74) velocity=(-0.01, 0.00, 0.00) hp=3.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "2 pos=(0.35, 0.98, 1.39) velocity=(0.00, 0.00, 0.00) hp=69.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "3 pos=(-0.41, 0.98, 1.36) velocity=(0.00, 0.00, 0.00) hp=69.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "4 pos=(0.32, 0.98, 2.12) velocity=(0.00, 0.00, 0.00) hp=69.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0",
+      "5 pos=(-0.35, 0.98, 2.44) velocity=(0.00, 0.00, -0.01) hp=97.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Slash reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 0.05000000447034836,
+    "actionAge": 0.0,
+    "delay": 0.22999998927116394,
+    "phase": "READYING / Pistol",
+    "targets": [
+      "6 pos=(0.00, 1.02, 7.97) velocity=(0.00, -0.49, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "7 pos=(0.70, 1.02, 9.07) velocity=(-0.06, -0.49, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.80, 1.02, 10.17) velocity=(0.06, -0.49, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.70, 1.02, 11.27) velocity=(-0.05, -0.49, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.80, 1.02, 12.37) velocity=(0.05, -0.49, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 0.23333333432674408,
+    "actionAge": 0.0,
+    "delay": 0.046666666865348816,
+    "phase": "READYING / Pistol",
+    "targets": [
+      "6 pos=(0.00, 0.98, 7.76) velocity=(0.00, 0.00, -1.41) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "7 pos=(0.68, 0.98, 8.86) velocity=(-0.11, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.78, 0.98, 9.96) velocity=(0.11, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.68, 0.98, 11.06) velocity=(-0.09, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.78, 0.98, 12.16) velocity=(0.09, 0.00, -1.40) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 0.40000012516975403,
+    "actionAge": 0.11666666716337204,
+    "delay": 0.0,
+    "phase": "RIVET PISTOL \u00c2\u00b7 COMMON",
+    "targets": [
+      "6 pos=(0.00, 0.98, 7.49) velocity=(0.00, 0.00, -1.72) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "7 pos=(0.66, 0.98, 8.59) velocity=(-0.13, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.76, 0.98, 9.69) velocity=(0.13, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.67, 0.98, 10.79) velocity=(-0.11, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.77, 0.98, 11.89) velocity=(0.11, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 0.6000000834465027,
+    "actionAge": 0.31666672229766846,
+    "delay": 0.0,
+    "phase": "RIVET PISTOL \u00c2\u00b7 COMMON",
+    "targets": [
+      "6 pos=(0.00, 0.98, 7.16) velocity=(0.00, 0.00, -1.34) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.24 slow=0.4 slowLeft=1.316666",
+      "7 pos=(0.63, 0.98, 8.23) velocity=(-0.14, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.73, 0.98, 9.33) velocity=(0.14, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.65, 0.98, 10.43) velocity=(-0.11, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.74, 0.98, 11.53) velocity=(0.12, 0.00, -1.82) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 0.8166665434837341,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "RIVET PISTOL \u00c2\u00b7 COMMON",
+    "targets": [
+      "6 pos=(0.00, 0.98, 6.93) velocity=(0.00, 0.00, -0.89) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.02 slow=0.4 slowLeft=1.099996",
+      "7 pos=(0.60, 0.98, 7.83) velocity=(-0.14, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.70, 0.98, 8.93) velocity=(0.14, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.62, 0.98, 10.03) velocity=(-0.11, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.72, 0.98, 11.13) velocity=(0.12, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 1.0666663646697998,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.01, 0.98, 6.72) velocity=(-0.09, 0.00, -0.89) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0.8499928",
+      "7 pos=(0.58, 0.98, 7.39) velocity=(-0.03, 0.00, -1.68) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.66, 0.98, 8.47) velocity=(0.15, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.59, 0.98, 9.57) velocity=(-0.11, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.69, 0.98, 10.67) velocity=(0.12, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 1.3499994277954102,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.06, 0.98, 6.45) velocity=(-0.21, 0.00, -0.97) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0.5666556",
+      "7 pos=(0.59, 0.98, 6.94) velocity=(0.11, 0.00, -1.52) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.62, 0.98, 7.95) velocity=(0.15, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.56, 0.98, 9.04) velocity=(-0.11, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.65, 0.98, 10.15) velocity=(0.12, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 1.66666579246521,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.13, 0.98, 6.14) velocity=(-0.25, 0.00, -0.95) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0.2499847",
+      "7 pos=(0.64, 0.98, 6.46) velocity=(0.15, 0.00, -1.58) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.58, 0.98, 7.36) velocity=(0.15, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.52, 0.98, 8.46) velocity=(-0.11, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.62, 0.98, 9.56) velocity=(0.12, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 2.016665458679199,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.21, 0.98, 5.78) velocity=(-0.18, 0.00, -1.55) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0",
+      "7 pos=(0.68, 0.98, 5.87) velocity=(0.09, 0.00, -1.74) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.53, 0.98, 6.72) velocity=(0.12, 0.00, -1.77) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.48, 0.98, 7.81) velocity=(-0.11, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.57, 0.98, 8.91) velocity=(0.12, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 2.4333317279815674,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.26, 0.98, 4.98) velocity=(-0.09, 0.00, -2.01) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0",
+      "7 pos=(0.69, 0.98, 5.13) velocity=(-0.04, 0.00, -1.79) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.48, 0.98, 6.01) velocity=(0.12, 0.00, -1.71) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.44, 0.98, 7.03) velocity=(-0.11, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.52, 0.98, 8.14) velocity=(0.12, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 3.2333309650421143,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "WAITING FOR TARGET / Kinetic Fists \u00c2\u00b7 Common",
+    "targets": [
+      "6 pos=(-0.30, 0.98, 3.42) velocity=(-0.02, 0.00, -1.92) hp=105.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.00 slow=0.4 slowLeft=0",
+      "7 pos=(0.62, 0.98, 3.71) velocity=(-0.12, 0.00, -1.75) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.37, 0.98, 4.56) velocity=(0.15, 0.00, -1.85) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.34, 0.98, 5.55) velocity=(-0.11, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.43, 0.98, 6.65) velocity=(0.12, 0.00, -1.86) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  },
+  {
+    "mechanic": "52 / 52 \u00c2\u00b7 Rivet Pistol",
+    "time": 5.200012683868408,
+    "actionAge": 0.5000001788139343,
+    "delay": 0.0,
+    "phase": "RIVET PISTOL \u00c2\u00b7 COMMON",
+    "targets": [
+      "6 pos=(-0.38, 0.98, 0.94) velocity=(-0.16, 0.00, -0.59) hp=66.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Bullet reacting=0.02 slow=0.4 slowLeft=1.100004",
+      "7 pos=(0.54, 0.98, 1.37) velocity=(0.07, 0.00, -0.16) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "8 pos=(-0.26, 0.98, 1.67) velocity=(-0.16, 0.00, -0.59) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "9 pos=(0.24, 0.98, 2.22) velocity=(0.07, 0.00, -0.81) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0",
+      "10 pos=(-0.21, 0.98, 3.04) velocity=(0.05, 0.00, -1.67) hp=125.0 stun=0.00 severed=False parts=0 cut=-1 reaction=Strike reacting=0.00 slow=0 slowLeft=0"
+    ]
+  }
+]

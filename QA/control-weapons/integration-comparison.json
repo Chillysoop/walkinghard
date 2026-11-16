@@ -1,0 +1,27 @@
+{
+  "batch": {
+    "mode": "Fast",
+    "runs": 20,
+    "workers": 2,
+    "player": "C:\\Users\\conne\\Documents\\WalkingHard-Crowds\\Build\\Windows\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-16T10:02:07Z",
+    "wallSeconds": 15.025606800001697,
+    "valid": 20,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 4,
+    "timeouts": 0
+  },
+  "comparedFields": [
+    "result",
+    "waveReached",
+    "health",
+    "elapsed"
+  ],
+  "cases": 20,
+  "differences": []
+}
