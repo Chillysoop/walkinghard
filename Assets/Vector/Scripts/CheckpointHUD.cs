@@ -168,7 +168,7 @@ namespace VectorGame
         }
         void ClearLoadoutGesture()
         {
-            loadoutHover=null;comparisonKey="";comparisonScroll=Vector2.zero;
+            loadoutHover=null;comparisonKey="";comparisonScroll=Vector2.zero;inlineComparisonVisible=false;comparisonRect=Rect.zero;
             dragging=false;detailItem=null;detailHovered=false;dragItem=selectedItem=lastClickItem=null;dragOffer=lastClickOffer=-1;lastClickOffers=null;lastClickTime=-10;GUIUtility.hotControl=0;loadoutFeedback="";
         }
         void StoredTarget(LoadoutItem item,DropRegion hit,out PlaceKind place,out int index)

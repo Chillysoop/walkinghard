@@ -1,0 +1,137 @@
+[
+  {
+    "build": "armed",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "armor",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "fast",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "half",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "hammer",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "manual",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "quick",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "reload",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "reroll",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "rifle",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "sequence",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "sequence",
+    "seed": 4319,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "sword",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "tempest",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  },
+  {
+    "build": "twin",
+    "seed": 1741,
+    "result": "Complete",
+    "passed": true,
+    "mechanicAssertions": 761,
+    "visibleSpawns": 0,
+    "orderErrors": 0
+  }
+]

@@ -106,12 +106,19 @@ namespace VectorGame
             {
                 Screen.SetResolution(1280,720,false);WorkbenchFixture();workbenchTextAudit=true;for(int i=0;i<12;i++)yield return null;
                 ReviewCheck(dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Sequence&&!r.socket)==5&&dropRegions.Count(r=>r.place==PlaceKind.Weapon&&!r.socket)==2&&dropRegions.Any(r=>r.place==PlaceKind.Helmet)&&dropRegions.Any(r=>r.place==PlaceKind.Inventory&&r.index==-1),"full build remains visible before choosing a reward");
+                ReviewCheck(!inlineComparisonVisible&&comparisonRect==Rect.zero,"idle workbench has no suggestion panel or reserved comparison column");
+                ReviewCheck(dropRegions.Count(r=>r.offer<0&&r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket)==12,"expanded storage shows twelve named items");
                 yield return CapturePresentation(directory,"01-whole-build");
-                string before=LoadoutShape(game.Deck);reviewPointer=dropRegions.First(r=>r.offer==0).rect.center;yield return CapturePresentation(directory,"02-hover-fusion");
+                string before=LoadoutShape(game.Deck);reviewPointer=dropRegions.First(r=>r.offer==0).rect.center;yield return null;yield return null;
+                ReviewCheck(!inlineComparisonVisible,"reward hover highlights destinations without opening a suggestion panel");
+                game.SelectOffer(0);reviewPointer=ReviewRegion(PlaceKind.Helmet).rect.center;yield return CapturePresentation(directory,"02-hover-fusion");
                 ReviewCheck(loadoutHover.projection.fusionRanks.Last()==2&&loadoutHover.target.place==PlaceKind.Helmet&&LoadoutShape(game.Deck)==before&&!game.Deck.RewardClaimed,"hover forecasts fusion without acquiring or moving anything");
                 reviewPointer=comparisonRect.center;yield return null;yield return null;
-                ReviewCheck(loadoutHover.offerIndex==0,"comparison stays available when pointer enters its scroll area");
-                reviewPointer=dropRegions.First(r=>r.offer==1).rect.center;yield return CapturePresentation(directory,"03-two-hands");
+                ReviewCheck(loadoutHover.offerIndex==0,"hover details stay available when pointer enters their scroll area");
+                ReviewCheck(!dropRegions.Any(r=>r.rect.Overlaps(comparisonRect)),"hover details never cover a reward, mount, stored item or sequence destination");
+                reviewPointer=new Vector2(-200,-200);yield return null;yield return null;
+                ReviewCheck(!inlineComparisonVisible&&comparisonRect==Rect.zero,"hover comparison disappears when the pointer leaves");
+                game.SelectOffer(1);reviewPointer=ReviewRegion(PlaceKind.Weapon,0).rect.center;yield return CapturePresentation(directory,"03-two-hands");
                 ReviewCheck(loadoutHover.fate.Contains("Edge Sword")&&loadoutHover.fate.Contains("Pulse Pistol")&&loadoutHover.heading.Contains("BOTH HANDS"),"two-handed hover names both displaced weapons and both mounts");
                 yield return ReviewDoubleClick(dropRegions.First(r=>r.offer==1).rect.center);
                 ReviewCheck(!game.Deck.RewardClaimed&&!game.Deck.TwoHanded,"reward double-click selects without silently equipping");
@@ -174,9 +181,10 @@ namespace VectorGame
                 foreach(int width in new[]{1280,1920,2560})
                 {
                     Screen.SetResolution(width,width==1280?720:1080,false);WorkbenchFixture();workbenchTextAudit=true;for(int i=0;i<12;i++)yield return null;
-                    reviewPointer=dropRegions.First(r=>r.offer==1).rect.center;yield return CapturePresentation(directory,"08-layout-"+width);
-                    ReviewCheck(dropRegions.Where(r=>r.offer>=0).All(r=>r.rect.yMax<comparisonRect.y)&&dropRegions.Where(r=>r.offer<0&&r.place==PlaceKind.Sequence).All(r=>r.rect.y>comparisonRect.yMax),"reward, comparison and sequence panels do not overlap at "+width);
-                    ReviewCheck(dropRegions.Where(r=>r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket).All(r=>r.rect.width>=90),"storage names have readable space at "+width);
+                    game.SelectOffer(1);reviewPointer=ReviewRegion(PlaceKind.Weapon,0).rect.center;yield return CapturePresentation(directory,"08-layout-"+width);
+                    ReviewCheck(dropRegions.Where(r=>r.offer>=0).All(r=>r.rect.yMax<comparisonRect.y)&&dropRegions.Where(r=>r.offer<0&&r.place==PlaceKind.Sequence).All(r=>r.rect.y>comparisonRect.yMax),"transient comparison fits between rewards and sequence at "+width);
+                    ReviewCheck(!dropRegions.Any(r=>r.rect.Overlaps(comparisonRect)),"hover details clear every interaction target at "+width);
+                    ReviewCheck(dropRegions.Where(r=>r.place==PlaceKind.Inventory&&r.item!=null&&!r.socket).All(r=>r.rect.width>=120),"storage names have readable space at "+width);
                 }
             }
             File.WriteAllText(Path.Combine(directory,rendered?"rendered-checks.txt":"model-checks.txt"),string.Join("\n",tutorialChecks));

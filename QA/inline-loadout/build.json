@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-15",
+  "branch": "feature/inline-loadout",
+  "base": "bb6a2c4f0b501e72a91d5613cb4eca9eb9ea12ee",
+  "unity": "6000.3.27f1",
+  "player": "Build/InlineLoadout/WalkingHard.exe",
+  "assemblySHA256": "dd7a7abb633456d71c6b41a3491929b9bf96181a923547fd8412ba746e51088e",
+  "nativeWorkbenchAssertions": 1171,
+  "nativeTutorialAssertions": 1482,
+  "presentationDefinitions": 64,
+  "coreScenariosPassed": 15,
+  "resolutions": [
+    "1280x720",
+    "1920x1080",
+    "2560x1080"
+  ]
+}
