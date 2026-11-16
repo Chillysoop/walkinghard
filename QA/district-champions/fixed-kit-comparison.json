@@ -1,0 +1,107 @@
+{
+  "scope": "Normal-health fixed kits through full Elite Shifts; eight kits per district. Same assembly. Freight counters and new champion counters are not identical definitions.",
+  "rows": [
+    {
+      "variant": "balance-baseline",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 3,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 66.91193807125092,
+      "secondsRange": [
+        48.01610565185547,
+        50.98272705078125
+      ],
+      "cycles": 14,
+      "attacks": 6,
+      "hits": 0,
+      "breaks": 7,
+      "guardedHits": 0
+    },
+    {
+      "variant": "balance-baseline",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 10,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 45.35327363014221,
+      "secondsRange": [
+        53.016029357910156,
+        56.24931335449219
+      ],
+      "cycles": 20,
+      "attacks": 4,
+      "hits": 0,
+      "breaks": 14,
+      "guardedHits": 0
+    },
+    {
+      "variant": "balance-baseline",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 17,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 123.72009539604187,
+      "secondsRange": [
+        58.015953063964844,
+        62.615882873535156
+      ],
+      "cycles": 18,
+      "attacks": 6,
+      "hits": 0,
+      "breaks": 9,
+      "guardedHits": 0
+    },
+    {
+      "variant": "balance-candidate",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 3,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 66.91193807125092,
+      "secondsRange": [
+        48.01610565185547,
+        50.98272705078125
+      ],
+      "cycles": 14,
+      "attacks": 6,
+      "hits": 0,
+      "breaks": 7,
+      "guardedHits": 0
+    },
+    {
+      "variant": "balance-candidate",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 10,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 44.77511930465698,
+      "secondsRange": [
+        53.016029357910156,
+        56.04931640625
+      ],
+      "cycles": 11,
+      "attacks": 1,
+      "hits": 1,
+      "breaks": 9,
+      "guardedHits": 21
+    },
+    {
+      "variant": "balance-candidate",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "wave": 17,
+      "cases": 8,
+      "clears": 8,
+      "damageTaken": 186.14555072784424,
+      "secondsRange": [
+        58.015953063964844,
+        62.33255386352539
+      ],
+      "cycles": 16,
+      "attacks": 12,
+      "hits": 10,
+      "breaks": 2,
+      "guardedHits": 0
+    }
+  ]
+}

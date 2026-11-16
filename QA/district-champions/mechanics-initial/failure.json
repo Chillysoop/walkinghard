@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "failure": "ArgumentException: You can only call GUI functions from inside OnGUI.",
+  "location": "PrototypeHUD.ChampionPreviewFits, reached after combat and save assertions",
+  "diagnosis": "Test harness called production Style/GUI.skin outside OnGUI. No assertion count was written by this first runner.",
+  "correction": "Rendered text audit queued into OnGUI; headless mechanics omit font measurement. Exception reports are now written before quitting.",
+  "log": "player.log retained locally"
+}

@@ -30,11 +30,13 @@ namespace VectorGame
         bool EliteBlocked=>!durabilityBaseline&&EliteEncounter&&(ChampionDue||ChampionPresent);
         bool ChampionBraced(Enemy e)=>e.durability?.champion==true&&e.durability.exposedUntil<=Elapsed;
         bool ResistsInterrupt(Enemy e)=>ForemanBraced(e)||ChampionBraced(e)||JourneyBossCommitted(e);
-        void InitializeDurability(Enemy e,bool champion=false)
+        void InitializeDurability(Enemy e,bool champion=false,int kind=0)
         {
             e.durability=new DurabilityState{champion=champion,wave=Wave,healthBeforeHit=e.health};
             if(!champion)return;
-            e.rig.Root.name="SHIFT CHAMPION";e.rig.Root.localScale=Vector3.one*1.3f;e.rig.ChampionEquipment();
+            if(kind>0)e.districtChampion=new DistrictChampionState{kind=kind,duration=.6f};
+            e.rig.Root.name=ChampionTitle(e);e.rig.Root.localScale=Vector3.one*1.3f;
+            if(kind==0)e.rig.ChampionEquipment();else e.rig.DistrictChampionEquipment(kind);
         }
         void ObserveDurabilityHit(Enemy e,float dealt)
         {
@@ -43,13 +45,13 @@ namespace VectorGame
             if(dealt<=0||currentCredit==null)return;
             if(d.hitActions.Add(currentCredit.action)){if(d.actions++==0)d.firstAction=currentCredit.action;}
         }
-        void ExposeChampion(Enemy e)
+        void ExposeChampion(Enemy e,string reason="Champion brace broken")
         {
             if(!ChampionBraced(e)||e.deathAge>=0)return;var d=e.durability;
-            d.exposedUntil=Elapsed+3;d.pressure=1;d.braceAge=0;
+            d.exposedUntil=Elapsed+3;d.pressure=1;d.braceAge=0;RecoverDistrictChampion(e);
             e.attack=-1;e.engaged=false;e.cooldown=Mathf.Max(e.cooldown,1);CancelCrew(e);
             fx.Ring(e.physics.Center,1.8f,VisualFactory.Cyan,.5f);fx.Burst(e.rig.Body.position,VisualFactory.Cyan,10,3);
-            Note("Champion brace broken / +25% damage",true);
+            Note(reason+" / +25% damage",true);
         }
         void ChampionPressure(Enemy e,float amount)
         {
@@ -60,7 +62,8 @@ namespace VectorGame
         }
         void StepChampion(Enemy e,float dt)
         {
-            if(e.durability?.champion!=true)return;var d=e.durability;
+            if(e.durability?.champion!=true)return;
+            if(e.districtChampion!=null){StepDistrictChampion(e,dt);return;}var d=e.durability;
             if(ChampionBraced(e))
             {
                 if(d.pressure>=1){d.pressure=0;d.pressureActions.Clear();}
@@ -81,7 +84,7 @@ namespace VectorGame
             int bonus=ChampionDefeatedThisWave||!JourneyActive&&ActiveRoute==EncounterRoute.EliteShift?6:0;Salvage+=4+bonus;salvageWave=Wave;
             if(bonus>0)Note("Champion defeated / +6 salvage",true);
         }
-        string DurabilityRole(Enemy e)=>e.durability?.champion==true?"Champion":e.boss?"Boss":e.crew!=CrewRole.None?e.crew.ToString():e.heavy?"Enforcer":e.shooter?"Shooter":e.shieldBearer?"Shield bearer":"Raider";
+        string DurabilityRole(Enemy e)=>e.durability?.champion==true?ChampionTitle(e):e.boss?"Boss":e.crew!=CrewRole.None?e.crew.ToString():e.heavy?"Enforcer":e.shooter?"Shooter":e.shieldBearer?"Shield bearer":"Raider";
     }
     public sealed partial class FighterRig
     {

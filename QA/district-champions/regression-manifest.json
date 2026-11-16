@@ -1,0 +1,9 @@
+{
+  "assemblySha256": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+  "commands": [
+    "Validate Prototype.ps1 -ReportPrefix v086-core -HeroHealth 5000",
+    "WalkingHard.exe -batchmode -nographics -durabilityReview -saveDirectory <isolated profile> -reviewOutput QA/district-champions/durability",
+    "WalkingHard.exe -batchmode -nographics -progressionChecks -saveDirectory <isolated profile> -reviewOutput QA/district-champions/progression"
+  ],
+  "sourceChangesAfterTheseChecks": "Champion junction steering and its dedicated regression; stacked protection label; fork sign layout. Combat effect values, core contracts and checkpoint schema are unchanged."
+}

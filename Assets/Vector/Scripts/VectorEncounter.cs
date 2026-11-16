@@ -108,7 +108,7 @@ namespace VectorGame
             public bool freightHitHero;
             public List<int> freightHits;
             public ForemanState foreman;public SpecialistState specialist;
-            public DurabilityState durability;public JourneyBossState journeyBoss;
+            public DurabilityState durability;public JourneyBossState journeyBoss;public DistrictChampionState districtChampion;
         }
         sealed class Flight
         {
@@ -198,6 +198,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-varietyReview")>=0)StartCoroutine(ReviewExpeditionVariety());
             if(Array.IndexOf(args,"-journeyReview")>=0)StartCoroutine(ReviewJourney());
             if(Array.IndexOf(args,"-districtReview")>=0)StartCoroutine(ReviewDistrictBosses());
+            if(Array.IndexOf(args,"-championReview")>=0)StartCoroutine(ReviewDistrictChampions());
             if(Array.IndexOf(args,"-chapterReview")>=0)StartCoroutine(ReviewChapter());
             if(Array.IndexOf(args,"-durabilityReview")>=0)StartCoroutine(ReviewDurability());
             if(Array.IndexOf(args,"-progressionReview")>=0||Array.IndexOf(args,"-progressionChecks")>=0||Array.IndexOf(args,"-weaponDiscoveryChecks")>=0||Array.IndexOf(args,"-ragdollStress")>=0)StartCoroutine(ReviewProgression());
@@ -415,12 +416,12 @@ namespace VectorGame
             if(!EntryLayout.Concealed(cameraRig,p))throw new InvalidOperationException("No concealed entrance was available.");
             bool boss=PursuerWave&&!bossSpawned&&!finaleActive;bool heavy=boss||(Wave>=3&&spawnRandom.NextDouble()<(Wave%3==0?.28:.16));bool shooter=!heavy&&Wave>=2&&spawnRandom.NextDouble()<CurrentShooterChance;if(boss)bossSpawned=true;
             bool champion=!boss&&ChampionDue;
-            var crew=boss?CrewRole.None:champion?CrewRole.Freight:forcedCrew??ChampionEscort()??NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}if(!boss)RegionalArrival(crew,ref heavy,ref shooter);
+            var crew=boss?CrewRole.None:champion?(SpawnChampionKind==0?CrewRole.Freight:CrewRole.None):forcedCrew??ChampionEscort()??NextCrew();if(crew!=CrewRole.None){heavy=crew==CrewRole.Freight;shooter=false;}if(!boss)RegionalArrival(crew,ref heavy,ref shooter);if(champion){heavy=true;shooter=false;}
             var e=new Enemy{id=++nextId,heavy=heavy,boss=boss,shooter=shooter,health=tuning.enemyHealth*(boss?24:EnemyRoleHealth(heavy,crew,champion))*EnemyHealthScale,cooldown=CombatRange(.3f,1.4f),radius=CombatRange(2.4f,3.6f),orbit=combatRandom.NextDouble()<.5?-1:1,phase=CombatRange(0,6.28f),entering=door!=null,doorway=door!=null?door.exit:Vector3.zero};
             if(IsSpecialist(crew))e.radius=crew==CrewRole.Linebreaker?6:7;
             if(shooter)e.radius=6.5f;e.maxHealth=e.health;e.rig=new FighterRig(boss?"Warden":shooter?"Shooter":heavy?"Enforcer":"Raider",actors,false,heavy,e.id^Seed,FastSimulation);e.rig.Root.position=p;if(boss)e.rig.Root.localScale*=1.4f;
             if(shooter)e.rig.RangedEquipment();
-            e.crew=crew;e.crewCooldown=1.5f;if(crew==CrewRole.None)ConfigureRouteEnemy(e);else e.rig.CrewEquipment(crew);InitializeDurability(e,champion);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
+            e.crew=crew;e.crewCooldown=1.5f;if(crew==CrewRole.None&&!champion)ConfigureRouteEnemy(e);else e.rig.CrewEquipment(crew);InitializeDurability(e,champion,champion?SpawnChampionKind:0);e.physics=new FighterPhysics(e.rig,e.id,this,false,heavy);enemies.Add(e);byId.Add(e.id,e);Spawned++;
             if(shooter)RangedSpawned++;
             if(!FastSimulation)foreach(var body in corpses)if(body.rig.Root.gameObject.activeSelf)body.physics.IgnoreWalker(e.physics,body.freightLeft<=0&&!flights.Exists(f=>f.body==body));
             if(door==null)HorizonEntries++;else if(door.side<0)LeftEntries++;else RightEntries++;
@@ -440,7 +441,7 @@ namespace VectorGame
                 if(e.entering&&(routedDoorReached(e,p)))e.entering=false;
                 UpdateEnemyRepositioning(e);
                 bool canAttack=EnemyCanAttack(e);
-                bool wasCommitted=e.engaged;bool crewBusy=StepCrew(e,dt);if(wasCommitted&&!e.engaged)committed--;if(crewBusy)canAttack=false;
+                bool wasCommitted=e.engaged;bool crewBusy=StepCrew(e,dt)||DistrictChampionBusy(e);if(wasCommitted&&!e.engaged)committed--;if(crewBusy||e.districtChampion!=null)canAttack=false;
                 if(!canAttack&&(e.engaged||e.attack>=0)){if(e.engaged)committed--;e.engaged=false;e.attack=-1;e.delivered=false;e.cooldown=Mathf.Max(e.cooldown,.35f);}
                 if(canAttack&&!e.engaged&&e.stun<=0&&e.cooldown<=0&&distance<(e.shooter?9:3.3f)&&committed<tuning.simultaneousAttackers)
                 {
@@ -456,8 +457,8 @@ namespace VectorGame
                 else if(distance>e.radius+.7f)desired=inward*tuning.enemySpeed;
                 else desired=inward*Mathf.Clamp((distance-e.radius-.15f*Mathf.Sin(clock+e.phase))*2,-1.6f,1.6f)+new Vector3(-inward.z,0,inward.x)*e.orbit*.85f;
                 if(e.heavy)desired*=.82f;
-                desired=SpecialistVelocity(e,desired);
-                if(!e.entering&&e.stun<=0&&roads.Forks.Count>0&&roads.Navigation(p,HeroPosition,out var waypoint))
+                desired=DistrictChampionVelocity(e,SpecialistVelocity(e,desired));
+                if(!e.entering&&e.stun<=0&&!DistrictChampionBusy(e)&&roads.Forks.Count>0&&roads.Navigation(p,HeroPosition,out var waypoint))
                 {var toward=waypoint-p;toward.y=0;desired=toward.normalized*(distance>15?9:tuning.enemySpeed);e.engaged=false;e.attack=-1;}
                 if(!e.entering&&e.stun<=0)
                 {
@@ -469,7 +470,7 @@ namespace VectorGame
                 Vector3 flat=new Vector3(velocity.x,0,velocity.z);
                 flat=Vector3.Lerp(flat,desired,1-Mathf.Exp(-(e.stun>0?1.4f:7)*dt));
                 e.physics.LinearVelocity=new Vector3(flat.x,velocity.y,flat.z);
-                Vector3 facing=e.entering?desired:inward;
+                Vector3 facing=e.districtChampion?.kind==2&&e.districtChampion.phase>0&&e.districtChampion.phase<3?e.districtChampion.aim-e.districtChampion.origin:e.entering?desired:inward;facing.y=0;
                 if(e.stun<=0&&facing.sqrMagnitude>.01f)e.physics.MoveRotation(Quaternion.Slerp(e.rig.Root.rotation,Quaternion.LookRotation(facing),1-Mathf.Exp(-10*dt)));
                 if(canAttack&&e.engaged&&distance<(e.shooter?9:tuning.attackRadius)&&e.attack<0){e.attack=0;e.delivered=false;}
                 if(e.attack>=0)
@@ -487,6 +488,7 @@ namespace VectorGame
                 StepReaction(e,dt,true);
                 e.rig.Telegraph(e.attack>=0&&!e.delivered,e.stun>0);
                 if(e.shieldBearer)e.rig.ShieldGuard(e.shieldOpenUntil>Elapsed);
+                if(e.districtChampion!=null)e.rig.DistrictChampionPose(e.districtChampion.kind,e.districtChampion.phase,e.durability.pressure,!ChampionBraced(e));
             }
         }
         [Serializable] public sealed class WaveReport

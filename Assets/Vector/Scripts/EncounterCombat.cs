@@ -153,7 +153,7 @@ namespace VectorGame
         void Hurt(Enemy e,float damage,Vector3 impulse,float stun,bool sever=false,ImpactKind? reactionKind=null,Vector3? hitOrigin=null)
         {
             if(e.deathAge>=0)return;
-            damage=ShieldDamage(e,damage,impulse,hitOrigin);
+            damage=ShieldDamage(e,CaptainGuardDamage(e,damage),impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
             damage=JourneyBossDamage(e,ChampionDamage(e,ForemanDamage(e,CrewProtection(e,damage))));
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
