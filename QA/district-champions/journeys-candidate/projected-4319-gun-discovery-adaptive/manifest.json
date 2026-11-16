@@ -1,0 +1,12 @@
+{
+  "seed": 4319,
+  "weaponOffers": "discovery",
+  "policy": "gun",
+  "originalBell": false,
+  "committed": false,
+  "originalArrivals": false,
+  "pool": "unlocked",
+  "drafter": "projected",
+  "assemblySha256": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+  "originalChampions": false
+}

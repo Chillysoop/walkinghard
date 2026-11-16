@@ -35,7 +35,7 @@ namespace VectorGame
             require(ResumeExpedition()&&!JourneyPacing.complete&&JourneyPacing.Active==0,"schema 9 migration explicitly marks earlier timing unknown");
             saved=CaptureCheckpoint();saved.pacing.combat=-1;AtomicWrite(SavePath,JsonUtility.ToJson(saved));
             require(!ResumeExpedition()&&File.Exists(SavePath),"invalid timing rejects resume while preserving the save");
-            StartChapter();Wave=16;BeginWave();
+            StartChapter();Wave=16;expeditionPlan.waves[15]=EncounterRoute.VolatileBreach;BeginWave();
             require(pressureRow.formation==RegionalWave.name&&RunHistory.encounters.Last().route==RegionalWave.name,"encounters report their generated formation instead of STANDARD");
             Elapsed=0;RecordPressureDamage(10);Elapsed=3;RecordPressureDamage(20);Elapsed=9;RecordPressureDamage(25);
             require(pressureRow.burst5==30&&pressureRow.damage==55,"pressure log measures a rolling five-second damage burst");

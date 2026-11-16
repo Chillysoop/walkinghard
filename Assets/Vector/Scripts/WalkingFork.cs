@@ -108,14 +108,15 @@ namespace VectorGame
             var banner=new Rect(w/2-215,22,430,66);Panel(banner);
             string title=game.RoutePending?"FORK AHEAD  /  "+game.ForkSeconds.ToString("0.0")+"s":"PATH LOCKED";
             Label(new Rect(banner.x+10,banner.y+8,410,24),title,19,white,true,TextAnchor.MiddleCenter);
-            Label(new Rect(banner.x+10,banner.y+36,410,20),game.RoutePending?"Click road or A / D · highlight = your route":"NEXT: "+VectorEncounter.RouteName(game.ForkChoice),12,muted,false,TextAnchor.MiddleCenter);
+            Label(new Rect(banner.x+10,banner.y+36,410,20),game.RoutePending?"Click road or A / D · highlight = your route":"NEXT: "+game.ForkDestinationName(game.ForkChoice),12,muted,false,TextAnchor.MiddleCenter);
             for(int side=0;side<2;side++)
             {
                 var route=side==0?game.ForkLeft:game.ForkRight;
                 var r=ForkChoiceRect(side,w,h);bool selected=game.ForkChoice==route;Color color=selected?Accent:Strong;
                 Plate(r,ink,color,9,selected?2:1);
                 var symbol=r.position+new Vector2(27,30);
-                if(DrawRegionalRouteGlyph(route,symbol,color)){}
+                if(route==EncounterRoute.EliteShift&&!game.ForkLeadsToBoss)DrawChampionGlyph(game.ForkChampionKind,symbol,color);
+                else if(DrawRegionalRouteGlyph(route,symbol,color)){}
                 else if(route==EncounterRoute.Overtime)
                 {Plate(new Rect(symbol.x-12,symbol.y-12,24,24),ink,color,2);foreach(var d in new[]{new Vector2(-5,-5),new Vector2(5,-5),new Vector2(-5,5),new Vector2(5,5)})Ring(symbol+d,1.5f,color);}
                 else if(route==EncounterRoute.SalvageStop)
@@ -126,11 +127,16 @@ namespace VectorGame
                     for(int i=1;i<points.Length;i++)Stroke(symbol+points[i-1],symbol+points[i],color,2);
                 }
                 else {Ring(symbol,9,color);for(int i=0;i<6;i++){float a=i*Mathf.PI/3;var v=new Vector2(Mathf.Cos(a),Mathf.Sin(a));Stroke(symbol+v*12,symbol+v*16,color,2);}}
-                Label(new Rect(r.x+52,r.y+13,150,26),VectorEncounter.ForkLabel(route),18,color,true);
-                Label(new Rect(r.x+52,r.y+42,150,20),VectorEncounter.ForkBenefit(route),12,white,true);
+                Label(new Rect(r.x+52,r.y+(route==EncounterRoute.EliteShift?9:13),150,route==EncounterRoute.EliteShift?34:26),route==EncounterRoute.EliteShift?game.ForkThreatLabel(route).Replace(" ","\n"):game.ForkThreatLabel(route),route==EncounterRoute.EliteShift?14:18,color,true);
+                Label(new Rect(r.x+52,r.y+(route==EncounterRoute.EliteShift?48:42),150,20),game.ForkRewardLabel(route),12,white,true);
                 Label(new Rect(r.x+12,r.y+73,r.width-24,18),(side==0?"[ A / ← ]":"[ D / → ]")+(selected?"   FOLLOWING":""),11,color,true,TextAnchor.MiddleCenter);
                 var anchor=game.ForkSignViewport(side);var point=new Vector2(anchor.x*w,(1-anchor.y)*h);
-                Stroke(new Vector2(r.center.x,r.yMax),point,color,selected?2:1);Ring(point,4,color);
+                if(!r.Contains(point))
+                {
+                    // Attach to the facing edge so an elevated road anchor never draws through the sign text.
+                    var edge=point.y<r.y?new Vector2(r.center.x,r.y):point.y>r.yMax?new Vector2(r.center.x,r.yMax):new Vector2(point.x<r.x?r.x:r.xMax,point.y);
+                    Stroke(edge,point,color,selected?2:1);Ring(point,4,color);
+                }
             }
         }
     }

@@ -1,0 +1,373 @@
+{
+  "scope": "Full PhysX, normal health, actual offers and adaptive drafts. Four matched pairs, not human difficulty or win rates. PhysX may vary despite matching seeds.",
+  "rows": [
+    {
+      "variant": "baseline",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "gun",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 280.0,
+      "seconds": 1127.0897216796875,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 11,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 16,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "pinball",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 99.0335693359375,
+      "seconds": 1166.6912841796875,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 11,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 16,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "sever",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 307.6095886230469,
+      "seconds": 1160.4700927734375,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 11,
+          "cycles": 2,
+          "attacks": 2,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 16,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "pool": "fresh",
+      "seed": 1741,
+      "policy": "pinball",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 258.7529602050781,
+      "seconds": 1177.9630126953125,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 5,
+          "cycles": 3,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 9,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 0,
+          "wave": 18,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "gun",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 280.0,
+      "seconds": 1108.4261474609375,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "wave": 11,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "wave": 16,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 1,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "pinball",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 111.18954467773438,
+      "seconds": 1172.1431884765625,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "wave": 11,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 2,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "wave": 16,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 1,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "pool": "unlocked",
+      "seed": 4319,
+      "policy": "sever",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 307.6095886230469,
+      "seconds": 1159.95166015625,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 4,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "wave": 11,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 3,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "wave": 16,
+          "cycles": 2,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "pool": "fresh",
+      "seed": 1741,
+      "policy": "pinball",
+      "assembly": "647BA216968EDA3B8D74C01614E9D0121A6783F127034B9BD5FB7136AA68A7DB",
+      "result": "Complete",
+      "wave": 21,
+      "health": 253.54843139648438,
+      "seconds": 1177.511474609375,
+      "valid": true,
+      "orderErrors": 0,
+      "visibleSpawns": 0,
+      "champions": [
+        {
+          "kind": 0,
+          "wave": 5,
+          "cycles": 3,
+          "attacks": 1,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 0,
+          "defeated": true
+        },
+        {
+          "kind": 1,
+          "wave": 9,
+          "cycles": 1,
+          "attacks": 0,
+          "hits": 0,
+          "breaks": 1,
+          "guardedHits": 1,
+          "defeated": true
+        },
+        {
+          "kind": 2,
+          "wave": 18,
+          "cycles": 1,
+          "attacks": 1,
+          "hits": 1,
+          "breaks": 0,
+          "guardedHits": 0,
+          "defeated": true
+        }
+      ]
+    }
+  ]
+}

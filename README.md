@@ -1,4 +1,6 @@
-# Walking Hard 0.8.5 - Journey pacing
+# Walking Hard 0.8.6 - District champions
+
+Elite encounters now have a district identity: the **Freight Champion** in Cinderworks, **Shield Captain** in the Foundry, and **Dispatch Interceptor** in Dispatch. Break the Captain’s gold-linked escort guard or punish its bash recovery. The Interceptor marks a fixed charge lane, then opens after the charge; launch or impact pressure can interrupt it. Distinct armor, countdowns, protection labels and cyan exposed cores show what is happening. Fork signs identify the champion and **+6 salvage**; boss-bound roads identify their escorts instead. [Verification and limits](QA/district-champions/verification.md).
 
 The Bell Foreman's command now needs more focused damage to silence. Clearing his linked escorts and building stagger/impact disruption remain effective counters. Ordinary Foundry and Dispatch reinforcements arrive slightly farther apart, giving existing groups more time to resolve while keeping each district's formation rhythm.
 
@@ -20,7 +22,7 @@ Press **I** or click **LIVE STATS** on the right during combat. Toggle **Kills, 
 
 From fight three, **Linebreakers have 2× ordinary health**, **Enforcers/Freight Brutes 3×**, and **Bellkeepers/repair crews 1.5×**. Fragile raiders and ranged enemies retain their health. The first two fights retain their previous durability while you acquire a weapon and third ability. Damaged durable enemies show health with a recent-hit trail; shield guards, repair protection and exposed states have separate cues.
 
-**Elite Shift** now brings one **5.5× health Freight Champion**, a repair escort and more fragile bodies instead of a wall of heavy guards. Light stagger builds brace pressure without cancelling its throw; launching breaks the brace, and it also opens naturally after eight visible seconds. Its plates open around a cyan core for a three-second **+25% damage** opportunity. The fight requires its defeat and pays **+6 salvage** once. [Balance measurements and verification](QA/durability/verification.md).
+**Elite Shift** brings one **5.5× health district champion**, a repair escort and plenty of fragile bodies. Light stagger builds brace pressure; launching breaks the brace. The Freight Champion also opens after eight visible seconds, while the Captain and Interceptor expose themselves after their attacks. Open plates reveal a cyan core for a three-second **+25% damage** opportunity. The fight requires its defeat and pays **+6 salvage** once. [Balance measurements and verification](QA/durability/verification.md).
 
 The loadout screen is now a **Dead Letter Office field tablet**: teal equipment bays, textured graphite storage, filled item cells and a blue sequence strip. Live labels and controls sit over generated, resizable panel materials. Taller screens show more storage rows; 720p and ultrawide keep the full build visible. Hover comparisons and fusion callouts remain in place, with no permanent suggestion panel. [Art and generation prompt](Art/README.md) · [UI verification](QA/tablet-loadout/verification.md).
 

@@ -1,0 +1,9 @@
+**/profile/
+**/player.log
+*.log
+**/*.png
+!final-signs/captain-720p-reduced-motion.png
+!final-signs/interceptor-720p-reduced-motion.png
+!final-signs/04-captain-recovery.png
+!final-signs/fork-1-1080p.png
+!final-signs/fork-720p-live-stats.png

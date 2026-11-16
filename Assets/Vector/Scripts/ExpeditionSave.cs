@@ -9,7 +9,7 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=10;
+        public int schema=11;
         public JourneyPacingLog pacing;
         public string rules="continuance-1",tuning;
         public bool chapterMode;public ChapterRun chapter;
@@ -86,7 +86,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         {
             var info=new FileInfo(SavePath);if(info.Length>64000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=10)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=11)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
             if(data.schema>=4&&(data.itinerary==null||!data.itinerary.Valid()))throw new InvalidOperationException("Invalid expedition itinerary");
             if(!data.chapterMode)data.chapter=null;
             if(data.chapterMode&&(data.chapter==null||!data.chapter.Valid()||data.wave>(data.chapter.definition==LongJourney.Id?21:6)))throw new InvalidOperationException("Invalid chapter checkpoint");
@@ -118,7 +118,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9);
+                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9,saved.schema<11);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();
                 if(savedEnemies.Length!=saved.actors.Count||savedEnemies.Select(e=>e.id).Distinct().Count()!=savedEnemies.Length||saved.actors.Select(e=>e.id).Distinct().Count()!=saved.actors.Count||savedEnemies.Any(e=>!saved.actors.Any(a=>a.id==e.id)))throw new InvalidOperationException("Invalid actor references");
@@ -137,7 +137,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
                     var body=saved.actors.Single(b=>b.id==e.id);e.rig=new FighterRig(body.name,actors,false,e.heavy,e.id^Seed);e.rig.Root.localScale=body.scale;
                     if(e.shooter)e.rig.RangedEquipment();if(e.boss&&body.scale.x>3)e.rig.PursuerArmor();e.rig.EncounterEquipment(e.shieldBearer,e.volatileCarrier);
                     e.rig.CrewEquipment(e.crew);
-                    if(e.durability?.champion==true){e.rig.ChampionEquipment();e.rig.ChampionPose(ChampionBraced(e),e.durability.pressure);}
+                    if(e.durability?.champion==true){if(e.districtChampion!=null){e.rig.DistrictChampionEquipment(e.districtChampion.kind);e.rig.DistrictChampionPose(e.districtChampion.kind,e.districtChampion.phase,e.durability.pressure,!ChampionBraced(e));}else{e.rig.ChampionEquipment();e.rig.ChampionPose(ChampionBraced(e),e.durability.pressure);}}
                     if(e.journeyBoss?.kind>0){var b=e.journeyBoss;e.rig.JourneyBossEquipment(b.kind);e.rig.JourneyBossPose(b.kind,b.links.Count,JourneyBossCommitted(e),b.phase==3&&(b.kind==2||b.broken));}
                     else if(e.foreman!=null){e.rig.ForemanEquipment();if(e.rig.Root.name.Contains("BELL FOREMAN"))e.rig.SpecialistEquipment(CrewRole.Bellkeeper);e.rig.ForemanPose(e.foreman.stage==1,e.foreman.stage==2,e.foreman.pressure);}
                     e.physics=new FighterPhysics(e.rig,e.id,this,false,e.heavy);e.physics.RestoreBody(body);

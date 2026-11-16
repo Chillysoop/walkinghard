@@ -82,7 +82,7 @@ namespace VectorGame
             try{AtomicWrite(Path.Combine(SaveDirectory,"journey-timing-latest.json"),JsonUtility.ToJson(new SavedJourneyTiming{version=Application.version,result=State.ToString(),seed=Seed,wave=Wave,pacing=JourneyPacing},true));}
             catch(Exception e){Debug.LogWarning("JOURNEY_TIMING_SAVE: "+e.Message);}
         }
-        string ActualFormation=>JourneyActive&&ChapterEncounter.boss?ChapterEncounter.name:RegionalWave?.name??RouteName(ActiveRoute);
+        string ActualFormation=>JourneyActive&&ChapterEncounter.boss?ChapterEncounter.name:JourneyActive&&RegionalWave?.id==EncounterRoute.EliteShift?ChampionTitle(SpawnChampionKind):RegionalWave?.name??RouteName(ActiveRoute);
         void BeginPressureEncounter()
         {
             if(!JourneyActive)return;

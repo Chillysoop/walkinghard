@@ -67,6 +67,7 @@ namespace VectorGame
         {
             int district=Mathf.Clamp((wave-1)/7,0,2);var encounter=LongJourney.Encounters[Mathf.Clamp(wave-1,0,20)];
             if(encounter.boss)return encounter.name.ToUpperInvariant()+" · "+(wave==21?"committed sweep → exposed recovery":wave==14?"break the rally or clear linked escorts":"pressure opens the furnace · interrupt double presses");
+            if(RegionalRoute(wave)==EncounterRoute.EliteShift)return ChampionEncounterPreview(wave);
             return (RegionalEncounters.Find(RegionalRoute(wave))?.name??"GATE PATROL")+" · "+DistrictEncounters.Cue(district);
         }
         void JourneyIntermission()

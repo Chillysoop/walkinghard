@@ -1,0 +1,78 @@
+[
+  {
+    "pool": "unlocked",
+    "seed": 4319,
+    "health": 111.18954467773438,
+    "seconds": 1172.1431884765625,
+    "champions": [
+      {
+        "kind": 0,
+        "wave": 4,
+        "cycles": 1,
+        "attacks": 0,
+        "hits": 0,
+        "breaks": 0,
+        "guardedHits": 0,
+        "defeated": true
+      },
+      {
+        "kind": 1,
+        "wave": 11,
+        "cycles": 1,
+        "attacks": 0,
+        "hits": 0,
+        "breaks": 1,
+        "guardedHits": 2,
+        "defeated": true
+      },
+      {
+        "kind": 2,
+        "wave": 16,
+        "cycles": 1,
+        "attacks": 1,
+        "hits": 1,
+        "breaks": 0,
+        "guardedHits": 0,
+        "defeated": true
+      }
+    ]
+  },
+  {
+    "pool": "fresh",
+    "seed": 1741,
+    "health": 254.60800170898438,
+    "seconds": 1172.3438720703125,
+    "champions": [
+      {
+        "kind": 0,
+        "wave": 5,
+        "cycles": 3,
+        "attacks": 1,
+        "hits": 0,
+        "breaks": 1,
+        "guardedHits": 0,
+        "defeated": true
+      },
+      {
+        "kind": 1,
+        "wave": 9,
+        "cycles": 1,
+        "attacks": 0,
+        "hits": 0,
+        "breaks": 1,
+        "guardedHits": 1,
+        "defeated": true
+      },
+      {
+        "kind": 2,
+        "wave": 18,
+        "cycles": 2,
+        "attacks": 1,
+        "hits": 0,
+        "breaks": 1,
+        "guardedHits": 0,
+        "defeated": true
+      }
+    ]
+  }
+]
