@@ -27,7 +27,7 @@ namespace VectorGame
             }
             return encounters;
         }
-        public static ExpeditionPlan Plan(int seed)
+        public static ExpeditionPlan Plan(int seed,bool originalEvents=false)
         {
             var random=new System.Random(seed^0x52ac71);
             var events=new[]{EncounterRoute.Auction,EncounterRoute.Rescue,EncounterRoute.PressureWorks,EncounterRoute.Overtime};
@@ -43,7 +43,7 @@ namespace VectorGame
                 for(int fork=0;fork<3;fork++)
                 {
                     int index=act*3+fork;
-                    p.left[index]=fork==1?events[random.Next(events.Length)]:EncounterRoute.SalvageStop;
+                    p.left[index]=fork==1?(originalEvents?events:DistrictEvents.Pools[act])[random.Next(originalEvents?events.Length:2)]:EncounterRoute.SalvageStop;
                     p.right[index]=fork==1?EncounterRoute.EliteShift:combats[random.Next(combats.Length)];
                     if(random.Next(2)==0){var swap=p.left[index];p.left[index]=p.right[index];p.right[index]=swap;}
                 }

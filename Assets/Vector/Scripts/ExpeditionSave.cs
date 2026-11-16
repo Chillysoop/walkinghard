@@ -9,7 +9,7 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=11;
+        public int schema=12;
         public JourneyPacingLog pacing;
         public string rules="continuance-1",tuning;
         public bool chapterMode;public ChapterRun chapter;
@@ -48,14 +48,16 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         ExpeditionArchive archive=new ExpeditionArchive();
         public int ArchiveCount=>archive.records.Count;
         public bool HasOvertimeRecord(int index)=>archive.records.Contains(index);
-        public static string OvertimeRecordTitle(int index)=>new[]{"THE UNFINISHED SHIFT","WAGES FOR THE DEAD","THE RESTORATION QUOTA","THE UNCLAIMED LOT","THE PRESSURE DIVIDEND","THE LAST ATTENDANCE"}[index];
+        public static string OvertimeRecordTitle(int index)=>new[]{"THE UNFINISHED SHIFT","WAGES FOR THE DEAD","THE RESTORATION QUOTA","THE UNCLAIMED LOT","THE PRESSURE DIVIDEND","THE LAST ATTENDANCE","THE SECOND ASSIGNMENT","THE UNDELIVERED"}[index];
         public static string OvertimeRecord(int index)=>new[]{
             "The crew's final request was for a shorter shift. The Continuance granted it by dividing each worker into smaller assignments. The attendance ledger has never recorded an absence.",
             "The payroll office was ordered to keep wages flowing after the evacuation. When no workers remained, it began paying the furnaces. Every cylinder bears the name of someone still listed as employed.",
             "Restoration was measured in returned tools, not returned people. The bay learned to satisfy its quota by dismantling the patients. Someone scratched a new instruction into the shutters: BRING THEM HOME WHOLE.",
             "A tool is declared abandoned when its owner misses three collection appointments. The Registry schedules every appointment during mandatory work. Iven has been buying back names as well as equipment.",
             "The furnace's emergency valves were once paid for by a public fund. Their recoverable brass now counts toward private production targets. The repair crew keeps opening them anyway. Heat reaches the homes because someone ignores the ledger.",
-            "The attendance register has no field for evacuation. Freed workers remain marked absent until their next shift. One of them carries a completion plate with its date still blank. There used to be a way to finish."
+            "The attendance register has no field for evacuation. Freed workers remain marked absent until their next shift. One of them carries a completion plate with its date still blank. There used to be a way to finish.",
+            "The Reclamation Press has reassigned every tool in the Foundry. Its register still carries the first owner of each. Iven says the machine was designed to recover value. Someone else taught it to remember names.",
+            "Dispatch refused the last evacuation because the recipients were already marked absent. The undelivered equipment outlived them. Mara has written a new address on the crate: whoever is still walking."
         }[index];
         string SaveDirectory=>saveDirectoryOverride??Path.Combine(Application.persistentDataPath,"Expedition");
         string SavePath=>Path.Combine(SaveDirectory,"checkpoint.json");
@@ -65,7 +67,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
             int at=Array.IndexOf(args,"-saveDirectory");if(at>=0&&at+1<args.Length)saveDirectoryOverride=Path.GetFullPath(args[at+1]);
             try{string path=Path.Combine(SaveDirectory,"archive.json");if(File.Exists(path))archive=JsonUtility.FromJson<ExpeditionArchive>(File.ReadAllText(path))??new ExpeditionArchive();}
             catch(Exception){archive=new ExpeditionArchive();}
-            archive.records=(archive.records??new List<int>()).Where(i=>i>=0&&i<6).Distinct().ToList();
+            archive.records=(archive.records??new List<int>()).Where(i=>i>=0&&i<8).Distinct().ToList();
             legacyReviewAccess=Array.Exists(args,a=>a.EndsWith("Review",StringComparison.Ordinal)||a=="-vectorQA");
             LoadOffice();RetireOldCheckpoint();RefreshResumeLabel();
         }
@@ -86,7 +88,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         {
             var info=new FileInfo(SavePath);if(info.Length>64000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=11)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=12)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
             if(data.schema>=4&&(data.itinerary==null||!data.itinerary.Valid()))throw new InvalidOperationException("Invalid expedition itinerary");
             if(!data.chapterMode)data.chapter=null;
             if(data.chapterMode&&(data.chapter==null||!data.chapter.Valid()||data.wave>(data.chapter.definition==LongJourney.Id?21:6)))throw new InvalidOperationException("Invalid chapter checkpoint");
@@ -118,8 +120,9 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9,saved.schema<11);
+                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9,saved.schema<11,saved.schema<12);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
+                ValidateDistrictEvent((ExpeditionStop)codec.Root("Stop"),(AbilityDeck)codec.Root("Deck"));
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();
                 if(savedEnemies.Length!=saved.actors.Count||savedEnemies.Select(e=>e.id).Distinct().Count()!=savedEnemies.Length||saved.actors.Select(e=>e.id).Distinct().Count()!=saved.actors.Count||savedEnemies.Any(e=>!saved.actors.Any(a=>a.id==e.id)))throw new InvalidOperationException("Invalid actor references");
                 foreach(var body in saved.actors.Concat(new[]{saved.hero}))

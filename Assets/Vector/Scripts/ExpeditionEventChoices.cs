@@ -26,7 +26,7 @@ namespace VectorGame
         public int EventPrice(int option)=>Stop.kind==EncounterRoute.Auction?Stop.price+(option==1?Stop.gain:0):Stop.kind==EncounterRoute.Rescue&&option==0?Stop.price:0;
         public int EventHarm(int option)=>Stop.kind==EncounterRoute.Rescue?(option==0?0:Stop.harm):Stop.kind==EncounterRoute.PressureWorks?Stop.harm*(option==1?2:1):0;
         public int EventGain(int option)=>Stop.kind==EncounterRoute.PressureWorks?Stop.gain*(option==1?2:1):Stop.gain;
-        public bool CanResolveEvent(int option)=>option>=0&&option<2&&StopOpen&&RegionalEncounters.IsNewEvent(Stop.kind)&&!Stop.reveal&&Stop.attempt<RegionalEventLimit&&Salvage>=EventPrice(option)&&Health>EventHarm(option);
+        public bool CanResolveEvent(int option)=>option>=0&&option<2&&!DistrictEventOpen&&StopOpen&&RegionalEncounters.IsNewEvent(Stop.kind)&&!Stop.reveal&&Stop.attempt<RegionalEventLimit&&Salvage>=EventPrice(option)&&Health>EventHarm(option);
         public bool ResolveRegionalEvent(int option)
         {
             if(!CanResolveEvent(option))return false;
@@ -59,7 +59,7 @@ namespace VectorGame
         }
         public bool ContinueRegionalEvent()
         {
-            if(!StopOpen||!RegionalEncounters.IsNewEvent(Stop.kind)||!Stop.reveal)return false;
+            if(DistrictEventOpen||!StopOpen||!RegionalEncounters.IsNewEvent(Stop.kind)||!Stop.reveal)return false;
             if(Stop.attempt>=RegionalEventLimit||Stop.kind==EncounterRoute.PressureWorks&&Stop.failed)return CashOutStop();
             Stop.reveal=false;Stop.failed=false;
             if(Stop.kind==EncounterRoute.Rescue)PrepareRescueAttempt();

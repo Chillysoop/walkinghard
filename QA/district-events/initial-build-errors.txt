@@ -1,0 +1,6 @@
+Assets\Vector\Scripts\DistrictEventReview.cs(38,17): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible
+Assets\Vector\Scripts\DistrictEventReview.cs(62,52): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible
+Assets\Vector\Scripts\DistrictEventReview.cs(38,17): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible
+Assets\Vector\Scripts\DistrictEventReview.cs(62,52): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible
+Assets\Vector\Scripts\DistrictEventReview.cs(38,17): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible
+Assets\Vector\Scripts\DistrictEventReview.cs(62,52): error CS0272: The property or indexer 'AbilityDeck.UltimatesUnlocked' cannot be used in this context because the set accessor is inaccessible

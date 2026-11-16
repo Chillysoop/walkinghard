@@ -1,4 +1,6 @@
-# Walking Hard 0.8.6 - District champions
+# Walking Hard 0.8.7 - District events
+
+Each district now offers its own event pair. **Cinderworks** has risky pressure taps and independent worker rescues; the **Bell Foundry** has a two-lot auction and a press that exchanges spare gear; the **Last Dispatch** has paid-in-integrity work orders and a sealed cache with weapon/ultimate prizes. Odds, costs, safe exits and possible items are shown before you commit. Event cards preview the final fusion tier and effect, including any second weapon mount consumed by fusion. Exchanged equipment keeps its own combat history, and two new lore records persist in the archive. Existing open events retain their original terms. [Verification and economy](QA/district-events/verification.md).
 
 Elite encounters now have a district identity: the **Freight Champion** in Cinderworks, **Shield Captain** in the Foundry, and **Dispatch Interceptor** in Dispatch. Break the Captain’s gold-linked escort guard or punish its bash recovery. The Interceptor marks a fixed charge lane, then opens after the charge; launch or impact pressure can interrupt it. Distinct armor, countdowns, protection labels and cyan exposed cores show what is happening. Fork signs identify the champion and **+6 salvage**; boss-bound roads identify their escorts instead. [Verification and limits](QA/district-champions/verification.md).
 

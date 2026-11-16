@@ -142,9 +142,9 @@ namespace VectorGame
         int ForkDestinationWave=>Mathf.Clamp((forkWave>0?forkWave:Wave)+1,1,WaveCount);
         public int ForkChampionKind=>JourneyActive?Mathf.Clamp((ForkDestinationWave-1)/7,0,2):0;
         public bool ForkLeadsToBoss=>JourneyActive&&LongJourney.Encounters[ForkDestinationWave-1].boss;
-        public string ForkThreatLabel(EncounterRoute route)=>route!=EncounterRoute.EliteShift?ForkLabel(route):ForkLeadsToBoss?"HEAVY ESCORT":ChampionTitle(ForkChampionKind);
-        public string ForkRewardLabel(EncounterRoute route)=>ForkLeadsToBoss&&RegionalEncounters.Find(route)?.Combat==true?"BOSS ESCORT":ForkBenefit(route);
-        public string ForkDestinationName(EncounterRoute route)=>route==EncounterRoute.EliteShift?ForkThreatLabel(route):RouteName(route);
+        public string ForkThreatLabel(EncounterRoute route)=>route!=EncounterRoute.EliteShift?(JourneyActive&&!originalEvents&&route==EncounterRoute.Overtime?"ORDERS":ForkLabel(route)):ForkLeadsToBoss?"HEAVY ESCORT":ChampionTitle(ForkChampionKind);
+        public string ForkRewardLabel(EncounterRoute route)=>ForkLeadsToBoss&&RegionalEncounters.Find(route)?.Combat==true?"BOSS ESCORT":UsesDistrictEvents&&route==EncounterRoute.Overtime?"WORK OR SALVAGE":ForkBenefit(route);
+        public string ForkDestinationName(EncounterRoute route)=>route==EncounterRoute.EliteShift?ForkThreatLabel(route):JourneyActive&&!originalEvents&&route==EncounterRoute.Overtime?DistrictEvents.Title(route):RouteName(route);
         string ChampionEncounterPreview(int wave)=>ChampionTitle(Mathf.Clamp((wave-1)/7,0,2))+" · "+((wave-1)/7==1?"break escort guard or punish bash recovery":(wave-1)/7==2?"marked charge → exposed recovery":"launch breaks brace · body throws")+" · +6 salvage";
     }
 }

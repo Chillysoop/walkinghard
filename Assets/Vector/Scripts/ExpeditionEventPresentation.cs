@@ -35,6 +35,8 @@ namespace VectorGame
             if(route==EncounterRoute.Auction){Stroke(p+new Vector2(-9,10),p+new Vector2(10,-9),color,3);Stroke(p+new Vector2(-2,-12),p+new Vector2(12,2),color,6);Stroke(p+new Vector2(-12,14),p+new Vector2(12,14),color,3);}
             else if(route==EncounterRoute.PressureWorks){Ring(p,13,color);Stroke(p,p+new Vector2(7,-7),color,3);Ring(p,2,color);}
             else if(route==EncounterRoute.Rescue){Ring(p+Vector2.up*-8,5,color);Stroke(p+new Vector2(0,-2),p+new Vector2(0,12),color,3);Stroke(p+new Vector2(-11,2),p+new Vector2(11,2),color,3);}
+            else if(route==EncounterRoute.Reclamation){foreach(int side in new[]{-1,1}){Stroke(p+new Vector2(-11,side*7),p+new Vector2(11,side*7),color,3);Stroke(p+new Vector2(side*11,side*7),p+new Vector2(side*5,side*1),color,3);}}
+            else if(route==EncounterRoute.DeadLetter){Outline(new Rect(p.x-14,p.y-10,28,20),color,1);Stroke(p+new Vector2(-14,-10),p+new Vector2(0,1),color,2);Stroke(p+new Vector2(14,-10),p+new Vector2(0,1),color,2);}
             else if(route==EncounterRoute.RepairLine){Stroke(p+new Vector2(-12,0),p+new Vector2(12,0),color,4);Stroke(p+new Vector2(0,-12),p+new Vector2(0,12),color,4);Ring(p,15,color);}
             else if(route==EncounterRoute.FreightYard){foreach(int side in new[]{-1,1}){Stroke(p+new Vector2(side*10,-13),p+new Vector2(side*10,11),color,3);Stroke(p+new Vector2(side*10,11),p+new Vector2(side*3,11),color,3);}Stroke(p+new Vector2(-10,-5),p+new Vector2(10,-5),color,3);}
             else if(route==EncounterRoute.Reclaimers){Ring(p,12,color);Stroke(p+new Vector2(9,0),p+new Vector2(-6,0),color,3);Stroke(p+new Vector2(-6,0),p+new Vector2(0,-7),color,3);Stroke(p+new Vector2(-6,0),p+new Vector2(0,7),color,3);}

@@ -50,7 +50,7 @@ namespace VectorGame
             if(qaBuild=="shared-freight"){var hammer=Equip("hammer",PlaceKind.Weapon);Module(hammer,AugmentId.Piledriver);Abilities(AbilityId.ConductiveBrand,AbilityId.Counterguard,AbilityId.ArcBolt);Module(Deck.Slots[2],AugmentId.FollowThrough);Equip("relay",PlaceKind.Rig);Equip("grounding",PlaceKind.Armor);Equip("tempest",PlaceKind.Ultimate);}
             if(qaBuild=="shared-sustain"){Equip("greatsword",PlaceKind.Weapon);Abilities(AbilityId.DrainBrand,AbilityId.Counterguard,AbilityId.ReapingCut);Module(Deck.Slots[2],AugmentId.Afterfield);Module(Deck.Slots[4],AugmentId.Focused);Equip("duelist",PlaceKind.Armor);Equip("predator",PlaceKind.Boots);Equip("salvager",PlaceKind.Helmet);Equip("magnet",PlaceKind.Rig);Equip("harvest",PlaceKind.Ultimate);}
         }
-        [Serializable] public sealed class ContributionReport {public string item,module;public bool equipped;public int rarity,kills;public Contribution values;}
-        ContributionReport[] ContributionReports()=>Deck.Items.Where(i=>i.def.kind!=ItemKind.Basic&&i.def.kind!=ItemKind.Augment).Select(i=>new ContributionReport{item=i.def.id,equipped=Deck.Slots.Contains(i)||Deck.Weapons.Contains(i)||Deck.Armor.Contains(i)||Deck.Rig==i||Deck.Ultimate==i||i==Deck.Fists&&Deck.Weapons.Any(w=>w==null),module=i.augment?.def.id??"",rarity=i.rank,kills=KillsFor(i),values=ContributionFor(i)}).ToArray();
+        [Serializable] public sealed class ContributionReport {public string item,module;public bool equipped,exchanged;public int rarity,kills;public Contribution values;}
+        ContributionReport[] ContributionReports()=>RecordedItems.Select(i=>new ContributionReport{item=i.def.id,exchanged=!Deck.Items.Contains(i),equipped=Deck.Slots.Contains(i)||Deck.Weapons.Contains(i)||Deck.Armor.Contains(i)||Deck.Rig==i||Deck.Ultimate==i||i==Deck.Fists&&Deck.Weapons.Any(w=>w==null),module=i.augment?.def.id??"",rarity=i.rank,kills=KillsFor(i),values=ContributionFor(i)}).ToArray();
     }
 }

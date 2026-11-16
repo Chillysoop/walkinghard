@@ -116,6 +116,7 @@ namespace VectorGame
                 Plate(r,ink,color,9,selected?2:1);
                 var symbol=r.position+new Vector2(27,30);
                 if(route==EncounterRoute.EliteShift&&!game.ForkLeadsToBoss)DrawChampionGlyph(game.ForkChampionKind,symbol,color);
+                else if(route==EncounterRoute.Overtime&&game.UsesDistrictEvents){Outline(new Rect(symbol.x-11,symbol.y-14,22,28),color,1);foreach(int yy in new[]{-7,0,7})Stroke(symbol+new Vector2(-6,yy),symbol+new Vector2(6,yy),color,2);}
                 else if(DrawRegionalRouteGlyph(route,symbol,color)){}
                 else if(route==EncounterRoute.Overtime)
                 {Plate(new Rect(symbol.x-12,symbol.y-12,24,24),ink,color,2);foreach(var d in new[]{new Vector2(-5,-5),new Vector2(5,-5),new Vector2(-5,5),new Vector2(5,5)})Ring(symbol+d,1.5f,color);}
