@@ -75,7 +75,7 @@ namespace VectorGame
                 comparisonRect=candidates.FirstOrDefault(c=>c.x>=20&&c.xMax<=workbenchWidth-20&&!dropRegions.Any(d=>d.rect.Overlaps(c)));
                 if(comparisonRect.width==0)comparisonRect=candidates[2];
             }
-            inlineComparisonVisible=true;Rect r=comparisonRect;Panel(r);
+            inlineComparisonVisible=true;Rect r=comparisonRect;TabletMaterial(r,0,8);Outline(r,new Color(.45f,.62f,.65f),6);
             Color accent=p.projection?.fusionRanks.Count>0?RarityColor(p.projection.fusionRanks.Last()):Accent;
             bool unresolved=p.Def.kind==ItemKind.Augment&&p.projection==null;
             var shown=p.explicitTarget||p.inspect?p.after??p.source:p.source??new LoadoutItem(p.Def,p.offer.rank);shown=DisplayItem(shown);

@@ -16,7 +16,7 @@ namespace VectorGame
             s=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=bold?FontStyle.Bold:FontStyle.Normal,alignment=anchor,wordWrap=true,padding=new RectOffset(0,0,0,0)};styles[key]=s;return s;
         }
         void Label(Rect r,string text,int size,Color color,bool bold=false,TextAnchor anchor=TextAnchor.UpperLeft)
-        {var s=Style(size,bold,anchor);s.normal.textColor=color;GUI.Label(r,text,s);}
+        {var s=Style(size,bold,anchor);s.normal.textColor=UnifiedCheckpoint?color.gamma:color;GUI.Label(r,text,s);}
         static void Box(Rect r,Color color){var previous=GUI.color;GUI.color=color;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=previous;}
         void Panel(Rect r)
         {
@@ -27,6 +27,7 @@ namespace VectorGame
         }
         bool Button(Rect r,string text,bool primary=false)
         {
+            if(UnifiedCheckpoint)return TabletButton(r,text,primary);
             bool hover=r.Contains(Pointer);
             Color tint=!GUI.enabled?line:primary?Accent:muted;
             Plate(r,hover&&GUI.enabled?new Color(.07f,.18f,.21f,.98f):ink,tint,5,primary?1.5f:1);

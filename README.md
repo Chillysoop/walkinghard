@@ -1,5 +1,7 @@
 # Walking Hard 0.8.0 - Shared augment synergies
 
+The loadout screen is now a **Dead Letter Office field tablet**: teal equipment bays, textured graphite storage, filled item cells and a blue sequence strip. Live labels and controls sit over generated, resizable panel materials. Taller screens show more storage rows; 720p and ultrawide keep the full build visible. Hover comparisons and fusion callouts remain in place, with no permanent suggestion panel. [Art and generation prompt](Art/README.md) · [UI verification](QA/tablet-loadout/verification.md).
+
 **Play** is the single game mode. It opens the **Dead Letter Office**, then a three-district journey through **21 encounters**, **nine physical road choices**, and **three bosses**. The target is about **30 minutes at 1x including build and event decisions**; faster speed settings shorten combat. Sparks, constellation unlocks and recovered records persist between runs. [Rules](DESIGN.md) · [Verification](QA/long-journey-verification.md).
 
 Click the **road itself** or its sign to select it. Cyan arrows, edge lights and the **FOLLOWING** sign show exactly where the Walker will go. A/D and arrow keys also work. You can change your choice until the six-second countdown locks it. Pause freezes the deadline; the approach caps fast play at 1x.

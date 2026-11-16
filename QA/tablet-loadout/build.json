@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-15",
+  "unity": "6000.3.27f1",
+  "player": "Build/TabletLoadoutFinal/WalkingHard.exe",
+  "assemblySha256": "658b0259b5b4540879dbf62cb9b1ba429a9507ddc902a3fe0b2ff6c56fe8d2d4",
+  "loadoutModel": 312,
+  "loadoutRendered": 1586,
+  "tutorialModel": 174,
+  "tutorialRendered": 1482,
+  "itemDefinitions": 64,
+  "resolutions": [
+    "1280x720",
+    "1440x900",
+    "1600x1200",
+    "1920x1080",
+    "2560x1080"
+  ],
+  "generatedMaterial": "Assets/Resources/TabletUI/PanelMaterials.png",
+  "generationTool": "built-in image_gen",
+  "prompt": "Art/tablet-panels-prompt.txt",
+  "branch": "feature/tablet-loadout",
+  "base": "3cec44f2acf73e64f399023569e0157c33e85227",
+  "coreScenariosPassed": 15,
+  "sourceCommit": "20207c065f86907dcf0dcf01221f54a97014d41e"
+}
