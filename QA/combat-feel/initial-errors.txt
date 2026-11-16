@@ -1,0 +1,9 @@
+Logs/build-v088-initial.log
+Assets\Vector\Scripts\VectorEncounter.cs(367,14): error CS0111: Type 'VectorEncounter' already defines a member called 'LateUpdate' with the same parameter types
+Assets\Vector\Scripts\VectorEncounter.cs(367,14): error CS0111: Type 'VectorEncounter' already defines a member called 'LateUpdate' with the same parameter types
+Assets\Vector\Scripts\VectorEncounter.cs(367,14): error CS0111: Type 'VectorEncounter' already defines a member called 'LateUpdate' with the same parameter types
+
+QA/v088-fixtures-initial/player.log
+InvalidOperationException: Combat mechanic: fork caps actual approach speed without changing saved preference
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object

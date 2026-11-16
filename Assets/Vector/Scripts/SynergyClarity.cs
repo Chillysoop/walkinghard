@@ -8,22 +8,26 @@ namespace VectorGame
     {
         readonly Dictionary<string,float> synergyCueTimes=new Dictionary<string,float>();
         float synergyCueUntil,synergyCueNext;
+        LoadoutItem payoffOwner;
+        public bool PayoffAt(LoadoutItem item)=>PayoffVisible&&item!=null&&KillOwner(item.def.kind==ItemKind.Basic?Deck.WeaponFor(item):item)==KillOwner(payoffOwner);
         public string PayoffKey {get;private set;}="";
         public string PayoffTitle {get;private set;}="";
         public string PayoffDetail {get;private set;}="";
         public bool PayoffVisible=>Time.unscaledTime<synergyCueUntil;
-        void ResetSynergyCues(){synergyCueTimes.Clear();synergyCueUntil=synergyCueNext=0;PayoffKey=PayoffTitle=PayoffDetail="";}
+        void ResetSynergyCues(){payoffOwner=null;synergyCueTimes.Clear();synergyCueUntil=synergyCueNext=0;PayoffKey=PayoffTitle=PayoffDetail="";}
         void SynergyCue(string key,string title,string detail)
         {
             if(simulation)return;float now=Time.unscaledTime;
             if(now<synergyCueNext||synergyCueTimes.TryGetValue(title,out float next)&&now<next)return;
             synergyCueTimes[title]=now+5;synergyCueNext=now+1.9f;synergyCueUntil=now+1.6f;
-            PayoffKey=key;PayoffTitle=title;PayoffDetail=detail;
+            payoffOwner=KillOwner(Owner);PayoffKey=key;PayoffTitle=title;PayoffDetail=detail;
         }
         void NotePayoff(string text)
         {
             switch(text)
             {
+                case "Counterguard empowered a weapon":SynergyCue("burst","COUNTERGUARD PAYOFF","Absorbed damage -> weapon burst");break;
+                case "Amplifier charge spent":SynergyCue("burst","AMPLIFIED STRIKE","Ability charge -> weapon burst");break;
                 case "Livewire discharged Conductive":SynergyCue("mark","LIVEWIRE DISCHARGE","Weapon contact -> Conductive spent");break;
                 case "Weapon contact delivered Conductive":SynergyCue("mark","FOLLOW-THROUGH MARKS","Ability preparation -> weapon contact");break;
                 case "Weapon contact delivered Siphon":SynergyCue("siphon","FOLLOW-THROUGH SIPHON","Weapon contact marked nearby survivors");break;

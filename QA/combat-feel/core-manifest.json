@@ -1,0 +1,7 @@
+{
+  "assembly": "782908BD1A0B73CDBC3A82A718AB2A7B14C8C637A336ECA6F937C71E6079C9D7",
+  "passed": true,
+  "scenarios": 15,
+  "scope": "Final body-scan contracts; not difficulty evidence",
+  "healthOverride": 5000
+}

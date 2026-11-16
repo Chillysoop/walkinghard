@@ -17,3 +17,5 @@ __pycache__/
 
 # Local event-review working directories; curated evidence is in QA/district-events.
 /QA/v087-*
+
+/QA/v088-*

@@ -40,7 +40,7 @@ namespace VectorGame
         void OpenForemanVent(Enemy e,bool forced)
         {
             var f=e.foreman;if(f==null||f.stage!=1)return;
-            f.stage=2;f.pressure=0;f.ventLeft=4;f.vents++;if(forced)f.forcedVents++;
+            if(EnemyCanAttack(e))fx.Cue("exposed");f.stage=2;f.pressure=0;f.ventLeft=4;f.vents++;if(forced)f.forcedVents++;
             e.attack=-1;e.delivered=false;e.cooldown=2;e.stun=0;
             e.rig.ForemanPose(false,true,0);
             fx.Ring(e.physics.Center,2.3f,Color.cyan,.55f);fx.Arc(e.rig.Body.position,e.rig.Body.position+Vector3.up*2,Color.cyan);
@@ -90,11 +90,11 @@ namespace VectorGame
             if(e.attack>=0||distance<=2.2f)desired=Vector3.zero;
             var velocity=e.physics.LinearVelocity;var flat=Vector3.MoveTowards(new Vector3(velocity.x,0,velocity.z),desired,14*dt);
             e.physics.LinearVelocity=new Vector3(flat.x,velocity.y,flat.z);if(delta.sqrMagnitude>.01f)e.physics.MoveRotation(Quaternion.LookRotation(delta));
-            if(visible&&f.stage==1&&e.attack<0&&e.cooldown<=0&&distance<3.2f){e.attack=0;e.delivered=false;if(e.journeyBoss!=null){var b=e.journeyBoss;b.phase=e.health<e.maxHealth*.5f||b.cycles%2==1?1:0;b.beats=0;b.cycles++;}}
+            if(visible&&f.stage==1&&e.attack<0&&e.cooldown<=0&&distance<3.2f){fx.Cue("press-warning");e.attack=0;e.delivered=false;if(e.journeyBoss!=null){var b=e.journeyBoss;b.phase=e.health<e.maxHealth*.5f||b.cycles%2==1?1:0;b.beats=0;b.cycles++;}}
             if(e.attack>=0)
             {
                 e.attack+=dt;
-                if(!e.delivered&&f.vfx<=0){fx.Shape(e.rig.Root.position,e.rig.Root.forward,3.8f,60,new Color(1,.55f,.2f),.22f);f.vfx=.18f;}
+                if(!e.delivered&&f.vfx<=0){fx.ThreatShape(e.rig.Root.position,e.rig.Root.forward,3.8f,60,new Color(1,.55f,.2f),.22f);f.vfx=.18f;}
                 bool doublePress=e.journeyBoss?.phase==1;float due=doublePress&&e.journeyBoss.beats==1?2.25f:1.5f;
                 if(!e.delivered&&e.attack>=due)
                 {

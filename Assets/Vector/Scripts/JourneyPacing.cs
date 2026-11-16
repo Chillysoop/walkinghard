@@ -63,7 +63,7 @@ namespace VectorGame
             if(!AutomatedJourney)JourneyPacing.Record(now-journeyClockAt,journeyClockKind,journeyClockRoad,journeyClockSpeed);
             journeyClockAt=now;journeyClockKind=CurrentJourneyTime;journeyClockRoad=ForkAwaitingChoice;journeyClockSpeed=EffectiveCombatSpeed;
         }
-        void LateUpdate(){SampleJourneyClock();}
+        void LateUpdate(){SampleJourneyClock();fx?.MixSound();}
         void OnApplicationFocus(bool focused){SampleJourneyClock();journeyFocused=focused;journeyClockKind=CurrentJourneyTime;}
         void OnApplicationPause(bool paused){SampleJourneyClock();journeySuspended=paused;journeyClockKind=CurrentJourneyTime;}
         JourneyPacingLog CaptureJourneyPacing(){SampleJourneyClock();return JsonUtility.FromJson<JourneyPacingLog>(JsonUtility.ToJson(JourneyPacing));}

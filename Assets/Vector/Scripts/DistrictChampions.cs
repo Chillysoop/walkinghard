@@ -23,7 +23,7 @@ namespace VectorGame
         static bool DistrictChampionBusy(Enemy e)=>e.districtChampion?.phase>0;
         void SetChampionPhase(Enemy e,int phase,float duration)
         {
-            var c=e.districtChampion;c.phase=phase;c.age=0;c.duration=duration;c.vfx=0;
+            var c=e.districtChampion;if(EnemyCanAttack(e)){if(c.kind==1&&phase==2)fx.Cue("press-warning");else if(c.kind==2&&phase==1)fx.Cue("sweep-warning");else if(phase==3)fx.Cue("exposed");}c.phase=phase;c.age=0;c.duration=duration;c.vfx=0;
             e.attack=-1;e.engaged=false;e.delivered=false;
         }
         void RecoverDistrictChampion(Enemy e)
@@ -98,7 +98,7 @@ namespace VectorGame
                 }
                 else
                 {
-                    if(c.vfx<=0){fx.Shape(e.rig.Root.position,Vector3.forward,3.1f,180,VisualFactory.Orange,.25f);c.vfx=.18f;}
+                    if(c.vfx<=0){fx.ThreatShape(e.rig.Root.position,Vector3.forward,3.1f,180,VisualFactory.Orange,.25f);c.vfx=.18f;}
                     if(c.age>=c.duration)
                     {
                         c.attacks++;
@@ -110,7 +110,7 @@ namespace VectorGame
             }
             else if(c.phase==1)
             {
-                if(c.vfx<=0){var delta=c.aim-c.origin;delta.y=0;fx.Corridor(c.origin,delta.normalized,delta.magnitude,1.25f,new Color(1,.25f,.35f),.25f);c.vfx=.18f;}
+                if(c.vfx<=0){var delta=c.aim-c.origin;delta.y=0;fx.ThreatCorridor(c.origin,delta.normalized,delta.magnitude,1.25f,new Color(1,.25f,.35f),.25f);c.vfx=.18f;}
                 if(c.age>=c.duration){c.attacks++;SetChampionPhase(e,2,.85f);c.previous=e.rig.Root.position;}
             }
             else

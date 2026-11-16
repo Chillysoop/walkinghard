@@ -1,0 +1,7 @@
+{
+  "healthOverride": 5000,
+  "assembly": "153A77E1ADE192A52D065BF6FE8ECC60FD71A508D3A19A6CEF641A9D9301DBA7",
+  "passed": true,
+  "scope": "Core contracts; not difficulty evidence",
+  "scenarios": 15
+}

@@ -6,6 +6,7 @@ namespace VectorGame
 {
     public sealed partial class VectorEncounter
     {
+        public string UltimatePhase=>ActiveSlot!=5?"":Preparation>0||!actionDelivered?"CHARGING":actionAge<nativeDuration*.62f?"RELEASE":"RECOVERING";
         bool Reachable(Enemy e,float range)
         {
             return !e.entering&&Vector3.Distance(e.rig.Root.position,HeroPosition)<=range&&
@@ -238,17 +239,27 @@ namespace VectorGame
             body.physics.IgnoreWalker(heroPhysics,true);
             foreach(var enemy in enemies)body.physics.IgnoreWalker(enemy.physics,!projectile);
         }
+        bool reviewOriginalBodyScan;
+        Vector3[] walkingPositions=new Vector3[64];
         void ShoveWalkingBodies(float dt)
         {
+            if(walkingPositions.Length<enemies.Count)walkingPositions=new Vector3[enemies.Count];
+            if(!reviewOriginalBodyScan)for(int i=0;i<enemies.Count;i++)walkingPositions[i]=enemies[i].rig.Root.position;
+            var heroPosition=HeroPosition;
             foreach(var body in corpses)
             {
                 if(!body.rig.Root.gameObject.activeSelf)continue;
                 if(body.freightLeft>0||flights.Exists(f=>f.body==body))continue;
                 var bounds=body.physics.WalkingBounds();
-                bool Nearby(Vector3 p)=>p.x>=bounds.min.x&&p.x<=bounds.max.x&&p.z>=bounds.min.z&&p.z<=bounds.max.z;
-                if(!finaleActive&&Nearby(HeroPosition)&&body.physics.ShoveAside(HeroPosition,RoadForward*tuning.walkSpeed,dt))CorpseShoves++;
-                foreach(var enemy in enemies)
-                    if(enemy.stun<=0&&Nearby(enemy.rig.Root.position)&&body.physics.ShoveAside(enemy.rig.Root.position,enemy.physics.Velocity,dt))CorpseShoves++;
+                var min=bounds.min;var max=bounds.max;
+                bool Nearby(Vector3 p)=>p.x>=min.x&&p.x<=max.x&&p.z>=min.z&&p.z<=max.z;
+                bool Shove(Vector3 p,Vector3 v)=>reviewOriginalBodyScan?body.physics.ShoveAside(p,v,dt):body.physics.ShoveAsideCached(p,v,dt);
+                if(!finaleActive&&Nearby(heroPosition)&&Shove(heroPosition,RoadForward*tuning.walkSpeed))CorpseShoves++;
+                for(int i=0;i<enemies.Count;i++)
+                {
+                    var enemy=enemies[i];var position=reviewOriginalBodyScan?enemy.rig.Root.position:walkingPositions[i];
+                    if(enemy.stun<=0&&Nearby(position)&&Shove(position,enemy.physics.Velocity))CorpseShoves++;
+                }
             }
         }
         void ImpactPause(float seconds){if(!qa&&!ReducedMotion)hitStop=Mathf.Max(hitStop,seconds);}

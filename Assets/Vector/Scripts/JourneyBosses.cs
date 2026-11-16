@@ -63,7 +63,7 @@ namespace VectorGame
         }
         void SetBossPhase(Enemy e,int phase,float duration)
         {
-            var b=e.journeyBoss;b.phase=phase;b.age=0;b.duration=duration;b.vfx=0;e.attack=-1;e.delivered=false;
+            var b=e.journeyBoss;if(EnemyCanAttack(e)){if(phase==1||b.kind==1&&phase==2)fx.Cue(b.kind==1?"bell-warning":"sweep-warning");else if(phase==3&&(b.kind==2||b.broken))fx.Cue("exposed");}b.phase=phase;b.age=0;b.duration=duration;b.vfx=0;e.attack=-1;e.delivered=false;
             if(phase==3){b.extension=0;b.impactActions.Clear();e.stun=0;}
         }
         void BeginBellCommand(Enemy e)
@@ -140,7 +140,7 @@ namespace VectorGame
                 if(b.phase==1||b.phase==2)
                 {
                     foreach(int id in b.links)if(byId.TryGetValue(id,out var ally)){fx.Arc(e.rig.Body.position+Vector3.up,ally.rig.Body.position,CrewColor(CrewRole.Bellkeeper));fx.Ring(ally.rig.Root.position,.7f,CrewColor(CrewRole.Bellkeeper),.25f);}
-                    if(b.phase==2)fx.Shape(e.rig.Root.position,Vector3.forward,4.7f,180,CrewColor(CrewRole.Bellkeeper),.25f);
+                    if(b.phase==2)fx.ThreatShape(e.rig.Root.position,Vector3.forward,4.7f,180,CrewColor(CrewRole.Bellkeeper),.25f);
                 }
                 b.vfx=.2f;
             }
@@ -165,7 +165,7 @@ namespace VectorGame
             }
             else if(b.phase==2&&b.age>=b.duration){SetBossPhase(e,3,3.2f);fx.Ring(e.physics.Center,3,VisualFactory.Cyan,.45f);}
             else if(b.phase==3&&b.age>=b.duration)SetBossPhase(e,0,0);
-            if(b.phase==1&&b.vfx<=0){fx.Shape(e.rig.Root.position,b.aim,4.7f,75,VisualFactory.Orange,.25f);fx.Corridor(e.rig.Root.position,b.aim,4.7f,.65f,VisualFactory.Orange,.25f);b.vfx=.18f;}
+            if(b.phase==1&&b.vfx<=0){fx.ThreatShape(e.rig.Root.position,b.aim,4.7f,75,VisualFactory.Orange,.25f);fx.ThreatCorridor(e.rig.Root.position,b.aim,4.7f,.65f,VisualFactory.Orange,.25f);b.vfx=.18f;}
             MoveJourneyBoss(e,delta,distance,dt,b.phase==1||b.phase==2,1.05f);
             pursuerGaitClock+=dt*.3f;pursuerStride=Mathf.MoveTowards(pursuerStride,e.physics.LinearVelocity.magnitude/1.05f,dt*2);
             e.attack=b.phase==1?b.age:b.phase==2?2+b.age:-1;

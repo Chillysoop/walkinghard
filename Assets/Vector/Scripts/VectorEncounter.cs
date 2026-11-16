@@ -186,6 +186,7 @@ namespace VectorGame
             if(qa){if(!FastSimulation)CheckCombatMechanics();if(simulation){LoadoutChecks.Run();modelChecks=true;int balanceIndex=Array.IndexOf(args,"-simBalance");if(balanceIndex>=0&&balanceIndex+1<args.Length)BalanceOverrides.Apply(args[balanceIndex+1],tuning);}else{int healthIndex=Array.IndexOf(args,"-qaHealth");if(healthIndex>=0&&healthIndex+1<args.Length&&int.TryParse(args[healthIndex+1],out int qaHealth)&&qaHealth>0)tuning.heroHealth=qaHealth;}if(simulationExpedition)ExpeditionActive=true;Begin();}
             if(Array.IndexOf(args,"-mechanicReview")>=0)StartRequestedMechanicReview();
             if(Array.IndexOf(args,"-combatPreview")>=0)BeginCombatPreview();
+            if(Array.IndexOf(args,"-combatFeelReview")>=0)StartCoroutine(ReviewCombatFeel());
             if(Array.IndexOf(args,"-combatPreviewCheck")>=0)StartCoroutine(CheckCombatPreview());
             if(Array.IndexOf(args,"-cinderworksPreview")>=0)BeginCinderworksPreview();
             if(Array.IndexOf(args,"-cinderworksReview")>=0)StartCoroutine(ReviewCinderworks());
@@ -307,7 +308,7 @@ namespace VectorGame
         }
         public void ToggleUltimate(){UltimateAutomatic=!UltimateAutomatic;if(!UltimateAutomatic)ultimateRequested=false;}
         public void RequestUltimate(){if(State==RunState.Running&&Deck.Ultimate!=null&&UltimateRemaining<=0)ultimateRequested=true;}
-        public void TogglePause(){if(State==RunState.Running||State==RunState.Revealing){pausedReveal=State==RunState.Revealing;State=RunState.Paused;}else if(State==RunState.Paused)State=pausedReveal?RunState.Revealing:RunState.Running;}
+        public void TogglePause(){if(State==RunState.Running||State==RunState.Revealing){pausedReveal=State==RunState.Revealing;State=RunState.Paused;fx.Sound?.Stop();}else if(State==RunState.Paused)State=pausedReveal?RunState.Revealing:RunState.Running;}
         public void ToggleMotion(){ReducedMotion=!ReducedMotion;fx.SetReducedMotion(ReducedMotion);}
         public void ToggleSound(){fx.muted=!fx.muted;}
         public void Quit(){Application.Quit();}
@@ -362,6 +363,7 @@ namespace VectorGame
             FinishExpeditionStorage();
             if(State==RunState.Ready){clock+=Time.deltaTime;hero.Pose(clock,0,-1,0,0,false,0);}
         }
+        readonly long[] bodyMotionProfile=new long[3];
         void AdvanceCombat(float realDelta)
         {
             if(State!=RunState.Running)return;
@@ -393,7 +395,7 @@ namespace VectorGame
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/ArrivalDuration))/WaveCount;
                 spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval()*JourneyArrivalScale;
             }
-            long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
+            long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{long m=System.Diagnostics.Stopwatch.GetTimestamp();ShoveWalkingBodies(dt);long n=System.Diagnostics.Stopwatch.GetTimestamp();bodyMotionProfile[0]+=n-m;Physics.SyncTransforms();long q=System.Diagnostics.Stopwatch.GetTimestamp();bodyMotionProfile[1]+=q-n;Physics.Simulate(dt);bodyMotionProfile[2]+=System.Diagnostics.Stopwatch.GetTimestamp()-q;}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
             StepFreightBodies(dt);StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);StepPressureEncounter(dt);
