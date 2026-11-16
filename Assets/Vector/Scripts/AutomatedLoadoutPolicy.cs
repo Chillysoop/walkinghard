@@ -51,11 +51,12 @@ namespace VectorGame
         {
             var c=LoadoutCatalog.Action(item);var d=item.def;float power=ItemRarity.Power[item.rank];
             float coverage=d.profile!=null?1+Math.Min(70,d.profile.arc)/100:d.id=="SteelJab"||d.id=="MassDriver"?1:d.id=="ArcBolt"||d.id=="Breaker"||d.id=="ReapingCut"||d.id=="SuppressiveVolley"?2.4f:1.35f;
-            if(d.id=="rifle")coverage=1+.5f*Math.Min(3,item.rank);
-            if(d.id=="pistol")coverage=1+.5f*Math.Min(2,item.rank-1);
-            if(d.id=="hammer"&&item.rank>=3)coverage=2.3f;
+            if(d.profile?.style==WeaponStyle.Rifle)coverage=1+.5f*Math.Min(3,item.rank);
+            if(d.profile?.style==WeaponStyle.Pistol)coverage=1+.5f*Math.Min(2,item.rank-1);
+            if(d.profile?.style==WeaponStyle.Impact&&item.rank>=3)coverage=2.3f;
             float utility=d.id=="GravityWell"||d.id=="VectorTether"?20:d.id=="Counterguard"?30:d.id=="DrainBrand"?30:d.id=="MassDriver"||d.id=="hammer"||d.id=="breachhammer"?18:d.id=="ConductiveBrand"?3:0;
-            if(d.id=="fists"&&item.rank>=2)coverage*=1.4f;
+            if(d.profile?.style==WeaponStyle.Kinetic&&item.rank>=2)coverage*=1.4f;
+            if(d.id=="RepulsorGuard")utility=25; if(d.id=="lastbastion")utility=45; if(d.id=="VectorSling")utility=18; if(d.id=="StormLash")utility=5;
             if(item.augment!=null)utility+=4;
             return (c.damage*coverage+utility*power)*Affinity(d,style);
         }

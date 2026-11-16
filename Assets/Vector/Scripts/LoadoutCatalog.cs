@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VectorGame
 {
-    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator,Recoil }
+    public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator,Recoil,ImpactLens,Counterweight,Switchboard,StaticShroud,StormCapacitor,ExecutionHood,SpurTreads,BallisticVest,VentGreaves,Rangefinder,MercyLens,Reservoir,WardenVisor,ReturnSpring }
     public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter,Siphon,Hook,Rivet }
     public readonly struct GearStats
     {
@@ -56,7 +56,7 @@ namespace VectorGame
         static ItemDefinition Gear(string id,string name,ItemKind kind,Signature sig,string description,string scaling,string tags,string cost,GearStats stats,EffectProfile effect)
         {return new ItemDefinition(id,name,kind,description,scaling){signature=sig,stats=stats,effect=effect,tags=tags,tradeoff=cost};}
         // First three preserve the original definitions/indices used by saved QA fixtures.
-        public static readonly ItemDefinition[] Armor={
+        public static readonly ItemDefinition[] Armor=new[]{
             Gear("visor","Tactician Visor",ItemKind.Helmet,Signature.Tactician,"Hits against staggered targets transfer stagger to one neighbor, once per turn.","More stagger transfer reach/duration and direct power.","stagger iron storm","Requires an already-staggered target.",new GearStats(damage:.06f),new EffectProfile(6,3,.25f)),
             Gear("plate","Bulwark Plate",ItemKind.Armor,Signature.Bulwark,"Completing a sequence arms a guard. The next hit is absorbed and releases stagger.","More guard capacity and pulse coverage.","guard iron hammer","One guard per completed loop.",new GearStats(health:40,resistance:.08f),new EffectProfile(14,2.6f,.4f)),
             Gear("treads","Recovery Treads",ItemKind.Boots,Signature.Recovery,"The first kill of a turn drops a repair mote. Walk near it to heal; Gravity Well and Vector Tether can gather motes.","More healing and pickup reach.","sustain iron blade","Distant kills can leave motes out of reach.",new GearStats(speed:.04f),new EffectProfile(3,3,10)),
@@ -72,10 +72,10 @@ namespace VectorGame
             Gear("predator","Predator Boots",ItemKind.Boots,Signature.Predator,"Actual healing accelerates the next ability; one stored boost.","Stronger ability haste with rarity.","siphon sustain tempo","One boost; refreshes rather than stacks. No boost from overhealing.",new GearStats(speed:.02f),new EffectProfile(.12f,0,0)),
             Gear("arcstep","Arcstep Boots",ItemKind.Boots,Signature.Arcstep,"Two kills from one turn mark nearby survivors Conductive.","More marked targets and wider coverage.","mark storm blade","Requires a multi-kill; once per originating turn.",new GearStats(speed:.03f),new EffectProfile(10,3,6,2)),
             Gear("recoil","Recoil Harness",ItemKind.Armor,Signature.Recoil,"Reload to guard one hit. Blocking charges bonus damage for the next surviving gun target; lethal base hits save it.","More block capacity, bonus shot damage and guard duration.","reload guard gun","Guard lasts 6s at Common. One shared guard and shot; refreshes never stack. Full magazines do not trigger it.",new GearStats(health:20),new EffectProfile(12,0,6))
-        };
+        }.Concat(ConstellationContent.Gear.Where(d=>IsArmor(d.kind))).ToArray();
         static ItemDefinition Skill(AbilityId id,string name,string desc,string interaction,float duration,float range,float damage,int pose,string tags,string cost)
         {return new ItemDefinition(id.ToString(),name,ItemKind.Ability,desc,"Rarity improves damage and the signature's coverage, duration or force.",ability:new AbilityCard(id,name,desc,interaction,duration,range,damage,pose)){tags=tags,tradeoff=cost,effect=new EffectProfile(1,range,.4f)};}
-        public static readonly ItemDefinition[] Abilities={
+        public static readonly ItemDefinition[] Abilities=new[]{
             Skill(AbilityId.SteelJab,"Steel Jab","Quick interrupt; bonus impact against an attacking enemy.","Creates stagger.",.4f,2.6f,24,0,"stagger iron","Short reach; one target."),
             Skill(AbilityId.Breaker,"Breaker","A broad palm strike that staggers the front crowd.","Stagger feeds lightning and later basics.",.68f,3.2f,30,2,"stagger iron hammer","Limited reach; rear enemies are outside the cone."),
             Skill(AbilityId.ForcePush,"Force Push","Repel nearby enemies and fallen bodies.","Uses gathered targets; creates knockback.",.95f,5.3f,20,-1,"push vector","Can push targets beyond the next melee action."),
@@ -88,11 +88,11 @@ namespace VectorGame
             Skill(AbilityId.DrainBrand,"Drain Brand","Mark a group; damage against them steals additional life.","Creates Siphon marks; all weapons and abilities can drain them.",.65f,7,8,-1,"siphon sustain","3 / 3 / 4 / 4 / 5 targets; shared healing budget."),
             Skill(AbilityId.Counterguard,"Counterguard","Create a barrier; absorbed damage empowers the next basic turn.","Defense creates a stored offensive payoff.",.55f,8,0,-1,"guard iron hammer","Only absorbed damage charges the payoff; one capped bank."),
             Skill(AbilityId.SuppressiveVolley,"Suppressive Volley","Interrupt up to three distant foes in a narrow fan without pushing them away.","Stagger feeds lightning and stagger gear.",.75f,13,12,5,"stagger gun iron","Three targets maximum; narrower coverage than a close-range strike.")
-        };
+        }.Concat(ConstellationContent.Abilities).ToArray();
         static ItemDefinition Weapon(string id,string name,WeaponKind family,int hands,WeaponStyle style,string desc,string upgrade,string tags,string cost,float damage,float duration,float range,float arc,float force,int mag,int pose)
         {return new ItemDefinition(id,name,ItemKind.Weapon,desc,upgrade,family,hands){profile=new WeaponProfile(style,damage,duration,range,arc,force,mag,pose),tags=tags,tradeoff=cost};}
         public static readonly ItemDefinition Fists=Weapon("fists","Kinetic Fists",WeaponKind.Fists,1,WeaponStyle.Kinetic,"Quick close strikes with reliable stagger.","Uncommon: two contacts. Rare+: stagger shockwave; higher rarity improves coverage.","stagger iron","Short reach and limited area.",19,.36f,2.7f,0,1.2f,0,0);
-        public static readonly ItemDefinition[] Weapons={
+        public static readonly ItemDefinition[] Weapons=new[]{
             Weapon("sword","Edge Sword",WeaponKind.Sword,1,WeaponStyle.Edge,"Broad cuts; lethal hits sever at the struck body joint.","Wider reach/arc; Rare+ launches severed bodies.","sever blade","Less concentrated impact than a two-handed blade.",34,.74f,3.7f,45,3,0,3),
             Weapon("hammer","Impact Hammer",WeaponKind.Hammer,2,WeaponStyle.Impact,"One crushing launch using both mounts.","Uncommon: area stagger. Rare+: up to three launches sharing one cascade.","launch collision hammer","Slow commitment and both weapon mounts.",48,1.12f,3.5f,55,15,0,4),
             Weapon("pistol","Pulse Pistol",WeaponKind.Pistol,1,WeaponStyle.Pistol,"Six rounds; quick ranged shots.","Uncommon: one ricochet. Rare+: two, with better retention/reach.","gun reload","Reload delays the next weapon turn.",24,.48f,10,0,.7f,6,5),
@@ -105,28 +105,28 @@ namespace VectorGame
             Weapon("scattergun","Compact Scattergun",WeaponKind.Shotgun,1,WeaponStyle.Scatter,"Three rounds; a short cone of knockback pellets.","Wider useful coverage and better pellet retention.","gun push close","Short reach; small magazine.",31,.75f,6,40,5,3,5),
             Weapon("hookblade","Hookblade",WeaponKind.Sword,1,WeaponStyle.Hook,"Cut a narrow group; pull the surviving primary target closer. Killing blows sever.","More pull force, reach and cutting arc.","gather sever blade close","Lower damage and narrower cleave than Edge Sword; pulls danger closer. Hooked Edge strengthens the pull by 25% instead of adding another.",28,.74f,3.7f,25,0,0,3),
             Weapon("rivetpistol","Rivet Pistol",WeaponKind.Pistol,1,WeaponStyle.Rivet,"Six rivets; slow forward movement without knockback or interrupting attacks.","Forward slow 40 / 45 / 50 / 55 / 60%; lasts 1.4 / 1.6 / 1.8 / 2 / 2.2s.","slow reload gun","Lower damage; no ricochets. Does not slow bosses or committed charges. Strongest slow wins; no stacking.",20,.5f,10,0,0,6,5)
-        };
-        public static readonly ItemDefinition[] Rigs={
+        }.Concat(ConstellationContent.Weapons).ToArray();
+        public static readonly ItemDefinition[] Rigs=new[]{
             Gear("faultline","Fault Line",ItemKind.Rig,Signature.FaultLine,"First body impact in a turn emits a stagger aftershock.","More collision power and aftershock coverage.","collision hammer vector","Requires body impacts; one aftershock per originating turn.",new GearStats(),new EffectProfile(10,2,.4f)),
             Gear("overclock","Overclock",ItemKind.Rig,Signature.Overclock,"Successive turns ramp tempo within the loop; wrapping resets it.","Stronger tempo ramp, capped at 40%.","tempo iron gun","Early turns have no ramp; no ultimate recharge speed.",new GearStats(),new EffectProfile(.06f,0,0)),
             Gear("amplifier","Amplifier",ItemKind.Rig,Signature.Amplifier,"Abilities bank charge; the next basic releases one impact burst.","Larger charge bank and burst.","burst gun iron","Requires setup before a basic; paired basics spend it once.",new GearStats(),new EffectProfile(6,2.1f,0,3)),
             Gear("relay","Relay Coil",ItemKind.Rig,Signature.Relay,"Body impacts consume Conductive to discharge lightning.","One extra arc at Common, two at Rare, three at Legendary; more reach.","mark collision storm hammer","Needs a mark and a later body impact; arcs cannot repeat the trigger.",new GearStats(),new EffectProfile(10,3,0)),
             Gear("magnet","Salvage Magnet",ItemKind.Rig,Signature.Salvage,"A direct sever propels the body/fragments into one follow-up collision chain.","More retrieval reach and launch impulse.","sever collision blade vector","Once per turn, with one shared hit budget and enemy identity.",new GearStats(),new EffectProfile(1,5,0))
-        };
+        }.Concat(ConstellationContent.Gear.Where(d=>d.kind==ItemKind.Rig)).ToArray();
         public static readonly AbilityCard Ultimate=new AbilityCard(AbilityId.Ultimate,"Singularity Burst","Blast bodies into collision chains.","Creates launch and collision.",1.1f,8.5f,38,-1);
-        public static readonly ItemDefinition[] Ultimates={
+        public static readonly ItemDefinition[] Ultimates=new[]{
             new ItemDefinition("singularity","Singularity Burst",ItemKind.Ultimate,"Launch nearby bodies into a shared collision cascade.","More launch force and coverage.",ability:Ultimate){tags="launch vector hammer",tradeoff="Shared six-hit cascade budget."},
             new ItemDefinition("tempest","Tempest Array",ItemKind.Ultimate,"Chain lightning through a crowd; exploit stagger and Conductive.","More chain reach and target capacity.",ability:new AbilityCard(AbilityId.Ultimate,"Tempest Array","Chain discharge.","Uses marks and stagger.",1.2f,12,52,-1)){tags="chain storm",tradeoff="Targets must connect through jump reach."},
             new ItemDefinition("cyclone","Razor Cyclone",ItemKind.Ultimate,"Radial cutting burst; lethal hits sever and shove.","More cutting coverage and follow-through force.",ability:new AbilityCard(AbilityId.Ultimate,"Razor Cyclone","Radial severing burst.","Creates fragments.",1.3f,6,45,3)){tags="sever blade",tradeoff="Local area; no automatic executions."},
             new ItemDefinition("harvest","Harvest",ItemKind.Ultimate,"Drain nearby enemies in a visible pulse; restore health from damage dealt.","Stronger damage, drain and coverage; healing limit grows from 8% to 12% max health.",ability:new AbilityCard(AbilityId.Ultimate,"Harvest","Drain the crowd for health.","Uses Siphon marks; heals from actual damage only.",1.1f,7,38,-1)){tags="siphon sustain",tradeoff="16s recharge; 20% damage drained, rarity-scaled, within its displayed healing limit."},
             new ItemDefinition("redline","Redline",ItemKind.Ultimate,"Refill equipped guns and accelerate the next six sequence turns.","Stronger acceleration; capped at 45%.",ability:new AbilityCard(AbilityId.Ultimate,"Redline","Reload and accelerate six turns.","Uses reload and tempo.",.65f,14,0,-1)){tags="reload tempo gun iron",tradeoff="No direct damage; full magazines do not count as reloads."}
-        };
+        }.Concat(ConstellationContent.Ultimates).ToArray();
         public static IEnumerable<ItemDefinition> Equipment=>Weapons.Concat(Armor).Concat(Rigs).Concat(Ultimates);
         public static IEnumerable<ItemDefinition> All=>Equipment.Concat(Abilities);
         public static ItemDefinition Find(string id)=>All.Concat(AugmentCatalog.All).First(d=>d.id==id);
         public static float EffectScale(LoadoutItem item)=>(1+.15f*(item.rank-1))*BalanceOverrides.Effect(item.def.id);
         public static int Magazine(LoadoutItem item)=>item?.def.profile?.magazine??0;
-        public static float Cooldown(LoadoutItem item)=>Mathf.Max(10.1f,(item?.def.id=="harvest"?16:item?.def.id=="tempest"?16:item?.def.id=="cyclone"?15:item?.def.id=="redline"?18:12)*BalanceOverrides.Cooldown(item?.def.id??""));
+        public static float Cooldown(LoadoutItem item)=>Mathf.Max(10.1f,(ConstellationContent.Cooldown(item?.def.id??"")>0?ConstellationContent.Cooldown(item.def.id):item?.def.id=="harvest"?16:item?.def.id=="tempest"?16:item?.def.id=="cyclone"?15:item?.def.id=="redline"?18:12)*BalanceOverrides.Cooldown(item?.def.id??""));
         public static AbilityCard Basic(LoadoutItem weapon)=>Action(weapon);
         public static AbilityCard Action(LoadoutItem item)
         {

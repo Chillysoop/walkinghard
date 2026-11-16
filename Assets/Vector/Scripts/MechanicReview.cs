@@ -11,11 +11,11 @@ namespace VectorGame
     {
         public bool MechanicReview {get;private set;}
         public string ReviewLabel {get;private set;}="";
-        int reviewIndex,reviewFrame,reviewLastIndex=44;float reviewAge;bool reviewCaptures,reviewImpacts,reviewShared;
+        int reviewIndex,reviewFrame,reviewLastIndex=44;float reviewAge;bool reviewCaptures,reviewImpacts,reviewShared,reviewControl;
         float[] reviewCaptureTimes={.05f,.22f,.4f,.6f,.8f,1.05f,1.3f,1.65f,2,2.4f,3.2f,5.2f};
         void StartRequestedMechanicReview()
         {
-            var args=Environment.GetCommandLineArgs();reviewImpacts=Array.IndexOf(args,"-reviewImpacts")>=0;reviewShared=Array.IndexOf(args,"-reviewSharedAugments")>=0;int at=Array.IndexOf(args,"-reviewStart");int start=at>=0?int.Parse(args[at+1]):0;at=Array.IndexOf(args,"-reviewCount");int count=at>=0?int.Parse(args[at+1]):ReviewCases.Length;
+            var args=Environment.GetCommandLineArgs();reviewControl=Array.IndexOf(args,"-reviewControlWeapons")>=0;reviewImpacts=Array.IndexOf(args,"-reviewImpacts")>=0;reviewShared=Array.IndexOf(args,"-reviewSharedAugments")>=0;int at=Array.IndexOf(args,"-reviewStart");int start=at>=0?int.Parse(args[at+1]):0;at=Array.IndexOf(args,"-reviewCount");int count=at>=0?int.Parse(args[at+1]):ReviewCases.Length;
             if(start<0||start>=ReviewCases.Length||count<1)throw new ArgumentException("Invalid review case range");reviewLastIndex=Math.Min(ReviewCases.Length-1,start+count-1);
             if(Array.IndexOf(args,"-reviewDense")>=0)reviewCaptureTimes=Enumerable.Range(0,60).Select(i=>.025f+i*.1f).ToArray();StartMechanicReview(start);
         }
@@ -34,7 +34,7 @@ namespace VectorGame
             var previous=RenderTexture.active;RenderTexture.active=reviewTarget;reviewPixels.ReadPixels(new Rect(0,0,1600,900),0,0);reviewPixels.Apply();RenderTexture.active=previous;
             File.WriteAllBytes(path,reviewPixels.EncodeToPNG());
         }
-        string[] ReviewCases=>reviewShared?new[]{"ForcePush-Focused","VectorTether-Focused","ConductiveBrand-FollowThrough","DrainBrand-FollowThrough","SuppressiveVolley-FollowThrough","ArcBolt-Afterfield","ReapingCut-Afterfield","DrainBrand-Afterfield","wraps-Livewire","rifle-Livewire","GravityWell-Afterfield"}:reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline","SuppressiveVolley","hookblade","rivetpistol"}).ToArray();
+        string[] ReviewCases=>reviewControl?new[]{"hookblade","rivetpistol"}:reviewShared?new[]{"ForcePush-Focused","VectorTether-Focused","ConductiveBrand-FollowThrough","DrainBrand-FollowThrough","SuppressiveVolley-FollowThrough","ArcBolt-Afterfield","ReapingCut-Afterfield","DrainBrand-Afterfield","wraps-Livewire","rifle-Livewire","GravityWell-Afterfield"}:reviewImpacts?LoadoutCatalog.Weapons.Concat(LoadoutCatalog.Abilities).Concat(LoadoutCatalog.Ultimates).Select(d=>d.id).ToArray():AugmentCatalog.All.Select(d=>d.id).Concat(LoadoutCatalog.Armor.Select(d=>d.id)).Concat(LoadoutCatalog.Rigs.Select(d=>d.id)).Concat(new[]{"wraps","greatsword","breachhammer","scattergun","ConductiveBrand","VectorTether","ReapingCut","Counterguard","singularity","tempest","cyclone","redline","SuppressiveVolley","hookblade","rivetpistol"}).ToArray();
         public void StartMechanicReview(int index=0)
         {
             combatRandom=new System.Random(7);MechanicReview=true;reviewIndex=index;reviewAge=0;reviewFrame=0;reviewCaptures=Array.IndexOf(Environment.GetCommandLineArgs(),"-reviewCapture")>=0;WaveElapsed=0;ProbeReset();

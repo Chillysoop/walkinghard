@@ -10,6 +10,8 @@ namespace VectorGame
         {
             if(item==null)return "Empty; skipped in combat.";
             if(item.def.kind==ItemKind.Basic)item=game.Deck.WeaponFor(item);
+            if(ConstellationContent.IsNew(item.def.id)&&item.HasAugment(AugmentId.Focused))return "One target; stronger opening effect.";
+            if(ConstellationContent.IsNew(item.def.id)&&item.HasAugment(AugmentId.Echo))return "Weaker opening; one delayed repeat.";
             if(item.augment!=null)switch(item.augment.def.module.id)
             {
                 case AugmentId.FollowThrough:return item.def.ability.id==AbilityId.ConductiveBrand?"Mark now; next weapon marks more.":item.def.ability.id==AbilityId.DrainBrand?"Drain mark now; weapon spreads more.":"Weaker interrupt; weapon adds stagger.";
@@ -30,6 +32,7 @@ namespace VectorGame
                 case AugmentId.Livewire:return "Discharge a marked survivor once.";
                 case AugmentId.BreachLoad:return "Shoot; reload arms a stagger burst.";
             }
+            if(ConstellationContent.IsNew(item.def.id))return ConstellationContent.Short(item.def.id);
             switch(item.def.id)
             {
                 case "siphonblade":return "Cuts heal; marks let other hits drain.";

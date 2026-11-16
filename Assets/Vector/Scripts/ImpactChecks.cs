@@ -40,7 +40,7 @@ namespace VectorGame
             ElectricHit(shock,1000,.18f);for(int i=0;i<60;i++){StepReaction(shock,1f/60,false);ProbeFrames(1);}
             MechanicRequire(shock.physics.Finite()&&shock.reactionLeft==0,"electrical death spasm settles with bounded energy");
 
-            foreach(var def in LoadoutCatalog.Abilities.Where(d=>d.id!="Counterguard"))
+            foreach(var def in LoadoutCatalog.Abilities.Where(d=>d.ability.damage>0))
             {
                 ProbeReset();ProbeHost(def);var target=ProbeEnemy(0,2,500);actionTarget=target;float beforeHealth=target.health;Resolve(activeCard);
                 MechanicRequire(target.health<beforeHealth&&target.reactionLeft>0,"ability drives a real hit reaction: "+def.name);
@@ -50,9 +50,10 @@ namespace VectorGame
                 ProbeReset();var ult=Deck.Acquire(def);Deck.Move(ult,PlaceKind.Ultimate);currentCredit=new KillCredit{item=ult,action=actionSerial};var target=ProbeEnemy(0,2,5);int kills=Kills;
                 ResolveUltimate();
                 if(def.id=="redline")MechanicRequire(Kills==kills&&redlineTurns==6,"Redline visual vent retains a non-damaging six-turn payoff");
+                else if(def.id=="lastbastion")MechanicRequire(Kills==kills&&BarrierAmount>0,"Last Bastion grants protection without an immediate damage hit");
                 else
                 {
-                    var kind=def.id=="harvest"?ImpactKind.Pull:def.id=="tempest"?ImpactKind.Electric:def.id=="cyclone"?ImpactKind.Slash:ImpactKind.Force;
+                    var kind=def.id=="harvest"||def.id=="bloodcircuit"?ImpactKind.Pull:def.id=="tempest"?ImpactKind.Electric:def.id=="cyclone"||def.id=="guillotine"?ImpactKind.Slash:ImpactKind.Force;
                     MechanicRequire(target.physics.Ragdoll&&target.reaction.kind==kind,"ultimate impact identity: "+def.name);
                     ProbeFrames(30);MechanicRequire(target.physics.Finite(),"ultimate fragments and launch remain finite: "+def.name);
                 }

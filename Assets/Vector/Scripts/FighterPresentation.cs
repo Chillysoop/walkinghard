@@ -22,6 +22,7 @@ namespace VectorGame
             {
                 if(item.def.id=="wraps")
                     for(int i=0;i<3;i++)identityParts.Add(PresentationGeometry.Plate("Conductive knuckle coil",hand,new Vector3((i-1)*.085f,-.015f,.11f),new Vector3(.035f,.21f,.09f),VisualFactory.Glow));
+                if(ConstellationContent.IsNew(item.def.id)){var mat=item.def.id=="leechgrips"?VisualFactory.SiphonGlow:item.def.id=="letterpistol"?VisualFactory.GoldGlow:VisualFactory.Glow;var parent=weapon??hand;int bars=item.def.id=="bastionmaul"?4:item.def.id=="arccarbine"?3:2;for(int i=0;i<bars;i++)identityParts.Add(PresentationGeometry.Plate("Recovered pattern rail",parent,new Vector3((i-(bars-1)*.5f)*.1f,.1f,weapon==null?.13f:.72f),new Vector3(.045f,weapon==null?.22f:.13f,weapon==null?.12f:.36f),mat));}
                 if(weapon==null)return;
                 foreach(var renderer in weapon.GetComponentsInChildren<Renderer>())
                     if(renderer.name=="Blade channel")renderer.sharedMaterial=item.def.id=="siphonblade"?VisualFactory.SiphonGlow:VisualFactory.Glow;

@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 32, November 16, 2026. Includes the 0.8.1 durability, champion and live-stat pass, plus the combat-flow, physical-fork, Expedition stops, Cinderworks crews, Shift Foreman and encounter-variety development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Current measurements are in QA/durability/verification.md; shared-augment verification remains in QA/v080-verification.md.
+Revision 33, November 16, 2026. Includes the 0.9.0 constellation expansion, 0.9.1 control weapons and shared body filters and the current combat, progression and presentation contract. Historical implementation sections remain below. Numerical values are balance hypotheses, not a claim of equal build strength. Current expansion evidence is in QA/constellation-expansion/verification.md; earlier measurements remain in their versioned QA reports.
 
 ## Durability and live combat feedback
 
@@ -40,7 +40,36 @@ District gates restore 25% maximum integrity and open a salvage bench. Optional 
 | Passives (equippable gear) | Relay Coil | Salvage Magnet |
 | Ultimates | Harvest | Redline |
 
-An outer star requires its earlier star and the completion seal. Purchases unlock an existing item in future runs, without permanent combat stats. The six nodes cost 24 Sparks total. Each run snapshots its allowed pool. Office schema 1 retains persistent currency, rescued workers, seal, victories and monotonic run receipts; buying or replaying older checkpoints cannot repay currency. Successful rescues add once per success across multiple events, not merely the largest single-event count.
+These six original stars form the Foundations page and still cost 24 Sparks total. An outer star requires its earlier star and the completion seal. The expansion below adds thirty new identities. Purchases unlock items in future runs, without permanent combat stats. Each run snapshots its allowed pool. Office schema 1 retains persistent currency, rescued workers, seal, victories and monotonic run receipts; buying or replaying older checkpoints cannot repay currency. Successful rescues add once per success across multiple events, not merely the largest single-event count.
+
+### Constellation expansion 0.9.0
+
+Each of six new branches contains five stars. Its entry weapon costs 4 Sparks and needs no seal. The ability and first passive each cost 6 and require that weapon plus the Completion Seal. The ability leads to an 8-Spark passive; the first passive leads to a 10-Spark capstone. Each branch costs 34; the complete 36-star graph costs **228 Sparks**. A full journey still earns 30, so the total represents 7.6 victorious journeys' earnings before considering defeat income. This is progression budgeting, not a measured human completion time.
+
+| Branch | Entry weapon · 4 | Ability · 6 | First passive · 6 | Ability path · 8 | Passive path · 10 |
+| --- | --- | --- | --- | --- | --- |
+| Impact | Pile Knuckles | Vector Sling | Impact Lens | Counterweight Boots | Freight Train ultimate |
+| Storm | Arc Carbine | Storm Lash | Switchboard Helm | Static Shroud | Storm Capacitor rig |
+| Sever | Rivet Sabre | Razor Fan | Execution Hood | Spur Treads | Guillotine Array ultimate |
+| Ballistics | Dead Letter Pistol | Breach Salvo | Ballistic Vest | Vent Greaves | Rangefinder Relay rig |
+| Siphon | Leech Grips | Reclaim Pulse | Mercy Lens | Reservoir Coat | Blood Circuit ultimate |
+| Guard | Bastion Maul | Repulsor Guard | Warden Visor | Return Spring rig | Last Bastion ultimate |
+
+The constellation expansion brought the catalog to 77 non-module identities; the two control weapons in 0.9.1 bring the current total to 79, plus the existing 17 augments. Previously available items stay available. New ability IDs append to the saved enum; Office schema and string IDs remain compatible. A purchase cannot insert a reward into an ongoing saved journey.
+
+The Office keeps branch navigation, a connected five-star graph and an inspectable detail pane in one tablet screen. Each star names its category, short effect, cost and availability. Hover previews; clicking selects; a separate button purchases. The detail pane previews each rarity and scrolls independently. Unlock feedback uses a border pulse, static under reduced motion. Original procedural etched glyphs identify category and branch, with the same icons in rewards, storage, sequence and statistics. Colored weapon rails distinguish the new variants without changing physics geometry.
+
+**Weapons.** Pile Knuckles trade punch damage for a launch on the first already-staggered survivor per host/action. Leech Grips trade damage for Siphon applied before contact. Both retain Kinetic's two-contact and shockwave rarity milestones. Rivet Sabre adds an 8 × effect-scale cutting hit to its first wounded survivor. Dead Letter Pistol has four rounds; its first round adds a three-target stagger pulse, retaining pistol ricochets. Arc Carbine uses both mounts, pierces with native rifle milestones and consumes one Conductive mark per action; that discharge can feed Grounding. Bastion Maul uses both mounts, retains native hammer launches and grants a 6 × effect-scale barrier on first contact, with lower base damage than Impact Hammer. Matching one-handed hosts still attack together and each owns its proc/socket; a two-handed item owns one shared proc/socket. Passive gear procs are shared across the originating action.
+
+**Abilities.** Vector Sling gathers three targets toward a point ahead, launching the primary only with prior stagger. Storm Lash marks four targets along a narrow corridor. Razor Fan cuts five targets in a narrow ranged fan. Breach Salvo hits three aligned targets and deals 50% more against prior stagger; it is not a reload or gun-contact trigger. Reclaim Pulse deals 60% more to Siphon-marked targets, allows this hit to heal, then expires those marks. Repulsor Guard provides an 18-point Common barrier for three seconds, repelling on break/expiry without Counterguard's stored weapon bonus. Focused narrows the five offensive actions to one target with stronger payoff. Echo supports Storm Lash, Razor Fan and Breach Salvo using existing weaker opening/repeat rules. Discharge replaces Repulsor's repel with the existing bounded absorbed-damage burst. No additional augment types are introduced.
+
+**Passives.** Impact Lens adds damage on the first real body collision; Counterweight turns a launch into protection. Switchboard spreads one new mark after discharge; Static Shroud marks 2/2/3/3/4 nearby foes on loop completion; Storm Capacitor staggers neighbors after discharge. Execution Hood cuts a wounded survivor; Spur Treads turns a sever into nearby stagger. Ballistic Vest guards after a gun hit from at least five metres; Vent Greaves heal after real ammo replenishment; Rangefinder adds gun damage against prior stagger. Mercy Lens marks wounded survivors for later Siphon; Reservoir converts the first actual heal each action into a capped barrier. Warden Visor interrupts an attacker after actual absorption; Return Spring pushes it away. Existing heavy control resistance applies. Effects have per-action limits, attributed owners and visible marks, pulses, tethers or guard feedback. Rarity previews show their actual power, reach, duration and target-count changes.
+
+**Ultimates.** Freight Train launches up to five living targets and three other fallen bodies down a fixed forward lane, sharing one six-hit cascade; targets killed by its opening impact launch only once. Guillotine Array cuts a long narrow lane with a 60% wounded-target bonus. Blood Circuit chains six Siphon hits and uses the normal shared 1% maximum-health healing cap rather than Harvest's special pulse budget. Last Bastion grants a large barrier, then repels on break/expiry, dealing no initial damage. The first three recharge in 18 seconds; Bastion in 20. Each has distinct procedural charge/release audio and an effect footprint matching its actual lane, chain or guard behavior.
+
+All new effects reuse the twelve-derived-hit action budget, six-hit cascade budget, global 90-point barrier cap and normal lifesteal limits. Same-host generated barriers refresh instead of stacking. No permanent stats, new resource, reward count, fusion rule, rarity odds or public difficulty mode is added.
+
+When at least one new pattern is available in a run, a dedicated ability draft keeps one of Steel Jab, Breaker, Arc Bolt or Reaping Cut among its first three options when an unowned one is eligible; the other two remain discoveries. Mixed rewards retain their owned-copy and wildcard slots, preferring an explicit equipped-item interaction for support. Fresh and Foundations-only pools retain previous rules. `-originalPatternOffers` permits matched QA comparisons in one binary. Neither safeguard changes rarity rolls, unlock gates or the number of picks.
 
 Distant bodies older than 30 seconds (or already sleeping) can leave active physics when over 55m away and outside the combat view. Their actors, IDs, cuts, poses and velocities remain saved; approaching within 45m wakes the same bodies. Nearby bodies and projectiles retain ordinary physics.
 
@@ -513,7 +542,7 @@ Presentation geometry reuses 128 ordinary lines, 16 reserved threat lines and 64
 Walking-body shove processing snapshots actor positions and bone centers once before each PhysX step. Reuse is confined to that stage, where AddForce changes pending velocity rather than position. Actor/bone order, applied impulses, physics frequency, solver settings and retained-body rules stay the same.
 
 
-## Control weapons (0.8.9)
+## Control weapons (0.9.1)
 
 Two new one-handed weapons extend existing loadout rules. These are initial authored values, not approved follow-up balance adjustments.
 

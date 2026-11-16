@@ -1,0 +1,13 @@
+{
+  "assemblySha256": "e994b2fcb3388e5e6671baacb5cdaead823a2f47347e6126e40857362a238ddc",
+  "baseCommit": "bfa7e65039bf8423620d7026f5f501967d93f545",
+  "version": "0.8.9",
+  "changesSinceComparisonAssembly": [
+    "native review targets and weapon identity",
+    "precise no-pull wording",
+    "MOVE SLOW icon and semantic tag instead of TEMPO",
+    "editor subsystem initialization of layer configuration",
+    "resume-from-checkpoint performance harness"
+  ],
+  "authoredBalanceChanged": false
+}

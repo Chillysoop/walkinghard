@@ -1,13 +1,21 @@
 {
-  "assemblySha256": "e994b2fcb3388e5e6671baacb5cdaead823a2f47347e6126e40857362a238ddc",
-  "baseCommit": "bfa7e65039bf8423620d7026f5f501967d93f545",
-  "version": "0.8.9",
-  "changesSinceComparisonAssembly": [
-    "native review targets and weapon identity",
-    "precise no-pull wording",
-    "MOVE SLOW icon and semantic tag instead of TEMPO",
-    "editor subsystem initialization of layer configuration",
-    "resume-from-checkpoint performance harness"
-  ],
-  "authoredBalanceChanged": false
+  "version": "0.9.1",
+  "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+  "controlWeaponsCommit": "b62caf5",
+  "constellationCommit": "9ea1ff6ac4ee3641ed6f57dfaceeae0ee95919e2",
+  "integration": "Preserves 36 constellation unlocks and adds two base control weapons; 79 non-module plus 17 augment identities.",
+  "authoredBalanceChangedSinceComparison": false,
+  "speedToggleChanged": false,
+  "reviewProfiles": "isolated; player profile not funded or rewritten",
+  "confirmation": "20 Fast fixed kits match pre-integration result, wave, health and elapsed exactly",
+  "finalValidation": {
+    "core": 15,
+    "variety": 50,
+    "mechanicAssertionsPerCase": 869,
+    "normalHealthEightWave": "passed",
+    "constellationHeadless": 449,
+    "constellationRendered": 501,
+    "sameCaseFastConfirmation": 20,
+    "isolatedLateGameContinuations": 2
+  }
 }

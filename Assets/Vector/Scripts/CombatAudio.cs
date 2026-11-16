@@ -36,9 +36,9 @@ namespace VectorGame
             Add("press-warning",.65f,155,.78f,.06f,4,.55f,.55f);
             Add("bell-warning",.85f,440,.8f,.02f,4,.48f,.7f);
             Add("sweep-warning",.7f,240,.63f,.18f,4,.52f,.6f);
-            foreach(string id in new[]{"singularity","tempest","cyclone","redline","harvest"})
+            foreach(string id in new[]{"singularity","tempest","cyclone","redline","harvest","freighttrain","guillotine","bloodcircuit","lastbastion"})
             {
-                float hz=id=="singularity"?80:id=="tempest"?720:id=="cyclone"?510:id=="redline"?180:310;
+                float hz=id=="singularity"?80:id=="tempest"?720:id=="cyclone"?510:id=="redline"?180:id=="freighttrain"?65:id=="guillotine"?590:id=="bloodcircuit"?350:id=="lastbastion"?220:310;
                 Add(id+"-charge",.6f,hz,.58f,.12f,3,.32f,.3f);
                 Add(id+"-release",id=="redline"?.48f:.85f,hz,.65f,id=="tempest"?.5f:.27f,3,.6f,.35f);
             }

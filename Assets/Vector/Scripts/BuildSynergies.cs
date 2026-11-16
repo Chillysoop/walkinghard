@@ -13,15 +13,15 @@ namespace VectorGame
         }
         static bool Is(ItemDefinition d,params string[] ids)=>ids.Contains(d.id);
         static bool Gun(ItemDefinition d)=>(d.profile?.magazine??0)>0;
-        static bool Stagger(ItemDefinition d)=>Is(d,"SteelJab","Breaker","SuppressiveVolley","fists","breachhammer");
-        static bool Lightning(ItemDefinition d)=>Is(d,"ArcBolt","tempest");
-        static bool Launch(ItemDefinition d)=>Is(d,"MassDriver","hammer","singularity");
-        static bool Sever(ItemDefinition d)=>Is(d,"sword","greatsword","siphonblade","hookblade","ReapingCut","cyclone");
-        static bool Mark(ItemDefinition d)=>Is(d,"ConductiveBrand","wraps","capacitor","arcstep","grounding");
+        static bool Stagger(ItemDefinition d)=>Is(d,"SteelJab","Breaker","SuppressiveVolley","fists","breachhammer","pileknuckles","leechgrips","letterpistol","BreachSalvo","spurtreads","stormcapacitor","wardenvisor");
+        static bool Lightning(ItemDefinition d)=>Is(d,"ArcBolt","tempest","arccarbine");
+        static bool Launch(ItemDefinition d)=>Is(d,"MassDriver","hammer","singularity","pileknuckles","VectorSling","bastionmaul","freighttrain");
+        static bool Sever(ItemDefinition d)=>Is(d,"sword","greatsword","siphonblade","hookblade","ReapingCut","cyclone","rivetsabre","RazorFan","guillotine","executionhood");
+        static bool Mark(ItemDefinition d)=>Is(d,"ConductiveBrand","wraps","capacitor","arcstep","grounding","StormLash","staticshroud","switchboard");
         public static bool HasConductiveSetup(AbilityDeck deck)
         {
             var items=Equipped(deck).Select(i=>i.def).ToArray();
-            return items.Any(d=>Is(d,"ConductiveBrand","wraps","arcstep"))||
+            return items.Any(d=>Is(d,"ConductiveBrand","wraps","arcstep","StormLash","staticshroud"))||
                 items.Any(d=>Is(d,"capacitor"))&&items.Any(Stagger)||
                 items.Any(d=>Is(d,"grounding"))&&items.Any(d=>Lightning(d)||Launch(d));
         }
@@ -43,6 +43,14 @@ namespace VectorGame
         static string Pair(ItemDefinition source,ItemDefinition consumer,out string key)
         {
             key="chain";
+            if(Launch(source)&&Is(consumer,"impactlens","counterweight")){key="collision";return consumer.id=="impactlens"?"Body collisions gain a focused hit.":"Launching grants a small barrier.";}
+            if(Mark(source)&&Is(consumer,"switchboard","stormcapacitor")){key="mark";return "Discharging these marks triggers the gear payoff.";}
+            if(Sever(source)&&Is(consumer,"spurtreads")){key="stagger";return "Severing interrupts nearby survivors.";}
+            if(Gun(source)&&Is(consumer,"ballisticvest","ventgreaves","rangefinder")){key="reload";return consumer.id=="ventgreaves"?"Actual reloads restore health.":consumer.id=="ballisticvest"?"Hits from 5m or farther grant a barrier.":"Gun hits against existing stagger add damage.";}
+            if(Stagger(source)&&Is(consumer,"pileknuckles","BreachSalvo","rangefinder")){key="stagger";return consumer.id=="pileknuckles"?"Existing stagger lets the punch launch.":"Prior stagger enables the damage payoff.";}
+            if(Is(source,"DrainBrand","siphonblade","leechgrips","mercylens","bloodcircuit")&&Is(consumer,"ReclaimPulse")){key="siphon";return "Siphon marks heal the stronger hit, then expire.";}
+            if(Is(source,"DrainBrand","siphonblade","leechgrips","reclaimer","harvest","treads","ventgreaves","bloodcircuit","ReclaimPulse")&&Is(consumer,"reservoir","predator")){key="siphon";return consumer.id=="reservoir"?"Actual healing creates a capped barrier.":"Actual healing speeds the next ability.";}
+            if(Is(source,"Counterguard","RepulsorGuard","lastbastion","plate","reactive","grounding","counterweight","bastionmaul","ballisticvest","reservoir","recoil","duelist")&&Is(consumer,"wardenvisor","returnspring")){key="guard";return consumer.id=="wardenvisor"?"Absorbed hits interrupt the attacker.":"Absorbed hits shove the attacker away.";}
             if(Gun(source)&&Is(consumer,"recoil")){key="reload";return "Reload → guard → stronger gun hit.";}
             if(Is(source,"hookblade")&&Is(consumer,"fists","wraps","breachhammer","hammer","SteelJab","Breaker")){key="gather";return "Pull a survivor into the next close attack.";}
             if(Is(source,"rivetpistol")&&Is(consumer,"VectorTether","rifle","SuppressiveVolley")){key="slow";return "Slow the advance to help keep the firing line.";}

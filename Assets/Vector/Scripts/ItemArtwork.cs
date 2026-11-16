@@ -24,9 +24,10 @@ namespace VectorGame
         }
         static void Add(int sheet,int columns,int rows,string ids)
         {int index=0;foreach(string id in ids.Split(' '))entries.Add(id,new Entry(sheet,index++,columns,rows));}
-        public static bool Has(string id)=>entries.ContainsKey(id);
+        public static bool Has(string id)=>entries.ContainsKey(id)||ConstellationContent.IsNew(id);
         public static bool Draw(Rect r,ItemDefinition def)
         {
+            if(def!=null&&ConstellationGlyphs.Draw(r,def))return true;
             if(def==null||!entries.TryGetValue(def.id,out var e))return false;
             if(textures[e.sheet]==null)textures[e.sheet]=Resources.Load<Texture2D>(files[e.sheet]);
             var texture=textures[e.sheet];if(texture==null)return false;

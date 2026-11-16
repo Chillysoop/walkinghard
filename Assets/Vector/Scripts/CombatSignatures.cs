@@ -60,6 +60,7 @@ namespace VectorGame
         {
             if(e.deathAge>=0||CurrentTurn.extra<=0||!marks.TryGetValue(e.id,out var m)||m.until<=Elapsed||m.consumed==(currentCredit?.action??actionSerial))return false;
             if(announce)Note((currentCredit?.hop??0)>0?"Body impact consumed Conductive":"Lightning consumed Conductive");m.until=0;m.consumed=currentCredit?.action??actionSerial;ContributionFor(m.owner).assists++;
+            ExpansionDischarge(e);
             fx.Symbol(e.physics.Center,Color.white,.3f,false);DerivedHit(e,m.power,Vector3.zero,.1f,false,false,ImpactKind.Electric);return true;
         }
         void ElectricHit(Enemy e,float damage,float stagger){ConsumeMark(e);Hurt(e,damage,Vector3.zero,stagger,false,ImpactKind.Electric);if(Deck.Equipped(Signature.Grounding) is LoadoutItem g&&Once("ground"))AddBarrier(g,Mathf.Min(g.def.effect.Power(g.rank),damage*.2f*Effect(g)),4);}
@@ -84,6 +85,7 @@ namespace VectorGame
                 if(b.discharge){float damage=Mathf.Min(30*Effect(b.host),b.absorbed*.55f);int n=0;fx.Shape(HeroPosition,hero.Root.forward,4,65,Color.magenta,.35f);foreach(var e in enemies.ToArray())if(n<5&&InCone(e,HeroPosition,hero.Root.forward,4,65)){DerivedHit(e,damage,hero.Root.forward*2,.2f,false,true);n++;}}
                 else {counterBank=Mathf.Min(45*Effect(b.host),b.absorbed*.8f);counterOwner=b.host;}
             }
+            if(b.host.def.ability?.id==AbilityId.RepulsorGuard&&b.discharge&&b.absorbed>0){float damage=Mathf.Min(30*Effect(b.host),b.absorbed*.55f);fx.Shape(HeroPosition,hero.Root.forward,4,65,Color.magenta,.4f);foreach(var e in enemies.Where(e=>Reachable(e,4)&&InCone(e,HeroPosition,hero.Root.forward,4,65)).Take(5).ToArray())DerivedHit(e,damage,hero.Root.forward*2,.2f,false,true);}
             if(b.reactive){fx.Shape(HeroPosition,Vector3.forward,3,180,Color.cyan,.3f);foreach(var e in enemies.ToArray())if(Reachable(e,3))Control(e,.25f,(e.physics.Center-HeroPosition).normalized*4*Effect(b.host));}
             currentCredit=saved;
         }
@@ -104,6 +106,7 @@ namespace VectorGame
                 if(duelistStaggerReady){duelistStaggerReady=false;var saved=currentCredit;currentCredit=new KillCredit{item=d,action=actionSerial};Control(attacker,.4f*Effect(d),Vector3.zero);currentCredit=saved;}
                 if(duelistHits==0)duelistUntil=0;
             }
+            if(damage<raw*Deck.DamageTaken)ExpansionAbsorb(attacker);
             if(damage<raw*Deck.DamageTaken)fx.Shield(HeroPosition,(attacker.rig.Root.position-HeroPosition).normalized,true);
             if(Controlled!=null&&controlledMetrics!=null){controlledMetrics.rawIncoming+=raw;controlledMetrics.damageTaken+=Mathf.Min(Health,damage);controlledMetrics.prevented+=raw-damage;}
             RecordIncoming(IncomingName(attacker),damage);RecordEnemyPressure(attacker,Mathf.Min(Health,damage));Health-=damage;HitsTaken++;heroReact=.8f;flash=damage>0?.3f:.08f;fx.Cue(damage>0?"armor":"block");
@@ -124,6 +127,7 @@ namespace VectorGame
         void DirectSignatures(Enemy e,float damage,bool wasStaggered)
         {
             if(currentCredit==null||currentCredit.derived||currentCredit.hop>0)return;
+            ExpansionContact(e,damage,wasStaggered);
             SpendRecoil(e);
             var t=CurrentTurn;if(setups.TryGetValue(e.id,out var setup)&&setup.until>Elapsed&&setup.host!=Owner&&Once("setup:"+e.id)){ContributionFor(setup.host).assists++;Note("Gather / pull enabled a follow-up hit");}
             if(t.hits.Add(e.id))t.orderedHits.Add(e);t.last=e;
@@ -145,6 +149,7 @@ namespace VectorGame
             if(Deck.Equipped(Signature.Recovery) is LoadoutItem recoveryItem&&Once("recovery")&&motes.Count<24)motes.Add(new Mote{point=e.physics.Center,heal=recoveryItem.def.effect.Power(recoveryItem.rank),owner=recoveryItem});
             if(t.kills>=2&&Deck.Equipped(Signature.Arcstep) is LoadoutItem arc&&Once("arcstep"))foreach(var victim in enemies.Where(x=>Reachable(x,arc.def.effect.Radius(arc.rank))).Take(2+(arc.rank-1)/2))MarkEnemy(victim,arc);
             if(!sever)return;
+            ExpansionSever(e);
             SpreadDrainOnSever(e);
             if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)ArmDuelist(d);
             salvagerOwner=Deck.Equipped(Signature.Salvager)??salvagerOwner;
@@ -153,11 +158,13 @@ namespace VectorGame
         Cascade salvageChain;
         void OnLaunch(Enemy body)
         {
+            ExpansionLaunch();
             if(Deck.Equipped(Signature.Momentum) is LoadoutItem boots)momentumUntil=Elapsed+boots.def.effect.Seconds(boots.rank);
             salvagerOwner=Deck.Equipped(Signature.Salvager)??salvagerOwner;
         }
         void OnCollision(Enemy target,Vector3 point,float damage)
         {
+            ExpansionCollision(target);
             if(Deck.Equipped(Signature.Grounding) is LoadoutItem g&&Once("ground"))AddBarrier(g,Mathf.Min(g.def.effect.Power(g.rank),damage*.2f*Effect(g)),4);
             if(Deck.Equipped(Signature.FaultLine) is LoadoutItem fault&&Once("faultline")){Pulse(point,fault.def.effect.Radius(fault.rank),fault.def.effect.Seconds(fault.rank),4,target);Note("Body impact released a Fault Line aftershock");}
             if(Deck.Equipped(Signature.Relay) is LoadoutItem relay&&ConsumeMark(target))
@@ -182,7 +189,7 @@ namespace VectorGame
             bool wrapped=PairSlot>=0?PairSlot<ActiveSlot||PairSlot==4:ActiveSlot==4;
             // Empty trailing positions also complete a loop.
             int next=Deck.NextOccupied(((PairSlot>=0?PairSlot:ActiveSlot)+1)%5);wrapped|=next<=ActiveSlot;
-            if(wrapped){tempo=0;guardArmed=Deck.Equipped(Signature.Bulwark)!=null;}
+            if(wrapped){ExpansionLoop();tempo=0;guardArmed=Deck.Equipped(Signature.Bulwark)!=null;}
             else if(Deck.Equipped(Signature.Overclock) is LoadoutItem over)tempo=Mathf.Min(Mathf.Min(.4f,.25f+.04f*(over.rank-1)),tempo+over.def.effect.Power(over.rank));
             if(redlineTurns>0)redlineTurns--;
         }
@@ -190,7 +197,7 @@ namespace VectorGame
         float LoaderFactor=>Deck.Equipped(Signature.Loader) is LoadoutItem l?1-Mathf.Min(.4f,l.def.effect.Power(l.rank)):1;
         void Replenish(LoadoutItem host)
         {
-            int max=LoadoutCatalog.Magazine(host);if(max<=0||Ammo(host)>=max)return;ammunition[host]=max;ArmRecoil();if(host.HasAugment(AugmentId.BreachLoad)){breachArmed.Add(host);Note("Reload armed Breach Load",true);}
+            int max=LoadoutCatalog.Magazine(host);if(max<=0||Ammo(host)>=max)return;ammunition[host]=max;ExpansionReload();ArmRecoil();if(host.HasAugment(AugmentId.BreachLoad)){breachArmed.Add(host);Note("Reload armed Breach Load",true);}
             if(Deck.Equipped(Signature.Loader) is LoadoutItem loader&&Once("loader")){Pulse(HeroPosition,loader.def.effect.Radius(loader.rank),loader.def.effect.Seconds(loader.rank),5);Note("Reload released a Loader stagger pulse");}
             if(Deck.Equipped(Signature.Duelist) is LoadoutItem d)ArmDuelist(d);
         }
@@ -208,7 +215,7 @@ namespace VectorGame
             }
             foreach(var a in anchors.ToArray()){a.left-=dt;if(a.left>0)continue;anchors.Remove(a);if(a.enemy.deathAge<0&&Vector3.Distance(a.before,a.enemy.rig.Root.position)>=.25f){currentCredit=a.credit;Control(a.enemy,a.stagger,Vector3.zero);fx.Symbol(a.enemy.physics.Center,Color.white,.3f,false);}}
             StepAfterfields(dt);
-            foreach(var m in motes.ToArray()){m.left-=dt;m.age+=dt;if(m.pullLeft>0&&m.pullOwner!=null){m.pullLeft-=dt;var previous=m.point;m.point=Vector3.MoveTowards(m.point,m.pullTarget,8*Effect(m.pullOwner)*dt);m.pulled+=Vector3.Distance(previous,m.point);}if(m.age>.3f&&Vector3.Distance(m.point,HeroPosition)<m.owner.def.effect.Radius(m.owner.rank)){float heal=Mathf.Min(MaxHealth-Health,m.heal);Health+=heal;ArmorHealing+=heal;if(heal>0){ArmPredator();Note("Repair mote restored health");}fx.Arc(m.point,HeroPosition+Vector3.up,Color.green);fx.Symbol(HeroPosition+Vector3.up*1.8f,Color.green,.5f,false);ContributionFor(m.owner).healing+=heal;if(heal>0&&m.pullOwner!=null&&m.pulled>=.25f){ContributionFor(m.pullOwner).assists++;Note("Gathered repair mote restored health");}motes.Remove(m);}else if(m.left<=0)motes.Remove(m);}
+            foreach(var m in motes.ToArray()){m.left-=dt;m.age+=dt;if(m.pullLeft>0&&m.pullOwner!=null){m.pullLeft-=dt;var previous=m.point;m.point=Vector3.MoveTowards(m.point,m.pullTarget,8*Effect(m.pullOwner)*dt);m.pulled+=Vector3.Distance(previous,m.point);}if(m.age>.3f&&Vector3.Distance(m.point,HeroPosition)<m.owner.def.effect.Radius(m.owner.rank)){float heal=Mathf.Min(MaxHealth-Health,m.heal);Health+=heal;ArmorHealing+=heal;if(heal>0){ArmPredator();ExpansionHealing(heal);Note("Repair mote restored health");}fx.Arc(m.point,HeroPosition+Vector3.up,Color.green);fx.Symbol(HeroPosition+Vector3.up*1.8f,Color.green,.5f,false);ContributionFor(m.owner).healing+=heal;if(heal>0&&m.pullOwner!=null&&m.pulled>=.25f){ContributionFor(m.pullOwner).assists++;Note("Gathered repair mote restored health");}motes.Remove(m);}else if(m.left<=0)motes.Remove(m);}
             currentCredit=saved;
         }
     }

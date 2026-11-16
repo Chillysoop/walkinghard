@@ -1,4 +1,4 @@
-# Control weapons and crowd filters — 0.8.9
+# Control weapons and crowd filters — 0.9.1
 
 Hookblade and Rivet Pistol use the existing equipment mounts, five-slot sequence, family pairing, rarity progression, fusion and sockets. No existing item values or reward counts changed. Initial new-item values remain 28 damage for Hookblade and 20 for Rivet Pistol. Follow-up numerical tuning is proposed below, not applied.
 
@@ -10,7 +10,7 @@ Hookblade and Rivet Pistol use the existing equipment mounts, five-slot sequence
 - 56 repeated ragdoll stress fixtures passed against open ground, walls and road forks. No body removal, solver reduction or fixed-step skipping was introduced.
 - Native combat presentation suite passed 63 assertions. Threat-over-ultimate, card text and hover details were visually inspected. Final new-weapon captures use distant targets to show control before melee contact. `MOVE SLOW` has a distinct symbol; `TEMPO` retains its existing haste meaning. Rarity borders and labels remain unchanged.
 
-Core/variety/comparison provenance is in `manifest.json`. `final-manifest.json` records the later presentation/review assembly and the limited changes between them. Detailed initial failures and their fixes are retained in `initial-findings.md`, rather than reporting only the successful reruns.
+Core/variety/comparison provenance is in `manifest.json`. `pre-integration-manifest.json` records the later presentation/review assembly. `final-manifest.json` records the combined 0.9.1 assembly, preserving the separately completed constellation expansion. Detailed initial failures and their fixes are retained in `initial-findings.md`, rather than reporting only the successful reruns.
 
 ## Controlled comparison design
 
@@ -45,4 +45,21 @@ An isolated comparison must run without competing Unity build or simulation work
 
 Both filter policies restored the identical recorded checkpoint and completed encounter 21 with valid body/kill accounting. The initial sample had 156–157 active corpses and up to 42 living enemies. Normal speed remained about 16.67ms median. At 4x, the old per-pair filters measured 122.61ms median / 136.61ms p95; shared layers measured 118.63 / 128.74ms. This small single-pair difference does not establish a universal frame-rate improvement. The extreme-speed bottleneck remains.
 
-An Automatic Box Pruning experiment was slower (155.31ms median / 169.28ms p95 at 4x). It was rejected; the original broad-phase setting was restored. The next reverse-order repeat detected another engine process and was automatically invalidated. Its timings are preserved, excluded from performance conclusions, and will be retried on the integrated build when idle. The runner now records competing-process observations for future comparisons.
+An Automatic Box Pruning experiment was slower (155.31ms median / 169.28ms p95 at 4x). It was rejected; the original broad-phase setting was restored. The next reverse-order repeat detected another engine process and was automatically invalidated. Its timings are preserved and excluded from performance conclusions. The completed integrated repeat is reported below. The runner now records competing-process observations for future comparisons.
+
+
+## Combined 0.9.1 verification
+
+The final player integrates constellation commit `9ea1ff6` with the control-weapon work. It retains all 36 unlocks and 30 constellation additions, alongside the two new base weapons: 79 non-module definitions and 17 augments. No weapon damage, pull/slow values or speed-toggle behavior changed during integration.
+
+All 15 core scenarios and all 50 variety scenarios passed again, each including 869 mechanic assertions. Constellation checks passed 449 headless and 501 rendered assertions. Twenty repeated Fast control-weapon cases matched their earlier result, reached wave, final integrity and elapsed combat time exactly (zero invalid cases/timeouts). Native control-card captures at 720p/1080p and the dedicated two-weapon motion review were repeated and inspected. Selected inherited Office/combat captures were also inspected; the earlier constellation report retains its full visual audit. See `integrated/` and `integration-comparison.json` for final-assembly evidence.
+
+The final isolated, reverse-order performance pair resumed the same schema-12 checkpoint, with no competing Unity/player processes observed in 25 and 22 one-second samples. Shared layers measured **115.28ms median / 126.11ms p95** at 4x; original filters measured **115.19 / 129.61ms**. Both remained **16.67ms median at 1x** and completed encounter 21 with valid accounting, with 155–158 active corpses and up to 42 living enemies during samples. Physical runs diverge slightly in contacts and outcomes; these are short workload samples, not deterministic replay or statistical proof of a speedup.
+
+The confirmed conclusion is **no meaningful median improvement in this extreme 4x scene**. Shared filters remove growing pair bookkeeping, but the physics/corpse workload remains expensive. The original broad-phase setting, solver, CCD, fixed steps and body lifetime are retained. Adaptive speed limiting is a separate material behavior proposal and has not been applied.
+
+The initial final-assembly variety runner was deliberately interrupted after 22 completed reports, then its 28 remaining cases were divided across three workers. This was a scheduling change, not a test failure. Performance measurements were already complete before parallel workers started.
+
+Dedicated weapon art and its exact generation prompts are recorded in `Art/control-weapons-prompts.json`; current-build screenshots are in `images/`.
+
+The combined normal-health eight-wave regression also passed: 320 kills, 201 collisions, 274.67 final integrity, 13 item choices and two augment choices, with 869 mechanic assertions. This remains the legacy eight-wave functional fixture; the separate 21-encounter ordinary drafts and saved continuation provide their own progression evidence.

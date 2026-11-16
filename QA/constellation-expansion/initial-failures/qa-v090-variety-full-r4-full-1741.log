@@ -1,0 +1,12 @@
+Diagnostic excerpt. Unabridged original retained locally under Logs/qa-v090-variety-full-r4-full-1741.log.
+Host, network, licensing and unrelated engine startup details omitted.
+
+BUILD_VARIETY_MECHANICS: 804 production-effect assertions passed.
+QA_WAVE 1 / ultimate=none / casts=0
+QA_WAVE 2 / ultimate=tempest / casts=0
+QA_WAVE 3 / ultimate=tempest / casts=2
+QA_WAVE 4 / ultimate=guillotine / casts=4
+QA_WAVE 5 / ultimate=guillotine / casts=6
+QA_WAVE 6 / ultimate=guillotine / casts=8
+QA_WAVE 7 / ultimate=guillotine / casts=10
+QA_WAVE 8 / ultimate=guillotine / casts=12

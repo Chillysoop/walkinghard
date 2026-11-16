@@ -1,0 +1,57 @@
+Diagnostic excerpt. Unabridged original retained locally under Logs/build-v090-initial.log.
+Host, network, licensing and unrelated engine startup details omitted.
+
+Assets\Vector\Scripts\ChapterProgression.cs(43,305): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,306): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS8124: Tuple must contain at least two elements.
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1519: Invalid token '.' in class, record, struct, or interface member declaration
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,349): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,618): error CS1519: Invalid token ')' in class, record, struct, or interface member declaration
+Assets\Vector\Scripts\ChapterProgression.cs(43,305): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,306): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS8124: Tuple must contain at least two elements.
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1519: Invalid token '.' in class, record, struct, or interface member declaration
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,349): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,618): error CS1519: Invalid token ')' in class, record, struct, or interface member declaration
+Assets\Vector\Scripts\ChapterProgression.cs(43,305): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,306): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,329): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS8124: Tuple must contain at least two elements.
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,330): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1031: Type expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,332): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1002: ; expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,334): error CS1519: Invalid token '.' in class, record, struct, or interface member declaration
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1001: Identifier expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,347): error CS1003: Syntax error, ',' expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,349): error CS1026: ) expected
+Assets\Vector\Scripts\ChapterProgression.cs(43,618): error CS1519: Invalid token ')' in class, record, struct, or interface member declaration

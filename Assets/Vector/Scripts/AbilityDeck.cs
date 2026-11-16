@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace VectorGame
 {
-    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard, DrainBrand, SuppressiveVolley }
+    public enum AbilityId { SteelJab, Breaker, ForcePush, MassDriver, GravityWell, ArcBolt, BasicAttack, Ultimate, ConductiveBrand, VectorTether, ReapingCut, Counterguard, DrainBrand, SuppressiveVolley, VectorSling, StormLash, RazorFan, BreachSalvo, ReclaimPulse, RepulsorGuard }
     public enum ItemKind { Basic, Ability, Weapon, Rig, Ultimate, Helmet, Armor, Boots, Augment }
     public enum WeaponKind { Fists, Sword, Hammer, Pistol, Rifle, Shotgun }
     public enum DraftKind { Ability, Weapon, Mixed, Equipment, Augment, Ultimate }
@@ -123,7 +123,7 @@ namespace VectorGame
         {
             Selected=SelectedSlot=-1;var choices=new List<RewardOffer>();
             if(Draft==DraftKind.Ability)
-            {foreach(var def in LoadoutCatalog.Abilities.Where(RewardAvailable))if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);}
+            {foreach(var def in LoadoutCatalog.Abilities.Where(RewardAvailable))if(!Items.Any(i=>i.def==def))choices.Add(new RewardOffer(def));Shuffle(choices);CuratePatternAbilities(choices);}
             else if(Draft==DraftKind.Ultimate)
             {choices.AddRange(LoadoutCatalog.Ultimates.Where(RewardAvailable).Select(d=>new RewardOffer(d)));Shuffle(choices);}
             else if(Draft==DraftKind.Augment)
@@ -148,7 +148,7 @@ namespace VectorGame
                 else choices.Add(new RewardOffer(LoadoutCatalog.Fists));
                 var support=LoadoutCatalog.All.Where(d=>d.kind!=ItemKind.Ultimate&&d!=choices[0].def&&RewardAvailable(d)).ToList();Shuffle(support);
                 var tags=string.Join(" ",Slots.Where(i=>i!=null).Select(i=>(i.def.kind==ItemKind.Basic?WeaponFor(i):i).def.tags));
-                var useful=support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
+                var useful=PatternSupport(support)??support.FirstOrDefault(d=>d.tags.Split(' ').Any(t=>t.Length>0&&tags.Contains(t)))??support[0];choices.Add(new RewardOffer(useful));
                 var discovery=LoadoutCatalog.All.Where(d=>d!=choices[0].def&&d!=useful&&UnlockedReward(d)).ToList();Shuffle(discovery);choices.Add(new RewardOffer(discovery[0]));
             }
             weaponDiscovery??=new WeaponDiscoveryState();weaponDiscovery.roll++;CurateWeaponDiscovery(choices);

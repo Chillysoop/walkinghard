@@ -22,3 +22,7 @@ __pycache__/
 
 # Raw control-weapon working captures; curated evidence is in QA/control-weapons.
 /QA/v089-*
+# Local constellation review batches; curated evidence is in QA/constellation-expansion.
+/QA/v090-*
+
+/QA/v091-*

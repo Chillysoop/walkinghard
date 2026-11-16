@@ -100,6 +100,7 @@ namespace VectorGame
         {
             if(item.def.id=="hookblade")return "Primary survivor: up to "+LoadoutCatalog.HookForce(item).ToString("0.#")+" pull force; no pull inside 1.8m. One pull; Hooked Edge adds 25% force. Secondary cleave hits do not pull.";
             if(item.def.id=="rivetpistol")return (100*LoadoutCatalog.RivetSlow(item)).ToString("0")+"% slower forward movement for "+LoadoutCatalog.RivetSeconds(item).ToString("0.0")+"s. No knockback, interrupt or ricochet. Bosses and committed charges ignore the slow; heavy foes resist it. Strongest active slow wins; equal hits refresh. Six rounds; normal reload.";
+            if(ConstellationContent.IsNew(item.def.id))return ConstellationRules(item);
             if(item.def.profile!=null){var p=item.def.profile;return "Native: "+p.style+" / "+p.force+" force. "+(item.def.weapon==WeaponKind.Rifle?"Pierces up to "+Mathf.Min(item.rank+1,4)+" aligned targets.":item.def.weapon==WeaponKind.Hammer?"Launch cap "+(BalanceOverrides.LegacyWeaponAugments&&item.HasAugment(AugmentId.Piledriver)?1:p.style==WeaponStyle.Impact&&item.rank>=3?3:1)+"; shared 6-hit / 2-hop cascade.":"");}
             float scale=LoadoutCatalog.EffectScale(item);var effect=item.def.effect;
             if(item.def.signature!=Signature.None)return GearEffectRules(item)+"\nLimit: "+item.def.tradeoff;
