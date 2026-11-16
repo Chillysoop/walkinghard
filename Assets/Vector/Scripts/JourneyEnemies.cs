@@ -23,7 +23,7 @@ namespace VectorGame
         void CancelSpecialist(Enemy e)
         {
             if(e.specialist==null)return;
-            if(e.specialist.stage!=0){e.crewNotice=Elapsed+1.1f;e.crewCooldown=3;}
+            if(e.specialist.stage!=0){if(e.durability!=null)e.durability.interrupts++;e.crewNotice=Elapsed+1.1f;e.crewCooldown=3;}
             e.specialist.stage=0;e.crewClock=0;
         }
         bool StepSpecialist(Enemy e,float dt)
@@ -36,6 +36,7 @@ namespace VectorGame
             if(s.stage==0&&e.crewCooldown<=0&&distance<11&&distance>(e.crew==CrewRole.Linebreaker?2:0))
             {
                 s.stage=1;s.hit=false;s.origin=s.previous=e.rig.Root.position;
+                if(e.durability!=null)e.durability.starts++;
                 s.aim=HeroPosition+RoadForward*tuning.walkSpeed*CrewDuration(e.crew);s.aim.y=.06f;
                 e.crewClock=.0001f;e.crewVfx=0;e.engaged=false;e.attack=-1;
             }

@@ -1,4 +1,10 @@
-# Walking Hard 0.8.0 - Shared augment synergies
+# Walking Hard 0.8.1 - Durable threats and live combat stats
+
+Press **I** or click **LIVE STATS** on the right during combat. Toggle **Kills, Damage, Assists and Heal** independently. Rows follow the actual sequence, with the ultimate below; separate paired weapons keep separate credit, while shared fists and two-handed weapons appear once. Totals survive equipment swaps, fusion and checkpoints. Damage includes body impacts, assists count confirmed setup payoffs, and healing belongs to its source item; other gear/stored-item contributions and environmental kills are identified separately. Sidebar preferences persist between launches.
+
+From fight three, **Linebreakers have 2× ordinary health**, **Enforcers/Freight Brutes 3×**, and **Bellkeepers/repair crews 1.5×**. Fragile raiders and ranged enemies retain their health. The first two fights retain their previous durability while you acquire a weapon and third ability. Damaged durable enemies show health with a recent-hit trail; shield guards, repair protection and exposed states have separate cues.
+
+**Elite Shift** now brings one **5.5× health Freight Champion**, a repair escort and more fragile bodies instead of a wall of heavy guards. Light stagger builds brace pressure without cancelling its throw; launching breaks the brace, and it also opens naturally after eight visible seconds. Its plates open around a cyan core for a three-second **+25% damage** opportunity. The fight requires its defeat and pays **+6 salvage** once. [Balance measurements and verification](QA/durability/verification.md).
 
 The loadout screen is now a **Dead Letter Office field tablet**: teal equipment bays, textured graphite storage, filled item cells and a blue sequence strip. Live labels and controls sit over generated, resizable panel materials. Taller screens show more storage rows; 720p and ultrawide keep the full build visible. Hover comparisons and fusion callouts remain in place, with no permanent suggestion panel. [Art and generation prompt](Art/README.md) · [UI verification](QA/tablet-loadout/verification.md).
 
@@ -95,6 +101,7 @@ If main has no matching release, the launcher can build it in an isolated cache 
 | Tab | Spend a banked reroll |
 | U | Toggle ultimate Auto/Manual |
 | F | Queue a ready ultimate |
+| I | Toggle live combat stats; click metric buttons to choose what is shown |
 | Space / Escape | Pause or resume |
 | R | New run |
 | T | How to Play from the title screen |

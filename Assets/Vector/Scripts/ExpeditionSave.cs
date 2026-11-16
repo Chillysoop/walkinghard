@@ -135,6 +135,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave";
                     var body=saved.actors.Single(b=>b.id==e.id);e.rig=new FighterRig(body.name,actors,false,e.heavy,e.id^Seed);e.rig.Root.localScale=body.scale;
                     if(e.shooter)e.rig.RangedEquipment();if(e.boss&&body.scale.x>3)e.rig.PursuerArmor();e.rig.EncounterEquipment(e.shieldBearer,e.volatileCarrier);
                     e.rig.CrewEquipment(e.crew);
+                    if(e.durability?.champion==true){e.rig.ChampionEquipment();e.rig.ChampionPose(ChampionBraced(e),e.durability.pressure);}
                     if(e.foreman!=null){e.rig.ForemanEquipment();if(e.rig.Root.name.Contains("BELL FOREMAN"))e.rig.SpecialistEquipment(CrewRole.Bellkeeper);e.rig.ForemanPose(e.foreman.stage==1,e.foreman.stage==2,e.foreman.pressure);}
                     e.physics=new FighterPhysics(e.rig,e.id,this,false,e.heavy);e.physics.RestoreBody(body);
                 }

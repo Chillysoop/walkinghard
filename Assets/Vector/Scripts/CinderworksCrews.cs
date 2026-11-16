@@ -31,7 +31,7 @@ namespace VectorGame
         }
         bool CrewTargetValid(Enemy e,Enemy target)=>target!=null&&(e.crew==CrewRole.Repair?target.deathAge<0&&!target.entering&&target.crewGuard<=0&&!flights.Any(f=>f.body==target)&&InCombatView(target.rig.Root.position)&&Vector3.Distance(target.physics.Center,e.physics.Center)<7&&CrewLine(e.physics.Center,target.physics.Center):CrewBodyAvailable(e,target));
         void CancelCrew(Enemy e)
-        {if(IsSpecialist(e.crew)){CancelSpecialist(e);return;}if(e.crewClock<=0)return;e.crewClock=0;e.crewTarget=0;e.crewCooldown=2.5f;e.crewNotice=Elapsed+1.1f;}
+        {if(IsSpecialist(e.crew)){CancelSpecialist(e);return;}if(e.crewClock<=0)return;if(e.durability!=null)e.durability.interrupts++;e.crewClock=0;e.crewTarget=0;e.crewCooldown=2.5f;e.crewNotice=Elapsed+1.1f;}
         bool StepCrew(Enemy e,float dt)
         {
             if(e.crewGuard>0&&e.crewGuardUntil<=Elapsed)e.crewGuard=0;
@@ -44,6 +44,7 @@ namespace VectorGame
             {
                 var target=CrewTarget(e);if(target==null){e.crewCooldown=.6f;return false;}
                 e.crewTarget=target.id;e.crewClock=.0001f;e.crewVfx=0;e.attack=-1;e.engaged=false;
+                if(e.durability!=null)e.durability.starts++;
                 e.crewOrigin=target.physics.Center;e.crewAim=HeroPosition+RoadForward*tuning.walkSpeed*1.3f;
             }
             if(e.crewClock<=0)return false;
@@ -80,6 +81,7 @@ namespace VectorGame
         {
             if(e.crewGuardUntil<=Elapsed)e.crewGuard=0;
             float absorbed=Mathf.Min(e.crewGuard,Mathf.Max(0,damage));e.crewGuard-=absorbed;
+            if(absorbed>0&&e.crewGuard<=0&&e.durability!=null){e.durability.guardBrokenUntil=Elapsed+.8f;Note("Repair protection broken",true);}
             if(absorbed>0){fx.Symbol(e.physics.Center+Vector3.up,CrewColor(CrewRole.Repair),.25f,false);Note("Repaired protection absorbed damage");}
             return damage-absorbed;
         }

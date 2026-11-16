@@ -37,6 +37,7 @@ namespace VectorGame
                 // Shuffle a complete roster: each district has a legible identity without
                 // a memorized combat order. Route choices can replace the next roster.
                 var roster=combats.OrderBy(_=>random.Next()).ToArray();
+                if(act==0){int elite=Array.IndexOf(roster,EncounterRoute.EliteShift);if(elite<2){roster[elite]=roster[2];roster[2]=EncounterRoute.EliteShift;}}
                 for(int step=0;step<6;step++)p.waves[act*7+step]=roster[step];
                 p.waves[act*7+6]=EncounterRoute.Standard;
                 for(int fork=0;fork<3;fork++)

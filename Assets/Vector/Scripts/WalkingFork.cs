@@ -86,12 +86,13 @@ namespace VectorGame
         {
             var p=game.ForkSignViewport(side);float x=p.x*w;
             // Keep signs attached to the two roads, inside the gap between combat HUDs.
-            x=side==0?Mathf.Clamp(x,455,w/2-118):Mathf.Clamp(x,w/2+118,w-455);
+            x=side==0?Mathf.Clamp(x,455,w/2-118):Mathf.Clamp(x,w/2+118,Mathf.Max(w/2+118,Mathf.Min(w-455,liveStatsOpen?LiveStatsRect(w,h).x-117:w-455)));
             return new Rect(x-105,Mathf.Clamp((1-p.y)*h-115,160,h-360),210,98);
         }
         internal bool HandleForkPointer(EventType type,Vector2 pointer,float w,float h)
         {
             if(type!=EventType.MouseDown||!game.RoutePending||game.State!=VectorEncounter.RunState.Running)return false;
+            var stats=LiveStatsRect(w,h);if((liveStatsOpen?stats:new Rect(stats.x,stats.y,stats.width,28*StatsDensity(w))).Contains(pointer))return false;
             for(int side=0;side<2;side++)if(ForkChoiceRect(side,w,h).Contains(pointer))
                 return game.ChooseRoute(side==0?game.ForkLeft:game.ForkRight);
             // UI has first refusal; a click on an unobscured physical branch selects it.

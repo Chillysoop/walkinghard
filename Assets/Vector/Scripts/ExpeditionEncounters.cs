@@ -38,7 +38,7 @@ namespace VectorGame
             new RegionalEncounter(EncounterRoute.RepairLine,"REPAIR LINE","REPAIR CREW","MORE GEAR","Heavies screen repair workers. Interrupt the green links.",new[]{2,2,0,2,1,2},CrewRole.Repair,3,RewardEmphasis.Equipment),
             new RegionalEncounter(EncounterRoute.FreightYard,"FREIGHT YARD","FREIGHT CREW","MORE ABILITIES","Door packs supply bodies. Interrupt amber throws or launch the payload first.",new[]{0,0,2,1,1,2},CrewRole.Freight,0,RewardEmphasis.Abilities),
             new RegionalEncounter(EncounterRoute.Reclaimers,"RECOVERY DETAIL","RECLAIMERS","MORE GEAR","Reclaimers pull bodies behind the line. Break their purple tethers.",new[]{2,0,2,1,2,2},CrewRole.Reclaimer,0,RewardEmphasis.Equipment),
-            new RegionalEncounter(EncounterRoute.EliteShift,"ELITE SHIFT","ELITES","+6 SALVAGE","More heavy guards and shields reinforce the Foreman. Clear the wave for +6 salvage.",new[]{2,2,0,2,1},CrewRole.Repair,2,RewardEmphasis.Equipment),
+            new RegionalEncounter(EncounterRoute.EliteShift,"ELITE SHIFT","CHAMPION","+6 SALVAGE","Defeat a braced Freight Champion for +6 salvage. Control builds pressure; launch breaks its brace. Repair escort + fragile raiders.",new[]{2,2,0,2,1},CrewRole.Repair,2,RewardEmphasis.Equipment),
             new RegionalEncounter(EncounterRoute.Auction,"THE UNCLAIMED LOT","AUCTION","BID FOR GEAR","Pay a visible bid for a chance at the displayed item. Losing bids are spent.",null),
             new RegionalEncounter(EncounterRoute.PressureWorks,"THE PRESSURE DIVIDEND","PRESSURE","RISK & SALVAGE","Choose a safer tap or a dangerous override. Bank the haul before a rupture.",null),
             new RegionalEncounter(EncounterRoute.Rescue,"THE LAST ATTENDANCE","RESCUE","SAVE WORKERS","Spend tools or risk injury to free workers. Each success secures salvage and repair.",null)
@@ -64,7 +64,9 @@ namespace VectorGame
         void RegionalArrival(CrewRole crew,ref bool heavy,ref bool shooter)
         {
             var encounter=RegionalWave;
-            if(crew==CrewRole.None&&encounter?.heavyEvery>0&&Spawned%encounter.heavyEvery==0){heavy=true;shooter=false;}
+            int every=encounter?.heavyEvery??0;
+            if(JourneyActive&&!durabilityBaseline&&encounter?.id==EncounterRoute.EliteShift)every=5;
+            if(crew==CrewRole.None&&every>0&&Spawned%every==0){heavy=true;shooter=false;}
         }
         string RegionalPreview(int wave)
         {

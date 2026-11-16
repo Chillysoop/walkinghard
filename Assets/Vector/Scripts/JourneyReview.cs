@@ -12,7 +12,7 @@ namespace VectorGame
         [Serializable] sealed class JourneyReport
         {
             public bool passed;public int assertions,wave,kills,spawns,forks,items,augments,sparks,dormantBodies;
-            public float health,combatSeconds,estimatedMinutes;public string result,scope;
+            public float health,combatSeconds,estimatedMinutes;public string result,scope,loadout;public WaveReport[] encounters;
             public List<string> checks=new List<string>();public List<string> milestones=new List<string>();
         }
         IEnumerator ReviewJourney()
@@ -20,6 +20,7 @@ namespace VectorGame
             enabled=false;qa=false;fx.muted=true;SetCombatSpeed(1);
             Application.logMessageReceived+=(m,t,type)=>{if(type==LogType.Exception)Application.Quit(3);};
             var args=Environment.GetCommandLineArgs();bool full=args.Contains("-journeyFullRun"),render=!args.Contains("-nographics");
+            durabilityBaseline=args.Contains("-durabilityBaseline");
             string Arg(string key,string fallback){int at=Array.IndexOf(args,key);return at<0?fallback:args[at+1];}
             if(string.IsNullOrEmpty(saveDirectoryOverride))throw new InvalidOperationException("Isolated profile required");
             string output=Path.GetFullPath(Arg("-reviewOutput",Path.Combine(Application.dataPath,"..","JourneyReview")));Directory.CreateDirectory(output);
@@ -61,6 +62,7 @@ namespace VectorGame
                     yield return null;
                 }
                 report.dormantBodies=corpses.Count(e=>!e.rig.Root.gameObject.activeSelf);report.wave=Wave;report.health=Health;report.kills=Kills;report.spawns=Spawned;report.forks=roads.Forks.Count;report.items=ItemChoices;report.augments=AugmentChoices;report.sparks=Sparks;report.result=State.ToString();report.estimatedMinutes=(report.combatSeconds+(ItemChoices+AugmentChoices)*20+roads.Forks.Count*25)/60;
+                report.loadout=Deck.Loadout;report.encounters=Waves.ToArray();File.WriteAllText(Path.Combine(output,"outcome.json"),JsonUtility.ToJson(report,true));
                 Require(OrderErrors==0&&VisibleSpawns==0&&Spawned==Kills+enemies.Count&&corpses.Count==Kills,"ordered actions, concealed spawns and persistent body identity throughout run");
                 Require(State==RunState.Complete&&Wave==21&&Waves.Count==21,"normal-health run reaches and defeats final boss");
                 Require(roads.Forks.Count==9&&roads.Path.All(p=>Vector3.Dot(p.Rotation*Vector3.forward,Vector3.forward)>.8f),"all nine forks keep roads forward without loops");
