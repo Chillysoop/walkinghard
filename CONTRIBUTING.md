@@ -18,6 +18,12 @@ Follow the current contract in DESIGN.md: five movable actions, two-handed group
 
 The desktop launcher downloads a matching release; if source is ahead, it can compile main in a separate cache when Git and the matching Unity editor are installed. Offline or failed updates preserve the last working build. Merge and release deliberately: main is the version players receive.
 
+## Deliver a local tested build
+
+Keep one permanent playable installation at `%USERPROFILE%/Games/WalkingHard/Current`, and one desktop shortcut named **Walking Hard** that runs the updater. Reuse `Build/Windows` for build/validation staging. After validation, install with `Launcher/Install Build.ps1 -PlayerDirectory <tested player folder> -Commit <verified source commit> -AssemblySha256 <verified Assembly-CSharp.dll SHA-256> -RemoveSourcePlayer`. This verifies the copy, updates the existing shortcut, and removes staged player files while retaining QA captures and reports. Do not point the desktop shortcut directly at a development executable or retain a new named player directory after each iteration. Additional comparison players are temporary and should be removed after preserving their reports.
+
+The updater installs only main commits that descend from the installed commit. Local feature builds therefore remain playable until main catches up; future validated local work must use the same install helper. Run `Launcher/Test Launcher.ps1` for launcher-only changes; no Unity rebuild is needed when the validated game binary is unchanged.
+
 For item presentation changes, run the rendered `-vectorQA -qaBuild ui -qaHoldCheckpoint -presentationReview` fixture and inspect its checkpoint, rarity mismatch, fusion, augment, icon-key and combat captures. Keep the stable ID mapping in `ItemArtwork.cs` complete when adding items; save generation prompts with art sources.
 
 For onboarding or drop-guidance changes, run `Validate Tutorial.ps1` and `Validate Tutorial.ps1 -Rendered` against the built player. The rendered mode briefly opens the game, drives its production mouse handlers, checks text metrics, and captures tutorial/ordinary checkpoints at several resolutions. Inspect the screenshots as well as the assertions; synthetic interaction checks are not a substitute for player feedback.
