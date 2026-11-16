@@ -199,10 +199,10 @@ namespace VectorGame
             string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
             string[] labels={"SCORE","KILLS","BEST COMBO","COLLISION HITS"};
             for(int i=0;i<4;i++){Label(new Rect(x+32+i*226,y+194,212,42),values[i],33,white,true);Label(new Rect(x+32+i*226,y+241,212,20),labels[i],13,muted);}
-            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=42+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
+            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=240+game.RunHistory.encounters.Count*23+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
             recapScroll=GUI.BeginScrollView(viewport,recapScroll,new Rect(0,0,880,contentHeight));
-            Label(new Rect(4,0,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
-            float rowY=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}
+            float rowY=DrawIntegrityRecap(0);Label(new Rect(4,rowY,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
+            rowY+=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}
             Label(new Rect(4,rowY,860,20),"ITEM CONTRIBUTIONS · setup assists never add kills",12,Accent,true);rowY+=25;
             foreach(var item in game.Deck.Items){if(item.def.kind==ItemKind.Basic||item.def.kind==ItemKind.Augment)continue;var c=game.ContributionFor(item);Label(new Rect(4,rowY,870,18),item.Name+" / Kills: "+game.KillsFor(item)+" / direct "+c.direct.ToString("0")+" / collision "+c.collision.ToString("0")+" / control "+c.control.ToString("0.0")+"s / absorb "+c.absorption.ToString("0")+" / healing "+c.healing.ToString("0.#")+" / assists "+c.assists,11,white);Label(new Rect(4,rowY+18,870,18),"Reload "+c.reload.ToString("0.0")+"s / prepare "+c.preparation.ToString("0.0")+"s / reach "+c.outOfReachWait.ToString("0.0")+"s / arrivals "+c.ArrivalWait.ToString("0.0")+"s / blocked "+c.obstructedWait.ToString("0.0")+"s / augment damage "+c.augment.ToString("0"),10,muted);rowY+=41;}
             foreach(var note in game.InteractionNotes){Label(new Rect(4,rowY,870,18),note.Key+" × "+note.Value,11,Accent);rowY+=19;}

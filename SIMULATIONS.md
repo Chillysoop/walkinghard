@@ -1,5 +1,22 @@
 # Headless balance simulations
 
+## Current 21-encounter progression review (0.8.2)
+
+The public Play path is the long journey. Older Quick Run / eight-wave commands below are regression fixtures, not additional player modes. For natural progression use the Windows player with:
+
+```
+-batchmode -nographics -progressionReview -seeds 1741,4319 -journeyPolicy all -pool unlocked -saveDirectory <isolated-profile> -reviewOutput <fresh-directory> -logFile <log-path>
+```
+
+Policies: `pinball`, `storm`, `sever`, `gun`, `cutcarry`, `close`, `siphon`, or `all`. `-pool fresh` uses the starting reward pool; default `unlocked` enables all six constellation unlocks and resets the Office between runs. These are build preferences, not fixed or guaranteed loadouts. Runs use normal integrity, Full PhysX, actual rewards and nine physical forks. Time includes hit stop at 1x, excluding human decisions. Defeat is a valid result; timeout and broken invariants are failures. Output paths must be fresh.
+
+The projected policy evaluates detached production receive/fusion/move results, including both hands, pair timing, 2H commitment, rarity milestones, explicit producer/consumer links, and stored partners when changing weapon layouts. It fills utility slots vacated by fusion and prepares Drain Brand before weapon damage. Approximate contact coverage and build-preference weights are test-driver heuristics, not damage predictions or proof of optimal play. It does not add a player suggestion panel or automatically equip anything for players. `-legacyDraftPolicy` retains the old item/tag policy for comparison; its mistakes and undefined Siphon preference limit that baseline.
+
+Each JSONL sample records loadout, draft offers/selection, fusions, item contributions, completed-encounter survivors, incoming damage and the fatal encounter. Upgrade/defense opportunity flags use the heuristic; exact-rarity copy and weapon availability are literal facts. Shop purchases are not reward offers. Run `python "Analyze Progression.py" QA/progression --output QA/progression/summary.json` to summarize named `projected-*` / `legacy-*` sample directories. It rejects duplicates and reports survival-censored gaps. Inspect actual loadouts before comparing style labels. Match seeds and reward pools; bot win rates alone do not establish weapon balance.
+
+`-progressionChecks` with an isolated save directory verifies rarity retention, paired fusion, coordinated weapon swaps, policy identity, incoming damage, fatal-wave capture and save migration. Omit `-batchmode -nographics` and add `-force-d3d11 -screen-fullscreen 0` for results-panel captures at 720p, 1080p and ultrawide. Use the same review output/profile arguments.
+
+
 Expedition stops are opt-in through the title menu. Existing Full/Fast batches remain Quick Run and do not write player saves. Native `-expeditionReview -reviewOutput <directory> -saveDirectory <isolated-profile>` checks real checkpoint restoration, chance outcomes, purchases and physical forks. Add `-resumeOnly` in a fresh player process to verify the retained service fixture, or `-expeditionFullRun -seed 1741` with a different isolated profile for the eight-wave Expedition regression. The staged fixtures elevate combat health; the full Expedition run uses normal health and ordinary offers. These establish functionality, not economy balance. Do not point a review at a real player profile.
 
 Ordinary runs choose roads at physical Y-junctions in waves 2 and 5. Automated policies select at the start of the approach using the existing seed/checkpoint policy (or forced encounter override), then wait for the same deadline as regular play. Full and Fast modes follow the selected road's world-space centerline and direction. Full uses the actual separate floors, walls and entrance colliders; Fast applies its approximate local-road bounds and retains its documented contact limitations. Controlled fixed-loadout cases still omit route choices. Actual road geometry, navigation and camera framing can affect combat outcomes even though item stats and proc budgets are unchanged. Native `-walkingForkReview` separately checks live selection, real separating walls/floors, both turns, two successive forks, rotated Pursuer presentation, pause, timeout, reward continuity and 1080p/720p presentation; simulation success alone does not establish clarity.

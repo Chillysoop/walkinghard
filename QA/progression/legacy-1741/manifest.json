@@ -1,0 +1,6 @@
+{
+  "assemblySha256": "CF20115BED71A46ECBF38BB730E35FE78686E843E7D411D5E57B7044EEEA4FBD",
+  "pool": "unlocked",
+  "drafter": "legacy",
+  "note": "Old draft/sequence/shop behavior; incoming-damage recording matches final build. Heuristic upgrade-opportunity flags use an earlier evaluator; do not compare those flags against the final policy."
+}

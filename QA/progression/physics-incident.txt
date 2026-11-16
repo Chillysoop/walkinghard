@@ -1,0 +1,15 @@
+Initial projected-policy attempt, seed 4319, pinball, fully unlocked pool. Assembly 0EF2628435B2A438BBBB67FE6C168B4AC7A28C21491D1BCD638D6C8C583188BD.
+The generic existing stability guard fired after the fight-5 heartbeat. Exact bone/velocity was not recorded in that build. This is an engine failure, not a combat defeat. The early batch runner also interrupted five unrelated active cases; those partial runs are not counted as outcomes.
+
+InvalidOperationException: Unstable ragdoll physics
+  at VectorGame.VectorEncounter.StepBodies (System.Single dt) [0x00097] in <e78f8836dbde43f0a6ccbc5aaa14400e>:0
+  at VectorGame.VectorEncounter.Step (System.Single dt) [0x003fe] in <e78f8836dbde43f0a6ccbc5aaa14400e>:0
+  at VectorGame.VectorEncounter.AdvanceCombat (System.Single realDelta) [0x00075] in <e78f8836dbde43f0a6ccbc5aaa14400e>:0
+  at VectorGame.VectorEncounter+<ReviewProgression>d__648.MoveNext () [0x0041f] in <e78f8836dbde43f0a6ccbc5aaa14400e>:0
+  at UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) [0x00026] in <407dcea1cedf4a938290e478859357da>:0
+
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.

@@ -222,7 +222,7 @@ namespace VectorGame
                 var e=corpses[i];e.deathAge+=dt;
                 if(DistantBody(e))continue;
                 StepReaction(e,dt,false);
-                if(!FastSimulation&&!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics");
+                if(!FastSimulation&&!e.physics.Finite())throw new InvalidOperationException("Unstable ragdoll physics / wave="+Wave+" time="+Elapsed+" actor="+e.id+" age="+e.deathAge+" "+e.physics.InstabilityDetails());
             }
             for(int i=flights.Count-1;i>=0;i--)
             {

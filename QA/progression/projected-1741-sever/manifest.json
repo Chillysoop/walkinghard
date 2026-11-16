@@ -1,0 +1,6 @@
+{
+  "assemblySha256": "0EF2628435B2A438BBBB67FE6C168B4AC7A28C21491D1BCD638D6C8C583188BD",
+  "pool": "unlocked",
+  "drafter": "projected",
+  "note": "Final evaluator. Subsequent binary only changes results-panel wording/fatal-fight rows and adds diagnostic text/replay flag; no combat or reward-value changes."
+}

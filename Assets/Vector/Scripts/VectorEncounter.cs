@@ -199,6 +199,7 @@ namespace VectorGame
             if(Array.IndexOf(args,"-journeyReview")>=0)StartCoroutine(ReviewJourney());
             if(Array.IndexOf(args,"-chapterReview")>=0)StartCoroutine(ReviewChapter());
             if(Array.IndexOf(args,"-durabilityReview")>=0)StartCoroutine(ReviewDurability());
+            if(Array.IndexOf(args,"-progressionReview")>=0||Array.IndexOf(args,"-progressionChecks")>=0)StartCoroutine(ReviewProgression());
         }
         void OnDestroy(){Physics.simulationMode=previousSimulation;}
         void DisposeEnemy(Enemy e){e.rig.Root.gameObject.SetActive(false);Destroy(e.rig.Root.gameObject);byId.Remove(e.id);}
@@ -213,7 +214,7 @@ namespace VectorGame
             ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();ResetExpeditionAppearance();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);BindChapterRewards();Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
-            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();
+            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();RunHistory=new RunHistoryData();
             RangedSpawned=RangedHits=RearBoundaryKills=EnvironmentalKills=0;RangedDamage=0;
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
@@ -296,7 +297,7 @@ namespace VectorGame
             WaveElapsed=0;accumulator=0;spawnTimer=.65f;ActiveSlot=PairSlot=-1;Preparation=0;sequencePointer=0;expectedSlot=Deck.NextOccupied(0);recovery=.15f;
             waveKills=Kills;waveLaunches=Launches;waveCollisions=CollisionHits;waveHits=HitsTaken;
             waveRangedSpawned=RangedSpawned;waveRangedHits=RangedHits;waveRangedDamage=RangedDamage;
-            BeginFeedbackWave();State=RunState.Running;
+            BeginFeedbackWave();BeginIntegrityEncounter();State=RunState.Running;
             if(ForemanWave){StartForeman();return;}
             if(PursuerWave&&!bossSpawned){StartFinaleReveal();return;}
             if(Wave==1){SpawnEntry(0);SpawnEntry(1);SpawnEntry(2);}
@@ -393,7 +394,7 @@ namespace VectorGame
             StepFreightBodies(dt);StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
             PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
-            if(Health<=0){Health=0;Score.Bank();State=RunState.Defeated;Announce("OVERRUN");}
+            if(Health<=0){Health=0;Score.Bank();EndTargetWait();CaptureWaveFeedback();FinishIntegrityEncounter(false);State=RunState.Defeated;Announce("OVERRUN");}
             else if(finaleActive&&bossSpawned&&!enemies.Exists(e=>e.boss))FinishWave();
             else if(ForemanWave&&!ForemanPresent)FinishWave();
             else if(CleaningUp&&(enemies.Count==0||WaveElapsed>=ArrivalDuration+tuning.cleanupWindow)&&!EliteBlocked&&!ForemanPresent&&!(PursuerWave&&enemies.Exists(e=>e.boss)))FinishWave();
@@ -493,7 +494,7 @@ namespace VectorGame
         {
             if(ForkAwaitingChoice||EliteBlocked)return;
             if(simulation)Debug.Log("SIM_WAVE seed="+Seed+" wave="+Wave+" elapsed="+Elapsed+" kills="+Kills+" enemies="+enemies.Count+" hero="+HeroPosition);
-            Score.Bank();CaptureWaveFeedback();
+            Score.Bank();CaptureWaveFeedback();FinishIntegrityEncounter(true);
             foreach(var e in enemies)if(e.durability!=null)e.durability.carried++;
             AwardEncounterSalvage();
             Waves.Add(new WaveReport{wave=Wave,route=RouteName(ActiveRoute),kills=Kills-waveKills,launches=Launches-waveLaunches,collisions=CollisionHits-waveCollisions,carried=enemies.Count,hitsTaken=HitsTaken-waveHits,health=Health,shooters=RangedSpawned-waveRangedSpawned,rangedHits=RangedHits-waveRangedHits,rangedDamage=RangedDamage-waveRangedDamage});

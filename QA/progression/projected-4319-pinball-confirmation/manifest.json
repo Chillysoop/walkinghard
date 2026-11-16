@@ -1,0 +1,5 @@
+{
+  "assemblySha256": "38E3ABF56F9C994C694D2ACA7ED206D604A3B7F7EFFD24D0E7CFBB17CA6C578D",
+  "source": "../physics-fresh/samples.jsonl",
+  "note": "Fresh full-run confirmation after the separately retained initial physics failure; not a checkpoint resume."
+}

@@ -1,4 +1,8 @@
-# Walking Hard 0.8.1 - Durable threats and live combat stats
+# Walking Hard 0.8.2 - Combat records and full-journey evaluation
+
+The results screen now explains the final hit, leading incoming threats, integrity changes and damage dealt in the fatal fight. It includes the unfinished encounter, keeps existing per-item totals, and carries the record through checkpoints. Older saves retain their progress and clearly label partial history.
+
+Automated drafts now compare complete projected loadouts, both weapon mounts, fusion, stored partners and setup/payoff links. Seven build preferences can be tested across the full journey with the new `Validate Progression.ps1` runner. These changes affect testing; they do not choose equipment for players or add a suggestion panel. [Measurements, limitations and verification](QA/progression/verification.md).
 
 Press **I** or click **LIVE STATS** on the right during combat. Toggle **Kills, Damage, Assists and Heal** independently. Rows follow the actual sequence, with the ultimate below; separate paired weapons keep separate credit, while shared fists and two-handed weapons appear once. Totals survive equipment swaps, fusion and checkpoints. Damage includes body impacts, assists count confirmed setup payoffs, and healing belongs to its source item; other gear/stored-item contributions and environmental kills are identified separately. Sidebar preferences persist between launches.
 

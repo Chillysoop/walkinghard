@@ -39,11 +39,11 @@ namespace VectorGame
             }
             else if(Stop.kind==EncounterRoute.PressureWorks)
             {
-                if(Stop.failed){Health-=harm;Stop.result="RUPTURE · lost the "+Stop.stash+" salvage haul\nand "+harm+" integrity. Banked salvage is safe.";Stop.stash=0;}
+                if(Stop.failed){RecordIncoming(Stop.kind==EncounterRoute.PressureWorks?"Pressure rupture":"Failed rescue",harm);Health-=harm;Stop.result="RUPTURE · lost the "+Stop.stash+" salvage haul\nand "+harm+" integrity. Banked salvage is safe.";Stop.stash=0;}
                 else {Stop.stash+=gain;Stop.result="TAP SUCCESSFUL · +"+gain+" salvage.\nThe "+Stop.stash+" haul is still at risk.";}
             }
             else if(Stop.failed)
-            {Health-=harm;Stop.result="RESCUE FAILED · "+(price>0?price+" salvage spent.":harm+" integrity lost.")+"\nEarlier rescues and rewards are secure.";}
+            {RecordIncoming(Stop.kind==EncounterRoute.PressureWorks?"Pressure rupture":"Failed rescue",harm);Health-=harm;Stop.result="RESCUE FAILED · "+(price>0?price+" salvage spent.":harm+" integrity lost.")+"\nEarlier rescues and rewards are secure.";}
             else
             {
                 float repair=Mathf.Min(MaxHealth-Health,Stop.repair);Health+=repair;Salvage+=gain;Stop.rescued++;RecordChapterRescue();

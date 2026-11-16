@@ -97,7 +97,7 @@ namespace VectorGame
             if(!StopOpen||Stop.kind!=EncounterRoute.Overtime||Stop.reveal||Stop.failed||Stop.attempt>=4||Health<=Stop.harm)return false;
             Stop.roll=eventRandom.Next(1,101);Stop.attempt++;Stop.reveal=true;
             if(Stop.roll<=Stop.chance){Stop.stash+=Stop.gain;Stop.result="SUCCESS · rolled "+Stop.roll+" / needed "+Stop.chance+" or lower\nRecovered +"+Stop.gain+" salvage. Your haul is still at risk.";}
-            else {Health-=Stop.harm;Stop.failed=true;Stop.result="LOCKERS COLLAPSED · rolled "+Stop.roll+" / needed "+Stop.chance+" or lower\nLost the "+Stop.stash+" salvage haul and "+Stop.harm+" integrity. Banked salvage is safe.";Stop.stash=0;}
+            else {RecordIncoming("Locker collapse",Stop.harm);Health-=Stop.harm;Stop.failed=true;Stop.result="LOCKERS COLLAPSED · rolled "+Stop.roll+" / needed "+Stop.chance+" or lower\nLost the "+Stop.stash+" salvage haul and "+Stop.harm+" integrity. Banked salvage is safe.";Stop.stash=0;}
             SaveCheckpoint();return true;
         }
         public bool ContinueOvertime()
