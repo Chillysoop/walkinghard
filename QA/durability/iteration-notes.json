@@ -1,0 +1,36 @@
+{
+  "introAdjustedGun": {
+    "result": "Defeated",
+    "wave": 9,
+    "outcome": "gun-final/outcome.json"
+  },
+  "baselineGun": {
+    "result": "Defeated",
+    "milestones": [
+      "Encounter 1 / HP 280 / kills 0 / time 0",
+      "JOURNEY_PROGRESS wave=2 time=60.01592 boss=0 enemies=7 dormant=0",
+      "Encounter 2 / HP 160 / kills 74 / time 96",
+      "JOURNEY_PROGRESS wave=3 time=120.0445 boss=0 enemies=20 dormant=2",
+      "Encounter 3 / HP 162 / kills 116 / time 144",
+      "JOURNEY_PROGRESS wave=4 time=180.0502 boss=0 enemies=8 dormant=73",
+      "Encounter 4 / HP 134 / kills 155 / time 192",
+      "JOURNEY_PROGRESS wave=5 time=240.2021 boss=0 enemies=3 dormant=106",
+      "Encounter 5 / HP 130 / kills 195 / time 240",
+      "Encounter 6 / HP 112 / kills 239 / time 289",
+      "JOURNEY_PROGRESS wave=7 time=300.5874 boss=1 enemies=12 dormant=175",
+      "JOURNEY_PROGRESS wave=7 time=360.5728 boss=0.2374563 enemies=1 dormant=175",
+      "Encounter 7 / HP 272 / kills 273 / time 372",
+      "JOURNEY_PROGRESS wave=8 time=421.008 boss=0 enemies=10 dormant=199",
+      "Encounter 8 / HP 157 / kills 309 / time 425",
+      "Encounter 9 / HP 33 / kills 348 / time 478",
+      "JOURNEY_PROGRESS wave=10 time=480.96 boss=0 enemies=18 dormant=237",
+      "InvalidOperationException: JOURNEY_REVIEW: normal-health run reaches and defeats final boss"
+    ],
+    "wave": 10
+  },
+  "initialGun": {
+    "result": "Defeated",
+    "reason": "Opening health spike; preserve prior health in first two fights",
+    "wave": 2
+  }
+}

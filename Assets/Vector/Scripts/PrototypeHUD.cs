@@ -59,8 +59,9 @@ namespace VectorGame
             if(game.State==VectorEncounter.RunState.Complete||game.State==VectorEncounter.RunState.Defeated){Summary(w,h);return;}
             TargetWaitCombat(w,h);CombatHeader(w,h);CombatBar(w,h);
             JourneyProgress(w,h);
-            if(game.ExpeditionActive||game.ForemanPractice)CrewCombatLabels(w,h);
+            EnemyThreatLabels(w,h);
             WalkingForkControls(w,h);
+            LiveCombatSidebar(w,h);
             if(game.CombatPreviewActive)CombatPreviewControls(w);
             if(game.MechanicReview)Label(new Rect(340,25,w-680,60),"MECHANIC REVIEW / "+game.ReviewLabel+"\n← / → previous / next; Space pauses",14,white,true,TextAnchor.UpperCenter);
             if(game.EventText!=game.WaveFormation&&game.EventAge<1.4f&&game.Preparation<=0&&!game.ActionStatus.StartsWith("WAITING"))Label(new Rect(w/2-320,h-193,640,30),game.EventText,18,game.EventText.Contains("COLLISION")?Strong:Accent,true,TextAnchor.MiddleCenter);

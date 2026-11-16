@@ -37,7 +37,7 @@ namespace VectorGame
         void OpenExpeditionStop()
         {
             if(!ExpeditionActive)return;
-            if(Wave>salvageWave){Salvage+=4+(ActiveRoute==EncounterRoute.EliteShift?6:0);salvageWave=Wave;}
+            AwardEncounterSalvage();
             if(routedWave!=Wave+1||!RegionalEncounters.IsStop(SelectedRoute))return;
             Stop=new ExpeditionStop{kind=SelectedRoute};
             if(RegionalEncounters.IsNewEvent(Stop.kind))PrepareRegionalEvent();

@@ -1,0 +1,7 @@
+{
+  "version": "0.8.1",
+  "balanceAndCoreAssemblySha256": "9770EC9DEFE2B57E73702B3F91073807A1BFF05F2032DA9595D676AB17EB09D6",
+  "finalAssemblySha256": "051BF254A08C4ABE7FFB51E1B54F2684545A015EE43875A5CB1F56630A3D7E0C",
+  "introAdjustedJourneyAssemblySha256": "BE940F9D2D45DCDDC00E712872B347A4FA078D2CE329C5638DA4A49E5D101E26",
+  "finalChanges": "Preserve opening health; minimum HUD scale and fork bounds; ensure a deferred champion receives its one repair escort; show fully absorbed protection breaks. Final rendered acceptance executes 55 checks."
+}

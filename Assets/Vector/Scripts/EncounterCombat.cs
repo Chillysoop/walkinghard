@@ -155,10 +155,10 @@ namespace VectorGame
             if(e.deathAge>=0)return;
             damage=ShieldDamage(e,damage,impulse,hitOrigin);
             if(e.stun>0&&(currentCredit?.hop??0)==0&&Deck.StaggerBonus>0){damage+=Deck.StaggerBonus;ArmorBonusHits++;}
-            damage=ForemanDamage(e,CrewProtection(e,damage));
+            damage=ChampionDamage(e,ForemanDamage(e,CrewProtection(e,damage)));
             bool staggered=e.stun>0;float dealt=Mathf.Min(e.health,Mathf.Max(0,damage));var c=ContributionFor(Owner);if((currentCredit?.hop??0)>0)c.collision+=dealt;else c.direct+=dealt;if(currentCredit?.augment==true)c.augment+=dealt;
             if(dealt>0&&(currentCredit?.hop??0)>0)SynergyCue("collision","COLLISION CHAIN","Launched body → impact damage");
-            ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;e.engaged=false;if(stun>0&&!ForemanBraced(e))e.attack=-1;
+            ObserveDurabilityHit(e,dealt);ObserveControlledDrain(e,dealt);ApplyLifesteal(e,dealt);e.health-=damage;Control(e,stun,Vector3.zero);e.react=1;if(!ChampionBraced(e))e.engaged=false;if(stun>0&&!ResistsInterrupt(e))e.attack=-1;
             RememberDisplacement(e,impulse);
             var impact=DescribeImpact(e,impulse,sever,reactionKind);e.reaction=impact;
             if(e.health<=0)KillEnemy(e,impulse,sever);
@@ -168,7 +168,7 @@ namespace VectorGame
         }
         void Launch(Enemy body,Cascade chain=null,int hop=0,float energy=1,Vector3? forcedDirection=null)
         {
-            body.freightLeft=0;CancelCrew(body);
+            body.freightLeft=0;ExposeChampion(body);CancelCrew(body);
             AddForemanPressure(body,.28f);
             for(int i=flights.Count-1;i>=0;i--)if(flights[i].body==body)flights.RemoveAt(i);
             Vector3 origin=body.physics.Center;Vector3 direction=origin-(HeroPosition+Vector3.up);direction.y=0;direction.Normalize();float nearest=7;

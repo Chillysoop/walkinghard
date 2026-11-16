@@ -32,13 +32,14 @@ namespace VectorGame
         {
             if(currentCredit==null||impulse.sqrMagnitude<.001f)return;
             e.lastPushCredit=new KillCredit{item=currentCredit.item,weapon=currentCredit.weapon,action=currentCredit.action,hop=currentCredit.hop,derived=currentCredit.derived,augment=currentCredit.augment};
+            if(e.durability!=null)e.durability.lastPushTime=Elapsed;
         }
         void ResolveRearBoundary()
         {
             Vector3 line=RearBoundaryPoint;
             foreach(var e in enemies.ToArray())
             {
-                if(e.entering||e.deathAge>=0||e.foreman!=null||finaleActive&&e.boss||Vector3.Dot(e.rig.Root.position-line,EncounterForward)>=0||BodyInCamera(e))continue;
+                if(e.entering||e.deathAge>=0||e.foreman!=null||e.durability?.champion==true&&(e.lastPushCredit==null||Elapsed-e.durability.lastPushTime>3.5f)||finaleActive&&e.boss||Vector3.Dot(e.rig.Root.position-line,EncounterForward)>=0||BodyInCamera(e))continue;
                 var saved=currentCredit;currentCredit=e.lastPushCredit;
                 e.health=0;KillEnemy(e,Vector3.zero,false);RearBoundaryKills++;currentCredit=saved;
             }
@@ -46,6 +47,7 @@ namespace VectorGame
         void KillEnemy(Enemy e,Vector3 impulse,bool sever)
         {
             if(e.deathAge>=0)return;
+            if(e.durability!=null)e.durability.firstActionKill=e.durability.actions==1&&currentCredit!=null&&e.durability.firstAction==currentCredit.action;
             enemies.Remove(e);e.deathAge=0;e.physics.Die(impulse);corpses.Add(e);Kills++;Ragdolls++;
             SetBodyWalkCollision(e,flights.Exists(f=>f.body==e));
             if(sever){e.physics.Sever(e.reaction);Severs++;fx.Burst(e.physics.Center,VisualFactory.Orange,10,3);}

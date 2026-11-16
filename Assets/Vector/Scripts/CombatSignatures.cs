@@ -43,9 +43,9 @@ namespace VectorGame
         float ControlResistance(Enemy e)=>e.foreman!=null?(ForemanBraced(e)?.35f:.65f):e.boss?(WaveElapsed%8<2.5f?1:.22f):e.heavy?.65f:1;
         void Control(Enemy e,float seconds,Vector3 impulse)
         {
-            if(e.deathAge>=0)return;if(seconds>0)AddForemanPressure(e,Mathf.Clamp(.06f+seconds*.12f,.06f,.22f));float r=ControlResistance(e);float effective=seconds*r;
+            if(e.deathAge>=0)return;if(seconds>0){AddForemanPressure(e,Mathf.Clamp(.06f+seconds*.12f,.06f,.22f));ChampionPressure(e,Mathf.Clamp(.06f+seconds*.25f,.06f,.4f));}float r=ControlResistance(e);float effective=ChampionBraced(e)?0:seconds*r;
             ExposeShield(e,effective);if(effective>0)CancelCrew(e);
-            ContributionFor(Owner).control+=Mathf.Max(0,effective-e.stun);e.stun=Mathf.Max(e.stun,effective);if(effective>0&&!ForemanBraced(e)){e.attack=-1;e.engaged=false;}
+            ContributionFor(Owner).control+=Mathf.Max(0,effective-e.stun);e.stun=Mathf.Max(e.stun,effective);if(effective>0&&!ResistsInterrupt(e)){e.attack=-1;e.engaged=false;}
             RememberDisplacement(e,impulse);e.physics.Impulse(impulse*(e.foreman==null?r:.18f));
             if(!FastSimulation&&impulse.sqrMagnitude>.1f){e.reaction=DescribeImpact(e,impulse,false);e.reactionLeft=.32f;}
         }
