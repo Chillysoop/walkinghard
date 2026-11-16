@@ -6,7 +6,7 @@ using UnityEngine;
 namespace VectorGame
 {
     public enum Signature { None,Tactician,Surveyor,Salvager,Capacitor,Bulwark,Reactive,Grounding,Duelist,Recovery,Momentum,Loader,Arcstep,FaultLine,Overclock,Amplifier,Relay,Salvage,Reclaimer,Predator,Recoil }
-    public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter,Siphon }
+    public enum WeaponStyle { Kinetic,Conductor,Edge,Greatsword,Breach,Impact,Pistol,Rifle,Scatter,Siphon,Hook,Rivet }
     public readonly struct GearStats
     {
         public readonly float damage,speed,health,resistance;
@@ -33,6 +33,9 @@ namespace VectorGame
     public static class LoadoutCatalog
     {
         public static float VolleyStagger(LoadoutItem item)=>.7f*EffectScale(item);
+        public static float HookForce(LoadoutItem item)=>6*EffectScale(item);
+        public static float RivetSlow(LoadoutItem item)=>Mathf.Min(.75f,(.4f+.05f*(item.rank-1))*BalanceOverrides.Effect(item.def.id));
+        public static float RivetSeconds(LoadoutItem item)=>1.4f+.2f*(item.rank-1);
         public static float RecoilBlock(LoadoutItem item)=>12*ItemRarity.Power[item.rank]*BalanceOverrides.Effect(item.def.id);
         public static float RecoilDamage(LoadoutItem item)=>12*ItemRarity.Power[item.rank]*BalanceOverrides.Damage(item.def.id);
         public const float CounterguardBarrier=25f;
@@ -99,7 +102,9 @@ namespace VectorGame
             Weapon("greatsword","Execution Greatsword",WeaponKind.Sword,2,WeaponStyle.Greatsword,"A heavy cleave; lethal cuts split bodies and limbs along the blade plane.","Wider cleave, greater reach and follow-through force.","sever blade","Slow single swing; both mounts.",59,1.18f,4.1f,70,6,0,3),
             Weapon("breachhammer","Breach Hammer",WeaponKind.Hammer,1,WeaponStyle.Breach,"A light hammer staggers and knocks the first target forward.","Longer stagger; stronger controlled launch.","stagger launch hammer","Less force and splash than Impact Hammer.",29,.66f,3.1f,25,8,0,4),
             Weapon("siphonblade","Siphon Blade",WeaponKind.Sword,1,WeaponStyle.Siphon,"This blade steals life from its own damage. Cuts mark targets so other attacks can drain them; severing spreads the mark.","Lifesteal and drain strength 4 / 5 / 6 / 8 / 10%; longer marks and wider spread.","siphon sustain sever blade","One healing budget per action; no healing from overkill or corpses.",30,.74f,3.7f,45,3,0,3),
-            Weapon("scattergun","Compact Scattergun",WeaponKind.Shotgun,1,WeaponStyle.Scatter,"Three rounds; a short cone of knockback pellets.","Wider useful coverage and better pellet retention.","gun push close","Short reach; small magazine.",31,.75f,6,40,5,3,5)
+            Weapon("scattergun","Compact Scattergun",WeaponKind.Shotgun,1,WeaponStyle.Scatter,"Three rounds; a short cone of knockback pellets.","Wider useful coverage and better pellet retention.","gun push close","Short reach; small magazine.",31,.75f,6,40,5,3,5),
+            Weapon("hookblade","Hookblade",WeaponKind.Sword,1,WeaponStyle.Hook,"Cut a narrow group; pull the surviving primary target closer. Killing blows sever.","More pull force, reach and cutting arc.","gather sever blade close","Lower damage and narrower cleave than Edge Sword; pulls danger closer. Hooked Edge strengthens the pull by 25% instead of adding another.",28,.74f,3.7f,25,0,0,3),
+            Weapon("rivetpistol","Rivet Pistol",WeaponKind.Pistol,1,WeaponStyle.Rivet,"Six rivets; slow forward movement without knockback or interrupting attacks.","Forward slow 40 / 45 / 50 / 55 / 60%; lasts 1.4 / 1.6 / 1.8 / 2 / 2.2s.","slow reload gun","Lower damage; no ricochets. Does not slow bosses or committed charges. Strongest slow wins; no stacking.",20,.5f,10,0,0,6,5)
         };
         public static readonly ItemDefinition[] Rigs={
             Gear("faultline","Fault Line",ItemKind.Rig,Signature.FaultLine,"First body impact in a turn emits a stagger aftershock.","More collision power and aftershock coverage.","collision hammer vector","Requires body impacts; one aftershock per originating turn.",new GearStats(),new EffectProfile(10,2,.4f)),

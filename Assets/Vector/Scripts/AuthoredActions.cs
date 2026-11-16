@@ -133,8 +133,9 @@ namespace VectorGame
                 {
                     if(profile.style==WeaponStyle.Siphon)DrainMark(e,host);
                     float d=damage*(profile.style==WeaponStyle.Greatsword&&e.health<e.maxHealth*.5f?1.4f:1);Hurt(e,d,aim*profile.force*s,.4f,true);WeaponHits[1]++;if(e.deathAge>=0&&host.rank>=3&&profile.style==WeaponStyle.Edge&&Once("edge-launch")){Launch(e,null,0,.6f*s);}
-                    if(host.HasAugment(AugmentId.HookedEdge)&&!hooked&&e.deathAge<0){hooked=true;var to=HeroPosition+aim*1.9f;fx.Arc(e.physics.Center,to+Vector3.up,Color.magenta);Control(e,.12f,(to-e.rig.Root.position).normalized*8*s*share);SetSetup(e,host);}
+                    if(profile.style!=WeaponStyle.Hook&&host.HasAugment(AugmentId.HookedEdge)&&!hooked&&e.deathAge<0){hooked=true;var to=HeroPosition+aim*1.9f;fx.Arc(e.physics.Center,to+Vector3.up,Color.magenta);Control(e,.12f,(to-e.rig.Root.position).normalized*8*s*share);SetSetup(e,host);}
                 }
+                if(profile.style==WeaponStyle.Hook)HookPrimary(host,target);
                 return;
             }
             if(host.def.weapon==WeaponKind.Hammer)
@@ -157,13 +158,14 @@ namespace VectorGame
             {
                 int cap=bore?AugmentCatalog.BoreCap(host,share<1):Mathf.Min(4,host.rank+1);fx.Arc(origin,HeroPosition+Vector3.up+aim*range,bore?Color.magenta:VisualFactory.Cyan);
                 var pierced=enemies.Where(e=>(profile.style==WeaponStyle.Scatter||!hit.Contains(e.id))&&InCorridor(e,HeroPosition,aim,range,.7f)&&Reachable(e,range)).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).Take(cap).ToArray();
-                foreach(var e in pierced){hit.Add(e.id);Hurt(e,damage*(profile.style==WeaponStyle.Scatter?.35f:1),aim*profile.force,.2f);WeaponHits[(int)host.def.weapon]++;}
+                foreach(var e in pierced){hit.Add(e.id);Hurt(e,damage*(profile.style==WeaponStyle.Scatter?.35f:1),aim*profile.force,profile.style==WeaponStyle.Rivet?0:.2f);if(profile.style==WeaponStyle.Rivet)ApplyRivet(host,e);WeaponHits[(int)host.def.weapon]++;}
                 if(profile.style==WeaponStyle.Rifle&&host.rank>=3&&pierced.Length>0&&Once("rail-launch"))Launch(pierced[pierced.Length-1],null,0,.65f*s);
             }
             if(profile.style==WeaponStyle.Pistol&&(!bore||!BalanceOverrides.LegacyWeaponAugments))
             {
                 var e=target;Vector3 from=origin;for(int i=0;i<Mathf.Min(3,host.rank)&&e!=null;i++){bool fresh=hit.Add(e.id);Vector3 p=e.physics.Center;fx.Arc(from,p,VisualFactory.Cyan);if(fresh)Hurt(e,damage*(i==0?1:.65f),aim*.7f,.15f*s);WeaponHits[3]++;from=p;e=enemies.Where(x=>!hit.Contains(x.id)&&Reachable(x,range)&&Vector3.Distance(x.physics.Center,p)<4.2f).OrderBy(x=>Vector3.Distance(x.physics.Center,p)).FirstOrDefault();}
             }
+            if(profile.style==WeaponStyle.Rivet&&!bore){fx.Arc(origin,target.physics.Center,Color.white);Hurt(target,damage,Vector3.zero,0);ApplyRivet(host,target);WeaponHits[3]++;}
             SpendBreach(host,target,share);
         }
         void SpendBreach(LoadoutItem host,Enemy primary,float share)

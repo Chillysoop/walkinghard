@@ -19,3 +19,6 @@ __pycache__/
 /QA/v087-*
 
 /QA/v088-*
+
+# Raw control-weapon working captures; curated evidence is in QA/control-weapons.
+/QA/v089-*

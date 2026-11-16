@@ -1,4 +1,6 @@
-# Walking Hard 0.8.8 - Combat feel
+# Walking Hard 0.8.9 - Control weapons and crowd filtering
+
+Hookblade pulls a surviving primary target closer; Rivet Pistol slows voluntary advance without knockback. Both use the existing weapon mounts, ordered pairing, rarity/fusion and socket rules. New cards have dedicated art and concise descriptions. Corpse/walker collision exclusions now use shared layers while preserving walking shoves, projectile impacts and persistent bodies. Numerical follow-up tuning remains subject to the controlled comparison report in `QA/control-weapons/`.
 
 Combat has distinct weapon-impact sounds, prioritized boss warnings and ultimate charge/release cues. Actual combo payoffs underline their source in the sequence; ultimates name their charging, release and recovery phases. Boss/champion danger boundaries remain visible through bodies and effects. Reusable effect pools and sound limits keep large chains bounded. Combat rules and persistent bodies are preserved. [Verification](QA/combat-feel/verification.md).
 

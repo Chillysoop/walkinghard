@@ -1,0 +1,16 @@
+{
+  "tool": "built-in imagegen",
+  "reference": "Assets/Resources/ItemArt/Equipment.png",
+  "images": [
+    {
+      "id": "hookblade",
+      "prompt": "Create ONE square equipment card illustration of the HOOKBLADE, a single one-handed industrial sci-fi sword. The reference is a STYLE REFERENCE ONLY: match its polished angular gunmetal, ivory steel plating, restrained cyan energy inlays, dark near-black teal background, high-contrast game inventory rendering. Do NOT reproduce the grid, text, borders, or other objects. One sword, fully visible with generous padding, diagonally lower-left handle to upper-right blade. Its defining silhouette is a practical forward-curving hooked tip used to pull an enemy closer after a cut; not a fantasy scythe, no chain, no blood, no hand. Sturdy short black grip, a small squared crossguard, a silver cutting edge, slim cyan strip and hooked mechanical nose. Readable silhouette even at 80px. No labels, numbers, rarity colors, or UI.",
+      "asset": "Assets/Resources/ItemArt/Control-hookblade.png"
+    },
+    {
+      "id": "rivetpistol",
+      "prompt": "Create ONE square equipment card illustration of the RIVET PISTOL, a single one-handed industrial sci-fi rivet gun. The reference is a STYLE REFERENCE ONLY: match its polished angular gunmetal, ivory steel plating, restrained cyan energy inlays, dark near-black teal background, high-contrast game inventory rendering. Do NOT reproduce the grid, text, borders, or other objects. One compact pistol in three-quarter side view with a squared compressed-air receiver, short thick split-jaw muzzle, visible cylindrical rivet drum and forward mounting clamp. A few brass fastener details distinguish construction equipment from a regular laser pistol. Strong recognizable profile, fully visible with generous padding, readable at 80px. No projectiles, hands, letters, numbers, rarity border, or UI.",
+      "asset": "Assets/Resources/ItemArt/Control-rivetpistol.png"
+    }
+  ]
+}

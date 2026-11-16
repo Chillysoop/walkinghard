@@ -1,0 +1,13 @@
+{
+  "seed": 4319,
+  "physicsSettingsSha256": "B7C9A9DC08B98990109D4346F68745E15E238DE400F96C583E53E1C83C743A78",
+  "originalBodyFilters": false,
+  "checkpointProfile": "C:\\Users\\conne\\Documents\\VectorPrototype\\QA\\v088-journey-scan\\profile",
+  "assemblySha256": "E994B2FCB3388E5E6671BAACB5CDAEAD823A2F47347E6126E40857362A238DDC",
+  "policy": "pinball",
+  "mode": "Journey",
+  "checkpointSha256": "6F42A243CBE6FF3778F5FF67FB325EE08310ADCC1CAC0AB5E1018BE10DB8ED1A",
+  "verifyWalkingSnapshot": false,
+  "unpooled": false,
+  "originalBodyScan": false
+}

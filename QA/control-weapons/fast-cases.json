@@ -1,0 +1,3754 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r1-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r1-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r1-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r1-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r1-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r1-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r1-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r1-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r1-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r1-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r1-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r1-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r1-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r1-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r1-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r3-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r3-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r3-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r3-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r3-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r3-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r3-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r3-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r3-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r3-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r3-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r3-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r3-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r3-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r3-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r5-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r5-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r5-s0",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r5-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r5-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r5-s1",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r5-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r5-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r5-s2",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r5-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r5-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r5-s3",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-hookblade-r5-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-sword-r5-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "fists"
+      ],
+      "abilities": [
+        "SteelJab",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "duelist",
+      "boots": "momentum",
+      "rig": "overclock",
+      "ultimate": "cyclone",
+      "id": "hook-close-siphonblade-r5-s4",
+      "context": "hook-close",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r1-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r1-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r1-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r1-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r1-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r1-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r1-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r1-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r1-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r1-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r1-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r1-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r1-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r1-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r1-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r3-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r3-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r3-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r3-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r3-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r3-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r3-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r3-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r3-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r3-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r3-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r3-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r3-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r3-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r3-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r5-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r5-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r5-s0",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89200,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r5-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r5-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r5-s1",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89201,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r5-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r5-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r5-s2",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89202,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r5-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r5-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r5-s3",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89203,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "hookblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-hookblade-r5-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "hookblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "sword",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-sword-r5-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "sword",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "siphonblade",
+        "sword"
+      ],
+      "abilities": [
+        "GravityWell",
+        "ReapingCut",
+        "MassDriver"
+      ],
+      "helmet": "salvager",
+      "armor": "duelist",
+      "boots": "arcstep",
+      "rig": "magnet",
+      "ultimate": "cyclone",
+      "id": "hook-sever-siphonblade-r5-s4",
+      "context": "hook-sever",
+      "category": "weapon",
+      "candidate": "siphonblade",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89204,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r1-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r1-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r1-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r1-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r1-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r1-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r1-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r1-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r1-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r1-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r3-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r3-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r3-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r3-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r3-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r3-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r3-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r3-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r3-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r3-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r5-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r5-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89300,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r5-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r5-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89301,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r5-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r5-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89302,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r5-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r5-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89303,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-rivetpistol-r5-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-pistol-r5-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89304,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r1-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r1-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r1-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r1-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r1-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r1-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r1-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r1-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r1-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r1-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r3-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r3-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r3-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r3-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r3-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r3-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r3-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r3-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r3-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r3-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r5-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r5-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89400,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r5-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r5-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89401,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r5-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r5-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89402,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r5-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r5-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89403,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-rivetpistol-r5-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-pistol-r5-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 5,
+      "baseRank": 1,
+      "seed": 89404,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    }
+  ]
+}

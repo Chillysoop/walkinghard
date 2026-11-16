@@ -9,7 +9,7 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=12;
+        public int schema=13;
         public JourneyPacingLog pacing;
         public string rules="continuance-1",tuning;
         public bool chapterMode;public ChapterRun chapter;
@@ -88,7 +88,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         {
             var info=new FileInfo(SavePath);if(info.Length>64000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=12)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=13)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
             if(data.schema>=4&&(data.itinerary==null||!data.itinerary.Valid()))throw new InvalidOperationException("Invalid expedition itinerary");
             if(!data.chapterMode)data.chapter=null;
             if(data.chapterMode&&(data.chapter==null||!data.chapter.Valid()||data.wave>(data.chapter.definition==LongJourney.Id?21:6)))throw new InvalidOperationException("Invalid chapter checkpoint");
@@ -120,7 +120,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
             bool replacing=false;
             try
             {
-                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9,saved.schema<11,saved.schema<12);
+                var saved=ReadCheckpoint();if((!saved.chapterMode||saved.chapter?.definition!=LongJourney.Id)&&!legacyReviewAccess){RetireOldCheckpoint();return false;}var codec=GraphCodec();codec.Decode(saved.graph,saved.schema==1,saved.schema<3,saved.schema<4,saved.schema<6,saved.schema<7,saved.schema<8,saved.schema<9,saved.schema<11,saved.schema<12,saved.schema<13);
                 if((RunState)codec.Root("State")!=RunState.Drafting||!(bool)codec.Root("ExpeditionActive")||(int)codec.Root("Wave")!=saved.wave)throw new InvalidOperationException("Invalid checkpoint state");
                 ValidateDistrictEvent((ExpeditionStop)codec.Root("Stop"),(AbilityDeck)codec.Root("Deck"));
                 var savedEnemies=((List<Enemy>)codec.Root("enemies")).Concat((List<Enemy>)codec.Root("corpses")).ToArray();

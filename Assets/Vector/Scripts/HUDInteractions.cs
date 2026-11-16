@@ -91,6 +91,7 @@ namespace VectorGame
         static void EffectIcon(Rect r,int kind,Color color)
         {
             Vector2 c=r.center;
+            if(kind==16){Stroke(c+new Vector2(0,-9),c+new Vector2(0,3),color);Stroke(c+new Vector2(-5,-2),c+new Vector2(0,3),color);Stroke(c+new Vector2(5,-2),c+new Vector2(0,3),color);Stroke(c+new Vector2(-8,7),c+new Vector2(8,7),color,3);}
             if(kind==0){for(int i=0;i<6;i++){float a=i*Mathf.PI/3;Stroke(c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*3,c+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*9,color);}}
             if(kind==1){Stroke(c+new Vector2(-7,7),c+new Vector2(7,-7),color);Stroke(c+new Vector2(0,-7),c+new Vector2(7,-7),color);Stroke(c+new Vector2(7,0),c+new Vector2(7,-7),color);}
             if(kind==2){Ring(c+Vector2.left*6,4,color);Ring(c+Vector2.right*6,4,color);Stroke(c+Vector2.up*8,c+Vector2.up*3,color);Stroke(c+Vector2.down*8,c+Vector2.down*3,color);}

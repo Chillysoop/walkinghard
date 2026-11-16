@@ -1,0 +1,14 @@
+{
+  "assemblySha256": "ee39146728b6925803158ed078fa73d2f31e8a0c1fa6abdc646f4b9d999dffc9",
+  "baseCommit": "bfa7e65039bf8423620d7026f5f501967d93f545",
+  "version": "0.8.9",
+  "physics": "Full PhysX; solver, CCD, fixed step and body lifetime unchanged",
+  "corePrefix": "v089-items-r3",
+  "coreHealth": 5000,
+  "fastCases": 150,
+  "fullCases": 20,
+  "nativePresentationSizes": [
+    "1280x720",
+    "1920x1080"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "policy": "pinball",
+  "unpooled": false,
+  "verifyWalkingSnapshot": false,
+  "mode": "Journey",
+  "checkpointProfile": "C:\\Users\\conne\\Documents\\VectorPrototype\\QA\\v088-journey-scan\\profile",
+  "checkpointSha256": "6F42A243CBE6FF3778F5FF67FB325EE08310ADCC1CAC0AB5E1018BE10DB8ED1A",
+  "seed": 4319,
+  "originalBodyFilters": true,
+  "originalBodyScan": false,
+  "assemblySha256": "E994B2FCB3388E5E6671BAACB5CDAEAD823A2F47347E6126E40857362A238DDC"
+}

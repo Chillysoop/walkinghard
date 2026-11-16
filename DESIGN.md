@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 31, November 15, 2026. Includes the 0.8.1 durability, champion and live-stat pass, plus the combat-flow, physical-fork, Expedition stops, Cinderworks crews, Shift Foreman and encounter-variety development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Current measurements are in QA/durability/verification.md; shared-augment verification remains in QA/v080-verification.md.
+Revision 32, November 16, 2026. Includes the 0.8.1 durability, champion and live-stat pass, plus the combat-flow, physical-fork, Expedition stops, Cinderworks crews, Shift Foreman and encounter-variety development passes after 0.8.0. This replaces the earlier augment proposal and the three-wave content proposal. Numerical values remain initial balance hypotheses, not a claim of equal build strength. Current measurements are in QA/durability/verification.md; shared-augment verification remains in QA/v080-verification.md.
 
 ## Durability and live combat feedback
 
@@ -511,3 +511,17 @@ A confirmed payoff highlights its source in the existing sequence with a white e
 Presentation geometry reuses 128 ordinary lines, 16 reserved threat lines and 64 debris objects, plus the existing 160 soft particles. Threat lines have foreground rendering priority and keep their authored footprint. Secondary contacts are quieter; reduced motion keeps static threat boundaries and reduces debris travel. Existing bodies, physics, controls, proc limits, numerical balance and saves remain intact. Native performance evidence and its limits belong in QA/combat-feel/verification.md.
 
 Walking-body shove processing snapshots actor positions and bone centers once before each PhysX step. Reuse is confined to that stage, where AddForce changes pending velocity rather than position. Actor/bone order, applied impulses, physics frequency, solver settings and retained-body rules stay the same.
+
+
+## Control weapons (0.8.9)
+
+Two new one-handed weapons extend existing loadout rules. These are initial authored values, not approved follow-up balance adjustments.
+
+| Weapon | Common attack | Unique effect | Rarity effect |
+| --- | --- | --- | --- |
+| Hookblade / Sword | 28 damage, 0.74s, 3.7m, 25-degree half arc | Cuts and pulls its surviving primary target. No pull inside 1.8m; force is capped for nearby survivors. Secondary cleave targets and killing blows do not pull. | Standard damage, reach and arc scaling; pull force 6 / 6.9 / 7.8 / 8.7 / 9.6. |
+| Rivet Pistol / Pistol | 20 damage, 0.50s, 10m, six rounds | Slows voluntary forward movement without knockback or interrupting attacks. Lateral movement, retreat, impulses, hidden entrances and committed charges remain intact. Bosses ignore it; heavy enemies resist it. | Slow 40 / 45 / 50 / 55 / 60%, lasting 1.4 / 1.6 / 1.8 / 2 / 2.2 seconds, plus standard weapon stat scaling. |
+
+Hooked Edge adds 25% to Hookblade's one pull; it does not add a second pull. Rivet with Bore Rounds slows each directly pierced target. The strongest active Rivet slow wins; a weaker shot cannot extend a stronger slow. Each hand retains its own ammo, identity and attribution. Matching adjacent weapon families continue to fire together. Three identical copies at the same rarity fuse under the existing rules.
+
+Shared body filters express the existing physical policy: resting corpses ignore walking capsules, active body projectiles can strike enemies, and corpses never block the hero. Walking shoves, world/body contacts, self-ragdoll exclusions, CCD, solver quality, body persistence and cascade budgets remain unchanged. `-originalBodyFilters` provides the previous per-collider exclusions for same-player comparisons. Schema 13 adds the saved Rivet state and accepts prior checkpoints.

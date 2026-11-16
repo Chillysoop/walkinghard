@@ -52,6 +52,8 @@ namespace VectorGame
                 case "fists":return item.rank>=3?"Double punch; stagger shockwave.":item.rank>=2?"Two quick punches that stagger.":"Quick close punch that staggers.";
                 case "wraps":return "Punch; mark foes for lightning.";
                 case "sword":return item.rank>=3?"Cleave; kills sever and launch.":"Cleave; killing blows sever.";
+                case "hookblade":return "Cut; pull the surviving target closer.";
+                case "rivetpistol":return "Slow advancing foes; no knockback.";
                 case "greatsword":return "Heavy cleave; kills sever and shove.";
                 case "breachhammer":return "Smash, stagger and knock forward.";
                 case "hammer":return item.rank>=3?"Smash and launch up to three foes.":"Smash and launch a foe into others.";

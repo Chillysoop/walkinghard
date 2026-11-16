@@ -13,8 +13,8 @@ namespace VectorGame
         {public int wave,enemies,bodies,activeBodies,frames,effectObjects;public float speed,medianMs,p95Ms;public float[] stageMs,bodyMs;}
         [Serializable] sealed class FeelReport
         {
-            public string version,assembly,mode,result;public int assertions,wave,kills,orderErrors,visibleSpawns;public bool passed,unpooled,originalBodyScan;public int verifiedWalkingCenters;
-            public float health;public List<FeelFrame> frames=new List<FeelFrame>();public List<string> checks=new List<string>();
+            public string version,assembly,mode,result;public int assertions,wave,kills,orderErrors,visibleSpawns;public bool passed,unpooled,originalBodyScan,originalBodyFilters;public int verifiedWalkingCenters;
+            public int startWave;public string checkpointSha256="";public float health;public List<FeelFrame> frames=new List<FeelFrame>();public List<string> checks=new List<string>();
             public string measurement="Native 1080p 60 FPS cap, Full PhysX. Automated ordinary-loot journey; samples at 1x/4x. Decisions are automatic; no human playtime estimate. Fixture shots use staged targets.";
         }
         IEnumerator ReviewCombatFeel()
@@ -27,7 +27,7 @@ namespace VectorGame
             bool render=!args.Contains("-nographics"),journey=args.Contains("-feelJourney");
             var report=new FeelReport{version=Application.version,mode=journey?"journey":"fixtures",unpooled=args.Contains("-unpooledEffects")};
             using(var hash=System.Security.Cryptography.SHA256.Create())report.assembly=BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(typeof(VectorEncounter).Assembly.Location))).Replace("-","");
-            fx.ReviewUnpooled=report.unpooled;report.originalBodyScan=reviewOriginalBodyScan=args.Contains("-originalBodyScan");FighterPhysics.VerifyWalkingSnapshot=args.Contains("-verifyWalkingSnapshot");
+            report.originalBodyFilters=FighterPhysics.OriginalBodyFilters;fx.ReviewUnpooled=report.unpooled;report.originalBodyScan=reviewOriginalBodyScan=args.Contains("-originalBodyScan");FighterPhysics.VerifyWalkingSnapshot=args.Contains("-verifyWalkingSnapshot");
             void Require(bool ok,string rule){if(!ok){report.result="FAILED: "+rule;File.WriteAllText(Path.Combine(output,"report.json"),JsonUtility.ToJson(report,true));throw new InvalidOperationException("COMBAT_FEEL: "+rule);}report.assertions++;report.checks.Add(rule);}
             QualitySettings.vSyncCount=0;Application.targetFrameRate=60;if(render)Screen.SetResolution(1920,1080,false);
             for(int i=0;i<12;i++)yield return null;
@@ -49,7 +49,15 @@ namespace VectorGame
             if(journey)
             {
                 Require(render,"performance run must render");forcedSeed=true;tuning.seed=int.Parse(Arg("-seed","4319"));simulationPolicy=Arg("-journeyPolicy","pinball");policyRandom=null;
-                office=new OfficeProfile{seal=true,unlocks=Constellation.Nodes.Select(n=>n.item).ToList()};StartChapter();fx.muted=true;SetCombatSpeed(1);
+                office=new OfficeProfile{seal=true,unlocks=Constellation.Nodes.Select(n=>n.item).ToList()};
+                if(args.Contains("-feelResume"))
+                {
+                    using(var hash=System.Security.Cryptography.SHA256.Create())report.checkpointSha256=BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(SavePath))).Replace("-","");
+                    Require(ResumeExpedition(),"restored actual saved journey");
+                    report.measurement="Native 1080p 60 FPS cap, Full PhysX. Continuation from a recorded ordinary-loot checkpoint; identical source save for both filter policies. Not a new full journey or human pacing estimate.";
+                }
+                else StartChapter();
+                report.startWave=Wave;fx.muted=true;SetCombatSpeed(1);
                 var sampled=new HashSet<int>();float wall=Time.realtimeSinceStartup;
                 while(State!=RunState.Complete&&State!=RunState.Defeated)
                 {

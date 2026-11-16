@@ -93,6 +93,7 @@ namespace VectorGame
         {
             public int id;public FighterRig rig;public FighterPhysics physics;
             public float maxHealth,health,stun,cooldown,attack=-1,deathAge=-1,radius,orbit,phase,react;
+            public RivetControl rivet;
             public ImpactReaction reaction;public float reactionLeft,reactionPulse;
             public bool engaged,heavy,delivered,entering,boss,shooter;
             public bool shieldBearer,volatileCarrier,detonated;
@@ -469,6 +470,7 @@ namespace VectorGame
                     if(finaleActive)desired=FlowAroundPursuer(e,desired);
                     else if(ForemanPresent&&!crewBusy)desired=FlowAroundForeman(e,desired);
                 }
+                desired=RivetVelocity(e,desired,inward,dt);
                 Vector3 velocity=e.physics.LinearVelocity;
                 Vector3 flat=new Vector3(velocity.x,0,velocity.z);
                 flat=Vector3.Lerp(flat,desired,1-Mathf.Exp(-(e.stun>0?1.4f:7)*dt));

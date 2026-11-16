@@ -27,6 +27,16 @@ namespace VectorGame
                     if(renderer.name=="Blade channel")renderer.sharedMaterial=item.def.id=="siphonblade"?VisualFactory.SiphonGlow:VisualFactory.Glow;
                 if(item.def.id=="siphonblade")
                     for(int side=-1;side<=1;side+=2)identityParts.Add(PresentationGeometry.Plate("Siphon blade hook",weapon,new Vector3(side*.14f,0,1.45f),new Vector3(.12f,.11f,.32f),VisualFactory.SiphonGlow,side*12));
+                if(item.def.id=="hookblade")
+                {
+                    identityParts.Add(PresentationGeometry.Plate("Hookblade hooked nose",weapon,new Vector3(.15f,0,1.72f),new Vector3(.35f,.13f,.16f),VisualFactory.Armor,18));
+                    identityParts.Add(PresentationGeometry.Plate("Hookblade inward tip",weapon,new Vector3(.31f,0,1.59f),new Vector3(.10f,.13f,.28f),VisualFactory.Armor,-18));
+                }
+                if(item.def.id=="rivetpistol")
+                {
+                    identityParts.Add(PresentationGeometry.Plate("Rivet drum",weapon,new Vector3(.13f,-.02f,.35f),new Vector3(.32f,.34f,.28f),VisualFactory.Trim));
+                    for(int side=-1;side<=1;side+=2)identityParts.Add(PresentationGeometry.Plate("Rivet muzzle jaw",weapon,new Vector3(side*.12f,.02f,.66f),new Vector3(.11f,.13f,.28f),VisualFactory.Armor));
+                }
             }
             Identity(right,RightHand,weaponRight);if(!twoHanded)Identity(left,LeftHand,weaponLeft);
         }

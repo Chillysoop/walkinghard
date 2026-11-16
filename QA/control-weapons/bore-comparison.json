@@ -1,0 +1,69 @@
+{
+  "batch": {
+    "mode": "Fast",
+    "runs": 30,
+    "workers": 1,
+    "player": "C:\\Users\\conne\\Documents\\WalkingHard-Crowds\\Build\\Windows\\WalkingHard.exe",
+    "assemblySha256": "ee39146728b6925803158ed078fa73d2f31e8a0c1fa6abdc646f4b9d999dffc9",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-16T09:34:40Z",
+    "wallSeconds": 31.055061299994122,
+    "valid": 30,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 5,
+    "timeouts": 0
+  },
+  "groups": [
+    {
+      "rank": 1,
+      "candidate": "rivetpistol",
+      "runs": 5,
+      "wins": 0,
+      "meanWave": 4,
+      "meanHealth": 0.0
+    },
+    {
+      "rank": 1,
+      "candidate": "pistol",
+      "runs": 5,
+      "wins": 0,
+      "meanWave": 4,
+      "meanHealth": 0.0
+    },
+    {
+      "rank": 3,
+      "candidate": "rivetpistol",
+      "runs": 5,
+      "wins": 0,
+      "meanWave": 5.4,
+      "meanHealth": 0.0
+    },
+    {
+      "rank": 3,
+      "candidate": "pistol",
+      "runs": 5,
+      "wins": 0,
+      "meanWave": 6.4,
+      "meanHealth": 0.0
+    },
+    {
+      "rank": 5,
+      "candidate": "rivetpistol",
+      "runs": 5,
+      "wins": 0,
+      "meanWave": 7.2,
+      "meanHealth": 0.0
+    },
+    {
+      "rank": 5,
+      "candidate": "pistol",
+      "runs": 5,
+      "wins": 5,
+      "meanWave": 8,
+      "meanHealth": 63.07202835083008
+    }
+  ]
+}

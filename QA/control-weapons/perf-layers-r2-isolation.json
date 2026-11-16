@@ -1,0 +1,11 @@
+{
+  "seconds": 27.6527863,
+  "otherProcesses": [
+    {
+      "id": 26212,
+      "seenUtc": "2026-11-16T09:56:02.1627922Z",
+      "path": "C:\\Users\\conne\\games\\walkinghard\\current\\walkinghard.exe"
+    }
+  ],
+  "samples": 27
+}

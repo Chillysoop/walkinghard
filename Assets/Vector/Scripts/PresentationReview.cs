@@ -62,6 +62,23 @@ namespace VectorGame
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
+            if(Array.IndexOf(args,"-controlWeaponReview")>=0)
+            {
+                var deck=game.Deck;deck.Open(DraftKind.Mixed,false);
+                string[] ids={"hookblade","rivetpistol","sword"};
+                for(int i=0;i<3;i++)deck.Offers[i]=new RewardOffer(LoadoutCatalog.Find(ids[i]),1,i+1);
+                foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080)})
+                {
+                    Screen.SetResolution(size.x,size.y,false);for(int i=0;i<15;i++)yield return null;
+                    yield return CapturePresentation(directory,"control-offers-"+size.x);
+                    foreach(string id in ids.Take(2))
+                    {
+                        presentationHover=deck.Acquire(LoadoutCatalog.Find(id),3);deck.Move(presentationHover,PlaceKind.Weapon,id=="hookblade"?0:1);
+                        yield return CapturePresentation(directory,"control-"+id+"-"+size.x);presentationHover=null;
+                    }
+                }
+                Debug.Log("CONTROL_PRESENTATION_SUCCESS");Application.Quit(0);yield break;
+            }
             var d=game.Deck;d.Acquire(LoadoutCatalog.Find("visor"),3);d.Acquire(LoadoutCatalog.Find("capacitor"),5);
             foreach(string id in new[]{"wraps","greatsword","scattergun","grounding","loader","arcstep","relay","redline","Counterguard","ConductiveBrand"})d.Acquire(LoadoutCatalog.Find(id),2);
             d.Acquire(AugmentCatalog.Get(AugmentId.Echo));d.Acquire(AugmentCatalog.Get(AugmentId.Crosscut));

@@ -236,6 +236,7 @@ namespace VectorGame
         void SetBodyWalkCollision(Enemy body,bool projectile)
         {
             if(FastSimulation)return;
+            if(body.physics.SetProjectileFilter(projectile))return;
             body.physics.IgnoreWalker(heroPhysics,true);
             foreach(var enemy in enemies)body.physics.IgnoreWalker(enemy.physics,!projectile);
         }

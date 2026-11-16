@@ -16,7 +16,7 @@ namespace VectorGame
         static bool Stagger(ItemDefinition d)=>Is(d,"SteelJab","Breaker","SuppressiveVolley","fists","breachhammer");
         static bool Lightning(ItemDefinition d)=>Is(d,"ArcBolt","tempest");
         static bool Launch(ItemDefinition d)=>Is(d,"MassDriver","hammer","singularity");
-        static bool Sever(ItemDefinition d)=>Is(d,"sword","greatsword","siphonblade","ReapingCut","cyclone");
+        static bool Sever(ItemDefinition d)=>Is(d,"sword","greatsword","siphonblade","hookblade","ReapingCut","cyclone");
         static bool Mark(ItemDefinition d)=>Is(d,"ConductiveBrand","wraps","capacitor","arcstep","grounding");
         public static bool HasConductiveSetup(AbilityDeck deck)
         {
@@ -44,6 +44,8 @@ namespace VectorGame
         {
             key="chain";
             if(Gun(source)&&Is(consumer,"recoil")){key="reload";return "Reload → guard → stronger gun hit.";}
+            if(Is(source,"hookblade")&&Is(consumer,"fists","wraps","breachhammer","hammer","SteelJab","Breaker")){key="gather";return "Pull a survivor into the next close attack.";}
+            if(Is(source,"rivetpistol")&&Is(consumer,"VectorTether","rifle","SuppressiveVolley")){key="slow";return "Slow the advance to help keep the firing line.";}
             if(Gun(source)&&Is(consumer,"duelist")){key="guard";return "Reload arms the three-hit ward.";}
             if(Gun(source)&&Is(consumer,"loader")){key="reload";return "Faster reloads; refills stagger nearby foes.";}
             if(Gun(source)&&Is(consumer,"redline")){key="reload";return "Refill spent ammo; speed the next six turns.";}
