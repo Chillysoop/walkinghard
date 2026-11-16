@@ -71,13 +71,20 @@ namespace VectorGame
         {
             foreach(var collider in colliders)if(!Physics.GetIgnoreCollision(collider,walker.capsule))return false;return true;
         }
-        public bool ShoveAside(Vector3 walker,Vector3 velocity,float dt)
+        Vector3[] walkingCenters=new Vector3[11];
+        internal static bool VerifyWalkingSnapshot;
+        internal static int VerifiedWalkingCenters;
+        public bool ShoveAside(Vector3 walker,Vector3 velocity,float dt)=>ShoveAside(walker,velocity,dt,false);
+        public bool ShoveAsideCached(Vector3 walker,Vector3 velocity,float dt)=>ShoveAside(walker,velocity,dt,true);
+        bool ShoveAside(Vector3 walker,Vector3 velocity,float dt,bool cached)
         {
             velocity.y=0;if(!Ragdoll||velocity.sqrMagnitude<.04f)return false;
             bool moved=false;Vector3 forward=velocity.normalized,right=new Vector3(forward.z,0,-forward.x);
-            foreach(var body in bodies)
+            for(int i=0;i<bodies.Count;i++)
             {
-                Vector3 delta=body.worldCenterOfMass-walker;
+                var body=bodies[i];var center=cached?walkingCenters[i]:body.worldCenterOfMass;
+                if(cached&&VerifyWalkingSnapshot){if(center!=body.worldCenterOfMass)throw new System.InvalidOperationException("Walking center changed before PhysX step");VerifiedWalkingCenters++;}
+                Vector3 delta=center-walker;
                 if(delta.y<-.4f||delta.y>2.2f)continue;delta.y=0;
                 if(delta.sqrMagnitude>1.35f*1.35f)continue;
                 float lateral=Vector3.Dot(delta,right),ahead=Vector3.Dot(delta,forward);
@@ -91,8 +98,12 @@ namespace VectorGame
         }
         public Bounds WalkingBounds()
         {
-            var bounds=new Bounds(bodies[0].worldCenterOfMass,Vector3.zero);
-            foreach(var body in bodies)bounds.Encapsulate(body.worldCenterOfMass);
+            // All walkers shove before Physics.Simulate. AddForce changes velocity,
+            // never these centers; reuse the same snapshot without changing impulse order.
+            if(walkingCenters.Length<bodies.Count)walkingCenters=new Vector3[bodies.Count];
+            for(int i=0;i<bodies.Count;i++)walkingCenters[i]=bodies[i].worldCenterOfMass;
+            var bounds=new Bounds(walkingCenters[0],Vector3.zero);
+            for(int i=1;i<bodies.Count;i++)bounds.Encapsulate(walkingCenters[i]);
             // ShoveAside cannot reach a body beyond 1.35m horizontally. Including every
             // fragment keeps this broad phase valid even after a waist sever.
             bounds.Expand(new Vector3(2.7f,0,2.7f));return bounds;
@@ -137,7 +148,7 @@ namespace VectorGame
         public bool Finite()
         {
             if(!FiniteVector(Center))return false;
-            foreach(var body in bodies)if(!FiniteVector(body.position)||body.position.y< -4||body.linearVelocity.sqrMagnitude>10000)return false;
+            foreach(var body in bodies){var position=body.position;if(!FiniteVector(position)||position.y< -4||body.linearVelocity.sqrMagnitude>10000)return false;}
             return true;
         }
         public string InstabilityDetails()

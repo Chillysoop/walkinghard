@@ -95,3 +95,8 @@ The substantial custom work is rig/socket integration, cut meshes, ragdoll mappi
 
 
 Normal-run rollout verification: normal-speed 1080p samples held near 60 FPS through wave eight on the playtest machine. A late-run 4× sample remains physics-limited at roughly 26 ms median, similar to the original look. Bone-local armor batching preserves cuts and bodies; the next performance work should target accumulated-body physics with matched behavior checks. See QA/v080-fullrun-verification.md.
+
+
+## Combat feel rollout (0.8.8)
+
+Normal runs now use original layered synthesized weapon/impact sounds, prioritized boss warning and ultimate cues, confirmed sequence-source highlights, explicit ultimate phases, and reserved foreground danger outlines. Legacy line/debris effects reuse bounded pools alongside the earlier soft-particle pool. No third-party audio/animation assets were imported. Current full-journey profiling and the exact body-scan optimization are recorded in [combat feel verification](QA/combat-feel/verification.md); the earlier eight-wave performance findings above are historical evidence, not a current 21-encounter guarantee.

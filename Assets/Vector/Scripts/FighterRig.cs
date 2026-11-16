@@ -155,7 +155,7 @@ namespace VectorGame
             }
             if(strike>=3)
             {
-                float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.16f)/.38f));
+                float swing=Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.16f)/.28f));
                 float returnToGuard=1-Mathf.SmoothStep(0,1,Mathf.Clamp01((progress-.65f)/.35f));
                 if(strike==3)
                 {

@@ -164,7 +164,7 @@ namespace VectorGame
             {
                 var e=target;Vector3 from=origin;for(int i=0;i<Mathf.Min(3,host.rank)&&e!=null;i++){bool fresh=hit.Add(e.id);Vector3 p=e.physics.Center;fx.Arc(from,p,VisualFactory.Cyan);if(fresh)Hurt(e,damage*(i==0?1:.65f),aim*.7f,.15f*s);WeaponHits[3]++;from=p;e=enemies.Where(x=>!hit.Contains(x.id)&&Reachable(x,range)&&Vector3.Distance(x.physics.Center,p)<4.2f).OrderBy(x=>Vector3.Distance(x.physics.Center,p)).FirstOrDefault();}
             }
-            SpendBreach(host,target,share);fx.Play(0);
+            SpendBreach(host,target,share);
         }
         void SpendBreach(LoadoutItem host,Enemy primary,float share)
         {if(!host.HasAugment(AugmentId.BreachLoad)||!breachArmed.Remove(host))return;Note("Breach Load impact burst",true);Pulse(primary.physics.Center,(share<1?1.6f:2)+.15f*(host.rank-1),.4f*Effect(host)*share,share<1?3:5);}

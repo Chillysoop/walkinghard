@@ -6,41 +6,20 @@ namespace VectorGame
 {
     public sealed partial class CombatEffects
     {
-        class Effect { public Transform root; public LineRenderer line; public float age,life,radius,arc,width;public Vector3 velocity,origin,aim,normal;public Color color;public bool ring,sweep,reverse,wave;public Vector3 scale; }
+        class Effect { public Transform root; public LineRenderer line; public float age,life,radius,arc,width;public Vector3 velocity,origin,aim,normal;public Color color;public bool ring,sweep,reverse,wave,threat;public Vector3 scale; }
         readonly List<Effect> effects=new List<Effect>();
         readonly Transform parent;
-        readonly AudioSource audio;
-        readonly AudioClip punch,finish,push,damage,slash,crush,electric,shot;
-        public bool muted;
         internal static System.Action<AudioClip,float> CaptureSound;
         readonly bool disabled=Application.isBatchMode&&System.Array.IndexOf(System.Environment.GetCommandLineArgs(),"-nographics")>=0;
         public CombatEffects(Transform p,bool silent)
         {
             parent=p;muted=silent;
-            audio=p.gameObject.AddComponent<AudioSource>();audio.spatialBlend=0;audio.volume=.4f;
-            punch=Sound("Fist impact",.11f,130,22,.6f);
-            finish=Sound("Palm finisher",.20f,75,13,.5f);
-            push=Sound("Field discharge",.65f,210,10,.8f);
-            damage=Sound("Armor hit",.10f,65,24,.3f);
-            slash=Sound("Blade shear",.18f,630,19,.82f);
-            crush=Sound("Hammer crush",.29f,48,12,.4f);
-            electric=Sound("Arc crackle",.22f,880,17,.76f);
-            shot=Sound("Pulse strike",.12f,240,27,.65f);
+            if(!disabled)sound=new CombatAudio(p);
         }
-        static AudioClip Sound(string name,float seconds,float freq,float decay,float noise)
-        {
-            int count=(int)(44100*seconds);var data=new float[count];var random=new System.Random(name.Length*87);
-            for(int i=0;i<count;i++){float t=(float)i/44100;float envelope=Mathf.Exp(-t*decay)*Mathf.Min(1,t*450);float tone=Mathf.Sin(2*Mathf.PI*freq*(t-t*t*.6f));data[i]=(tone*(1-noise)+((float)random.NextDouble()*2-1)*noise)*envelope*.52f;}
-            var c=AudioClip.Create(name,count,1,44100,false);c.SetData(data,0);return c;
-        }
-        void EmitSound(AudioClip clip,float gain=1){if(disabled)return;CaptureSound?.Invoke(clip,gain*.4f);if(!muted)audio.PlayOneShot(clip,gain);}
-        public void Play(int kind){EmitSound(kind==0?punch:kind==1?finish:kind==2?push:damage);}
-        public void PlayImpact(ImpactKind kind)
-        {EmitSound(kind==ImpactKind.Slash?slash:kind==ImpactKind.Crush?crush:kind==ImpactKind.Electric?electric:kind==ImpactKind.Bullet?shot:kind==ImpactKind.Force||kind==ImpactKind.Pull?push:punch,.6f);}
         public void Contact(ImpactReaction hit,bool lethal)
         {
             if(disabled)return;
-            if(previewEnabled){previewParticles.Contact(hit,lethal);if(hit.kind!=ImpactKind.Electric&&hit.kind!=ImpactKind.Pull)return;}
+            if(previewEnabled){previewParticles.Contact(hit,lethal,PrimaryContact());if(hit.kind!=ImpactKind.Electric&&hit.kind!=ImpactKind.Pull)return;}
             var p=hit.point;float power=hit.strength;
             if(hit.kind==ImpactKind.Slash)
             {
@@ -66,9 +45,9 @@ namespace VectorGame
         {
             for(int i=0;i<count;i++)
             {
-                var t=VisualFactory.Part("Impact debris",parent,PrimitiveType.Cube,point,new Vector3(.05f,.04f,.17f),material);
+                var e=Rent(false);var t=e.root;t.position=point;t.localScale=new Vector3(.05f,.04f,.17f);t.GetComponent<Renderer>().sharedMaterial=material;
                 Vector3 velocity=(direction+Random.insideUnitSphere*.6f)*force+Vector3.up*.8f;t.rotation=Quaternion.LookRotation(velocity);
-                effects.Add(new Effect{root=t,velocity=velocity,life=.18f+Random.value*.18f,scale=t.localScale});
+                e.velocity=velocity*(reducedMotion?.25f:1);e.life=.18f+Random.value*.18f;e.scale=t.localScale;
             }
         }
         public void Lightning(Vector3 from,Vector3 to,Color color,float life=.15f)
@@ -93,11 +72,10 @@ namespace VectorGame
             var color=new Color(1,.35f,.12f);Lightning(rightHand,rightHand+Vector3.up*.5f,color,.22f);Lightning(leftHand,leftHand+Vector3.up*.5f,color,.22f);
             DirectedBurst(rightHand,Vector3.up,4,1.8f,VisualFactory.GoldGlow);DirectedBurst(leftHand,Vector3.up,4,1.8f,VisualFactory.GoldGlow);
         }
-        void Outline(Vector3[] points,Color color,float life,bool closed=true)
+        void Outline(Vector3[] points,Color color,float life,bool closed=true,bool threat=false)
         {
             if(disabled)return;
-            var go=new GameObject("Gameplay footprint");go.transform.SetParent(parent);var l=go.AddComponent<LineRenderer>();l.sharedMaterial=VisualFactory.Fx;l.useWorldSpace=true;l.loop=closed;l.positionCount=points.Length;l.SetPositions(points);l.widthMultiplier=.065f;l.shadowCastingMode=ShadowCastingMode.Off;
-            effects.Add(new Effect{root=go.transform,line=l,life=life,color=color});
+            var e=Rent(true,threat);var l=e.line;l.loop=closed;l.positionCount=points.Length;l.SetPositions(points);e.life=life;e.color=color;
         }
         public void Shape(Vector3 center,Vector3 aim,float radius,float halfArc,Color color,float life,bool reverse=false)
         {
@@ -109,16 +87,15 @@ namespace VectorGame
         public void Sweep(Vector3 origin,Vector3 aim,float radius,float halfArc,Color color,float life,bool reverse=false,float tilt=.18f)
         {
             if(disabled)return;
-            var go=new GameObject(reverse?"Return cut":"Outgoing cut");go.transform.SetParent(parent);
-            var line=go.AddComponent<LineRenderer>();line.sharedMaterial=VisualFactory.Fx;line.useWorldSpace=true;line.positionCount=9;line.shadowCastingMode=ShadowCastingMode.Off;
+            var e=Rent(true);e.line.positionCount=9;
             origin.y+=1.2f;var normal=(Vector3.up+Vector3.Cross(Vector3.up,aim)*tilt*(reverse?-1:1)-aim*.08f).normalized;
-            effects.Add(new Effect{root=go.transform,line=line,life=life,color=color,origin=origin,aim=aim.normalized,normal=normal,radius=radius,arc=halfArc,sweep=true,reverse=reverse});
+            e.life=life;e.color=color;e.origin=origin;e.aim=aim.normalized;e.normal=normal;e.radius=radius;e.arc=halfArc;e.sweep=true;e.reverse=reverse;
         }
         public void GroundWave(Vector3 origin,Vector3 aim,float length,float halfWidth,Color color,float life)
         {
             if(disabled)return;Corridor(origin,aim,length,halfWidth,color,life);
-            var go=new GameObject("Ground shockwave");go.transform.SetParent(parent);var line=go.AddComponent<LineRenderer>();line.sharedMaterial=VisualFactory.Fx;line.useWorldSpace=true;line.positionCount=5;line.shadowCastingMode=ShadowCastingMode.Off;
-            origin.y=.17f;effects.Add(new Effect{root=go.transform,line=line,life=life,color=color,origin=origin,aim=aim.normalized,radius=length,width=halfWidth,wave=true});
+            var e=Rent(true);e.line.positionCount=5;
+            origin.y=.17f;e.life=life;e.color=color;e.origin=origin;e.aim=aim.normalized;e.radius=length;e.width=halfWidth;e.wave=true;
         }
         public void Corridor(Vector3 origin,Vector3 aim,float length,float halfWidth,Color color,float life)
         {if(disabled)return;origin.y=.13f;var side=Vector3.Cross(Vector3.up,aim.normalized)*halfWidth;Outline(new[]{origin-side,origin+side,origin+aim*length+side,origin+aim*length-side},color,life);}
@@ -139,26 +116,23 @@ namespace VectorGame
         public void Ring(Vector3 center,float radius,Color color,float life=.4f)
         {
             if(disabled)return;
-            var go=new GameObject("Expanding field ring");go.transform.SetParent(parent);go.transform.position=center;
-            var l=go.AddComponent<LineRenderer>();l.sharedMaterial=VisualFactory.Fx;l.useWorldSpace=false;l.loop=true;l.positionCount=65;l.widthMultiplier=.09f;l.numCornerVertices=2;l.shadowCastingMode=ShadowCastingMode.Off;
-            effects.Add(new Effect{root=go.transform,line=l,life=life,radius=radius,color=color,ring=true});
+            var e=Rent(true);e.root.position=center;var l=e.line;l.useWorldSpace=false;l.loop=true;l.positionCount=65;l.numCornerVertices=2;
+            e.life=life;e.radius=radius;e.color=color;e.ring=true;
         }
         public void Burst(Vector3 position,Color color,int count=7,float force=3)
         {
             if(disabled)return;
             for(int i=0;i<count;i++)
             {
-                var t=VisualFactory.Part("Impact spark",parent,PrimitiveType.Cube,position,new Vector3(.045f,.045f,.18f),color.r>.8f?VisualFactory.GoldGlow:VisualFactory.Glow);
+                var e=Rent(false);var t=e.root;t.position=position;t.localScale=new Vector3(.045f,.045f,.18f);t.GetComponent<Renderer>().sharedMaterial=color.r>.8f?VisualFactory.GoldGlow:VisualFactory.Glow;
                 var v=Random.onUnitSphere*force;v.y=Mathf.Abs(v.y)+.7f;t.rotation=Random.rotation;
-                effects.Add(new Effect{root=t,velocity=v,life=.2f+Random.value*.23f,color=color,scale=t.localScale});
+                e.velocity=v*(reducedMotion?.25f:1);e.life=.2f+Random.value*.23f;e.color=color;e.scale=t.localScale;
             }
         }
         public void Arc(Vector3 from,Vector3 to,Color color)
         {
             if(disabled)return;
-            var go=new GameObject("Strike trail");go.transform.SetParent(parent);
-            var l=go.AddComponent<LineRenderer>();l.sharedMaterial=VisualFactory.Fx;l.positionCount=3;l.SetPosition(0,from);l.SetPosition(1,(from+to)*.5f+Vector3.up*.17f);l.SetPosition(2,to);l.widthMultiplier=.065f;
-            effects.Add(new Effect{root=go.transform,line=l,life=.17f,color=color});
+            var e=Rent(true);var l=e.line;l.positionCount=3;l.SetPosition(0,from);l.SetPosition(1,(from+to)*.5f+Vector3.up*.17f);l.SetPosition(2,to);e.life=.17f;e.color=color;
         }
         public void Step(float dt)
         {
@@ -166,17 +140,17 @@ namespace VectorGame
             for(int i=effects.Count-1;i>=0;i--)
             {
                 var e=effects[i];e.age+=dt;float t=e.age/e.life;
-                if(t>=1){Object.Destroy(e.root.gameObject);effects.RemoveAt(i);continue;}
+                if(t>=1){Release(e);effects.RemoveAt(i);continue;}
                 if(e.line!=null)
                 {
-                    var c=e.color;c.a=1-t;e.line.startColor=e.line.endColor=c;e.line.widthMultiplier=(e.sweep?.16f:e.ring?.11f:.08f)*(1-t*.5f);
-                    if(e.ring)for(int j=0;j<65;j++){float a=j/64f*Mathf.PI*2;float r=e.radius*Mathf.Pow(t,.65f);e.line.SetPosition(j,new Vector3(Mathf.Sin(a)*r,.05f+Mathf.Sin(t*Mathf.PI)*.15f,Mathf.Cos(a)*r));}
+                    var c=e.color;c.a*=e.threat?Mathf.Min(1,(1-t)*5):1-t;e.line.startColor=e.line.endColor=c;e.line.widthMultiplier=(e.threat?.13f:e.sweep?.16f:e.ring?.11f:.08f)*(e.threat?1:1-t*.5f);
+                    if(e.ring)for(int j=0;j<65;j++){float a=j/64f*Mathf.PI*2;float r=e.radius*Mathf.Pow(t,.65f);e.line.SetPosition(j,new Vector3(Mathf.Sin(a)*r,.05f+(reducedMotion?0:Mathf.Sin(t*Mathf.PI)*.15f),Mathf.Cos(a)*r));}
                     if(e.sweep)for(int j=0;j<9;j++){float p=Mathf.Clamp01(t-j*.065f);float a=Mathf.Lerp(-e.arc,e.arc,e.reverse?1-p:p);var offset=Quaternion.AngleAxis(a,Vector3.up)*e.aim*e.radius;offset.y=-(offset.x*e.normal.x+offset.z*e.normal.z)/e.normal.y;e.line.SetPosition(j,e.origin+offset);}
                     if(e.wave)for(int j=0;j<5;j++){float side=(j-2)/2f;float along=Mathf.Clamp(e.radius*t-Mathf.Abs(side)*.18f,0,e.radius);e.line.SetPosition(j,e.origin+e.aim*along+Vector3.Cross(Vector3.up,e.aim)*side*e.width);}
                 }
                 else{e.velocity+=Vector3.down*7*dt;e.root.position+=e.velocity*dt;e.root.localScale=e.scale*(1-t);}
             }
         }
-        public void Clear(){foreach(var e in effects)if(e.root!=null)Object.Destroy(e.root.gameObject);effects.Clear();previewParticles?.Clear();}
+        public void Clear(){foreach(var e in effects)Release(e);effects.Clear();previewParticles?.Clear();sound?.Clear();}
     }
 }

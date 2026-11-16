@@ -8,14 +8,14 @@ namespace VectorGame
         bool previewEnabled;PreviewParticles previewParticles;
         public void SetPresentation(bool enabled)
         {previewEnabled=enabled&&!disabled;if(previewEnabled&&previewParticles==null)previewParticles=new PreviewParticles(parent);if(!enabled)previewParticles?.Clear();}
-        public void SetReducedMotion(bool reduced){if(previewParticles!=null)previewParticles.ReducedMotion=reduced;}
+        public void SetReducedMotion(bool reduced){reducedMotion=reduced;if(previewParticles!=null)previewParticles.ReducedMotion=reduced;}
         public int PreviewActive=>previewParticles?.Active??0;
         public void GatherCue(Vector3 origin,Vector3 aim,Vector3 center,float radius,float width,bool corridor)
         {if(previewEnabled)previewParticles.Gather(origin,aim,center,radius,width,corridor);}
         public void UltimateCharge(Vector3 center,string id,float duration)
-        {if(previewEnabled)previewParticles.Ultimate(center,id,duration,false);}
+        {Cue(id+"-charge");if(previewEnabled)previewParticles.Ultimate(center,id,duration,false);}
         public void UltimateCue(Vector3 center,string id,float radius)
-        {if(previewEnabled)previewParticles.Ultimate(center,id,Mathf.Min(radius,8),true);}
+        {Cue(id+"-release");if(previewEnabled)previewParticles.Ultimate(center,id,Mathf.Min(radius,8),true);}
     }
     // Fixed pool, cached meshes/material and local deterministic variation: no physics or gameplay RNG.
     sealed class PreviewParticles
@@ -72,9 +72,10 @@ namespace VectorGame
         public void Step(float dt)
         {Active=0;foreach(var p in particles){if(p.life<=0)continue;p.age+=dt;if(p.age>=p.life){p.life=0;p.t.gameObject.SetActive(false);continue;}Active++;Draw(p,p.age/p.life);}}
         public void Clear(){foreach(var p in particles){p.life=0;p.t.gameObject.SetActive(false);}Active=0;}
-        public void Contact(ImpactReaction hit,bool lethal)
+        public void Contact(ImpactReaction hit,bool lethal,bool primary)
         {
             var color=hit.kind==ImpactKind.Slash?new Color(.75f,.94f,1):hit.kind==ImpactKind.Crush?new Color(1,.55f,.18f):hit.kind==ImpactKind.Electric?Color.cyan:hit.kind==ImpactKind.Bullet?new Color(1,.83f,.35f):VisualFactory.Cyan;
+            if(!primary){color.a=.45f;Emit(hit.point,Vector3.zero,.24f,.04f,.12f,color);return;}
             Emit(hit.point,Vector3.zero,lethal?.75f:.46f,.1f,.16f,color);
             int count=ReducedMotion?2:lethal?7:4;
             for(int i=0;i<count;i++)

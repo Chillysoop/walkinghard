@@ -40,3 +40,5 @@ For district champion changes, also run `Validate Champions.ps1` in Mechanics, R
 
 
 For district-event changes, run `Validate Events.ps1` in Mechanics, Rendered and Economy modes, plus Resume against a prior fixture profile. Inspect odds, spend-on-failure terms, input consumption, fusion/mount outcomes and scaled screens. Use `Validate Progression.ps1 -OriginalEvents` for a matched legacy-event baseline. Preserve exchanged-item attribution and open legacy events when changing saved state. All review profiles must be isolated from the player.
+
+For combat sound/effect changes, run `Validate Combat Feel.ps1 -Mode Fixtures` and inspect native captures and actual ultimate identities. Use `-Mode Journey` for current 21-encounter native performance, with no competing build/simulation workers. `-Unpooled` compares geometry allocation only. Retain initial failures and exact assembly provenance; 1x/4x automated combat is not human pacing evidence.

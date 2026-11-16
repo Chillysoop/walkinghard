@@ -500,3 +500,14 @@ Events use the existing visual language: cyan choices, rarity borders, actual it
 Schema 12 saves event lots, surrendered-item references, selected offers, awarded item identity, receipts and random state. Earlier saves migrate without changing an open event. Exchanged gear retains its own contribution history in live totals, later lingering-effect feedback and the final recap; it is labeled EXCHANGED and never credited to its replacement. Fusion predecessors still count only through their surviving keeper. Two additional archive fragments record the press and cache.
 
 The shop still guarantees an exact copy or 25% repair for 12 salvage. Champion victory still adds six salvage to the normal four. Event economies and ordinary-loot comparisons are documented in QA/district-events/verification.md; sampled value is not a promise of optimal or human play.
+
+
+## Combat feel and presentation (0.8.8)
+
+Weapon impacts have separate original sound profiles; armor damage and a full block have different cues. Boss press, bell and sweep warnings are emitted at actual visible phase starts. Exposed windows confirm with a short cue; five ultimates have their own charge/release sounds. Twelve reusable voices and per-cue wall-clock cooldowns limit overlap. Warnings attenuate ordinary impacts; higher-priority cues can replace them. Pause and mute stop playing voices. No audio callback changes gameplay state.
+
+A confirmed payoff highlights its source in the existing sequence with a white effect symbol/underline. Separate paired weapons retain their source; two-handed/shared ownership highlights the same grouped host. Counterguard/Amplifier bursts use the existing rate-limited payoff notice. Ultimate CHARGING / RELEASE / RECOVERING labels reflect native action progress. Blade and hammer visuals reach contact at the existing 44% action point.
+
+Presentation geometry reuses 128 ordinary lines, 16 reserved threat lines and 64 debris objects, plus the existing 160 soft particles. Threat lines have foreground rendering priority and keep their authored footprint. Secondary contacts are quieter; reduced motion keeps static threat boundaries and reduces debris travel. Existing bodies, physics, controls, proc limits, numerical balance and saves remain intact. Native performance evidence and its limits belong in QA/combat-feel/verification.md.
+
+Walking-body shove processing snapshots actor positions and bone centers once before each PhysX step. Reuse is confined to that stage, where AddForce changes pending velocity rather than position. Actor/bone order, applied impulses, physics frequency, solver settings and retained-body rules stay the same.

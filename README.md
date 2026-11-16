@@ -1,4 +1,6 @@
-# Walking Hard 0.8.7 - District events
+# Walking Hard 0.8.8 - Combat feel
+
+Combat has distinct weapon-impact sounds, prioritized boss warnings and ultimate charge/release cues. Actual combo payoffs underline their source in the sequence; ultimates name their charging, release and recovery phases. Boss/champion danger boundaries remain visible through bodies and effects. Reusable effect pools and sound limits keep large chains bounded. Combat rules and persistent bodies are preserved. [Verification](QA/combat-feel/verification.md).
 
 Each district now offers its own event pair. **Cinderworks** has risky pressure taps and independent worker rescues; the **Bell Foundry** has a two-lot auction and a press that exchanges spare gear; the **Last Dispatch** has paid-in-integrity work orders and a sealed cache with weapon/ultimate prizes. Odds, costs, safe exits and possible items are shown before you commit. Event cards preview the final fusion tier and effect, including any second weapon mount consumed by fusion. Exchanged equipment keeps its own combat history, and two new lore records persist in the archive. Existing open events retain their original terms. [Verification and economy](QA/district-events/verification.md).
 

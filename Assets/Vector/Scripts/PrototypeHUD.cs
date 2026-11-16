@@ -130,13 +130,13 @@ namespace VectorGame
                 Label(new Rect(r.x+16,r.y+14,r.width-32,20),game.Deck.UltimatesUnlocked?"ULTIMATE / EMPTY":"ULTIMATE / CHECKPOINT 3",12,muted,true);
                 Label(new Rect(r.x+16,r.y+42,r.width-32,20),game.Deck.UltimatesUnlocked?"Equip an ultimate at a checkpoint.":"Choose one after wave 3.",12,white);return;
             }
-            ActionGlyph(new Rect(r.x+13,r.y+19,40,40),item?.def,Accent);
+            ActionGlyph(new Rect(r.x+13,r.y+19,40,40),item?.def,Accent);if(game.PayoffAt(item))Stroke(new Vector2(r.x+16,r.y+63),new Vector2(r.xMax-16,r.y+63),white,2);
             Box(new Rect(r.x+43,r.y+46,18,18),ink);TypeIcon(new Rect(r.x+43,r.y+46,18,18),ItemKind.Ultimate,muted);
             Label(new Rect(r.x+65,r.y+14,r.width-80,18),"ULTIMATE / "+ItemRarity.Names[item?.rank??1].ToUpperInvariant(),9,item==null?muted:RarityColor(item.rank),true);
             Label(new Rect(r.x+65,r.y+34,r.width-80,24),item?.def.name??"EMPTY",17,Accent,true);
             bool delayed=game.TryGetActionDelay(5,out var delay);
-            string status=delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":item==null?"UNEQUIPPED":game.ActiveSlot==5?"EXECUTING":game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED":"READY";
-            Label(new Rect(r.x+16,r.y+68,145,23),status,delayed?13:21,delayed?Strong:Accent,true);
+            string status=delayed?delay.label+" "+delay.remaining.ToString("0.0")+"s":item==null?"UNEQUIPPED":game.ActiveSlot==5?game.UltimatePhase:game.UltimateRemaining>0?game.UltimateRemaining.ToString("0.0")+"s":game.UltimateQueued?"QUEUED":"READY";
+            Label(new Rect(r.x+16,r.y+68,145,23),status,delayed||game.ActiveSlot==5?13:21,delayed?Strong:Accent,true);
             Label(new Rect(r.x+161,r.y+73,133,18),"Kills: "+game.KillsFor(item),12,muted,true,TextAnchor.UpperRight);
             EffectLine(new Rect(r.x+16,r.y+98,r.width-32,18),item);
             Label(new Rect(r.x+16,r.y+120,r.width-32,18),CombatStats(item)+" / "+game.UltimateCooldown.ToString("0")+"s CD",10,muted,true);
@@ -165,7 +165,7 @@ namespace VectorGame
                 Label(new Rect(x+54,y+28,width-65,23),shown?.def.name??"Empty",15,white,true);
                 if(delayed){Box(new Rect(x+12,y+51,width-24,4),new Color(.25f,.18f,.08f));Box(new Rect(x+12,y+51,(width-24)*delay.Progress,4),Strong);}
                 EffectLine(new Rect(x+12,y+57,width-24,18),item,12);
-                if(game.FollowThroughDestination(i)){EffectIcon(new Rect(x+12,y+77,16,16),SynergySymbol(game.FollowThroughKey),white);Label(new Rect(x+33,y+77,width-45,18),game.FollowThroughReady,10,white,true);}else if(shown!=null)DrawSynergyChips(new Rect(x+12,y+77,width-24,18),shown.def);
+                if(game.PayoffAt(item)){EffectIcon(new Rect(x+12,y+77,16,16),SynergySymbol(game.PayoffKey),white);Label(new Rect(x+33,y+77,width-45,18),"COMBO PAYOFF",10,white,true);Stroke(new Vector2(x+12,y+53),new Vector2(x+width-12,y+53),white,2);}else if(game.FollowThroughDestination(i)){EffectIcon(new Rect(x+12,y+77,16,16),SynergySymbol(game.FollowThroughKey),white);Label(new Rect(x+33,y+77,width-45,18),game.FollowThroughReady,10,white,true);}else if(shown!=null)DrawSynergyChips(new Rect(x+12,y+77,width-24,18),shown.def);
                 Label(new Rect(x+12,y+97,width-24,17),CombatStats(item),11,muted,true);
                 Label(new Rect(x+12,y+115,width-24,17),shown==null?"SKIPPED":"Kills: "+game.ActionKills(item)+"  /  "+ItemRarity.Names[shown.rank],11,shown==null?muted:RarityColor(shown.rank));
                 if(active&&!delayed)Box(new Rect(x+12,y+133,(width-24)*game.ActionProgress,2),Accent);
