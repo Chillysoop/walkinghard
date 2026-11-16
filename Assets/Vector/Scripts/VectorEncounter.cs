@@ -215,7 +215,7 @@ namespace VectorGame
             ResetSignatures();ResetRoutes();ResetFinale();ResetExpeditionRun();ResetExpeditionAppearance();checkpointEnded=false;ItemChoices=AugmentChoices=0;pendingDrafts.Clear();bossSpawned=false;Deck=new AbilityDeck(Seed);BindChapterRewards();Deck.Fused+=MergeKillCounts;spawnRandom=new CheckpointRandom(Seed);combatRandom=new CheckpointRandom(Seed^6179);
             Elapsed=WaveElapsed=clock=accumulator=hitStop=shake=flash=heroReact=0;Health=tuning.heroHealth;Wave=1;OpeningPicks=0;UltimateAutomatic=true;UltimateRemaining=UltimateCooldown;ultimateRequested=false;UltimateCasts=PairedCasts=IndependentTargets=Severs=Reloads=MaxCascadeHop=0;ammunition.Clear();ultimateTimes.Clear();ultimateDeadlines.Clear();ultimateDue=UltimateCooldown;TempestHits=0;heldWeapon=WeaponKind.Fists;Score=new ComboScore();itemKills.Clear();fusedOwners.Clear();actionSerial=0;
             Kills=Spawned=Launches=CollisionHits=CollisionKills=Ragdolls=PhysicsContacts=WorldContacts=LeftEntries=RightEntries=HorizonEntries=VisibleSpawns=PeakCrowd=HitsTaken=AbilityCasts=OrderErrors=0;
-            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();RunHistory=new RunHistoryData();
+            CorpseShoves=ArmorBonusHits=0;ArmorPreventedDamage=ArmorHealing=0;FusionHistory.Clear();ResetWaveFeedback();RunHistory=new RunHistoryData();ResetJourneyPacing();
             RangedSpawned=RangedHits=RearBoundaryKills=EnvironmentalKills=0;RangedDamage=0;
             for(int i=0;i<5;i++){SlotCasts[i]=0;WeaponHits[i]=0;}
             nextId=entryTurn=sequencePointer=0;ActiveSlot=-1;recovery=0;reported=false;qaDraftChecks=qaManualChecks=true;qaManualPhase=0;
@@ -389,12 +389,12 @@ namespace VectorGame
                 if(finaleActive){for(int n=0;n<3;n++)SpawnEntry(2);}
                 else {SpawnEntry(NextFormationEntry());if((Wave==1||Wave==3||Wave==6)&&entryTurn%4==0)SpawnEntry(NextFormationEntry());}
                 float pressure=((Wave-1)+Mathf.Clamp01(WaveElapsed/ArrivalDuration))/WaveCount;
-                spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval();
+                spawnTimer=finaleActive?1.6f:Mathf.Lerp(tuning.firstSpawnInterval,tuning.finalSpawnInterval,pressure)*SpawnRange(.85f,1.1f)*FormationInterval()*JourneyArrivalScale;
             }
             long perf=System.Diagnostics.Stopwatch.GetTimestamp();StepSignatures(dt);ProfileSim(0,ref perf);StepEnemies(dt);ProfileSim(1,ref perf);StepHero(dt);ProfileSim(2,ref perf);if(qa&&!simulation)QACheckWeapons();if(FastSimulation)StepFastPhysics(dt);else{ShoveWalkingBodies(dt);Physics.SyncTransforms();Physics.Simulate(dt);}ProfileSim(3,ref perf);ProcessContacts();ProfileSim(4,ref perf);
             StepFreightBodies(dt);StepBodies(dt);fx.Step(dt);UpdateCamera(dt);ResolveRearBoundary();ProfileSim(5,ref perf);if(simulation)ValidateSimulationStep(dt);
             CrowdNear=0;foreach(var e in enemies)if(Vector3.Distance(e.rig.Root.position,HeroPosition)<6)CrowdNear++;
-            PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);
+            PeakCrowd=Mathf.Max(PeakCrowd,CrowdNear);StepPressureEncounter(dt);
             if(Health<=0){Health=0;Score.Bank();EndTargetWait();CaptureWaveFeedback();FinishIntegrityEncounter(false);State=RunState.Defeated;Announce("OVERRUN");}
             else if(finaleActive&&bossSpawned&&!enemies.Exists(e=>e.boss))FinishWave();
             else if(ForemanWave&&!ForemanPresent)FinishWave();

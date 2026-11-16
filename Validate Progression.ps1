@@ -8,7 +8,9 @@ param(
     [ValidatePattern('^[a-z0-9-]*$')][string]$RunLabel='',
     [switch]$Legacy,
     [switch]$CommittedWeapons,
-    [switch]$OriginalWeaponOffers
+    [switch]$OriginalWeaponOffers,
+    [switch]$OriginalBellThreshold,
+    [switch]$OriginalArrivalPacing
 )
 $ErrorActionPreference='Stop'
 $Player=(Resolve-Path -LiteralPath $Player).Path
@@ -31,8 +33,10 @@ try {
         while($pending.Count -gt 0 -and $active.Count -lt $Workers){
             $case=$pending.Dequeue();New-Item -ItemType Directory -Path $case.Directory -Force | Out-Null
             $assembly=Join-Path (Split-Path -Parent $Player) 'WalkingHard_Data\Managed\Assembly-CSharp.dll'
-            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode;weaponOffers=$offers;committed=[bool]$CommittedWeapons} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
+            @{assemblySha256=(Get-FileHash -LiteralPath $assembly -Algorithm SHA256).Hash;seed=$case.Seed;policy=$case.Policy;pool=$Pool;drafter=$mode;weaponOffers=$offers;committed=[bool]$CommittedWeapons;originalBell=[bool]$OriginalBellThreshold;originalArrivals=[bool]$OriginalArrivalPacing} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $case.Directory 'manifest.json')
             $arguments='-batchmode -nographics -progressionReview -seeds '+$case.Seed+' -journeyPolicy '+$case.Policy+' -pool '+$Pool+' -saveDirectory "'+$case.Directory+'\profile" -reviewOutput "'+$case.Directory+'" -logFile "'+$case.Directory+'\player.log"'
+            if($OriginalBellThreshold){$arguments+=' -originalBellThreshold'}
+            if($OriginalArrivalPacing){$arguments+=' -originalArrivalPacing'}
             if($Legacy){$arguments+=' -legacyDraftPolicy'}
             if($CommittedWeapons){$arguments+=' -committedWeapons'}
             if($OriginalWeaponOffers){$arguments+=' -originalWeaponOffers'}

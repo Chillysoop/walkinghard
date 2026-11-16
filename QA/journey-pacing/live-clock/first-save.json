@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-11-15T21:43:51.097915",
+  "pacing": {
+    "complete": true,
+    "automated": false,
+    "combat": 0.0,
+    "equipment": 31.4336334,
+    "events": 0.0,
+    "paused": 0.0,
+    "away": 0.0,
+    "roads": 0.0,
+    "accelerated": 0.0,
+    "encounters": []
+  }
+}

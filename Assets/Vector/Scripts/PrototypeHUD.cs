@@ -200,7 +200,7 @@ namespace VectorGame
             string[] values={game.Score.Banked.ToString("N0"),game.Kills.ToString(),game.Score.Best.ToString("N0"),game.CollisionHits.ToString()};
             string[] labels={"SCORE","KILLS","BEST COMBO","COLLISION HITS"};
             for(int i=0;i<4;i++){Label(new Rect(x+32+i*226,y+194,212,42),values[i],33,white,true);Label(new Rect(x+32+i*226,y+241,212,20),labels[i],13,muted);}
-            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=240+game.RunHistory.encounters.Count*23+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
+            Rect viewport=new Rect(x+28,y+282,904,235);float contentHeight=(game.JourneyActive?130:0)+240+game.RunHistory.encounters.Count*23+game.Waves.Count*23+game.Deck.Items.Count*41+game.InteractionNotes.Count*19+25;
             recapScroll=GUI.BeginScrollView(viewport,recapScroll,new Rect(0,0,880,contentHeight));
             float rowY=DrawIntegrityRecap(0);Label(new Rect(4,rowY,860,20),"WAVE     KILLS     LAUNCHES     COLLISIONS     INTEGRITY",12,muted,true);
             rowY+=25;foreach(var row in game.Waves){Label(new Rect(4,rowY,860,22),row.wave.ToString("00")+"          "+row.kills+"             "+row.launches+"                  "+row.collisions+"                 "+row.health.ToString("0"),13,white);rowY+=23;}

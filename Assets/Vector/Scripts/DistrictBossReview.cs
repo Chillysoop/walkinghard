@@ -15,7 +15,7 @@ namespace VectorGame
         [Serializable] sealed class DistrictBossCase
         {
             public string build,boss,result,loadout;public int wave,seed,strikes,breaks,rallies,cycles,visibleSpawns,orderErrors;
-            public float seconds,health,damageTaken,healing,wait;public bool valid;
+            public float seconds,health,damageTaken,healing,wait;public bool valid;public JourneyPressure pressure;
         }
         [Serializable] sealed class DistrictBossReport
         {
@@ -26,7 +26,7 @@ namespace VectorGame
         {
             enabled=false;qa=false;fx.muted=true;SetCombatSpeed(1);FastSimulation=false;
             Application.logMessageReceived+=(m,t,type)=>{if(type==LogType.Exception)Application.Quit(3);};
-            var args=Environment.GetCommandLineArgs();bool balance=args.Contains("-districtBalance"),render=!args.Contains("-nographics");
+            var args=Environment.GetCommandLineArgs();bool balance=args.Contains("-districtBalance"),render=!args.Contains("-nographics");originalBellThreshold=args.Contains("-originalBellThreshold");
             string Arg(string key,string fallback){int at=Array.IndexOf(args,key);return at<0?fallback:args[at+1];}
             if(string.IsNullOrEmpty(saveDirectoryOverride))throw new InvalidOperationException("District review requires an isolated profile");
             string output=Path.GetFullPath(Arg("-reviewOutput","DistrictBossReview"));Directory.CreateDirectory(output);
@@ -46,7 +46,7 @@ namespace VectorGame
                     while(State==RunState.Running&&seconds<180&&Time.realtimeSinceStartup-start<180)
                     {for(int i=0;i<90&&State==RunState.Running;i++){AdvanceCombat(1f/60);seconds+=1f/60;}yield return null;}
                     var b=boss.journeyBoss;bool defeated=boss.deathAge>=0;
-                    var row=new DistrictBossCase{build=build,boss=LongJourney.Encounters[wave-1].name,wave=wave,seed=seed,result=defeated?"Boss defeated":State==RunState.Defeated?"Defeat":"Timeout",seconds=seconds,health=Health,damageTaken=RunHistory.sources.Sum(s=>s.damage),healing=contributions.Sum(p=>p.Value.healing),wait=contributions.Sum(p=>p.Value.rangeWait),strikes=b.strikes,breaks=b.breaks,rallies=b.rallies,cycles=b.cycles,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,loadout=Deck.Loadout};
+                    var row=new DistrictBossCase{build=build,boss=LongJourney.Encounters[wave-1].name,wave=wave,seed=seed,result=defeated?"Boss defeated":State==RunState.Defeated?"Defeat":"Timeout",seconds=seconds,health=Health,damageTaken=RunHistory.sources.Sum(s=>s.damage),healing=contributions.Sum(p=>p.Value.healing),wait=contributions.Sum(p=>p.Value.rangeWait),strikes=b.strikes,breaks=b.breaks,rallies=b.rallies,cycles=b.cycles,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,loadout=Deck.Loadout,pressure=JourneyPacing.encounters.LastOrDefault()};
                     if(b.kind==0)row.breaks=boss.foreman.forcedVents;
                     row.valid=row.result!="Timeout"&&VisibleSpawns==0&&OrderErrors==0&&Spawned==Kills+enemies.Count&&corpses.Count==Kills;report.cases.Add(row);Write();
                     Require(row.valid,"valid "+row.boss+" / "+build);Debug.Log("DISTRICT_BOSS_CASE "+wave+" "+build+" "+row.result+" seconds="+seconds);
@@ -54,7 +54,7 @@ namespace VectorGame
             }
             else
             {
-                forcedSeed=true;tuning.seed=int.Parse(Arg("-seed","4319"));tuning.heroHealth=10000;
+                forcedSeed=true;tuning.seed=int.Parse(Arg("-seed","4319"));tuning.heroHealth=10000;CheckJourneyPacing(Require);
                 for(int seed=1;seed<=128;seed++)
                 {
                     var plan=LongJourney.Plan(seed);Require(plan.Valid(),"valid district itinerary / "+seed);
@@ -86,7 +86,8 @@ namespace VectorGame
                 var killed=byId[b.links[0]];KillEnemy(killed,Vector3.zero,false);BossFrames(boss,1);Require(b.links.Count==2,"clearing one escort visibly removes one bell");
                 foreach(int id in b.links.ToArray())KillEnemy(byId[id],Vector3.zero,false);BossFrames(boss,1);
                 Require(b.phase==3&&b.broken&&b.breaks==1,"clearing all linked escorts cancels the command");yield return Shot("05-bell-silenced");
-                BeginBellCommand(boss);float hp=boss.health;Hurt(boss,boss.maxHealth*.1f,Vector3.zero,0);
+                BeginBellCommand(boss);JourneyBossDamage(boss,boss.maxHealth*BellDamageThreshold*.5f);Require(b.phase==1&&Mathf.Abs(b.disruption-.5f)<.001f,"half the damage threshold fills half the command meter without cancelling");
+                BeginBellCommand(boss);float hp=boss.health;Hurt(boss,boss.maxHealth*(BellDamageThreshold+.01f),Vector3.zero,0);
                 Require(b.phase==3&&b.broken&&boss.health<hp,"pure damage can break a command without a control ability or escorts");
                 BeginBellCommand(boss);BossFrames(boss,235);Require(b.phase==2&&b.links.Count==0,"escort-free command continues into a weaker toll");yield return Shot("06-bell-toll");
                 float health=Health;BossFrames(boss,100);Require(b.strikes==1&&Health<health&&health-Health<=tuning.enemyDamage+.01f,"escort-free toll deals one base hit, with no repeated frame damage");
@@ -105,7 +106,7 @@ namespace VectorGame
                 Require(ResumeExpedition()&&graph==JsonUtility.ToJson(CaptureCheckpoint().graph),"boss cycle, contribution budgets and links restore exactly");
                 var old=CaptureCheckpoint();old.schema=8;foreach(var node in old.graph.objects.Where(o=>o.type==typeof(Enemy).FullName))node.fields.RemoveAll(f=>f.name=="journeyBoss");AtomicWrite(SavePath,JsonUtility.ToJson(old));
                 Require(ResumeExpedition()&&enemies.All(e=>e.journeyBoss==null),"schema 8 retains its actors without inventing mid-fight boss state");
-                var invalid=CaptureCheckpoint().graph;foreach(var node in invalid.objects.Where(o=>o.type==typeof(Enemy).FullName))node.fields.RemoveAll(f=>f.name=="journeyBoss");bool rejected=false;try{GraphCodec().Decode(invalid);}catch(InvalidOperationException){rejected=true;}Require(rejected,"schema 9 still rejects a missing required actor field");
+                var invalid=CaptureCheckpoint().graph;foreach(var node in invalid.objects.Where(o=>o.type==typeof(Enemy).FullName))node.fields.RemoveAll(f=>f.name=="journeyBoss");bool rejected=false;try{GraphCodec().Decode(invalid);}catch(InvalidOperationException){rejected=true;}Require(rejected,"current schema still rejects a missing required actor field");
                 boss=Setup(14);b=boss.journeyBoss;BeginBellCommand(boss);b.disruption=.98f;KillEnemy(boss,Vector3.zero,false);Launch(boss,new Cascade(),1,1);
                 Require(b.disruption==.98f&&b.breaks==0&&b.phase==1,"launching the defeated conductor cannot break a dead command or emit a false opening");
                 for(int district=0;district<3;district++)

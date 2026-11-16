@@ -9,7 +9,8 @@ namespace VectorGame
     [Serializable] public sealed class SavedRoadFork {public Vector3 origin;public int side;}
     [Serializable] public sealed class ExpeditionCheckpoint
     {
-        public int schema=9;
+        public int schema=10;
+        public JourneyPacingLog pacing;
         public string rules="continuance-1",tuning;
         public bool chapterMode;public ChapterRun chapter;
         public ExpeditionPlan itinerary;
@@ -85,11 +86,12 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         {
             var info=new FileInfo(SavePath);if(info.Length>64000000)throw new InvalidOperationException("Checkpoint too large");
             var data=JsonUtility.FromJson<ExpeditionCheckpoint>(File.ReadAllText(SavePath));
-            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=9)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
+            if(data==null||!(data.schema==1&&data.rules=="expedition-stops-1"||data.schema==2&&data.rules=="cinderworks-crews-1"||data.schema==3&&data.rules=="shift-foreman-1"||data.schema==4&&data.rules=="cinderworks-variety-1"||data.schema==5&&data.rules=="cinderworks-chapter-1"||(data.schema>=6&&data.schema<=10)&&data.rules=="continuance-1")||data.wave<1||data.wave>(data.schema>=6?21:7)||data.actors.Count>3000||data.roads.Count>(data.schema>=6?9:2))throw new InvalidOperationException("Unsupported checkpoint");
             if(data.schema>=4&&(data.itinerary==null||!data.itinerary.Valid()))throw new InvalidOperationException("Invalid expedition itinerary");
             if(!data.chapterMode)data.chapter=null;
             if(data.chapterMode&&(data.chapter==null||!data.chapter.Valid()||data.wave>(data.chapter.definition==LongJourney.Id?21:6)))throw new InvalidOperationException("Invalid chapter checkpoint");
             if(data.chapterMode&&data.itinerary.waves.Length!=(data.chapter.definition==LongJourney.Id?21:8))throw new InvalidOperationException("Chapter itinerary differs");
+            if(data.schema>=10&&(data.pacing==null||!data.pacing.Valid()))throw new InvalidOperationException("Invalid journey timing");
             return data;
         }
         CheckpointGraph GraphCodec()
@@ -100,7 +102,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         ExpeditionCheckpoint CaptureCheckpoint()
         {
             if(State!=RunState.Drafting||!ExpeditionActive||FastSimulation)throw new InvalidOperationException("Save requires an expedition checkpoint");
-            var saved=new ExpeditionCheckpoint{chapterMode=ChapterActive,chapter=chapterRun,wave=Wave,itinerary=expeditionPlan,tuning=JsonUtility.ToJson(tuning),graph=GraphCodec().Capture(this),hero=heroPhysics.CaptureBody(),cameraPosition=cameraRig.transform.position,cameraRotation=cameraRig.transform.rotation,cameraFov=cameraRig.fieldOfView,muted=fx.muted};
+            var saved=new ExpeditionCheckpoint{pacing=CaptureJourneyPacing(),chapterMode=ChapterActive,chapter=chapterRun,wave=Wave,itinerary=expeditionPlan,tuning=JsonUtility.ToJson(tuning),graph=GraphCodec().Capture(this),hero=heroPhysics.CaptureBody(),cameraPosition=cameraRig.transform.position,cameraRotation=cameraRig.transform.rotation,cameraFov=cameraRig.fieldOfView,muted=fx.muted};
             foreach(var e in enemies.Concat(corpses))saved.actors.Add(e.physics.CaptureBody());
             foreach(var fork in roads.Forks)saved.roads.Add(new SavedRoadFork{origin=fork.Origin,side=roads.Path.Contains(fork.Left)?0:1});
             return saved;
@@ -142,7 +144,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
                 }
                 foreach(var body in corpses)if(body.rig.Root.gameObject.activeSelf)SetBodyWalkCollision(body,body.freightLeft>0||flights.Any(f=>f.body==body));
                 cameraRig.transform.position=saved.cameraPosition;cameraRig.transform.rotation=saved.cameraRotation;cameraRig.fieldOfView=saved.cameraFov;fx.muted=saved.muted;fx.SetReducedMotion(ReducedMotion);
-                ShowStopProp();Physics.SyncTransforms();checkpointEnded=false;loadingCheckpoint=false;hud?.RestoreFusionFeedback();SaveMessage="Checkpoint restored";return true;
+                ShowStopProp();Physics.SyncTransforms();checkpointEnded=false;loadingCheckpoint=false;RestoreJourneyPacing(saved.schema>=10?saved.pacing:null);hud?.RestoreFusionFeedback();SaveMessage="Checkpoint restored";return true;
             }
             catch(Exception e){loadingCheckpoint=false;if(replacing){ExpeditionActive=false;State=RunState.Ready;}SaveMessage="Could not load this checkpoint. The save and backup are kept.";Debug.LogWarning("CHECKPOINT_LOAD: "+e.Message);return false;}
         }
@@ -154,7 +156,7 @@ ExpeditionActive Salvage Stop eventRandom salvageWave RunHistory";
         {
             if(!ExpeditionActive||checkpointEnded||State!=RunState.Complete&&State!=RunState.Defeated)return;
             if(!SyncChapterProgress())return;checkpointEnded=true;
-            if(qa||simulation)return;
+            if(qa||simulation)return;SaveFinishedJourneyTiming();
             try{if(File.Exists(SavePath))File.Delete(SavePath);if(File.Exists(SavePath+".bak"))File.Delete(SavePath+".bak");ResumeLabel="";SaveMessage="Expedition ended";}
             catch(Exception e){Debug.LogWarning("CHECKPOINT_END: "+e.Message);}
         }

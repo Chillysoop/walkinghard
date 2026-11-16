@@ -19,7 +19,7 @@ namespace VectorGame
             public string version,policy,drafter,pool,result,loadout,weaponOffers;public int seed,wave,kills,fusions,orderErrors,visibleSpawns;public bool committed;
             public float seconds,health;public bool valid;public string[] errors;
             public WaveReport[] encounters;public DraftOpportunity[] drafts;public RunHistoryData integrity;public ContributionReport[] items;public WeaponJourneyEncounter[] weaponEncounters;
-            public JourneyBossObservation[] bosses;
+            public JourneyBossObservation[] bosses;public JourneyPacingLog pacing;public bool originalBell,originalArrivals;
         }
         List<DraftOpportunity> progressionDrafts;
         bool reviewOriginalWeaponOffers,reviewCommittedWeapons;
@@ -61,7 +61,7 @@ namespace VectorGame
             var policies=Arg("-journeyPolicy","all")=="all"?ArchetypePolicies:new[]{Arg("-journeyPolicy","all")};
             if(policies.Any(p=>!ArchetypePolicies.Contains(p)))throw new ArgumentException("Unknown progression style");
             var seeds=Arg("-seeds","1741,4319,6229").Split(',').Select(int.Parse).ToArray();bool unlocked=Arg("-pool","unlocked")=="unlocked";
-            legacyDraftPolicy=args.Contains("-legacyDraftPolicy");forcedSeed=true;
+            legacyDraftPolicy=args.Contains("-legacyDraftPolicy");forcedSeed=true;originalBellThreshold=args.Contains("-originalBellThreshold");originalArrivalPacing=args.Contains("-originalArrivalPacing");
             reviewOriginalWeaponOffers=args.Contains("-originalWeaponOffers");reviewCommittedWeapons=args.Contains("-committedWeapons");
             float reviewSeconds=float.Parse(Arg("-progressionSeconds","2100"),System.Globalization.CultureInfo.InvariantCulture);if(!float.IsFinite(reviewSeconds)||reviewSeconds<60||reviewSeconds>2100)throw new ArgumentException("Review seconds must be 60..2100");
             if(reviewCommittedWeapons&&(legacyDraftPolicy||policies.Any(p=>!new[]{"gun","cutcarry","close"}.Contains(p))))throw new ArgumentException("Committed trials require the projected gun, cutcarry or close policy");
@@ -89,7 +89,7 @@ namespace VectorGame
                 if(State==RunState.Complete&&(Wave!=21||Waves.Count!=21||ItemChoices!=20||AugmentChoices!=5))errors.Add("journey completion contract");
                 if(!float.IsFinite(Health)||!float.IsFinite(HeroPosition.z))errors.Add("non-finite state");
                 var result=new ProgressionSample{version=Application.version,policy=policy,drafter=legacyDraftPolicy?"legacy":"projected",pool=unlocked?"unlocked":"fresh",seed=seed,result=timeout?"TimedOut":State.ToString(),wave=Wave,kills=Kills,fusions=Deck.Fusions,health=Health,seconds=seconds,loadout=Deck.Loadout,valid=errors.Count==0,errors=errors.ToArray(),orderErrors=OrderErrors,visibleSpawns=VisibleSpawns,encounters=Waves.ToArray(),drafts=progressionDrafts.ToArray(),integrity=RunHistory,items=ContributionReports()};
-                result.committed=reviewCommittedWeapons;result.weaponOffers=reviewOriginalWeaponOffers?"original":"discovery";result.weaponEncounters=weaponJourneyEncounters.ToArray();result.bosses=ObserveJourneyBosses();
+                result.committed=reviewCommittedWeapons;result.weaponOffers=reviewOriginalWeaponOffers?"original":"discovery";result.weaponEncounters=weaponJourneyEncounters.ToArray();result.bosses=ObserveJourneyBosses();result.pacing=JourneyPacing;result.originalBell=originalBellThreshold;result.originalArrivals=originalArrivalPacing;
                 File.AppendAllText(samples,JsonUtility.ToJson(result)+Environment.NewLine);Debug.Log("PROGRESSION_RESULT "+policy+" seed="+seed+" "+result.result+" wave="+Wave+" valid="+result.valid);
                 if(!result.valid){Application.Quit(4);yield break;}
             }
@@ -147,12 +147,15 @@ namespace VectorGame
             StartChapter();RecordIncoming("Fixture",4);State=RunState.Drafting;Require(SaveCheckpoint(),"recap saves");string graph=JsonUtility.ToJson(CaptureCheckpoint().graph);Require(ResumeExpedition()&&graph==JsonUtility.ToJson(CaptureCheckpoint().graph),"recap checkpoint graph restores exactly");
             var old=CaptureCheckpoint();old.schema=6;old.graph.roots.RemoveAll(r=>r.name=="RunHistory");AtomicWrite(SavePath,JsonUtility.ToJson(old));Require(ResumeExpedition()&&!RunHistory.complete&&RunHistory.sources.Count==0,"previous save version resumes with explicitly partial recap");
             var broken=CaptureCheckpoint().graph;broken.roots.RemoveAll(r=>r.name=="Health");bool rejected=false;try{GraphCodec().Decode(broken,legacyProgression:true);}catch(InvalidOperationException){rejected=true;}Require(rejected,"migration still rejects missing required combat state");
+            CheckJourneyPacing(Require);
             if(render)
             {
                 StartChapter();ProbeReset();OpeningPicks=2;Wave=9;State=RunState.Running;Health=220;RunHistory=new RunHistoryData();BeginIntegrityEncounter();
                 var rifle=Deck.Acquire(LoadoutCatalog.Find("rifle"),3);Deck.Move(rifle,PlaceKind.Weapon,0);ContributionFor(rifle).direct=1280;ContributionFor(rifle).assists=4;
                 foreach(var pair in new[]{("Freight Brute",80f),("Ranged Raider",65f),("Linebreaker",75f)}){Elapsed+=3;RecordIncoming(pair.Item1,pair.Item2);Health-=pair.Item2;}
                 Health=0;FinishIntegrityEncounter(false);CaptureWaveFeedback();State=RunState.Defeated;
+                // Synthetic presentation values, not measured human play.
+                JourneyPacing=new JourneyPacingLog{combat=1140,equipment=420,events=180,roads=72,paused=95,away=66,accelerated=38};
                 foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})
                 {Screen.SetResolution(size.x,size.y,false);for(int i=0;i<15;i++)yield return null;yield return new WaitForEndOfFrame();var t=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(output,"recap-"+size.x+"x"+size.y+".png"),t.EncodeToPNG());Destroy(t);}
             }

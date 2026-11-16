@@ -23,17 +23,18 @@ namespace VectorGame
         public RunHistoryData RunHistory {get;private set;}=new RunHistoryData();
         void BeginIntegrityEncounter()
         {
-            RunHistory.encounters.Add(new IntegrityEncounter{wave=Wave,route=RouteName(ActiveRoute),start=Health,lowest=Health,end=Health,arrivedWith=enemies.Count});
+            RunHistory.encounters.Add(new IntegrityEncounter{wave=Wave,route=ActualFormation,start=Health,lowest=Health,end=Health,arrivedWith=enemies.Count});BeginPressureEncounter();
         }
         void FinishIntegrityEncounter(bool finished)
         {
             var row=RunHistory.encounters.LastOrDefault(r=>r.wave==Wave);if(row==null)return;
             row.end=Mathf.Max(0,Health);row.lowest=Mathf.Min(row.lowest,row.end);row.finished=finished;row.survivors=enemies.Count;
+            if(pressureRow!=null)pressureRow.carryOut=enemies.Count;pressureRow=null;pressureHits.Clear();
         }
         static string IncomingName(Enemy e)=>e==null?"Environment":e.durability?.champion==true?"Freight Champion":e.boss?(e.journeyBoss?.kind==1?"Bell Foreman":e.foreman!=null?"Shift Foreman":"Pursuer"):e.crew!=CrewRole.None?e.crew==CrewRole.Freight?"Freight Brute":e.crew==CrewRole.Repair?"Repair Crew":e.crew.ToString():e.shooter?"Ranged Raider":e.heavy?"Enforcer":e.shieldBearer?"Shield Bearer":e.volatileCarrier?"Volatile Carrier":"Raider";
         void RecordIncoming(string source,float amount)
         {
-            float actual=Mathf.Min(Mathf.Max(0,Health),Mathf.Max(0,amount));if(actual<=0)return;
+            float actual=Mathf.Min(Mathf.Max(0,Health),Mathf.Max(0,amount));if(actual<=0)return;RecordPressureDamage(actual);
             var total=RunHistory.sources.FirstOrDefault(r=>r.name==source);
             if(total==null){total=new IncomingSource{name=source};RunHistory.sources.Add(total);}total.damage+=actual;total.hits++;
             RunHistory.recent.Add(new IncomingHit{source=source,time=Elapsed,damage=actual,health=Mathf.Max(0,Health-actual),wave=Wave});

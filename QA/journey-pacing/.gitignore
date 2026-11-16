@@ -1,0 +1,6 @@
+**/profile/
+**/player.log
+rendered-initial/*.png
+final-rendered/*.png
+!final-rendered/bell-720p-reduced-motion.png
+!final-rendered/pursuer-720p-reduced-motion.png

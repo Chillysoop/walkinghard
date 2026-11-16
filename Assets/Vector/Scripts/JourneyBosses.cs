@@ -72,10 +72,10 @@ namespace VectorGame
             b.links=enemies.Where(a=>a!=e&&!a.boss&&a.durability?.champion!=true&&!a.entering&&a.stun<=0&&EnemyCanAttack(a)&&Vector3.Distance(a.physics.Center,e.physics.Center)<12&&CrewLine(a.physics.Center,e.physics.Center)).OrderBy(a=>(a.physics.Center-e.physics.Center).sqrMagnitude).Take(3).Select(a=>a.id).ToList();
             b.linkedAtStart=b.links.Count;e.foreman.stage=1;
         }
-        void BreakBellCommand(Enemy e)
+        void BreakBellCommand(Enemy e,string reason)
         {
             var b=e.journeyBoss;if(b.kind!=1||b.phase!=1&&b.phase!=2)return;
-            b.breaks++;b.broken=true;b.links.Clear();SetBossPhase(e,3,3.5f);e.foreman.stage=2;
+            b.breaks++;RecordBellBreak(reason);b.broken=true;b.links.Clear();SetBossPhase(e,3,3.5f);e.foreman.stage=2;
             fx.Ring(e.physics.Center,3.2f,VisualFactory.Cyan,.55f);Note("Bell command broken / +25% damage",true);
         }
         void AddBellDisruption(Enemy e,float amount)
@@ -83,7 +83,7 @@ namespace VectorGame
             var b=e.journeyBoss;if(b?.kind!=1||e.deathAge>=0||b.phase!=1&&b.phase!=2)return;
             int action=currentCredit?.action??actionSerial;b.actionPressure.TryGetValue(action,out float prior);
             b.actionPressure[action]=Mathf.Max(prior,amount);b.disruption=Mathf.Clamp01(b.disruption+Mathf.Max(0,amount-prior));
-            if(b.disruption>=1)BreakBellCommand(e);
+            if(b.disruption>=1)BreakBellCommand(e,"control");
         }
         float JourneyBossDamage(Enemy e,float damage)
         {
@@ -92,8 +92,8 @@ namespace VectorGame
             if(b.kind==1&&(b.phase==1||b.phase==2)&&damage>0)
             {
                 // Damage is a universal alternative to control or escort clearing.
-                b.disruption=Mathf.Clamp01(b.disruption+Mathf.Min(e.health,damage)/(e.maxHealth*.09f));
-                if(b.disruption>=1)BreakBellCommand(e);
+                b.disruption=Mathf.Clamp01(b.disruption+Mathf.Min(e.health,damage)/(e.maxHealth*BellDamageThreshold));
+                if(b.disruption>=1)BreakBellCommand(e,"damage");
             }
             if(b.kind==2&&b.phase==3&&(currentCredit?.hop??0)>0&&damage>0&&b.extension<2)
             {
@@ -121,7 +121,7 @@ namespace VectorGame
             if(b.phase==1||b.phase==2)
             {
                 b.links.RemoveAll(id=>!byId.TryGetValue(id,out var ally)||ally.deathAge>=0||ally.stun>0||ally.entering||!EnemyCanAttack(ally)||Vector3.Distance(ally.physics.Center,e.physics.Center)>12||!CrewLine(ally.physics.Center,e.physics.Center));
-                if(b.linkedAtStart>0&&b.links.Count==0)BreakBellCommand(e);
+                if(b.linkedAtStart>0&&b.links.Count==0)BreakBellCommand(e,"escorts");
             }
             if(b.phase==1&&b.age>=b.duration)
             {
