@@ -1,0 +1,2056 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r1-s5",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r3-s5",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s0",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s1",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s2",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s3",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s4",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore0-rivetpistol-r5-s5",
+      "context": "rivet-line",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s0",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s1",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s2",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s3",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s4",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r1-s5",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s0",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s1",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s2",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s3",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s4",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r3-s5",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s0",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93000,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s1",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93001,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s2",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93002,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s3",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93003,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s4",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93004,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "VectorTether",
+        "SuppressiveVolley",
+        "ArcBolt"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-line-bore1-rivetpistol-r5-s5",
+      "context": "rivet-line-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93005,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r1-s5",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r3-s5",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s0",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s1",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s2",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s3",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s4",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore0-rivetpistol-r5-s5",
+      "context": "rivet-close",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s0",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s1",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s2",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s3",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s4",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r1-s5",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s0",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s1",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s2",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s3",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s4",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r3-s5",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s0",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93100,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s1",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93101,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s2",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93102,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s3",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93103,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s4",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93104,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "weapons": [
+        "rivetpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "ForcePush",
+        "Breaker",
+        "Counterguard"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "loader",
+      "rig": "overclock",
+      "ultimate": "redline",
+      "id": "rivet-close-bore1-rivetpistol-r5-s5",
+      "context": "rivet-close-bore",
+      "category": "weapon",
+      "candidate": "rivetpistol",
+      "rank": 5,
+      "baseRank": 5,
+      "seed": 93105,
+      "healthFraction": 1,
+      "matchedWeapons": true,
+      "modules": [
+        "BoreRounds",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  ]
+}

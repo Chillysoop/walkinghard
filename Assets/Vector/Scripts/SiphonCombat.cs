@@ -14,14 +14,14 @@ namespace VectorGame
         public float LifestealRate=>Deck.Lifesteal+(Health<MaxHealth*.5f&&Deck.Equipped(Signature.Reclaimer) is LoadoutItem armor?LoadoutCatalog.ReclaimerRate(armor.rank)*(LoadoutCatalog.ReclaimerLowHealthBoost-1):0);
         public float HarvestHealingLimit(LoadoutItem item)=>MaxHealth*(.08f+.01f*(item.rank-1));
         void ResetSiphon(){drains.Clear();predatorReady=false;LifestealHealing=0;}
-        void ArmPredator(){if(Deck.Equipped(Signature.Predator)!=null)predatorReady=true;}
+        void ArmPredator(){if(Deck.Equipped(Signature.Predator) is LoadoutItem host){predatorReady=true;ObservePassive(host,"Healing haste prepared.");}}
         void DrainMark(Enemy enemy,LoadoutItem source,float potency=1)
         {
             if(enemy.deathAge>=0)return;
             float rate=LoadoutCatalog.SiphonRate(source.rank)*potency,until=Elapsed+4*Effect(source);
             if(!drains.TryGetValue(enemy.id,out var mark))drains[enemy.id]=mark=new Drain();
             if(mark.until<=Elapsed||rate>=mark.rate){mark.rate=rate;mark.owner=source;}
-            mark.until=Mathf.Max(mark.until,until);
+            mark.until=Mathf.Max(mark.until,until);ObservePassive(source,"siphon");
             fx.Symbol(enemy.physics.Center+Vector3.up*.8f,SiphonColor,.35f,true);
         }
         void SpreadDrainOnSever(Enemy enemy)

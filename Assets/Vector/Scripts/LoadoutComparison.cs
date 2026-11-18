@@ -46,7 +46,7 @@ namespace VectorGame
             if(item==null)return "Empty slot.";
             if(item.def.kind==ItemKind.Augment)return item.def.description+"\n"+item.def.tradeoff;
             string text=AttackDescription(item),rules=EffectRules(item);
-            if(rules.Length>0)text+="\n"+rules;
+            if(rules.Length>0)text=rules.StartsWith(text,System.StringComparison.Ordinal)?rules:text+"\n"+rules;
             if(item.augment!=null)text+="\nSOCKET: "+item.augment.def.name+"\n"+AugmentCatalog.Values(item,DisplayShare(item));
             if(item.def.kind==ItemKind.Ultimate)text+="\nRecharge: "+LoadoutCatalog.Cooldown(item).ToString("0")+"s. Separate from sequence.";
             if(item.def.kind==ItemKind.Weapon){int mag=LoadoutCatalog.Magazine(item);if(mag>0)text+="\nMagazine: "+mag+" / reload: 1.2s before gear.";}
@@ -113,6 +113,7 @@ namespace VectorGame
             Rect viewport=new Rect(r.x+12,top,r.width-24,r.yMax-top-24);
             if(viewport.height<25)return;
             string body=pair?"NOW  "+ComparisonStats(p.before)+(p.beforeSecond==null?"":"\nOTHER HAND  "+ComparisonStats(p.beforeSecond))+"\nAFTER  "+ComparisonStats(p.after)+"\n\nAFTER EFFECT\n"+ComparisonEffects(p.after)+"\n\nCURRENT EFFECT\n"+ComparisonEffects(p.before)+(p.beforeSecond==null?"":"\n\nOTHER HAND EFFECT\n"+ComparisonEffects(p.beforeSecond)):ComparisonStats(shown)+"\n\n"+ComparisonEffects(shown);
+            string previous=p.offer==null&&p.source!=null?game.LastPassiveFeedback(DisplayItem(p.source)):"";if(previous.Length>0)body=previous+"\n\n"+body;
             if(p.Def.kind!=ItemKind.Augment){var fits=BuildSynergies.Find(game.Deck,p.Def,incomingItem:p.after).Take(2);foreach(var fit in fits)body+="\n\nWITH "+fit.partner.def.name.ToUpperInvariant()+"\n"+fit.text;body+="\n\nRARITY SCALING\n"+p.Def.upgrade;}
             float bodyHeight=Style(12).CalcHeight(new GUIContent(body),viewport.width-19)+8;
             comparisonScroll=GUI.BeginScrollView(viewport,comparisonScroll,new Rect(0,0,viewport.width-19,bodyHeight));

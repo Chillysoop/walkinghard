@@ -1,0 +1,223 @@
+{
+  "version": "0.9.2",
+  "branch": "feature/v092-build-readability",
+  "baseCommit": "33e8c3179a71c19993f3c1531af7a0743cb87a27",
+  "finalAssemblySha256": "7efa155759d09848fd39af700c7b3d299646e63fdf7bef869d9e5a9ebbc0d866",
+  "core": {
+    "assemblySha256": "7efa155759d09848fd39af700c7b3d299646e63fdf7bef869d9e5a9ebbc0d866",
+    "workers": 3,
+    "scope": "Same 15 Validate Prototype.ps1 cases; final assembly; normal health; separate profiles.",
+    "cases": [
+      {
+        "build": "armed",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "armor",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "fast",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "half",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "hammer",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "manual",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "quick",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "reload",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "reroll",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "rifle",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "sequence",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "sequence",
+        "seed": 4319,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "sword",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "tempest",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      },
+      {
+        "build": "twin",
+        "seed": 1741,
+        "passed": true,
+        "assertions": 877
+      }
+    ],
+    "wallSeconds": 69.47437680000439
+  },
+  "initialAssembly": "e0f68e4f5209cc2928c18bb2a08b3a98676570cd089fac292170fa2b08820773",
+  "buildVarietyCases": 50,
+  "initialFullEightWave": {
+    "build": "full",
+    "seed": 1741,
+    "passed": true,
+    "assertions": 876,
+    "health": 279.4911804199219
+  },
+  "constellationHeadless": {
+    "passed": true,
+    "assertions": 449
+  },
+  "constellationRendered": {
+    "passed": true,
+    "assertions": 501
+  },
+  "loadoutModelAssertions": 472,
+  "loadoutRenderedAssertions": 2322,
+  "presentation": "PASSIVE_PRESENTATION_SUCCESS and PRESENTATION_REVIEW_SUCCESS; 96 mapped definitions",
+  "determinism": {
+    "cases": 24,
+    "fields": [
+      "result",
+      "waveReached",
+      "health",
+      "kills",
+      "spawned",
+      "collisions",
+      "launches",
+      "reloads",
+      "score",
+      "elapsed"
+    ],
+    "differences": [],
+    "passed": true,
+    "baselineAssembly": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "finalAssembly": "7efa155759d09848fd39af700c7b3d299646e63fdf7bef869d9e5a9ebbc0d866"
+  },
+  "comparisons": 808,
+  "illustrations": 12,
+  "productionBalanceChanged": false,
+  "speed4xChanged": false,
+  "profiles": "All native review profiles isolated; no player profile modified",
+  "installation": "Install Build.ps1 with final source commit; desktop updater retains feature build until main contains it",
+  "captures": [
+    {
+      "path": "captures\\constellation-cards-0.png",
+      "sha256": "035e92f46154729c1ed0821e6e2c09fbfeeb538198f95b8fd6d980ba773f256f"
+    },
+    {
+      "path": "captures\\constellation-cards-3.png",
+      "sha256": "70f0647ed0cc71bf388416e9c021a2db94d9e8762095f29eb737a911798d7adb"
+    },
+    {
+      "path": "captures\\constellation-cards-6.png",
+      "sha256": "c1c6ae19c1dbb40eece1131ddfc02b0398eae30a7d138e1472b03098b41b51e5"
+    },
+    {
+      "path": "captures\\constellation-cards-9.png",
+      "sha256": "d815508f52dbe95df27415b76b7af90d07e4bd8d07f5f423c35354b1871554dc"
+    },
+    {
+      "path": "captures\\general-05-icon-key.png",
+      "sha256": "20207cc0b0145a7b67bf0e8795aefda25a426ff15f3f4da94a78adbb39ce79cf"
+    },
+    {
+      "path": "captures\\general-07-combat.png",
+      "sha256": "6e6184e87572139c15540d6ec02457ae17b3e3d62d2c98e81ba30386457d8f6c"
+    },
+    {
+      "path": "captures\\loadout-02-hover-fusion.png",
+      "sha256": "4c5ff6a48678542dca53aabb02ff92c45edfac4914bd413be5fac18998470463"
+    },
+    {
+      "path": "captures\\loadout-08-layout-1280x720.png",
+      "sha256": "89f39d0a8db7a5365aa38b93fdb4f3146982d2c3c6da74581d76047349f44241"
+    },
+    {
+      "path": "captures\\loadout-08-layout-1920x1080.png",
+      "sha256": "e257ac5d61ab84729a13e1dd763e1783f642307722ee37c81e44d1950a64ba2d"
+    },
+    {
+      "path": "captures\\office-1280-5.png",
+      "sha256": "b0ca458d513a0d9f7d60cefef2caca3563838d019c74dc0ab3bf57c44aa5f260"
+    },
+    {
+      "path": "captures\\office-1920-4.png",
+      "sha256": "5c764a125b2a558bbbeb5933fdb7fa8a82e406ce8169e1ea21f673627abbb90f"
+    },
+    {
+      "path": "captures\\office-2560-6.png",
+      "sha256": "ee99848eb1b8dfe45fcf8bfe02eb9915596eeb980d97962cffda800b9e77d15b"
+    },
+    {
+      "path": "captures\\passive-details-1280.png",
+      "sha256": "2d9e89e86f66d2c79de1288ac58246da6c5d1fbd45596af053610f2901cedf33"
+    },
+    {
+      "path": "captures\\passive-details-1920.png",
+      "sha256": "a60abebd6893c7adabaaecf4670a2fe2b2e3cb99c61b8e1c616b8174cf1e8292"
+    },
+    {
+      "path": "captures\\passive-details-2560.png",
+      "sha256": "65b0961bf1fd2db6b8cc2c42479a6b682442f479eda7c2681e4dc3a2387200a0"
+    },
+    {
+      "path": "captures\\passive-hover-1280.png",
+      "sha256": "6f7679a29f8e3c542305c94ab06a45ed37274c19f8e8e0e38b27ff1e269002bd"
+    },
+    {
+      "path": "captures\\passive-hover-1920.png",
+      "sha256": "79f6c47938208eeda1ce1c4ed62ed61bea6d2c803a7816cf275e78fb1186c7de"
+    },
+    {
+      "path": "captures\\passive-hover-2560.png",
+      "sha256": "58c4f8cd951ef875b4ad466b476a2e1dcd6ad2677f0cddf35b5c9ecdc8eccee9"
+    }
+  ]
+}

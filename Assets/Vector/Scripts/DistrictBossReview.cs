@@ -14,7 +14,7 @@ namespace VectorGame
         JourneyBossObservation[] ObserveJourneyBosses()=>enemies.Concat(corpses).Where(e=>e.journeyBoss!=null).OrderBy(e=>e.journeyBoss.kind).Select(e=>new JourneyBossObservation{kind=e.journeyBoss.kind,cycles=e.journeyBoss.cycles,strikes=e.journeyBoss.strikes,breaks=e.journeyBoss.kind==0?e.foreman.forcedVents:e.journeyBoss.breaks,rallies=e.journeyBoss.rallies,defeated=e.deathAge>=0}).ToArray();
         [Serializable] sealed class DistrictBossCase
         {
-            public string build,boss,result,loadout;public int wave,seed,strikes,breaks,rallies,cycles,visibleSpawns,orderErrors;
+            public string build,boss,result,loadout,context,timeoutReason;public int rank;public ContributionReport[] items;public int wave,seed,strikes,breaks,rallies,cycles,visibleSpawns,orderErrors;
             public float seconds,health,damageTaken,healing,wait;public bool valid;public JourneyPressure pressure;
         }
         [Serializable] sealed class DistrictBossReport
@@ -39,17 +39,20 @@ namespace VectorGame
             if(balance)
             {
                 int seed=int.Parse(Arg("-seed","1741"));forcedSeed=true;tuning.seed=seed;
-                foreach(int wave in new[]{7,14,21})foreach(string build in ForemanBuilds)
+                string casePath=Arg("-districtCases","");var custom=string.IsNullOrEmpty(casePath)?null:JsonUtility.FromJson<ControlledCases>(File.ReadAllText(casePath)).cases;
+                if(custom!=null)report.scope="Full PhysX; explicit equal-rarity kits, full normal starting health and full ultimate countdown. Three current journey bosses with approaches and reinforcements. Combat timeouts remain separate from defeats. Not ordinary draft win rates.";
+                var matrix=custom??ForemanBuilds.Select(id=>new ControlledCase{id=id,seed=seed}).ToArray();
+                foreach(int wave in new[]{7,14,21})foreach(var plan in matrix)
                 {
-                    StartChapter();EquipForemanKit(build);Wave=wave;BeginWave();if(State==RunState.Revealing)StepFinaleReveal(RevealDuration);
+                    string build=plan.id;seed=plan.seed;tuning.seed=seed;StartChapter();if(custom==null)EquipForemanKit(build);else EquipDistrictComparison(plan);Wave=wave;BeginWave();if(State==RunState.Revealing)StepFinaleReveal(RevealDuration);
                     var boss=JourneyBoss;float seconds=0,start=Time.realtimeSinceStartup;
                     while(State==RunState.Running&&seconds<180&&Time.realtimeSinceStartup-start<180)
                     {for(int i=0;i<90&&State==RunState.Running;i++){AdvanceCombat(1f/60);seconds+=1f/60;}yield return null;}
                     var b=boss.journeyBoss;bool defeated=boss.deathAge>=0;
-                    var row=new DistrictBossCase{build=build,boss=LongJourney.Encounters[wave-1].name,wave=wave,seed=seed,result=defeated?"Boss defeated":State==RunState.Defeated?"Defeat":"Timeout",seconds=seconds,health=Health,damageTaken=RunHistory.sources.Sum(s=>s.damage),healing=contributions.Sum(p=>p.Value.healing),wait=contributions.Sum(p=>p.Value.rangeWait),strikes=b.strikes,breaks=b.breaks,rallies=b.rallies,cycles=b.cycles,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,loadout=Deck.Loadout,pressure=JourneyPacing.encounters.LastOrDefault()};
+                    var row=new DistrictBossCase{context=plan.context,rank=custom==null?0:plan.rank,items=ContributionReports(),timeoutReason=defeated||State==RunState.Defeated?"":seconds>=180?"combat limit":"wall limit",build=build,boss=LongJourney.Encounters[wave-1].name,wave=wave,seed=seed,result=defeated?"Boss defeated":State==RunState.Defeated?"Defeat":"Timeout",seconds=seconds,health=Health,damageTaken=RunHistory.sources.Sum(s=>s.damage),healing=contributions.Sum(p=>p.Value.healing),wait=contributions.Sum(p=>p.Value.rangeWait),strikes=b.strikes,breaks=b.breaks,rallies=b.rallies,cycles=b.cycles,visibleSpawns=VisibleSpawns,orderErrors=OrderErrors,loadout=Deck.Loadout,pressure=JourneyPacing.encounters.LastOrDefault()};
                     if(b.kind==0)row.breaks=boss.foreman.forcedVents;
                     row.valid=row.result!="Timeout"&&VisibleSpawns==0&&OrderErrors==0&&Spawned==Kills+enemies.Count&&corpses.Count==Kills;report.cases.Add(row);Write();
-                    Require(row.valid,"valid "+row.boss+" / "+build);Debug.Log("DISTRICT_BOSS_CASE "+wave+" "+build+" "+row.result+" seconds="+seconds);
+                    Require(custom==null?row.valid:row.timeoutReason!="wall limit"&&VisibleSpawns==0&&OrderErrors==0&&Spawned==Kills+enemies.Count&&corpses.Count==Kills,"valid engine state "+row.boss+" / "+build);Debug.Log("DISTRICT_BOSS_CASE "+wave+" "+build+" "+row.result+" seconds="+seconds);
                 }
             }
             else
@@ -127,6 +130,20 @@ namespace VectorGame
                 }
             }
             report.passed=true;Write();Debug.Log("DISTRICT_BOSS_REVIEW_SUCCESS "+report.assertions);Application.Quit(0);
+        }
+        void EquipDistrictComparison(ControlledCase c)
+        {
+            if(c.rank<1||c.rank>5||c.baseRank!=c.rank||c.weapons.Length!=2||c.abilities.Length!=3||c.modules!=null)throw new ArgumentException("Boss matrix needs equal-rarity, unaugmented kits");
+            void Equip(string id,PlaceKind place,int index=0)
+            {if(string.IsNullOrEmpty(id))return;var item=Deck.Acquire(LoadoutCatalog.Find(id),c.rank);if(!MoveItem(item,place,index))throw new InvalidOperationException("Boss comparison equip: "+id);}
+            Equip(c.weapons[0],PlaceKind.Weapon,0);Equip(c.weapons[1],PlaceKind.Weapon,1);
+            for(int i=0;i<3;i++)Equip(c.abilities[i],PlaceKind.Sequence,i+2);
+            Equip(c.helmet,PlaceKind.Helmet);Equip(c.armor,PlaceKind.Armor);Equip(c.boots,PlaceKind.Boots);Equip(c.rig,PlaceKind.Rig);Equip(c.ultimate,PlaceKind.Ultimate);
+            var order=c.sequence.Select(id=>id=="basic0"?Deck.Basics[0]:id=="basic1"?Deck.Basics[1]:Deck.Slots.Single(i=>i?.def.id==id)).ToArray();
+            if(Deck.TwoHanded){int first=Array.IndexOf(order,Deck.Basics[0]);if(Array.IndexOf(order,Deck.Basics[1])!=first+1)throw new ArgumentException("Split two-handed boss kit");Deck.Move(Deck.Basics[0],PlaceKind.Sequence,first);}
+            for(int i=0;i<order.Length;i++)if(order[i].def.kind!=ItemKind.Basic||!Deck.TwoHanded||order[i]==Deck.Basics[0])Deck.Move(order[i],PlaceKind.Sequence,i);
+            if(!Deck.Slots.SequenceEqual(order))throw new InvalidOperationException("Boss comparison order changed");
+            hero.Equipment(Deck.Has(AbilityId.MassDriver),Deck.Pinball);OpeningPicks=2;Health=MaxHealth;UltimateRemaining=UltimateCooldown;UltimateAutomatic=true;
         }
         IEnumerator CheckDistrictRearDoors(Action<bool,string> require)
         {

@@ -1,4 +1,6 @@
-# Walking Hard 0.9.1 - Constellation and control weapons
+# Walking Hard 0.9.2 - Build feedback and item illustrations
+
+Checkpoint wave details now retain equipped passive gear even when it produces zero output, with short explanations of missing triggers, created-but-unused barriers, setup marks and other observed effects. Owned-item details show the same last-wave explanation; a replacement item never inherits another item's history. Twelve dedicated illustrations cover the six constellation weapons and six abilities. Existing category icons, rarity outlines, sequence rules and 4× speed are retained. [Controlled comparisons and recommendations](QA/build-readability/verification.md) cover all six branches and the Rivet 20→22 experiment. **No balance changes are applied in 0.9.2.**
 
 The Dead Letter Office now holds **36 permanent item unlocks**, up from six. Six new branches add **30 playable identities**: six weapons, six abilities, fourteen passive equipment pieces and four ultimates. Impact, Storm, Sever, Ballistics, Siphon and Guard each open with a weapon and split into complementary choices. The original six patterns remain in Foundations with their existing prices and ownership.
 

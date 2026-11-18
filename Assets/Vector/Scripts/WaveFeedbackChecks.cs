@@ -38,6 +38,28 @@ namespace VectorGame
             var snapshot=TargetWaitWarning;EndTargetWait();Deck.Move(keeper,PlaceKind.Inventory);
             MechanicRequire(TargetWaitWarning==snapshot,"rearranging items keeps the last-wave warning factual");
             BeginFeedbackWave();Elapsed+=20;CaptureWaveFeedback();MechanicRequire(TargetWaitWarning==null,"warnings do not leak into a later wave");
+            ProbeReset();ResetWaveFeedback();
+            var quiet=Deck.Acquire(LoadoutCatalog.Find("ventgreaves"));Deck.Move(quiet,PlaceKind.Boots);
+            var unused=Deck.Acquire(LoadoutCatalog.Find("switchboard"));
+            BeginFeedbackWave();Elapsed+=1;CaptureWaveFeedback();
+            var quietRow=LastWaveFeedback.items.Single(r=>r.owner==quiet);
+            MechanicRequire(quietRow.values.healing==0&&quietRow.payoff.Contains("No ammunition replenished")&&!LastWaveFeedback.items.Any(r=>r.owner==unused),"zero-output equipped gear stays visible; unused storage does not");
+            var passiveOnly=Deck.Acquire(LoadoutCatalog.Find("returnspring"));
+            MechanicRequire(!PassiveExplanation(passiveOnly,new Contribution()).Contains("Stats still apply"),"effect-only gear never claims nonexistent stat bonuses");
+            var history=LastPassiveFeedback(quiet);var replacement=Deck.Acquire(LoadoutCatalog.Find("ventgreaves"),2);Deck.Move(replacement,PlaceKind.Boots);
+            MechanicRequire(history.Length>0&&LastPassiveFeedback(replacement)==""&&LastPassiveFeedback(quiet)==history,"same-name replacements never inherit another item's wave explanation");
+            Deck.Move(quiet,PlaceKind.Boots);BeginFeedbackWave();ObservePassiveEvent("reload");CaptureWaveFeedback();
+            MechanicRequire(LastPassiveFeedback(quiet).Contains("Ammo refilled"),"actual refill differs from a wave with no refill");
+            var shield=Deck.Acquire(LoadoutCatalog.Find("ballisticvest"));Deck.Move(shield,PlaceKind.Armor);BeginFeedbackWave();AddBarrier(shield,5,3);CaptureWaveFeedback();
+            MechanicRequire(LastPassiveFeedback(shield).Contains("Barrier created; no damage absorbed"),"an unused created barrier is not mislabeled inactive");
+            Deck.Move(unused,PlaceKind.Helmet);BeginFeedbackWave();var marked=ProbeEnemy(0,4);MarkEnemy(marked,unused);CaptureWaveFeedback();
+            MechanicRequire(LastPassiveFeedback(unused).Contains("Conductive applied"),"setup marks remain visible even before an owned discharge");
+            var graph=GraphCodec().Capture(this);var decoder=GraphCodec();decoder.Decode(graph);
+            var feedback=(WaveFeedback)decoder.Root("LastWaveFeedback");var restored=(AbilityDeck)decoder.Root("Deck");
+            MechanicRequire(feedback.items.Single(r=>r.id=="switchboard").owner==restored.Armor[0]&&feedback.items.Single(r=>r.id=="switchboard").payoff.Contains("Conductive applied"),"feedback text and exact owned item survive the checkpoint graph");
+            foreach(var node in graph.objects.Where(n=>n.type==typeof(WaveItemFeedback).FullName))node.fields.RemoveAll(f=>f.name=="owner"||f.name=="payoff");
+            decoder=GraphCodec();decoder.Decode(graph);
+            MechanicRequire(((WaveFeedback)decoder.Root("LastWaveFeedback")).items.All(r=>r.owner==null&&r.payoff==null),"older feedback has no invented item identity or explanation");
             ResetWaveFeedback();
         }
     }

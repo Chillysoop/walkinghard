@@ -1,0 +1,19 @@
+{
+  "cases": 24,
+  "fields": [
+    "result",
+    "waveReached",
+    "health",
+    "kills",
+    "spawned",
+    "collisions",
+    "launches",
+    "reloads",
+    "score",
+    "elapsed"
+  ],
+  "differences": [],
+  "passed": true,
+  "baselineAssembly": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+  "finalAssembly": "7efa155759d09848fd39af700c7b3d299646e63fdf7bef869d9e5a9ebbc0d866"
+}

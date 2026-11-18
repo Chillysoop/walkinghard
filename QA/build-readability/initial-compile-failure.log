@@ -1,0 +1,2 @@
+Initial review-only compile failure, corrected before validation.
+Assets\Vector\Scripts\PresentationReview.cs(74,29): error CS0136: A local or parameter named 'd' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter

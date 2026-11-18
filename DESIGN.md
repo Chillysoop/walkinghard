@@ -1,6 +1,6 @@
 # Walking Hard — build-variety contract
 
-Revision 33, November 16, 2026. Includes the 0.9.0 constellation expansion, 0.9.1 control weapons and shared body filters and the current combat, progression and presentation contract. Historical implementation sections remain below. Numerical values are balance hypotheses, not a claim of equal build strength. Current expansion evidence is in QA/constellation-expansion/verification.md; earlier measurements remain in their versioned QA reports.
+Revision 34, November 18, 2026. Includes the 0.9.0 constellation expansion, 0.9.1 control weapons/shared body filters and 0.9.2 passive feedback/item illustrations. Historical implementation sections remain below. Numerical values are balance hypotheses, not a claim of equal build strength. Current comparison evidence is in QA/build-readability/verification.md; earlier measurements remain in their versioned QA reports.
 
 ## Durability and live combat feedback
 

@@ -14,7 +14,7 @@ namespace VectorGame
             var host=Deck.Equipped(Signature.Recoil);if(host==null||!Once("recoil-reload"))return;
             if(recoilOwner!=host)recoilShot=0;
             recoilOwner=host;recoilGuard=LoadoutCatalog.RecoilBlock(host);recoilUntil=Elapsed+host.def.effect.Seconds(host.rank);
-            Note("Reload armed Recoil guard");
+            ObservePassive(host,"Reload guard armed.");Note("Reload armed Recoil guard");
         }
         float BlockRecoil(float damage)
         {

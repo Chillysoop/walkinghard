@@ -62,6 +62,26 @@ namespace VectorGame
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
+            if(Array.IndexOf(args,"-passiveFeedbackReview")>=0)
+            {
+                game.PreparePassiveFeedbackReview();
+                foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})
+                {
+                    Screen.SetResolution(size.x,size.y,false);for(int i=0;i<15;i++)yield return null;
+                    waveDetails=true;waveDetailsScroll=Vector2.zero;yield return CapturePresentation(directory,"passive-details-"+size.x);
+                    waveDetails=false;presentationHover=game.Deck.Armor[2];yield return CapturePresentation(directory,"passive-hover-"+size.x);presentationHover=null;
+                }
+                foreach(var illustration in ConstellationContent.Weapons.Concat(ConstellationContent.Abilities))
+                    if(!ItemArtwork.HasIllustration(illustration.id))throw new InvalidOperationException("Missing new illustration: "+illustration.id);
+                var cards=ConstellationContent.Weapons.Concat(ConstellationContent.Abilities).ToArray();
+                for(int offset=0;offset<cards.Length;offset+=3)
+                {
+                    game.Deck.Open(offset<6?DraftKind.Equipment:DraftKind.Ability,false);
+                    for(int i=0;i<3;i++)game.Deck.Offers[i]=new RewardOffer(cards[offset+i],1,i+1);
+                    yield return CapturePresentation(directory,"constellation-cards-"+offset);
+                }
+                Debug.Log("PASSIVE_PRESENTATION_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(args,"-controlWeaponReview")>=0)
             {
                 var deck=game.Deck;deck.Open(DraftKind.Mixed,false);

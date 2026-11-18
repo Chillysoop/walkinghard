@@ -40,6 +40,7 @@ namespace VectorGame
             }
             if(shown.def.kind==ItemKind.Ultimate)body+="\n"+LoadoutCatalog.Cooldown(shown).ToString("0")+" combat seconds to recharge. Queues after the current action; U toggles Auto/Manual, F queues when ready.";
             string siphon=game.SiphonDetails(shown);if(siphon.Length>0)body+="\n"+siphon;
+            string previous=hoveredOffer==null?game.LastPassiveFeedback(shown):"";if(previous.Length>0)body=previous+"\n\n"+body;
             string rules=EffectRules(shown);if(rules.Length>0)body+="\n"+rules;
             if(offensive)body+="\n\n"+SynergyText(shown.def);
             if(!shown.HasAugment(AugmentId.Discharge))foreach(var fit in BuildSynergies.Find(game.Deck,shown.def,incomingItem:shown).Take(3))body+="\nWith "+fit.partner.def.name+": "+fit.text;
