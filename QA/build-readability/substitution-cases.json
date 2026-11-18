@@ -1,0 +1,5284 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s0",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s0",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s0",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s1",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s1",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s1",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s2",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s2",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s2",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s3",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s3",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s3",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s4",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s4",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s4",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s5",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s5",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s5",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s6",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s6",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s6",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r1-s7",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r1-s7",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r1-s7",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s0",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s0",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s0",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s1",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s1",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s1",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s2",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s2",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s2",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92102,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s3",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s3",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s3",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92103,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s4",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s4",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s4",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92104,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s5",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s5",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s5",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92105,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s6",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s6",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s6",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92106,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "grounding",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-grounding-r3-s7",
+      "context": "storm",
+      "variant": "swap-grounding",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "rifle",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-rifle-r3-s7",
+      "context": "storm",
+      "variant": "swap-rifle",
+      "category": "weapon",
+      "candidate": "rifle",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "ConductiveBrand",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-swap-ConductiveBrand-r3-s7",
+      "context": "storm",
+      "variant": "swap-ConductiveBrand",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92107,
+      "healthFraction": 1,
+      "sequence": [
+        "ConductiveBrand",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s0",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s0",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s0",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s0",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s1",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s1",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s1",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s1",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s2",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s2",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s2",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s2",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s3",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s3",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s3",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s3",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s4",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s4",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s4",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s4",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s5",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s5",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s5",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s5",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s6",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s6",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s6",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s6",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r1-s7",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r1-s7",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r1-s7",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r1-s7",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s0",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s0",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s0",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s0",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s1",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s1",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s1",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s1",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s2",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s2",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s2",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s2",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92302,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s3",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s3",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s3",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s3",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92303,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s4",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s4",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s4",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s4",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92304,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s5",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s5",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s5",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s5",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92305,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s6",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s6",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s6",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s6",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92306,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "recoil",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-recoil-r3-s7",
+      "context": "ballistics",
+      "variant": "swap-recoil",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "loader",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-loader-r3-s7",
+      "context": "ballistics",
+      "variant": "swap-loader",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "pistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-pistol-r3-s7",
+      "context": "ballistics",
+      "variant": "swap-pistol",
+      "category": "weapon",
+      "candidate": "pistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-swap-ArcBolt-r3-s7",
+      "context": "ballistics",
+      "variant": "swap-ArcBolt",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92307,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s0",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s0",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s0",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s1",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s1",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s1",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s2",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s2",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s2",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s3",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s3",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s3",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s4",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s4",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s4",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s5",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s5",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s5",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s6",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s6",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s6",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r1-s7",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r1-s7",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r1-s7",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s0",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s0",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s0",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92400,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s1",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s1",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s1",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92401,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s2",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s2",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s2",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92402,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s3",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s3",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s3",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92403,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s4",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s4",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s4",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92404,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s5",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s5",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s5",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92405,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s6",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s6",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s6",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92406,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reclaimer",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-reclaimer-r3-s7",
+      "context": "siphon",
+      "variant": "swap-reclaimer",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "fists",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "ReclaimPulse",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-fists-r3-s7",
+      "context": "siphon",
+      "variant": "swap-fists",
+      "category": "weapon",
+      "candidate": "fists",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "ReclaimPulse",
+        "ReapingCut"
+      ]
+    },
+    {
+      "weapons": [
+        "leechgrips",
+        "siphonblade"
+      ],
+      "abilities": [
+        "DrainBrand",
+        "Breaker",
+        "ReapingCut"
+      ],
+      "helmet": "mercylens",
+      "armor": "reservoir",
+      "boots": "predator",
+      "rig": "overclock",
+      "ultimate": "bloodcircuit",
+      "id": "siphon-swap-Breaker-r3-s7",
+      "context": "siphon",
+      "variant": "swap-Breaker",
+      "category": "weapon",
+      "candidate": "leechgrips",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92407,
+      "healthFraction": 1,
+      "sequence": [
+        "DrainBrand",
+        "basic0",
+        "basic1",
+        "Breaker",
+        "ReapingCut"
+      ]
+    }
+  ]
+}

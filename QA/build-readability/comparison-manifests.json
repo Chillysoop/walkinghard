@@ -1,0 +1,148 @@
+{
+  "branches-fast": {
+    "mode": "Fast",
+    "runs": 288,
+    "workers": 3,
+    "player": "C:\\Users\\conne\\Games\\WalkingHard\\Current\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:03:11Z",
+    "wallSeconds": 99.17883420002181,
+    "valid": 288,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 195,
+    "timeouts": 0
+  },
+  "branches-full": {
+    "mode": "Full",
+    "runs": 24,
+    "workers": 3,
+    "player": "C:\\Users\\conne\\Games\\WalkingHard\\Current\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:05:36Z",
+    "wallSeconds": 537.4148093999829,
+    "valid": 24,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 15,
+    "timeouts": 0
+  },
+  "substitutions-fast": {
+    "mode": "Fast",
+    "runs": 160,
+    "workers": 2,
+    "player": "C:\\Users\\conne\\Games\\WalkingHard\\Current\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:11:17Z",
+    "wallSeconds": 60.10838099999819,
+    "valid": 160,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 33,
+    "timeouts": 0
+  },
+  "rivet-baseline": {
+    "mode": "Fast",
+    "runs": 144,
+    "workers": 2,
+    "player": "C:\\Users\\conne\\Games\\WalkingHard\\Current\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:05:36Z",
+    "wallSeconds": 87.17863819998456,
+    "valid": 144,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 106,
+    "timeouts": 0
+  },
+  "rivet-candidate": {
+    "mode": "Fast",
+    "runs": 72,
+    "workers": 2,
+    "player": "C:\\Users\\conne\\Games\\WalkingHard\\Current\\WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:07:03Z",
+    "balance": {
+      "items": [
+        {
+          "id": "rivetpistol",
+          "damageMultiplier": 1.1
+        }
+      ]
+    },
+    "wallSeconds": 44.0592768000206,
+    "valid": 72,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 49,
+    "timeouts": 0
+  },
+  "rivet-full-baseline": {
+    "mode": "Full",
+    "runs": 8,
+    "workers": 2,
+    "player": "C:/Users/conne/Games/WalkingHard/Current/WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:16:58Z",
+    "wallSeconds": 242.26358319999417,
+    "valid": 8,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 4,
+    "timeouts": 0
+  },
+  "rivet-full-candidate": {
+    "mode": "Full",
+    "runs": 4,
+    "workers": 2,
+    "player": "C:/Users/conne/Games/WalkingHard/Current/WalkingHard.exe",
+    "assemblySha256": "8c5c129564349eb60522730396ecab3a3f48e819586fc4fdc75e1f73f4b1cd3e",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-18T20:21:12Z",
+    "balance": {
+      "items": [
+        {
+          "id": "rivetpistol",
+          "damageMultiplier": 1.1
+        }
+      ]
+    },
+    "wallSeconds": 100.05539949995,
+    "valid": 4,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 2,
+    "timeouts": 0
+  },
+  "branch-bosses": {
+    "player": "C:\\Users\\conne\\Documents\\WalkingHard-Crowds\\Build\\Windows\\WalkingHard.exe",
+    "assemblySha256": "e0f68e4f5209cc2928c18bb2a08b3a98676570cd089fac292170fa2b08820773",
+    "kits": 36,
+    "encounters": 108,
+    "workers": 3,
+    "wallSeconds": 200.14544629998272,
+    "wins": 108,
+    "defeats": 0,
+    "timeouts": 0
+  }
+}

@@ -117,7 +117,7 @@ namespace VectorGame
                 if(n.fields.Any(x=>!fields.Any(f=>f.Name==x.name))||n.fields.Select(x=>x.name).Distinct().Count()!=n.fields.Count)throw new InvalidOperationException("Checkpoint version differs");
                 foreach(var f in fields)
                 {
-                    var saved=n.fields.SingleOrDefault(x=>x.name==f.Name);if(saved==null){if(Optional(f)||legacyDistrictEvents&&t==typeof(ExpeditionStop)&&f.Name=="districtEvent"||t.FullName=="VectorGame.VectorEncounter+Enemy"&&(f.Name=="durability"||legacyControlWeapons&&f.Name=="rivet"||legacyBosses&&f.Name=="journeyBoss"||legacyChampions&&f.Name=="districtChampion")||legacyDiscovery&&t==typeof(AbilityDeck)&&f.Name=="weaponDiscovery")continue;throw new InvalidOperationException("Checkpoint version differs");}
+                    var saved=n.fields.SingleOrDefault(x=>x.name==f.Name);if(saved==null){if(t.FullName=="VectorGame.VectorEncounter+WaveItemFeedback"&&(f.Name=="owner"||f.Name=="payoff")||Optional(f)||legacyDistrictEvents&&t==typeof(ExpeditionStop)&&f.Name=="districtEvent"||t.FullName=="VectorGame.VectorEncounter+Enemy"&&(f.Name=="durability"||legacyControlWeapons&&f.Name=="rivet"||legacyBosses&&f.Name=="journeyBoss"||legacyChampions&&f.Name=="districtChampion")||legacyDiscovery&&t==typeof(AbilityDeck)&&f.Name=="weaponDiscovery")continue;throw new InvalidOperationException("Checkpoint version differs");}
                     var value=Ref(saved.value);
                     // Struct fields copy their boxed value. Hydrate that value before
                     // assigning it to its owner, including active impact reactions.

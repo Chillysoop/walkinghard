@@ -29,7 +29,7 @@ namespace VectorGame
             insight+=" Arrivals "+arrivals.ToString("0.0")+"s; blocked "+blocked.ToString("0.0")+"s.";
             Label(new Rect(panel.x+22,panel.y+118,panel.width-44,22),insight,12,Strong,true);
             Rect view=new Rect(panel.x+20,panel.y+153,panel.width-40,panel.height-197);
-            float width=view.width-24,contentHeight=34+report.items.Length*58+64+report.triggers.Length*23;
+            float width=view.width-24,contentHeight=34+report.items.Sum(row=>string.IsNullOrEmpty(row.payoff)?58:81)+64+report.triggers.Length*23;
             waveDetailsScroll=GUI.BeginScrollView(view,waveDetailsScroll,new Rect(0,0,width,contentHeight));
             float nameWidth=width*.30f,col=(width-nameWidth)/6;
             string[] headings={"KILLS","DAMAGE","HEAL","BLOCK","CONTROL","DELAYS"};
@@ -46,7 +46,9 @@ namespace VectorGame
                 Label(new Rect(nameWidth+col,y+21,col-6,30),c.collision.ToString("0")+" collision",9,muted);
                 Label(new Rect(nameWidth+4*col,y+21,col-6,30),c.assists+" assists",10,muted);
                 Label(new Rect(nameWidth+5*col,y+19,col-6,34),c.outOfReachWait.ToString("0.0")+"s reach\n"+c.preparation.ToString("0.0")+"s ready",9,muted);
-                Stroke(new Vector2(0,y+53),new Vector2(width,y+53),line,1);y+=58;
+                float rowHeight=string.IsNullOrEmpty(row.payoff)?58:81;
+                if(!string.IsNullOrEmpty(row.payoff))Label(new Rect(41,y+53,width-47,22),row.payoff,10,muted);
+                Stroke(new Vector2(0,y+rowHeight-5),new Vector2(width,y+rowHeight-5),line,1);y+=rowHeight;
             }
             Label(new Rect(3,y+8,width-6,22),"SYNERGIES THAT TRIGGERED",13,Accent,true);y+=36;
             if(report.triggers.Length==0)Label(new Rect(3,y,width-6,22),"No tracked synergy triggered this wave.",12,muted);

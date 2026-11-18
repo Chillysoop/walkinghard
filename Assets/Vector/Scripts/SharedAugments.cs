@@ -73,7 +73,7 @@ namespace VectorGame
             Launch(body,null,0,.6f*Effect(source),direction.normalized);
             // Retrieval itself must not refill the preparation via OnLaunch.
             salvagerOwner=null;
-            fx.Arc(body.physics.Center,point,VisualFactory.Orange);ContributionFor(source).assists++;
+            ObservePassive(source,"A fallen body was retrieved.");fx.Arc(body.physics.Center,point,VisualFactory.Orange);ContributionFor(source).assists++;
             Note("Prepared retrieval pulled a body",true);
         }
         void SurveyorEcho()

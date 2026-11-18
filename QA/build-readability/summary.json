@@ -1,0 +1,1166 @@
+{
+  "branches-fast": {
+    "ballistics-base-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 122.515
+    },
+    "ballistics-base-r3": {
+      "n": 8,
+      "wins": 7,
+      "health": 67.81,
+      "wave": 8,
+      "seconds": 299.09
+    },
+    "ballistics-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 309.04,
+      "wave": 8,
+      "seconds": 270.153
+    },
+    "ballistics-new-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 95.32
+    },
+    "ballistics-new-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6.875,
+      "seconds": 244.761
+    },
+    "ballistics-new-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 284.94,
+      "wave": 8,
+      "seconds": 277.518
+    },
+    "guard-base-r1": {
+      "n": 8,
+      "wins": 8,
+      "health": 265.685,
+      "wave": 8,
+      "seconds": 410.229
+    },
+    "guard-base-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 330.756,
+      "wave": 8,
+      "seconds": 366.755
+    },
+    "guard-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 377.12,
+      "wave": 8,
+      "seconds": 328.36
+    },
+    "guard-new-r1": {
+      "n": 8,
+      "wins": 7,
+      "health": 150.601,
+      "wave": 8,
+      "seconds": 435.934
+    },
+    "guard-new-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 314.817,
+      "wave": 8,
+      "seconds": 374.832
+    },
+    "guard-new-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 387.368,
+      "wave": 8,
+      "seconds": 366.29
+    },
+    "impact-base-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5,
+      "seconds": 170.779
+    },
+    "impact-base-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 100.708,
+      "wave": 8,
+      "seconds": 354.331
+    },
+    "impact-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 212.079,
+      "wave": 8,
+      "seconds": 330.605
+    },
+    "impact-new-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5.375,
+      "seconds": 187.4
+    },
+    "impact-new-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 174.341,
+      "wave": 8,
+      "seconds": 372.151
+    },
+    "impact-new-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 231.308,
+      "wave": 8,
+      "seconds": 348.317
+    },
+    "sever-base-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5.25,
+      "seconds": 178.211
+    },
+    "sever-base-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 46.601,
+      "wave": 8,
+      "seconds": 323.692
+    },
+    "sever-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 232.652,
+      "wave": 8,
+      "seconds": 296.853
+    },
+    "sever-new-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6.25,
+      "seconds": 225.116
+    },
+    "sever-new-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 165.555,
+      "wave": 8,
+      "seconds": 311.776
+    },
+    "sever-new-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 283.028,
+      "wave": 8,
+      "seconds": 294.501
+    },
+    "siphon-base-r1": {
+      "n": 8,
+      "wins": 6,
+      "health": 136.829,
+      "wave": 7,
+      "seconds": 298.246
+    },
+    "siphon-base-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 308.749,
+      "wave": 8,
+      "seconds": 325.935
+    },
+    "siphon-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 330.0,
+      "wave": 8,
+      "seconds": 300.91
+    },
+    "siphon-new-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.375,
+      "seconds": 153.114
+    },
+    "siphon-new-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 236.355,
+      "wave": 8,
+      "seconds": 319.406
+    },
+    "siphon-new-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 329.402,
+      "wave": 8,
+      "seconds": 296.28
+    },
+    "storm-base-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3.75,
+      "seconds": 119.869
+    },
+    "storm-base-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 96.911,
+      "wave": 8,
+      "seconds": 331.632
+    },
+    "storm-base-r5": {
+      "n": 8,
+      "wins": 8,
+      "health": 267.374,
+      "wave": 8,
+      "seconds": 299.675
+    },
+    "storm-new-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 97.548
+    },
+    "storm-new-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.625,
+      "seconds": 162.956
+    },
+    "storm-new-r5": {
+      "n": 8,
+      "wins": 7,
+      "health": 45.55,
+      "wave": 8,
+      "seconds": 300.573
+    }
+  },
+  "branches-full": {
+    "ballistics-base-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5,
+      "seconds": 152.973
+    },
+    "ballistics-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 193.52,
+      "wave": 8,
+      "seconds": 294.022
+    },
+    "ballistics-new-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 131.479
+    },
+    "ballistics-new-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 98.46,
+      "wave": 8,
+      "seconds": 328.814
+    },
+    "guard-base-r1": {
+      "n": 1,
+      "wins": 1,
+      "health": 293.504,
+      "wave": 8,
+      "seconds": 397.464
+    },
+    "guard-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 334.931,
+      "wave": 8,
+      "seconds": 339.778
+    },
+    "guard-new-r1": {
+      "n": 1,
+      "wins": 1,
+      "health": 7.776,
+      "wave": 8,
+      "seconds": 425.973
+    },
+    "guard-new-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 345.819,
+      "wave": 8,
+      "seconds": 375.352
+    },
+    "impact-base-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 8,
+      "seconds": 347.543
+    },
+    "impact-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 205.449,
+      "wave": 8,
+      "seconds": 341.994
+    },
+    "impact-new-r1": {
+      "n": 1,
+      "wins": 1,
+      "health": 30.777,
+      "wave": 8,
+      "seconds": 424.69
+    },
+    "impact-new-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 182.072,
+      "wave": 8,
+      "seconds": 383.034
+    },
+    "sever-base-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6,
+      "seconds": 222.356
+    },
+    "sever-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 145.587,
+      "wave": 8,
+      "seconds": 315.867
+    },
+    "sever-new-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 8,
+      "seconds": 315.25
+    },
+    "sever-new-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 227.481,
+      "wave": 8,
+      "seconds": 309.452
+    },
+    "siphon-base-r1": {
+      "n": 1,
+      "wins": 1,
+      "health": 300.0,
+      "wave": 8,
+      "seconds": 366.255
+    },
+    "siphon-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 307.629,
+      "wave": 8,
+      "seconds": 327.431
+    },
+    "siphon-new-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 8,
+      "seconds": 285.158
+    },
+    "siphon-new-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 308.665,
+      "wave": 8,
+      "seconds": 321.399
+    },
+    "storm-base-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 144.376
+    },
+    "storm-base-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 237.318,
+      "wave": 8,
+      "seconds": 323.315
+    },
+    "storm-new-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 113.91
+    },
+    "storm-new-r3": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6,
+      "seconds": 221.607
+    }
+  },
+  "substitutions-fast": {
+    "ballistics-swap-ArcBolt-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3.375,
+      "seconds": 112.012
+    },
+    "ballistics-swap-ArcBolt-r3": {
+      "n": 8,
+      "wins": 2,
+      "health": 11.54,
+      "wave": 7.75,
+      "seconds": 286.78
+    },
+    "ballistics-swap-loader-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 98.102
+    },
+    "ballistics-swap-loader-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 7,
+      "seconds": 240.052
+    },
+    "ballistics-swap-pistol-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 109.065
+    },
+    "ballistics-swap-pistol-r3": {
+      "n": 8,
+      "wins": 1,
+      "health": 0.565,
+      "wave": 7.75,
+      "seconds": 282.146
+    },
+    "ballistics-swap-recoil-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 100.834
+    },
+    "ballistics-swap-recoil-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 7.25,
+      "seconds": 250.57
+    },
+    "siphon-swap-Breaker-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.625,
+      "seconds": 156.844
+    },
+    "siphon-swap-Breaker-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 273.752,
+      "wave": 8,
+      "seconds": 329.712
+    },
+    "siphon-swap-fists-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.375,
+      "seconds": 151.622
+    },
+    "siphon-swap-fists-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 254.677,
+      "wave": 8,
+      "seconds": 319.837
+    },
+    "siphon-swap-reclaimer-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.75,
+      "seconds": 163.697
+    },
+    "siphon-swap-reclaimer-r3": {
+      "n": 8,
+      "wins": 8,
+      "health": 208.105,
+      "wave": 8,
+      "seconds": 320.518
+    },
+    "storm-swap-ConductiveBrand-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 106.402
+    },
+    "storm-swap-ConductiveBrand-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5,
+      "seconds": 173.458
+    },
+    "storm-swap-grounding-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3.375,
+      "seconds": 111.755
+    },
+    "storm-swap-grounding-r3": {
+      "n": 8,
+      "wins": 6,
+      "health": 48.613,
+      "wave": 7.875,
+      "seconds": 317.589
+    },
+    "storm-swap-rifle-r1": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3,
+      "seconds": 102.199
+    },
+    "storm-swap-rifle-r3": {
+      "n": 8,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4.625,
+      "seconds": 159.301
+    }
+  },
+  "rivet-baseline": {
+    "rivet-close-bore0-pistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 100.107,
+      "wave": 8,
+      "seconds": 371.928
+    },
+    "rivet-close-bore0-pistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 266.48,
+      "wave": 8,
+      "seconds": 337.22
+    },
+    "rivet-close-bore0-pistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 300.347,
+      "wave": 8,
+      "seconds": 314.74
+    },
+    "rivet-close-bore0-rivetpistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 83.36,
+      "wave": 8,
+      "seconds": 370.084
+    },
+    "rivet-close-bore0-rivetpistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 262.32,
+      "wave": 8,
+      "seconds": 342.194
+    },
+    "rivet-close-bore0-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 312.72,
+      "wave": 8,
+      "seconds": 312.69
+    },
+    "rivet-close-bore1-pistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 135.413,
+      "wave": 8,
+      "seconds": 373.036
+    },
+    "rivet-close-bore1-pistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 268.4,
+      "wave": 8,
+      "seconds": 333.013
+    },
+    "rivet-close-bore1-pistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 308.88,
+      "wave": 8,
+      "seconds": 305.306
+    },
+    "rivet-close-bore1-rivetpistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 106.613,
+      "wave": 8,
+      "seconds": 372.611
+    },
+    "rivet-close-bore1-rivetpistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 264.56,
+      "wave": 8,
+      "seconds": 343.688
+    },
+    "rivet-close-bore1-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 306.0,
+      "wave": 8,
+      "seconds": 314.428
+    },
+    "rivet-line-bore0-pistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 3.833,
+      "seconds": 118.063
+    },
+    "rivet-line-bore0-pistol-r3": {
+      "n": 6,
+      "wins": 4,
+      "health": 40.8,
+      "wave": 8,
+      "seconds": 300.729
+    },
+    "rivet-line-bore0-pistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 307.28,
+      "wave": 8,
+      "seconds": 271.092
+    },
+    "rivet-line-bore0-rivetpistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 117.861
+    },
+    "rivet-line-bore0-rivetpistol-r3": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 7.833,
+      "seconds": 277.715
+    },
+    "rivet-line-bore0-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 300.347,
+      "wave": 8,
+      "seconds": 272.608
+    },
+    "rivet-line-bore1-pistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 123.244
+    },
+    "rivet-line-bore1-pistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 99.867,
+      "wave": 8,
+      "seconds": 298.771
+    },
+    "rivet-line-bore1-pistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 308.347,
+      "wave": 8,
+      "seconds": 270.336
+    },
+    "rivet-line-bore1-rivetpistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 120.016
+    },
+    "rivet-line-bore1-rivetpistol-r3": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 7.833,
+      "seconds": 288.271
+    },
+    "rivet-line-bore1-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 306.96,
+      "wave": 8,
+      "seconds": 271.27
+    }
+  },
+  "rivet-candidate": {
+    "rivet-close-bore0-rivetpistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 120.267,
+      "wave": 8,
+      "seconds": 367.291
+    },
+    "rivet-close-bore0-rivetpistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 262.64,
+      "wave": 8,
+      "seconds": 341.727
+    },
+    "rivet-close-bore0-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 307.387,
+      "wave": 8,
+      "seconds": 312.726
+    },
+    "rivet-close-bore1-rivetpistol-r1": {
+      "n": 6,
+      "wins": 6,
+      "health": 128.373,
+      "wave": 8,
+      "seconds": 371.481
+    },
+    "rivet-close-bore1-rivetpistol-r3": {
+      "n": 6,
+      "wins": 6,
+      "health": 254.64,
+      "wave": 8,
+      "seconds": 344.046
+    },
+    "rivet-close-bore1-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 304.507,
+      "wave": 8,
+      "seconds": 314.167
+    },
+    "rivet-line-bore0-rivetpistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 119.255
+    },
+    "rivet-line-bore0-rivetpistol-r3": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 8,
+      "seconds": 281.123
+    },
+    "rivet-line-bore0-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 305.147,
+      "wave": 8,
+      "seconds": 272.258
+    },
+    "rivet-line-bore1-rivetpistol-r1": {
+      "n": 6,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 118.125
+    },
+    "rivet-line-bore1-rivetpistol-r3": {
+      "n": 6,
+      "wins": 1,
+      "health": 3.88,
+      "wave": 8,
+      "seconds": 297.613
+    },
+    "rivet-line-bore1-rivetpistol-r5": {
+      "n": 6,
+      "wins": 6,
+      "health": 309.413,
+      "wave": 8,
+      "seconds": 270.653
+    }
+  },
+  "rivet-full-baseline": {
+    "rivet-line-bore0-pistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5,
+      "seconds": 154.456
+    },
+    "rivet-line-bore0-pistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 237.68,
+      "wave": 8,
+      "seconds": 301.104
+    },
+    "rivet-line-bore0-rivetpistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 142.076
+    },
+    "rivet-line-bore0-rivetpistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 145.52,
+      "wave": 8,
+      "seconds": 308.819
+    },
+    "rivet-line-bore1-pistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6,
+      "seconds": 205.294
+    },
+    "rivet-line-bore1-pistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 205.04,
+      "wave": 8,
+      "seconds": 307.352
+    },
+    "rivet-line-bore1-rivetpistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 5,
+      "seconds": 175.318
+    },
+    "rivet-line-bore1-rivetpistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 184.56,
+      "wave": 8,
+      "seconds": 309.319
+    }
+  },
+  "rivet-full-candidate": {
+    "rivet-line-bore0-rivetpistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 4,
+      "seconds": 145.192
+    },
+    "rivet-line-bore0-rivetpistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 148.72,
+      "wave": 8,
+      "seconds": 308.685
+    },
+    "rivet-line-bore1-rivetpistol-r1": {
+      "n": 1,
+      "wins": 0,
+      "health": 0.0,
+      "wave": 6,
+      "seconds": 202.861
+    },
+    "rivet-line-bore1-rivetpistol-r3": {
+      "n": 1,
+      "wins": 1,
+      "health": 135.92,
+      "wave": 8,
+      "seconds": 307.786
+    }
+  },
+  "branch-bosses": {
+    "ballistics-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 248.267,
+      "seconds": 72.125,
+      "longest": 105.72476959228516
+    },
+    "ballistics-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 295.28,
+      "seconds": 36.066,
+      "longest": 41.98286437988281
+    },
+    "ballistics-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 326.373,
+      "seconds": 26.261,
+      "longest": 31.599689483642578
+    },
+    "ballistics-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 203.347,
+      "seconds": 92.843,
+      "longest": 138.86021423339844
+    },
+    "ballistics-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 285.273,
+      "seconds": 45.749,
+      "longest": 60.182586669921875
+    },
+    "ballistics-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 315.26,
+      "seconds": 26.611,
+      "longest": 30.349708557128906
+    },
+    "guard-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 315.532,
+      "seconds": 82.519,
+      "longest": 141.59288024902344
+    },
+    "guard-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 340.0,
+      "seconds": 53.673,
+      "longest": 87.80427551269531
+    },
+    "guard-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 380.0,
+      "seconds": 33.955,
+      "longest": 51.48271942138672
+    },
+    "guard-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 318.541,
+      "seconds": 110.035,
+      "longest": 178.0673065185547
+    },
+    "guard-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 353.123,
+      "seconds": 69.803,
+      "longest": 112.07612609863281
+    },
+    "guard-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 405.0,
+      "seconds": 49.467,
+      "longest": 80.41936492919922
+    },
+    "impact-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 262.594,
+      "seconds": 80.065,
+      "longest": 124.61213684082031
+    },
+    "impact-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 275.759,
+      "seconds": 48.989,
+      "longest": 69.36700439453125
+    },
+    "impact-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 278.507,
+      "seconds": 32.683,
+      "longest": 45.216148376464844
+    },
+    "impact-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 270.052,
+      "seconds": 96.147,
+      "longest": 151.59043884277344
+    },
+    "impact-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 278.421,
+      "seconds": 63.063,
+      "longest": 93.87223815917969
+    },
+    "impact-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 278.507,
+      "seconds": 39.488,
+      "longest": 57.515960693359375
+    },
+    "sever-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 234.304,
+      "seconds": 66.229,
+      "longest": 96.02269744873047
+    },
+    "sever-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 295.979,
+      "seconds": 42.405,
+      "longest": 65.18277740478516
+    },
+    "sever-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 319.349,
+      "seconds": 29.6,
+      "longest": 43.36617660522461
+    },
+    "sever-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 269.936,
+      "seconds": 64.235,
+      "longest": 92.82201385498047
+    },
+    "sever-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 290.224,
+      "seconds": 40.388,
+      "longest": 57.31596374511719
+    },
+    "sever-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 322.725,
+      "seconds": 27.205,
+      "longest": 37.14960479736328
+    },
+    "siphon-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 299.878,
+      "seconds": 65.652,
+      "longest": 96.90621948242188
+    },
+    "siphon-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 310.0,
+      "seconds": 41.894,
+      "longest": 62.51588439941406
+    },
+    "siphon-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 330.0,
+      "seconds": 28.561,
+      "longest": 40.51622009277344
+    },
+    "siphon-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 300.0,
+      "seconds": 63.423,
+      "longest": 89.70468139648438
+    },
+    "siphon-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 306.771,
+      "seconds": 42.911,
+      "longest": 59.81592559814453
+    },
+    "siphon-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 330.0,
+      "seconds": 30.077,
+      "longest": 39.5162353515625
+    },
+    "storm-base-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 270.933,
+      "seconds": 67.346,
+      "longest": 96.28942108154297
+    },
+    "storm-base-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 276.448,
+      "seconds": 42.866,
+      "longest": 52.64936828613281
+    },
+    "storm-base-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 277.573,
+      "seconds": 28.011,
+      "longest": 34.09965133666992
+    },
+    "storm-new-r1": {
+      "n": 3,
+      "wins": 3,
+      "health": 231.52,
+      "seconds": 74.736,
+      "longest": 112.1761474609375
+    },
+    "storm-new-r3": {
+      "n": 3,
+      "wins": 3,
+      "health": 243.227,
+      "seconds": 57.652,
+      "longest": 94.77243041992188
+    },
+    "storm-new-r5": {
+      "n": 3,
+      "wins": 3,
+      "health": 320.187,
+      "seconds": 30.877,
+      "longest": 36.69961166381836
+    }
+  }
+}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VectorGame
@@ -7,13 +8,31 @@ namespace VectorGame
     // They remain sharp at every HUD scale and do not encode rarity into identity artwork.
     static class ConstellationGlyphs
     {
+        const int Size=256;
+        static readonly Dictionary<string,Texture2D> cache=new Dictionary<string,Texture2D>();
+        static Color[] pixels;
         static void Line(Vector2 a,Vector2 b,Color c,float thickness=2)
-        {var matrix=GUI.matrix;var before=GUI.color;var delta=b-a;GUI.color=c;GUI.matrix=matrix*Matrix4x4.TRS(new Vector3(a.x,a.y,0),Quaternion.Euler(0,0,Mathf.Atan2(delta.y,delta.x)*Mathf.Rad2Deg),Vector3.one);GUI.DrawTexture(new Rect(0,-thickness/2,delta.magnitude,thickness),Texture2D.whiteTexture);GUI.matrix=matrix;GUI.color=before;}
+        {
+            // Cache the original line design as a texture. Matrix rotation inside a
+            // scrolling IMGUI clip displaces its clip rectangle and scatters strokes.
+            float scale=Size/100f;a*=scale;b*=scale;float radius=thickness*scale/2;
+            Vector2 delta=b-a;float length=delta.sqrMagnitude;
+            int left=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(a.x,b.x)-radius-1)),right=Mathf.Min(Size-1,Mathf.CeilToInt(Mathf.Max(a.x,b.x)+radius+1));
+            int top=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(a.y,b.y)-radius-1)),bottom=Mathf.Min(Size-1,Mathf.CeilToInt(Mathf.Max(a.y,b.y)+radius+1));
+            for(int y=top;y<=bottom;y++)for(int x=left;x<=right;x++)
+            {
+                Vector2 point=new Vector2(x+.5f,y+.5f),nearest=a+delta*(length>0?Mathf.Clamp01(Vector2.Dot(point-a,delta)/length):0);
+                float coverage=Mathf.Clamp01(radius+.5f-Vector2.Distance(point,nearest));int index=(Size-1-y)*Size+x;
+                if(coverage>0)pixels[index]=Color.Lerp(pixels[index],c,coverage*c.a);
+            }
+        }
         static void RectLine(Rect r,Color c,float t=2){Line(r.position,new Vector2(r.xMax,r.y),c,t);Line(new Vector2(r.xMax,r.y),new Vector2(r.xMax,r.yMax),c,t);Line(new Vector2(r.xMax,r.yMax),new Vector2(r.x,r.yMax),c,t);Line(new Vector2(r.x,r.yMax),r.position,c,t);}
         public static bool Draw(Rect rect,ItemDefinition item)
         {
-            if(!ConstellationContent.IsNew(item.id))return false;var matrix=GUI.matrix;GUI.matrix=matrix*Matrix4x4.TRS(new Vector3(rect.x,rect.y,0),Quaternion.identity,new Vector3(rect.width/100,rect.height/100,1));
-            int branch=ConstellationContent.Branch(item.id),index=Array.IndexOf(ConstellationContent.BranchItems[branch],item.id);Color c=ConstellationContent.ColorFor(branch),light=new Color(.88f,.95f,1);var before=GUI.color;GUI.color=new Color(.025f,.06f,.075f);GUI.DrawTexture(new Rect(0,0,100,100),Texture2D.whiteTexture);GUI.color=before;
+            if(!ConstellationContent.IsNew(item.id))return false;
+            if(cache.TryGetValue(item.id,out var cached)){var tint=GUI.color;GUI.color=Color.white;GUI.DrawTexture(rect,cached);GUI.color=tint;return true;}
+            pixels=new Color[Size*Size];for(int p=0;p<pixels.Length;p++)pixels[p]=new Color(.025f,.06f,.075f);
+            int branch=ConstellationContent.Branch(item.id),index=Array.IndexOf(ConstellationContent.BranchItems[branch],item.id);Color c=ConstellationContent.ColorFor(branch),light=new Color(.88f,.95f,1);
             void L(float x,float y,float u,float v,Color color,float t=3)=>Line(new Vector2(x,y),new Vector2(u,v),color,t);
             void Ring(float x,float y,float radius,Color color){for(int i=0;i<12;i++){float a=i*Mathf.PI/6,b=(i+1)*Mathf.PI/6;L(x+Mathf.Cos(a)*radius,y+Mathf.Sin(a)*radius,x+Mathf.Cos(b)*radius,y+Mathf.Sin(b)*radius,color,2);}}
             // Item silhouette occupies the left/center; the branch mechanism forms its right edge.
@@ -37,7 +56,8 @@ namespace VectorGame
             if(branch==6){L(65,47,78,41,c,3);L(78,41,91,47,c,3);L(91,47,87,66,c,3);L(87,66,78,76,c,3);L(78,76,68,66,c,3);L(68,66,65,47,c,3);}
             // Each star has a unique circuit address in addition to its item silhouette.
             for(int i=0;i<5;i++){var tint=i==index?light:new Color(c.r*.45f,c.g*.45f,c.b*.45f);RectLine(new Rect(17+i*14,89,7,4),tint,2);}
-            GUI.matrix=matrix;return true;
+            var texture=new Texture2D(Size,Size,TextureFormat.RGBA32,false){name="Glyph "+item.id,filterMode=FilterMode.Bilinear,wrapMode=TextureWrapMode.Clamp};
+            texture.SetPixels(pixels);texture.Apply(false,true);pixels=null;cache.Add(item.id,texture);return Draw(rect,item);
         }
     }
 }

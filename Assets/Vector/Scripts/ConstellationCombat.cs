@@ -64,7 +64,7 @@ namespace VectorGame
             ConstellationSource(host,()=>{float heal=Mathf.Min(MaxHealth-Health,host.def.effect.Power(host.rank));if(heal<=0)return;Health+=heal;ArmorHealing+=heal;ContributionFor(host).healing+=heal;ArmPredator();ExpansionHealing(heal);fx.Arc(hero.RightHand.position,HeroPosition+Vector3.up,Color.green);ConstellationCue(host,"siphon","Ammo replenished -> health restored");});
         }
         void ExpansionHealing(float heal)
-        {if(heal>0&&Deck.Equipped(Signature.Reservoir) is LoadoutItem host&&Once("reservoir"))ConstellationSource(host,()=>{PatternBarrier(host,Mathf.Min(heal,host.def.effect.Power(host.rank)),host.def.effect.Seconds(host.rank));ConstellationCue(host,"guard","Actual healing -> barrier");});}
+        {if(heal>0)ObservePassiveEvent("healing");if(heal>0&&Deck.Equipped(Signature.Reservoir) is LoadoutItem host&&Once("reservoir"))ConstellationSource(host,()=>{PatternBarrier(host,Mathf.Min(heal,host.def.effect.Power(host.rank)),host.def.effect.Seconds(host.rank));ConstellationCue(host,"guard","Actual healing -> barrier");});}
         void ExpansionAbsorb(Enemy attacker)
         {
             if(attacker==null||attacker.deathAge>=0)return;

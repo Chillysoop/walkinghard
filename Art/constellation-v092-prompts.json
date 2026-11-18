@@ -1,0 +1,78 @@
+{
+  "tool": "built-in imagegen",
+  "reference": "Assets/Resources/ItemArt/Control-rivetpistol.png",
+  "images": [
+    {
+      "id": "pileknuckles",
+      "name": "Pile Knuckles",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A single bulky armored mechanical fist gauntlet with a forward piston ram across the knuckles, two exposed steel piston rods and squared impact plates. Compact brutal industrial construction, tiny amber joint accents. Three-quarter view, no arm or person.",
+      "asset": "Assets/Resources/ItemArt/Constellation-pileknuckles.png"
+    },
+    {
+      "id": "arccarbine",
+      "name": "Arc Carbine",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A long TWO-HANDED sci-fi carbine with clear shoulder stock, long paired conductive barrel rails, central electric coil and a thin blue-white arc bridging the rails. Full weapon diagonally across the square, no hand.",
+      "asset": "Assets/Resources/ItemArt/Constellation-arccarbine.png"
+    },
+    {
+      "id": "rivetsabre",
+      "name": "Rivet Sabre",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A single one-handed industrial sci-fi sword with a long single-edged blade, riveted segmented spine and a small hooked guard. Narrow luminous cyan cutting edge, stout dark grip. Entire sword diagonal, no arm or person.",
+      "asset": "Assets/Resources/ItemArt/Constellation-rivetsabre.png"
+    },
+    {
+      "id": "letterpistol",
+      "name": "Dead Letter Pistol",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A single compact four-shot sci-fi pistol: squared receiver, unmistakable four cylindrical cartridge chambers, small brass dispatch-seal medallion with no lettering, short thick barrel and ivory grip panels. Strong simple pistol silhouette, three-quarter side view. No hand.",
+      "asset": "Assets/Resources/ItemArt/Constellation-letterpistol.png"
+    },
+    {
+      "id": "leechgrips",
+      "name": "Leech Grips",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A single agile armored fist gauntlet with slender finger plates, four dark crimson siphon ports over the knuckles and fine red energy veins flowing backward toward the wrist. Distinct from a heavy punch glove. No arm, person, blood or gore.",
+      "asset": "Assets/Resources/ItemArt/Constellation-leechgrips.png"
+    },
+    {
+      "id": "bastionmaul",
+      "name": "Bastion Maul",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. A massive TWO-HANDED industrial warhammer with long handle and a broad shield-shaped rectangular hammer head, ivory armor cheeks, gunmetal striking face, central cyan barrier emitter. Full weapon diagonal, huge head and long two-hand grip visibly distinct from sword and rifle. No person.",
+      "asset": "Assets/Resources/ItemArt/Constellation-bastionmaul.png"
+    },
+    {
+      "id": "VectorSling",
+      "name": "Vector Sling",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: three small angular steel armored target silhouettes pulled by bright cyan force trails inward toward a single point, then one launched forward along a sharp arrow-like trail. Focus on the converging motion and outgoing launch. No labels, no literal drawn arrow symbols, no weapon.",
+      "asset": "Assets/Resources/ItemArt/Constellation-VectorSling.png"
+    },
+    {
+      "id": "StormLash",
+      "name": "Storm Lash",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: a concentrated blue-white electrical lash travels straight through three small dark metallic target silhouettes in a narrow corridor, leaving glowing cyan conductive marks. Long straight lightning lane, NOT a radial explosion or single sphere. Restrained dark background.",
+      "asset": "Assets/Resources/ItemArt/Constellation-StormLash.png"
+    },
+    {
+      "id": "RazorFan",
+      "name": "Razor Fan",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: five brilliant ivory-silver crescents of cutting force fan outward from one origin, distinct clean curved blades with motion trails. Strong semicircular fan silhouette, no gun, hand, character, blood or gore.",
+      "asset": "Assets/Resources/ItemArt/Constellation-RazorFan.png"
+    },
+    {
+      "id": "BreachSalvo",
+      "name": "Breach Salvo",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: three parallel bright white ballistic streaks punch down a narrow lane into three staggered angular steel targets, small amber impact bursts. Readable disciplined three-shot salvo, NOT lightning and no visible gun or human hand.",
+      "asset": "Assets/Resources/ItemArt/Constellation-BreachSalvo.png"
+    },
+    {
+      "id": "ReclaimPulse",
+      "name": "Reclaim Pulse",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: a crimson circular pulse strikes three small angular metallic target silhouettes, and thin returning crimson energy threads converge into one luminous core. Clear outward ring with inward healing returns, no blood, text, hands or gore.",
+      "asset": "Assets/Resources/ItemArt/Constellation-ReclaimPulse.png"
+    },
+    {
+      "id": "RepulsorGuard",
+      "name": "Repulsor Guard",
+      "prompt": "Create ONE square game inventory card illustration, no text, letters, numbers, UI, borders, or watermark. STYLE REFERENCE ONLY: use the attached Rivet Pistol illustration's polished angular gunmetal and ivory metal, restrained luminous accents, near-black dark teal background, dramatic crisp product rendering. Do not copy the reference gun. One centered composition with generous padding, bold silhouette readable at 64px. An abstract sci-fi ability illustration: a broad translucent pale cyan energy shield with a bright central core, breaking outward into a circular repulsion shockwave pushing small dark metal fragments away. Defense-then-push visual, central shield clearly readable, no weapon or person.",
+      "asset": "Assets/Resources/ItemArt/Constellation-RepulsorGuard.png"
+    }
+  ]
+}

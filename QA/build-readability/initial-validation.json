@@ -1,0 +1,472 @@
+{
+  "core": [
+    {
+      "build": "armed",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 239.67994689941406
+    },
+    {
+      "build": "armor",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 328.0
+    },
+    {
+      "build": "fast",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 218.6229248046875
+    },
+    {
+      "build": "half",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 218.6229248046875
+    },
+    {
+      "build": "hammer",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 191.67999267578125
+    },
+    {
+      "build": "manual",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 249.5194854736328
+    },
+    {
+      "build": "quick",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 218.51705932617188
+    },
+    {
+      "build": "reload",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 228.7999725341797
+    },
+    {
+      "build": "reroll",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 230.07994079589844
+    },
+    {
+      "build": "rifle",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 233.27993774414062
+    },
+    {
+      "build": "sequence",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 218.6229248046875
+    },
+    {
+      "build": "sequence",
+      "seed": 4319,
+      "passed": true,
+      "assertions": 876,
+      "health": 264.63995361328125
+    },
+    {
+      "build": "sword",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 208.31996154785156
+    },
+    {
+      "build": "tempest",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 262.24005126953125
+    },
+    {
+      "build": "twin",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 242.23992919921875
+    }
+  ],
+  "variety": [
+    {
+      "build": "aug-Afterfield",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 233.31985473632812
+    },
+    {
+      "build": "aug-Anchor",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 267.95989990234375
+    },
+    {
+      "build": "aug-Backwash",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 263.39984130859375
+    },
+    {
+      "build": "aug-BoreRounds",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 213.5598907470703
+    },
+    {
+      "build": "aug-BreachLoad",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 224.35986328125
+    },
+    {
+      "build": "aug-Crosscut",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 219.23988342285156
+    },
+    {
+      "build": "aug-Discharge",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 285.7999267578125
+    },
+    {
+      "build": "aug-Echo",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 272.9998779296875
+    },
+    {
+      "build": "aug-Flurry",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 233.95985412597656
+    },
+    {
+      "build": "aug-Focused",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 266.599853515625
+    },
+    {
+      "build": "aug-FollowThrough",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 247.47982788085938
+    },
+    {
+      "build": "aug-Groundbreaker",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 244.83984375
+    },
+    {
+      "build": "aug-HookedEdge",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 226.2798614501953
+    },
+    {
+      "build": "aug-Livewire",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 246.19985961914062
+    },
+    {
+      "build": "aug-PalmDrive",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 257.0798645019531
+    },
+    {
+      "build": "aug-Piledriver",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 256.99981689453125
+    },
+    {
+      "build": "aug-SplitPayload",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 276.19989013671875
+    },
+    {
+      "build": "ballet",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 285.8175354003906
+    },
+    {
+      "build": "close",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 284.7999267578125
+    },
+    {
+      "build": "compare-fists-paired",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 251.83993530273438
+    },
+    {
+      "build": "compare-fists-same",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 248.6399383544922
+    },
+    {
+      "build": "compare-fists-separate",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 204.47998046875
+    },
+    {
+      "build": "compare-fists-shared",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 260.7999267578125
+    },
+    {
+      "build": "compare-fists-single",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 245.43994140625
+    },
+    {
+      "build": "compare-guns-2h",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 226.87994384765625
+    },
+    {
+      "build": "compare-guns-paired",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 210.87997436523438
+    },
+    {
+      "build": "compare-guns-same",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 223.03997802734375
+    },
+    {
+      "build": "compare-guns-separate",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 241.5999298095703
+    },
+    {
+      "build": "compare-guns-single",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 237.1199493408203
+    },
+    {
+      "build": "compare-hammer-2h",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 234.55996704101562
+    },
+    {
+      "build": "compare-hammer-paired",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 221.7599639892578
+    },
+    {
+      "build": "compare-hammer-same",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 218.55996704101562
+    },
+    {
+      "build": "compare-hammer-separate",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 246.07994079589844
+    },
+    {
+      "build": "compare-hammer-single",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 226.8799591064453
+    },
+    {
+      "build": "compare-sword-2h",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 215.9999542236328
+    },
+    {
+      "build": "compare-sword-paired",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 245.43992614746094
+    },
+    {
+      "build": "compare-sword-same",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 247.9999237060547
+    },
+    {
+      "build": "compare-sword-separate",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 235.19993591308594
+    },
+    {
+      "build": "compare-sword-single",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 251.19992065429688
+    },
+    {
+      "build": "cutcarry",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 245.43992614746094
+    },
+    {
+      "build": "freight",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 253.96400451660156
+    },
+    {
+      "build": "freight-piledriver",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 277.0400085449219
+    },
+    {
+      "build": "funnel",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 258.23992919921875
+    },
+    {
+      "build": "funnel-breach",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 248.6399383544922
+    },
+    {
+      "build": "pinball",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 225.59994506835938
+    },
+    {
+      "build": "pinball-separated",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 215.9999542236328
+    },
+    {
+      "build": "shared-conductor",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 268.15362548828125
+    },
+    {
+      "build": "shared-freight",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 277.0400085449219
+    },
+    {
+      "build": "shared-pressure",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 340.0
+    },
+    {
+      "build": "shared-sustain",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 310.0
+    }
+  ],
+  "full": [
+    {
+      "build": "full",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 876,
+      "health": 279.4911804199219
+    }
+  ],
+  "assembly": "e0f68e4f5209cc2928c18bb2a08b3a98676570cd089fac292170fa2b08820773",
+  "constellation": 449
+}
