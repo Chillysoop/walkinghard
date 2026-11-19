@@ -50,8 +50,8 @@ namespace VectorGame
             if(Stagger(source)&&Is(consumer,"pileknuckles","BreachSalvo","rangefinder")){key="stagger";return consumer.id=="pileknuckles"?"Existing stagger lets the punch launch.":"Prior stagger enables the damage payoff.";}
             if(Is(source,"DrainBrand","siphonblade","leechgrips","mercylens","bloodcircuit")&&Is(consumer,"ReclaimPulse")){key="siphon";return "Siphon marks heal the stronger hit, then expire.";}
             if(Is(source,"DrainBrand","siphonblade","leechgrips","reclaimer","harvest","treads","ventgreaves","bloodcircuit","ReclaimPulse")&&Is(consumer,"reservoir","predator")){key="siphon";return consumer.id=="reservoir"?"Actual healing creates a capped barrier.":"Actual healing speeds the next ability.";}
-            if(Is(source,"Counterguard","RepulsorGuard","lastbastion","plate","reactive","grounding","counterweight","bastionmaul","ballisticvest","reservoir","recoil","duelist")&&Is(consumer,"wardenvisor","returnspring")){key="guard";return consumer.id=="wardenvisor"?"Absorbed hits interrupt the attacker.":"Absorbed hits shove the attacker away.";}
-            if(Gun(source)&&Is(consumer,"recoil")){key="reload";return "Reload → guard → stronger gun hit.";}
+            if(Is(source,"Counterguard","RepulsorGuard","lastbastion","plate","reactive","grounding","staticshroud","counterweight","bastionmaul","ballisticvest","reservoir","recoil","duelist")&&Is(consumer,"wardenvisor","returnspring")){key="guard";return consumer.id=="wardenvisor"?"Absorbed hits interrupt the attacker.":"Absorbed hits shove the attacker away.";}
+            if(Gun(source)&&Is(consumer,"recoil")){key="reload";return "Reload â†’ guard â†’ stronger gun hit.";}
             if(Is(source,"hookblade")&&Is(consumer,"fists","wraps","breachhammer","hammer","SteelJab","Breaker")){key="gather";return "Pull a survivor into the next close attack.";}
             if(Is(source,"rivetpistol")&&Is(consumer,"VectorTether","rifle","SuppressiveVolley")){key="slow";return "Slow the advance to help keep the firing line.";}
             if(Gun(source)&&Is(consumer,"duelist")){key="guard";return "Reload arms the three-hit ward.";}

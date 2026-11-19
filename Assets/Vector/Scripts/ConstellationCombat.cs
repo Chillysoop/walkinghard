@@ -57,7 +57,20 @@ namespace VectorGame
         void ExpansionSever(Enemy target)
         {if(Deck.Equipped(Signature.SpurTreads) is LoadoutItem host&&Once("spur-treads"))ConstellationSource(host,()=>{Pulse(target.physics.Center,host.def.effect.Radius(host.rank),host.def.effect.Seconds(host.rank),3,target);ConstellationCue(host,"stagger","Sever -> stagger pulse");});}
         void ExpansionLoop()
-        {if(Deck.Equipped(Signature.StaticShroud) is LoadoutItem host)ConstellationSource(host,()=>{foreach(var e in enemies.Where(e=>Reachable(e,host.def.effect.Radius(host.rank))).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).Take(2+(host.rank-1)/2).ToArray())MarkEnemy(e,host);fx.Ring(HeroPosition,host.def.effect.Radius(host.rank),Color.cyan,.4f);});}
+        {
+            if(!(Deck.Equipped(Signature.StaticShroud) is LoadoutItem host))return;
+            ConstellationSource(host,()=>
+            {
+                bool marked=false;
+                foreach(var e in enemies.Where(e=>Reachable(e,host.def.effect.Radius(host.rank))).OrderBy(e=>Vector3.Distance(e.physics.Center,HeroPosition)).Take(2+(host.rank-1)/2).ToArray())marked|=MarkEnemy(e,host);
+                if(marked&&ConstellationContent.ShroudBarrier(host)>0)
+                {
+                    PatternBarrier(host,ConstellationContent.ShroudBarrier(host),3);
+                    ConstellationCue(host,"guard","Loop marked a foe -> barrier refreshed");
+                }
+                fx.Ring(HeroPosition,host.def.effect.Radius(host.rank),Color.cyan,.4f);
+            });
+        }
         void ExpansionReload()
         {
             if(!(Deck.Equipped(Signature.VentGreaves) is LoadoutItem host)||!Once("vent-greaves"))return;
@@ -125,7 +138,7 @@ namespace VectorGame
                 case Signature.ImpactLens:case Signature.ExecutionHood:case Signature.Rangefinder:rules+="\nAt this rarity: +"+power+" damage, once per action.";break;
                 case Signature.Counterweight:case Signature.BallisticVest:rules+="\nAt this rarity: "+power+" barrier for "+seconds+"s; refreshes this item's barrier.";break;
                 case Signature.Switchboard:rules+="\nOne neighbor within "+reach+"m; "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" discharge damage, "+(4*s).ToString("0.#")+"s mark.";break;
-                case Signature.StaticShroud:rules+="\nAt this rarity: "+(2+(item.rank-1)/2)+" targets within "+reach+"m; "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" discharge damage, "+(4*s).ToString("0.#")+"s mark.";break;
+                case Signature.StaticShroud:rules+="\nAt this rarity: "+(2+(item.rank-1)/2)+" targets within "+reach+"m; "+(10*ItemRarity.Power[item.rank]).ToString("0.#")+" discharge damage, "+(4*s).ToString("0.#")+"s mark.\nMark at least one foe: "+ConstellationContent.ShroudBarrier(item).ToString("0.#")+" barrier for 3s. Refreshes; never stacks. Total barriers capped at 90.";break;
                 case Signature.StormCapacitor:case Signature.SpurTreads:rules+="\nAt this rarity: stagger three neighbors for "+seconds+"s within "+reach+"m.";break;
                 case Signature.VentGreaves:rules+="\nAt this rarity: "+power+" health per actual reload action; paired refills count once.";break;
                 case Signature.MercyLens:rules+="\nAt this rarity: "+(100*LoadoutCatalog.SiphonRate(item.rank)).ToString("0")+"% Lifesteal mark for "+(4*s).ToString("0.#")+"s; normal shared healing limit.";break;

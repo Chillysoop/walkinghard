@@ -62,6 +62,18 @@ namespace VectorGame
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-siphonReview")>=0){yield return CaptureSiphonReview(directory);yield break;}
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"-summaryReview")>=0)
             {yield return CaptureSummaryReview(directory);yield break;}
+            if(Array.IndexOf(args,"-branchBalanceReview")>=0)
+            {
+                game.PrepareBranchBalanceReview();
+                foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})
+                {
+                    Screen.SetResolution(size.x,size.y,false);for(int i=0;i<15;i++)yield return null;
+                    presentationHover=null;yield return CapturePresentation(directory,"branch-rewards-"+size.x);
+                    presentationHover=game.Deck.Armor[1];yield return CapturePresentation(directory,"branch-shroud-"+size.x);
+                    presentationHover=game.Deck.Slots[2];yield return CapturePresentation(directory,"branch-salvo-"+size.x);
+                }
+                Debug.Log("BRANCH_BALANCE_PRESENTATION_SUCCESS");Application.Quit(0);yield break;
+            }
             if(Array.IndexOf(args,"-passiveFeedbackReview")>=0)
             {
                 game.PreparePassiveFeedbackReview();

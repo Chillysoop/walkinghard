@@ -28,9 +28,10 @@ namespace VectorGame
             // Schema-1 profile remains valid; no new combat stats or legacy item gates.
             var old=new OfficeProfile{sparks=19,seal=true,rescued=3,victories=1,unlocks=new List<string>{"wraps","greatsword","relay","magnet","harvest","redline"}};AtomicWrite(OfficePath,JsonUtility.ToJson(old));LoadOffice();
             Require(Sparks==19&&ConstellationOwned==6&&RescuedWorkers==3&&JourneyVictories==1,"schema-1 ownership, wallet, workers and victories retained");
-            office=new OfficeProfile();SaveOffice(office);OpenOffice();hud.SelectOfficeBranch(0);yield return Shot("office-fresh");
+            office=new OfficeProfile();SaveOffice(office);OpenOffice();yield return Shot("office-fresh");
             Require(!BuyConstellation("pileknuckles")&&!BuyConstellation("missing"),"unaffordable and unknown purchases rejected");
             var funded=CopyOffice();funded.sparks=228;SaveOffice(funded);Require(!BuyConstellation("VectorSling"),"child cannot bypass parent or seal");
+            hud.CheckAstralChart(Require);yield return Shot("astral-affordable");
             StartChapter();var frozen=chapterRun.unlocks.ToArray();Require(!ChapterRewardAllowed(LoadoutCatalog.Find("pileknuckles"))&&ChapterRewardAllowed(LoadoutCatalog.Find("sword")),"fresh pool retains legacy content and gates new identities");Require(SaveCheckpoint(),"save pre-purchase journey");OpenOffice();
             Require(hud.HandleOfficePointer(EventType.MouseDown,hud.OfficeBranchButton(1,1280,720).center,1280,720)&&hud.OfficeBranch==1,"branch click selects Impact without purchase");int wallet=Sparks;
             Require(hud.HandleOfficePointer(EventType.MouseDown,hud.OfficeStar(6,1280,720).center,1280,720)&&Sparks==wallet,"star selection does not spend currency");
@@ -55,6 +56,7 @@ namespace VectorGame
             Require(ConstellationContent.Abilities.All(d=>discoveries.Contains(d.id)),"all six new abilities remain discoverable beside the attack safeguard");
             Require(linkedSupport&&freshGated,"expanded mixed support has an equipped interaction; fresh pools never leak locked patterns");
             foreach(var d in ConstellationContent.All){var deck=new AbilityDeck(9);var item=deck.Acquire(d,2);deck.SuggestedPlace(d,out var place,out int index);Require(deck.Move(item,place,index),"normal equip destination / "+d.id);deck.Acquire(d,2);deck.Acquire(d,2);Require(item.rank==3&&deck.Items.Contains(item),"same-rarity fusion / "+d.id);}
+            CheckBranchBalance(Require);
             // Tests invoke the live effect methods, with controlled target arrangements.
             foreach(int rank in new[]{1,3,5})
             {
@@ -117,7 +119,19 @@ namespace VectorGame
             ProbeReset();var carbine=ProbeHost(LoadoutCatalog.Find("arccarbine"));var grounding=Deck.Acquire(LoadoutCatalog.Find("grounding"));Deck.Move(grounding,PlaceKind.Armor);var marked=ProbeEnemy(0,2);MarkEnemy(marked,carbine);ResolveBasic(carbine,activeCard,marked,false);Require(BarrierAmount>0&&barriers.Any(x=>x.host==grounding),"carbine Conductive discharge supports Grounding armor");
             if(render)
             {
-                MainMenu();OpenOffice();foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080),new Vector2Int(2560,1080)}){Screen.SetResolution(size.x,size.y,false);for(int i=0;i<12;i++)yield return null;ReducedMotion=size.x==1280;foreach(int branch in new[]{0,1,2,3,4,5,6}){hud.SelectOfficeBranch(branch);yield return Shot("office-"+size.x+"-"+branch);}}
+                BeginCombatPreview(3);fx.muted=true;var shroud=Deck.Acquire(LoadoutCatalog.Find("staticshroud"),3);Deck.Move(shroud,PlaceKind.Armor);bool guarded=false;
+                for(int frame=0;frame<900&&State==RunState.Running;frame++)
+                {AdvanceCombat(1f/60);if(frame%3==0)yield return null;if(barriers.Any(b=>b.host==shroud)){guarded=true;yield return Shot("combat-staticshroud");break;}}
+                Require(guarded,"native sequence loop creates Shroud's visible barrier");
+                MainMenu();OpenOffice();foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})
+                {
+                    Screen.SetResolution(size.x,size.y,false);for(int i=0;i<12;i++)yield return null;ReducedMotion=size.x==1280;
+                    hud.FitOfficeChart();yield return Shot("astral-overview-"+size.x);
+                    foreach(int branch in new[]{0,1,2,3,4,5,6}){hud.SelectOfficeBranch(branch);yield return Shot("office-"+size.x+"-"+branch);}
+                    float scale=Mathf.Min(size.x/1280f,size.y/720f),w=size.x/scale,h=size.y/scale;
+                    hud.FitOfficeChart();var point=hud.OfficeStar(25,w,h).center;hud.ZoomOfficeChart(3,point,w,h);
+                    hud.HandleOfficePointer(EventType.MouseDown,hud.OfficeStar(25,w,h).center,w,h);yield return Shot("astral-zoom-"+size.x);
+                }
                 Screen.SetResolution(1920,1080,false);for(int i=0;i<12;i++)yield return null;CloseOffice();
                 foreach(var d in ConstellationContent.Weapons.Concat(ConstellationContent.Abilities).Concat(ConstellationContent.Ultimates))
                 {

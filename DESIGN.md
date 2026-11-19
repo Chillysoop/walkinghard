@@ -1,6 +1,16 @@
 # Walking Hard — build-variety contract
 
-Revision 34, November 18, 2026. Includes the 0.9.0 constellation expansion, 0.9.1 control weapons/shared body filters and 0.9.2 passive feedback/item illustrations. Historical implementation sections remain below. Numerical values are balance hypotheses, not a claim of equal build strength. Current comparison evidence is in QA/build-readability/verification.md; earlier measurements remain in their versioned QA reports.
+Revision 35, November 18, 2026. Includes the 0.9.0 constellation expansion, 0.9.1 control weapons/shared body filters and 0.9.2 passive feedback/item illustrations. Historical implementation sections remain below. Numerical values are balance hypotheses, not a claim of equal build strength. Current comparison evidence is in QA/branch-balance/verification.md; earlier measurements remain in their versioned QA reports.
+
+## Astral chart and approved branch balance (0.9.3)
+
+The Office displays all 36 permanent pattern unlocks in one spatial chart: Foundations near the hub and six outward branching constellations. Solid links represent actual item prerequisites. Dotted hub links represent open entry nodes, not extra purchases. The existing 228-Spark total, parent/Completion Seal gates and profile schema are unchanged. Unlocking expands the next journey’s loot pool; it does not equip an item or edit a saved journey’s frozen pool.
+
+Drag empty chart space to pan. Scroll zooms around the pointer; +/− zoom at center. Branch shortcuts focus a region without filtering away the rest of the graph. Fit Chart / Home restores the overview. Tab / Shift+Tab cycles nodes. Circular node hit areas agree with their visual bounds; edges clip inside the map. Selection shows the real prerequisite path and a persistent detail panel. A check means owned, a cost badge means affordable, and a lock means blocked; neutral/cyan states do not repurpose rarity colors. Inspecting, hovering, panning and zooming cannot spend currency. Only Unlock purchases the selected node. Reduced motion removes the expanding purchase pulse.
+
+Static Shroud still marks 2/2/3/3/4 nearby foes at loop completion. Only a successful mark grants its three-second barrier: 6 / 6.9 / 7.8 / 8.7 / 9.6 by rarity. Refresh the same host’s barrier rather than stacking it; retain the shared 90-point barrier cap. Empty/out-of-range loops and consumed-origin mark rejections grant no barrier. Barrier absorption is attributed to the armor and feeds the existing guard interactions.
+
+Breach Salvo base damage is 28 (previously 25). Its 0.8-second action, three-target lane and 50% prior-stagger bonus are unchanged. Rivet Pistol stays 20 and rifle 42. The 156 matched outcomes improve Storm endurance but do not establish a reliable Salvo survival gain. No further tuning is implied by this version.
 
 ## Durability and live combat feedback
 

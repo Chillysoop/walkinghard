@@ -118,7 +118,7 @@ namespace VectorGame
         {
             if(ChapterActive&&!SyncChapterProgress())return;
             if(ExpeditionActive&&State==RunState.Drafting&&!SaveCheckpoint())return;
-            FinishExpeditionStorage();MainMenu();OfficeOpen=true;
+            FinishExpeditionStorage();MainMenu();OfficeOpen=true;hud.FitOfficeChart();
         }
         public void CloseOffice(){OfficeOpen=false;}
         public bool StartChapter()

@@ -1,0 +1,9 @@
+{
+  "legacyStaticShroud": true,
+  "items": [
+    {
+      "id": "BreachSalvo",
+      "damageMultiplier": 0.8928571428571429
+    }
+  ]
+}

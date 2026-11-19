@@ -36,7 +36,7 @@ namespace VectorGame
         sealed class Mote {public Vector3 point;public float left=10,age,heal;public LoadoutItem owner,pullOwner;public Vector3 pullTarget;public float pullLeft,pulled;}
         readonly List<Mote> motes=new List<Mote>();
         public float BarrierAmount=>barriers.Sum(b=>b.left);
-        public string ArmedState=>string.Join(" Â· ",new[]{RecoilState,DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",FollowThroughReady,counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
+        public string ArmedState=>string.Join(" Ã‚Â· ",new[]{RecoilState,DuelistHitsRemaining>0?"DUELIST "+DuelistHitsRemaining+" HITS":"",predatorReady?"PREDATOR READY":"",guardArmed?"GUARD READY":"",FollowThroughReady,counterBank>0?"COUNTER BANK":"",amplifierBank>0?"AMPLIFIED":"",tempo>0?"TEMPO +"+(tempo*100).ToString("0")+"%":"",redlineTurns>0?"REDLINE "+redlineTurns:"",momentumUntil>Elapsed?"QUICK ABILITY":"",salvagerOwner!=null?"RETRIEVAL READY":""}.Where(s=>s.Length>0));
         public bool BreachArmed(LoadoutItem host)=>host!=null&&breachArmed.Contains(host);
         void ResetSignatures(){ResetDeadeye();ResetSynergyCues();ResetSiphon();contributions.Clear();InteractionNotes.Clear();RecentPayoff="";payoffUntil=0;turns.Clear();marks.Clear();setups.Clear();barriers.Clear();fields.Clear();anchors.Clear();motes.Clear();breachArmed.Clear();followBank=counterBank=amplifierBank=tempo=momentumUntil=reactiveDue=duelistUntil=0;followOwner=counterOwner=salvagerOwner=null;followMarks=0;guardArmed=false;redlineTurns=0;duelistHits=0;duelistStaggerReady=false;}
         float Effect(LoadoutItem item)=>LoadoutCatalog.EffectScale(item);
@@ -49,12 +49,12 @@ namespace VectorGame
             RememberDisplacement(e,impulse);e.physics.Impulse(impulse*(e.foreman==null?r:.18f));
             if(!FastSimulation&&impulse.sqrMagnitude>.1f){e.reaction=DescribeImpact(e,impulse,false);e.reactionLeft=.32f;}
         }
-        void MarkEnemy(Enemy e,LoadoutItem source,float potency=1)
+        bool MarkEnemy(Enemy e,LoadoutItem source,float potency=1)
         {
-            if(e.deathAge>=0)return;if(!marks.TryGetValue(e.id,out var m))marks[e.id]=m=new Mark();
-            if(m.consumed==(currentCredit?.action??actionSerial))return;
+            if(e.deathAge>=0)return false;if(!marks.TryGetValue(e.id,out var m))marks[e.id]=m=new Mark();
+            if(m.consumed==(currentCredit?.action??actionSerial))return false;
             ObservePassive(source,"conductive");m.until=Elapsed+4*Effect(source);m.power=10*ItemRarity.Power[source.rank]*potency;m.owner=source;
-            fx.Symbol(e.physics.Center+Vector3.up*.9f,VisualFactory.Cyan,.3f,true);
+            fx.Symbol(e.physics.Center+Vector3.up*.9f,VisualFactory.Cyan,.3f,true);return true;
         }
         bool ConsumeMark(Enemy e,bool announce=true)
         {

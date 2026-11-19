@@ -1,0 +1,416 @@
+{
+  "manifests": [
+    {
+      "variant": "baseline",
+      "mode": "Fast",
+      "runs": 72,
+      "workers": 2,
+      "player": "Build/Windows/WalkingHard.exe",
+      "assemblySha256": "25c3b33667fbc2b56dc6021decfa65ebbd7263150fcbaf4554f7ae97cbfd7374",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-19T05:59:09Z",
+      "balance": {
+        "legacyStaticShroud": true,
+        "items": [
+          {
+            "id": "BreachSalvo",
+            "damageMultiplier": 0.8928571428571429
+          }
+        ]
+      },
+      "wallSeconds": 33.056446000002325,
+      "valid": 72,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 27,
+      "timeouts": 0
+    },
+    {
+      "variant": "candidate",
+      "mode": "Fast",
+      "runs": 72,
+      "workers": 2,
+      "player": "Build/Windows/WalkingHard.exe",
+      "assemblySha256": "25c3b33667fbc2b56dc6021decfa65ebbd7263150fcbaf4554f7ae97cbfd7374",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-19T05:59:43Z",
+      "wallSeconds": 39.14484730002005,
+      "valid": 72,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 28,
+      "timeouts": 0
+    },
+    {
+      "variant": "baseline",
+      "mode": "Full",
+      "runs": 6,
+      "workers": 2,
+      "player": "Build/Windows/WalkingHard.exe",
+      "assemblySha256": "25c3b33667fbc2b56dc6021decfa65ebbd7263150fcbaf4554f7ae97cbfd7374",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-19T05:59:09Z",
+      "balance": {
+        "legacyStaticShroud": true,
+        "items": [
+          {
+            "id": "BreachSalvo",
+            "damageMultiplier": 0.8928571428571429
+          }
+        ]
+      },
+      "wallSeconds": 139.1411678000004,
+      "valid": 6,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 2,
+      "timeouts": 0
+    },
+    {
+      "variant": "candidate",
+      "mode": "Full",
+      "runs": 6,
+      "workers": 2,
+      "player": "Build/Windows/WalkingHard.exe",
+      "assemblySha256": "25c3b33667fbc2b56dc6021decfa65ebbd7263150fcbaf4554f7ae97cbfd7374",
+      "maxCombatSeconds": 600,
+      "baseHealth": 280,
+      "startedUtc": "2026-11-19T06:01:29Z",
+      "wallSeconds": 183.1798294999753,
+      "valid": 6,
+      "invalid": 0,
+      "missing": 0,
+      "duplicateCases": 0,
+      "wins": 2,
+      "timeouts": 0
+    }
+  ],
+  "groups": [
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "storm",
+      "rank": 1,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.0
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "storm",
+      "rank": 3,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 3.625
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "storm",
+      "rank": 5,
+      "n": 8,
+      "wins": 7,
+      "meanHealth": 45.54995846748352,
+      "meanWaves": 7.875
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "ballistics",
+      "rank": 1,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.0
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "ballistics",
+      "rank": 3,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 5.875
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "ballistics",
+      "rank": 5,
+      "n": 8,
+      "wins": 8,
+      "meanHealth": 284.93996238708496,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-impact",
+      "rank": 1,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.25
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-impact",
+      "rank": 3,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 5.75
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-impact",
+      "rank": 5,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 75.75985145568848,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-sever",
+      "rank": 1,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 6.25
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-sever",
+      "rank": 3,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 189.80302810668945,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "baseline",
+      "context": "mixed-sever",
+      "rank": 5,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 282.70416259765625,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "storm",
+      "rank": 1,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.125
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "storm",
+      "rank": 3,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 4.875
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "storm",
+      "rank": 5,
+      "n": 8,
+      "wins": 8,
+      "meanHealth": 189.2798557281494,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "ballistics",
+      "rank": 1,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "ballistics",
+      "rank": 3,
+      "n": 8,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 5.75
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "ballistics",
+      "rank": 5,
+      "n": 8,
+      "wins": 8,
+      "meanHealth": 281.9399604797363,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-impact",
+      "rank": 1,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 3.5
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-impact",
+      "rank": 3,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 6.75
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-impact",
+      "rank": 5,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 122.31985092163086,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-sever",
+      "rank": 1,
+      "n": 4,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 6.25
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-sever",
+      "rank": 3,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 184.65423965454102,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "fast",
+      "variant": "candidate",
+      "context": "mixed-sever",
+      "rank": 5,
+      "n": 4,
+      "wins": 4,
+      "meanHealth": 285.4961700439453,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "full",
+      "variant": "baseline",
+      "context": "storm",
+      "rank": 3,
+      "n": 2,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 5.5
+    },
+    {
+      "mode": "full",
+      "variant": "baseline",
+      "context": "ballistics",
+      "rank": 3,
+      "n": 2,
+      "wins": 2,
+      "meanHealth": 93.58012008666992,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "full",
+      "variant": "baseline",
+      "context": "storm",
+      "rank": 1,
+      "n": 1,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 2.0
+    },
+    {
+      "mode": "full",
+      "variant": "baseline",
+      "context": "ballistics",
+      "rank": 1,
+      "n": 1,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 3.0
+    },
+    {
+      "mode": "full",
+      "variant": "candidate",
+      "context": "storm",
+      "rank": 3,
+      "n": 2,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 7.0
+    },
+    {
+      "mode": "full",
+      "variant": "candidate",
+      "context": "ballistics",
+      "rank": 3,
+      "n": 2,
+      "wins": 2,
+      "meanHealth": 89.09005355834961,
+      "meanWaves": 8.0
+    },
+    {
+      "mode": "full",
+      "variant": "candidate",
+      "context": "storm",
+      "rank": 1,
+      "n": 1,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 3.0
+    },
+    {
+      "mode": "full",
+      "variant": "candidate",
+      "context": "ballistics",
+      "rank": 1,
+      "n": 1,
+      "wins": 0,
+      "meanHealth": 0.0,
+      "meanWaves": 3.0
+    }
+  ]
+}
