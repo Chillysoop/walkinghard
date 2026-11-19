@@ -1,0 +1,3 @@
+Review-only compile failure corrected before simulation: used StartCombatPreview instead of existing BeginCombatPreview.
+Assets\Vector\Scripts\ConstellationReview.cs(121,17): error CS0103: The name 'StartCombatPreview' does not exist in the current context
+Initial astral navigation review rejected overlapping rectangular corner hit areas between Foundations nodes. Changed production hit testing to the actual circular node bounds and verified circular separation.

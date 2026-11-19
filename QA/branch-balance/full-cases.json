@@ -1,0 +1,202 @@
+{
+  "cases": [
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-new-r3-s0",
+      "context": "storm",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-new-r3-s1",
+      "context": "storm",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92101,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-new-r3-s0",
+      "context": "ballistics",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-new-r3-s1",
+      "context": "ballistics",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 3,
+      "baseRank": 3,
+      "matchedWeapons": true,
+      "seed": 92301,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "arccarbine",
+        ""
+      ],
+      "abilities": [
+        "StormLash",
+        "ArcBolt",
+        "VectorTether"
+      ],
+      "helmet": "switchboard",
+      "armor": "staticshroud",
+      "boots": "arcstep",
+      "rig": "stormcapacitor",
+      "ultimate": "tempest",
+      "id": "storm-new-r1-s0",
+      "context": "storm",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "arccarbine",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92100,
+      "healthFraction": 1,
+      "sequence": [
+        "StormLash",
+        "basic0",
+        "basic1",
+        "ArcBolt",
+        "VectorTether"
+      ]
+    },
+    {
+      "weapons": [
+        "letterpistol",
+        "pistol"
+      ],
+      "abilities": [
+        "SuppressiveVolley",
+        "BreachSalvo",
+        "VectorTether"
+      ],
+      "helmet": "surveyor",
+      "armor": "ballisticvest",
+      "boots": "ventgreaves",
+      "rig": "rangefinder",
+      "ultimate": "redline",
+      "id": "ballistics-new-r1-s0",
+      "context": "ballistics",
+      "variant": "new",
+      "category": "weapon",
+      "candidate": "letterpistol",
+      "rank": 1,
+      "baseRank": 1,
+      "matchedWeapons": true,
+      "seed": 92300,
+      "healthFraction": 1,
+      "sequence": [
+        "SuppressiveVolley",
+        "basic0",
+        "basic1",
+        "BreachSalvo",
+        "VectorTether"
+      ]
+    }
+  ]
+}

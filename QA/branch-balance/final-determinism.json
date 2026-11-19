@@ -1,0 +1,22 @@
+{
+  "cases": 72,
+  "exactGameplayMatches": 72,
+  "different": [],
+  "manifest": {
+    "mode": "Fast",
+    "runs": 72,
+    "workers": 2,
+    "player": "Build/Windows/WalkingHard.exe",
+    "assemblySha256": "2f3f1dd0651dca8328369cc85d8fc25284a968f204620c0b969dafad3f753e4b",
+    "maxCombatSeconds": 600,
+    "baseHealth": 280,
+    "startedUtc": "2026-11-19T06:17:01Z",
+    "wallSeconds": 27.039304699981585,
+    "valid": 72,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCases": 0,
+    "wins": 28,
+    "timeouts": 0
+  }
+}

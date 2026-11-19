@@ -1,0 +1,127 @@
+{
+  "assemblySha256": "2f3f1dd0651dca8328369cc85d8fc25284a968f204620c0b969dafad3f753e4b",
+  "workers": 3,
+  "cases": [
+    {
+      "suite": "core",
+      "build": "fast",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 199.08578491210938
+    },
+    {
+      "suite": "core",
+      "build": "armed",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 225.59994506835938
+    },
+    {
+      "suite": "core",
+      "build": "armor",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 328.0
+    },
+    {
+      "suite": "core",
+      "build": "half",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 199.08578491210938
+    },
+    {
+      "suite": "core",
+      "build": "hammer",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 211.51995849609375
+    },
+    {
+      "suite": "core",
+      "build": "manual",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 242.66383361816406
+    },
+    {
+      "suite": "core",
+      "build": "quick",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 223.86073303222656
+    },
+    {
+      "suite": "core",
+      "build": "reroll",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 211.51995849609375
+    },
+    {
+      "suite": "core",
+      "build": "reload",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 221.7599639892578
+    },
+    {
+      "suite": "core",
+      "build": "rifle",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 239.679931640625
+    },
+    {
+      "suite": "core",
+      "build": "sequence",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 199.08578491210938
+    },
+    {
+      "suite": "core",
+      "build": "sequence",
+      "seed": 4319,
+      "passed": true,
+      "assertions": 929,
+      "health": 264.63995361328125
+    },
+    {
+      "suite": "core",
+      "build": "sword",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 189.75997924804688
+    },
+    {
+      "suite": "core",
+      "build": "tempest",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 262.24005126953125
+    },
+    {
+      "suite": "core",
+      "build": "twin",
+      "seed": 1741,
+      "passed": true,
+      "assertions": 929,
+      "health": 228.79995727539062
+    }
+  ],
+  "wallSeconds": 60.29423240001779
+}

@@ -29,3 +29,6 @@ __pycache__/
 
 # Raw v0.9.2 captures/profiles; curated evidence is in QA/build-readability.
 /QA/v092-*
+
+# Working captures and isolated profiles; curated reports live in QA/branch-balance.
+/QA/v093-*
